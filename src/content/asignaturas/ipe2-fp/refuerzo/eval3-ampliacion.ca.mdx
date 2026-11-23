@@ -26,12 +26,74 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Sensibilitat del punt mort al preu.</strong> Un projecte té costos fixos de <strong>12.000 €</strong>/any i un cost variable unitari de <strong>20 €</strong>. (a) Calcula el punt mort si ven a <strong>50 €</strong>. (b) Si poguera pujar el preu a <strong>60 €</strong>, com canvia el punt mort? Comenta l'efecte i el seu límit."
     desarrollo: "(a) <strong>Amb preu 50 €</strong>: marge = 50 − 20 = <strong>30 €</strong>. Punt mort = 12.000 ÷ 30 = <strong>400 unitats</strong>/any.<br>(b) <strong>Amb preu 60 €</strong>: marge = 60 − 20 = <strong>40 €</strong>. Punt mort = 12.000 ÷ 40 = <strong>300 unitats</strong>/any.<br><strong>Efecte:</strong> pujar el preu un 20 % (de 50 a 60) reduïx el punt mort un 25 % (de 400 a 300 unitats), perquè cada unitat aporta més marge i es necessiten menys vendes per a cobrir els costos fixos.<br><strong>Límit:</strong> el càlcul suposa que la demanda no canvia, però pujar el preu normalment reduïx les unitats que la gent compra. Per això un preu més alt només millora la viabilitat si el mercat l'accepta sense que caiga massa el volum: eixa és la hipòtesi que cal validar."
+    grafico:
+      tipo: xy
+      caption: "Amb costos fixos de 12.000 € i cost variable de 20 €, pujar el preu de 50 € a 60 € baixa el punt mort de 400 unitats (A) a 300 (B)."
+      props:
+        id: "r-e3a-sensibilidad"
+        titulo: "El punt mort amb preu de 50 € i de 60 €"
+        desc: "Costos totals de 12.000 euros fixos més 20 per unitat i ingressos a 50 i a 60 euros per unitat. Amb 50 euros es creuen en 400 unitats i 20.000 euros; amb 60 euros, en 300 unitats i 18.000 euros."
+        xMax: 560
+        yMax: 36000
+        ejeX: "Unitats venudes"
+        ejeY: "Euros a l'any"
+        simboloY: "€"
+        xTicks: [100, 200, 500]
+        yTicks: [10000, 20000, 30000]
+        series:
+          - { label: "Costos", color: "ink", puntos: [[0, 12000], [500, 22000]], dx: 10, dy: 5 }
+          - { label: "P = 50 €", color: "terra", tenue: true, puntos: [[0, 0], [500, 25000]], dx: 10, dy: 5 }
+          - { label: "P = 60 €", color: "terra", puntos: [[0, 0], [500, 30000]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 400, y: 20000, label: "A", xLabel: "400", dx: 12, dy: 24 }
+          - { x: 300, y: 18000, label: "B", xLabel: "300", yLabel: "18 000", dx: 12, dy: 24 }
   - enunciado: "<strong>Marge sobre vendes i punt mort en euros.</strong> Una empresa ven a <strong>25 €</strong> amb un cost variable unitari de <strong>15 €</strong> i costos fixos de <strong>20.000 €</strong>. Calcula la ràtio de marge sobre el preu i el punt mort expressat en euros de facturació. Comprova el resultat amb el punt mort en unitats."
     desarrollo: "<strong>1. Marge unitari</strong> = 25 − 15 = <strong>10 €</strong>.<br><strong>2. Ràtio de marge sobre el preu</strong> = Marge ÷ Preu = 10 ÷ 25 = 0,40 = <strong>40 %</strong>. De cada euro facturat, 40 cèntims servixen per a cobrir costos fixos i generar benefici.<br><strong>3. Punt mort en euros</strong> = Costos fixos ÷ ràtio de marge = 20.000 ÷ 0,40 = <strong>50.000 €</strong> de facturació.<br><strong>4. Comprovació amb unitats</strong>: punt mort en unitats = 20.000 ÷ 10 = 2.000 unitats; en euros = 2.000 × 25 = <strong>50.000 €</strong>. Coincidix. El punt mort en euros és molt útil quan véns molts productes distints i no pots raonar per unitats."
+    grafico:
+      tipo: xy
+      caption: "Amb preu de 25 €, cost variable de 15 € i costos fixos de 20.000 €, el punt mort són 2.000 unitats, és a dir, 2.000 × 25 = 50.000 € de facturació (ràtio de marge del 40 %)."
+      props:
+        id: "r-e3a-margen"
+        titulo: "Punt mort en euros de facturació"
+        desc: "Ingressos de 25 euros per unitat i costos totals de 20.000 euros fixos més 15 per unitat. Es creuen en 2.000 unitats i 50.000 euros de facturació."
+        xMax: 3000
+        yMax: 80000
+        ejeX: "Unitats venudes"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [500, 1000, 1500, 2500]
+        yTicks: [20000, 40000, 60000]
+        series:
+          - { label: "Ingressos", color: "terra", puntos: [[0, 0], [2500, 62500]], dx: 10, dy: 5 }
+          - { label: "Costos totals", color: "ink", puntos: [[0, 20000], [2500, 57500]], dx: 10, dy: 5 }
+          - { label: "Costos fixos", color: "mustard", tenue: true, puntos: [[0, 20000], [2500, 20000]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 2000, y: 50000, label: "PM", xLabel: "2 000", yLabel: "50 000", dx: 12, dy: 24 }
   - enunciado: "<strong>Dissenya un projecte social amb rigor d'impacte.</strong> Un equip vol reduir el balafiament del menjador del seu centre entregant els excedents a famílies del barri. Explica com usaries el design thinking per a no fallar, a quins ODS ho vincularies amb indicadors mesurables, quina forma jurídica encaixaria i quin finançament triaries per a arrancar."
     desarrollo: "<strong>Design thinking (per què començar empatitzant):</strong> abans de dissenyar res, cal parlar amb la cuina (quant de menjar sobra i durant quantes hores és segur), amb les famílies (què necessiten i amb quina dignitat) i amb la direcció (normes sanitàries). Empatitzar evita l'error clàssic: muntar un repartiment que les famílies rebutgen per sentir-se «receptores de caritat». Després es <em>definix</em> el problema en una frase, s'<em>idea</em>, es <em>prototipa</em> una setmana a mà i es <em>prova</em>.<br><strong>ODS amb indicadors mesurables:</strong> <strong>ODS 2</strong> (fam zero) i <strong>ODS 12</strong> (consum responsable), mesurats amb xifres concretes: quilos de menjar aprofitats al mes, nombre de famílies ateses i tones de balafiament evitades a l'any. Un impacte sense xifres és <em>social washing</em>.<br><strong>Forma jurídica:</strong> una <strong>cooperativa d'iniciativa social</strong> o una associació amb activitat econòmica (economia social, Llei 5/2011), perquè el fi és l'interés general i regix «un soci, un vot».<br><strong>Finançament:</strong> per a arrancar, <strong>crowdfunding</strong> en una plataforma com Goteo (valida l'interés del barri i finança l'equipament alhora); ja en marxa, una <strong>subvenció</strong> autonòmica a l'economia social o contra el balafiament alimentari."
   - enunciado: "<strong>Capstone integrador: viabilitat i recuperació de la inversió.</strong> Un projecte té costos fixos de <strong>12.000 €</strong>/any, ven a <strong>30 €</strong> amb un cost variable de <strong>18 €</strong> i necessita una inversió inicial de <strong>10.000 €</strong>. (a) Calcula el punt mort anual. (b) Si la validació preveu <strong>1.500 unitats</strong>/any, calcula el benefici anual i el termini de recuperació de la inversió. (c) Diagnostica la viabilitat."
     desarrollo: "<strong>(a) Punt mort:</strong> marge = 30 − 18 = <strong>12 €</strong>. Punt mort = 12.000 ÷ 12 = <strong>1.000 unitats</strong>/any.<br><strong>(b) Benefici amb 1.500 unitats:</strong> està 500 per damunt del punt mort → benefici = 500 × 12 = <strong>6.000 €</strong>/any. Comprovació: ingressos = 1.500 × 30 = 45.000; costos = 1.500 × 18 + 12.000 = 27.000 + 12.000 = 39.000; benefici = 45.000 − 39.000 = 6.000 €. Coincidix.<br>Termini de recuperació = Inversió ÷ Benefici anual = 10.000 ÷ 6.000 ≈ <strong>1,67 anys</strong> (uns 20 mesos).<br><strong>(c) Diagnòstic:</strong> la previsió (1.500) supera el punt mort (1.000) amb un marge del 50 %, el projecte genera benefici i recupera la inversió en menys de dos anys: <strong>viabilitat econòmic-financera sòlida</strong>. Queda confirmar la viabilitat tècnica (recursos i permisos) i comercial (que les 1.500 unitats vinguen de demanda validada, no d'optimisme). Avís: el benefici no és el mateix que la caixa; cal assegurar un coixí de tresoreria per als primers mesos."
+    grafico:
+      tipo: xy
+      caption: "Amb 12.000 € de costos fixos, preu de 30 € i cost variable de 18 €, el punt mort són 1.000 unitats; amb 1.500 unitats els ingressos (45.000 €) superen els costos (39.000 €) en 6.000 € a l'any, i la inversió de 10.000 € es recupera en uns 20 mesos."
+      props:
+        id: "r-e3a-capstone"
+        titulo: "Punt mort i benefici previst del projecte"
+        desc: "Ingressos de 30 euros per unitat i costos totals de 12.000 euros fixos més 18 per unitat. Es creuen en 1.000 unitats i 30.000 euros. Amb 1.500 unitats els ingressos són 45.000 i els costos 39.000."
+        xMax: 2100
+        yMax: 70000
+        ejeX: "Unitats venudes a l'any"
+        ejeY: "Euros a l'any"
+        simboloY: "€"
+        xTicks: [500, 2000]
+        yTicks: [10000, 20000, 40000, 60000]
+        series:
+          - { label: "Ingressos", color: "terra", puntos: [[0, 0], [1800, 54000]], dx: 10, dy: 5 }
+          - { label: "Costos totals", color: "ink", puntos: [[0, 12000], [1800, 44400]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 1000, y: 30000, label: "PM", xLabel: "1 000", yLabel: "30 000", dx: 12, dy: 24 }
+          - { x: 1500, y: 45000, xLabel: "1 500", yLabel: "45 000" }
+          - { x: 1500, y: 39000, guias: false }
 ejercicios:
   - enunciado: "El teu projecte té costos fixos de <strong>18.000 €</strong>/any, ven a <strong>40 €</strong> amb un cost variable de <strong>16 €</strong>. (a) Calcula el punt mort en unitats i en euros de facturació. (b) Si per pressió de la competència baixes el preu a <strong>34 €</strong>, recalcula el punt mort i comenta l'efecte."
     solucion: "(a) Marge = 40 − 16 = <strong>24 €</strong>. Punt mort = 18.000 ÷ 24 = <strong>750 unitats</strong>. En euros: 750 × 40 = <strong>30.000 €</strong> de facturació.<br>(b) Amb preu 34 €: nou marge = 34 − 16 = 18 €. Punt mort = 18.000 ÷ 18 = <strong>1.000 unitats</strong>.<br>Comentari: baixar el preu un 15 % obliga a vendre un 33 % més (de 750 a 1.000 unitats) només per a no perdre, perquè el marge per unitat es reduïx. Baixar preus sense assegurar molt més volum és perillós."

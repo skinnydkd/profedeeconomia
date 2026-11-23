@@ -26,10 +26,86 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Calcula un finiquito.</strong> A Marta se le termina el contrato. Su salario es de 1.800 € al mes. La empresa le debe 12 días de salario trabajados ese mes y la parte proporcional de las 2 pagas extra (de 1.800 € cada una) generada en 8 meses. Calcula los dos conceptos y el total (no hay vacaciones pendientes)."
     desarrollo: "Vamos paso a paso.<br><strong>1. Salario diario:</strong> 1.800 ÷ 30 = 60 €/día.<br><strong>2. Días trabajados:</strong> 12 × 60 = <strong>720 €</strong>.<br><strong>3. Pagas extra:</strong> hay 2 pagas de 1.800 € que se generan a lo largo de 12 meses; en 8 meses se ha generado 2 × 1.800 × (8 ÷ 12) = 3.600 × 0,6667 = <strong>2.400 €</strong>.<br><strong>4. Finiquito total:</strong> 720 + 2.400 = <strong>3.120 €</strong>.<br>Recuerda: el finiquito es lo que ya habías ganado, así que te corresponde siempre, te vayas como te vayas."
+    grafico:
+      tipo: xy
+      caption: "El finiquito de Marta suma 12 días × 60 € = 720 € y la parte proporcional de las pagas extra, 2 × 1.800 × 8/12 = 2.400 €: 3.120 € en total."
+      props:
+        id: "r-e3r-finiquito"
+        titulo: "Finiquito de Marta: días trabajados y pagas extra"
+        desc: "Tres columnas en euros. Días trabajados: 720. Parte proporcional de las pagas extra: 2.400. Finiquito total: 3.120."
+        xMax: 9
+        yMax: 4000
+        ejeX: "Concepto"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [1.5, 4.5, 7.5]
+        yTicks: [1000, 2000, 3000]
+        xTickLabels: ["Días trabajados", "Pagas extra", "Finiquito"]
+        areas:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 720], [0.7, 720]], color: "teal", fuerte: true }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2400], [3.7, 2400]], color: "mustard", fuerte: true }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 720], [6.7, 720]], color: "teal", fuerte: true }
+          - { puntos: [[6.7, 720], [8.3, 720], [8.3, 3120], [6.7, 3120]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 720], [0.7, 720], [0.7, 0]], color: "teal" }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2400], [3.7, 2400], [3.7, 0]], color: "mustard" }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 720], [6.7, 720], [6.7, 0]], color: "teal" }
+          - { puntos: [[6.7, 720], [8.3, 720], [8.3, 3120], [6.7, 3120], [6.7, 720]], color: "mustard" }
+        notas:
+          - { x: 1.5, y: 860, texto: "720", ancla: "middle" }
+          - { x: 4.5, y: 2540, texto: "2 400", ancla: "middle" }
+          - { x: 7.5, y: 305.95, texto: "Días 720", ancla: "middle" }
+          - { x: 7.5, y: 1865.95, texto: "Pagas 2 400", ancla: "middle" }
+          - { x: 7.5, y: 3260, texto: "3 120", ancla: "middle" }
   - enunciado: "<strong>Indemnización por despido.</strong> Diego tiene un salario diario de 55 € y 6 años de antigüedad. Calcula la indemnización si el despido es objetivo (20 días por año) y si es improcedente (33 días por año)."
     desarrollo: "Primero los días, después se multiplican por el salario diario.<br><strong>Despido objetivo:</strong> 20 días × 6 años = 120 días. 120 × 55 € = <strong>6.600 €</strong>.<br><strong>Despido improcedente:</strong> 33 días × 6 años = 198 días. 198 × 55 € = <strong>10.890 €</strong>.<br>El improcedente paga más porque la empresa no ha justificado bien la causa del despido."
+    grafico:
+      tipo: xy
+      caption: "Con 55 € al día y 6 años, el despido objetivo (20 días por año) da 120 × 55 = 6.600 € y el improcedente (33 días por año) 198 × 55 = 10.890 €."
+      props:
+        id: "r-e3r-despido"
+        titulo: "Indemnización de Diego según el tipo de despido"
+        desc: "Dos rectas que salen del origen con un salario de 55 euros al día. A 33 días por año, 6 años dan 10.890 euros; a 20 días por año, 6.600 euros."
+        xMax: 8
+        yMax: 15000
+        ejeX: "Años de antigüedad"
+        ejeY: "Indemnización"
+        simboloY: "€"
+        xTicks: [1, 2, 3, 4, 5, 7]
+        yTicks: [5000]
+        series:
+          - { label: "Improcedente", color: "terra", puntos: [[0, 0], [7, 12705]], dx: 10, dy: 5 }
+          - { label: "Objetivo", color: "teal", puntos: [[0, 0], [7, 7700]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 6, y: 10890, xLabel: "6", yLabel: "10 890" }
+          - { x: 6, y: 6600, yLabel: "6 600" }
   - enunciado: "<strong>Cuánto cobras en una baja.</strong> Andrés se pone de baja por enfermedad común. Su base reguladora diaria es de 50 €. Recuerda: los 3 primeros días no se cobra nada, del día 4 al 20 se cobra el 60 % y desde el día 21 el 75 %. Calcula cuánto cobra del INSS en los primeros 30 días."
     desarrollo: "Separamos la baja en tramos.<br><strong>Días 1 a 3:</strong> 0 € (no se cobra nada).<br><strong>Días 4 a 20 (17 días) al 60 %:</strong> 60 % de 50 = 30 €/día. 17 × 30 = <strong>510 €</strong>.<br><strong>Días 21 a 30 (10 días) al 75 %:</strong> 75 % de 50 = 37,50 €/día. 10 × 37,50 = <strong>375 €</strong>.<br><strong>Total 30 días:</strong> 0 + 510 + 375 = <strong>885 €</strong>.<br>Con su salario habitual habría cobrado 30 × 50 = 1.500 €, así que pierde 615 € por estar de baja, salvo que el convenio lo mejore."
+    grafico:
+      tipo: xy
+      caption: "En los primeros 30 días de baja Andrés cobra 0 + 510 + 375 = 885 € del INSS, frente a los 1.500 € de su salario habitual (50 € al día)."
+      props:
+        id: "r-e3r-baja"
+        titulo: "Lo que cobra Andrés cada día de baja"
+        desc: "Escalera de euros por día. Días 1 a 3: 0. Días 4 a 20: 30 euros al día, el 60 % de 50. Días 21 a 30: 37,50 euros al día, el 75 %. Línea de referencia: 50 euros al día de salario habitual."
+        xMax: 36
+        yMax: 60
+        ejeX: "Día de la baja"
+        ejeY: "Euros por día"
+        simboloY: "€"
+        xTicks: [5, 10, 15, 20, 25, 30]
+        yTicks: [10, 20, 30, 40, 50]
+        areas:
+          - { puntos: [[3, 0], [3, 30], [20, 30], [20, 37.5], [30, 37.5], [30, 0]], color: "teal" }
+        series:
+          - { color: "teal", puntos: [[0, 0], [3, 0], [3, 30], [20, 30], [20, 37.5], [30, 37.5], [30, 0]] }
+          - { label: "Salario 50 €/día", color: "ink", tenue: true, puntos: [[0, 50], [30, 50]], dx: 10, dy: 5 }
+        notas:
+          - { x: 1.5, y: 4, texto: "0 €", ancla: "middle" }
+          - { x: 11.5, y: 32, texto: "60 %: 30 €/día", ancla: "middle" }
+          - { x: 11.5, y: 14, texto: "17 × 30 = 510 €", ancla: "middle" }
+          - { x: 25, y: 39.5, texto: "75 %: 37,50 €/día", ancla: "middle" }
+          - { x: 25, y: 14, texto: "10 × 37,50 = 375 €", ancla: "middle" }
   - enunciado: "<strong>Ordena las medidas preventivas.</strong> En un almacén hay riesgo de caída desde una plataforma elevada. Se proponen tres medidas: a) dar un arnés a cada operario (EPI); b) instalar una barandilla fija en todo el borde (protección colectiva); c) rediseñar el proceso para que no haga falta subir a la plataforma (eliminar el riesgo). Ordénalas por prioridad y justifica."
     desarrollo: "Aplicamos la jerarquía del artículo 15 de la LPRL, de mayor a menor prioridad:<br><strong>1.º Eliminar el riesgo en origen (c):</strong> si nadie tiene que subir, el riesgo de caída desaparece. Es siempre lo primero.<br><strong>2.º Protección colectiva (b):</strong> la barandilla protege a todas las personas a la vez sin que tengan que hacer nada.<br><strong>3.º Protección individual o EPI (a):</strong> el arnés es el último recurso, porque solo protege a quien lo lleva y depende de que se use bien.<br>Orden correcto: c → b → a. El EPI nunca es la primera opción, sino la última."
   - enunciado: "<strong>Analiza un puesto con el modelo de Karasek.</strong> Sara trabaja en una caja de supermercado en hora punta: ritmo altísimo impuesto por la cola, no puede decidir cuándo parar y su encargado solo le habla para meterle prisa. Clasifica su puesto en demanda, control y apoyo, y di si es de alto riesgo de estrés."

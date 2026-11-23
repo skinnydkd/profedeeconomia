@@ -24,12 +24,74 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Sensibilidad del punto muerto al precio.</strong> Un proyecto tiene costes fijos de <strong>12.000 €</strong>/año y un coste variable unitario de <strong>20 €</strong>. (a) Calcula el punto muerto si vende a <strong>50 €</strong>. (b) Si pudiera subir el precio a <strong>60 €</strong>, ¿cómo cambia el punto muerto? Comenta el efecto y su límite."
     desarrollo: "(a) <strong>Con precio 50 €</strong>: margen = 50 − 20 = <strong>30 €</strong>. Punto muerto = 12.000 ÷ 30 = <strong>400 unidades</strong>/año.<br>(b) <strong>Con precio 60 €</strong>: margen = 60 − 20 = <strong>40 €</strong>. Punto muerto = 12.000 ÷ 40 = <strong>300 unidades</strong>/año.<br><strong>Efecto:</strong> subir el precio un 20 % (de 50 a 60) reduce el punto muerto un 25 % (de 400 a 300 unidades), porque cada unidad aporta más margen y se necesitan menos ventas para cubrir los costes fijos.<br><strong>Límite:</strong> el cálculo supone que la demanda no cambia, pero subir el precio normalmente reduce las unidades que la gente compra. Por eso un precio más alto solo mejora la viabilidad si el mercado lo acepta sin que caiga demasiado el volumen: esa es la hipótesis que hay que validar."
+    grafico:
+      tipo: xy
+      caption: "Con costes fijos de 12.000 € y coste variable de 20 €, subir el precio de 50 € a 60 € baja el punto muerto de 400 unidades (A) a 300 (B)."
+      props:
+        id: "r-e3a-sensibilidad"
+        titulo: "El punto muerto con precio de 50 € y de 60 €"
+        desc: "Costes totales de 12.000 euros fijos más 20 por unidad e ingresos a 50 y a 60 euros por unidad. Con 50 euros se cruzan en 400 unidades y 20.000 euros; con 60 euros, en 300 unidades y 18.000 euros."
+        xMax: 560
+        yMax: 36000
+        ejeX: "Unidades vendidas"
+        ejeY: "Euros al año"
+        simboloY: "€"
+        xTicks: [100, 200, 500]
+        yTicks: [10000, 20000, 30000]
+        series:
+          - { label: "Costes", color: "ink", puntos: [[0, 12000], [500, 22000]], dx: 10, dy: 5 }
+          - { label: "P = 50 €", color: "terra", tenue: true, puntos: [[0, 0], [500, 25000]], dx: 10, dy: 5 }
+          - { label: "P = 60 €", color: "terra", puntos: [[0, 0], [500, 30000]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 400, y: 20000, label: "A", xLabel: "400", dx: 12, dy: 24 }
+          - { x: 300, y: 18000, label: "B", xLabel: "300", yLabel: "18 000", dx: 12, dy: 24 }
   - enunciado: "<strong>Margen sobre ventas y punto muerto en euros.</strong> Una empresa vende a <strong>25 €</strong> con un coste variable unitario de <strong>15 €</strong> y costes fijos de <strong>20.000 €</strong>. Calcula el ratio de margen sobre el precio y el punto muerto expresado en euros de facturación. Comprueba el resultado con el punto muerto en unidades."
     desarrollo: "<strong>1. Margen unitario</strong> = 25 − 15 = <strong>10 €</strong>.<br><strong>2. Ratio de margen sobre el precio</strong> = Margen ÷ Precio = 10 ÷ 25 = 0,40 = <strong>40 %</strong>. De cada euro facturado, 40 céntimos sirven para cubrir costes fijos y generar beneficio.<br><strong>3. Punto muerto en euros</strong> = Costes fijos ÷ ratio de margen = 20.000 ÷ 0,40 = <strong>50.000 €</strong> de facturación.<br><strong>4. Comprobación con unidades</strong>: punto muerto en unidades = 20.000 ÷ 10 = 2.000 unidades; en euros = 2.000 × 25 = <strong>50.000 €</strong>. Coincide. El punto muerto en euros es muy útil cuando vendes muchos productos distintos y no puedes razonar por unidades."
+    grafico:
+      tipo: xy
+      caption: "Con precio de 25 €, coste variable de 15 € y costes fijos de 20.000 €, el punto muerto son 2.000 unidades, es decir, 2.000 × 25 = 50.000 € de facturación (ratio de margen del 40 %)."
+      props:
+        id: "r-e3a-margen"
+        titulo: "Punto muerto en euros de facturación"
+        desc: "Ingresos de 25 euros por unidad y costes totales de 20.000 euros fijos más 15 por unidad. Se cruzan en 2.000 unidades y 50.000 euros de facturación."
+        xMax: 3000
+        yMax: 80000
+        ejeX: "Unidades vendidas"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [500, 1000, 1500, 2500]
+        yTicks: [20000, 40000, 60000]
+        series:
+          - { label: "Ingresos", color: "terra", puntos: [[0, 0], [2500, 62500]], dx: 10, dy: 5 }
+          - { label: "Costes totales", color: "ink", puntos: [[0, 20000], [2500, 57500]], dx: 10, dy: 5 }
+          - { label: "Costes fijos", color: "mustard", tenue: true, puntos: [[0, 20000], [2500, 20000]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 2000, y: 50000, label: "PM", xLabel: "2 000", yLabel: "50 000", dx: 12, dy: 24 }
   - enunciado: "<strong>Diseña un proyecto social con rigor de impacto.</strong> Un equipo quiere reducir el desperdicio del comedor de su centro entregando los excedentes a familias del barrio. Explica cómo usarías el design thinking para no fallar, a qué ODS lo vincularías con indicadores medibles, qué forma jurídica encajaría y qué financiación elegirías para arrancar."
     desarrollo: "<strong>Design thinking (por qué empezar empatizando):</strong> antes de diseñar nada, hay que hablar con la cocina (cuánta comida sobra y durante cuántas horas es segura), con las familias (qué necesitan y con qué dignidad) y con la dirección (normas sanitarias). Empatizar evita el error clásico: montar un reparto que las familias rechacen por sentirse «receptoras de caridad». Luego se <em>define</em> el problema en una frase, se <em>idea</em>, se <em>prototipa</em> una semana a mano y se <em>testa</em>.<br><strong>ODS con indicadores medibles:</strong> <strong>ODS 2</strong> (hambre cero) y <strong>ODS 12</strong> (consumo responsable), medidos con cifras concretas: kilos de comida aprovechados al mes, número de familias atendidas y toneladas de desperdicio evitadas al año. Un impacto sin cifras es <em>social washing</em>.<br><strong>Forma jurídica:</strong> una <strong>cooperativa de iniciativa social</strong> o una asociación con actividad económica (economía social, Ley 5/2011), porque el fin es el interés general y rige «un socio, un voto».<br><strong>Financiación:</strong> para arrancar, <strong>crowdfunding</strong> en una plataforma como Goteo (valida el interés del barrio y financia el equipamiento a la vez); ya en marcha, una <strong>subvención</strong> autonómica a la economía social o contra el desperdicio alimentario."
   - enunciado: "<strong>Capstone integrador: viabilidad y recuperación de la inversión.</strong> Un proyecto tiene costes fijos de <strong>12.000 €</strong>/año, vende a <strong>30 €</strong> con un coste variable de <strong>18 €</strong> y necesita una inversión inicial de <strong>10.000 €</strong>. (a) Calcula el punto muerto anual. (b) Si la validación prevé <strong>1.500 unidades</strong>/año, calcula el beneficio anual y el plazo de recuperación de la inversión. (c) Diagnostica la viabilidad."
     desarrollo: "<strong>(a) Punto muerto:</strong> margen = 30 − 18 = <strong>12 €</strong>. Punto muerto = 12.000 ÷ 12 = <strong>1.000 unidades</strong>/año.<br><strong>(b) Beneficio con 1.500 unidades:</strong> está 500 por encima del punto muerto → beneficio = 500 × 12 = <strong>6.000 €</strong>/año. Comprobación: ingresos = 1.500 × 30 = 45.000; costes = 1.500 × 18 + 12.000 = 27.000 + 12.000 = 39.000; beneficio = 45.000 − 39.000 = 6.000 €. Coincide.<br>Plazo de recuperación = Inversión ÷ Beneficio anual = 10.000 ÷ 6.000 ≈ <strong>1,67 años</strong> (unos 20 meses).<br><strong>(c) Diagnóstico:</strong> la previsión (1.500) supera el punto muerto (1.000) con un margen del 50 %, el proyecto genera beneficio y recupera la inversión en menos de dos años: <strong>viabilidad económico-financiera sólida</strong>. Queda confirmar la viabilidad técnica (recursos y permisos) y comercial (que las 1.500 unidades vengan de demanda validada, no de optimismo). Aviso: el beneficio no es lo mismo que la caja; hay que asegurar un colchón de tesorería para los primeros meses."
+    grafico:
+      tipo: xy
+      caption: "Con 12.000 € de costes fijos, precio de 30 € y coste variable de 18 €, el punto muerto son 1.000 unidades; con 1.500 unidades los ingresos (45.000 €) superan a los costes (39.000 €) en 6.000 € al año, y la inversión de 10.000 € se recupera en unos 20 meses."
+      props:
+        id: "r-e3a-capstone"
+        titulo: "Punto muerto y beneficio previsto del proyecto"
+        desc: "Ingresos de 30 euros por unidad y costes totales de 12.000 euros fijos más 18 por unidad. Se cruzan en 1.000 unidades y 30.000 euros. Con 1.500 unidades los ingresos son 45.000 y los costes 39.000."
+        xMax: 2100
+        yMax: 70000
+        ejeX: "Unidades vendidas al año"
+        ejeY: "Euros al año"
+        simboloY: "€"
+        xTicks: [500, 2000]
+        yTicks: [10000, 20000, 40000, 60000]
+        series:
+          - { label: "Ingresos", color: "terra", puntos: [[0, 0], [1800, 54000]], dx: 10, dy: 5 }
+          - { label: "Costes totales", color: "ink", puntos: [[0, 12000], [1800, 44400]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 1000, y: 30000, label: "PM", xLabel: "1 000", yLabel: "30 000", dx: 12, dy: 24 }
+          - { x: 1500, y: 45000, xLabel: "1 500", yLabel: "45 000" }
+          - { x: 1500, y: 39000, guias: false }
 ejercicios:
   - enunciado: "Tu proyecto tiene costes fijos de <strong>18.000 €</strong>/año, vende a <strong>40 €</strong> con un coste variable de <strong>16 €</strong>. (a) Calcula el punto muerto en unidades y en euros de facturación. (b) Si por presión de la competencia bajas el precio a <strong>34 €</strong>, recalcula el punto muerto y comenta el efecto."
     solucion: "(a) Margen = 40 − 16 = <strong>24 €</strong>. Punto muerto = 18.000 ÷ 24 = <strong>750 unidades</strong>. En euros: 750 × 40 = <strong>30.000 €</strong> de facturación.<br>(b) Con precio 34 €: nuevo margen = 34 − 16 = 18 €. Punto muerto = 18.000 ÷ 18 = <strong>1.000 unidades</strong>.<br>Comentario: bajar el precio un 15 % obliga a vender un 33 % más (de 750 a 1.000 unidades) solo para no perder, porque el margen por unidad se reduce. Bajar precios sin asegurar mucho más volumen es peligroso."
