@@ -123,6 +123,12 @@ const { title, variant = 'key' } = Astro.props;
     color: inherit;
   }
 
+  /* Phones: reclaim width from the box padding. Screen only so the A5 PDF is untouched. */
+  @media screen and (max-width: 600px) {
+    .takeaways { padding: 1.1rem 1rem 1.1rem 3.4rem; }
+    .takeaways--key { padding-left: 1rem; }
+    .takeaways__icon { top: 1.1rem; left: 0.8rem; }
+  }
   @media print {
     .takeaways { break-inside: avoid; page-break-inside: avoid; }
   }
