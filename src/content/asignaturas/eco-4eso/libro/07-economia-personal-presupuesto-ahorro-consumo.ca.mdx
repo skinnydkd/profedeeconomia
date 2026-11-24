@@ -44,6 +44,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Presupuesto503020 from '@components/diagrams/Presupuesto503020.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
 import EtiquetaAnotada from '@components/diagrams/EtiquetaAnotada.astro';
@@ -155,6 +156,29 @@ a) Calcula els seus ingressos i despeses mensuals mitjans i el seu estalvi. b) C
 5. **El carnet**: 32 € × 24 mesos = **768 €**. Li falten 232 €. Necessitaria estalviar 1.000 / 24 = **41,67 € al mes**, uns 10 € més del que estalvia hui.
 6. **Recomanació**: el perill no està en els 10 € de cada mes, sinó en els 700 € de juliol, que arriben de colp i al setembre solen haver desaparegut. Si Lucía transferix **500 € del sou del campament** a un compte d'estalvi el mateix dia que els cobra, ja té la meitat del carnet, i la resta l'aconseguix apartant 21 € al mes de la paga (500 / 24 = 20,8 €). Pagar-se a una mateixa primer, abans de decidir res, és el que convertix un bon pressupost en diners de veres.
 
+<Diagram caption="El pressupost mensual de Lucía (110 €) enfront de la regla 50-30-20: gasta molt menys en necessitats (18 € enfront de 55), més en desitjos (60 € enfront de 33) i estalvia 32 € enfront dels 22 de la referència.">
+  <GraficoXY id="g-presupuesto-lucia" titulo="Pressupost de Lucía enfront de la regla 50-30-20" desc="Tres parells de barres en euros al mes. Necessitats: Lucía 18, regla 55. Desitjos: Lucía 60, regla 33. Estalvi: Lucía 32, regla 22."
+    xMax={6.8} yMax={70} ejeX="Bloc del pressupost" ejeY="Euros al mes"
+    xTicks={[1.15, 3.15, 5.15]} xTickLabels={['Necessitats', 'Desitjos', 'Estalvi']} yTicks={[10, 20, 30, 40, 50, 60]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.5, 0], [1.1, 0], [1.1, 18], [0.5, 18]] }, { color: 'mustard', fuerte: true, puntos: [[1.2, 0], [1.8, 0], [1.8, 55], [1.2, 55]] },
+      { color: 'terra', fuerte: true, puntos: [[2.5, 0], [3.1, 0], [3.1, 60], [2.5, 60]] }, { color: 'mustard', fuerte: true, puntos: [[3.2, 0], [3.8, 0], [3.8, 33], [3.2, 33]] },
+      { color: 'terra', fuerte: true, puntos: [[4.5, 0], [5.1, 0], [5.1, 32], [4.5, 32]] }, { color: 'mustard', fuerte: true, puntos: [[5.2, 0], [5.8, 0], [5.8, 22], [5.2, 22]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.5, 0], [0.5, 18], [1.1, 18], [1.1, 0]] }, { color: 'mustard', puntos: [[1.2, 0], [1.2, 55], [1.8, 55], [1.8, 0]] },
+      { color: 'terra', puntos: [[2.5, 0], [2.5, 60], [3.1, 60], [3.1, 0]] }, { color: 'mustard', puntos: [[3.2, 0], [3.2, 33], [3.8, 33], [3.8, 0]] },
+      { color: 'terra', puntos: [[4.5, 0], [4.5, 32], [5.1, 32], [5.1, 0]] }, { color: 'mustard', puntos: [[5.2, 0], [5.2, 22], [5.8, 22], [5.8, 0]] },
+    ]}
+    notas={[
+      { x: 0.8, y: 21, texto: '18', ancla: 'middle' }, { x: 1.5, y: 58, texto: '55', ancla: 'middle' },
+      { x: 2.8, y: 63, texto: '60', ancla: 'middle' }, { x: 3.5, y: 36, texto: '33', ancla: 'middle' },
+      { x: 4.8, y: 35, texto: '32', ancla: 'middle' }, { x: 5.5, y: 25, texto: '22', ancla: 'middle' },
+      { x: 4.2, y: 66, texto: 'Lucía', color: 'terra' }, { x: 4.2, y: 61, texto: 'Regla 50-30-20', color: 'mustard' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Prova-ho amb els teus números.** Introduïx els teus ingressos mensuals i el que gastes en cada bloc; la calculadora t'ensenya com queda el teu repartiment enfront del 50-30-20 i en quina barra estàs lluny de la referència.
@@ -216,6 +240,19 @@ Imagina que des dels 16 anys estalvies **50 € al mes** (600 € a l'any) en un
 4. **Qui comença als 30**: 35 anys, (1,03)^35 ≈ 2,814, factor ≈ 60,5. Capital final ≈ **36.277 €** amb 21.000 € aportats.
 5. **Lectura**: catorze anys d'avantatge i 8.400 € més aportats es convertixen en **quasi 29.000 € de diferència** als 65. Els 600 € que estalvies als 16 són els que més rendixen de tota la teua vida, perquè són els que més anys treballen. I ull al revers: l'interés compost funciona igual en contra teua quan deus diners, una cosa que voràs amb les targetes a la Unitat 8.
 
+<Diagram caption="El que s'acumula amb 600 € a l'any al 3 %: qui comença als 16 arriba a 65.124 € als 65 anys, i qui comença als 30, a 36.277 €. El que ha posat de la seua butxaca el primer són 29.400 €: la resta són interessos.">
+  <GraficoXY id="g-ahorro-edad" titulo="Estalviar 600 euros a l'any des dels 16 o des dels 30" desc="Tres línies segons l'edat. Començant als 16, el capital és 10 252 euros als 30 anys i 65 124 als 65. Començant als 30, arriba a 36 277 als 65. El que s'ha aportat des dels 16 és una recta que acaba en 29 400 euros."
+    xMax={72} yMax={75000} ejeX="Edat" ejeY="Euros acumulats" simboloX="t" simboloY="€"
+    xTicks={[20, 40, 50, 60]} yTicks={[20000, 40000]}
+    series={[
+      { color: 'terra', label: 'Des dels 16', puntos: Array.from({ length: 50 }, (_, i) => [16 + i, 600 * (1.03 ** i - 1) / 0.03]) },
+      { color: 'teal', label: 'Des dels 30', puntos: Array.from({ length: 36 }, (_, i) => [30 + i, 600 * (1.03 ** i - 1) / 0.03]) },
+      { color: 'ink', tenue: true, label: 'Aportat', puntos: [[16, 0], [65, 29400]] },
+    ]}
+    puntos={[{ x: 30, y: 10252, xLabel: '30', yLabel: '10 252' }, { x: 65, y: 65124, xLabel: '65', yLabel: '65 124', dx: -10, dy: -14 }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Juga amb els anys.** La calculadora dibuixa dos línies: el que has aportat i el que tens. La separació entre les dos és l'interés compost treballant. Prova a canviar l'edat d'inici abans que la quantitat mensual.
@@ -237,6 +274,24 @@ La primera és la de la Unitat 1: això cobrix una **necessitat** o és un **des
 ### Comparar de veres: el preu per unitat
 
 Comparar preus sembla fàcil fins que els envasos no mesuren el mateix. Per això el **Real Decreto 3423/2000**, que trasllada una directiva europea, obliga que en els productes de gran consum aparega el **preu per unitat de mesura** (€/kg, €/litre, €/unitat) al costat del preu de l'envàs. És l'única xifra que permet comparar formats. Un exemple amb números inventats: arròs en paquet de 500 g a 0,89 € (1,78 €/kg), d'1 kg a 1,45 € (1,45 €/kg) i de 5 kg a 6,25 € (1,25 €/kg). Ací el gran ix millor, però no sempre: els fabricants saben que donem per fet que l'envàs gran és més barat i de vegades ho aprofiten. L'€/kg també destapa la **reducció de l'envàs**: quan un paquet passa de 1.000 g a 900 g al mateix preu, el preu per quilo puja un 11 % sense que el preu del paquet es moga.
+
+<Diagram caption="El mateix arròs segons l'envàs: el preu del paquet puja amb la grandària, però el preu per quilo baixa, d'1,78 € a 1,25 €.">
+  <GraficoXY id="g-precio-unidad" titulo="Preu per quilo d'arròs segons la grandària de l'envàs" desc="Tres barres: el paquet de 500 grams, a 0,89 euros, ix a 1,78 euros el quilo; el d'1 quilo, a 1,45 euros, ix a 1,45 el quilo; el de 5 quilos, a 6,25 euros, ix a 1,25 el quilo."
+    xMax={7} yMax={2.4} ejeX="Envàs i preu del paquet" ejeY="Euros per quilo"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['500 g: 0,89 €', '1 kg: 1,45 €', '5 kg: 6,25 €']} yTicks={[0.5, 1, 1.5, 2]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 1.78], [0.9, 1.78]] },
+      { color: 'mustard', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 1.45], [2.9, 1.45]] },
+      { color: 'teal', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 1.25], [4.9, 1.25]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 1.78], [2.1, 1.78], [2.1, 0]] },
+      { color: 'mustard', puntos: [[2.9, 0], [2.9, 1.45], [4.1, 1.45], [4.1, 0]] },
+      { color: 'teal', puntos: [[4.9, 0], [4.9, 1.25], [6.1, 1.25], [6.1, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 1.9, texto: '1,78 €/kg', ancla: 'middle' }, { x: 3.5, y: 1.57, texto: '1,45 €/kg', ancla: 'middle' }, { x: 5.5, y: 1.37, texto: '1,25 €/kg', ancla: 'middle' }]}
+  />
+</Diagram>
 
 <Figure
   src={publicidadCalle}

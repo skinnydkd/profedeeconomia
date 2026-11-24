@@ -22,6 +22,9 @@ estado: publicado
 slug: "olimpiada/textos/03-salario-minimo-empleo.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## Text
 
 El debat sobre els efectes del salari mínim en l'ocupació és un dels més longeus i fèrtils de l'economia laboral. Durant dècades, el model estàndard de competència perfecta va oferir una resposta nítida: si l'Estat fixa un salari mínim interprofessional (SMI) per damunt del salari d'equilibri de mercat, es produïx un **excés d'oferta de treball**. A eixe preu artificialment elevat, les empreses demanden menys treballadors —la quantitat demandada de treball cau— mentres que més persones desitgen ocupar-se —la quantitat oferida augmenta—. La diferència entre ambdues magnituds és desocupació involuntària. El salari mínim actua, en termes analítics, com un **sòl de preus** (*price floor*) en el mercat de treball: igual que un preu mínim d'un bé genera un excedent no venut, el SMI generaria un excedent de treballadors disposats a treballar però sense trobar ocupació.
@@ -61,12 +64,48 @@ En definitiva, el salari mínim il·lustra amb precisió una lliçó metodològi
 - Si la demanda de treball és molt inelàstica (p. ex. treballs difícilment automatitzables), la caiguda de l'ocupació és menuda. Si és elàstica, la caiguda és major.
 - Si l'oferta de treball és molt elàstica, l'excés d'oferta és major per a una mateixa pujada del SMI.
 
+<Diagram caption="Mercat de treball competitiu amb un salari mínim (SMI) per damunt del d'equilibri. A eixe salari les empreses demanen Ld i els treballadors oferixen Ls: l'excés d'oferta és desocupació involuntària. Esquema sense xifres.">
+  <GraficoXY id="g-olt-smi" titulo="Salari mínim per damunt de l'equilibri" desc="La demanda de treball, decreixent, i l'oferta, creixent, es tallen en E. Amb un SMI per damunt del salari d'equilibri, les empreses demanen Ld i els treballadors oferixen Ls, una quantitat major: la diferència és desocupació. Esquema sense xifres."
+    xMax={100} yMax={100} ejeX="Ocupació (treballadors)" ejeY="Salari" simboloX="L" simboloY="w"
+    series={[
+      { label: 'Demanda', color: 'terra', puntos: [[10, 85], [85, 10]] },
+      { label: 'Oferta', color: 'mustard', puntos: [[10, 15], [85, 90]] },
+      { label: 'SMI', color: 'ink', puntos: [[0, 65], [94, 65]] },
+      { color: 'teal', puntos: [[30, 65], [60, 65]] },
+    ]}
+    puntos={[
+      { x: 45, y: 50, label: 'E', xLabel: 'L*', yLabel: 'w*', dx: 16, dy: 6 },
+      { x: 30, y: 65, xLabel: 'Ld', yLabel: 'SMI' },
+      { x: 60, y: 65, xLabel: 'Ls' },
+    ]}
+    notas={[{ x: 45, y: 70, texto: 'Desocupació', color: 'teal', ancla: 'middle' }]}
+  />
+</Diagram>
+
 **Pregunta 2 — Monopsoni**
 
 - Definició: mercat en què hi ha un únic comprador (o pocs) de treball; l'ocupador té poder per a fixar el salari per davall del producte marginal del treballador.
 - En monopsoni pur, l'ocupador maximitza igualant el cost marginal del treball (CMgL) al valor del producte marginal (VPMgL), però el CMgL supera el salari que paga → contracta menys treballadors i paga menys que en competència perfecta.
 - Un salari mínim entre el salari monopsonístic i el competitiu pot elevar alhora l'ocupació i el salari: l'ocupador ja no pot pagar menys, i contractar una persona més ja no l'obliga a apujar el sou de tota la plantilla. Contracta fins on l'oferta de treball a eixe salari li ho permet, que és més que abans.
 - Això explica els resultats de Card & Krueger: si els mercats de menjar ràpid tenen característiques d'oligopsoni, la pujada del salari mínim no reduïx l'ocupació.
+
+<Diagram caption="Monopsoni. L'ocupador contracta fins on el cost marginal del treball (CMgL) iguala el valor del producte marginal (VPMgL): ocupació LM i salari wM, per davall del resultat competitiu C. Un SMI entre wM i wC obliga a pagar almenys eixe salari i l'ocupació puja fins a L mín. Esquema sense xifres.">
+  <GraficoXY id="g-olt-monopsonio" titulo="Monopsoni i salari mínim" desc="Un ocupador amb poder de monopsoni contracta fins que el cost marginal del treball iguala el valor del producte marginal, amb ocupació LM i salari wM, tots dos menors que els competitius LC i wC. Un SMI entre wM i wC porta l'ocupació a L mín, major que LM, i puja el salari. Esquema sense xifres."
+    xMax={100} yMax={100} ejeX="Ocupació (treballadors)" ejeY="Salari" simboloX="L" simboloY="w"
+    series={[
+      { label: 'VPMgL', color: 'terra', puntos: [[10, 90], [85, 15]] },
+      { label: 'Ls', color: 'mustard', puntos: [[5, 15], [85, 95]] },
+      { label: 'CMgL', color: 'aubergine', puntos: [[5, 20], [42, 94]] },
+      { color: 'ink', puntos: [[0, 48], [38, 48]] },
+    ]}
+    puntos={[
+      { x: 30, y: 70, label: 'A', guias: false, dx: -26, dy: 6 },
+      { x: 30, y: 40, label: 'M', xLabel: 'LM', yLabel: 'wM', dx: 12, dy: 18 },
+      { x: 38, y: 48, label: 'F', xLabel: 'L mín', yLabel: 'SMI', dx: 12, dy: 18 },
+      { x: 45, y: 55, label: 'C', xLabel: 'LC', yLabel: 'wC', dx: 14, dy: 6 },
+    ]}
+  />
+</Diagram>
 
 **Pregunta 3 — Experiment natural i disseny de Card & Krueger**
 

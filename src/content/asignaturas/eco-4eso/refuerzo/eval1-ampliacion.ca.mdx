@@ -30,16 +30,153 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Cost explícit i cost implícit.</strong> Hugo té 16 anys. En juliol pot treballar quatre setmanes en un xiringuito, 20 hores a la setmana, a 9,50 € l'hora; o fer un curs de socorrista de quatre setmanes que costa 350 € i que l'estiu següent li permetria guanyar uns 1.300 € en compte de 760 €. (a) Calcula el cost d'oportunitat complet de fer el curs. (b) En quants estius el recupera?"
     desarrollo: "<strong>1. El que guanyaria treballant:</strong> 4 setmanes × 20 hores × 9,50 € = <strong>760 €</strong>.<br><strong>2. Cost explícit del curs:</strong> la matrícula, <strong>350 €</strong>.<br><strong>3. Cost implícit:</strong> els <strong>760 €</strong> que deixa d'ingressar per no treballar. No apareixen en cap factura, però es perden igual.<br><strong>4. Cost d'oportunitat complet:</strong> 350 + 760 = <strong>1.110 €</strong>, més les hores d'estudi.<br><strong>5. El que guanya el curs cada estiu següent:</strong> 1.300 − 760 = <strong>540 € més</strong> per estiu.<br><strong>6. Recuperació:</strong> 1.110 ÷ 540 = 2,06, és a dir, poc més de <strong>dos estius</strong>. A partir del tercer, el curs és guany net.<br><strong>Lectura:</strong> qui només mira els 350 € creu que el curs és barat; qui suma el cost implícit veu el cost real i decidix amb informació. El mateix val per a muntar un negoci en un local propi: el lloguer que no es cobra és un cost."
+    grafico:
+      tipo: xy
+      caption: "El curs costa 350 € de matrícula més 760 € de sou que es deixa de guanyar (1.110 €) i dona 540 € més per estiu: el balanç acumulat passa a positiu als 2,06 estius."
+      props:
+        id: "r-e1a-curso-socorrista"
+        titulo: "Quan es recupera el cost del curs de socorrista"
+        desc: "Recta de balanç acumulat que comença en menys 1.110 euros i puja 540 euros cada estiu: menys 570, menys 30, més 510 i més 1.050. Creua el zero als 2,06 estius."
+        xMax: 5.5
+        yMax: 1300
+        yMin: -1300
+        ejeX: "Estius després del curs"
+        ejeY: "Balanç acumulat (€)"
+        simboloX: "n"
+        simboloY: "€"
+        xTicks: [1, 2, 3, 4]
+        yTicks: [-1000, -500, 500, 1000]
+        series:
+          - { label: "Balanç", color: "terra", puntos: [[0, -1110], [1, -570], [2, -30], [3, 510], [4, 1050]] }
+        puntos:
+          - { x: 2.06, y: 0, label: "2,06 estius", dx: -104, dy: -12, guias: false }
+        notas:
+          - { x: 0.15, y: -1260, texto: "Cost: 350 + 760 = 1 110 €" }
+          - { x: 2.5, y: -450, texto: "+540 € cada estiu", color: "terra" }
   - enunciado: "<strong>Cost d'oportunitat creixent.</strong> Amb les combinacions de la fira (A = 0 entrepans i 200 sucs; B = 50 i 180; C = 100 i 140; D = 150 i 80; E = 200 i 0), calcula quants sucs costa <em>cada entrepà</em> en els quatre trams i explica per què el cost canvia."
     desarrollo: "En cada tram es guanyen 50 entrepans; el que canvia és quants sucs es perden.<br><strong>1. D'A a B:</strong> 200 − 180 = 20 sucs perduts → 20 ÷ 50 = <strong>0,4 sucs per entrepà</strong>.<br><strong>2. De B a C:</strong> 180 − 140 = 40 → <strong>0,8 sucs per entrepà</strong>.<br><strong>3. De C a D:</strong> 140 − 80 = 60 → <strong>1,2 sucs per entrepà</strong>.<br><strong>4. De D a E:</strong> 80 − 0 = 80 → <strong>1,6 sucs per entrepà</strong>.<br><strong>5. Per què creix:</strong> els primers que deixen d'espremer per a untar són els qui pitjor espremien, així que es perden pocs sucs. Els últims a canviar són els millors amb l'espremedora, i cadascun se n'emporta molts sucs. Els recursos no són igual de bons per a tot.<br><strong>6. Conseqüència gràfica:</strong> per això la FPP no és una recta, sinó una corba doblegada cap a fora. Si tots els recursos foren intercanviables, el cost seria constant i la frontera, recta."
+    grafico:
+      tipo: xy
+      caption: "Cada tram afig 50 entrepans, però costa més sucs: 0,4, 0,8, 1,2 i 1,6 sucs per entrepà. Per això la FPP es corba cap a fora."
+      props:
+        id: "r-e1a-coste-creciente"
+        titulo: "Cost d'oportunitat de cada entrepà en els quatre trams"
+        desc: "Quatre columnes creixents: d'A a B cada entrepà costa 0,4 sucs; de B a C, 0,8; de C a D, 1,2; i de D a E, 1,6."
+        xMax: 9
+        yMax: 2
+        ejeX: "Tram de la FPP"
+        ejeY: "Sucs per entrepà"
+        xTicks: [1.3, 3.3, 5.3, 7.3]
+        xTickLabels: ["A → B", "B → C", "C → D", "D → E"]
+        yTicks: [0.5, 1, 1.5]
+        areas:
+          - { puntos: [[0.8, 0], [1.8, 0], [1.8, 0.4], [0.8, 0.4]], color: "terra", fuerte: true }
+          - { puntos: [[2.8, 0], [3.8, 0], [3.8, 0.8], [2.8, 0.8]], color: "terra", fuerte: true }
+          - { puntos: [[4.8, 0], [5.8, 0], [5.8, 1.2], [4.8, 1.2]], color: "terra", fuerte: true }
+          - { puntos: [[6.8, 0], [7.8, 0], [7.8, 1.6], [6.8, 1.6]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1.3, y: 0.47, texto: "0,4", ancla: "middle" }
+          - { x: 3.3, y: 0.87, texto: "0,8", ancla: "middle" }
+          - { x: 5.3, y: 1.27, texto: "1,2", ancla: "middle" }
+          - { x: 7.3, y: 1.67, texto: "1,6", ancla: "middle" }
   - enunciado: "<strong>Nominal, real i per capita.</strong> El país de Valdemar va tindre un PIB nominal de 1.000 milions d'euros en 2024 i de 1.060 milions en 2025. Els preus van pujar un 4 % i la població va passar de 10 a 10,3 milions d'habitants. Ha millorat la vida de l'habitant mitjà?"
     desarrollo: "<strong>1. Creixement nominal:</strong> 1.060 ÷ 1.000 = 1,06 → <strong>6 %</strong>. És el titular fàcil.<br><strong>2. Creixement real:</strong> llevem els preus dividint entre 1,04. 1,06 ÷ 1,04 = 1,019 → <strong>1,9 %</strong> (la resta ràpida 6 − 4 = 2 % dona quasi el mateix). Només això és producció de veritat.<br><strong>3. Creixement de la població:</strong> 10,3 ÷ 10 = 1,03 → <strong>3 %</strong>.<br><strong>4. PIB real per capita:</strong> 1,019 ÷ 1,03 = 0,989 → <strong>cau al voltant d'un 1 %</strong>.<br><strong>5. Resposta:</strong> el titular «Valdemar creix un 6 %» és cert i enganya alhora. Descomptats preus i població, a l'habitant mitjà li toca un 1 % menys que l'any anterior.<br><strong>6. El que encara falta:</strong> saber com es repartix (el per capita és una mitjana), si eixa renda s'ha convertit en salut i educació (IDH) i a quin preu ambiental s'ha produït."
+    grafico:
+      tipo: xy
+      caption: "Valdemar: el PIB nominal creix un 6 %, el real un 1,9 % (amb preus +4 %), i el real per habitant cau un 1,1 % perquè la població creix un 3 %."
+      props:
+        id: "r-e1a-valdemar"
+        titulo: "Creixement nominal, real i per càpita de Valdemar"
+        desc: "Tres columnes: PIB nominal, més 6 per cent; PIB real, més 1,9 per cent; PIB real per habitant, menys 1,1 per cent."
+        xMax: 11
+        yMax: 8
+        yMin: -3
+        ejeX: "Creixement de 2024 a 2025"
+        ejeY: "Variació (%)"
+        simboloY: "%"
+        yTicks: [-2, 2, 4, 6]
+        areas:
+          - { puntos: [[1, 0], [2.5, 0], [2.5, 6], [1, 6]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 0], [5.5, 0], [5.5, 1.9], [4, 1.9]], color: "teal", fuerte: true }
+          - { puntos: [[7, 0], [8.5, 0], [8.5, -1.1], [7, -1.1]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1.75, y: 7.2, texto: "PIB nominal", ancla: "middle" }
+          - { x: 4.75, y: 7.2, texto: "PIB real", ancla: "middle" }
+          - { x: 7.75, y: 7.2, texto: "Real per càpita", ancla: "middle" }
+          - { x: 1.75, y: 6.4, texto: "+6 %", ancla: "middle" }
+          - { x: 4.75, y: 2.4, texto: "+1,9 %", ancla: "middle" }
+          - { x: 7.75, y: -1.9, texto: "−1,1 %", ancla: "middle", color: "terra" }
   - enunciado: "<strong>Per què l'oli es va triplicar i una dessuadora no ho faria.</strong> Una campanya normal d'oli d'oliva a Espanya ronda 1,4 milions de tones; la de 2022/23 es va quedar en unes 666.000 (MAPA). El preu en origen del verge extra va passar d'uns 3,30 €/kg a rondar els 9 €/kg entre finals de 2023 i principis de 2024. (a) Calcula la caiguda de la producció en percentatge i la pujada del preu. (b) Explica per què el preu puja molt més del que cau la quantitat."
     desarrollo: "<strong>1. Caiguda de la producció:</strong> (1.400.000 − 666.000) ÷ 1.400.000 × 100 = 734.000 ÷ 1.400.000 × 100 ≈ <strong>52 %</strong> menys.<br><strong>2. Pujada del preu:</strong> 9 ÷ 3,30 = 2,7 → el preu es va multiplicar per <strong>2,7</strong>, és a dir, va pujar al voltant d'un <strong>173 %</strong>.<br><strong>3. Quina corba es va moure:</strong> la d'<strong>oferta</strong>, cap a l'esquerra, per la sequera. La demanda amb prou faenes es va moure: la gent va continuar volent oli.<br><strong>4. Per què el preu es dispara tant:</strong> perquè la demanda d'oli respon <strong>poc</strong> al preu. Té pocs substituts acceptables, s'usa cada dia i pesa poc en la despesa total d'una família, així que cal una pujada enorme perquè la gent en compre la meitat.<br><strong>5. Comparació:</strong> si desaparegués la meitat de la producció d'una marca concreta de dessuadora, quasi ningú pagaria el triple: se n'anirien a una altra marca. Molts substituts, poca pujada de preu.<br><strong>6. Comprovació:</strong> quan la campanya 2024/25 va recuperar els 1,4 milions de tones, l'oferta va tornar cap a la dreta i el preu en origen va baixar a uns 4 €/kg. El camí es va desfer igual de ràpid."
+    grafico:
+      tipo: xy
+      caption: "La sequera desplaça l'oferta cap a l'esquerra (d'O₁ a O₂): la producció cau un 52 % (d'1.400 a 666 mil t) i el preu es multiplica per 2,7 (de 3,30 a 9 €/kg) perquè la demanda reacciona poc. Les dos ofertes són un dibuix esquemàtic; els punts són les dades."
+      props:
+        id: "r-e1a-aceite"
+        titulo: "Oferta d'oli d'oliva: sequera i preu en origen"
+        desc: "Una demanda decreixent i dos ofertes: després de la sequera, l'oferta es desplaça cap a l'esquerra i l'equilibri passa d'1.400 mil tones a 3,30 euros el quilo a 666 mil tones a 9 euros el quilo."
+        xMax: 1900
+        yMax: 14
+        ejeX: "Producció (milers de tones)"
+        ejeY: "Preu en origen (€/kg)"
+        simboloX: "Q"
+        simboloY: "P"
+        xTicks: [500, 1000]
+        yTicks: [6, 12]
+        series:
+          - { label: "D", color: "terra", puntos: [[300, 11.84], [1700, 0.97]] }
+          - { label: "O₁", color: "mustard", tenue: true, puntos: [[900, 0.3], [1600, 4.5]] }
+          - { label: "O₂", color: "mustard", puntos: [[200, 6.2], [1000, 11]] }
+        puntos:
+          - { x: 1400, y: 3.3, label: "E₁", xLabel: "1 400", yLabel: "3,30", dx: 22, dy: 5 }
+          - { x: 666, y: 9, label: "E₂", xLabel: "666", yLabel: "9", dx: 22, dy: 5 }
   - enunciado: "<strong>Un preu màxim, amb les dos xifres.</strong> En el mercat de dessuadores de l'institut l'equilibri està en 25 € i 70 unitats. A 15 € se'n demanarien 110 i el club en fabricaria 30. La direcció fixa un preu màxim de 15 € «perquè siguen accessibles». (a) Quantes se'n venen i quantes persones es queden sense? (b) Què passa amb els ingressos del club? (c) I si el topall fora de 30 €?"
     desarrollo: "<strong>1. Quantitat venuda:</strong> es ven sempre la menor de les dos quantitats. A 15 €: <strong>30 dessuadores</strong>. Abans del topall se'n venien 70.<br><strong>2. Persones sense dessuadora:</strong> 110 − 30 = <strong>80</strong>. La norma pensada perquè arribaren a més gent fa que arriben a menys.<br><strong>3. Ingressos:</strong> amb topall, 15 × 30 = <strong>450 €</strong>. En equilibri, 25 × 70 = <strong>1.750 €</strong>. El club perd 1.300 € d'ingressos.<br><strong>4. Amb un topall de 30 €:</strong> està <em>per damunt</em> de l'equilibri, així que no canvia res: el mercat continua buidant-se a 25 € amb 70 dessuadores. Un preu màxim només actua per davall de l'equilibri.<br><strong>5. Efectes secundaris previsibles:</strong> cues i repartiment per ordre d'arribada o amistat, revenda a 25 € o 30 €, i temptació de retallar qualitat perquè isca a compte fabricar a 15 €.<br><strong>6. El mateix patró, a grandària real:</strong> en els 140 municipis catalans tensionats el lloguer mitjà dels nous contractes va baixar un 3,7 % (de 911 a 878 €) i un 6,4 % a Barcelona, mentres queia el nombre de contractes signats i creixia el lloguer de temporada. Preu més baix i menys quantitat: les dos xifres alhora."
+    grafico:
+      tipo: mercado
+      caption: "Amb el preu màxim de 15 € (per davall de l'equilibri de 25 €) es venen només 30 dessuadores i se'n demanen 110: 80 persones es queden sense."
+      props:
+        id: "r-e1a-precio-maximo-sudaderas"
+        titulo: "Preu màxim de 15 euros en el mercat de dessuadores"
+        desc: "Demanda i oferta amb equilibri en 25 euros i 70 unitats. Amb un preu màxim de 15 euros es demanen 110 unitats i s'ofereixen 30: en falten 80."
+        pMax: 40
+        qMax: 150
+        curvas:
+          - { tipo: "D", q0: 170, m: -4, pDe: 8, pA: 38, label: "D" }
+          - { tipo: "O", q0: -30, m: 4, pDe: 10, pA: 34, label: "O" }
+        puntos:
+          - { p: 25, q: 70, label: "E", pLabel: "25", qLabel: "70", dx: 22, dy: 5 }
+          - { p: 15, q: 30, label: "Qs", qLabel: "30", dx: -30, dy: -8 }
+          - { p: 15, q: 110, label: "Qd", qLabel: "110", pLabel: "15", dx: 12, dy: -10 }
+        precio: { p: 15, label: "Preu màxim: 15 €" }
+        tramo: { p: 15, q1: 30, q2: 110, label: "En falten 80" }
   - enunciado: "<strong>Marge bancari, multiplicador i interés real.</strong> El Banc del Barri té 10 milions d'euros en depòsits, pels quals paga un 1 %, i presta 8 milions al 5 %. (a) Calcula el seu marge d'intermediació. (b) Amb un coeficient de caixa del 10 %, en quant es pot convertir un depòsit inicial de 1.000 €? I amb l'1 % de la zona euro? (c) Si eixe compte paga un 2 % i la inflació és del 8,4 %, guanya o perd l'estalviador?"
     desarrollo: "<strong>1. Interessos que paga:</strong> 10.000.000 × 0,01 = <strong>100.000 €</strong> a l'any.<br><strong>2. Interessos que cobra:</strong> 8.000.000 × 0,05 = <strong>400.000 €</strong> a l'any.<br><strong>3. Marge d'intermediació:</strong> 400.000 − 100.000 = <strong>300.000 €</strong>. D'ací ixen sous, oficines i impostos.<br><strong>4. Multiplicador amb el 10 %:</strong> 1 ÷ 0,10 = 10, així que 1.000 € poden arribar a <strong>10.000 €</strong> de diner bancari (1.000 + 900 + 810 + 729 + …).<br><strong>5. Multiplicador amb l'1 %:</strong> 1 ÷ 0,01 = 100, és a dir, fins a <strong>100.000 €</strong> en teoria. En la pràctica queda molt per davall: part del diner es guarda en efectiu, els bancs mantenen reserves de més i no sempre hi ha a qui prestar.<br><strong>6. Interés real de l'estalviador:</strong> aproximadament 2 − 8,4 = <strong>−6,4 %</strong>. Amb el càlcul exacte, 1,02 ÷ 1,084 = 0,941, és a dir, un <strong>−5,9 %</strong> de poder de compra. El saldo creix i tot i així es perden diners: eixe és l'interés real negatiu."
+    grafico:
+      tipo: xy
+      caption: "Un compte al 2 % amb una inflació del 8,4 % té un interés real de −5,9 %: el saldo creix, però el poder de compra baixa."
+      props:
+        id: "r-e1a-interes-real"
+        titulo: "Interés nominal, inflació i interés real"
+        desc: "Tres columnes: interés nominal del 2 per cent, inflació del 8,4 per cent i interés real de menys 5,9 per cent."
+        xMax: 10
+        yMax: 11
+        yMin: -8
+        ejeX: "Compte al 2 % amb inflació del 8,4 %"
+        ejeY: "Percentatge anual"
+        simboloY: "%"
+        yTicks: [-6, -3, 3, 6]
+        areas:
+          - { puntos: [[1, 0], [2.5, 0], [2.5, 2], [1, 2]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 0], [5.5, 0], [5.5, 8.4], [4, 8.4]], color: "terra", fuerte: true }
+          - { puntos: [[7, 0], [8.5, 0], [8.5, -5.9], [7, -5.9]], color: "teal", fuerte: true }
+        notas:
+          - { x: 1.75, y: 10.2, texto: "Interés nominal", ancla: "middle" }
+          - { x: 4.75, y: 10.2, texto: "Inflació", ancla: "middle" }
+          - { x: 7.75, y: 10.2, texto: "Interés real", ancla: "middle" }
+          - { x: 1.75, y: 2.6, texto: "+2 %", ancla: "middle" }
+          - { x: 4.75, y: 9, texto: "+8,4 %", ancla: "middle" }
+          - { x: 7.75, y: -7.2, texto: "−5,9 %", ancla: "middle", color: "teal" }
 ejercicios:
   - enunciado: "Marta deixa una faena en què cobrava <strong>1.400 € al mes</strong> per a muntar una botiga en un local de la seua família que estava llogat per <strong>600 € al mes</strong>. La botiga ingressa 4.500 € al mes i paga 2.800 € en mercaderia, llum i assegurances. (a) Calcula el benefici que veuria un comptable. (b) Calcula el cost d'oportunitat complet i el benefici una vegada descomptat. (c) Li compensa?"
     solucion: "(a) Benefici comptable = 4.500 − 2.800 = <strong>1.700 € al mes</strong>. Només compta els costos explícits.<br>(b) Costos implícits: el salari al qual renuncia (1.400 €) i el lloguer que la família deixa de cobrar (600 €) = <strong>2.000 € al mes</strong>. Benefici una vegada descomptats: 1.700 − 2.000 = <strong>−300 € al mes</strong>.<br>(c) Amb estos números, <strong>no</strong> li compensa des del punt de vista econòmic: guanya 300 € menys al mes que si continuara treballant i llogant el local. Podria compensar-li per altres raons (independència, expectativa de créixer, aprenentatge), però convé saber que eixes raons costen 300 € al mes."

@@ -48,6 +48,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MatrizSesgos from '@components/diagrams/MatrizSesgos.astro';
 import PuertasDecision from '@components/diagrams/PuertasDecision.astro';
 import Figure from '@components/Figure.astro';
@@ -145,6 +146,58 @@ Exemple amb tres alternatives per al curs que ve:
 | Batx General | 3 | 3 | 4 | 5 | 15 |
 
 La taula no decidix per tu. Decidixes tu. Però t'obliga a mirar les opcions amb la mateixa vara i a adonar-te de coses que, comparant-les només «de cap», se t'escapaven.
+
+<Diagram caption="Les notes de la taula apilades per criteri: Batx Ciències i FP GM Informàtica sumen 16 i Batx General 15. Una diferència tan xicoteta no decidix per tu.">
+  <GraficoXY id="g-matriz-bach-fp" titulo="Puntuació de tres alternatives per criteri" desc="Tres barres apilades amb les notes de la taula: Batx Ciències suma 4 d'interés, 5 d'eixides, 2 de dificultat i 5 de distància, 16 en total; FP GM Informàtica suma 5, 4, 4 i 3, 16 en total; Batx General suma 3, 3, 4 i 5, 15 en total."
+    xMax={7} yMax={20} ejeX="Alternativa" ejeY="Punts (suma de notes)"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['Batx Ciències', 'FP GM Informàtica', 'Batx General']} yTicks={[5, 10, 15]}
+    areas={[
+      { color: 'terra', puntos: [[0.7, 0], [2.3, 0], [2.3, 4], [0.7, 4]] },
+      { color: 'teal', puntos: [[0.7, 4], [2.3, 4], [2.3, 9], [0.7, 9]] },
+      { color: 'mustard', puntos: [[0.7, 9], [2.3, 9], [2.3, 11], [0.7, 11]] },
+      { color: 'aubergine', puntos: [[0.7, 11], [2.3, 11], [2.3, 16], [0.7, 16]] },
+      { color: 'terra', puntos: [[2.7, 0], [4.3, 0], [4.3, 5], [2.7, 5]] },
+      { color: 'teal', puntos: [[2.7, 5], [4.3, 5], [4.3, 9], [2.7, 9]] },
+      { color: 'mustard', puntos: [[2.7, 9], [4.3, 9], [4.3, 13], [2.7, 13]] },
+      { color: 'aubergine', puntos: [[2.7, 13], [4.3, 13], [4.3, 16], [2.7, 16]] },
+      { color: 'terra', puntos: [[4.7, 0], [6.3, 0], [6.3, 3], [4.7, 3]] },
+      { color: 'teal', puntos: [[4.7, 3], [6.3, 3], [6.3, 6], [4.7, 6]] },
+      { color: 'mustard', puntos: [[4.7, 6], [6.3, 6], [6.3, 10], [4.7, 10]] },
+      { color: 'aubergine', puntos: [[4.7, 10], [6.3, 10], [6.3, 15], [4.7, 15]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.7, 0], [0.7, 4], [2.3, 4], [2.3, 0]] },
+      { color: 'teal', puntos: [[0.7, 4], [0.7, 9], [2.3, 9], [2.3, 4]] },
+      { color: 'mustard', puntos: [[0.7, 9], [0.7, 11], [2.3, 11], [2.3, 9]] },
+      { color: 'aubergine', puntos: [[0.7, 11], [0.7, 16], [2.3, 16], [2.3, 11]] },
+      { color: 'terra', puntos: [[2.7, 0], [2.7, 5], [4.3, 5], [4.3, 0]] },
+      { color: 'teal', puntos: [[2.7, 5], [2.7, 9], [4.3, 9], [4.3, 5]] },
+      { color: 'mustard', puntos: [[2.7, 9], [2.7, 13], [4.3, 13], [4.3, 9]] },
+      { color: 'aubergine', puntos: [[2.7, 13], [2.7, 16], [4.3, 16], [4.3, 13]] },
+      { color: 'terra', puntos: [[4.7, 0], [4.7, 3], [6.3, 3], [6.3, 0]] },
+      { color: 'teal', puntos: [[4.7, 3], [4.7, 6], [6.3, 6], [6.3, 3]] },
+      { color: 'mustard', puntos: [[4.7, 6], [4.7, 10], [6.3, 10], [6.3, 6]] },
+      { color: 'aubergine', puntos: [[4.7, 10], [4.7, 15], [6.3, 15], [6.3, 10]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 1.65, texto: 'Interés 4', ancla: 'middle' },
+      { x: 1.5, y: 6.15, texto: 'Eixides 5', ancla: 'middle' },
+      { x: 1.5, y: 9.65, texto: 'Dificultat 2', ancla: 'middle' },
+      { x: 1.5, y: 13.15, texto: 'Distància 5', ancla: 'middle' },
+      { x: 1.5, y: 16.6, texto: 'Total 16', ancla: 'middle' },
+      { x: 3.5, y: 2.15, texto: 'Interés 5', ancla: 'middle' },
+      { x: 3.5, y: 6.65, texto: 'Eixides 4', ancla: 'middle' },
+      { x: 3.5, y: 10.65, texto: 'Dificultat 4', ancla: 'middle' },
+      { x: 3.5, y: 14.15, texto: 'Distància 3', ancla: 'middle' },
+      { x: 3.5, y: 16.6, texto: 'Total 16', ancla: 'middle' },
+      { x: 5.5, y: 1.15, texto: 'Interés 3', ancla: 'middle' },
+      { x: 5.5, y: 4.15, texto: 'Eixides 3', ancla: 'middle' },
+      { x: 5.5, y: 7.65, texto: 'Dificultat 4', ancla: 'middle' },
+      { x: 5.5, y: 12.15, texto: 'Distància 5', ancla: 'middle' },
+      { x: 5.5, y: 15.6, texto: 'Total 15', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **Prova-ho tu mateix:** munta la teua pròpia taula ací, amb les teues opcions, els teus criteris i el pes que li dones a cadascun. Fixa't menys en qui guanya i més en dues coses: si el resultat aguanta quan canvies un pes, i quin és el criteri que de veritat està decidint per tu.
 

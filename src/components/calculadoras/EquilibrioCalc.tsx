@@ -64,6 +64,15 @@ export const COPY = {
     chartExcedente: 'excedente',
     leyendaDemanda: 'Demanda',
     leyendaOferta: 'Oferta',
+    desplazarTitulo: 'Desplaza las curvas y mira el nuevo equilibrio',
+    desplazarDemanda: 'Demanda',
+    desplazarOferta: 'Oferta',
+    aLaDerecha: 'a la derecha (aumenta)',
+    aLaIzquierda: 'a la izquierda (cae)',
+    sinDesplazar: 'sin desplazar',
+    restablecer: 'Volver a las curvas iniciales',
+    antes: 'Antes',
+    ahora: 'Ahora',
   },
   ca: {
     curvaDemanda: 'Corba de demanda: Qd = a − b · P',
@@ -110,6 +119,15 @@ export const COPY = {
     chartExcedente: 'excedent',
     leyendaDemanda: 'Demanda',
     leyendaOferta: 'Oferta',
+    desplazarTitulo: 'Desplaça les corbes i mira el nou equilibri',
+    desplazarDemanda: 'Demanda',
+    desplazarOferta: 'Oferta',
+    aLaDerecha: 'a la dreta (augmenta)',
+    aLaIzquierda: "a l'esquerra (cau)",
+    sinDesplazar: 'sense desplaçar',
+    restablecer: 'Tornar a les corbes inicials',
+    antes: 'Abans',
+    ahora: 'Ara',
   },
 } as const;
 
@@ -143,16 +161,27 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
   const [topeTipo, setTopeTipo] = useState<'maximo' | 'minimo'>('maximo');
   const [topePrecio, setTopePrecio] = useState<number>(7);
 
-  const coef: Coef = { a, b, c, d };
+  // Horizontal shift of each curve, added to its intercept. The sliders move
+  // in tenths of the range so the curve visibly travels across fixed axes.
+  const [despD, setDespD] = useState<number>(0);
+  const [despO, setDespO] = useState<number>(0);
+  const rango = Math.max(10, Math.round(a * 0.4));
+  const desplazado = despD !== 0 || despO !== 0;
 
-  const eq = useMemo(() => equilibrio(a, b, c, d), [a, b, c, d]);
+  const inicial: Coef = { a, b, c, d };
+  const coef: Coef = { a: a + despD, b, c: c + despO, d };
 
-  const evalInsp = useMemo(() => evaluarPrecio(coef, precioInsp), [a, b, c, d, precioInsp]);
+  const eq = useMemo(() => equilibrio(coef.a, b, coef.c, d), [coef.a, b, coef.c, d]);
+  const eqInicial = useMemo(() => equilibrio(a, b, c, d), [a, b, c, d]);
+
+  const evalInsp = useMemo(() => evaluarPrecio(coef, precioInsp), [coef.a, b, coef.c, d, precioInsp]);
 
   const evalTope = useMemo(
     () => (topeActivo ? intervencion(coef, topeTipo, topePrecio) : null),
-    [a, b, c, d, topeActivo, topeTipo, topePrecio],
+    [coef.a, b, coef.c, d, topeActivo, topeTipo, topePrecio],
   );
+
+  const sentido = (v: number) => (v > 0 ? t.aLaDerecha : v < 0 ? t.aLaIzquierda : t.sinDesplazar);
 
   // Main result for screen readers: the equilibrium and, when a price
   // ceiling or floor binds, what it does to the market.
@@ -227,6 +256,9 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
         {/* ── SVG graph ── */}
         <EquilibrioChart
           coef={coef}
+          inicial={inicial}
+          rango={rango}
+          eqInicial={desplazado && eqInicial.valido ? { P: eqInicial.P, Q: eqInicial.Q } : null}
           eq={eq.valido ? { P: eq.P, Q: eq.Q } : null}
           precioInsp={precioInsp}
           evalInsp={evalInsp}
@@ -235,6 +267,29 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
           topePrecio={topePrecio}
           locale={locale}
         />
+
+        {/* ── Shift the curves ── */}
+        <div class="eq__inspect">
+          <div class="eq__section-label">{t.desplazarTitulo}</div>
+          <div class="calc__form eq__form-row">
+            <label class="calc__field">
+              <span class="calc__label">{t.desplazarDemanda}: {sentido(despD)}</span>
+              <input type="range" class="eq__slider eq__slider--d" min={-rango} max={rango} step={rango / 10}
+                value={despD} onInput={(e) => setDespD(parseFloat((e.target as HTMLInputElement).value))} />
+            </label>
+            <label class="calc__field">
+              <span class="calc__label">{t.desplazarOferta}: {sentido(despO)}</span>
+              <input type="range" class="eq__slider eq__slider--o" min={-rango} max={rango} step={rango / 10}
+                value={despO} onInput={(e) => setDespO(parseFloat((e.target as HTMLInputElement).value))} />
+            </label>
+          </div>
+          {desplazado && eq.valido && eqInicial.valido && (
+            <div class="eq__note">
+              {t.antes}: P* = {fmtN(eqInicial.P)}, Q* = {fmtN(eqInicial.Q)}. {t.ahora}: P* = {fmtN(eq.P)}, Q* = {fmtN(eq.Q)}.{' '}
+              <button type="button" class="eq__reset" onClick={() => { setDespD(0); setDespO(0); }}>{t.restablecer}</button>
+            </div>
+          )}
+        </div>
 
         {/* ── Inspect a price ── */}
         <div class="eq__inspect">
@@ -417,6 +472,19 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
           border-radius: 4px;
         }
         .eq__note.ok { border-color: var(--color-terra-deep, #9C3A1C); }
+        .eq__slider { width: 100%; min-height: 44px; }
+        .eq__slider--d { accent-color: var(--color-terra, #C44E2C); }
+        .eq__slider--o { accent-color: var(--color-eco1, #1F6E6E); }
+        .eq__reset {
+          font: inherit;
+          color: var(--color-terra-ink, #9C3A1C);
+          background: none;
+          border: 0;
+          padding: 0;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .eq__reset:hover { color: var(--color-ink, #2A1F18); }
         .eq__chart {
           width: 100%;
           height: auto;
@@ -434,6 +502,10 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
 
 interface ChartProps {
   coef: Coef;
+  /** Curves before any shift; they size the axes and are drawn faint once shifted. */
+  inicial: Coef;
+  rango: number;
+  eqInicial: { P: number; Q: number } | null;
   eq: { P: number; Q: number } | null;
   precioInsp: number;
   evalInsp: { qd: number; qs: number; exceso: number };
@@ -443,7 +515,7 @@ interface ChartProps {
   locale: Locale;
 }
 
-function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo, topePrecio, locale }: ChartProps) {
+function EquilibrioChart({ coef, inicial, rango, eqInicial, eq, precioInsp, evalInsp, topeActivo, topeTipo, topePrecio, locale }: ChartProps) {
   const t = COPY[locale];
   const W = 360;
   const H = 280;
@@ -458,9 +530,12 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo,
 
   // Domain: P from 0 to a/b (demand touches P-axis when Qd=0: P=a/b)
   // Clamp to 0.1 to prevent division-by-zero in yOf when a=0.
-  const maxP = Math.max(b > 0 ? (a / b) * 1.05 : 20, 0.1);
-  // Q domain: max of demand at P=0 (=a) and supply at P=maxP (=c + d*maxP)
-  const maxQ = Math.max(a, c + d * maxP, 1) * 1.05;
+  // The domain comes from the starting curves plus the full slider range, so
+  // the axes stay put and it is the curve that moves.
+  const aMax = inicial.a + rango;
+  const maxP = Math.max(b > 0 ? (aMax / b) * 1.05 : 20, 0.1);
+  // Q domain: max of demand at P=0 and supply at P=maxP
+  const maxQ = Math.max(aMax, inicial.c + rango + d * maxP, 1) * 1.05;
 
   const xOf = (q: number) => ML + (q / maxQ) * iW;
   const yOf = (p: number) => MT + iH - (p / maxP) * iH;
@@ -472,8 +547,9 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo,
   const demandY2 = yOf(b > 0 ? a / b : 0);
 
   // Supply line: from (Q=c, P=0) upward to maxP
-  const supplyX1 = xOf(c);
-  const supplyY1 = yOf(0);
+  const pInicio = (c0: number) => (c0 < 0 && d > 0 ? -c0 / d : 0);
+  const supplyX1 = xOf(c + d * pInicio(c));
+  const supplyY1 = yOf(pInicio(c));
   const supplyX2 = xOf(c + d * maxP);
   const supplyY2 = yOf(maxP);
 
@@ -530,6 +606,18 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo,
         fill="var(--color-ink-soft, #5C4A3D)">P</text>
       <text x={ML + iW} y={H - 4} text-anchor="end" font-family="var(--font-sans)" font-size="11"
         font-style="italic" fill="var(--color-ink-soft, #5C4A3D)">Q</text>
+
+      {/* Starting curves and equilibrium, faint, once something has shifted */}
+      {eqInicial && (
+        <g opacity="0.45">
+          <line x1={xOf(inicial.a)} y1={yOf(0)} x2={xOf(0)} y2={yOf(b > 0 ? inicial.a / b : 0)}
+            stroke="var(--color-terra, #C44E2C)" stroke-width="2" stroke-dasharray="5 4" />
+          <line x1={xOf(inicial.c + d * pInicio(inicial.c))} y1={yOf(pInicio(inicial.c))} x2={xOf(inicial.c + d * maxP)} y2={yOf(maxP)}
+            stroke="var(--color-eco1, #1F6E6E)" stroke-width="2" stroke-dasharray="5 4" />
+          <circle cx={xOf(eqInicial.Q)} cy={yOf(eqInicial.P)} r="4"
+            fill="var(--color-bg, #FBF6EC)" stroke="var(--color-ink, #2A1F18)" stroke-width="1.5" />
+        </g>
+      )}
 
       {/* Demand line — terracota */}
       <line x1={demandX1} y1={demandY1} x2={demandX2} y2={demandY2}

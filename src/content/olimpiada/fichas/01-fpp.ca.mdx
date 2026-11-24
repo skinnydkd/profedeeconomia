@@ -30,6 +30,9 @@ estado: publicado
 slug: "olimpiada/fichas/01-fpp.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 La **frontera de possibilitats de producció** (FPP) és el lloc geomètric de les combinacions màximes de dos béns (o grups de béns) que una economia pot produir quan utilitza **plenament i eficientment** tots els seus factors productius amb la tecnologia disponible.
@@ -141,11 +144,23 @@ Un desplaçament esbiaixat cap a un bé (per exemple, una innovació només en e
 
 El desplaçament de la FPP és la representació gràfica canònica del **creixement econòmic**. No obstant això, créixer no elimina l'escassetat ni el cost d'oportunitat: la nova FPP continua sent una frontera, ara situada més lluny de l'origen.
 
+<Diagram caption="Creixement econòmic: la FPP es desplaça cap a fora. Amb un avanç neutral (FPP₂) augmenten les possibilitats dels dos béns; amb una innovació només en B (FPP₃) només s'amplia l'eix horitzontal. El punt X, inassolible amb FPP₁, passa a ser assolible.">
+  <GraficoXY id="g-ol-fpp-crecimiento" titulo="Desplaçament de la FPP per creixement econòmic" desc="Tres fronteres còncaves. FPP₁, tènue, és la inicial. FPP₂ s'allunya de l'origen en els dos eixos (avanç neutral). FPP₃ només s'estén per l'eix del bé B. El punt X queda fora de FPP₁ i dins de FPP₂ i de FPP₃."
+    xMax={100} yMax={80} ejeX="Bé B (béns de consum)" ejeY="Bé A (béns de capital)" simboloX="B" simboloY="A"
+    series={[
+      { label: 'FPP₁', color: 'ink', tenue: true, dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [40 * Math.sin(i * Math.PI / 40), 40 * Math.cos(i * Math.PI / 40)]) },
+      { label: 'FPP₂', color: 'terra', dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [60 * Math.sin(i * Math.PI / 40), 60 * Math.cos(i * Math.PI / 40)]) },
+      { label: 'FPP₃', color: 'teal', dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [75 * Math.sin(i * Math.PI / 40), 40 * Math.cos(i * Math.PI / 40)]) },
+    ]}
+    puntos={[{ x: 45, y: 24, label: 'X', guias: false }]}
+  />
+</Diagram>
+
 ---
 
 ## Mini-exemple resolt
 
-Una economia hipotètica pot dedicar els seus recursos a produir creïlles (bé B, eix horizontal) o carabasses (bé A, eix vertical). La taula arreplega cinc combinacions eficients:
+Una economia hipotètica pot dedicar els seus recursos a produir creïlles (bé B, eix horizontal) o carabasses (bé A, eix vertical). La taula arreplega sis combinacions eficients:
 
 | Combinació | Creïlles (milers t) | Carabasses (milers t) | CO marginal (carabasses/creïlla) |
 |:-----------:|:-----------------:|:-------------------:|:------------------------------:|
@@ -169,6 +184,30 @@ Una economia hipotètica pot dedicar els seus recursos a produir creïlles (bé 
 **CO(R→S) = |74 − 88| / 10 = 14 / 10 = 1,4**
 
 La seqüència 0,4 → 0,8 → 1,4 → 2,2 → 5,2 és **estrictament creixent**: cada mil tones addicionals de creïlles exigix sacrificar cada vegada més carabasses. Això confirma que la FPP és còncava. La raó: a mesura que especialitzem més l'economia en creïlles, els factors que queden destinats a carabasses seran els més aptes per a este cultiu, per la qual cosa abandonar-los resulta cada vegada més costós.
+
+<Diagram caption="La taula del mini-exemple portada als eixos: sis combinacions eficients unides per una corba còncava. Els números junt a cada tram són el seu cost d'oportunitat marginal (0,4; 0,8; 1,4; 2,2; 5,2). La recta discontínua, amb un cost constant de 2 carabasses per creïlla, seria la FPP amb factors homogenis.">
+  <GraficoXY id="g-ol-fpp-coste" titulo="FPP de creïlles i carabasses amb el seu cost d'oportunitat" desc="Corba còncava que uneix les combinacions P (0 creïlles i 100 carabasses), Q, R, S, T i U (50 creïlles i 0 carabasses). El cost d'oportunitat marginal creix de 0,4 a 5,2 carabasses per creïlla. Una recta discontínua entre els extrems mostra el cas de cost constant."
+    xMax={60} yMax={120} ejeX="Creïlles (milers de t)" ejeY="Carabasses (milers de t)" simboloX="B" simboloY="A"
+    xTicks={[10, 20, 30, 40, 50]} yTicks={[25, 50, 75, 100]}
+    series={[
+      { label: 'FPP', color: 'terra', dx: 14, dy: -40, puntos: [[0, 100], [10, 96], [20, 88], [30, 74], [40, 52], [50, 0]] },
+      { color: 'ink', tenue: true, puntos: [[0, 100], [50, 0]] },
+    ]}
+    puntos={[
+      { x: 0, y: 100, label: 'P', guias: false, dx: 12, dy: 24 },
+      { x: 10, y: 96, label: 'Q', guias: false, dx: -22, dy: 18 },
+      { x: 20, y: 88, label: 'R', guias: false, dx: -22, dy: 18 },
+      { x: 30, y: 74, label: 'S', guias: false, dx: -22, dy: 18 },
+      { x: 40, y: 52, label: 'T', guias: false, dx: -22, dy: 18 },
+      { x: 50, y: 0, label: 'U', guias: false, dx: 14, dy: -12 },
+    ]}
+    notas={[
+      { x: 6, y: 103, texto: '0,4' }, { x: 16, y: 98, texto: '0,8' }, { x: 26, y: 87, texto: '1,4' },
+      { x: 36, y: 69, texto: '2,2' }, { x: 46, y: 32, texto: '5,2' },
+      { x: 3, y: 15, texto: 'Recta: CO constant' },
+    ]}
+  />
+</Diagram>
 
 ---
 

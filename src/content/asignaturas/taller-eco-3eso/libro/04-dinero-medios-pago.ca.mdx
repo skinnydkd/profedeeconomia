@@ -40,6 +40,7 @@ publicado_en: 2026-05-20
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TresFuncionesDinero from '@components/diagrams/TresFuncionesDinero.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -104,6 +105,28 @@ El diner resol els tres problemes de colp. Per això, en quasi totes les civilit
 <Curiosity title="El cacau va ser diner a Amèrica abans que les monedes">
 En l'imperi asteca, els grans de **cacau** funcionaven com a diner: amb ells es podien comprar coses al mercat. Hi ha cròniques espanyoles del segle XVI que conten preus reals: un conill costava uns 30 grans, un alvocat uns 3 i un ou de titot, un gra. Com que el cacau era valuós i durava, complia les funcions del diner. I, com passa hui amb el diner fals, hi havia qui feia trampa: buidaven els grans i els reomplien de fang perquè pareguessen autèntics. El frau monetari és tan vell com el mateix diner.
 </Curiosity>
+
+<Diagram caption="Preus al mercat asteca comptats en grans de cacau: uns 30 per un conill, uns 3 per un alvocat i 1 per un ou de titot. Tot es mesurava amb la mateixa unitat, igual que hui amb els euros.">
+  <GraficoXY id="g-cacao-precios" titulo="Preus en grans de cacau" desc="Tres barres amb preus del mercat asteca, segons cròniques del segle XVI, comptats en grans de cacau: un conill costa uns 30, un alvocat uns 3 i un ou de titot 1."
+    xMax={4.6} yMax={36} ejeX="Producte" ejeY="Preu (grans de cacau)"
+    xTicks={[1, 2, 3]} xTickLabels={['Conill', 'Alvocat', 'Ou de titot']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'mustard', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 30], [0.65, 30]] },
+      { color: 'mustard', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 3], [1.65, 3]] },
+      { color: 'mustard', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 1], [2.65, 1]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.65, 0], [0.65, 30], [1.35, 30], [1.35, 0]] },
+      { color: 'mustard', puntos: [[1.65, 0], [1.65, 3], [2.35, 3], [2.35, 0]] },
+      { color: 'mustard', puntos: [[2.65, 0], [2.65, 1], [3.35, 1], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 31.4, texto: 'uns 30 grans', ancla: 'middle' },
+      { x: 2, y: 4.4, texto: 'uns 3 grans', ancla: 'middle' },
+      { x: 3, y: 2.4, texto: '1 gra', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ## Les tres funcions del diner
 

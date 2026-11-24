@@ -25,6 +25,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 El dinero es uno de los grandes inventos institucionales de la humanidad: permite superar las limitaciones del trueque y coordinar millones de decisiones económicas descentralizadas. En la Olimpiada de Economía este bloque se examina con frecuencia mediante problemas numéricos (el multiplicador) y preguntas de análisis sobre política monetaria. La actualidad —subidas de tipos del BCE, quiebra del SVB en 2023— hace que los vínculos entre tipos de interés, precio de bonos y estabilidad bancaria sean materia casi segura.
@@ -82,6 +85,18 @@ Supongamos un coeficiente de caja del **10 %** y un depósito inicial de **1.000
 | **Total** | **10.000 €** | **1.000 €** | **9.000 €** |
 
 La suma de todos los depósitos converge a: **1.000 × 10 = 10.000 €**. El sistema bancario ha creado 9.000 € de dinero bancario a partir de un depósito inicial de 1.000 €.
+
+<Diagram caption="Cada ronda añade un depósito un 10 % menor que el anterior (1.000, 900, 810…) y el total acumulado se acerca, sin llegar, a 1.000 × 10 = 10.000 €. De ellos, 1.000 € son el depósito inicial y 9.000 € dinero bancario creado.">
+  <GraficoXY id="g-ol-multiplicador" titulo="Depósitos acumulados en el multiplicador del dinero" desc="Curva creciente de los depósitos acumulados a lo largo de las rondas, que parte de 1.000 € en la primera y se aproxima a un límite de 10.000 €, marcado con una línea horizontal."
+    xMax={50} yMax={11500} ejeX="Rondas de depósito" ejeY="Depósitos acumulados (€)"
+    xTicks={[10, 20, 30, 40]} yTicks={[2000, 4000, 6000, 8000, 10000]} yTickLabels={['2.000', '4.000', '6.000', '8.000', '10.000']}
+    series={[
+      { label: "Depósitos totales", color: 'terra', puntos: Array.from({ length: 41 }, (_, n) => [n, 10000 * (1 - 0.9 ** n)]), dy: 22 },
+      { color: 'ink', tenue: true, puntos: [[0, 10000], [48, 10000]] },
+    ]}
+    notas={[{ x: 2, y: 10450, texto: "Límite: 1.000 × 10 = 10.000 €" }]}
+  />
+</Diagram>
 
 > **Nota de precisión:** Este modelo asume que todo préstamo vuelve al sistema bancario como depósito y que el público no retiene efectivo. En la práctica, la creación monetaria es algo menor, pero el mecanismo es correcto para el examen.
 
@@ -160,6 +175,21 @@ El bono pierde la **mitad** de su valor de mercado. La relación es:
 **↑ tipos de interés → ↓ precio de los bonos**
 
 **↓ tipos de interés → ↑ precio de los bonos**
+
+<Diagram caption="El precio de un bono de cupón fijo es el cupón dividido entre el tipo de interés: con un 5 % vale 1.000 € (A) y con un 10 % vale 500 € (B). Cuando suben los tipos, los bonos ya emitidos pierden valor.">
+  <GraficoXY id="g-ol-precio-bono" titulo="Precio de un bono según el tipo de interés" desc="Curva decreciente del precio de un bono con cupón fijo de 50 euros al año: vale 1.000 euros con un tipo del 5 % y 500 euros con un tipo del 10 %."
+    xMax={16} yMax={2200} ejeX="Tipo de interés de mercado (%)" ejeY="Precio del bono (€)" simboloX="i" simboloY="P"
+    yTicks={[1500, 2000]} yTickLabels={['1.500', '2.000']}
+    series={[
+      { label: "Precio del bono", color: 'terra', puntos: Array.from({ length: 41 }, (_, k) => [2.5 + 0.25 * k, 5000 / (2.5 + 0.25 * k)]) },
+    ]}
+    puntos={[
+      { x: 5, y: 1000, label: 'A', xLabel: '5 %', yLabel: '1.000' },
+      { x: 10, y: 500, label: 'B', xLabel: '10 %', yLabel: '500' },
+    ]}
+    notas={[{ x: 7, y: 1700, texto: "Cupón fijo: 50 € al año" }]}
+  />
+</Diagram>
 
 ### El caso SVB (Silicon Valley Bank, 2023)
 

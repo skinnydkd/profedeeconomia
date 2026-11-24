@@ -38,6 +38,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import BalanceMasas from '@components/diagrams/BalanceMasas.astro';
 import WaterfallPyG from '@components/diagrams/WaterfallPyG.astro';
 import CicloContable from '@components/diagrams/CicloContable.astro';
@@ -194,6 +195,36 @@ A 31 de diciembre, una papelería tiene los siguientes elementos. Clasifica cada
    - El activo no corriente (108.800 €) está cubierto por patrimonio neto + pasivo no corriente (130.800 €). La regla de coherencia financiera se cumple: el largo plazo se financia con largo plazo.
    - El activo corriente (35.000 €) supera al pasivo corriente (13.000 €). El **fondo de maniobra** es positivo, indicador de salud a corto plazo.
 
+<Diagram caption="El balance de la papelería en masas (ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente). Las dos columnas miden lo mismo, 143.800 €, y el activo no corriente queda cubierto por el patrimonio neto y el pasivo no corriente.">
+  <GraficoXY id="g-balance-papeleria" titulo="Balance de la papelería" desc="Dos columnas iguales de 143.800 euros. Activo: no corriente 108.800 y corriente 35.000. Patrimonio neto más pasivo: patrimonio neto 85.800, pasivo no corriente 45.000 y pasivo corriente 13.000."
+    xMax={10} yMax={170000} ejeX="Balance a 31 de diciembre" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000]} xTickLabels={["Activo", "Patrimonio neto + pasivo"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 108800], [1.5, 108800]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 108800], [4.5, 108800], [4.5, 143800], [1.5, 143800]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 85800], [5.5, 85800]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 85800], [8.5, 85800], [8.5, 130800], [5.5, 130800]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 130800], [8.5, 130800], [8.5, 143800], [5.5, 143800]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 108800], [1.5, 108800], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 108800], [4.5, 108800], [4.5, 143800], [1.5, 143800], [1.5, 108800]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 85800], [5.5, 85800], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 85800], [8.5, 85800], [8.5, 130800], [5.5, 130800], [5.5, 85800]], color: "aubergine" },
+      { puntos: [[5.5, 130800], [8.5, 130800], [8.5, 143800], [5.5, 143800], [5.5, 130800]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 50400, texto: "ANC 108 800", ancla: "middle" },
+      { x: 3, y: 122300, texto: "AC 35 000", ancla: "middle" },
+      { x: 7, y: 38900, texto: "PN 85 800", ancla: "middle" },
+      { x: 7, y: 104300, texto: "PNC 45 000", ancla: "middle" },
+      { x: 7, y: 133300, texto: "PC 13 000", ancla: "middle" },
+      { x: 3, y: 150000, texto: "Total activo: 143 800", ancla: "middle" },
+      { x: 7, y: 150000, texto: "Total PN + pasivo: 143 800", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <Callout label="Concepto clave" title="Las cinco grandes masas del balance">
@@ -272,6 +303,40 @@ Una academia de inglés cierra el ejercicio con los siguientes datos. Construye 
    - El margen operativo (EBIT/Ingresos) es del **16,5 %**. Saludable para una academia.
    - El gasto de personal (sueldos y Seguridad Social) equivale al **65 %** de los ingresos: la academia es intensiva en mano de obra, lo habitual en servicios.
    - Atención al **flujo de caja**: aunque el beneficio sea de 17.455,50 €, los 8.500 € de cuotas pendientes de cobro suponen que la **tesorería real** generada es inferior al beneficio. Recordar la advertencia del callout: rentabilidad y liquidez son cosas distintas.
+
+<Diagram caption="De los ingresos al resultado del ejercicio. Las barras verdes son resultados (EBIT, BAI, resultado final) y las terracota, lo que se resta en cada paso: gastos de explotación, intereses e impuesto.">
+  <GraficoXY id="g-pyg-academia" titulo="Cuenta de pérdidas y ganancias de la academia" desc="Cascada de la cuenta de resultados. Ingresos de 153.500 euros, menos 128.150 de gastos de explotación dejan un resultado de explotación de 25.350. Los intereses de 3.800 dejan un resultado antes de impuestos de 21.550. El impuesto de 4.094,50 deja un resultado del ejercicio de 17.455,50."
+    xMax={8} yMax={180000} ejeX="Cuenta de pérdidas y ganancias" ejeY="Euros" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5, 6, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Ingresos", "Gastos", "EBIT", "Intereses", "BAI", "Impuesto", "Resultado"]}
+    areas={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 153500], [0.65, 153500]], color: "teal", fuerte: true },
+      { puntos: [[1.65, 25350], [2.35, 25350], [2.35, 153500], [1.65, 153500]], color: "terra", fuerte: true },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 25350], [2.65, 25350]], color: "teal", fuerte: true },
+      { puntos: [[3.65, 21550], [4.35, 21550], [4.35, 25350], [3.65, 25350]], color: "terra", fuerte: true },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 21550], [4.65, 21550]], color: "teal", fuerte: true },
+      { puntos: [[5.65, 17455.5], [6.35, 17455.5], [6.35, 21550], [5.65, 21550]], color: "terra", fuerte: true },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 17455.5], [6.65, 17455.5]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 153500], [0.65, 153500], [0.65, 0]], color: "teal" },
+      { puntos: [[1.65, 25350], [2.35, 25350], [2.35, 153500], [1.65, 153500], [1.65, 25350]], color: "terra" },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 25350], [2.65, 25350], [2.65, 0]], color: "teal" },
+      { puntos: [[3.65, 21550], [4.35, 21550], [4.35, 25350], [3.65, 25350], [3.65, 21550]], color: "terra" },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 21550], [4.65, 21550], [4.65, 0]], color: "teal" },
+      { puntos: [[5.65, 17455.5], [6.35, 17455.5], [6.35, 21550], [5.65, 21550], [5.65, 17455.5]], color: "terra" },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 17455.5], [6.65, 17455.5], [6.65, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1, y: 158500, texto: "153 500", ancla: "middle" },
+      { x: 2, y: 158500, texto: "−128 150", ancla: "middle" },
+      { x: 3, y: 30350, texto: "25 350", ancla: "middle" },
+      { x: 4, y: 30350, texto: "−3 800", ancla: "middle" },
+      { x: 5, y: 26550, texto: "21 550", ancla: "middle" },
+      { x: 6, y: 26550, texto: "−4 094,50", ancla: "middle" },
+      { x: 7, y: 22455.5, texto: "17 455,50", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

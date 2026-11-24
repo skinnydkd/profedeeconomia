@@ -45,6 +45,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TresFuncionesDinero from '@components/diagrams/TresFuncionesDinero.astro';
 import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
 import TransmisionMonetaria from '@components/diagrams/TransmisionMonetaria.astro';
@@ -247,6 +248,18 @@ b) Ana ingressa 1.000 € en efectiu al banc. Amb un coeficient de caixa del 10 
 5. **Diner total després de la primera ronda**: Ana continua veient 1.000 € al seu compte i Luis té 900 € nous. Total: 1.000 + 900 = **1.900 €**. S'han creat 900 € que abans no existien.
 6. **Si la cadena continua**: el multiplicador és 1 / 0,10 = 10, així que els 1.000 € inicials poden convertir-se en fins a **10.000 €** de diner bancari (1.000 + 900 + 810 + 729 + 656 + …). Amb el coeficient real de la zona euro (1 %) el multiplicador teòric seria 100, però a la pràctica queda molt per davall perquè part del diner es guarda en efectiu i els bancs mantenen reserves extra.
 
+<Diagram caption="El diner total que ix dels 1.000 € d'Ana, dipòsit a dipòsit: 1.000, després 1.900 amb el primer préstec, i així fins a acostar-se a 10.000 sense arribar mai a passar-los.">
+  <GraficoXY id="g-creacion-dinero" titulo="Diner bancari creat a partir de 1.000 euros" desc="Corba que puja cada vegada més a poc a poc: després del primer dipòsit hi ha 1 000 euros, després del segon 1 900, i amb molts dipòsits el total s'acosta al límit de 10 000 euros sense superar-lo."
+    xMax={26} yMax={12000} ejeX="Dipòsits de la cadena" ejeY="Diner total (€)" simboloX="n" simboloY="€"
+    xTicks={[5, 10, 15, 20]} yTicks={[2500, 5000, 7500, 10000]}
+    series={[
+      { color: 'terra', puntos: Array.from({ length: 21 }, (_, n) => [n, 10000 * (1 - 0.9 ** n)]) },
+      { color: 'ink', tenue: true, label: 'Límit: 10 000 €', puntos: [[0, 10000], [22, 10000]] },
+    ]}
+    puntos={[{ x: 1, y: 1000, label: '1 000', dx: 14, dy: 22, guias: false }, { x: 2, y: 1900, label: '1 900', dx: 14, dy: 22, guias: false }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Prova-ho tu mateix:** canvia el depòsit inicial i el coeficient de caixa i observa, ronda a ronda, quant diner acaba creant el sistema bancari i què passa quan part del préstec es queda en efectiu.
@@ -296,11 +309,42 @@ Els últims anys han sigut un cas de manual. Entre 2016 i 2022 el BCE va mantind
 | 6 de juny de 2024 | Primera baixada | 4,25 % |
 | Juny de 2025 | Huitena baixada; facilitat de depòsit en el 2 % | 2,15 % |
 
+<Diagram caption="El tipus principal del BCE amb les dades de la taula: anys a zero, una pujada molt ràpida fins al 4,5 % i una baixada després. Entre una data i una altra hi va haver més canvis; ací només s'unixen els punts de la taula.">
+  <GraficoXY id="g-tipos-bce" titulo="Tipus principal del BCE entre 2016 i 2025" desc="El tipus està en el 0 per cent des de 2016 fins al juliol de 2022, puja al 0,5 per cent al juliol de 2022, arriba al 4,5 al setembre de 2023, baixa a 4,25 al juny de 2024 i a 2,15 al juny de 2025."
+    xMax={11} yMax={5.5} ejeX="Any" ejeY="Tipus principal (%)" simboloX="t" simboloY="%"
+    xTicks={[0.5, 2.5, 4.5, 6.5, 8.5, 10.5]} xTickLabels={['2016', '2018', '2020', '2022', '2024', '2026']} yTicks={[1, 2, 3, 4, 5]}
+    series={[{ color: 'terra', puntos: [[0, 0], [7.05, 0], [7.05, 0.5], [8.2, 4.5], [8.93, 4.25], [9.95, 2.15]] }]}
+    puntos={[
+      { x: 7.05, y: 0.5, label: '0,5 %', dx: 14, dy: 22, guias: false }, { x: 8.2, y: 4.5, label: '4,5 %', dx: -52, dy: -10, guias: false },
+      { x: 8.93, y: 4.25, label: '4,25 %', dx: 12, dy: -8, guias: false }, { x: 9.95, y: 2.15, label: '2,15 %', guias: false },
+    ]}
+    notas={[{ x: 0.3, y: 0.4, texto: '0 % fins al juliol de 2022', color: 'teal' }]}
+  />
+</Diagram>
+
 ### L'euríbor i les hipoteques
 
 La majoria de famílies espanyoles noten els tipus oficials a través d'una paraula que ix cada mes a les notícies: l'**euríbor**. És el tipus d'interés mitjà al qual els grans bancs europeus es presten diners entre si, i seguix de prop el que decidix el BCE. Les **hipoteques variables** (el préstec amb què es compra un habitatge) es calculen com a «euríbor més un diferencial», per exemple euríbor + 1 %, i es revisen cada sis o dotze mesos. Així que quan l'euríbor puja, la quota mensual puja.
 
 I va pujar molt. L'euríbor a dotze mesos estava en **−0,50 %** a finals de 2021 (sí, negatiu), va tocar el **4,16 %** l'octubre de 2023 i a l'agost de 2025 rondava el **2,1 %** (Banco de España, sèries de l'euríbor). Per a una hipoteca de 150.000 € a 25 anys amb euríbor + 1 %, la quota va passar d'uns **530 €** al mes el 2021 a uns **890 €** el 2023, i va tornar a uns **720 €** el 2025 (càlcul propi amb la fórmula de quota constant). Tres-cents seixanta euros més cada mes per la mateixa casa: això és el que significa, per a una família, que vint-i-sis persones a Frankfurt pugen els tipus. A la Unitat 8 aprendràs a calcular una quota i a comparar hipoteques.
+
+<Diagram caption="La quota mensual de la hipoteca de 150.000 € a 25 anys segons l'euríbor: unes 530 € en 2021, unes 890 € en 2023 i unes 720 € en 2025.">
+  <GraficoXY id="g-cuota-hipoteca" titulo="Quota mensual d'una hipoteca segons l'euríbor" desc="Tres barres per a una hipoteca de 150 000 euros a 25 anys amb euríbor més 1 per cent: unes 530 euros al mes amb l'euríbor en menys 0,5 per cent en 2021, unes 890 amb el 4,16 en 2023 i unes 720 amb el 2,1 en 2025."
+    xMax={7} yMax={1100} ejeX="Any i euríbor a dotze mesos" ejeY="Quota mensual (€)"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['2021: −0,5 %', '2023: 4,16 %', '2025: 2,1 %']} yTicks={[200, 400, 600, 800]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 530], [0.9, 530]] },
+      { color: 'terra', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 890], [2.9, 890]] },
+      { color: 'mustard', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 720], [4.9, 720]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.9, 0], [0.9, 530], [2.1, 530], [2.1, 0]] },
+      { color: 'terra', puntos: [[2.9, 0], [2.9, 890], [4.1, 890], [4.1, 0]] },
+      { color: 'mustard', puntos: [[4.9, 0], [4.9, 720], [6.1, 720], [6.1, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 575, texto: '530 €', ancla: 'middle' }, { x: 3.5, y: 935, texto: '890 €', ancla: 'middle' }, { x: 5.5, y: 765, texto: '720 €', ancla: 'middle' }]}
+  />
+</Diagram>
 
 ### Com arriba el tipus d'interés a tota l'economia
 
@@ -348,6 +392,21 @@ La taula resumix el que va passar a Espanya els últims anys, amb la inflació m
 | 2023 | 3,5 % | Pujades de tipus del BCE, energia més barata; l'oli puja un 54,6 % |
 | 2024 | 2,8 % | Els preus es calmen; el BCE comença a abaixar tipus |
 | 2025 | 2,7 % | Inflació prop de l'objectiu del BCE |
+
+<Diagram caption="La inflació mitjana anual a Espanya amb les dades de la taula: el salt de 2022 i la tornada cap a l'objectiu del 2 % del BCE.">
+  <GraficoXY id="g-inflacion-espana" titulo="Inflació mitjana anual a Espanya, 2021-2025" desc="La inflació és del 3,1 per cent en 2021, puja al 8,4 en 2022, baixa al 3,5 en 2023, al 2,8 en 2024 i al 2,7 en 2025. L'objectiu del BCE és el 2 per cent."
+    xMax={5.4} yMax={10} ejeX="Any" ejeY="Inflació mitjana anual (%)" simboloX="t" simboloY="%"
+    xTicks={[0.5, 1.5, 2.5, 3.5, 4.5]} xTickLabels={['2021', '2022', '2023', '2024', '2025']} yTicks={[2, 4, 6, 8]}
+    series={[
+      { color: 'terra', puntos: [[0.5, 3.1], [1.5, 8.4], [2.5, 3.5], [3.5, 2.8], [4.5, 2.7]] },
+      { color: 'teal', tenue: true, label: 'Objectiu: 2 %', dy: 18, puntos: [[0.5, 2], [4.7, 2]] },
+    ]}
+    puntos={[
+      { x: 0.5, y: 3.1, label: '3,1', dy: -12, guias: false }, { x: 1.5, y: 8.4, label: '8,4', dy: -12, guias: false }, { x: 2.5, y: 3.5, label: '3,5', dy: -12, guias: false },
+      { x: 3.5, y: 2.8, label: '2,8', dy: -12, guias: false }, { x: 4.5, y: 2.7, label: '2,7', dy: -12, guias: false },
+    ]}
+  />
+</Diagram>
 
 Un 8,4 % pot paréixer un número abstracte. Traduït: una família que gastava 1.000 € al mes el 2021 necessitava 1.084 € el 2022 per a comprar exactament el mateix. Si els seus ingressos no van pujar en la mateixa proporció (i la majoria no ho van fer), va viure pitjor amb els mateixos diners.
 
@@ -403,7 +462,46 @@ b) Una àvia va guardar 1.000 € en un sobre a casa l'1 de gener de 2022. Amb l
 3. **Inflació de la cistella**: (58,00 − 56,00) / 56,00 × 100 = 2,00 / 56,00 × 100 = **3,57 %**.
 4. **Lectura**: l'entrepà va pujar un 10 % i la samarreta un 8 %, però la recàrrega i el bo no van pujar gens, i el bo és el que més pesa a la cistella. Per això l'índex general (3,57 %) és molt més baix que la pujada del producte més cridaner. Així funciona l'IPC: els productes que més pesen en la despesa «estiren» l'índex cap a la seua pujada, i els que no pugen el frenen.
 5. **El sobre de l'àvia**: els 1.000 € continuen sent 1.000 € en bitllets, però el que costava 1.000 € al gener costa 1.084 € al desembre. El seu poder adquisitiu és 1.000 / 1,084 = **922,51 €**.
-6. **Pèrdua**: 1.000 − 922,51 = **77,49 €** en un sol any, sense que ningú obrira el sobre. Per a conservar el poder de compra hauria necessitat que el sobre «creixera» fins a 1.084 €. Ni tan sols un compte remunerat al 2 % (1.020 € a final d'any) ho hauria evitat del tot, però hauria reduït la pèrdua a la meitat. Amb inflació, guardar diners parats és perdre diners a poc a poc.
+6. **Pèrdua**: 1.000 − 922,51 = **77,49 €** en un sol any, sense que ningú obrira el sobre. Per a conservar el poder de compra hauria necessitat que el sobre «creixera» fins a 1.084 €. Ni tan sols un compte remunerat al 2 % (1.020 € a final d'any, que amb la inflació valen 1.020 / 1,084 = 940,96 €) ho hauria evitat del tot, però hauria reduït la pèrdua de 77,49 € a 59,04 €. Amb inflació, guardar diners parats és perdre diners a poc a poc.
+
+<Diagram caption="Quant puja cada producte de la cistella: l'entrepà un 10 %, el cine un 6,25 %, la camiseta un 8 %, i la recàrrega i el bo res. El conjunt puja un 3,57 %, molt menys que l'entrepà.">
+  <GraficoXY id="g-cesta-inflacion" titulo="Pujada de preu de cada producte de la cistella" desc="Cinc barres amb la pujada del preu entre l'any 1 i l'any 2: entrepà 10 per cent, entrada de cine 6,25, recàrrega del mòbil 0, camiseta 8 i bo de transport 0. La cistella sencera puja un 3,57 per cent."
+    xMax={6.6} yMax={12} ejeX="Producte" ejeY="Pujada del preu (%)"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['Entrepà', 'Cine', 'Recàrrega', 'Camiseta', 'Bo']} yTicks={[2, 4, 6, 8, 10]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 10], [0.65, 10]] },
+      { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 6.25], [1.65, 6.25]] },
+      { color: 'terra', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 8], [3.65, 8]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 10], [1.35, 10], [1.35, 0]] },
+      { color: 'terra', puntos: [[1.65, 0], [1.65, 6.25], [2.35, 6.25], [2.35, 0]] },
+      { color: 'terra', puntos: [[3.65, 0], [3.65, 8], [4.35, 8], [4.35, 0]] },
+      { color: 'teal', tenue: true, label: 'Cistella: 3,57 %', dy: -4, puntos: [[0.3, 3.57], [5.6, 3.57]] },
+    ]}
+    notas={[
+      { x: 1, y: 10.5, texto: '10 %', ancla: 'middle' }, { x: 2, y: 6.75, texto: '6,25 %', ancla: 'middle' }, { x: 3, y: 0.5, texto: '0 %', ancla: 'middle' },
+      { x: 4, y: 8.5, texto: '8 %', ancla: 'middle' }, { x: 5, y: 0.5, texto: '0 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El que valen 1.000 € a final de 2022 amb una inflació del 8,4 %: 922,51 € guardats en un sobre i 940,96 € en un compte al 2 %. En els dos casos es perd poder de compra.">
+  <GraficoXY id="g-sobre-abuela" titulo="Poder adquisitiu de 1.000 euros després d'un any d'inflació" desc="Dos barres que queden per davall dels 1 000 euros inicials: el sobre guardat a casa val 922,51 euros de poder de compra i el compte al 2 per cent, 940,96."
+    xMax={6} yMax={1200} ejeX="On estava el diner" ejeY="Poder adquisitiu (€)"
+    xTicks={[1.5, 3.5]} xTickLabels={['Sobre a casa', 'Compte al 2 %']} yTicks={[250, 500, 750]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 922.51], [0.9, 922.51]] },
+      { color: 'teal', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 940.96], [2.9, 940.96]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 922.51], [2.1, 922.51], [2.1, 0]] },
+      { color: 'teal', puntos: [[2.9, 0], [2.9, 940.96], [4.1, 940.96], [4.1, 0]] },
+      { color: 'ink', tenue: true, label: 'Al començar: 1 000 €', dy: -6, puntos: [[0, 1000], [4.6, 1000]] },
+    ]}
+    notas={[{ x: 1.5, y: 650, texto: '922,51 €', ancla: 'middle' }, { x: 3.5, y: 650, texto: '940,96 €', ancla: 'middle' }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -740,7 +838,7 @@ Estes preguntes no tenen una resposta única. Servixen per a debatre a classe o 
     - "L'entrepà va pujar un 10 %, però el bo i la recàrrega no: els que més pesen frenen l'índex."
     - "Poder adquisitiu del sobre: 1.000 / 1,084 = 922,51 €."
     - "Pèrdua: 77,49 € en un any sense que ningú obrira el sobre."
-    - "Un compte al 2 % hauria deixat 1.020 €: no evita la pèrdua, però la reduïx a la meitat."
+    - "Un compte al 2 % hauria deixat 1.020 €: no evita la pèrdua, però la reduïx en una quarta part."
 - tipo: data
   numero: "4,2 bilions"
   label: "de marcs per un dòlar"

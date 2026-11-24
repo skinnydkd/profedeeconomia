@@ -46,6 +46,8 @@ publicado_en: 2026-09-15
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
 import VentajaComparativa from '@components/diagrams/VentajaComparativa.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
 import InstitucionesUE from '@components/diagrams/InstitucionesUE.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -123,6 +125,21 @@ Mirem en canvi el **cost d'oportunitat** (Unitat 1): a què renuncia cada u quan
 
 Comproveu-ho amb números. Cada u té 8 hores. Si els dos es repartixen el temps a mitges, Marta produïx 2 webs i 4 sopars, i Jorge, mitja web i 2 sopars: en total, 2,5 webs i 6 sopars. Si en canvi Jorge es dedica només a cuinar (4 sopars) i Marta fa 3 webs i 2 sopars, el total és de **3 webs i 6 sopars**. Els mateixos sopars i mitja web més, sense que ningú treballe més hores. Eixe «més» és el **guany del comerç**, i es repartix entre els dos quan intercanvien: Jorge li dóna sopars a Marta i Marta li paga amb part del que guanya amb les webs.
 
+<Diagram caption="El màxim que pot fer cada u en 8 hores. La recta de Marta baixa 2 sopars per cada web; la de Jorge, 4: eixe és el cost d'oportunitat. A i B: repartiment a mitges (Marta, 2 webs i 4 sopars; Jorge, mitja web i 2 sopars). C i D: Marta fa 3 webs i 2 sopars, i Jorge només cuina, 4 sopars.">
+  <GraficoXY id="g-marta-jorge" titulo="El que poden fer Marta i Jorge en 8 hores" desc="Dues rectes descendents. Marta pot fer 4 webs o 8 sopars, o combinacions com 2 webs i 4 sopars, o 3 webs i 2 sopars. Jorge pot fer 1 web o 4 sopars, o mitja web i 2 sopars. La de Jorge és més inclinada."
+    xMax={5} yMax={10} ejeX="Pàgines web" ejeY="Sopars" simboloX="W" simboloY="S"
+    xTicks={[1, 2, 3, 4]} yTicks={[2, 4, 6, 8]}
+    series={[
+      { color: 'terra', label: 'Marta', dy: -12, puntos: [[0, 8], [4, 0]] },
+      { color: 'teal', label: 'Jorge', dy: -12, puntos: [[0, 4], [1, 0]] },
+    ]}
+    puntos={[
+      { x: 2, y: 4, label: 'A', guias: false }, { x: 0.5, y: 2, label: 'B', guias: false },
+      { x: 3, y: 2, label: 'C', guias: false }, { x: 0, y: 4, label: 'D', guias: false },
+    ]}
+  />
+</Diagram>
+
 <Callout label="Concepte clau" title="Avantatge absolut i avantatge comparatiu">
 
 Un país (o una persona) té **avantatge absolut** en un producte quan el produïx amb menys recursos que els altres: menys hores, menys terra, menys diners. Té **avantatge comparatiu** quan el produïx amb un **cost d'oportunitat menor**, és a dir, quan renuncia a menys quantitat d'altres coses per a produir-lo. El que decidix l'especialització i el comerç no és l'avantatge absolut, sinó el comparatiu: tothom té avantatge comparatiu en alguna cosa, encara que siga pitjor que els altres en tot. És la idea que David Ricardo va publicar el 1817 a *Principios de economía política y tributación*.
@@ -163,6 +180,21 @@ d) Proposa una especialització que augmente la producció total i un intercanvi
 4. **Amb especialització**: Nordia dedica les seues 120 hores a samarretes i produïx **20 lots**. Solandia dedica 100 hores a l'oli (**50 t**) i 20 hores a samarretes (**5 lots**), perquè els dos països junts continuen volent 25 lots. Total: **50 t d'oli i 25 lots**. Les mateixes samarretes i **10 tones més d'oli** amb les mateixes hores: eixe és el guany del comerç.
 5. **Un intercanvi en què guanyen els dos**: la relació de canvi ha d'estar entre els dos costos d'oportunitat (entre 1 i 2 t d'oli per lot). Amb **1,5 t per lot**, Nordia envia 10 lots a Solandia i rep 15 t d'oli. Nordia es queda amb 10 lots i 15 t d'oli (abans en tenia 10 i 10): guanya 5 t. Solandia es queda amb 15 lots i 35 t (abans 15 i 30): en guanya unes altres 5. Ningú ha treballat més i els dos consumixen més.
 
+<Diagram caption="Les fronteres de Solandia i Nordia amb 120 hores cada una. A i A′: sense especialitzar-se. B i B′: especialitzats. C i C′: després de l'intercanvi a 1,5 t per lot, fora de la frontera: els dos consumixen el que sols no podrien.">
+  <GraficoXY id="g-solandia-nordia" titulo="Fronteres de producció de Solandia i Nordia i guany del comerç" desc="Solandia pot produir fins a 60 tones d'oli o 30 lots de camisetes; Nordia, fins a 20 de cada. Sense comerciar, Solandia està en 30 t i 15 lots i Nordia en 10 i 10. Després d'especialitzar-se i intercanviar, Solandia té 35 t i 15 lots i Nordia 15 t i 10 lots, punts situats fora de les seues fronteres."
+    xMax={70} yMax={35} ejeX="Oli (tones)" ejeY="Camisetes (lots de 100)"
+    xTicks={[10, 20, 30, 40, 50, 60]} yTicks={[10, 20, 30]}
+    series={[
+      { color: 'terra', label: 'Solandia', dy: -12, puntos: [[0, 30], [60, 0]] },
+      { color: 'teal', label: 'Nordia', dy: -12, puntos: [[0, 20], [20, 0]] },
+    ]}
+    puntos={[
+      { x: 30, y: 15, label: 'A', guias: false }, { x: 50, y: 5, label: 'B', guias: false }, { x: 35, y: 15, label: 'C', guias: false },
+      { x: 10, y: 10, label: 'A′', guias: false }, { x: 0, y: 20, label: 'B′', guias: false }, { x: 15, y: 10, label: 'C′', guias: false },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Prova-ho tu mateix:** canvia les hores de la taula i comprova com es mou l'avantatge comparatiu, entre quins valors ha d'estar la relació d'intercanvi i quant guanya cada país.
@@ -201,11 +233,52 @@ També importem molts cotxes (els que es fabriquen ací no són els que més es 
 
 El primer que sorprén del mapa és com de prop estan els nostres clients. Al voltant de dos terços del que Espanya ven es queda a la Unió Europea. **França** és el primer client (al voltant del 15 % de les exportacions), seguida d'**Alemanya** (10 %), **Portugal** (9 %), **Itàlia** (8 %), el Regne Unit (6 %) i els Estats Units (5 %). Entre els proveïdors apareix un nom nou: **la Xina** és el primer país a qui Espanya compra (aproximadament l'11 % de les importacions), per davant d'Alemanya i França (Datacomex, 2024). És a dir, venem sobretot als veïns i comprem sobretot a Àsia, amb l'energia arribant dels Estats Units, Algèria, Nigèria o l'Aràbia Saudita.
 
+<Diagram caption="A qui ven Espanya, en percentatge de les seues exportacions: França, Alemanya, Portugal i Itàlia, tots veïns, se n'emporten més de quatre de cada deu euros.">
+  <GraficoXY id="g-destino-exportaciones" titulo="Principals clients de les exportacions espanyoles" desc="Sis barres amb el percentatge de les exportacions: França 15, Alemanya 10, Portugal 9, Itàlia 8, Regne Unit 6 i Estats Units 5."
+    xMax={7} yMax={18} ejeX="País client" ejeY="% de les exportacions"
+    xTicks={[1, 2, 3, 4, 5, 6]} xTickLabels={['França', 'Alemanya', 'Portugal', 'Itàlia', 'R. Unit', 'EUA']} yTicks={[4, 8, 12, 16]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 15], [0.65, 15]] }, { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 10], [1.65, 10]] },
+      { color: 'terra', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 9], [2.65, 9]] }, { color: 'terra', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 8], [3.65, 8]] },
+      { color: 'terra', fuerte: true, puntos: [[4.65, 0], [5.35, 0], [5.35, 6], [4.65, 6]] }, { color: 'terra', fuerte: true, puntos: [[5.65, 0], [6.35, 0], [6.35, 5], [5.65, 5]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 15], [1.35, 15], [1.35, 0]] }, { color: 'terra', puntos: [[1.65, 0], [1.65, 10], [2.35, 10], [2.35, 0]] },
+      { color: 'terra', puntos: [[2.65, 0], [2.65, 9], [3.35, 9], [3.35, 0]] }, { color: 'terra', puntos: [[3.65, 0], [3.65, 8], [4.35, 8], [4.35, 0]] },
+      { color: 'terra', puntos: [[4.65, 0], [4.65, 6], [5.35, 6], [5.35, 0]] }, { color: 'terra', puntos: [[5.65, 0], [5.65, 5], [6.35, 5], [6.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 15.7, texto: '15', ancla: 'middle' }, { x: 2, y: 10.7, texto: '10', ancla: 'middle' }, { x: 3, y: 9.7, texto: '9', ancla: 'middle' },
+      { x: 4, y: 8.7, texto: '8', ancla: 'middle' }, { x: 5, y: 6.7, texto: '6', ancla: 'middle' }, { x: 6, y: 5.7, texto: '5', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 Té lògica: el comerç és més intens amb qui està a prop, compartix moneda i no posa duanes, i això és exactament el que oferix la Unió Europea, com veurem a la cinquena secció.
 
 ### La balança comercial i la balança per compte corrent
 
 Si el 2024 Espanya va exportar béns per 384.000 milions i en va importar per 424.000, va vendre menys del que va comprar: uns **40.000 milions** de diferència. A eixe resultat se l'anomena **saldo de la balança comercial**, i quan és negatiu parlem de **dèficit comercial**. Espanya el té quasi tots els anys, sobretot per l'energia.
+
+<Diagram caption="El comerç de béns d'Espanya el 2024, en milers de milions d'euros: es va importar més del que es va exportar, i la diferència és el dèficit comercial.">
+  <GraficoXY id="g-balanza-comercial" titulo="Exportacions i importacions de béns d'Espanya el 2024" desc="Dues barres en milers de milions d'euros: exportacions, 384; importacions, 424. La diferència, 40, és el dèficit comercial."
+    xMax={5} yMax={500} ejeX="Comerç de béns" ejeY="Milers de milions de €"
+    xTicks={[1.5, 3.5]} xTickLabels={['Exportacions', 'Importacions']} yTicks={[100, 200, 300, 400]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 384], [0.9, 384]] },
+      { color: 'terra', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 424], [2.9, 424]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.9, 0], [0.9, 384], [2.1, 384], [2.1, 0]] },
+      { color: 'terra', puntos: [[2.9, 0], [2.9, 424], [4.1, 424], [4.1, 0]] },
+      { color: 'ink', tenue: true, puntos: [[2.1, 384], [4.1, 384]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 405, texto: '384', ancla: 'middle' }, { x: 3.5, y: 445, texto: '424', ancla: 'middle' },
+      { x: 4.25, y: 392, texto: 'Dèficit: 40' },
+    ]}
+  />
+</Diagram>
 
 <Callout label="Concepte clau" title="Balança comercial i balança per compte corrent">
 
@@ -248,6 +321,19 @@ Torneu a la pregunta del cas d'obertura. Quan els Estats Units posen un aranzel 
 3. **El productor espanyol perd**: ven menys als Estats Units, o abaixa el seu preu per a compensar part de l'aranzel i guanya menys per botella.
 4. **L'Estat que el cobra ingressa diners**, encara que normalment menys del que perd el consumidor.
 5. **El país afectat sol respondre** amb aranzels a productes de l'altre, i l'escalada perjudica els dos. Les guerres comercials rarament tenen un guanyador clar.
+
+<Diagram caption="Un aranzel en el gràfic: Pm és el preu mundial i t l'aranzel. El preu dins del país puja a Pm + t, es compra menys (Qd′ en compte de Qd), els productors del país venen més (Qo′ en compte de Qo) i entren menys importacions. L'Estat cobra t per cada unitat importada.">
+  <MercadoGrafico id="mg-arancel" titulo="Efecte d'un aranzel sobre les importacions" desc="Amb el preu mundial Pm, el país demana Qd, produïx Qo i importa la diferència. Amb l'aranzel, el preu puja a Pm més t, la demanda baixa a Qd′, la producció nacional puja a Qo′ i les importacions es redueixen."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[
+      { p: 3, q: 30, pLabel: 'Pm', qLabel: 'Qo' }, { p: 3, q: 70, qLabel: 'Qd' },
+      { p: 4, q: 40, pLabel: 'Pm + t', qLabel: 'Qo′' }, { p: 4, q: 60, qLabel: 'Qd′' },
+    ]}
+    precio={{ p: 3, label: "Preu mundial" }}
+    tramo={{ p: 4, q1: 40, q2: 60, label: "Importacions" }}
+  />
+</Diagram>
 
 En conjunt, la majoria dels economistes conclou que un aranzel destruïx més valor del que crea: la pèrdua del consumidor és major que el guany del productor protegit i de l'Estat. Però fixeu-vos en el repartiment: la pèrdua està molt repartida (milions de consumidors paguen uns cèntims més) i el guany molt concentrat (uns pocs productors guanyen molt). Els que guanyen s'organitzen i pressionen; els que perden quasi no ho noten. Per això hi ha aranzels.
 
@@ -461,6 +547,15 @@ El tipus de canvi és un preu, i com tots els preus de la Unitat 3 es mou per l'
 
 A l'inrevés, els europeus que compren productes estatunidencs, viatgen a Nova York o inverteixen a Wall Street venen euros i compren dòlars, i empenyen l'euro cap avall. El tipus de canvi és el punt en què eixos dos corrents s'equilibren, i canvia cada segon.
 
+<Diagram caption="El mercat d'euros: si puja la demanda d'euros (més exportacions, més turistes, més inversió), la corba passa de D₁ a D₂ i l'euro s'aprecia, de TC₁ a TC₂.">
+  <MercadoGrafico id="mg-euro" titulo="L'euro s'aprecia quan augmenta la seua demanda" desc="La demanda d'euros es desplaça cap a la dreta mentre l'oferta queda quieta. El nou equilibri té un tipus de canvi més alt i més euros intercanviats."
+    pMax={10} qMax={100} ejeP="Tipus de canvi ($ per €)" ejeQ="Euros"
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }, { tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'TC₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 6.5, q: 65, label: 'E₂', pLabel: 'TC₂', qLabel: 'Q₂', dx: -8, dy: 30 }]}
+    flechas={[{ de: { p: 7.6, q: 24 }, a: { p: 7.6, q: 54 } }]}
+  />
+</Diagram>
+
 ### El teu viatge a Londres o a Nova York
 
 Ací és on el tipus de canvi deixa de ser abstracte. Suposem que heu estalviat 500 euros per a un viatge de fi de curs a Londres. Amb un euro a 0,85 lliures, teniu 425 lliures per a gastar. Si l'euro s'aprecia i passa a 0,90 lliures, els mateixos 500 euros són 450 lliures: el vostre viatge és un 6 % més barat sense haver estalviat més. Si l'euro es deprecia a 0,80, us quedeu amb 400 lliures i les entrades del musical se us'n van del pressupost. El mateix amb Nova York: entre gener i setembre de 2025, un viatge de 1.000 euros va passar de valdre 1.040 dòlars a valdre'n 1.170. Els que van viatjar a l'estiu van guanyar 130 dòlars de regal.
@@ -488,6 +583,24 @@ d) Si ara els Estats Units apliquen un aranzel del **15 %** a eixa botella, quan
 2. **La importació**. Per a convertir dòlars a euros es dividix pel tipus de canvi. Al gener: 1.100 $ / 1,10 = **1.000 €**. Al juny: 1.100 $ / 1,00 = **1.100 €**. El mateix portàtil costa **100 € més** (un 10 %). La botiga haurà de pujar el preu o guanyar menys, i el mateix els passa a tots els que compren petroli, gas, xips o mòbils fora. Per això una depreciació forta de l'euro empeny la inflació (Unitat 4).
 3. **L'exportació**. Per a passar euros a dòlars es multiplica. Al gener, la botella de 10 € costa a l'importador 10 × 1,10 = **11,00 $**. Al juny, 10 × 1,00 = **10,00 $**. La cooperativa continua cobrant els seus 10 € per botella, però per al client estatunidenc l'oli és **un 9 % més barat**, així que en vendrà més. A l'importador i a l'exportador els convé la depreciació; a la família del viatge i a la botiga de portàtils, no.
 4. **Amb aranzel**. Als 10,00 $ de juny se'ls suma el 15 %: 10,00 × 1,15 = **11,50 $**. Fixeu-vos que la depreciació de l'euro (d'11,00 a 10,00 $) quasi ha compensat l'aranzel: l'importador acaba pagant 11,50 $, només mig dòlar més que al gener sense aranzel. És una de les raons per les quals els efectes dels aranzels de 2025 són difícils de mesurar: el tipus de canvi es movia alhora, i en la direcció contrària.
+
+<Diagram caption="El que paga en dòlars l'importador estatunidenc per una ampolla de 10 €: 11 $ al gener, 10 $ al juny amb l'euro més dèbil, i 11,50 $ si a més hi ha un aranzel del 15 %.">
+  <GraficoXY id="g-botella-arancel" titulo="Preu en dòlars d'una ampolla d'oli de 10 euros" desc="Tres barres: al gener, amb l'euro a 1,10 dòlars, l'ampolla costa 11 dòlars; al juny, amb l'euro a 1 dòlar, costa 10; al juny amb un aranzel del 15 per cent, costa 11,50."
+    xMax={7} yMax={14} ejeX="Ampolla de 10 €" ejeY="Preu en dòlars"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['Gener', 'Juny', 'Juny + aranzel']} yTicks={[2, 4, 6, 8, 10, 12]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 11], [0.9, 11]] },
+      { color: 'teal', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 10], [2.9, 10]] },
+      { color: 'mustard', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 11.5], [4.9, 11.5]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 11], [2.1, 11], [2.1, 0]] },
+      { color: 'teal', puntos: [[2.9, 0], [2.9, 10], [4.1, 10], [4.1, 0]] },
+      { color: 'mustard', puntos: [[4.9, 0], [4.9, 11.5], [6.1, 11.5], [6.1, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 11.6, texto: '11,00 $', ancla: 'middle' }, { x: 3.5, y: 10.6, texto: '10,00 $', ancla: 'middle' }, { x: 5.5, y: 12.1, texto: '11,50 $', ancla: 'middle' }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

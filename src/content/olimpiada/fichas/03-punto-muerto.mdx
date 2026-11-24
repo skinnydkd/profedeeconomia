@@ -25,6 +25,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 Toda empresa soporta dos tipos de costes:
@@ -98,6 +101,24 @@ La separación vertical entre IT y CT en cualquier Q > Q\* representa el benefic
 
 La calculadora al final de esta ficha genera este gráfico automáticamente con los valores que introduzcas.
 
+<Diagram caption="Gráfico IT/CT de la empresa de zumos: el ingreso total (IT = 2,50·Q) parte del origen y el coste total (CT = 42 000 + 0,50·Q) parte de los costes fijos. Se cortan en el punto muerto, 21 000 botellas y 52 500 €; a su izquierda hay pérdidas y a su derecha, beneficios.">
+  <GraficoXY id="g-ol-pm-canonico" titulo="Punto muerto de la empresa de zumos" desc="La recta de ingreso total parte del origen y la de coste total parte de 42 000 euros, igual que la recta de costes fijos. IT y CT se cortan en 21 000 botellas y 52 500 euros. A la izquierda hay pérdidas y a la derecha, beneficios."
+    xMax={30000} yMax={80000} ejeX="Botellas al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 15000, 25000]} yTicks={[20000, 42000, 60000]}
+    areas={[
+      { color: 'terra', puntos: [[0, 0], [0, 42000], [21000, 52500]] },
+      { color: 'teal', puntos: [[21000, 52500], [27500, 55750], [27500, 68750]] },
+    ]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [27500, 68750]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 42000], [27500, 55750]] },
+      { label: 'CF', color: 'mustard', puntos: [[0, 42000], [27500, 42000]] },
+    ]}
+    puntos={[{ x: 21000, y: 52500, label: 'Q*', xLabel: '21 000', yLabel: '52 500', dx: -40, dy: -14 }]}
+    notas={[{ x: 5000, y: 30000, texto: 'Pérdidas' }, { x: 23500, y: 56000, texto: 'Beneficios' }]}
+  />
+</Diagram>
+
 ---
 
 ## Las variantes que caen en el examen
@@ -116,6 +137,23 @@ Despejando:
 
 Q = (42 000 + 6 000) / (2,50 − 0,50) = 48 000 / 2 = **24 000 unidades**
 
+<Diagram caption="Beneficio objetivo de 6 000 €: a 24 000 botellas el ingreso es 60 000 € y el coste 54 000 €, y la distancia vertical entre IT y CT es el beneficio buscado. El punto muerto, Q*, queda en 21 000.">
+  <GraficoXY id="g-ol-pm-objetivo" titulo="Unidades para un beneficio objetivo de 6 000 euros" desc="Rectas de ingreso total y de coste total de la empresa de zumos. En 24 000 botellas el ingreso es de 60 000 euros y el coste de 54 000, con un beneficio de 6 000. El punto muerto está en 21 000 botellas."
+    xMax={30000} yMax={80000} ejeX="Botellas al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 15000]} yTicks={[20000, 40000]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [27500, 68750]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 42000], [27500, 55750]] },
+    ]}
+    puntos={[
+      { x: 21000, y: 52500, label: 'Q*', guias: false, dx: -40, dy: -14 },
+      { x: 24000, y: 60000, xLabel: '24 000', yLabel: '60 000' },
+      { x: 24000, y: 54000, guias: false },
+    ]}
+    notas={[{ x: 24400, y: 57000, texto: 'B = 6 000 €' }]}
+  />
+</Diagram>
+
 ### Variante 2 — Cambia un coste fijo (sueldo, alquiler)
 
 Los socios se asignan un sueldo total anual de 10 000 €, o sube el alquiler 3 000 €. El nuevo CF' = CF + incremento, y el punto muerto sube:
@@ -128,6 +166,22 @@ Q\*' = 52 000 / 2 = **26 000 unidades**
 
 Interpretación: para poder pagarse ese sueldo la empresa necesita vender 5 000 unidades más al año.
 
+<Diagram caption="Si los socios se asignan un sueldo total de 10 000 €, los costes fijos pasan de 42 000 a 52 000 €, la recta de costes sube en paralelo y el punto muerto se desplaza de 21 000 a 26 000 unidades.">
+  <GraficoXY id="g-ol-pm-sueldo" titulo="Efecto de un aumento de los costes fijos en el punto muerto" desc="La recta de coste total sube en paralelo de CT, tenue, a CT', con costes fijos de 52 000 euros en lugar de 42 000. Corta a la recta de ingreso total en 26 000 unidades en lugar de 21 000."
+    xMax={36000} yMax={90000} ejeX="Unidades al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 15000]} yTicks={[20000, 40000]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [30000, 75000]] },
+      { label: 'CT', color: 'terra', tenue: true, puntos: [[0, 42000], [30000, 57000]] },
+      { label: "CT'", color: 'terra', puntos: [[0, 52000], [30000, 67000]] },
+    ]}
+    puntos={[
+      { x: 21000, y: 52500, label: 'Q*', xLabel: '21 000', yLabel: '52 500', dx: -40, dy: -14 },
+      { x: 26000, y: 65000, label: "Q*'", xLabel: '26 000', yLabel: '65 000', dx: -44, dy: -14 },
+    ]}
+  />
+</Diagram>
+
 ### Variante 3 — Cambia el CVu o el precio
 
 Si bajan las materias primas y el nuevo CVu' = 0,30 € (margen de contribución = 2,20 €):
@@ -139,6 +193,35 @@ Si el precio sube a P' = 3 € (margen de contribución = 2,50 €):
 Q\*' = 42 000 / 2,50 = **16 800 unidades**
 
 En ambos casos el margen de contribución aumenta y el punto muerto baja: son noticias favorables para la empresa.
+
+<Diagram caption="Si el precio sube de 2,50 a 3 €, la recta de ingreso total se hace más empinada (IT') y el punto muerto baja de 21 000 a 16 800 unidades.">
+  <GraficoXY id="g-ol-pm-precio" titulo="Efecto de una subida del precio en el punto muerto" desc="La recta de ingreso total con precio de 3 euros, IT', es más empinada que la de 2,50 euros, tenue. Corta a la recta de coste total, que no cambia, en 16 800 unidades y 50 400 euros, en lugar de 21 000 unidades."
+    xMax={30000} yMax={90000} ejeX="Unidades al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 25000]} yTicks={[20000, 40000]}
+    series={[
+      { label: "IT'", color: 'teal', puntos: [[0, 0], [25000, 75000]] },
+      { label: 'IT', color: 'teal', tenue: true, puntos: [[0, 0], [25000, 62500]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 42000], [25000, 54500]] },
+    ]}
+    puntos={[
+      { x: 16800, y: 50400, label: "Q*'", xLabel: '16 800', yLabel: '50 400', dx: -44, dy: -14 },
+      { x: 21000, y: 52500, label: 'Q*', guias: false, dx: 12, dy: 22 },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Si el coste variable unitario baja de 0,50 a 0,30 €, la recta de coste total se hace menos empinada (CT') y el punto muerto baja de 21 000 a 19 091 unidades.">
+  <GraficoXY id="g-ol-pm-cvu" titulo="Efecto de una bajada del coste variable en el punto muerto" desc="La recta de coste total con coste variable unitario de 0,30 euros, CT', parte de los mismos 42 000 euros pero es menos empinada que la de 0,50 euros, tenue. Corta a la recta de ingreso total en 19 091 unidades, en lugar de 21 000."
+    xMax={30000} yMax={90000} ejeX="Unidades al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 25000]} yTicks={[20000, 40000]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [25000, 62500]] },
+      { label: 'CT', color: 'terra', tenue: true, puntos: [[0, 42000], [25000, 54500]] },
+      { label: "CT'", color: 'terra', dy: 10, puntos: [[0, 42000], [25000, 49500]] },
+    ]}
+    puntos={[{ x: 42000 / 2.2, y: 2.5 * 42000 / 2.2, label: "Q*'", xLabel: '19 091', yLabel: '47 727', dx: 12, dy: 24 }]}
+  />
+</Diagram>
 
 ### Variante 4 — ¿Se mantiene un objetivo si sube un coste?
 

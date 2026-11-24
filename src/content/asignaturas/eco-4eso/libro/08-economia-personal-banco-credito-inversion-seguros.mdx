@@ -42,6 +42,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TrianguloInversion from '@components/diagrams/TrianguloInversion.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
 import TeoriaProspectiva from '@components/diagrams/TeoriaProspectiva.astro';
@@ -236,6 +237,28 @@ c) ¿Y si lo compras con una tarjeta revolving al 18 % TIN pagando 30 € al mes
 6. **Con revolving**: pagando 30 € al mes sobre una deuda de 900 € al 18 % TIN (1,5 % mensual) hacen falta unas **41 mensualidades**, casi tres años y medio, y se pagan alrededor de **1.205 €** en total: unos **305 € de intereses**. Y eso suponiendo que no vuelvas a usar la tarjeta, porque cada nueva compra reinicia el ciclo.
 7. **Lectura final**: el mismo móvil cuesta 900 €, 1.035 € o 1.205 € según cómo lo pagues. La diferencia no está en el producto, está en el contrato.
 
+<Diagram caption="El mismo móvil de 900 € pagado de tres maneras: al contado cuesta 900 €, financiado 1.034,88 € (134,88 € de más) y con revolving unos 1.205 € (unos 305 € de más).">
+  <GraficoXY id="g-movil-financiado" titulo="Lo que cuesta un móvil de 900 euros según cómo se pague" desc="Tres barras: al contado, 900 euros; financiado en 24 meses, 1 034,88 euros, es decir, 134,88 de más; con tarjeta revolving, unos 1 205 euros, unos 305 de más."
+    xMax={7.2} yMax={1500} ejeX="Forma de pago" ejeY="Euros pagados"
+    xTicks={[1.4, 3.4, 5.4]} xTickLabels={['Al contado', 'Financiado 24 meses', 'Revolving 18 %']} yTicks={[300, 600, 900, 1200]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.7, 0], [2.1, 0], [2.1, 900], [0.7, 900]] },
+      { color: 'teal', fuerte: true, puntos: [[2.7, 0], [4.1, 0], [4.1, 900], [2.7, 900]] }, { color: 'terra', fuerte: true, puntos: [[2.7, 900], [4.1, 900], [4.1, 1034.88], [2.7, 1034.88]] },
+      { color: 'teal', fuerte: true, puntos: [[4.7, 0], [6.1, 0], [6.1, 900], [4.7, 900]] }, { color: 'terra', fuerte: true, puntos: [[4.7, 900], [6.1, 900], [6.1, 1205], [4.7, 1205]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.7, 0], [0.7, 900], [2.1, 900], [2.1, 0]] },
+      { color: 'teal', puntos: [[2.7, 0], [2.7, 900], [4.1, 900], [4.1, 0]] }, { color: 'terra', puntos: [[2.7, 900], [2.7, 1034.88], [4.1, 1034.88], [4.1, 900]] },
+      { color: 'teal', puntos: [[4.7, 0], [4.7, 900], [6.1, 900], [6.1, 0]] }, { color: 'terra', puntos: [[4.7, 900], [4.7, 1205], [6.1, 1205], [6.1, 900]] },
+    ]}
+    notas={[
+      { x: 1.4, y: 950, texto: '900 €', ancla: 'middle' }, { x: 3.4, y: 1085, texto: '1 034,88 €', ancla: 'middle' }, { x: 5.4, y: 1255, texto: '≈ 1 205 €', ancla: 'middle' },
+      { x: 3.4, y: 950, texto: '+134,88 €', ancla: 'middle', color: 'terra' }, { x: 5.4, y: 1020, texto: '+305 €', ancla: 'middle', color: 'terra' },
+      { x: 0.3, y: 1440, texto: 'Precio del móvil', color: 'teal' }, { x: 3.2, y: 1440, texto: 'Lo que se paga de más', color: 'terra' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo tú:** compara el precio al contado con el precio financiado de la compra que tengas en mente y mira cuánto pesa realmente el sobrecoste.
@@ -313,6 +336,27 @@ d) ¿Qué cambiaría si lo pidieran a **20 años**?
 6. **Total pagado**: 674,6 × 360 = **242.856 €**. **Intereses**: 242.856 − 160.000 = **82.856 €**. Por un piso de 200.000 € acabarán desembolsando 242.856 + 60.000 = **302.856 €**.
 7. **A 20 años**: n = 240 y (1,0025)^240 = 1,8208, de donde el denominador es 1 − 0,5492 = 0,4508 y la cuota sube a 400 / 0,4508 = **887,3 € al mes**. Total pagado: 887,3 × 240 = **212.952 €**; intereses: **52.952 €**.
 8. **Lectura**: diez años menos de plazo suponen **213 € más al mes**, pero **casi 30.000 € menos de intereses**. Alargar el plazo no hace la casa más barata: hace la cuota más pequeña y la casa mucho más cara.
+
+<Diagram caption="El préstamo de 160.000 € a 30 y a 20 años: a 30 años la cuota es de 674,6 € y se pagan 82.856 € de intereses; a 20 años la cuota sube a 887,3 € y los intereses bajan a 52.952 €.">
+  <GraficoXY id="g-hipoteca-plazo" titulo="Hipoteca de 160 000 euros a 30 y a 20 años" desc="Dos barras con el total pagado. A 30 años: 160 000 euros de capital más 82 856 de intereses, 242 856 en total, con cuota de 674,6 euros al mes. A 20 años: 160 000 de capital más 52 952 de intereses, 212 952 en total, con cuota de 887,3 al mes."
+    xMax={5.4} yMax={280000} ejeX="Plazo y cuota mensual" ejeY="Euros pagados"
+    xTicks={[1.4, 3.7]} xTickLabels={['30 años: 674,6 €/mes', '20 años: 887,3 €/mes']} yTicks={[50000, 100000, 150000, 200000]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.7, 0], [2.1, 0], [2.1, 160000], [0.7, 160000]] }, { color: 'terra', fuerte: true, puntos: [[0.7, 160000], [2.1, 160000], [2.1, 242856], [0.7, 242856]] },
+      { color: 'teal', fuerte: true, puntos: [[3, 0], [4.4, 0], [4.4, 160000], [3, 160000]] }, { color: 'terra', fuerte: true, puntos: [[3, 160000], [4.4, 160000], [4.4, 212952], [3, 212952]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.7, 0], [0.7, 160000], [2.1, 160000], [2.1, 0]] }, { color: 'terra', puntos: [[0.7, 160000], [0.7, 242856], [2.1, 242856], [2.1, 160000]] },
+      { color: 'teal', puntos: [[3, 0], [3, 160000], [4.4, 160000], [4.4, 0]] }, { color: 'terra', puntos: [[3, 160000], [3, 212952], [4.4, 212952], [4.4, 160000]] },
+    ]}
+    notas={[
+      { x: 1.4, y: 75000, texto: 'Capital: 160 000 €', ancla: 'middle', color: 'teal' }, { x: 1.4, y: 195000, texto: 'Intereses: 82 856 €', ancla: 'middle', color: 'terra' },
+      { x: 1.4, y: 253000, texto: 'Total: 242 856 €', ancla: 'middle' },
+      { x: 3.7, y: 75000, texto: 'Capital: 160 000 €', ancla: 'middle', color: 'teal' }, { x: 3.7, y: 182000, texto: 'Intereses: 52 952 €', ancla: 'middle', color: 'terra' },
+      { x: 3.7, y: 223000, texto: 'Total: 212 952 €', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -437,6 +481,20 @@ Usa la fórmula del valor final de una serie de aportaciones: VF = A × ((1 + i)
 6. **Lectura**: los 12.000 € que no aportaste en esos diez primeros años te han costado casi **70.000 €** al final. En el interés compuesto, el tiempo pesa más que el importe.
 7. **Aviso importante**: estos cálculos no descuentan la inflación ni los impuestos, y el 5 % es una **hipótesis**, no una promesa. Ninguna inversión con rentabilidad esperada alta puede garantizar nada: si la garantizara, no pagaría el 5 %.
 
+<Diagram caption="Los 100 € al mes en el gráfico: al 5 % desde los 25 años se llega a 152.590 €; al 2 %, a 73.450 €; y al 5 % pero desde los 35, a 83.220 €. La línea de puntos es lo que se ha puesto de verdad: 48.000 €.">
+  <GraficoXY id="g-aportaciones-mensuales" titulo="Ahorrar 100 euros al mes hasta los 65 años" desc="Tres curvas y una recta. Al 5 por ciento desde los 25 años el capital llega a 152 590 euros a los 65; al 2 por ciento desde los 25, a 73 450; al 5 por ciento desde los 35, a 83 220. Lo aportado desde los 25 es una recta que acaba en 48 000 euros."
+    xMax={78} yMax={170000} ejeX="Edad" ejeY="Euros acumulados" simboloX="t" simboloY="€"
+    xTicks={[25, 35, 45, 55]} yTicks={[25000, 100000]}
+    series={[
+      { color: 'terra', label: '5 % desde los 25', puntos: Array.from({ length: 41 }, (_, k) => [25 + k, 100 * ((1 + 0.05 / 12) ** (12 * k) - 1) / (0.05 / 12)]) },
+      { color: 'teal', label: '5 % desde los 35', dy: -3, puntos: Array.from({ length: 31 }, (_, k) => [35 + k, 100 * ((1 + 0.05 / 12) ** (12 * k) - 1) / (0.05 / 12)]) },
+      { color: 'mustard', label: '2 % desde los 25', dy: 15, puntos: Array.from({ length: 41 }, (_, k) => [25 + k, 100 * ((1 + 0.02 / 12) ** (12 * k) - 1) / (0.02 / 12)]) },
+      { color: 'ink', tenue: true, label: 'Aportado', puntos: [[25, 0], [65, 48000]] },
+    ]}
+    puntos={[{ x: 65, y: 152590, xLabel: '65', yLabel: '152 590', guias: true }, { x: 65, y: 83220, yLabel: '83 220' }, { x: 65, y: 73450, yLabel: '73 450' }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo tú:** cambia la aportación, el plazo y la rentabilidad y observa cómo se mueve la curva.
@@ -540,7 +598,30 @@ Este es el presupuesto mensual aproximado de una persona joven que comparte piso
 | Ahorro e imprevistos | 100 € |
 | **Total** | **920 €** |
 
-Compáralo con lo que se cobra. El Salario Mínimo Interprofesional de 2026 es de **1.221 € al mes en 14 pagas** (Real Decreto 126/2026), lo que prorrateado a doce meses son unos 1.424 € brutos mensuales; descontadas las cotizaciones sociales quedan alrededor de **1.330 € netos** antes de IRPF (repasa la nómina en la Unidad 5). Con ese sueldo, el presupuesto de arriba cuadra y deja margen. Pero cambia una sola línea —una habitación de 550 € en lugar de 400, o un contrato a media jornada— y deja de cuadrar. Esa es toda la matemática de la emancipación en España.
+<Diagram caption="Los 920 € de la tabla, concepto a concepto: la habitación y la comida se llevan más de dos tercios del presupuesto.">
+  <GraficoXY id="g-presupuesto-vivir" titulo="Presupuesto mensual de una persona joven en piso compartido" desc="Siete barras en euros al mes: habitación 400, suministros 60, comida 220, transporte 25, móvil 15, ocio y ropa 100, ahorro e imprevistos 100. Suman 920 euros."
+    xMax={7.4} yMax={460} ejeX="Concepto" ejeY="Euros al mes"
+    xTicks={[1, 2, 3, 4, 5, 6, 7]} xTickLabels={['Habitación', 'Suministros', 'Comida', 'Transporte', 'Móvil', 'Ocio y ropa', 'Ahorro']} yTicks={[100, 200, 300, 400]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.7, 0], [1.3, 0], [1.3, 400], [0.7, 400]] }, { color: 'terra', fuerte: true, puntos: [[1.7, 0], [2.3, 0], [2.3, 60], [1.7, 60]] },
+      { color: 'terra', fuerte: true, puntos: [[2.7, 0], [3.3, 0], [3.3, 220], [2.7, 220]] }, { color: 'terra', fuerte: true, puntos: [[3.7, 0], [4.3, 0], [4.3, 25], [3.7, 25]] },
+      { color: 'terra', fuerte: true, puntos: [[4.7, 0], [5.3, 0], [5.3, 15], [4.7, 15]] }, { color: 'terra', fuerte: true, puntos: [[5.7, 0], [6.3, 0], [6.3, 100], [5.7, 100]] },
+      { color: 'teal', fuerte: true, puntos: [[6.7, 0], [7.3, 0], [7.3, 100], [6.7, 100]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.7, 0], [0.7, 400], [1.3, 400], [1.3, 0]] }, { color: 'terra', puntos: [[1.7, 0], [1.7, 60], [2.3, 60], [2.3, 0]] },
+      { color: 'terra', puntos: [[2.7, 0], [2.7, 220], [3.3, 220], [3.3, 0]] }, { color: 'terra', puntos: [[3.7, 0], [3.7, 25], [4.3, 25], [4.3, 0]] },
+      { color: 'terra', puntos: [[4.7, 0], [4.7, 15], [5.3, 15], [5.3, 0]] }, { color: 'terra', puntos: [[5.7, 0], [5.7, 100], [6.3, 100], [6.3, 0]] },
+      { color: 'teal', puntos: [[6.7, 0], [6.7, 100], [7.3, 100], [7.3, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 420, texto: '400', ancla: 'middle' }, { x: 2, y: 80, texto: '60', ancla: 'middle' }, { x: 3, y: 240, texto: '220', ancla: 'middle' },
+      { x: 4, y: 45, texto: '25', ancla: 'middle' }, { x: 5, y: 35, texto: '15', ancla: 'middle' }, { x: 6, y: 120, texto: '100', ancla: 'middle' }, { x: 7, y: 120, texto: '100', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
+Compáralo con lo que se cobra. El Salario Mínimo Interprofesional de 2026 es de **1.221 € al mes en 14 pagas** (Real Decreto 126/2026), lo que prorrateado a doce meses son unos 1.424 € brutos mensuales; descontadas las cotizaciones sociales quedan alrededor de **1.330 € netos** antes de IRPF (repasa la nómina en la Unidad 5). Con ese sueldo, el presupuesto de arriba cuadra y deja margen. Pero cambia una sola línea y el margen se estrecha: con una habitación de 550 € en lugar de 400 solo sobran unos 260 €, y con un contrato a media jornada (unos 665 € netos) deja de cuadrar. Esa es toda la matemática de la emancipación en España.
 
 <Figure
   src={calculadoraMonedas}

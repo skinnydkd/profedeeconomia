@@ -25,8 +25,64 @@ ejemplos_resueltos:
     desarrollo: "Un DAFO se aprovecha cruzando cuadrantes, no solo rellenándolos.<br><strong>Estrategia FO (ofensiva, fortaleza + oportunidad):</strong> usar la calidad de costura para subirse a la moda sostenible ofreciendo arreglos y prendas únicas que alarguen la vida de la ropa.<br><strong>Estrategia DA (supervivencia, debilidad + amenaza):</strong> como no saben vender online y compiten con el textil barato, buscar alianzas con tiendas locales sostenibles o ferias de barrio para ganar visibilidad sin gran inversión y diferenciarse del usar y tirar.<br>Cada estrategia conecta un factor interno con uno externo: ahí está la utilidad real del DAFO."
   - enunciado: "<strong>Punto muerto y decisión.</strong> Un proyecto de camisetas serigrafiadas tiene costes fijos de 240 euros (pantalla y alquiler del puesto). Cada camiseta cuesta 5 euros de material y se vende a 13 euros. Calcula el punto muerto. Si el equipo estima vender 25 camisetas, ¿le conviene lanzarse?"
     desarrollo: "<strong>Margen unitario:</strong> 13 - 5 = <strong>8 euros por camiseta</strong>.<br><strong>Punto muerto:</strong> costes fijos / margen = 240 / 8 = <strong>30 camisetas</strong>.<br>Comprobación: 30 x 8 = 240 euros, cubre exactamente los costes fijos.<br><strong>Decisión:</strong> con una previsión de 25 camisetas <em>no llegan</em> al punto muerto (30): tendrían pérdida. Beneficio estimado = 25 x 8 - 240 = 200 - 240 = <strong>-40 euros</strong>.<br>Opciones: subir el precio, bajar el coste de material, reducir los costes fijos o aumentar las ventas previstas por encima de 30. Lanzarse tal cual significaría asumir una pérdida de 40 euros."
+    grafico:
+      tipo: xy
+      caption: "Cada camiseta aporta 8 € y los costes fijos son 240 €: el punto muerto está en 30 camisetas. Con las 25 previstas, ingresan 325 € y gastan 365 €: pérdida de 40 €."
+      props:
+        id: "r-g1a-punto-muerto"
+        titulo: "Punto muerto del proyecto de camisetas"
+        desc: "Ingreso total (13 euros por camiseta), coste total (240 euros fijos más 5 por camiseta) y coste fijo. Se cruzan en 30 camisetas, con 390 euros. Con 25 camisetas el ingreso es de 325 euros y el coste de 365: pérdida de 40."
+        xMax: 45
+        yMax: 600
+        ejeX: "Camisetas vendidas"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [10, 20, 40]
+        yTicks: [240]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [40, 520]] }
+          - { label: "CT", color: "terra", puntos: [[0, 240], [40, 440]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 240], [40, 240]], dy: 14 }
+        puntos:
+          - { x: 30, y: 390, label: "Q*", xLabel: "30", yLabel: "390", dx: -34, dy: -14 }
+          - { x: 25, y: 325, xLabel: "25", yLabel: "325" }
+          - { x: 25, y: 365, yLabel: "365" }
+        notas:
+          - { x: 3, y: 470, texto: "Previsión 25: pérdida 40 €", color: "terra" }
   - enunciado: "<strong>Cronograma con dependencias.</strong> Un proyecto tiene cuatro tareas: A (diseño, 2 semanas) y B (compra de material, 1 semana) en paralelo; C (producción, 3 semanas) necesita A y B terminadas; D (venta, 2 semanas) necesita C. Calcula la duración mínima y la holgura de B."
     desarrollo: "Como A (2) y B (1) van en paralelo, antes de C hay que esperar a la que más tarda: max(2, 1) = <strong>2 semanas</strong>.<br>Después, en serie: C (3) y D (2).<br><strong>Duración mínima:</strong> 2 + 3 + 2 = <strong>7 semanas</strong> (la ruta crítica pasa por A, luego C y luego D).<br><strong>Holgura de B:</strong> B dura 1 semana pero dispone de 2 antes de que empiece C, así que tiene <strong>1 semana de holgura</strong> (2 - 1): podría retrasarse una semana sin afectar al plazo final.<br>Idea de nivel alto: la tarea que marca el plazo es la de la ruta crítica (A), no necesariamente la que parece más urgente."
+    grafico:
+      tipo: xy
+      caption: "La ruta crítica es A, C y D: 2 + 3 + 2 = 7 semanas. B dura 1 semana pero dispone de 2 antes de que empiece C, así que tiene 1 semana de holgura (tramo claro)."
+      props:
+        id: "r-g1a-cronograma-dependencias"
+        titulo: "Cronograma con dependencias y ruta crítica"
+        desc: "Diagrama de barras: A (diseño) de la semana 0 a la 2 y B (compra) de la 0 a la 1, con una semana de holgura; C (producción) de la 2 a la 5 y D (venta) de la 5 a la 7. Duración mínima: 7 semanas."
+        xMax: 8
+        yMax: 5
+        ejeX: "Semanas transcurridas"
+        ejeY: "Tareas"
+        xTicks: [1, 2, 3, 4, 5, 6, 7]
+        yTicks: []
+        areas:
+          - { puntos: [[0, 3.7], [2, 3.7], [2, 4.3], [0, 4.3]], color: "terra", fuerte: true }
+          - { puntos: [[0, 2.7], [1, 2.7], [1, 3.3], [0, 3.3]], color: "teal", fuerte: true }
+          - { puntos: [[2, 1.7], [5, 1.7], [5, 2.3], [2, 2.3]], color: "terra", fuerte: true }
+          - { puntos: [[5, 0.7], [7, 0.7], [7, 1.3], [5, 1.3]], color: "terra", fuerte: true }
+          - { puntos: [[1, 2.7], [2, 2.7], [2, 3.3], [1, 3.3]], color: "teal" }
+        series:
+          - { puntos: [[0, 3.7], [2, 3.7], [2, 4.3], [0, 4.3], [0, 3.7]], color: "terra" }
+          - { puntos: [[0, 2.7], [1, 2.7], [1, 3.3], [0, 3.3], [0, 2.7]], color: "teal" }
+          - { puntos: [[2, 1.7], [5, 1.7], [5, 2.3], [2, 2.3], [2, 1.7]], color: "terra" }
+          - { puntos: [[5, 0.7], [7, 0.7], [7, 1.3], [5, 1.3], [5, 0.7]], color: "terra" }
+          - { puntos: [[1, 2.7], [2, 2.7], [2, 3.3], [1, 3.3], [1, 2.7]], color: "teal" }
+        notas:
+          - { x: 2.1, y: 3.93, texto: "A: diseño, 2 sem.", ancla: "start" }
+          - { x: 2.1, y: 2.93, texto: "B: compra, 1 sem. (holgura 1)", ancla: "start" }
+          - { x: 5.1, y: 1.93, texto: "C: producción, 3 sem.", ancla: "start" }
+          - { x: 4.9, y: 0.93, texto: "D: venta, 2 sem.", ancla: "end" }
+          - { x: 7.8, y: 0.35, texto: "Duración mínima: 7 semanas", ancla: "end", color: "terra" }
 ejercicios:
   - enunciado: "Un equipo tiene la idea de una app para todo. Evalúala con los tres criterios de una buena oportunidad —<strong>deseabilidad, factibilidad y viabilidad</strong>— y propón cómo reformularla para que sí sea una oportunidad."
     solucion: "Deseabilidad: para todo no responde a una necesidad concreta de nadie, así que es baja (nadie la pide en particular).<br>Factibilidad: hacer una app que sirva para todo es técnicamente inabarcable, por lo que es muy baja.<br>Viabilidad: sin un cliente claro no hay modelo de ingresos, así que es nula.<br>Reformulación: elegir un problema concreto y un público concreto, por ejemplo una app para que los vecinos del barrio compartan herramientas de bricolaje poco usadas. Ahora hay necesidad real (deseabilidad), alcance acotado (factibilidad) y un posible modelo de ingresos o ahorro (viabilidad)."

@@ -45,6 +45,8 @@ publicado_en: 2026-09-15
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
 import VentajaComparativa from '@components/diagrams/VentajaComparativa.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
 import InstitucionesUE from '@components/diagrams/InstitucionesUE.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -122,6 +124,21 @@ Miremos en cambio el **coste de oportunidad** (Unidad 1): a qué renuncia cada u
 
 Comprobadlo con números. Cada uno tiene 8 horas. Si los dos se reparten el tiempo a medias, Marta produce 2 webs y 4 cenas, y Jorge, media web y 2 cenas: en total, 2,5 webs y 6 cenas. Si en cambio Jorge se dedica solo a cocinar (4 cenas) y Marta hace 3 webs y 2 cenas, el total es **3 webs y 6 cenas**. Las mismas cenas y media web más, sin que nadie trabaje más horas. Ese «más» es la **ganancia del comercio**, y se reparte entre los dos cuando intercambian: Jorge le da cenas a Marta y Marta le paga con parte de lo que gana con las webs.
 
+<Diagram caption="Lo máximo que puede hacer cada uno en 8 horas. La recta de Marta baja 2 cenas por cada web; la de Jorge, 4: ese es el coste de oportunidad. A y B: reparto a medias (Marta, 2 webs y 4 cenas; Jorge, media web y 2 cenas). C y D: Marta hace 3 webs y 2 cenas, y Jorge solo cocina, 4 cenas.">
+  <GraficoXY id="g-marta-jorge" titulo="Lo que pueden hacer Marta y Jorge en 8 horas" desc="Dos rectas descendentes. Marta puede hacer 4 webs o 8 cenas, o combinaciones como 2 webs y 4 cenas, o 3 webs y 2 cenas. Jorge puede hacer 1 web o 4 cenas, o media web y 2 cenas. La de Jorge es más inclinada."
+    xMax={5} yMax={10} ejeX="Páginas web" ejeY="Cenas" simboloX="W" simboloY="C"
+    xTicks={[1, 2, 3, 4]} yTicks={[2, 4, 6, 8]}
+    series={[
+      { color: 'terra', label: 'Marta', dy: -12, puntos: [[0, 8], [4, 0]] },
+      { color: 'teal', label: 'Jorge', dy: -12, puntos: [[0, 4], [1, 0]] },
+    ]}
+    puntos={[
+      { x: 2, y: 4, label: 'A', guias: false }, { x: 0.5, y: 2, label: 'B', guias: false },
+      { x: 3, y: 2, label: 'C', guias: false }, { x: 0, y: 4, label: 'D', guias: false },
+    ]}
+  />
+</Diagram>
+
 <Callout label="Concepto clave" title="Ventaja absoluta y ventaja comparativa">
 
 Un país (o una persona) tiene **ventaja absoluta** en un producto cuando lo produce con menos recursos que los demás: menos horas, menos tierra, menos dinero. Tiene **ventaja comparativa** cuando lo produce con un **coste de oportunidad menor**, es decir, cuando renuncia a menos cantidad de otras cosas para producirlo. Lo que decide la especialización y el comercio no es la ventaja absoluta, sino la comparativa: todo el mundo tiene ventaja comparativa en algo, aunque sea peor que los demás en todo. Es la idea que David Ricardo publicó en 1817 en *Principios de economía política y tributación*.
@@ -162,6 +179,21 @@ d) Propón una especialización que aumente la producción total y un intercambi
 4. **Con especialización**: Nordia dedica sus 120 horas a camisetas y produce **20 lotes**. Solandia dedica 100 horas al aceite (**50 t**) y 20 horas a camisetas (**5 lotes**), porque los dos países juntos siguen queriendo 25 lotes. Total: **50 t de aceite y 25 lotes**. Las mismas camisetas y **10 toneladas más de aceite** con las mismas horas: esa es la ganancia del comercio.
 5. **Un intercambio en el que ganan los dos**: la relación de cambio tiene que estar entre los dos costes de oportunidad (entre 1 y 2 t de aceite por lote). Con **1,5 t por lote**, Nordia envía 10 lotes a Solandia y recibe 15 t de aceite. Nordia se queda con 10 lotes y 15 t de aceite (antes tenía 10 y 10): gana 5 t. Solandia se queda con 15 lotes y 35 t (antes 15 y 30): gana otras 5 t. Nadie ha trabajado más y los dos consumen más.
 
+<Diagram caption="Las fronteras de Solandia y Nordia con 120 horas cada una. A y A′: sin especializarse. B y B′: especializados. C y C′: después del intercambio a 1,5 t por lote, fuera de la frontera: los dos consumen lo que solos no podrían.">
+  <GraficoXY id="g-solandia-nordia" titulo="Fronteras de producción de Solandia y Nordia y ganancia del comercio" desc="Solandia puede producir hasta 60 toneladas de aceite o 30 lotes de camisetas; Nordia, hasta 20 de cada. Sin comerciar, Solandia está en 30 t y 15 lotes y Nordia en 10 y 10. Tras especializarse e intercambiar, Solandia tiene 35 t y 15 lotes y Nordia 15 t y 10 lotes, puntos situados fuera de sus fronteras."
+    xMax={70} yMax={35} ejeX="Aceite (toneladas)" ejeY="Camisetas (lotes de 100)"
+    xTicks={[10, 20, 30, 40, 50, 60]} yTicks={[10, 20, 30]}
+    series={[
+      { color: 'terra', label: 'Solandia', dy: -12, puntos: [[0, 30], [60, 0]] },
+      { color: 'teal', label: 'Nordia', dy: -12, puntos: [[0, 20], [20, 0]] },
+    ]}
+    puntos={[
+      { x: 30, y: 15, label: 'A', guias: false }, { x: 50, y: 5, label: 'B', guias: false }, { x: 35, y: 15, label: 'C', guias: false },
+      { x: 10, y: 10, label: 'A′', guias: false }, { x: 0, y: 20, label: 'B′', guias: false }, { x: 15, y: 10, label: 'C′', guias: false },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo tú mismo:** cambia las horas de la tabla y comprueba cómo se mueve la ventaja comparativa, entre qué valores tiene que estar la relación de intercambio y cuánto gana cada país.
@@ -200,11 +232,52 @@ También importamos muchos coches (los que se fabrican aquí no son los que más
 
 Lo primero que sorprende del mapa es lo cerca que están nuestros clientes. Alrededor de dos tercios de lo que España vende se queda en la Unión Europea. **Francia** es el primer cliente (en torno al 15 % de las exportaciones), seguida de **Alemania** (10 %), **Portugal** (9 %), **Italia** (8 %), Reino Unido (6 %) y Estados Unidos (5 %). Entre los proveedores aparece un nombre nuevo: **China** es el primer país al que España compra (alrededor del 11 % de las importaciones), por delante de Alemania y Francia (Datacomex, 2024). Es decir, vendemos sobre todo a los vecinos y compramos sobre todo a Asia, con la energía llegando de Estados Unidos, Argelia, Nigeria o Arabia Saudí.
 
+<Diagram caption="A quién vende España, en porcentaje de sus exportaciones: Francia, Alemania, Portugal e Italia, todos vecinos, se llevan más de cuatro de cada diez euros.">
+  <GraficoXY id="g-destino-exportaciones" titulo="Principales clientes de las exportaciones españolas" desc="Seis barras con el porcentaje de las exportaciones: Francia 15, Alemania 10, Portugal 9, Italia 8, Reino Unido 6 y Estados Unidos 5."
+    xMax={7} yMax={18} ejeX="País cliente" ejeY="% de las exportaciones"
+    xTicks={[1, 2, 3, 4, 5, 6]} xTickLabels={['Francia', 'Alemania', 'Portugal', 'Italia', 'R. Unido', 'EE. UU.']} yTicks={[4, 8, 12, 16]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 15], [0.65, 15]] }, { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 10], [1.65, 10]] },
+      { color: 'terra', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 9], [2.65, 9]] }, { color: 'terra', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 8], [3.65, 8]] },
+      { color: 'terra', fuerte: true, puntos: [[4.65, 0], [5.35, 0], [5.35, 6], [4.65, 6]] }, { color: 'terra', fuerte: true, puntos: [[5.65, 0], [6.35, 0], [6.35, 5], [5.65, 5]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 15], [1.35, 15], [1.35, 0]] }, { color: 'terra', puntos: [[1.65, 0], [1.65, 10], [2.35, 10], [2.35, 0]] },
+      { color: 'terra', puntos: [[2.65, 0], [2.65, 9], [3.35, 9], [3.35, 0]] }, { color: 'terra', puntos: [[3.65, 0], [3.65, 8], [4.35, 8], [4.35, 0]] },
+      { color: 'terra', puntos: [[4.65, 0], [4.65, 6], [5.35, 6], [5.35, 0]] }, { color: 'terra', puntos: [[5.65, 0], [5.65, 5], [6.35, 5], [6.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 15.7, texto: '15', ancla: 'middle' }, { x: 2, y: 10.7, texto: '10', ancla: 'middle' }, { x: 3, y: 9.7, texto: '9', ancla: 'middle' },
+      { x: 4, y: 8.7, texto: '8', ancla: 'middle' }, { x: 5, y: 6.7, texto: '6', ancla: 'middle' }, { x: 6, y: 5.7, texto: '5', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 Tiene lógica: el comercio es más intenso con quien está cerca, comparte moneda y no pone aduanas, y eso es exactamente lo que ofrece la Unión Europea, como veremos en la quinta sección.
 
 ### La balanza comercial y la balanza por cuenta corriente
 
 Si en 2024 España exportó bienes por 384.000 millones e importó por 424.000, vendió menos de lo que compró: unos **40.000 millones** de diferencia. A ese resultado se le llama **saldo de la balanza comercial**, y cuando es negativo hablamos de **déficit comercial**. España lo tiene casi todos los años, sobre todo por la energía.
+
+<Diagram caption="El comercio de bienes de España en 2024, en miles de millones de euros: se importó más de lo que se exportó, y la diferencia es el déficit comercial.">
+  <GraficoXY id="g-balanza-comercial" titulo="Exportaciones e importaciones de bienes de España en 2024" desc="Dos barras en miles de millones de euros: exportaciones, 384; importaciones, 424. La diferencia, 40, es el déficit comercial."
+    xMax={5} yMax={500} ejeX="Comercio de bienes" ejeY="Miles de millones de €"
+    xTicks={[1.5, 3.5]} xTickLabels={['Exportaciones', 'Importaciones']} yTicks={[100, 200, 300, 400]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 384], [0.9, 384]] },
+      { color: 'terra', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 424], [2.9, 424]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.9, 0], [0.9, 384], [2.1, 384], [2.1, 0]] },
+      { color: 'terra', puntos: [[2.9, 0], [2.9, 424], [4.1, 424], [4.1, 0]] },
+      { color: 'ink', tenue: true, puntos: [[2.1, 384], [4.1, 384]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 405, texto: '384', ancla: 'middle' }, { x: 3.5, y: 445, texto: '424', ancla: 'middle' },
+      { x: 4.25, y: 392, texto: 'Déficit: 40' },
+    ]}
+  />
+</Diagram>
 
 <Callout label="Concepto clave" title="Balanza comercial y balanza por cuenta corriente">
 
@@ -247,6 +320,19 @@ Volved a la pregunta del caso de apertura. Cuando Estados Unidos pone un arancel
 3. **El productor español pierde**: vende menos en Estados Unidos, o baja su precio para compensar parte del arancel y gana menos por botella.
 4. **El Estado que lo cobra ingresa dinero**, aunque normalmente menos de lo que pierde el consumidor.
 5. **El país afectado suele responder** con aranceles a productos del otro, y la escalada perjudica a los dos. Las guerras comerciales rara vez tienen un ganador claro.
+
+<Diagram caption="Un arancel en el gráfico: Pm es el precio mundial y t el arancel. El precio dentro del país sube a Pm + t, se compra menos (Qd′ en lugar de Qd), los productores del país venden más (Qo′ en lugar de Qo) y entran menos importaciones. El Estado cobra t por cada unidad importada.">
+  <MercadoGrafico id="mg-arancel" titulo="Efecto de un arancel sobre las importaciones" desc="Con el precio mundial Pm, el país demanda Qd, produce Qo e importa la diferencia. Con el arancel, el precio sube a Pm más t, la demanda baja a Qd′, la producción nacional sube a Qo′ y las importaciones se reducen."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[
+      { p: 3, q: 30, pLabel: 'Pm', qLabel: 'Qo' }, { p: 3, q: 70, qLabel: 'Qd' },
+      { p: 4, q: 40, pLabel: 'Pm + t', qLabel: 'Qo′' }, { p: 4, q: 60, qLabel: 'Qd′' },
+    ]}
+    precio={{ p: 3, label: "Precio mundial" }}
+    tramo={{ p: 4, q1: 40, q2: 60, label: "Importaciones" }}
+  />
+</Diagram>
 
 En conjunto, la mayoría de los economistas concluye que un arancel destruye más valor del que crea: la pérdida del consumidor es mayor que la ganancia del productor protegido y del Estado. Pero fijaos en el reparto: la pérdida está muy repartida (millones de consumidores pagan unos céntimos más) y la ganancia muy concentrada (unos pocos productores ganan mucho). Los que ganan se organizan y presionan; los que pierden apenas lo notan. Por eso hay aranceles.
 
@@ -460,6 +546,15 @@ El tipo de cambio es un precio, y como todos los precios de la Unidad 3 se mueve
 
 Al revés, los europeos que compran productos estadounidenses, viajan a Nueva York o invierten en Wall Street venden euros y compran dólares, y empujan el euro hacia abajo. El tipo de cambio es el punto en el que esas dos corrientes se equilibran, y cambia cada segundo.
 
+<Diagram caption="El mercado de euros: si sube la demanda de euros (más exportaciones, más turistas, más inversión), la curva pasa de D₁ a D₂ y el euro se aprecia, de TC₁ a TC₂.">
+  <MercadoGrafico id="mg-euro" titulo="El euro se aprecia cuando aumenta su demanda" desc="La demanda de euros se desplaza a la derecha mientras la oferta queda quieta. El nuevo equilibrio tiene un tipo de cambio más alto y más euros intercambiados."
+    pMax={10} qMax={100} ejeP="Tipo de cambio ($ por €)" ejeQ="Euros"
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }, { tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'TC₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 6.5, q: 65, label: 'E₂', pLabel: 'TC₂', qLabel: 'Q₂', dx: -8, dy: 30 }]}
+    flechas={[{ de: { p: 7.6, q: 24 }, a: { p: 7.6, q: 54 } }]}
+  />
+</Diagram>
+
 ### Tu viaje a Londres o a Nueva York
 
 Aquí es donde el tipo de cambio deja de ser abstracto. Supongamos que habéis ahorrado 500 euros para un viaje de fin de curso a Londres. Con un euro a 0,85 libras, tenéis 425 libras para gastar. Si el euro se aprecia y pasa a 0,90 libras, los mismos 500 euros son 450 libras: vuestro viaje es un 6 % más barato sin haber ahorrado más. Si el euro se deprecia a 0,80, os quedáis con 400 libras y las entradas del musical se os van del presupuesto. Lo mismo con Nueva York: entre enero y septiembre de 2025, un viaje de 1.000 euros pasó de valer 1.040 dólares a valer 1.170 dólares. Los que viajaron en verano ganaron 130 dólares de regalo.
@@ -487,6 +582,24 @@ d) Si ahora Estados Unidos aplica un arancel del **15 %** a esa botella, ¿cuán
 2. **La importación**. Para convertir dólares a euros se divide por el tipo de cambio. En enero: 1.100 $ / 1,10 = **1.000 €**. En junio: 1.100 $ / 1,00 = **1.100 €**. El mismo portátil cuesta **100 € más** (un 10 %). La tienda tendrá que subir el precio o ganar menos, y lo mismo les pasa a todos los que compran petróleo, gas, chips o móviles fuera. Por eso una depreciación fuerte del euro empuja la inflación (Unidad 4).
 3. **La exportación**. Para pasar euros a dólares se multiplica. En enero, la botella de 10 € cuesta al importador 10 × 1,10 = **11,00 $**. En junio, 10 × 1,00 = **10,00 $**. La cooperativa sigue cobrando sus 10 € por botella, pero para el cliente estadounidense el aceite es **un 9 % más barato**, así que venderá más. Al importador y al exportador les conviene la depreciación; a la familia del viaje y a la tienda de portátiles, no.
 4. **Con arancel**. A los 10,00 $ de junio se les suma el 15 %: 10,00 × 1,15 = **11,50 $**. Fijaos en que la depreciación del euro (de 11,00 a 10,00 $) casi ha compensado el arancel: el importador acaba pagando 11,50 $, solo medio dólar más que en enero sin arancel. Es una de las razones por las que los efectos de los aranceles de 2025 son difíciles de medir: el tipo de cambio se movía a la vez, y en la dirección contraria.
+
+<Diagram caption="Lo que paga en dólares el importador estadounidense por una botella de 10 €: 11 $ en enero, 10 $ en junio con el euro más débil, y 11,50 $ si además hay un arancel del 15 %.">
+  <GraficoXY id="g-botella-arancel" titulo="Precio en dólares de una botella de aceite de 10 euros" desc="Tres barras: en enero, con el euro a 1,10 dólares, la botella cuesta 11 dólares; en junio, con el euro a 1 dólar, cuesta 10; en junio con un arancel del 15 por ciento, cuesta 11,50."
+    xMax={7} yMax={14} ejeX="Botella de 10 €" ejeY="Precio en dólares"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['Enero', 'Junio', 'Junio + arancel']} yTicks={[2, 4, 6, 8, 10, 12]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 11], [0.9, 11]] },
+      { color: 'teal', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 10], [2.9, 10]] },
+      { color: 'mustard', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 11.5], [4.9, 11.5]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 11], [2.1, 11], [2.1, 0]] },
+      { color: 'teal', puntos: [[2.9, 0], [2.9, 10], [4.1, 10], [4.1, 0]] },
+      { color: 'mustard', puntos: [[4.9, 0], [4.9, 11.5], [6.1, 11.5], [6.1, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 11.6, texto: '11,00 $', ancla: 'middle' }, { x: 3.5, y: 10.6, texto: '10,00 $', ancla: 'middle' }, { x: 5.5, y: 12.1, texto: '11,50 $', ancla: 'middle' }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

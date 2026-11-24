@@ -10,6 +10,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Para decidir si una inversión merece la pena hay que comparar lo que cuesta hoy con lo que devolverá en el futuro. El **VAN** y la **TIR** tienen en cuenta que un euro de dentro de tres años vale menos que uno de hoy; el **plazo de recuperación** (payback) solo cuenta cuánto se tarda en recuperar el dinero.
 
 ## Formulario
@@ -60,6 +63,49 @@ Proyecto B: tras el año 1, 20.000; tras el año 2, 20.000 + 12.000 = 32.000, qu
 
 **Interpretación.** Ambos proyectos tienen VAN positivo, así que los dos son rentables al 10 %. Según el **criterio del VAN, conviene el proyecto A**, que genera 6.829,45 euros de valor actual neto frente a los 4.109,70 de B; A crea más riqueza para la empresa. En cambio, el payback favorece a B (recupera el desembolso en 1,83 años frente a 2,17 de A), porque concentra los flujos al principio. Si la empresa prioriza la rentabilidad total, elige A; si prioriza recuperar pronto la liquidez, elige B. El criterio del VAN es el más recomendable porque considera todos los flujos y el valor del dinero en el tiempo.
 
+<Diagram caption="VAN de cada proyecto según la tasa de descuento. Con k = 10 % el A vale 6.829,45 € y el B, 4.109,70 €. La curva de A queda por encima de la de B y su TIR (21,65 %) también es mayor que la de B (19,07 %).">
+  <GraficoXY id="g-ebau-van-proyectos" titulo="VAN de los proyectos A y B según la tasa de descuento" desc="El VAN de A baja desde 15.000 euros con una tasa del 0 % hasta cero con una tasa del 21,65 %, que es su TIR. El de B baja desde 10.000 euros hasta cero con el 19,07 %. Con el coste del capital del 10 %, A vale 6.829 euros y B vale 4.110."
+    xMax={25} yMax={16500} yMin={-2000} ejeX="Tasa de descuento k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[5, 15]} yTicks={[10000, 15000]} xTickLabels={["5 %", "15 %"]}
+    series={[
+      { label: "A", color: "terra", labelEn: "inicio", puntos: [[0, 15000], [1, 14056.25], [2, 13144.04], [3, 12261.97], [4, 11408.74], [5, 10583.09], [6, 9783.85], [7, 9009.9], [8, 8260.17], [9, 7533.68], [10, 6829.45], [11, 6146.59], [12, 5484.24], [13, 4841.57], [14, 4217.82], [15, 3612.23], [16, 3024.11], [17, 2452.78], [18, 1897.61], [19, 1357.99], [20, 833.33], [21, 323.09], [21.65, 0], [22, -173.27]], dx: 12, dy: -8 },
+      { label: "B", color: "aubergine", labelEn: "inicio", puntos: [[0, 10000], [1, 9330.25], [2, 8680.45], [3, 8049.76], [4, 7437.41], [5, 6842.67], [6, 6264.84], [7, 5703.24], [8, 5157.24], [9, 4626.25], [10, 4109.69], [11, 3607.02], [12, 3117.71], [13, 2641.28], [14, 2177.24], [15, 1725.16], [16, 1284.6], [17, 855.14], [18, 436.41], [19, 28.03], [19.07, 0], [20, -370.37], [21, -759.12], [22, -1138.55]], dx: 12, dy: -8 },
+    ]}
+    puntos={[
+      { x: 10, y: 6829.45, xLabel: "10 %", yLabel: "6 829" },
+      { x: 10, y: 4109.69, yLabel: "4 110" },
+      { x: 21.65, y: 0, guias: false },
+      { x: 19.07, y: 0, guias: false },
+    ]}
+    notas={[
+      { x: 13, y: 14500, texto: "TIR de A: 21,65 %", color: "terra" },
+      { x: 13, y: 12500, texto: "TIR de B: 19,07 %", color: "aubergine" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Flujos acumulados sin descontar frente al desembolso de 30.000 €. B recupera la inversión a los 1,83 años (1 año y 10 meses) y A a los 2,17 (2 años y 2 meses), pero A acaba acumulando más.">
+  <GraficoXY id="g-ebau-payback-proyectos" titulo="Plazo de recuperación de los proyectos A y B" desc="Flujo de caja acumulado, sin descontar. A suma 12.000 euros al final del año 1, 27.000 al del año 2 y 45.000 al del 3. B suma 20.000, 32.000 y 40.000. La inversión es de 30.000 euros: B la recupera a los 1,83 años y A a los 2,17."
+    xMax={4.2} yMax={50000} ejeX="Años desde el desembolso" ejeY="Euros recuperados" simboloX="t" simboloY="€"
+    xTicks={[1, 3]} yTicks={[10000, 20000, 40000]}
+    series={[
+      { label: "A", color: "terra", puntos: [[0, 0], [1, 12000], [2, 27000], [3, 45000]] },
+      { label: "B", color: "aubergine", puntos: [[0, 0], [1, 20000], [2, 32000], [3, 40000]], dy: 6 },
+      { label: "Inversión", color: "ink", tenue: true, puntos: [[0, 30000], [3, 30000]] },
+    ]}
+    puntos={[
+      { x: 1.83, y: 30000, label: "Payback B", xLabel: "1,83", yLabel: "30 000", dx: -94, dy: -14 },
+      { x: 2.17, y: 30000, label: "Payback A", xLabel: "2,17", dx: 10, dy: 24 },
+      { x: 1, y: 12000, guias: false },
+      { x: 2, y: 27000, guias: false },
+      { x: 3, y: 45000, guias: false },
+      { x: 1, y: 20000, guias: false },
+      { x: 2, y: 32000, guias: false },
+      { x: 3, y: 40000, guias: false },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — TIR con dos años
 
 **Enunciado.** Un proyecto exige un desembolso inicial de 10.000 euros y genera flujos de 6.000 euros el primer año y 6.600 euros el segundo. Si el coste del capital es del 8 %, calcula la TIR e indica si conviene aceptarlo.
@@ -91,6 +137,20 @@ Aplicamos la fórmula de la ecuación de segundo grado:
 
 **Interpretación.** La TIR del proyecto es del 16,6 %, la rentabilidad interna que ofrece la inversión. Como **la TIR (16,6 %) es mayor que el coste del capital (8 %)**, el proyecto **conviene aceptarlo**: rinde más de lo que cuesta financiarlo, por lo que genera valor para la empresa.
 
+<Diagram caption="El VAN del proyecto (desembolso de 10.000 € y flujos de 6.000 € y 6.600 €) según la tasa de descuento. Corta el eje en el 16,6 %, que es la TIR. Con k = 8 % vale 1.214 €: como la TIR supera a k, el proyecto se acepta.">
+  <GraficoXY id="g-ebau-tir-dos-anos" titulo="VAN y TIR del proyecto de dos años" desc="El VAN baja desde 2.600 euros con una tasa del 0 % hasta cero con una tasa del 16,6 %, que es la TIR. Con el coste del capital del 8 %, el VAN es de 1.214 euros. A partir del 16,6 % el VAN es negativo."
+    xMax={24} yMax={3000} yMin={-800} ejeX="Tasa de descuento k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[12, 20]} yTicks={[2000]} xTickLabels={["12 %", "20 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 2600], [1, 2410.55], [2, 2226.07], [3, 2046.38], [4, 1871.3], [5, 1700.68], [6, 1534.35], [7, 1372.17], [8, 1213.99], [9, 1059.68], [10, 909.09], [11, 762.11], [12, 618.62], [13, 478.5], [14, 341.64], [15, 207.94], [16, 77.29], [16.6, 0], [17, -50.41], [18, -175.24], [19, -297.3], [20, -416.67]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 8, y: 1213.99, xLabel: "8 %", yLabel: "1 214", label: "k = 8 %", dx: 12, dy: -12 },
+      { x: 16.6, y: 0, label: "TIR = 16,6 %", dx: 12, dy: -12, guias: false },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — VAN con flujos constantes y desembolso recuperable
 
 **Enunciado.** Una inversión de 50.000 euros genera un flujo de caja de 22.000 euros durante cada uno de los tres años de su vida. El coste del capital es del 6 %. Calcula el VAN y el payback, y di si se acepta.
@@ -107,6 +167,37 @@ Payback (flujos constantes de 22.000):
 > Payback = 50.000 / 22.000 = **2,27 años (≈ 2 años y 3 meses)**
 
 **Interpretación.** El VAN es de 8.806,26 euros, claramente positivo, por lo que **la inversión se acepta**: aporta más de 8.800 euros de valor actual neto por encima del desembolso. Además, el desembolso se recupera en 2,27 años, dentro de la vida del proyecto (3 años), lo que refuerza la decisión de aceptarla.
+
+<Diagram caption="VAN de la inversión (50.000 € y tres flujos de 22.000 €) según la tasa de descuento. Con k = 6 % vale 8.806,26 €; la curva llega a cero en el 15,28 %, que es la TIR.">
+  <GraficoXY id="g-ebau-van-flujos-constantes" titulo="VAN de la inversión de 50.000 euros según la tasa de descuento" desc="El VAN baja desde 16.000 euros con una tasa del 0 % hasta cero con una tasa del 15,28 %, que es la TIR. Con el coste del capital del 6 %, el VAN es de 8.806 euros."
+    xMax={24} yMax={18000} yMin={-5000} ejeX="Tasa de descuento k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[12, 20]} yTicks={[5000, 15000]} xTickLabels={["12 %", "20 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 16000], [1, 14701.67], [2, 13445.43], [3, 12229.45], [4, 11052], [5, 9911.46], [6, 8806.26], [7, 7734.95], [8, 6696.13], [9, 5688.48], [10, 4710.74], [11, 3761.72], [12, 2840.29], [13, 1945.36], [14, 1075.9], [15, 230.95], [15.28, 0], [16, -590.43], [17, -1389.13], [18, -2166], [19, -2921.83], [20, -3657.41]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 6, y: 8806.26, xLabel: "6 %", yLabel: "8 806", label: "k = 6 %", dx: 12, dy: -12 },
+      { x: 15.28, y: 0, label: "TIR = 15,28 %", dx: 12, dy: -12, guias: false },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Flujo acumulado (22.000 € cada año) frente al desembolso de 50.000 €. La línea lo cruza a los 2,27 años (2 años y 3 meses), dentro de la vida del proyecto, que es de 3 años.">
+  <GraficoXY id="g-ebau-payback-flujos-constantes" titulo="Plazo de recuperación de la inversión de 50.000 euros" desc="Flujo de caja acumulado, sin descontar: 22.000 euros al final del año 1, 44.000 al del año 2 y 66.000 al del 3. Cruza el desembolso de 50.000 euros a los 2,27 años."
+    xMax={4.2} yMax={74000} ejeX="Años desde el desembolso" ejeY="Euros recuperados" simboloX="t" simboloY="€"
+    xTicks={[1, 3]} yTicks={[20000, 40000, 60000]}
+    series={[
+      { label: "Acumulado", color: "teal", puntos: [[0, 0], [1, 22000], [2, 44000], [3, 66000]], dy: -4 },
+      { label: "Inversión", color: "terra", puntos: [[0, 50000], [3, 50000]] },
+    ]}
+    puntos={[
+      { x: 2.27, y: 50000, label: "Payback", xLabel: "2,27", yLabel: "50 000", dx: -88, dy: -14 },
+      { x: 1, y: 22000, guias: false },
+      { x: 2, y: 44000, guias: false },
+      { x: 3, y: 66000, guias: false },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — VAN con valor residual y subida del tipo de interés (tipo examen)
 
@@ -141,6 +232,26 @@ c) La TIR es el tipo que hace VAN = 0. Al 7 % el VAN es positivo y al 12 % es ne
 **Resultado:** VAN de 3.617,65 euros al 7 % y de −157,39 euros al 12 %; TIR entre el 7 % y el 12 % (≈ 11,8 %).
 
 **Interpretación.** Con un coste del capital del 7 %, la furgoneta conviene: devuelve todo lo invertido, el coste de financiarlo y 3.617,65 euros más en valor actual. Si el coste del capital sube al 12 %, la misma inversión destruye valor (VAN negativo) y deja de convenir. La TIR, alrededor del 11,8 %, es el coste de financiación máximo que soporta el proyecto: mientras la empresa se financie por debajo de ese tipo, la inversión sale rentable.
+
+<Diagram caption="El VAN de la furgoneta (40.000 € y flujos de 15.000 €, 18.000 € y 17.000 €, con el valor residual) según la tasa de descuento. Al 7 % vale 3.617,65 € y al 12 %, −157,39 €: la curva corta el eje entre los dos tipos, en la TIR (≈ 11,8 %).">
+  <GraficoXY id="g-ebau-van-furgoneta-electrica" titulo="VAN de la furgoneta eléctrica según la tasa de descuento" desc="El VAN baja desde 10.000 euros con una tasa del 0 % hasta cero con una tasa del 11,8 %, que es la TIR. Con el 7 % vale 3.618 euros y con el 12 % vale menos 157 euros: la TIR queda entre los dos tipos, muy cerca del 12 %."
+    xMax={18} yMax={11500} yMin={-3500} ejeX="Tasa de descuento k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[4, 16]} yTicks={[5000, 10000]} xTickLabels={["4 %", "16 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 10000], [1, 8996.85], [2, 8026.4], [3, 7087.24], [4, 6178.03], [5, 5297.48], [6, 4444.41], [7, 3617.65], [8, 2816.14], [9, 2038.83], [10, 1284.75], [11, 552.97], [11.78, 0], [12, -157.39], [13, -847.17], [14, -1517.17], [15, -2168.16], [16, -2800.85]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 7, y: 3617.65, xLabel: "7 %", yLabel: "3 618", label: "k = 7 %", dx: 12, dy: -12 },
+      { x: 12, y: -157.39, label: "k = 12 %", dx: -70, dy: 24, guias: false },
+    ]}
+    flechas={[
+      { de: [12.5, 2700], a: [11.8, 250] },
+    ]}
+    notas={[
+      { x: 11.4, y: 3300, texto: "TIR ≈ 11,8 %", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ## Errores típicos que restan puntos
 

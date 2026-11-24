@@ -52,6 +52,7 @@ publicado_en: 2026-05-20
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SenalizacionSeguridad from '@components/diagrams/SenalizacionSeguridad.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -92,6 +93,29 @@ En 2024 murieron en accidentes de trabajo en España **796 personas**: 646 duran
 </CasoDilema>
 
 En la Unidad 6 firmaste el contrato y en la 7 viste cómo te protege la Seguridad Social cuando algo va mal. Esta unidad va un paso antes: trata de **evitar que vaya mal**. Cada año mueren en España cientos de personas en accidentes laborales y cientos de miles sufren lesiones, muchas de ellas evitables. La inmensa mayoría no son fatalidad ni mala suerte: son el resultado de riesgos que no se evaluaron, de medidas que no se tomaron o de prisas que se impusieron sobre la seguridad.
+
+<Diagram caption="Las 796 muertes por accidente de trabajo en España en 2024: 646 durante la jornada (380 por accidentes traumáticos y 266 por infartos, ictus y otras patologías no traumáticas) y 150 en el trayecto de ida o vuelta (in itinere)." source="Estadísticas del Ministerio de Trabajo y Economía Social, 2024">
+  <GraficoXY id="g-ipe1-mortales-2024" titulo="Muertes por accidente de trabajo en España en 2024" desc="Tres columnas con el número de fallecidos. Durante la jornada: 380 por accidentes traumáticos y 266 por infartos, ictus y otras patologías no traumáticas, 646 en total. En el trayecto de ida o vuelta (in itinere): 150. Suman 796."
+    xMax={6} yMax={480} ejeX="Tipo de accidente mortal" ejeY="Personas fallecidas"
+    xTicks={[1.2, 3, 4.8]} yTicks={[100, 200, 300, 400]} xTickLabels={["Traumáticos", "No traumáticos", "In itinere"]}
+    areas={[
+      { puntos: [[0.6, 0], [1.8, 0], [1.8, 380], [0.6, 380]], color: "terra", fuerte: true },
+      { puntos: [[2.4, 0], [3.6, 0], [3.6, 266], [2.4, 266]], color: "mustard", fuerte: true },
+      { puntos: [[4.2, 0], [5.4, 0], [5.4, 150], [4.2, 150]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.6, 0], [0.6, 380], [1.8, 380], [1.8, 0]], color: "terra" },
+      { puntos: [[2.4, 0], [2.4, 266], [3.6, 266], [3.6, 0]], color: "mustard" },
+      { puntos: [[4.2, 0], [4.2, 150], [5.4, 150], [5.4, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1.2, y: 398, texto: "380", ancla: "middle" },
+      { x: 3, y: 284, texto: "266", ancla: "middle" },
+      { x: 4.8, y: 168, texto: "150", ancla: "middle" },
+      { x: 2.1, y: 450, texto: "En jornada: 646 (380 + 266)", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 La prevención de riesgos laborales (PRL) es, por eso, una de las materias más importantes de tu formación. No por aprobar un examen, sino porque **te puede salvar la vida o la salud** —la tuya y la de la persona que trabaja a tu lado—. Esta unidad cubre los contenidos del **nivel básico de prevención**, el primer escalón formativo que te permite, además, asumir funciones preventivas básicas en empresas pequeñas. Vamos a tratarla con el rigor que merece.
 

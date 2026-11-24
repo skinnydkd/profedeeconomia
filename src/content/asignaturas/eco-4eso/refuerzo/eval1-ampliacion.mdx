@@ -30,16 +30,153 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Coste explícito y coste implícito.</strong> Hugo tiene 16 años. En julio puede trabajar cuatro semanas en un chiringuito, 20 horas a la semana, a 9,50 € la hora; o hacer un curso de socorrista de cuatro semanas que cuesta 350 € y que el verano siguiente le permitiría ganar unos 1.300 € en lugar de 760 €. (a) Calcula el coste de oportunidad completo de hacer el curso. (b) ¿En cuántos veranos lo recupera?"
     desarrollo: "<strong>1. Lo que ganaría trabajando:</strong> 4 semanas × 20 horas × 9,50 € = <strong>760 €</strong>.<br><strong>2. Coste explícito del curso:</strong> la matrícula, <strong>350 €</strong>.<br><strong>3. Coste implícito:</strong> los <strong>760 €</strong> que deja de ingresar por no trabajar. No aparecen en ninguna factura, pero se pierden igual.<br><strong>4. Coste de oportunidad completo:</strong> 350 + 760 = <strong>1.110 €</strong>, más las horas de estudio.<br><strong>5. Lo que gana el curso cada verano siguiente:</strong> 1.300 − 760 = <strong>540 € más</strong> por verano.<br><strong>6. Recuperación:</strong> 1.110 ÷ 540 = 2,06, es decir, poco más de <strong>dos veranos</strong>. A partir del tercero, el curso es ganancia neta.<br><strong>Lectura:</strong> quien solo mira los 350 € cree que el curso es barato; quien suma el coste implícito ve el coste real y decide con información. Lo mismo vale para montar un negocio en un local propio: el alquiler que no se cobra es un coste."
+    grafico:
+      tipo: xy
+      caption: "El curso cuesta 350 € de matrícula más 760 € de sueldo que se deja de ganar (1.110 €) y da 540 € más por verano: el balance acumulado pasa a positivo a los 2,06 veranos."
+      props:
+        id: "r-e1a-curso-socorrista"
+        titulo: "Cuándo se recupera el coste del curso de socorrista"
+        desc: "Recta de balance acumulado que empieza en menos 1.110 euros y sube 540 euros cada verano: menos 570, menos 30, más 510 y más 1.050. Cruza el cero a los 2,06 veranos."
+        xMax: 5.5
+        yMax: 1300
+        yMin: -1300
+        ejeX: "Veranos después del curso"
+        ejeY: "Balance acumulado (€)"
+        simboloX: "n"
+        simboloY: "€"
+        xTicks: [1, 2, 3, 4]
+        yTicks: [-1000, -500, 500, 1000]
+        series:
+          - { label: "Balance", color: "terra", puntos: [[0, -1110], [1, -570], [2, -30], [3, 510], [4, 1050]] }
+        puntos:
+          - { x: 2.06, y: 0, label: "2,06 veranos", dx: -104, dy: -12, guias: false }
+        notas:
+          - { x: 0.15, y: -1260, texto: "Coste: 350 + 760 = 1 110 €" }
+          - { x: 2.5, y: -450, texto: "+540 € cada verano", color: "terra" }
   - enunciado: "<strong>Coste de oportunidad creciente.</strong> Con las combinaciones de la feria (A = 0 bocadillos y 200 zumos; B = 50 y 180; C = 100 y 140; D = 150 y 80; E = 200 y 0), calcula cuántos zumos cuesta <em>cada bocadillo</em> en los cuatro tramos y explica por qué el coste cambia."
     desarrollo: "En cada tramo se ganan 50 bocadillos; lo que cambia es cuántos zumos se pierden.<br><strong>1. De A a B:</strong> 200 − 180 = 20 zumos perdidos → 20 ÷ 50 = <strong>0,4 zumos por bocadillo</strong>.<br><strong>2. De B a C:</strong> 180 − 140 = 40 → <strong>0,8 zumos por bocadillo</strong>.<br><strong>3. De C a D:</strong> 140 − 80 = 60 → <strong>1,2 zumos por bocadillo</strong>.<br><strong>4. De D a E:</strong> 80 − 0 = 80 → <strong>1,6 zumos por bocadillo</strong>.<br><strong>5. Por qué crece:</strong> los primeros que dejan de exprimir para untar son quienes peor exprimían, así que se pierden pocos zumos. Los últimos en cambiar son los mejores con el exprimidor, y cada uno se lleva muchos zumos consigo. Los recursos no son igual de buenos para todo.<br><strong>6. Consecuencia gráfica:</strong> por eso la FPP no es una recta, sino una curva doblada hacia fuera. Si todos los recursos fueran intercambiables, el coste sería constante y la frontera, recta."
+    grafico:
+      tipo: xy
+      caption: "Cada tramo añade 50 bocadillos, pero cuesta más zumos: 0,4, 0,8, 1,2 y 1,6 zumos por bocadillo. Por eso la FPP se curva hacia fuera."
+      props:
+        id: "r-e1a-coste-creciente"
+        titulo: "Coste de oportunidad de cada bocadillo en los cuatro tramos"
+        desc: "Cuatro columnas crecientes: de A a B cada bocadillo cuesta 0,4 zumos; de B a C, 0,8; de C a D, 1,2; y de D a E, 1,6."
+        xMax: 9
+        yMax: 2
+        ejeX: "Tramo de la FPP"
+        ejeY: "Zumos por bocadillo"
+        xTicks: [1.3, 3.3, 5.3, 7.3]
+        xTickLabels: ["A → B", "B → C", "C → D", "D → E"]
+        yTicks: [0.5, 1, 1.5]
+        areas:
+          - { puntos: [[0.8, 0], [1.8, 0], [1.8, 0.4], [0.8, 0.4]], color: "terra", fuerte: true }
+          - { puntos: [[2.8, 0], [3.8, 0], [3.8, 0.8], [2.8, 0.8]], color: "terra", fuerte: true }
+          - { puntos: [[4.8, 0], [5.8, 0], [5.8, 1.2], [4.8, 1.2]], color: "terra", fuerte: true }
+          - { puntos: [[6.8, 0], [7.8, 0], [7.8, 1.6], [6.8, 1.6]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1.3, y: 0.47, texto: "0,4", ancla: "middle" }
+          - { x: 3.3, y: 0.87, texto: "0,8", ancla: "middle" }
+          - { x: 5.3, y: 1.27, texto: "1,2", ancla: "middle" }
+          - { x: 7.3, y: 1.67, texto: "1,6", ancla: "middle" }
   - enunciado: "<strong>Nominal, real y per cápita.</strong> El país de Valdemar tuvo un PIB nominal de 1.000 millones de euros en 2024 y de 1.060 millones en 2025. Los precios subieron un 4 % y la población pasó de 10 a 10,3 millones de habitantes. ¿Ha mejorado la vida del habitante medio?"
     desarrollo: "<strong>1. Crecimiento nominal:</strong> 1.060 ÷ 1.000 = 1,06 → <strong>6 %</strong>. Es el titular fácil.<br><strong>2. Crecimiento real:</strong> quitamos los precios dividiendo entre 1,04. 1,06 ÷ 1,04 = 1,019 → <strong>1,9 %</strong> (la resta rápida 6 − 4 = 2 % da casi lo mismo). Solo eso es producción de verdad.<br><strong>3. Crecimiento de la población:</strong> 10,3 ÷ 10 = 1,03 → <strong>3 %</strong>.<br><strong>4. PIB real per cápita:</strong> 1,019 ÷ 1,03 = 0,989 → <strong>cae alrededor de un 1 %</strong>.<br><strong>5. Respuesta:</strong> el titular «Valdemar crece un 6 %» es cierto y engaña a la vez. Descontados precios y población, al habitante medio le toca un 1 % menos que el año anterior.<br><strong>6. Lo que aún falta:</strong> saber cómo se reparte (el per cápita es una media), si esa renta se ha convertido en salud y educación (IDH) y a qué precio ambiental se ha producido."
+    grafico:
+      tipo: xy
+      caption: "Valdemar: el PIB nominal crece un 6 %, el real un 1,9 % (con precios +4 %), y el real por habitante cae un 1,1 % porque la población crece un 3 %."
+      props:
+        id: "r-e1a-valdemar"
+        titulo: "Crecimiento nominal, real y per cápita de Valdemar"
+        desc: "Tres columnas: PIB nominal, más 6 por ciento; PIB real, más 1,9 por ciento; PIB real por habitante, menos 1,1 por ciento."
+        xMax: 11
+        yMax: 8
+        yMin: -3
+        ejeX: "Crecimiento de 2024 a 2025"
+        ejeY: "Variación (%)"
+        simboloY: "%"
+        yTicks: [-2, 2, 4, 6]
+        areas:
+          - { puntos: [[1, 0], [2.5, 0], [2.5, 6], [1, 6]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 0], [5.5, 0], [5.5, 1.9], [4, 1.9]], color: "teal", fuerte: true }
+          - { puntos: [[7, 0], [8.5, 0], [8.5, -1.1], [7, -1.1]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1.75, y: 7.2, texto: "PIB nominal", ancla: "middle" }
+          - { x: 4.75, y: 7.2, texto: "PIB real", ancla: "middle" }
+          - { x: 7.75, y: 7.2, texto: "Real per cápita", ancla: "middle" }
+          - { x: 1.75, y: 6.4, texto: "+6 %", ancla: "middle" }
+          - { x: 4.75, y: 2.4, texto: "+1,9 %", ancla: "middle" }
+          - { x: 7.75, y: -1.9, texto: "−1,1 %", ancla: "middle", color: "terra" }
   - enunciado: "<strong>Por qué el aceite se triplicó y una sudadera no lo haría.</strong> Una campaña normal de aceite de oliva en España ronda 1,4 millones de toneladas; la de 2022/23 se quedó en unas 666.000 (MAPA). El precio en origen del virgen extra pasó de unos 3,30 €/kg a rondar los 9 €/kg entre finales de 2023 y comienzos de 2024. (a) Calcula la caída de la producción en porcentaje y la subida del precio. (b) Explica por qué el precio sube mucho más que lo que cae la cantidad."
     desarrollo: "<strong>1. Caída de la producción:</strong> (1.400.000 − 666.000) ÷ 1.400.000 × 100 = 734.000 ÷ 1.400.000 × 100 ≈ <strong>52 %</strong> menos.<br><strong>2. Subida del precio:</strong> 9 ÷ 3,30 = 2,7 → el precio se multiplicó por <strong>2,7</strong>, es decir, subió alrededor de un <strong>173 %</strong>.<br><strong>3. Qué curva se movió:</strong> la de <strong>oferta</strong>, a la izquierda, por la sequía. La demanda apenas se movió: la gente siguió queriendo aceite.<br><strong>4. Por qué el precio se dispara tanto:</strong> porque la demanda de aceite responde <strong>poco</strong> al precio. Tiene pocos sustitutos aceptables, se usa a diario y pesa poco en el gasto total de una familia, así que hace falta una subida enorme para que la gente compre la mitad.<br><strong>5. Comparación:</strong> si desapareciera la mitad de la producción de una marca concreta de sudadera, casi nadie pagaría el triple: se irían a otra marca. Muchos sustitutos, poca subida de precio.<br><strong>6. Comprobación:</strong> cuando la campaña 2024/25 recuperó los 1,4 millones de toneladas, la oferta volvió a la derecha y el precio en origen bajó a unos 4 €/kg. El camino se deshizo igual de rápido."
+    grafico:
+      tipo: xy
+      caption: "La sequía desplaza la oferta a la izquierda (de O₁ a O₂): la producción cae un 52 % (de 1.400 a 666 mil t) y el precio se multiplica por 2,7 (de 3,30 a 9 €/kg) porque la demanda reacciona poco. Las dos ofertas son un dibujo esquemático; los puntos son los datos."
+      props:
+        id: "r-e1a-aceite"
+        titulo: "Oferta de aceite de oliva: sequía y precio en origen"
+        desc: "Una demanda decreciente y dos ofertas: tras la sequía, la oferta se desplaza a la izquierda y el equilibrio pasa de 1.400 mil toneladas a 3,30 euros el kilo a 666 mil toneladas a 9 euros el kilo."
+        xMax: 1900
+        yMax: 14
+        ejeX: "Producción (miles de toneladas)"
+        ejeY: "Precio en origen (€/kg)"
+        simboloX: "Q"
+        simboloY: "P"
+        xTicks: [500, 1000]
+        yTicks: [6, 12]
+        series:
+          - { label: "D", color: "terra", puntos: [[300, 11.84], [1700, 0.97]] }
+          - { label: "O₁", color: "mustard", tenue: true, puntos: [[900, 0.3], [1600, 4.5]] }
+          - { label: "O₂", color: "mustard", puntos: [[200, 6.2], [1000, 11]] }
+        puntos:
+          - { x: 1400, y: 3.3, label: "E₁", xLabel: "1 400", yLabel: "3,30", dx: 22, dy: 5 }
+          - { x: 666, y: 9, label: "E₂", xLabel: "666", yLabel: "9", dx: 22, dy: 5 }
   - enunciado: "<strong>Un precio máximo, con las dos cifras.</strong> En el mercado de sudaderas del instituto el equilibrio está en 25 € y 70 unidades. A 15 € se demandarían 110 y el club fabricaría 30. La dirección fija un precio máximo de 15 € «para que sean accesibles». (a) ¿Cuántas se venden y cuántas personas se quedan sin ella? (b) ¿Qué pasa con los ingresos del club? (c) ¿Y si el tope fuera de 30 €?"
     desarrollo: "<strong>1. Cantidad vendida:</strong> se vende siempre la menor de las dos cantidades. A 15 €: <strong>30 sudaderas</strong>. Antes del tope se vendían 70.<br><strong>2. Personas sin sudadera:</strong> 110 − 30 = <strong>80</strong>. La norma pensada para que llegaran a más gente hace que lleguen a menos.<br><strong>3. Ingresos:</strong> con tope, 15 × 30 = <strong>450 €</strong>. En equilibrio, 25 × 70 = <strong>1.750 €</strong>. El club pierde 1.300 € de ingresos.<br><strong>4. Con un tope de 30 €:</strong> está <em>por encima</em> del equilibrio, así que no cambia nada: el mercado sigue vaciándose a 25 € con 70 sudaderas. Un precio máximo solo actúa por debajo del equilibrio.<br><strong>5. Efectos secundarios previsibles:</strong> colas y reparto por orden de llegada o amistad, reventa a 25 € o 30 €, y tentación de recortar calidad para que salga a cuenta fabricar a 15 €.<br><strong>6. El mismo patrón, a tamaño real:</strong> en los 140 municipios catalanes tensionados el alquiler medio de los nuevos contratos bajó un 3,7 % (de 911 a 878 €) y un 6,4 % en Barcelona, mientras caía el número de contratos firmados y crecía el alquiler de temporada. Precio más bajo y menos cantidad: las dos cifras a la vez."
+    grafico:
+      tipo: mercado
+      caption: "Con el precio máximo de 15 € (por debajo del equilibrio de 25 €) se venden solo 30 sudaderas y se demandan 110: 80 personas se quedan sin ella."
+      props:
+        id: "r-e1a-precio-maximo-sudaderas"
+        titulo: "Precio máximo de 15 euros en el mercado de sudaderas"
+        desc: "Demanda y oferta con equilibrio en 25 euros y 70 unidades. Con un precio máximo de 15 euros se demandan 110 unidades y se ofrecen 30: faltan 80."
+        pMax: 40
+        qMax: 150
+        curvas:
+          - { tipo: "D", q0: 170, m: -4, pDe: 8, pA: 38, label: "D" }
+          - { tipo: "O", q0: -30, m: 4, pDe: 10, pA: 34, label: "O" }
+        puntos:
+          - { p: 25, q: 70, label: "E", pLabel: "25", qLabel: "70", dx: 22, dy: 5 }
+          - { p: 15, q: 30, label: "Qs", qLabel: "30", dx: -30, dy: -8 }
+          - { p: 15, q: 110, label: "Qd", qLabel: "110", pLabel: "15", dx: 12, dy: -10 }
+        precio: { p: 15, label: "Precio máximo: 15 €" }
+        tramo: { p: 15, q1: 30, q2: 110, label: "Faltan 80" }
   - enunciado: "<strong>Margen bancario, multiplicador e interés real.</strong> El Banco del Barrio tiene 10 millones de euros en depósitos, por los que paga un 1 %, y presta 8 millones al 5 %. (a) Calcula su margen de intermediación. (b) Con un coeficiente de caja del 10 %, ¿en cuánto puede convertirse un depósito inicial de 1.000 €? ¿Y con el 1 % de la zona euro? (c) Si esa cuenta paga un 2 % y la inflación es del 8,4 %, ¿gana o pierde el ahorrador?"
     desarrollo: "<strong>1. Intereses que paga:</strong> 10.000.000 × 0,01 = <strong>100.000 €</strong> al año.<br><strong>2. Intereses que cobra:</strong> 8.000.000 × 0,05 = <strong>400.000 €</strong> al año.<br><strong>3. Margen de intermediación:</strong> 400.000 − 100.000 = <strong>300.000 €</strong>. De ahí salen sueldos, oficinas e impuestos.<br><strong>4. Multiplicador con el 10 %:</strong> 1 ÷ 0,10 = 10, así que 1.000 € pueden llegar a <strong>10.000 €</strong> de dinero bancario (1.000 + 900 + 810 + 729 + …).<br><strong>5. Multiplicador con el 1 %:</strong> 1 ÷ 0,01 = 100, es decir, hasta <strong>100.000 €</strong> en teoría. En la práctica queda muy por debajo: parte del dinero se guarda en efectivo, los bancos mantienen reservas de más y no siempre hay a quién prestar.<br><strong>6. Interés real del ahorrador:</strong> aproximadamente 2 − 8,4 = <strong>−6,4 %</strong>. Con el cálculo exacto, 1,02 ÷ 1,084 = 0,941, es decir, un <strong>−5,9 %</strong> de poder de compra. El saldo crece y aun así se pierde dinero: ese es el interés real negativo."
+    grafico:
+      tipo: xy
+      caption: "Una cuenta al 2 % con una inflación del 8,4 % tiene un interés real de −5,9 %: el saldo crece, pero el poder de compra baja."
+      props:
+        id: "r-e1a-interes-real"
+        titulo: "Interés nominal, inflación e interés real"
+        desc: "Tres columnas: interés nominal del 2 por ciento, inflación del 8,4 por ciento e interés real de menos 5,9 por ciento."
+        xMax: 10
+        yMax: 11
+        yMin: -8
+        ejeX: "Cuenta al 2 % con inflación del 8,4 %"
+        ejeY: "Porcentaje anual"
+        simboloY: "%"
+        yTicks: [-6, -3, 3, 6]
+        areas:
+          - { puntos: [[1, 0], [2.5, 0], [2.5, 2], [1, 2]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 0], [5.5, 0], [5.5, 8.4], [4, 8.4]], color: "terra", fuerte: true }
+          - { puntos: [[7, 0], [8.5, 0], [8.5, -5.9], [7, -5.9]], color: "teal", fuerte: true }
+        notas:
+          - { x: 1.75, y: 10.2, texto: "Interés nominal", ancla: "middle" }
+          - { x: 4.75, y: 10.2, texto: "Inflación", ancla: "middle" }
+          - { x: 7.75, y: 10.2, texto: "Interés real", ancla: "middle" }
+          - { x: 1.75, y: 2.6, texto: "+2 %", ancla: "middle" }
+          - { x: 4.75, y: 9, texto: "+8,4 %", ancla: "middle" }
+          - { x: 7.75, y: -7.2, texto: "−5,9 %", ancla: "middle", color: "teal" }
 ejercicios:
   - enunciado: "Marta deja un trabajo en el que cobraba <strong>1.400 € al mes</strong> para montar una tienda en un local de su familia que estaba alquilado por <strong>600 € al mes</strong>. La tienda ingresa 4.500 € al mes y paga 2.800 € en mercancía, luz y seguros. (a) Calcula el beneficio que vería un contable. (b) Calcula el coste de oportunidad completo y el beneficio una vez descontado. (c) ¿Le compensa?"
     solucion: "(a) Beneficio contable = 4.500 − 2.800 = <strong>1.700 € al mes</strong>. Solo cuenta los costes explícitos.<br>(b) Costes implícitos: el salario al que renuncia (1.400 €) y el alquiler que la familia deja de cobrar (600 €) = <strong>2.000 € al mes</strong>. Beneficio una vez descontados: 1.700 − 2.000 = <strong>−300 € al mes</strong>.<br>(c) Con estos números, <strong>no</strong> le compensa desde el punto de vista económico: gana 300 € menos al mes que si siguiera trabajando y alquilando el local. Podría compensarle por otras razones (independencia, expectativa de crecer, aprendizaje), pero conviene saber que esas razones cuestan 300 € al mes."

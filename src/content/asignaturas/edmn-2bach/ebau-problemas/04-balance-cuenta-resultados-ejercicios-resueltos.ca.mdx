@@ -11,6 +11,9 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau-problemas/04-balance-cuenta-resultados-ejercicios-resueltos.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 El **balanç** reflectix el patrimoni de l'empresa en un moment donat. L'actiu (el que té i el que li deuen) s'ordena de menor a major liquiditat; el patrimoni net i el passiu (d'on ix el diner) s'ordenen de menor a major exigibilitat. El **compte de Pèrdues i Guanys** calcula el resultat de l'exercici per escalons. L'**amortització** unix els dos estats: és una despesa en el compte de Pèrdues i Guanys i, acumulada, resta valor a l'immobilitzat en el balanç.
 
 ## Formulari
@@ -27,7 +30,7 @@ El **balanç** reflectix el patrimoni de l'empresa en un moment donat. L'actiu (
 
 ### Problema 1 — Elaboració del balanç per masses
 
-**Enunciat.** A 31 de desembre, l'empresa *Disseny Modular S.L.* presenta les partides següents (en euros): Maquinària 80.000; Mobiliari 20.000; Existències 25.000; Clients 18.000; Tresoreria (Bancs) 12.000; Capital social 70.000; Reserves 30.000; Deutes a llarg termini amb entitats de crèdit 40.000; Proveïdors 25.000; Deutes a curt termini amb entitats de crèdit 5.000. Ordena el balanç per masses patrimonials i comprova que quadra.
+**Enunciat.** A 31 de desembre, l'empresa *Disseny Modular S.L.* presenta les partides següents (en euros): Maquinària 80.000; Mobiliari 20.000; Existències 25.000; Clients 18.000; Tresoreria (Bancs) 12.000; Capital social 70.000; Reserves 30.000; Deutes a llarg termini amb entitats de crèdit 40.000; Proveïdors 10.000; Deutes a curt termini amb entitats de crèdit 5.000. Ordena el balanç per masses patrimonials i comprova que quadra.
 
 **Solució.**
 
@@ -38,14 +41,45 @@ El **balanç** reflectix el patrimoni de l'empresa en un moment donat. L'actiu (
 | Mobiliari | 20.000 | Reserves | 30.000 |
 | **B) Actiu corrent** | **55.000** | **B) Passiu no corrent** | **40.000** |
 | Existències | 25.000 | Deutes a l/t amb entitats de crèdit | 40.000 |
-| Clients | 18.000 | **C) Passiu corrent** | **30.000** |
-| Tresoreria | 12.000 | Proveïdors | 25.000 |
+| Clients | 18.000 | **C) Passiu corrent** | **15.000** |
+| Tresoreria | 12.000 | Proveïdors | 10.000 |
 | | | Deutes a c/t amb entitats de crèdit | 5.000 |
 | **TOTAL ACTIU** | **155.000** | **TOTAL PN + PASSIU** | **155.000** |
 
-Comprovació: Actiu (100.000 + 55.000 = 155.000) = PN + Passiu (100.000 + 40.000 + 30.000 = 155.000). Quadra.
+Comprovació: Actiu (100.000 + 55.000 = 155.000) = PN + Passiu (100.000 + 40.000 + 15.000 = 155.000). Quadra.
 
 **Interpretació.** El balanç quadra en 155.000 euros. L'empresa finança el seu actiu en un 64,5 % amb recursos propis (100.000 de 155.000) i la resta amb deute, majoritàriament a llarg termini. El seu actiu és sobretot no corrent (maquinària i mobiliari, 100.000 euros), propi d'una empresa amb immobilitzat productiu important.
+
+<Diagram caption="El balanç en masses (ANC: actiu no corrent; AC: actiu corrent; PN: patrimoni net; PNC i PC: passiu no corrent i corrent). Les dues columnes mesuren el mateix, 155.000 €. El fons de maniobra (AC − PC) és de 40.000 €.">
+  <GraficoXY id="g-ebau-balance-disseny" titulo="Balanç de Disseny Modular" desc="Dues columnes iguals de 155.000 euros. Actiu: no corrent 100.000 i corrent 55.000. Patrimoni net més passiu: patrimoni net 100.000, passiu no corrent 40.000 i passiu corrent 15.000. El fons de maniobra és de 40.000."
+    xMax={10} yMax={190000} ejeX="Balanç a 31 de desembre" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Actiu", "Patrimoni net + passiu"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 100000], [1.5, 100000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 100000], [4.5, 100000], [4.5, 155000], [1.5, 155000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 100000], [5.5, 100000]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 100000], [8.5, 100000], [8.5, 140000], [5.5, 140000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 155000], [5.5, 155000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 100000], [1.5, 100000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 100000], [4.5, 100000], [4.5, 155000], [1.5, 155000], [1.5, 100000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 100000], [5.5, 100000], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 100000], [8.5, 100000], [8.5, 140000], [5.5, 140000], [5.5, 100000]], color: "aubergine" },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 155000], [5.5, 155000], [5.5, 140000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 47625, texto: "ANC 100 000", ancla: "middle" },
+      { x: 3, y: 125125, texto: "AC 55 000", ancla: "middle" },
+      { x: 7, y: 47625, texto: "PN 100 000", ancla: "middle" },
+      { x: 7, y: 117625, texto: "PNC 40 000", ancla: "middle" },
+      { x: 7, y: 145125, texto: "PC 15 000", ancla: "middle" },
+      { x: 3, y: 162600, texto: "Total actiu: 155 000", ancla: "middle" },
+      { x: 7, y: 162600, texto: "Total PN + passiu: 155 000", ancla: "middle" },
+      { x: 5, y: 177800, texto: "FM = 55 000 − 15 000 = 40 000", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 2 — Amortització lineal i valor net comptable
 
@@ -86,6 +120,30 @@ En el compte de Pèrdues i Guanys apareix cada any una despesa d'explotació de 
 
 **Interpretació.** La furgoneta perd 6.000 euros de valor cada any per l'ús i el pas del temps. Eixe desgast es reparteix com a despesa entre els quatre anys en què l'empresa la utilitza, en lloc de carregar els 30.000 euros l'any de la compra. Al final del quart any el seu valor en llibres coincidix amb el valor residual previst, 6.000 euros.
 
+<Diagram caption="Amortització lineal de la furgoneta: 6.000 € a l'any. L'amortització acumulada puja de 0 a 24.000 € i el valor net comptable (VNC) baixa de 30.000 € a 6.000 €, el valor residual. Al tancament del segon any el VNC és de 18.000 €.">
+  <GraficoXY id="g-ebau-amortizacion-furgoneta" titulo="Amortització lineal de la furgoneta" desc="La quota de 6.000 euros a l'any fa créixer l'amortització acumulada de 0 a 24.000 euros en quatre anys. El valor net comptable baixa de 30.000 a 6.000 euros, el valor residual. Al tancament del segon any l'amortització acumulada és de 12.000 euros i el valor net comptable de 18.000."
+    xMax={5.5} yMax={34000} ejeX="Anys d'ús" ejeY="Euros" simboloX="t" simboloY="€"
+    xTicks={[1, 2, 3, 4]} yTicks={[6000, 24000, 30000]}
+    series={[
+      { label: "VNC", color: "teal", puntos: [[0, 30000], [4, 6000]], dy: 8 },
+      { label: "Amort. acumulada", color: "terra", puntos: [[0, 0], [4, 24000]], dy: -2 },
+    ]}
+    puntos={[
+      { x: 2, y: 18000, yLabel: "18 000" },
+      { x: 2, y: 12000, yLabel: "12 000" },
+      { x: 1, y: 24000, guias: false },
+      { x: 3, y: 12000, guias: false },
+      { x: 4, y: 6000, guias: false },
+      { x: 1, y: 6000, guias: false },
+      { x: 3, y: 18000, guias: false },
+      { x: 4, y: 24000, guias: false },
+    ]}
+    notas={[
+      { x: 2.5, y: 2500, texto: "Quota lineal: 6 000 a l'any" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — Compte de Pèrdues i Guanys
 
 **Enunciat.** Durant l'exercici, una empresa registra (en euros): Vendes (import net de la xifra de negocis) 400.000; Consum de mercaderies 220.000; Despeses de personal 90.000; Altres despeses d'explotació (subministraments, lloguers) 30.000; Amortització de l'immobilitzat 15.000; Despeses financeres (interessos) 8.000. El tipus de l'impost de societats és del 25 %. Elabora el compte de Pèrdues i Guanys i calcula el resultat de l'exercici.
@@ -113,6 +171,40 @@ Detall dels càlculs:
 - Benefici net = 37.000 − 9.250 = **27.750 euros**
 
 **Interpretació.** L'activitat ordinària de l'empresa genera un resultat d'explotació de 45.000 euros. Després de pagar 8.000 euros d'interessos pel seu deute i 9.250 euros d'impost de societats, el benefici net de l'exercici és de 27.750 euros. L'empresa és rendible i el pes de les despeses financeres és moderat, ja que reduïxen el resultat en menys del 18 % respecte al BAII.
+
+<Diagram caption="De les vendes al resultat de l'exercici. Les barres verdes són resultats (BAII, BAI i resultat final) i les terracota, el que es resta en cada pas: despeses d'explotació (355.000 € = 220.000 + 90.000 + 30.000 + 15.000), interessos i impost.">
+  <GraficoXY id="g-ebau-pyg-empresa" titulo="Compte de pèrdues i guanys de l'exercici" desc="Cascada del compte de resultats. Vendes de 400.000 euros, menys 355.000 de despeses d'explotació (220.000 de consum, 90.000 de personal, 30.000 d'altres despeses i 15.000 d'amortització) deixen un resultat d'explotació de 45.000. Els interessos de 8.000 deixen 37.000 abans d'impostos. L'impost de 9.250 deixa un resultat de l'exercici de 27.750."
+    xMax={8} yMax={460000} ejeX="Compte de pèrdues i guanys" ejeY="Euros" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5, 6, 7]} yTicks={[100000, 200000, 300000, 400000]} xTickLabels={["Vendes", "Despeses", "BAII", "Interessos", "BAI", "Impost", "Resultat"]}
+    areas={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 400000], [0.65, 400000]], color: "teal", fuerte: true },
+      { puntos: [[1.65, 45000], [2.35, 45000], [2.35, 400000], [1.65, 400000]], color: "terra", fuerte: true },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 45000], [2.65, 45000]], color: "teal", fuerte: true },
+      { puntos: [[3.65, 37000], [4.35, 37000], [4.35, 45000], [3.65, 45000]], color: "terra", fuerte: true },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 37000], [4.65, 37000]], color: "teal", fuerte: true },
+      { puntos: [[5.65, 27750], [6.35, 27750], [6.35, 37000], [5.65, 37000]], color: "terra", fuerte: true },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 27750], [6.65, 27750]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 400000], [0.65, 400000], [0.65, 0]], color: "teal" },
+      { puntos: [[1.65, 45000], [2.35, 45000], [2.35, 400000], [1.65, 400000], [1.65, 45000]], color: "terra" },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 45000], [2.65, 45000], [2.65, 0]], color: "teal" },
+      { puntos: [[3.65, 37000], [4.35, 37000], [4.35, 45000], [3.65, 45000], [3.65, 37000]], color: "terra" },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 37000], [4.65, 37000], [4.65, 0]], color: "teal" },
+      { puntos: [[5.65, 27750], [6.35, 27750], [6.35, 37000], [5.65, 37000], [5.65, 27750]], color: "terra" },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 27750], [6.65, 27750], [6.65, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1, y: 412880, texto: "400 000", ancla: "middle" },
+      { x: 2, y: 412880, texto: "−355 000", ancla: "middle" },
+      { x: 3, y: 57880, texto: "45 000", ancla: "middle" },
+      { x: 4, y: 57880, texto: "−8 000", ancla: "middle" },
+      { x: 5, y: 49880, texto: "37 000", ancla: "middle" },
+      { x: 6, y: 49880, texto: "−9 250", ancla: "middle" },
+      { x: 7, y: 40630, texto: "27 750", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Del resultat al balanç (tipus examen)
 
@@ -165,6 +257,71 @@ Comprovació: Actiu (48.000 + 93.000 = 141.000) = PN + Passiu (72.250 + 40.000 +
 **Resultat:** benefici net de 32.250 euros i balanç quadrat en 141.000 euros.
 
 **Interpretació.** El primer any és rendible: després d'amortitzar el forn i descomptar interessos i impostos, queden 32.250 euros de benefici, que de moment es queden en l'empresa com a part del patrimoni net. L'amortització connecta els dos estats: els 12.000 euros que resten en el compte de Pèrdues i Guanys són els mateixos que reduïxen el valor del forn en el balanç. Els recursos propis financen el 51,2 % de l'actiu (72.250 de 141.000) i l'actiu corrent (93.000) supera amb escreix els deutes a curt termini (28.750).
+
+<Diagram caption="De les vendes al resultat de l'exercici. Les barres verdes són resultats (BAII, BAI i resultat final) i les terracota, el que es resta en cada pas: despeses d'explotació (204.000 € = 110.000 + 70.000 + 12.000 + 12.000), interessos i impost.">
+  <GraficoXY id="g-ebau-pyg-forn" titulo="Compte de pèrdues i guanys de Forn Artesà" desc="Cascada del compte de resultats. Vendes de 250.000 euros, menys 204.000 de despeses d'explotació (110.000 de matèries primeres, 70.000 de personal, 12.000 de subministraments i 12.000 d'amortització) deixen un resultat d'explotació de 46.000. Els interessos de 3.000 deixen 43.000 abans d'impostos. L'impost de 10.750 deixa un resultat de l'exercici de 32.250."
+    xMax={8} yMax={290000} ejeX="Compte de pèrdues i guanys" ejeY="Euros" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5, 6, 7]} yTicks={[100000, 200000]} xTickLabels={["Vendes", "Despeses", "BAII", "Interessos", "BAI", "Impost", "Resultat"]}
+    areas={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 250000], [0.65, 250000]], color: "teal", fuerte: true },
+      { puntos: [[1.65, 46000], [2.35, 46000], [2.35, 250000], [1.65, 250000]], color: "terra", fuerte: true },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 46000], [2.65, 46000]], color: "teal", fuerte: true },
+      { puntos: [[3.65, 43000], [4.35, 43000], [4.35, 46000], [3.65, 46000]], color: "terra", fuerte: true },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 43000], [4.65, 43000]], color: "teal", fuerte: true },
+      { puntos: [[5.65, 32250], [6.35, 32250], [6.35, 43000], [5.65, 43000]], color: "terra", fuerte: true },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 32250], [6.65, 32250]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 250000], [0.65, 250000], [0.65, 0]], color: "teal" },
+      { puntos: [[1.65, 46000], [2.35, 46000], [2.35, 250000], [1.65, 250000], [1.65, 46000]], color: "terra" },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 46000], [2.65, 46000], [2.65, 0]], color: "teal" },
+      { puntos: [[3.65, 43000], [4.35, 43000], [4.35, 46000], [3.65, 46000], [3.65, 43000]], color: "terra" },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 43000], [4.65, 43000], [4.65, 0]], color: "teal" },
+      { puntos: [[5.65, 32250], [6.35, 32250], [6.35, 43000], [5.65, 43000], [5.65, 32250]], color: "terra" },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 32250], [6.65, 32250], [6.65, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1, y: 258120, texto: "250 000", ancla: "middle" },
+      { x: 2, y: 258120, texto: "−204 000", ancla: "middle" },
+      { x: 3, y: 54120, texto: "46 000", ancla: "middle" },
+      { x: 4, y: 54120, texto: "−3 000", ancla: "middle" },
+      { x: 5, y: 51120, texto: "43 000", ancla: "middle" },
+      { x: 6, y: 51120, texto: "−10 750", ancla: "middle" },
+      { x: 7, y: 40370, texto: "32 250", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El balanç en masses (ANC: actiu no corrent; AC: actiu corrent; PN: patrimoni net; PNC i PC: passiu no corrent i corrent). Les dues columnes mesuren el mateix, 141.000 €. El fons de maniobra (AC − PC) és de 64.250 €.">
+  <GraficoXY id="g-ebau-balance-forn" titulo="Balanç de Forn Artesà" desc="Dues columnes iguals de 141.000 euros. Actiu: no corrent 48.000 i corrent 93.000. Patrimoni net més passiu: patrimoni net 72.250, passiu no corrent 40.000 i passiu corrent 28.750. El fons de maniobra és de 64.250."
+    xMax={10} yMax={180000} ejeX="Balanç a 31 de desembre" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000]} xTickLabels={["Actiu", "Patrimoni net + passiu"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 48000], [1.5, 48000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 48000], [4.5, 48000], [4.5, 141000], [1.5, 141000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 72250], [5.5, 72250]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 72250], [8.5, 72250], [8.5, 112250], [5.5, 112250]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 112250], [8.5, 112250], [8.5, 141000], [5.5, 141000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 48000], [1.5, 48000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 48000], [4.5, 48000], [4.5, 141000], [1.5, 141000], [1.5, 48000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 72250], [5.5, 72250], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 72250], [8.5, 72250], [8.5, 112250], [5.5, 112250], [5.5, 72250]], color: "aubergine" },
+      { puntos: [[5.5, 112250], [8.5, 112250], [8.5, 141000], [5.5, 141000], [5.5, 112250]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 21750, texto: "ANC 48 000", ancla: "middle" },
+      { x: 3, y: 92250, texto: "AC 93 000", ancla: "middle" },
+      { x: 7, y: 33875, texto: "PN 72 250", ancla: "middle" },
+      { x: 7, y: 90000, texto: "PNC 40 000", ancla: "middle" },
+      { x: 7, y: 124375, texto: "PC 28 750", ancla: "middle" },
+      { x: 3, y: 148200, texto: "Total actiu: 141 000", ancla: "middle" },
+      { x: 7, y: 148200, texto: "Total PN + passiu: 141 000", ancla: "middle" },
+      { x: 5, y: 162600, texto: "FM = 93 000 − 28 750 = 64 250", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 ## Errors típics que resten punts
 

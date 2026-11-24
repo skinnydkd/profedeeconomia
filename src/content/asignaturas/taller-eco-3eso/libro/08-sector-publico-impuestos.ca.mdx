@@ -48,6 +48,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import IRPFTramos from '@components/diagrams/IRPFTramos.astro';
@@ -201,6 +202,29 @@ Calcula quant IVA paga en total i quin és el preu final de la compra.
 
 **Conclusió**: Marina ha pagat **3,95 € d'impostos** quasi sense adonar-se'n, perquè anaven dins del preu. Fixa't que els aliments bàsics paguen molt menys IVA (4 %) que la roba (21 %): el sistema protegix deliberadament els productes de primera necessitat.
 
+<Diagram caption="Cada barra separa el preu sense IVA i l'IVA que s'hi afig: 0,80 € sobre els 20,00 € d'aliments bàsics al 4 % i 3,15 € sobre els 15,00 € de la samarreta al 21 %. En total són 3,95 € d'IVA i la compra ix per 38,95 €.">
+  <GraficoXY id="g-iva-compra" titulo="IVA de la compra de Marina" desc="Dues barres apilades: els aliments bàsics sumen 20 euros sense IVA i 0,80 euros d'IVA; la samarreta suma 15 euros sense IVA i 3,15 euros d'IVA."
+    xMax={5} yMax={24} ejeX="Producte" ejeY="Euros" simboloY="€"
+    xTicks={[1.5, 3.5]} xTickLabels={['Pa, llet i fruita (4 %)', 'Samarreta (21 %)']} yTicks={[5, 10, 15, 20]}
+    areas={[
+      { color: 'terra', puntos: [[0.7, 0], [2.3, 0], [2.3, 20], [0.7, 20]] },
+      { color: 'mustard', fuerte: true, puntos: [[0.7, 20], [2.3, 20], [2.3, 20.8], [0.7, 20.8]] },
+      { color: 'teal', puntos: [[2.7, 0], [4.3, 0], [4.3, 15], [2.7, 15]] },
+      { color: 'mustard', fuerte: true, puntos: [[2.7, 15], [4.3, 15], [4.3, 18.15], [2.7, 18.15]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.7, 0], [0.7, 20.8], [2.3, 20.8], [2.3, 0]] },
+      { color: 'teal', puntos: [[2.7, 0], [2.7, 18.15], [4.3, 18.15], [4.3, 0]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 9.5, texto: '20,00 € sense IVA', ancla: 'middle' },
+      { x: 3.5, y: 7, texto: '15,00 € sense IVA', ancla: 'middle' },
+      { x: 1.5, y: 21.6, texto: 'IVA: 0,80 €', ancla: 'middle', color: 'mustard' },
+      { x: 3.5, y: 19.2, texto: 'IVA: 3,15 €', ancla: 'middle', color: 'mustard' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ## Justícia fiscal i frau fiscal
@@ -238,6 +262,28 @@ Aproximadament, del total recaptat per l'Estat, la major part es dedica a **pens
 
 Per això dir "els impostos són un robatori" i alhora exigir hospitals públics no se sosté com a argument. La discussió legítima no és **si pagar impostos**, sinó **quants**, **a qui** i **en què es gasten**. Que Hisenda i el ciutadà es necessiten mútuament no és una opinió política: és una conclusió aritmètica del propi pressupost.
 </VuelveAlCaso>
+
+<Diagram caption="Aproximadament, on va el que recapta l'Estat: pensions, sanitat i educació se'n duen més de la meitat. La resta es reparteix entre infraestructures, justícia, defensa, seguretat i prestacions socials.">
+  <GraficoXY id="g-gasto-publico" titulo="En què es gasta el que recapta l'Estat" desc="Tres barres amb la part aproximada del total recaptat que es dedica a cada cosa: pensions, al voltant del 30 per cent; sanitat, el 16; educació, el 10."
+    xMax={4.6} yMax={36} ejeX="Destinació" ejeY="Part del total (%)" simboloY="%"
+    xTicks={[1, 2, 3]} xTickLabels={['Pensions', 'Sanitat', 'Educació']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 30], [0.65, 30]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 16], [1.65, 16]] },
+      { color: 'mustard', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 10], [2.65, 10]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 30], [1.35, 30], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 16], [2.35, 16], [2.35, 0]] },
+      { color: 'mustard', puntos: [[2.65, 0], [2.65, 10], [3.35, 10], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 31.4, texto: '~30 %', ancla: 'middle' },
+      { x: 2, y: 17.4, texto: '~16 %', ancla: 'middle' },
+      { x: 3, y: 11.4, texto: '~10 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 <KeyTakeaways title="L'essencial del sector públic i els impostos">
 - El **sector públic** (Estat, comunitats, ajuntaments) proveïx servicis per a l'interés general, redistribuïx renda, regula i estabilitza l'economia.

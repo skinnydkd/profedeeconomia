@@ -28,8 +28,72 @@ ejemplos_resueltos:
     desarrollo: "Pensamos qué exige cada meta.<br><strong>1. Para ser enfermera</strong> hace falta un grado universitario (Enfermería). El itinerario natural es: <strong>Bachillerato de Ciencias y Tecnología → PAU → Grado en Enfermería</strong>.<br><strong>2. Alternativa más rápida hacia el ámbito sanitario:</strong> si prefiere empezar a trabajar antes, puede hacer <strong>FP de Grado Medio en Cuidados Auxiliares de Enfermería</strong> y trabajar como técnica; más adelante puede subir a un <strong>Grado Superior</strong> de la familia de Sanidad y, desde ahí, acceder a la universidad.<br><strong>Conclusión:</strong> hay un camino académico (Bachillerato + universidad) y uno profesional (FP), y gracias a las pasarelas <strong>no son excluyentes</strong>: desde la FP también se puede llegar a la universidad."
   - enunciado: "<strong>Calcular la nota de acceso a la universidad.</strong> Un alumno tiene un 7,5 de nota media de Bachillerato y un 6 en la fase obligatoria de la PAU. Calcula su nota de acceso (sin contar ponderaciones)."
     desarrollo: "Usamos la fórmula oficial.<br>Nota de acceso = 0,6 × nota de Bachillerato + 0,4 × nota de la fase obligatoria.<br>= 0,6 × 7,5 + 0,4 × 6<br>= 4,5 + 2,4 = <strong>6,9</strong> (sobre 10).<br><strong>Interpretación:</strong> con un 6,9 puede entrar en los grados cuya nota de corte sea igual o menor. Si quiere subir, puede presentarse a la fase voluntaria y ganar hasta 4 puntos extra por ponderaciones."
+    grafico:
+      tipo: xy
+      caption: "La nota de acceso (6,9 sobre 10) es la suma de lo que aporta Bachillerato (0,6 × 7,5 = 4,5) y la fase obligatoria de la PAU (0,4 × 6 = 2,4)."
+      props:
+        id: "r-e2r-acceso"
+        titulo: "Nota de acceso: 60 % Bachillerato y 40 % PAU"
+        desc: "Tres columnas. Bachillerato aporta 0,6 por 7,5, es decir 4,5 puntos. La fase obligatoria de la PAU aporta 0,4 por 6, es decir 2,4 puntos. Juntas dan una nota de acceso de 6,9."
+        xMax: 9
+        yMax: 10
+        ejeX: "Aportación"
+        ejeY: "Puntos"
+        xTicks: [1.5, 4.5, 7.5]
+        yTicks: [2, 4, 6, 8]
+        xTickLabels: ["Bachillerato", "PAU", "Nota de acceso"]
+        areas:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 4.5], [0.7, 4.5]], color: "teal", fuerte: true }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2.4], [3.7, 2.4]], color: "mustard", fuerte: true }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 4.5], [6.7, 4.5]], color: "teal", fuerte: true }
+          - { puntos: [[6.7, 4.5], [8.3, 4.5], [8.3, 6.9], [6.7, 6.9]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 4.5], [0.7, 4.5], [0.7, 0]], color: "teal" }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2.4], [3.7, 2.4], [3.7, 0]], color: "mustard" }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 4.5], [6.7, 4.5], [6.7, 0]], color: "teal" }
+          - { puntos: [[6.7, 4.5], [8.3, 4.5], [8.3, 6.9], [6.7, 6.9], [6.7, 4.5]], color: "mustard" }
+        notas:
+          - { x: 1.5, y: 4.85, texto: "0,6 × 7,5 = 4,5", ancla: "middle" }
+          - { x: 4.5, y: 2.75, texto: "0,4 × 6 = 2,4", ancla: "middle" }
+          - { x: 7.5, y: 2.11, texto: "Bachillerato 4,5", ancla: "middle" }
+          - { x: 7.5, y: 5.56, texto: "PAU 2,4", ancla: "middle" }
+          - { x: 7.5, y: 7.25, texto: "6,9", ancla: "middle" }
   - enunciado: "<strong>Calcular las tres tasas de la EPA.</strong> En un municipio hay 10.000 personas de 16 o más años: 5.500 están ocupadas, 500 están paradas (buscan empleo) y el resto son inactivas. Calcula la población activa y las tasas de actividad, paro y empleo."
     desarrollo: "Primero deducimos los grupos.<br><strong>Población activa</strong> = ocupados + parados = 5.500 + 500 = <strong>6.000 personas</strong>.<br>(Inactivos = 10.000 − 6.000 = 4.000.)<br><strong>Tasa de actividad</strong> = (6.000 / 10.000) × 100 = <strong>60 %</strong>.<br><strong>Tasa de paro</strong> = (parados / activa) × 100 = (500 / 6.000) × 100 = <strong>8,33 %</strong>. Ojo: dividimos entre la población activa, no entre las 10.000.<br><strong>Tasa de empleo</strong> = (5.500 / 10.000) × 100 = <strong>55 %</strong>.<br><strong>Error típico:</strong> calcular el paro como 500 / 10.000 = 5 %, que es falso porque el denominador correcto es la población activa."
+    grafico:
+      tipo: xy
+      caption: "Los activos (6.000) son los ocupados más los parados. Tasa de actividad: 6.000 / 10.000 = 60 %. Tasa de paro: 500 / 6.000 = 8,33 %. Tasa de empleo: 5.500 / 10.000 = 55 %."
+      props:
+        id: "r-e2r-epa"
+        titulo: "Población de 16 años o más y población activa"
+        desc: "Dos columnas de personas. Población de 16 o más: 5.500 ocupados, 500 parados y 4.000 inactivos, 10.000 en total. Población activa: 5.500 ocupados y 500 parados, 6.000 en total."
+        xMax: 7
+        yMax: 12000
+        ejeX: "Grupo"
+        ejeY: "Personas"
+        xTicks: [1.5, 4.5]
+        yTicks: [2000, 4000, 6000, 8000, 10000]
+        xTickLabels: ["Población 16+", "Activa"]
+        areas:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 5500], [0.7, 5500]], color: "teal", fuerte: true }
+          - { puntos: [[0.7, 5500], [2.3, 5500], [2.3, 6000], [0.7, 6000]], color: "terra", fuerte: true }
+          - { puntos: [[0.7, 6000], [2.3, 6000], [2.3, 10000], [0.7, 10000]], color: "mustard", fuerte: true }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 5500], [3.7, 5500]], color: "teal", fuerte: true }
+          - { puntos: [[3.7, 5500], [5.3, 5500], [5.3, 6000], [3.7, 6000]], color: "terra", fuerte: true }
+        series:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 5500], [0.7, 5500], [0.7, 0]], color: "teal" }
+          - { puntos: [[0.7, 5500], [2.3, 5500], [2.3, 6000], [0.7, 6000], [0.7, 5500]], color: "terra" }
+          - { puntos: [[0.7, 6000], [2.3, 6000], [2.3, 10000], [0.7, 10000], [0.7, 6000]], color: "mustard" }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 5500], [3.7, 5500], [3.7, 0]], color: "teal" }
+          - { puntos: [[3.7, 5500], [5.3, 5500], [5.3, 6000], [3.7, 6000], [3.7, 5500]], color: "terra" }
+        notas:
+          - { x: 1.5, y: 2587.84, texto: "Ocupados 5 500", ancla: "middle" }
+          - { x: 2.42, y: 5587.84, texto: "Parados 500", ancla: "start" }
+          - { x: 1.5, y: 7837.84, texto: "Inactivos 4 000", ancla: "middle" }
+          - { x: 1.5, y: 10420, texto: "10 000", ancla: "middle" }
+          - { x: 4.5, y: 2587.84, texto: "Ocupados 5 500", ancla: "middle" }
+          - { x: 5.42, y: 5587.84, texto: "Parados 500", ancla: "start" }
+          - { x: 4.5, y: 6420, texto: "6 000", ancla: "middle" }
   - enunciado: "<strong>Clasificar por sectores económicos.</strong> Indica a qué sector pertenece cada actividad: a) un huerto de naranjos; b) una fábrica de muebles; c) un supermercado; d) un laboratorio de investigación biotecnológica."
     desarrollo: "Recordamos qué hace cada sector.<br><strong>a) Huerto de naranjos →</strong> <strong>sector primario</strong> (extrae recursos de la naturaleza).<br><strong>b) Fábrica de muebles →</strong> <strong>sector secundario</strong> (transforma materias primas en productos).<br><strong>c) Supermercado →</strong> <strong>sector terciario</strong> (presta un servicio: vender, no fabricar).<br><strong>d) Laboratorio biotecnológico →</strong> <strong>sector cuaternario</strong> (actividad intensiva en conocimiento e I+D), aunque en las estadísticas oficiales todavía se cuenta dentro del terciario."
   - enunciado: "<strong>¿Beca o préstamo?</strong> A una familia le ofrecen dos ayudas para que su hija estudie: una beca MEFP de 3.000 € por su renta y un préstamo joven de 3.000 €. Explica la diferencia y cuál conviene pedir primero."

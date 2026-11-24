@@ -43,6 +43,7 @@ import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
 import MarketingMix4P from '@components/diagrams/MarketingMix4P.astro';
@@ -111,6 +112,24 @@ Antes de cerrar una compra, pide presupuesto a **dos o tres proveedores** y comp
 El **stock** (o existencias) es la cantidad de producto o materia prima que tienes almacenada en un momento dado. Controlarlo significa saber, en todo momento, qué tienes y cuándo conviene reponer. La idea clave es el **punto de pedido**: el nivel de existencias a partir del cual hay que volver a comprar para no quedarse sin material mientras llega el nuevo pedido.
 
 Para un proyecto escolar basta con una regla práctica: define un **mínimo de seguridad** (la cantidad por debajo de la cual no quieres bajar) y lanza el pedido cuando te quede el mínimo de seguridad más lo que consumirás mientras llega: ese es tu punto de pedido. Por ejemplo, si gastas 5 botes al día, el proveedor tarda 4 días en servir y tu mínimo es 10, pide cuando te queden 30 (5 × 4 + 10). Ni tanto stock que acumules coste y riesgo de que se estropee, ni tan poco que te quedes parado.
+
+<Diagram caption="El punto de pedido del ejemplo: se lanza el pedido cuando quedan 30 botes (5 al día durante los 4 días que tarda el proveedor, más el mínimo de seguridad de 10). Si el consumo es el previsto, el pedido llega justo cuando el stock toca el mínimo.">
+  <GraficoXY id="g-punto-pedido" titulo="Stock mientras llega el pedido" desc="Se lanza el pedido con 30 botes en el almacén. Se consumen 5 al día, así que a los 4 días, cuando llega el pedido del proveedor, quedan 10 botes: el mínimo de seguridad."
+    xMax={5} yMax={40} ejeX="Días desde que se lanza el pedido" ejeY="Botes en el almacén" simboloX="t"
+    xTicks={[1, 2, 3]} yTicks={[20]}
+    series={[
+      { color: 'terra', puntos: [[0, 30], [4, 10]] },
+      { label: 'Mínimo de seguridad', color: 'mustard', labelEn: 'inicio', puntos: [[0, 10], [4.5, 10]], dy: -10 },
+    ]}
+    puntos={[
+      { x: 0, y: 30, label: 'Punto de pedido', yLabel: '30', dx: 14, dy: -12 },
+      { x: 4, y: 10, label: 'Llega el pedido', xLabel: '4', yLabel: '10', dx: -20, dy: -18 },
+    ]}
+    notas={[
+      { x: 2.1, y: 23.5, texto: '−5 botes al día', color: 'terra' },
+    ]}
+  />
+</Diagram>
 
 <Figure
   src={almacenAmazon}

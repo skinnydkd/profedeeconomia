@@ -47,6 +47,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -204,6 +205,39 @@ Es decir: todo lo que la empresa tiene se ha financiado o bien con dinero propio
 
 Los dos lados suman 2.200 €: no es casualidad, es la igualdad del balance. Si no cuadran, hay un error. Para tu proyecto, leer un balance significa saber responder a tres preguntas: *¿qué tengo?, ¿qué debo?, ¿cuánto es realmente mío?*
 
+<Diagram caption="El balance del proyecto de aula en dos columnas del mismo tamaño, 2.200 €: a la izquierda lo que tiene (activo); a la derecha de dónde sale (capital propio y deudas).">
+  <GraficoXY id="g-balance-aula" titulo="Balance del proyecto de aula" desc="Dos columnas iguales de 2.200 euros. Activo: equipo y maquinaria 1.200, existencias 400 y dinero en caja y banco 600. Patrimonio neto más pasivo: aportaciones del equipo 1.000, préstamo a devolver 800 y deudas con proveedores 400."
+    xMax={10} yMax={2600} ejeX="Balance del proyecto" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[500, 1000, 1500, 2000]} xTickLabels={["Activo", "Patrimonio neto + pasivo"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 1200], [1.5, 1200]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 1200], [4.5, 1200], [4.5, 1600], [1.5, 1600]], color: "mustard", fuerte: true },
+      { puntos: [[1.5, 1600], [4.5, 1600], [4.5, 2200], [1.5, 2200]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 1000], [5.5, 1000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 1000], [8.5, 1000], [8.5, 1800], [5.5, 1800]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 1800], [8.5, 1800], [8.5, 2200], [5.5, 2200]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 1200], [1.5, 1200], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 1200], [4.5, 1200], [4.5, 1600], [1.5, 1600], [1.5, 1200]], color: "mustard" },
+      { puntos: [[1.5, 1600], [4.5, 1600], [4.5, 2200], [1.5, 2200], [1.5, 1600]], color: "teal" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 1000], [5.5, 1000], [5.5, 0]], color: "aubergine" },
+      { puntos: [[5.5, 1000], [8.5, 1000], [8.5, 1800], [5.5, 1800], [5.5, 1000]], color: "mustard" },
+      { puntos: [[5.5, 1800], [8.5, 1800], [8.5, 2200], [5.5, 2200], [5.5, 1800]], color: "terra" },
+    ]}
+    notas={[
+      { x: 3, y: 560, texto: "Equipo 1 200", ancla: "middle" },
+      { x: 3, y: 1360, texto: "Existencias 400", ancla: "middle" },
+      { x: 3, y: 1860, texto: "Caja y banco 600", ancla: "middle" },
+      { x: 7, y: 460, texto: "Capital 1 000", ancla: "middle" },
+      { x: 7, y: 1360, texto: "Préstamo 800", ancla: "middle" },
+      { x: 7, y: 1960, texto: "Proveedores 400", ancla: "middle" },
+      { x: 3, y: 2350, texto: "Total: 2 200", ancla: "middle" },
+      { x: 7, y: 2350, texto: "Total: 2 200", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
 <Callout label="Concepto clave" title="Equilibrio financiero">
 
 Un proyecto está en **equilibrio financiero** cuando puede hacer frente a sus deudas sin ahogarse. Una señal de alarma sencilla: si casi todo el activo está financiado con deuda (pasivo) y muy poco con recursos propios (patrimonio neto), el proyecto es frágil. Una mezcla sana combina aportaciones propias y financiación ajena prudente.
@@ -227,6 +261,34 @@ Si los ingresos superan a los gastos, hay beneficio; si los gastos superan a los
 | **= Resultado del periodo (beneficio)** | **1.200 €** |
 
 Leer esta cuenta te dice mucho más que un número final: te muestra **en qué se va el dinero** y dónde puedes ajustar. Si las materias primas se comen la mayor parte de los ingresos, quizá convenga renegociar con proveedores; si el marketing no genera ventas, quizá sobre gasto ahí.
+
+<Diagram caption="De los ingresos al resultado en la cuenta del proyecto de aula. Las barras verdes son el punto de partida y el resultado; las terracota, lo que se resta en cada paso: 1.100 € de materias primas, 400 € de otros gastos y 300 € de comunicación y marketing.">
+  <GraficoXY id="g-resultados-aula" titulo="Cuenta de resultados del proyecto de aula" desc="Cascada de la cuenta de resultados. Ingresos por ventas de 3.000 euros. Se restan 1.100 de materias primas, 400 de otros gastos y 300 de comunicación y marketing, y queda un resultado de 1.200 euros de beneficio."
+    xMax={5.6} yMax={3500} ejeX="Cuenta de resultados" ejeY="Euros" simboloY="€"
+    xTicks={[0.8, 1.8, 2.8, 3.8, 4.8]} yTicks={[1000, 2000, 3000]} xTickLabels={["Ingresos", "Materias primas", "Otros gastos", "Marketing", "Resultado"]}
+    areas={[
+      { puntos: [[0.5, 0], [1.1, 0], [1.1, 3000], [0.5, 3000]], color: "teal", fuerte: true },
+      { puntos: [[1.5, 1900], [2.1, 1900], [2.1, 3000], [1.5, 3000]], color: "terra", fuerte: true },
+      { puntos: [[2.5, 1500], [3.1, 1500], [3.1, 1900], [2.5, 1900]], color: "terra", fuerte: true },
+      { puntos: [[3.5, 1200], [4.1, 1200], [4.1, 1500], [3.5, 1500]], color: "terra", fuerte: true },
+      { puntos: [[4.5, 0], [5.1, 0], [5.1, 1200], [4.5, 1200]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.5, 0], [1.1, 0], [1.1, 3000], [0.5, 3000], [0.5, 0]], color: "teal" },
+      { puntos: [[1.5, 1900], [2.1, 1900], [2.1, 3000], [1.5, 3000], [1.5, 1900]], color: "terra" },
+      { puntos: [[2.5, 1500], [3.1, 1500], [3.1, 1900], [2.5, 1900], [2.5, 1500]], color: "terra" },
+      { puntos: [[3.5, 1200], [4.1, 1200], [4.1, 1500], [3.5, 1500], [3.5, 1200]], color: "terra" },
+      { puntos: [[4.5, 0], [5.1, 0], [5.1, 1200], [4.5, 1200], [4.5, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 0.8, y: 3090, texto: "3 000", ancla: "middle" },
+      { x: 1.8, y: 3090, texto: "−1 100", ancla: "middle" },
+      { x: 2.8, y: 1990, texto: "−400", ancla: "middle" },
+      { x: 3.8, y: 1590, texto: "−300", ancla: "middle" },
+      { x: 4.8, y: 1290, texto: "1 200", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ## La viabilidad: presupuesto, punto muerto e inversión
 
@@ -293,6 +355,31 @@ Un equipo de GPE va a vender mermelada artesana de naranja valenciana. Han reuni
 
 **Conclusión**: el proyecto es viable. Con 400 tarros venden el doble de su punto muerto (200) y prevén un beneficio de 600 €. Si las ventas reales bajaran de 200 tarros, entrarían en pérdidas: ese es el número que el equipo debe vigilar.
 
+<Diagram caption="La mermelada: el ingreso total (5 € por tarro) y el coste total (600 € fijos más 2 € por tarro) se cruzan en los 200 tarros, con 1.000 € de ingresos. Con los 400 previstos, los ingresos son 2.000 € y los costes 1.400 €: 600 € de beneficio.">
+  <GraficoXY id="g-punto-muerto-mermelada" titulo="Punto muerto de la mermelada artesana" desc="Ingreso total de 5 euros por tarro y coste total de 600 euros fijos más 2 euros por tarro. Las dos rectas se cruzan en 200 tarros, con 1.000 euros. Con 400 tarros, los ingresos son 2.000 euros y los costes 1.400, un beneficio de 600."
+    xMax={500} yMax={2500} ejeX="Tarros vendidos" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[100, 300]} yTicks={[600]}
+    areas={[
+      { puntos: [[0, 0], [0, 600], [200, 1000]], color: 'terra' },
+      { puntos: [[200, 1000], [450, 2250], [450, 1500]], color: 'teal' },
+    ]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [450, 2250]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 600], [450, 1500]] },
+      { label: 'CF', color: 'mustard', puntos: [[0, 600], [450, 600]] },
+    ]}
+    puntos={[
+      { x: 200, y: 1000, label: 'Punto muerto', xLabel: '200', yLabel: '1 000', dx: -112, dy: -14 },
+      { x: 400, y: 2000, xLabel: '400', yLabel: '2 000' },
+      { x: 400, y: 1400, guias: false },
+    ]}
+    notas={[
+      { x: 15, y: 420, texto: 'Pérdida', color: 'terra' },
+      { x: 410, y: 1700, texto: 'Beneficio 600 €', color: 'teal' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo tú mismo:** introduce los costes fijos, el precio de venta y el coste variable unitario de tu propio proyecto y la calculadora calcula automáticamente el punto muerto y representa la gráfica de ingresos y costes totales.
@@ -302,6 +389,23 @@ Un equipo de GPE va a vender mermelada artesana de naranja valenciana. Han reuni
 ### La evaluación de inversiones (en clave de proyecto)
 
 Durante el proyecto pueden surgir decisiones de **inversión**: comprar una máquina mejor, alquilar un local, invertir en una web. Evaluar una inversión, en GPE, significa hacerse preguntas sencillas y honestas: *¿cuánto cuesta?, ¿qué ingresos o ahorros me va a generar?, ¿en cuánto tiempo recupero lo invertido?* Esa última idea —el **plazo de recuperación**— basta para tu proyecto: si una máquina cuesta 1.000 € y te ahorra 250 € al mes, la recuperas en 4 meses. Cuanto antes recuperes la inversión, menos riesgo asumes. No necesitas técnicas más complejas para decidir bien en un proyecto de aula.
+
+<Diagram caption="El ahorro acumulado de la máquina (250 € al mes) alcanza su coste de 1.000 € a los 4 meses: ese es el plazo de recuperación.">
+  <GraficoXY id="g-plazo-recuperacion-maquina" titulo="Plazo de recuperación de una máquina de 1.000 euros" desc="La máquina cuesta 1.000 euros y ahorra 250 euros al mes. El ahorro acumulado crece 250 euros cada mes y llega a 1.000 euros a los 4 meses, que es el plazo de recuperación."
+    xMax={6} yMax={1400} ejeX="Meses" ejeY="Euros" simboloX="t" simboloY="€"
+    xTicks={[1, 2, 3, 5]} yTicks={[500]}
+    series={[
+      { label: 'Ahorro acumulado', color: 'teal', puntos: [[0, 0], [5, 1250]] },
+      { label: 'Inversión', color: 'terra', puntos: [[0, 1000], [5, 1000]] },
+    ]}
+    puntos={[
+      { x: 4, y: 1000, label: 'Plazo: 4 meses', xLabel: '4', yLabel: '1 000', dx: 14, dy: 28 },
+    ]}
+    notas={[
+      { x: 2.2, y: 400, texto: '+250 € al mes', color: 'teal' },
+    ]}
+  />
+</Diagram>
 
 ## Las fuentes de financiación
 

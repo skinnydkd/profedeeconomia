@@ -10,6 +10,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+
 ## Texto
 
 Los agricultores europeos llevan años denunciando una paradoja que no aparece en ningún manual escolar: en temporada de buena cosecha, sus ingresos caen. Cuando la producción de melocotones, naranjas o lechugas es abundante, el precio en origen —el que recibe el agricultor en la cooperativa o en la lonja— se desploma, a veces por debajo del coste de producción. El supermercado, sin embargo, mantiene el precio al consumidor prácticamente estable, y el margen que se genera en ese tramo de la cadena no llega al campo.
@@ -48,12 +51,30 @@ A todo ello se añade una presión exterior que complica aún más la ecuación:
 - La cantidad efectivamente intercambiada es Q<sub>d</sub>(P<sub>min</sub>), la menor de las dos: nadie obliga a los compradores a adquirir más de lo que quieren a ese precio.
 - Error a evitar: no confundir la cantidad ofrecida con la cantidad intercambiada; en un excedente el mercado no vacía toda la oferta.
 
+<Diagram caption="Precio mínimo por encima del equilibrio: a Pmín los agricultores ofrecen Qs, los compradores solo demandan Qd y la diferencia es el excedente. La cantidad que se intercambia es la menor, Qd. Esquema sin cifras.">
+  <MercadoGrafico id="g-olt-precio-minimo" titulo="Precio mínimo en origen por encima del equilibrio" desc="La demanda y la oferta se cortan en el equilibrio E, con precio P* y cantidad Q*. Con un precio mínimo Pmín por encima de P*, la cantidad ofrecida Qs supera a la demandada Qd y aparece un excedente. Esquema sin cifras."
+    pMax={60} qMax={140} ejeP="Precio en origen" ejeQ="Cantidad de hortalizas"
+    curvas={[{ tipo: 'D', q0: 100, m: -1, pDe: 5, label: 'D' }, { tipo: 'O', q0: -20, m: 3, pA: 42, label: 'O' }]}
+    puntos={[{ p: 30, q: 70, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: 14, dy: 8 }, { p: 40, q: 60, pLabel: 'Pmín', qLabel: 'Qd' }, { p: 40, q: 100, qLabel: 'Qs' }]}
+    precio={{ p: 40, label: 'Precio mínimo' }}
+    tramo={{ p: 40, q1: 60, q2: 100, label: 'Excedente' }}
+  />
+</Diagram>
+
 ### Pregunta 2 — Paradoja del ingreso e inelasticidad
 
 - Condición necesaria: |E<sub>p</sub><sup>d</sup>| < 1 (demanda inelástica).
 - Mecanismo: la buena cosecha desplaza la curva de oferta a la derecha → P cae → Q<sub>d</sub> aumenta, pero menos que proporcionalmente → el efecto precio domina → IT = P × Q cae.
 - Ejemplo numérico: si P baja un 20 % y |E| = 0,4 → Q sube solo un 8 % → IT cambia de 100 a (0,8P × 1,08Q) ≈ 0,864 del valor inicial → el ingreso cae un 13,6 % aproximadamente.
 - Implicación política: los agricultores pueden preferir retener o destruir producción para sostener el precio; el mercado agrario sin intervención puede ser inestable (ciclo del cerdo).
+
+<Diagram caption="Buena cosecha: la oferta pasa de O₁ a O₂. Con una demanda inelástica, el precio cae de P₁ a P₂ mucho más de lo que aumenta la cantidad, de Q₁ a Q₂, y el ingreso P × Q de los agricultores disminuye. El mismo desplazamiento de la oferta se produce cuando el euro se aprecia y entran más importaciones. Esquema sin cifras.">
+  <MercadoGrafico id="g-olt-cosecha" titulo="Buena cosecha con demanda inelástica" desc="La oferta se desplaza a la derecha, de O₁ a O₂, sobre una demanda muy inclinada. El precio cae de P₁ a P₂ mucho más de lo que sube la cantidad, de Q₁ a Q₂, de modo que el ingreso P × Q disminuye. Esquema sin cifras."
+    pMax={60} qMax={120} ejeP="Precio en origen" ejeQ="Cantidad de hortalizas"
+    curvas={[{ tipo: 'D', q0: 100, m: -1, pDe: 5, label: 'D' }, { tipo: 'O', q0: -20, m: 3, pA: 40, label: 'O₁', tenue: true }, { tipo: 'O', q0: 20, m: 3, pA: 28, label: 'O₂' }]}
+    puntos={[{ p: 30, q: 70, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: 14, dy: 8 }, { p: 20, q: 80, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: 14, dy: 8 }]}
+  />
+</Diagram>
 
 ### Pregunta 3 — Cadena de valor y poder de negociación
 

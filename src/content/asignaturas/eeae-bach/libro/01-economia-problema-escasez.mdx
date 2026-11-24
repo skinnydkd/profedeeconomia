@@ -40,6 +40,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import FPP from '@components/diagrams/FPP.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -82,7 +83,7 @@ Esta materia se llama *Economía, Emprendimiento y Actividad Empresarial*, y a l
 
 Piensa en una mañana cualquiera. Tienes cuarenta minutos antes de salir de casa y podrías repasar para un examen, desayunar con calma o dormir un poco más. No puedes hacer las tres cosas: el tiempo no da. Tienes veinte euros y delante una camiseta, dos entradas de cine y un cargador nuevo; eliges, y al elegir renuncias. Esto que parece trivial es exactamente el problema que estudia la economía, solo que ampliado a millones de personas, empresas y países que toman decisiones a la vez. La economía no nace de los bancos ni de la bolsa: nace de que **los recursos son limitados y los deseos no lo son**.
 
-Esta primera unidad pone los cimientos. No vamos a dibujar gráficos ni a hacer cálculos complicados —eso pertenece a otras materias y a otros cursos—. Vamos a entender, con casos reales y con sentido común, por qué existe la economía como forma de pensar, qué preguntas intenta responder y qué clase de ciencia es. Si esto queda claro, el resto del curso —el emprendimiento, las empresas, la innovación— se entiende mucho mejor, porque todo son respuestas distintas al mismo problema de fondo.
+Esta primera unidad pone los cimientos. No vamos a hacer cálculos complicados —eso pertenece a otras materias y a otros cursos—. Vamos a entender, con casos reales y con sentido común, por qué existe la economía como forma de pensar, qué preguntas intenta responder y qué clase de ciencia es. Si esto queda claro, el resto del curso —el emprendimiento, las empresas, la innovación— se entiende mucho mejor, porque todo son respuestas distintas al mismo problema de fondo.
 
 ## La escasez: el problema que lo explica casi todo
 
@@ -172,6 +173,19 @@ El **valor de uso** es la utilidad que un bien proporciona a quien lo posee. El 
 ### La solución: utilidad de la última unidad
 
 La economía resolvió la paradoja a finales del siglo XIX con una idea sencilla: lo que determina el precio no es la utilidad **total** de un bien, sino la utilidad de la **última unidad disponible**, y esa depende de su escasez. El agua es tan abundante (en buena parte del mundo) que disponer de un litro más apenas añade nada a lo que ya tenemos: su utilidad adicional es baja, y por eso su precio lo es. Los diamantes son tan escasos que cada unidad disponible es muy valorada, y por eso su precio es alto. La paradoja desaparece en cuanto se une **utilidad** y **escasez**: el valor de cambio no mide cuánto importa un bien en abstracto, sino cuánto importa **tener una unidad más** de él dada su disponibilidad. Volvemos, una vez más, a la escasez como hilo conductor.
+
+<Diagram caption="Esquema sin cifras: cuantas más unidades hay de un bien, menos aporta la última. El agua, abundante, está en el tramo bajo de la curva; los diamantes, escasos, en el tramo alto.">
+  <GraficoXY id="g-utilidad-ultima-unidad" titulo="Utilidad de la última unidad según la abundancia del bien" desc="Esquema sin cifras. La curva baja a medida que aumentan las unidades disponibles: con pocas unidades, como los diamantes, la última aporta mucha utilidad; con muchas, como el agua, aporta muy poca."
+    xMax={100} yMax={100} ejeX="Unidades disponibles del bien" ejeY="Utilidad de la última unidad" simboloX="Q"
+    series={[
+      { color: 'terra', puntos: Array.from({ length: 23 }, (_, i) => [2 + i * 4, 95 * 0.965 ** (2 + i * 4)]) },
+    ]}
+    puntos={[
+      { x: 8, y: 71.4, label: 'Diamantes', guias: false },
+      { x: 75, y: 6.6, label: 'Agua', guias: false, dy: -14 },
+    ]}
+  />
+</Diagram>
 
 <Figure
   src={diamantesBruto}

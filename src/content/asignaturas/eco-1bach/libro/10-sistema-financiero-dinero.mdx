@@ -45,6 +45,7 @@ publicado_en: 2026-05-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import AgregadosMonetarios from '@components/diagrams/AgregadosMonetarios.astro';
 import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
 import Curiosity from '@components/Curiosity.astro';
@@ -192,6 +193,20 @@ k = 1 / c
 
 Donde `c` es el coeficiente de reservas expresado en tanto por uno. Significa que cada euro depositado en el sistema bancario puede llegar a generar `1/c` euros de oferta monetaria total. Si `c = 10 %`, el multiplicador es 10; si `c = 20 %`, el multiplicador es 5; si `c = 1 %`, el multiplicador teórico es 100, aunque en la práctica nunca se alcanza por las reservas voluntarias y porque parte del dinero prestado vuelve al circuito en forma de efectivo, no de depósito.
 
+<Diagram caption="El multiplicador teórico k = 1 / c: con un coeficiente de reservas del 1 % vale 100, con el 10 % vale 10 y con el 20 % vale 5. Cuanto menos debe retener la banca, más multiplica el dinero.">
+  <GraficoXY id="g-multiplicador" titulo="El multiplicador del dinero según el coeficiente de reservas" desc="Curva decreciente: el multiplicador vale 100 con un coeficiente del 1 %, 10 con el 10 % y 5 con el 20 %."
+    xMax={28} yMax={110} ejeX="Coeficiente de reservas c (%)" ejeY="Multiplicador k" simboloX="c" simboloY="k"
+    xTicks={[5, 15, 25]}
+    series={[{ color: 'terra', puntos: Array.from({ length: 49 }, (_, i) => [1 + i * 0.5, 100 / (1 + i * 0.5)]) }]}
+    puntos={[
+      { x: 1, y: 100, xLabel: '1', yLabel: '100' },
+      { x: 10, y: 10, xLabel: '10', yLabel: '10' },
+      { x: 20, y: 5, xLabel: '20', yLabel: '5' },
+    ]}
+  />
+</Diagram>
+
+
 <Diagram caption="Cada depósito deja una reserva y presta el resto, que vuelve al sistema como un nuevo depósito. Así la banca multiplica el dinero inicial.">
   <CreacionDinero />
 </Diagram>
@@ -240,6 +255,22 @@ d) ¿Cuánto **dinero nuevo** se ha creado (descontando el depósito original)?
 7. **Dinero nuevo creado por el sistema**: 10.000 − 1.000 = **9.000 €**. Estos 9.000 € no existían antes del depósito de García: los ha creado la cadena de bancos «de la nada», simplemente concediendo crédito.
 
 8. **Lección práctica**: el dinero bancario es **endógeno** al sistema. Los bancos no son meros intermediarios entre ahorradores e inversores: son **creadores de dinero** cada vez que conceden un préstamo. La cantidad total de dinero en una economía depende, por tanto, tanto del banco central (que fija el coeficiente y los tipos) como de las decisiones de crédito de los bancos comerciales.
+
+<Diagram caption="Las rondas del ejercicio 10.2: con un 10 % de reservas, los 1.000 € iniciales van generando depósitos, préstamos y reservas que tienden a 10.000, 9.000 y 1.000 €. El límite de los depósitos es la suma de la serie geométrica, 1.000 / 0,10.">
+  <GraficoXY id="g-rondas-dinero" titulo="Creación de dinero bancario ronda a ronda" desc="Con un coeficiente de reservas del 10 %, los depósitos acumulados crecen hacia 10 000 euros, los préstamos hacia 9 000 y las reservas hacia 1 000, a partir de un depósito inicial de 1 000."
+    xMax={34} yMax={11500} ejeX="Rondas de depósito y préstamo" ejeY="Euros acumulados"
+    xTicks={[10, 20, 30]} yTicks={[1000, 9000, 10000]}
+    series={[
+      { color: 'terra', tenue: true, puntos: [[0, 10000], [32, 10000]] },
+      { color: 'teal', tenue: true, puntos: [[0, 9000], [32, 9000]] },
+      { color: 'mustard', tenue: true, puntos: [[0, 1000], [32, 1000]] },
+      { label: 'Depósitos', color: 'terra', dy: -4, puntos: Array.from({ length: 31 }, (_, n) => [n, 10000 * (1 - 0.9 ** n)]) },
+      { label: 'Préstamos', color: 'teal', dy: 12, puntos: Array.from({ length: 31 }, (_, n) => [n, 9000 * (1 - 0.9 ** n)]) },
+      { label: 'Reservas', color: 'mustard', dy: 4, puntos: Array.from({ length: 31 }, (_, n) => [n, 1000 * (1 - 0.9 ** n)]) },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -350,6 +381,16 @@ Los activos financieros se agrupan en dos grandes familias según el tipo de der
 - **Renta fija**. El emisor (Estado, empresa) se compromete a pagar **flujos conocidos de antemano**: cupones periódicos y devolución del principal al vencimiento. Son **bonos**, **obligaciones**, **letras**, **pagarés**. Su precio en el mercado secundario varía con los tipos de interés (cuando los tipos suben, los bonos antiguos pierden valor relativo y bajan de precio).
 - **Renta variable**. El inversor compra una **participación en la propiedad** de la empresa (acciones). Los rendimientos —dividendos y plusvalías por subida del precio— **no están garantizados**: dependen de cómo le vaya a la empresa. A cambio, la potencial rentabilidad es ilimitada hacia arriba.
 
+<Diagram caption="La renta fija en un gráfico: cuando suben los tipos de interés de mercado (de A a B), los bonos ya emitidos, con su cupón fijo, bajan de precio. Es lo que le ocurrió a Silicon Valley Bank. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-bono-tipos" titulo="Precio de un bono y tipo de interés de mercado" desc="Curva decreciente: cuanto mayor es el tipo de interés de mercado, menor es el precio de un bono ya emitido con cupón fijo."
+    xMax={18} yMax={36} ejeX="Tipo de interés de mercado" ejeY="Precio del bono" simboloX="r" simboloY="P"
+    series={[{ color: 'terra', puntos: Array.from({ length: 29 }, (_, i) => [1 + i * 0.5, 120 / (1 + i * 0.5 + 3)]) }]}
+    puntos={[{ x: 2, y: 24, label: 'A', guias: false, dx: 12, dy: -10 }, { x: 8, y: 120 / 11, label: 'B', guias: false, dx: 12, dy: -10 }]}
+    flechas={[{ de: [2, 24], a: [8, 120 / 11], despl: -14 }]}
+  />
+</Diagram>
+
+
 ### Las principales bolsas
 
 - **BME — Bolsas y Mercados Españoles**. El operador que gestiona las cuatro bolsas españolas (Madrid, Barcelona, Bilbao, Valencia), el mercado de renta fija (AIAF) y el de derivados (MEFF). Desde 2020 forma parte del grupo suizo **SIX**. El índice de referencia es el **IBEX 35**, que recoge las 35 mayores empresas cotizadas por capitalización y liquidez. La capitalización agregada de BME ronda los **700.000 millones de euros** en 2024.
@@ -424,6 +465,21 @@ Bitcoin cumple imperfectamente las tres funciones del dinero:
 - Como **medio de pago**: lo aceptan pocos comercios y las comisiones por transacción son elevadas para pagos pequeños. **El Salvador** lo adoptó como moneda de curso legal en 2021, en un experimento muy discutido.
 - Como **unidad de cuenta**: prácticamente nadie fija precios en bitcoins; los pocos que aceptan pagos en bitcoin los reconvierten internamente a dólares o euros.
 - Como **depósito de valor**: su precio es **extremadamente volátil** —pasó de 65.000 dólares en noviembre 2021 a 16.000 en diciembre 2022, volvió a 70.000 en marzo 2024 y superó los **100.000 dólares** por primera vez a finales de 2024, oscilando en 2025-2026 en una banda muy amplia entre 80.000 y 120.000 dólares—. Funciona más como un activo especulativo que como un depósito estable.
+
+<Diagram caption="El bitcoin como depósito de valor, con los datos del texto: 65.000 dólares en noviembre de 2021, 16.000 en diciembre de 2022, 70.000 en marzo de 2024 y más de 100.000 a finales de 2024, antes de moverse en 2025-2026 entre 80.000 y 120.000. Solo hay cuatro fechas: no se unen con una línea.">
+  <GraficoXY id="g-bitcoin" titulo="La volatilidad del bitcoin, 2021-2026" desc="Cuatro precios del bitcoin: 65 000 dólares en noviembre de 2021, 16 000 en diciembre de 2022, 70 000 en marzo de 2024 y 100 000 en diciembre de 2024. En 2025-2026 oscila entre 80 000 y 120 000."
+    xMax={68} yMax={135000} ejeX="Fecha" ejeY="Dólares por bitcoin"
+    areas={[{ puntos: [[42, 80000], [62, 80000], [62, 120000], [42, 120000]], color: 'mustard' }]}
+    puntos={[
+      { x: 4, y: 65000, xLabel: 'nov. 2021', yLabel: '65 000' },
+      { x: 17, y: 16000, xLabel: 'dic. 2022', yLabel: '16 000' },
+      { x: 32, y: 70000, xLabel: 'mar. 2024', yLabel: '70 000' },
+      { x: 41, y: 100000, xLabel: 'dic. 2024', yLabel: '100 000' },
+    ]}
+    notas={[{ x: 52, y: 125000, texto: 'Banda 2025-2026', color: 'mustard', ancla: 'middle' }]}
+  />
+</Diagram>
+
 
 ### Stablecoins y consumo energético
 

@@ -42,6 +42,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
 import EconomiaCircular from '@components/diagrams/EconomiaCircular.astro';
@@ -122,6 +123,30 @@ Seguim el rastre del pa del teu entrepà amb xifres senzilles (inventades, però
 | **Suma del valor afegit** | | | **2,50 €** |
 
 Cada empresa compra alguna cosa, la transforma i la ven més cara. La diferència entre el que ven i el que ha comprat a altres empreses és el seu **valor afegit**: és el que de veritat ha aportat amb el seu treball, les seues màquines i les seues idees. Observa el resultat: la suma dels valors afegits de tota la cadena (2,50 €) coincidix exactament amb el preu del bé final. No és casualitat, és matemàtica: si sumàrem els preus de venda de totes les baules (0,20 + 0,45 + 0,95 + 2,50 = 4,10 €) estaríem comptant el blat quatre vegades, la farina tres i el pa dues.
+
+<Diagram caption="La cadena del pa en un gràfic: cada barra va del que la baula compra al que ven, i la seua alçada és el valor afegit. Les quatre alçades sumen 2,50 €, el preu de l'entrepà.">
+  <GraficoXY id="g-valor-anadido" titulo="Valor afegit en la cadena del pa" desc="Quatre barres escalonades. L'agricultor ven per 0,20 euros i afig 0,20; el molí compra a 0,20, ven a 0,45 i afig 0,25; la fleca compra a 0,45, ven a 0,95 i afig 0,50; la cafeteria compra a 0,95, ven a 2,50 i afig 1,55. Els valors afegits sumen 2,50 euros."
+    xMax={4.6} yMax={3} ejeX="Baula de la cadena" ejeY="Euros per barra de pa"
+    xTicks={[0.5, 1.5, 2.5, 3.5]} xTickLabels={['Agricultor', 'Molí', 'Fleca', 'Cafeteria']} yTicks={[0.5, 1, 1.5, 2, 2.5]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.1, 0], [0.9, 0], [0.9, 0.2], [0.1, 0.2]] },
+      { color: 'mustard', fuerte: true, puntos: [[1.1, 0.2], [1.9, 0.2], [1.9, 0.45], [1.1, 0.45]] },
+      { color: 'teal', fuerte: true, puntos: [[2.1, 0.45], [2.9, 0.45], [2.9, 0.95], [2.1, 0.95]] },
+      { color: 'aubergine', fuerte: true, puntos: [[3.1, 0.95], [3.9, 0.95], [3.9, 2.5], [3.1, 2.5]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.1, 0], [0.9, 0], [0.9, 0.2], [0.1, 0.2], [0.1, 0]] },
+      { color: 'mustard', puntos: [[1.1, 0.2], [1.9, 0.2], [1.9, 0.45], [1.1, 0.45], [1.1, 0.2]] },
+      { color: 'teal', puntos: [[2.1, 0.45], [2.9, 0.45], [2.9, 0.95], [2.1, 0.95], [2.1, 0.45]] },
+      { color: 'aubergine', puntos: [[3.1, 0.95], [3.9, 0.95], [3.9, 2.5], [3.1, 2.5], [3.1, 0.95]] },
+    ]}
+    notas={[
+      { x: 0.5, y: 0.3, texto: '+0,20 €', ancla: 'middle' }, { x: 1.5, y: 0.55, texto: '+0,25 €', ancla: 'middle' },
+      { x: 2.5, y: 1.05, texto: '+0,50 €', ancla: 'middle' }, { x: 3.5, y: 2.6, texto: '+1,55 €', ancla: 'middle' },
+      { x: 0.1, y: 2.85, texto: 'Suma dels valors afegits: 2,50 €', color: 'ink' },
+    ]}
+  />
+</Diagram>
 
 <Callout label="Concepte clau" title="Valor afegit">
 
@@ -224,6 +249,26 @@ Dos tallers monten bicicletes. El taller Pedal té 5 treballadors que, en jornad
 4. **Valor afegit per treballador.** 50 bicicletes × 50 € = **2.500 € a la setmana** per treballador, enfront dels 30 × 50 = 1.500 € d'abans. Eixe augment és el que permet a l'empresa pujar salaris, baixar preus per a vendre més o recuperar el que va costar la màquina. Sense més valor afegit per persona, una pujada de sou només pot eixir d'un altre lloc (dels beneficis o dels preus).
 5. **Lectura.** Amb els mateixos treballadors i les mateixes hores, Roda passa de ser el taller menys productiu al més productiu. Ara bé: si amb la màquina bastaren 6 treballadors per a fer les 400 bicicletes, l'empresa hauria de decidir què fa amb els altres dos. Ahí està el debat de la tecnologia i l'ocupació, que reprendrem en la Unitat 5.
 
+<Diagram caption="Bicicletes muntades per treballador i setmana: Pedal 40, Roda 30 i Roda amb la màquina nova 50.">
+  <GraficoXY id="g-productividad-talleres" titulo="Productivitat dels tallers Pedal i Roda" desc="Tres barres: el taller Pedal munta 40 bicicletes per treballador i setmana, el taller Roda 30 i Roda amb la màquina nova 50."
+    xMax={7} yMax={60} ejeX="Taller" ejeY="Bicicletes per treballador i setmana"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['Pedal', 'Roda', 'Roda + màquina']} yTicks={[10, 20, 30, 40, 50]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 40], [0.9, 40]] },
+      { color: 'mustard', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 30], [2.9, 30]] },
+      { color: 'teal', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 50], [4.9, 50]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 40], [2.1, 40], [2.1, 0]] },
+      { color: 'mustard', puntos: [[2.9, 0], [2.9, 30], [4.1, 30], [4.1, 0]] },
+      { color: 'teal', puntos: [[4.9, 0], [4.9, 50], [6.1, 50], [6.1, 0]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 43, texto: '40', ancla: 'middle' }, { x: 3.5, y: 33, texto: '30', ancla: 'middle' }, { x: 5.5, y: 53, texto: '50', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Prova-ho amb els teus números.** Introduïx la producció, els treballadors i les hores de qualsevol negoci (real o inventat) i la calculadora et dona la productivitat per treballador, per hora i per unitat de capital.
@@ -293,6 +338,27 @@ Valdemar és un país inventat. En 2024 el seu PIB nominal va ser de 1.000 milio
 2. **Creixement real**: llevem l'efecte dels preus dividint entre 1,04. 1,06 / 1,04 = 1,019, és a dir, **al voltant d'un 1,9 %** (l'aproximació ràpida 6 − 4 = 2 % dona quasi el mateix). Només eixe 1,9 % és producció de veritat; la resta és pujada de preus.
 3. **PIB real per capita**: la població va créixer un 3 % (10,3 / 10 = 1,03). Dividim: 1,019 / 1,03 = 0,989, és a dir, **va caure al voltant d'un 1 %**. Hi ha més producció real, però es repartix entre bastant més gent.
 4. **Lectura**: el titular «Valdemar creix un 6 %» és veritat i enganya al mateix temps. Descomptats preus i població, a l'habitant mitjà li toca un 1 % menys que l'any anterior. I encara faltaria saber com es repartix (el PIB per capita és una mitjana) i a quin preu ambiental s'ha produït.
+
+<Diagram caption="Amb 2024 com a base 100: el PIB nominal marca 106, el real 101,9 i el real per habitant 99,0. Descomptats els preus i la població, l'índex cau per davall de 100.">
+  <GraficoXY id="g-valdemar" titulo="Valdemar: PIB nominal, real i real per capita en 2025" desc="Tres barres amb 2024 igual a 100. El PIB nominal de 2025 és 106, el PIB real 101,9 i el PIB real per habitant 99,0, és a dir, per davall de l'any anterior."
+    xMax={7.6} yMax={120} ejeX="Mesura (2024 = 100)" ejeY="Índex de 2025"
+    xTicks={[1.4, 3.2, 5.0]} xTickLabels={['Nominal', 'Real', 'Real per capita']} yTicks={[25, 50, 75, 100]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.8, 0], [2, 0], [2, 106], [0.8, 106]] },
+      { color: 'teal', fuerte: true, puntos: [[2.6, 0], [3.8, 0], [3.8, 101.9], [2.6, 101.9]] },
+      { color: 'aubergine', fuerte: true, puntos: [[4.4, 0], [5.6, 0], [5.6, 99], [4.4, 99]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.8, 0], [0.8, 106], [2, 106], [2, 0]] },
+      { color: 'teal', puntos: [[2.6, 0], [2.6, 101.9], [3.8, 101.9], [3.8, 0]] },
+      { color: 'aubergine', puntos: [[4.4, 0], [4.4, 99], [5.6, 99], [5.6, 0]] },
+      { color: 'ink', tenue: true, label: '2024 = 100', dy: -12, puntos: [[0, 100], [6.2, 100]] },
+    ]}
+    notas={[
+      { x: 1.4, y: 90, texto: '106', ancla: 'middle' }, { x: 3.2, y: 90, texto: '101,9', ancla: 'middle' }, { x: 5.0, y: 90, texto: '99,0', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

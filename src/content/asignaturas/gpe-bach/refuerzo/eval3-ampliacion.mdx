@@ -21,10 +21,91 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Un proyecto vende un servicio a 20 €, con coste variable de 8 € y costes fijos de 3.600 €/mes. Calcula el punto muerto. Después, calcula cuántos servicios debe vender para obtener un beneficio objetivo de 1.200 € al mes, y vuelve a calcular el punto muerto si negocia el coste variable a 5 €. Comenta el efecto."
     desarrollo: "<strong>1. Punto muerto inicial.</strong> Margen = 20 − 8 = 12 €. Punto muerto = 3.600 ÷ 12 = <strong>300 servicios/mes</strong>.<br><strong>2. Ventas para un beneficio objetivo de 1.200 €.</strong> Hay que cubrir los costes fijos y, además, el beneficio deseado: unidades = (costes fijos + beneficio objetivo) ÷ margen = (3.600 + 1.200) ÷ 12 = 4.800 ÷ 12 = <strong>400 servicios/mes</strong>.<br>Comprobación: 400 × 12 = 4.800 € de margen total; menos 3.600 € de costes fijos = 1.200 € de beneficio. Correcto.<br><strong>3. Nuevo punto muerto con coste variable de 5 €.</strong> Margen = 20 − 5 = 15 €. Punto muerto = 3.600 ÷ 15 = <strong>240 servicios/mes</strong>.<br><strong>Efecto:</strong> al bajar el coste variable, cada venta aporta más margen (de 12 a 15 €), así que el punto muerto cae de 300 a 240. Reducir el coste variable hace el proyecto más rentable y menos arriesgado, porque necesita vender menos para no perder."
+    grafico:
+      tipo: xy
+      caption: "Con 8 € de coste variable el punto muerto está en 300 servicios al mes; con 5 €, en 240. Para ganar 1.200 € al mes hacen falta 400 servicios (con el coste de 8 €)."
+      props:
+        id: "r-g3a-punto-muerto-negociado"
+        titulo: "Punto muerto con dos costes variables"
+        desc: "Ingreso total (20 euros por servicio) y coste total con coste variable de 8 euros y de 5 euros (3.600 euros fijos). Con 8 euros se cruzan en 300 servicios, con 6.000 euros; con 5 euros, en 240, con 4.800. Con 400 servicios y 8 euros de coste, el beneficio es de 1.200 euros."
+        xMax: 500
+        yMax: 10000
+        ejeX: "Servicios al mes"
+        ejeY: "Euros al mes"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [100, 200, 500]
+        yTicks: [3600]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [440, 8800]] }
+          - { label: "CT (8 €)", color: "terra", puntos: [[0, 3600], [440, 7120]] }
+          - { label: "CT (5 €)", color: "aubergine", puntos: [[0, 3600], [440, 5800]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 3600], [440, 3600]], dy: 14, labelEn: "inicio", dx: 14 }
+        puntos:
+          - { x: 300, y: 6000, label: "Q*", xLabel: "300", yLabel: "6 000", dx: -34, dy: -14 }
+          - { x: 240, y: 4800, label: "Q*'", xLabel: "240", yLabel: "4 800", dx: 10, dy: 24 }
+          - { x: 400, y: 8000, label: "Objetivo", xLabel: "400", yLabel: "8 000", dx: -84, dy: -12 }
+          - { x: 400, y: 6800, guias: false }
   - enunciado: "Para arrancar, un equipo necesita 10.000 € y duda entre dos opciones: A) un préstamo a un interés del 6 % anual; B) esperar un año para reunir el dinero con ahorros propios. Con el préstamo, el proyecto generaría 2.500 € de beneficio el primer año. Razona qué opción conviene calculando el coste de la financiación ajena."
     desarrollo: "<strong>1. Coste del préstamo (intereses del primer año)</strong> = 6 % de 10.000 = 0,06 × 10.000 = <strong>600 €</strong>.<br><strong>2. Opción A (préstamo):</strong> beneficio del año − intereses = 2.500 − 600 = <strong>1.900 € netos</strong>, y el proyecto arranca ya.<br><strong>3. Opción B (esperar):</strong> no se pagan intereses, pero se pierde todo un año de actividad, es decir, los 2.500 € de beneficio que se habrían obtenido (coste de oportunidad).<br><strong>Conclusión:</strong> conviene la opción A. Pagar 600 € de intereses para ganar 2.500 € es un buen negocio, y además permite empezar un año antes. La financiación ajena merece la pena cuando lo que el dinero te hace ganar supera lo que te cuesta."
+    grafico:
+      tipo: xy
+      caption: "Con el préstamo, el proyecto gana 2.500 € el primer año, paga 600 € de intereses y se queda con 1.900 € netos. Esperar un año ahorra los intereses, pero renuncia a esos 2.500 €."
+      props:
+        id: "r-g3a-prestamo"
+        titulo: "Beneficio del primer año con préstamo o esperando"
+        desc: "Dos opciones. Con el préstamo del 6 % sobre 10.000 euros, el beneficio de 2.500 euros se reparte en 600 de intereses y 1.900 netos. Esperando un año no hay beneficio ni intereses."
+        xMax: 10
+        yMax: 3000
+        ejeX: "Opción"
+        ejeY: "Euros del primer año"
+        xTicks: [3, 7]
+        xTickLabels: ["A: préstamo", "B: esperar"]
+        yTicks: [1000, 2000]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 1900], [1.5, 1900]], color: "teal", fuerte: true }
+          - { puntos: [[1.5, 1900], [4.5, 1900], [4.5, 2500], [1.5, 2500]], color: "terra", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 1900], [1.5, 1900], [1.5, 0]], color: "teal" }
+          - { puntos: [[1.5, 1900], [4.5, 1900], [4.5, 2500], [1.5, 2500], [1.5, 1900]], color: "terra" }
+        notas:
+          - { x: 3, y: 914, texto: "Neto 1.900", ancla: "middle" }
+          - { x: 3, y: 2164, texto: "Intereses 600", ancla: "middle" }
+          - { x: 3, y: 2600, texto: "Beneficio del año: 2.500", ancla: "middle" }
+          - { x: 7, y: 150, texto: "0 €: se pierde el año", ancla: "middle" }
   - enunciado: "Dos panaderías facturan lo mismo, 20.000 € al mes en compras y salarios. La panadería A destina 14.000 € a proveedores y empleo del pueblo; la B, solo 8.000 €. Calcula el retorno local de cada una en porcentaje y argumenta, con el efecto multiplicador, por qué A genera más desarrollo local."
     desarrollo: "<strong>1. Retorno local de A</strong> = 14.000 ÷ 20.000 = 0,70 = <strong>70 %</strong>.<br><strong>2. Retorno local de B</strong> = 8.000 ÷ 20.000 = 0,40 = <strong>40 %</strong>.<br><strong>3. Diferencia:</strong> A deja 30 puntos porcentuales más de su gasto en la zona, es decir, 6.000 € más cada mes (14.000 − 8.000).<br><strong>Argumento del efecto multiplicador:</strong> ese dinero que A deja en el pueblo no se queda quieto: el proveedor local, a su vez, compra y emplea en la zona, y el trabajador gasta su salario en comercios cercanos. Cada euro vuelve a circular varias veces dentro del territorio. Por eso, aunque ambas facturen lo mismo, A genera mucho más desarrollo económico local que B."
+    grafico:
+      tipo: xy
+      caption: "Con 20.000 € al mes de gasto cada una, la panadería A deja 14.000 € en el pueblo (70 %) y la B, 8.000 € (40 %): A deja 6.000 € más cada mes."
+      props:
+        id: "r-g3a-retorno-panaderias"
+        titulo: "Retorno local de las panaderías A y B"
+        desc: "Dos columnas de 20.000 euros al mes. Panadería A: 14.000 en el pueblo y 6.000 fuera, un 70 % local. Panadería B: 8.000 en el pueblo y 12.000 fuera, un 40 % local."
+        xMax: 10
+        yMax: 23000
+        ejeX: "Panadería"
+        ejeY: "Euros al mes"
+        xTicks: [3, 7]
+        xTickLabels: ["Panadería A", "Panadería B"]
+        yTicks: [5000, 10000, 15000]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 14000], [1.5, 14000]], color: "teal", fuerte: true }
+          - { puntos: [[1.5, 14000], [4.5, 14000], [4.5, 20000], [1.5, 20000]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 8000], [5.5, 8000]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 8000], [8.5, 8000], [8.5, 20000], [5.5, 20000]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 14000], [1.5, 14000], [1.5, 0]], color: "teal" }
+          - { puntos: [[1.5, 14000], [4.5, 14000], [4.5, 20000], [1.5, 20000], [1.5, 14000]], color: "mustard" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 8000], [5.5, 8000], [5.5, 0]], color: "teal" }
+          - { puntos: [[5.5, 8000], [8.5, 8000], [8.5, 20000], [5.5, 20000], [5.5, 8000]], color: "mustard" }
+        notas:
+          - { x: 3, y: 6724, texto: "Local 14.000", ancla: "middle" }
+          - { x: 3, y: 16724, texto: "Fuera 6.000", ancla: "middle" }
+          - { x: 7, y: 3724, texto: "Local 8.000", ancla: "middle" }
+          - { x: 7, y: 13724, texto: "Fuera 12.000", ancla: "middle" }
+          - { x: 3, y: 20800, texto: "70 % local", ancla: "middle" }
+          - { x: 7, y: 20800, texto: "40 % local", ancla: "middle" }
   - enunciado: "Una empresa de ropa decide fabricar con tejidos reciclados, lo que le sale algo más caro, pero le permite vender más y dar trabajo a un taller de inserción de personas en riesgo de exclusión. Explica por qué es valor compartido (y no filantropía) y con qué ODS conecta."
     desarrollo: "<strong>1. Por qué es valor compartido.</strong> Hay valor compartido cuando la empresa gana <em>resolviendo a la vez</em> un problema social o ambiental, no a costa de él. Aquí la empresa obtiene beneficio (vende más gracias a su propuesta sostenible) y, al mismo tiempo, reduce residuos textiles y emplea a personas en riesgo de exclusión. El impacto positivo está dentro del modelo de negocio.<br><strong>2. Por qué no es filantropía.</strong> No regala parte del beneficio después de ganarlo: el sobrecoste de los tejidos reciclados se convierte en ventaja competitiva (más ventas) y el empleo inclusivo forma parte de su forma de producir. Ganar y aportar son la misma operación.<br><strong>3. ODS con los que conecta:</strong> el <strong>ODS 12</strong> (producción y consumo responsables, por los tejidos reciclados), el <strong>ODS 8</strong> (trabajo decente, por el empleo inclusivo) y el <strong>ODS 10</strong> (reducción de las desigualdades). La clave es elegir solo los que el proyecto toca de verdad."
 ejercicios:

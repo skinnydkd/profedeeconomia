@@ -46,6 +46,7 @@ publicado_en: 2026-05-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import AgregadosMonetarios from '@components/diagrams/AgregadosMonetarios.astro';
 import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
 import Curiosity from '@components/Curiosity.astro';
@@ -193,6 +194,20 @@ k = 1 / c
 
 On `c` és el coeficient de reserves expressat en tant per un. Significa que cada euro dipositat al sistema bancari pot arribar a generar `1/c` euros d'oferta monetària total. Si `c = 10 %`, el multiplicador és 10; si `c = 20 %`, el multiplicador és 5; si `c = 1 %`, el multiplicador teòric és 100, encara que en la pràctica mai s'assolix per les reserves voluntàries i perquè part dels diners prestats torna al circuit en forma d'efectiu, no de depòsit.
 
+<Diagram caption="El multiplicador teòric k = 1 / c: amb un coeficient de reserves de l'1 % val 100, amb el 10 % val 10 i amb el 20 % val 5. Com menys ha de retindre la banca, més multiplica els diners.">
+  <GraficoXY id="g-multiplicador" titulo="El multiplicador dels diners segons el coeficient de reserves" desc="Corba decreixent: el multiplicador val 100 amb un coeficient de l'1 %, 10 amb el 10 % i 5 amb el 20 %."
+    xMax={28} yMax={110} ejeX="Coeficient de reserves c (%)" ejeY="Multiplicador k" simboloX="c" simboloY="k"
+    xTicks={[5, 15, 25]}
+    series={[{ color: 'terra', puntos: Array.from({ length: 49 }, (_, i) => [1 + i * 0.5, 100 / (1 + i * 0.5)]) }]}
+    puntos={[
+      { x: 1, y: 100, xLabel: '1', yLabel: '100' },
+      { x: 10, y: 10, xLabel: '10', yLabel: '10' },
+      { x: 20, y: 5, xLabel: '20', yLabel: '5' },
+    ]}
+  />
+</Diagram>
+
+
 <Diagram caption="Cada depòsit deixa una reserva i presta la resta, que torna al sistema com un nou depòsit. Així la banca multiplica els diners inicials.">
   <CreacionDinero />
 </Diagram>
@@ -241,6 +256,22 @@ d) Quants **diners nous** s'han creat (descomptant el depòsit original)?
 7. **Diners nous creats pel sistema**: 10.000 − 1.000 = **9.000 €**. Estos 9.000 € no existien abans del depòsit de García: els ha creat la cadena de bancs «del no-res», simplement concedint crèdit.
 
 8. **Lliçó pràctica**: els diners bancaris són **endògens** al sistema. Els bancs no són mers intermediaris entre estalviadors i inversors: són **creadors de diners** cada vegada que concedixen un préstec. La quantitat total de diners en una economia depén, per tant, tant del banc central (que fixa el coeficient i els tipus) com de les decisions de crèdit dels bancs comercials.
+
+<Diagram caption="Les rondes de l'exercici 10.2: amb un 10 % de reserves, els 1.000 € inicials van generant dipòsits, préstecs i reserves que tendixen a 10.000, 9.000 i 1.000 €. El límit dels dipòsits és la suma de la sèrie geomètrica, 1.000 / 0,10.">
+  <GraficoXY id="g-rondas-dinero" titulo="Creació de diners bancaris ronda a ronda" desc="Amb un coeficient de reserves del 10 %, els dipòsits acumulats creixen cap a 10 000 euros, els préstecs cap a 9 000 i les reserves cap a 1 000, a partir d'un dipòsit inicial de 1 000."
+    xMax={34} yMax={11500} ejeX="Rondes de dipòsit i préstec" ejeY="Euros acumulats"
+    xTicks={[10, 20, 30]} yTicks={[1000, 9000, 10000]}
+    series={[
+      { color: 'terra', tenue: true, puntos: [[0, 10000], [32, 10000]] },
+      { color: 'teal', tenue: true, puntos: [[0, 9000], [32, 9000]] },
+      { color: 'mustard', tenue: true, puntos: [[0, 1000], [32, 1000]] },
+      { label: 'Dipòsits', color: 'terra', dy: -4, puntos: Array.from({ length: 31 }, (_, n) => [n, 10000 * (1 - 0.9 ** n)]) },
+      { label: 'Préstecs', color: 'teal', dy: 12, puntos: Array.from({ length: 31 }, (_, n) => [n, 9000 * (1 - 0.9 ** n)]) },
+      { label: 'Reserves', color: 'mustard', dy: 4, puntos: Array.from({ length: 31 }, (_, n) => [n, 1000 * (1 - 0.9 ** n)]) },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -351,6 +382,16 @@ Els actius financers s'agrupen en dos grans famílies segons el tipus de dret qu
 - **Renda fixa**. L'emissor (Estat, empresa) es compromet a pagar **fluxos coneguts de bestreta**: cupons periòdics i devolució del principal al venciment. Són **bons**, **obligacions**, **lletres**, **pagarés**. El seu preu al mercat secundari varia amb els tipus d'interés (quan els tipus pugen, els bons antics perden valor relatiu i baixen de preu).
 - **Renda variable**. L'inversor compra una **participació en la propietat** de l'empresa (accions). Els rendiments —dividends i plusvàlues per pujada del preu— **no estan garantits**: depenen de com li vaja a l'empresa. A canvi, la potencial rendibilitat és il·limitada cap amunt.
 
+<Diagram caption="La renda fixa en un gràfic: quan pugen els tipus d'interés de mercat (d'A a B), els bons ja emesos, amb el seu cupó fix, baixen de preu. És el que li va passar a Silicon Valley Bank. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-bono-tipos" titulo="Preu d'un bo i tipus d'interés de mercat" desc="Corba decreixent: com més gran és el tipus d'interés de mercat, menor és el preu d'un bo ja emés amb cupó fix."
+    xMax={18} yMax={36} ejeX="Tipus d'interés de mercat" ejeY="Preu del bo" simboloX="r" simboloY="P"
+    series={[{ color: 'terra', puntos: Array.from({ length: 29 }, (_, i) => [1 + i * 0.5, 120 / (1 + i * 0.5 + 3)]) }]}
+    puntos={[{ x: 2, y: 24, label: 'A', guias: false, dx: 12, dy: -10 }, { x: 8, y: 120 / 11, label: 'B', guias: false, dx: 12, dy: -10 }]}
+    flechas={[{ de: [2, 24], a: [8, 120 / 11], despl: -14 }]}
+  />
+</Diagram>
+
+
 ### Les principals borses
 
 - **BME — Bolsas y Mercados Españoles**. L'operador que gestiona les quatre borses espanyoles (Madrid, Barcelona, Bilbao, València), el mercat de renda fixa (AIAF) i el de derivats (MEFF). Des de 2020 forma part del grup suís **SIX**. L'índex de referència és l'**IBEX 35**, que recull les 35 majors empreses cotitzades per capitalització i liquiditat. La capitalització agregada de BME ronda els **700.000 milions d'euros** el 2024.
@@ -425,6 +466,21 @@ Bitcoin complix imperfectament les tres funcions dels diners:
 - Com a **mitjà de pagament**: l'accepten pocs comerços i les comissions per transacció són elevades per a pagaments xicotets. **El Salvador** el va adoptar com a moneda de curs legal el 2021, en un experiment molt discutit.
 - Com a **unitat de compte**: pràcticament ningú fixa preus en bitcoins; els pocs que accepten pagaments en bitcoin els reconvertixen internament a dòlars o euros.
 - Com a **depòsit de valor**: el seu preu és **extremadament volàtil** —va passar de 65.000 dòlars al novembre 2021 a 16.000 al desembre 2022, va tornar a 70.000 al març 2024 i va superar els **100.000 dòlars** per primera vegada a finals de 2024, oscil·lant el 2025-2026 en una banda molt àmplia entre 80.000 i 120.000 dòlars—. Funciona més com un actiu especulatiu que com un depòsit estable.
+
+<Diagram caption="El bitcoin com a depòsit de valor, amb les dades del text: 65.000 dòlars al novembre de 2021, 16.000 al desembre de 2022, 70.000 al març de 2024 i més de 100.000 a finals de 2024, abans de moure's el 2025-2026 entre 80.000 i 120.000. Només hi ha quatre dates: no s'uneixen amb una línia.">
+  <GraficoXY id="g-bitcoin" titulo="La volatilitat del bitcoin, 2021-2026" desc="Quatre preus del bitcoin: 65 000 dòlars al novembre de 2021, 16 000 al desembre de 2022, 70 000 al març de 2024 i 100 000 al desembre de 2024. El 2025-2026 oscil·la entre 80 000 i 120 000."
+    xMax={68} yMax={135000} ejeX="Data" ejeY="Dòlars per bitcoin"
+    areas={[{ puntos: [[42, 80000], [62, 80000], [62, 120000], [42, 120000]], color: 'mustard' }]}
+    puntos={[
+      { x: 4, y: 65000, xLabel: 'nov. 2021', yLabel: '65 000' },
+      { x: 17, y: 16000, xLabel: 'des. 2022', yLabel: '16 000' },
+      { x: 32, y: 70000, xLabel: 'març 2024', yLabel: '70 000' },
+      { x: 41, y: 100000, xLabel: 'des. 2024', yLabel: '100 000' },
+    ]}
+    notas={[{ x: 52, y: 125000, texto: 'Banda 2025-2026', color: 'mustard', ancla: 'middle' }]}
+  />
+</Diagram>
+
 
 ### Stablecoins i consum energètic
 

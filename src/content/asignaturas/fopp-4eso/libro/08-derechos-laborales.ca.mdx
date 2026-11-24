@@ -52,6 +52,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import RutaReclamacionLaboral from '@components/diagrams/RutaReclamacionLaboral.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -113,6 +114,21 @@ Estos són els deu drets essencials que qualsevol persona assalariada a Espanya 
 9. **Indemnització per acomiadament**. Tres escenaris diferents. **Acomiadament improcedent** (sense causa justificada): 33 dies de salari per any treballat, màxim 24 mensualitats (eren 45 dies abans de la Reforma Laboral de 2012). **Acomiadament procedent per causes objectives** (econòmiques, tècniques, organitzatives): 20 dies per any, màxim 12 mensualitats. **Acomiadament nul** (vulneració de drets fonamentals, per exemple, acomiadar una treballadora embarassada): **readmissió obligatòria** més salaris de tramitació.
 10. **Llibertat sindical, negociació col·lectiva i vaga** (Constitució, arts. 28 i 37). Dret a afiliar-se al sindicat que es vullga (o a cap), a participar en la negociació del conveni del sector i a exercir el dret de vaga sense represàlies.
 
+<Diagram caption="Dies de salari d'indemnització segons els anys treballats: 33 per any en l'acomiadament improcedent i 20 per any en el procedent per causes objectives. Amb 10 anys serien 330 i 200 dies. El gràfic arriba als 15 anys, abans que actuen els límits de 24 i 12 mensualitats.">
+  <GraficoXY id="g-indemnizacion-despido" titulo="Indemnització per acomiadament segons els anys treballats" desc="Dues rectes des de zero: l'acomiadament improcedent suma 33 dies de salari per any treballat, 330 dies amb 10 anys i 495 amb 15; l'acomiadament procedent per causes objectives suma 20 dies per any, 200 amb 10 anys i 300 amb 15."
+    xMax={17} yMax={550} ejeX="Anys treballats" ejeY="Dies de salari"
+    xTicks={[5, 10, 15]} yTicks={[100, 400, 500]}
+    series={[
+      { color: 'terra', label: 'Improcedent', puntos: [[0, 0], [15, 495]] },
+      { color: 'teal', label: 'Objectiu', puntos: [[0, 0], [15, 300]] },
+    ]}
+    puntos={[
+      { x: 10, y: 330, label: '330 dies', yLabel: '330', dx: -75, dy: -14 },
+      { x: 10, y: 200, label: '200 dies', yLabel: '200', dx: 12, dy: 24 },
+    ]}
+  />
+</Diagram>
+
 <Callout label="Concepte clau" title="El teu salari mínim no és el SMI, és el del teu conveni" variant="concept">
 
 El SMI és un sòl legal absolut: **ningú pot cobrar menys**. Però la majoria de sectors tenen un **conveni col·lectiu** propi, negociat entre sindicats i patronal, que fixa salaris més alts que el SMI per a cada categoria professional. Hostaleria, comerç, construcció, sanitat privada, banca, oficines i despatxos: tots tenen conveni. Abans d'acceptar un sou, **busca el teu conveni en el BOE o en la web del sindicat del sector** i comprova què li correspon a la teua categoria. Cobrar el SMI (1.221 € el 2026) quan el teu conveni fixa 1.400 € és una infracció que l'empresa ha de corregir i abonar amb efectes retroactius.
@@ -164,6 +180,20 @@ Marta firma un contracte temporal com a cambrera en un chiringuito de Gandia de 
 3. Càlcul de l'import: el salari diari brut és 1.350 / 30 = **45 €/dia**. Per tant, 7,5 × 45 = **337,5 € bruts**.
 4. Eixe import apareix en la liquidació junt amb el salari de l'últim mes, la part proporcional de pagues extres i la liquidació d'hores extra si n'hi haguera.
 5. Si Marta volguera gaudir-les en compte de cobrar-les, hauria de pactar-ho amb l'empresa **per escrit** abans del fi del contracte. L'empresa no està obligada a acceptar-ho si organitzativament no pot prescindir d'ella.
+
+<Diagram caption="Les vacances creixen en línia recta amb els dies treballats: 30 dies a l'any complet (365 dies) i 7,56 en el contracte d'estiu de Marta (92 dies).">
+  <GraficoXY id="g-vacaciones-proporcionales" titulo="Vacances segons els dies treballats" desc="Recta que parteix de zero i arriba a 30 dies de vacances amb 365 dies treballats; amb els 92 dies del contracte d'estiu de Marta corresponen 7,56 dies."
+    xMax={400} yMax={35} ejeX="Dies treballats" ejeY="Dies de vacances"
+    xTicks={[200, 300]} yTicks={[10, 20]}
+    series={[
+      { color: 'terra', puntos: [[0, 0], [365, 30]] },
+    ]}
+    puntos={[
+      { x: 92, y: 7.56, label: '7,56 dies', xLabel: '92', yLabel: '7,56', dx: 12, dy: 24 },
+      { x: 365, y: 30, label: 'Any sencer: 30 dies', xLabel: '365', yLabel: '30', dx: -150 },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

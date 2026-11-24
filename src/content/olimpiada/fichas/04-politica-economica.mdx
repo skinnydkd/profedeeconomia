@@ -24,6 +24,10 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import MultiplicadorFiscal from '@components/diagrams/MultiplicadorFiscal.astro';
+
 ## De qué va: el objetivo de estabilización
 
 Toda economía oscila entre fases de expansión y de recesión. Cuando la actividad se derrumba el desempleo sube; cuando se recalienta los precios se disparan. La **política económica de estabilización** persigue suavizar esas oscilaciones y acercar la economía a cuatro objetivos simultáneos: crecimiento sostenido del PIB, pleno empleo (paro friccional mínimo), estabilidad de precios (inflación baja y predecible) y equilibrio exterior (balanza de pagos sostenible).
@@ -96,6 +100,10 @@ Una política fiscal **restrictiva** hace lo contrario —↓G o ↑T— para en
 
 El **multiplicador del gasto público** explica por qué el efecto sobre el PIB supera al gasto inicial: cada euro público se convierte en renta para alguien que consume una fracción *c* (propensión marginal al consumo), esa fracción en renta para otro, y así sucesivamente. En el modelo simple el multiplicador es k = 1 / (1 − c). Si c = 0,75, un euro de gasto mueve 4 euros de PIB. En economías abiertas y con impuestos el multiplicador real es menor (aprox. 1 a 1,5 según el tipo de gasto), porque parte de la renta se filtra a importaciones y a recaudación.
 
+<Diagram caption="El multiplicador del gasto público con c = 0,75: cada euro de gasto genera rondas sucesivas de consumo cada vez menores y la renta total acaba multiplicada por k = 1 / (1 − 0,75) = 4.">
+  <MultiplicadorFiscal />
+</Diagram>
+
 ### Déficit público y estabilizadores automáticos
 
 Cuando el gasto público supera a los ingresos el resultado es **déficit público** (medido en porcentaje del PIB). El déficit acumulado año a año constituye la **deuda pública**. Una deuda elevada genera intereses que presionan el gasto futuro y limitan el margen de maniobra fiscal.
@@ -114,7 +122,56 @@ En el gráfico AD-AS (nivel de precios en el eje vertical, producción real en e
 
 **Política expansiva** (monetaria o fiscal): la curva de DA se desplaza a la **derecha**, del punto E₀ al punto E₁. En el tramo horizontal de la OA (paro elevado, capacidad ociosa), el efecto es principalmente sobre la producción (Y↑) con poco aumento de precios. Conforme la economía se acerca al nivel de producción potencial, el tramo de la OA se vuelve más inclinado y el efecto recae más sobre los precios (P↑) que sobre la producción.
 
+<Diagram caption="Política expansiva con capacidad ociosa: la DA se desplaza de DA₁ a DA₂ y el equilibrio pasa de E₀ a E₁ por el tramo horizontal de la OA. Aumenta la producción (de Y₀ a Y₁) y el nivel de precios apenas cambia.">
+  <GraficoXY id="g-ol-politica-expansion-ociosa" titulo="Política expansiva con capacidad ociosa (AD-AS)" desc="Oferta agregada OA horizontal al principio y cada vez más inclinada. La demanda agregada se desplaza a la derecha, de DA1 a DA2. El equilibrio pasa de E0 a E1 en el tramo plano: la producción sube de Y0 a Y1 y el nivel de precios casi no varía."
+    xMax={100} yMax={100} ejeX="Producción real (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA', color: 'mustard', puntos: [[10, 30], ...Array.from({ length: 17 }, (_, i) => [40 + i * 2, 30 + 0.055 * (i * 2) ** 2])] },
+      { label: 'DA₁', color: 'terra', tenue: true, labelEn: 'inicio', dx: 8, dy: -8, puntos: [[5, 50], [60, 6]] },
+      { label: 'DA₂', color: 'terra', labelEn: 'inicio', dx: 8, dy: -8, puntos: [[25, 50], [80, 6]] },
+    ]}
+    puntos={[
+      { x: 30, y: 30, label: 'E₀', xLabel: 'Y₀', yLabel: 'P₀', dx: 10, dy: 26 },
+      { x: 46.8, y: 32.5, label: 'E₁', xLabel: 'Y₁', dx: 8, dy: 28 },
+    ]}
+    flechas={[{ de: [12.5, 44], a: [32.5, 44] }]}
+    notas={[{ x: 11, y: 20, texto: 'Capacidad ociosa' }]}
+  />
+</Diagram>
+
+<Diagram caption="Política expansiva cerca de la producción potencial: con la misma ampliación de la DA, el equilibrio recorre ahora el tramo empinado de la OA. Pasa de E₀ a E₁ con un aumento pequeño de la producción y una subida mayor del nivel de precios.">
+  <GraficoXY id="g-ol-politica-expansion-pleno" titulo="Política expansiva cerca del pleno empleo (AD-AS)" desc="Con la misma oferta agregada OA, la demanda agregada se desplaza a la derecha, de DA1 a DA2, en el tramo empinado. El equilibrio pasa de E0 a E1: la producción sube poco, de Y0 a Y1, y el nivel de precios sube de P0 a P1."
+    xMax={100} yMax={100} ejeX="Producción real (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA', color: 'mustard', puntos: [[10, 30], ...Array.from({ length: 17 }, (_, i) => [40 + i * 2, 30 + 0.055 * (i * 2) ** 2])] },
+      { label: 'DA₁', color: 'terra', tenue: true, labelEn: 'inicio', dx: 8, dy: -8, puntos: [[35, 78.2], [95, 30.2]] },
+      { label: 'DA₂', color: 'terra', labelEn: 'inicio', dx: 8, dy: -8, puntos: [[40, 90.2], [95, 46.2]] },
+    ]}
+    puntos={[
+      { x: 62, y: 56.62, label: 'E₀', xLabel: 'Y₀', yLabel: 'P₀', dx: 12, dy: 26 },
+      { x: 66.6, y: 68.92, label: 'E₁', xLabel: 'Y₁', yLabel: 'P₁', dx: 12, dy: 26 },
+    ]}
+    flechas={[{ de: [39, 75], a: [59, 75] }]}
+  />
+</Diagram>
+
 **Política restrictiva**: la DA se desplaza a la **izquierda**, reduciendo tanto la producción como los precios (o frenando su subida).
+
+<Diagram caption="Política restrictiva: la DA se desplaza a la izquierda, de DA₁ a DA₂. El equilibrio pasa de E₀ a E₁ con menor producción y menor nivel de precios (o con una subida de precios más lenta).">
+  <GraficoXY id="g-ol-politica-restrictiva" titulo="Política restrictiva (AD-AS)" desc="La demanda agregada se desplaza a la izquierda, de DA1 a DA2, sobre la misma oferta agregada OA. El equilibrio pasa de E0 a E1: la producción baja de Y0 a Y1 y el nivel de precios baja de P0 a P1."
+    xMax={100} yMax={100} ejeX="Producción real (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA', color: 'mustard', puntos: [[10, 30], ...Array.from({ length: 17 }, (_, i) => [40 + i * 2, 30 + 0.055 * (i * 2) ** 2])] },
+      { label: 'DA₁', color: 'terra', tenue: true, labelEn: 'inicio', dx: 8, dy: -8, puntos: [[40, 90.2], [95, 46.2]] },
+      { label: 'DA₂', color: 'terra', labelEn: 'inicio', dx: 8, dy: -8, puntos: [[35, 78.2], [95, 30.2]] },
+    ]}
+    puntos={[
+      { x: 66.6, y: 68.92, label: 'E₀', xLabel: 'Y₀', yLabel: 'P₀', dx: 12, dy: 26 },
+      { x: 62, y: 56.62, label: 'E₁', xLabel: 'Y₁', yLabel: 'P₁', dx: 12, dy: 26 },
+    ]}
+    flechas={[{ de: [59, 75], a: [39, 75] }]}
+  />
+</Diagram>
 
 A **corto plazo** la OA puede ser rígida (salarios pactados, contratos fijos), por lo que los desplazamientos de la DA producen efectos reales sobre la producción. A **largo plazo**, la OA tiende a la producción potencial y los efectos son fundamentalmente sobre los precios, no sobre la producción real. Este resultado es central: las políticas de demanda no pueden elevar indefinidamente la producción real si la oferta está en su límite.
 

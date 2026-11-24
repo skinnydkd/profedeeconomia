@@ -30,6 +30,9 @@ estado: publicado
 slug: "olimpiada/fichas/06-contabilidad.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## El balanç de situació
 
 El balanç recull la **fotografia patrimonial** de l'empresa en una data concreta: què té, què deu i quant val per als seus propietaris.
@@ -170,6 +173,30 @@ Ingressos d'explotació: 50 000 €. Despeses d'explotació (sense amortitzacion
 
 FM > 0 → **equilibri financer**. L'empresa finança 35 000 € del seu actiu corrent amb recursos permanents.
 
+<Diagram caption="El balanç del mini-exemple per masses (milers d'euros): l'actiu de 100 es reparteix en ANC 60 i AC 40; l'altre costat, en PN 75, PNC 20 i PC 5. El fons de maniobra és la part de l'AC que no finança el PC: AC − PC = 40 − 5 = 35, igual que PN + PNC − ANC = 95 − 60.">
+  <GraficoXY id="g-ol-conta-balance" titulo="Balanç per masses patrimonials i fons de maniobra" desc="Dues barres apilades que sumen 100 mil euros. L'actiu es compon d'actiu no corrent, 60, i actiu corrent, 40. El patrimoni net i el passiu es componen de patrimoni net, 75, passiu no corrent, 20, i passiu corrent, 5. La fletxa marca el fons de maniobra, 35."
+    xMax={12} yMax={115} ejeX="Masses patrimonials" ejeY="Milers d'euros"
+    xTicks={[2.5, 8.5]} xTickLabels={['Actiu (100)', 'PN + Passiu (100)']} yTicks={[20, 40, 60, 80, 100]}
+    areas={[
+      { color: 'aubergine', fuerte: true, puntos: [[1, 0], [4, 0], [4, 60], [1, 60]] },
+      { color: 'teal', fuerte: true, puntos: [[1, 60], [4, 60], [4, 100], [1, 100]] },
+      { color: 'mustard', fuerte: true, puntos: [[7, 0], [10, 0], [10, 75], [7, 75]] },
+      { color: 'aubergine', fuerte: true, puntos: [[7, 75], [10, 75], [10, 95], [7, 95]] },
+      { color: 'teal', fuerte: true, puntos: [[7, 95], [10, 95], [10, 100], [7, 100]] },
+    ]}
+    series={[
+      { color: 'ink', tenue: true, puntos: [[4, 60], [7, 60]] },
+      { color: 'ink', tenue: true, puntos: [[4, 95], [7, 95]] },
+    ]}
+    flechas={[{ de: [4.4, 60], a: [4.4, 95] }]}
+    notas={[
+      { x: 2.5, y: 29, texto: 'ANC 60', ancla: 'middle' }, { x: 2.5, y: 79, texto: 'AC 40', ancla: 'middle' },
+      { x: 8.5, y: 36, texto: 'PN 75', ancla: 'middle' }, { x: 8.5, y: 84, texto: 'PNC 20', ancla: 'middle' },
+      { x: 10.2, y: 96.5, texto: 'PC 5' }, { x: 4.7, y: 77, texto: 'FM = 35' },
+    ]}
+  />
+</Diagram>
+
 **3. Compte de resultats**
 
 | Concepte | Import (€) |
@@ -182,6 +209,29 @@ FM > 0 → **equilibri financer**. L'empresa finança 35 000 € del seu actiu c
 | **BAI** | **15 000** |
 | − Impost de Societats (25 %) | −3 750 |
 | **Resultat de l'exercici** | **11 250** |
+
+<Diagram caption="El compte de resultats del mini-exemple en cascada (milers d'euros): d'uns ingressos de 50 es resten les despeses d'explotació (30) i les amortitzacions (4) fins al BAII de 16; les despeses financeres (1) donen el BAI de 15 i l'impost (3,75) deixa un resultat de l'exercici d'11,25.">
+  <GraficoXY id="g-ol-conta-cascada" titulo="Compte de resultats en cascada" desc="Barres flotants, en milers d'euros: ingressos 50, despeses d'explotació −30, amortitzacions −4, BAII 16, despeses financeres −1, BAI 15, impost sobre societats −3,75 i resultat de l'exercici 11,25."
+    xMax={8.5} yMax={60} ejeX="Compte de resultats" ejeY="Milers d'euros"
+    xTicks={[0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5]} xTickLabels={['Ingressos', 'Despeses', 'Amort.', 'BAII', 'Financ.', 'BAI', 'IS', 'Resultat']} yTicks={[10, 20, 30, 40, 50]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.15, 0], [0.85, 0], [0.85, 50], [0.15, 50]] },
+      { color: 'terra', fuerte: true, puntos: [[1.15, 20], [1.85, 20], [1.85, 50], [1.15, 50]] },
+      { color: 'terra', fuerte: true, puntos: [[2.15, 16], [2.85, 16], [2.85, 20], [2.15, 20]] },
+      { color: 'teal', fuerte: true, puntos: [[3.15, 0], [3.85, 0], [3.85, 16], [3.15, 16]] },
+      { color: 'terra', fuerte: true, puntos: [[4.15, 15], [4.85, 15], [4.85, 16], [4.15, 16]] },
+      { color: 'teal', fuerte: true, puntos: [[5.15, 0], [5.85, 0], [5.85, 15], [5.15, 15]] },
+      { color: 'terra', fuerte: true, puntos: [[6.15, 11.25], [6.85, 11.25], [6.85, 15], [6.15, 15]] },
+      { color: 'teal', fuerte: true, puntos: [[7.15, 0], [7.85, 0], [7.85, 11.25], [7.15, 11.25]] },
+    ]}
+    notas={[
+      { x: 0.5, y: 51.5, texto: '50', ancla: 'middle' }, { x: 1.5, y: 51.5, texto: '−30', ancla: 'middle' },
+      { x: 2.5, y: 21.5, texto: '−4', ancla: 'middle' }, { x: 3.5, y: 17.5, texto: '16', ancla: 'middle' },
+      { x: 4.5, y: 17.5, texto: '−1', ancla: 'middle' }, { x: 5.5, y: 16.5, texto: '15', ancla: 'middle' },
+      { x: 6.5, y: 16.5, texto: '−3,75', ancla: 'middle' }, { x: 7.5, y: 12.75, texto: '11,25', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **4. Rendibilitats**
 

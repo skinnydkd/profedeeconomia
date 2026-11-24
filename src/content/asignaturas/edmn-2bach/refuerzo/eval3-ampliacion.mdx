@@ -27,12 +27,125 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una empresa dispone de 30.000 € y estudia dos proyectos excluyentes, ambos a 4 años, con una tasa de descuento del 10 %. Proyecto A: flujos de 12.000 € cada año. Proyecto B: flujos de 6.000 €, 10.000 €, 14.000 € y 18.000 €. ¿Cuál debe elegir?"
     desarrollo: "<strong>Proyecto A</strong><br>12.000 ÷ 1,1 = 10.909,09 €<br>12.000 ÷ 1,21 = 9.917,36 €<br>12.000 ÷ 1,331 = 9.015,78 €<br>12.000 ÷ 1,4641 = 8.196,16 €<br>Suma actualizada = 38.038,39 €<br>VAN(A) = 38.038,39 − 30.000 = <strong>+8.038,39 €</strong><br><br><strong>Proyecto B</strong><br>6.000 ÷ 1,1 = 5.454,55 €<br>10.000 ÷ 1,21 = 8.264,46 €<br>14.000 ÷ 1,331 = 10.518,41 €<br>18.000 ÷ 1,4641 = 12.294,24 €<br>Suma actualizada = 36.531,66 €<br>VAN(B) = 36.531,66 − 30.000 = <strong>+6.531,66 €</strong><br><br><strong>Decisión</strong>: los dos VAN son positivos, pero VAN(A) &gt; VAN(B). Se elige el <strong>Proyecto A</strong>: aunque B concentra flujos altos al final, descontarlos al 10 % les resta valor, y A genera más valor actual. Además, A recupera antes la inversión, con menos riesgo."
+    grafico:
+      tipo: xy
+      caption: "VAN de los proyectos A y B según la tasa de descuento. Con k = 10 % el A vale +8.038,39 € y el B, +6.531,66 €. Ambos parten de 18.000 € con k = 0 y el B cae más deprisa porque sus flujos llegan más tarde."
+      props:
+        id: "r-e3a-van-proyectos"
+        titulo: "VAN de los proyectos A y B según la tasa de descuento"
+        desc: "Los dos VAN parten de 18.000 euros con una tasa del 0 % y bajan al subir la tasa, el B más deprisa. Con k = 10 % el A vale 8.038 euros y el B, 6.532. El A se anula con una TIR del 21,86 % y el B, del 18,10 %."
+        xMax: 26
+        yMax: 20000
+        yMin: -3000
+        ejeX: "Tasa de descuento k"
+        ejeY: "VAN (€)"
+        simboloX: "k"
+        xTicks: [5, 15]
+        xTickLabels: ["5 %", "15 %"]
+        yTicks: [10000, 20000]
+        series:
+          - { label: "A", color: "terra", puntos: [[0, 18000], [1.25, 16536.7], [2.5, 15143.69], [3.75, 13816.61], [5, 12551.41], [6.25, 11344.33], [7.5, 10191.92], [8.75, 9090.93], [10, 8038.39], [11.25, 7031.5], [12.5, 6067.67], [13.75, 5144.5], [15, 4259.74], [16.25, 3411.29], [17.5, 2597.18], [18.75, 1815.59], [20, 1064.81], [21.25, 343.24], [22.5, -350.63]], dy: -6 }
+          - { label: "B", color: "teal", puntos: [[0, 18000], [1.25, 16295.83], [2.5, 14679.31], [3.75, 13144.76], [5, 11686.95], [6.25, 10301.05], [7.5, 8982.58], [8.75, 7727.39], [10, 6531.66], [11.25, 5391.8], [12.5, 4304.53], [13.75, 3266.75], [15, 2275.61], [16.25, 1328.45], [17.5, 422.79], [18.75, -443.69], [20, -1273.15], [21.25, -2067.6], [22.5, -2828.94]], dy: 14 }
+        puntos:
+          - { x: 10, y: 8038.39, xLabel: "10 %", yLabel: "8 038" }
+          - { x: 10, y: 6531.66, yLabel: "6 532" }
+          - { x: 21.86, y: 0, xLabel: "21,86 %" }
+          - { x: 18.1, y: 0, xLabel: "18,10 %" }
+        notas:
+          - { x: 11, y: 17000, texto: "TIR A 21,86 % · TIR B 18,10 %" }
   - enunciado: "Una pyme presenta este balance (en miles de €): activo no corriente 300, existencias 80, realizable 60, disponible 20; patrimonio neto 180, pasivo no corriente 160, pasivo corriente 120. Calcula el fondo de maniobra y los ratios de liquidez, solvencia y endeudamiento, e interprétalos."
     desarrollo: "Activo corriente = 80 + 60 + 20 = 160; pasivo total = 160 + 120 = 280; activo total = 460.<br><strong>Fondo de maniobra</strong> = AC − PC = 160 − 120 = <strong>+40</strong> (positivo, hay colchón).<br><strong>Liquidez general</strong> = 160 ÷ 120 = <strong>1,33</strong> (algo por debajo del rango 1,5-2).<br><strong>Acid test</strong> = (160 − 80) ÷ 120 = 80 ÷ 120 = <strong>0,67</strong> (por debajo de 1: depende de vender existencias).<br><strong>Solvencia</strong> = 460 ÷ 280 = <strong>1,64</strong> (por encima de 1,5: cubre sus deudas).<br><strong>Endeudamiento</strong> = 280 ÷ 460 = <strong>0,61</strong> (61 %, algo alto frente al 0,4-0,6 recomendado).<br><strong>Diagnóstico</strong>: solvencia correcta, pero liquidez ajustada y endeudamiento en el límite superior. Recomendación: reforzar tesorería y trasladar parte del pasivo corriente a largo plazo para aliviar la presión a corto."
+    grafico:
+      tipo: xy
+      caption: "Balance de la pyme en miles de euros. El activo corriente (160) supera al pasivo corriente (120) en 40: ese es el fondo de maniobra (FM). La deuda total (160 + 120 = 280) financia el 61 % del activo."
+      props:
+        id: "r-e3a-balance"
+        titulo: "Balance de la pyme en masas patrimoniales"
+        desc: "Dos columnas en miles de euros. Activo: no corriente 300 y corriente 160, total 460. Patrimonio neto 180, pasivo no corriente 160 y pasivo corriente 120, total 460. El fondo de maniobra es de 40."
+        xMax: 8.5
+        yMax: 520
+        ejeX: "Miles de euros"
+        ejeY: "Miles de euros"
+        xTicks: [2.4, 6.4]
+        xTickLabels: ["Activo", "PN + pasivo"]
+        yTicks: [200]
+        areas:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 300], [1, 300]], color: "terra", fuerte: true }
+          - { puntos: [[1, 300], [3.8, 300], [3.8, 460], [1, 460]], color: "mustard", fuerte: true }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 180], [5, 180]], color: "teal", fuerte: true }
+          - { puntos: [[5, 180], [7.8, 180], [7.8, 340], [5, 340]], color: "aubergine", fuerte: true }
+          - { puntos: [[5, 340], [7.8, 340], [7.8, 460], [5, 460]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 300], [1, 300], [1, 0]], color: "terra" }
+          - { puntos: [[1, 300], [3.8, 300], [3.8, 460], [1, 460], [1, 300]], color: "mustard" }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 180], [5, 180], [5, 0]], color: "teal" }
+          - { puntos: [[5, 180], [7.8, 180], [7.8, 340], [5, 340], [5, 180]], color: "aubergine" }
+          - { puntos: [[5, 340], [7.8, 340], [7.8, 460], [5, 460], [5, 340]], color: "mustard" }
+        notas:
+          - { x: 2.4, y: 143.76, texto: "ANC 300", ancla: "middle" }
+          - { x: 2.4, y: 373.76, texto: "AC 160", ancla: "middle" }
+          - { x: 6.4, y: 83.76, texto: "PN 180", ancla: "middle" }
+          - { x: 6.4, y: 253.76, texto: "PNC 160", ancla: "middle" }
+          - { x: 6.4, y: 393.76, texto: "PC 120", ancla: "middle" }
+          - { x: 2.4, y: 470, texto: "Activo: 460", ancla: "middle" }
+          - { x: 6.4, y: 470, texto: "PN + pasivo: 460", ancla: "middle" }
+          - { x: 4.4, y: 500, texto: "FM = 160 − 120 = +40", ancla: "middle", color: "teal" }
   - enunciado: "Una empresa tiene un activo total de 400.000 €, un patrimonio neto de 150.000 € y un pasivo de 250.000 € con un coste medio del 6 %. Su BAII es de 48.000 € y el impuesto de sociedades, del 25 %. Calcula ROA y ROE y razona el efecto del apalancamiento."
     desarrollo: "<strong>ROA</strong> = BAII ÷ Activo total × 100 = 48.000 ÷ 400.000 × 100 = <strong>12 %</strong>.<br>Para el ROE calculamos el beneficio neto:<br>Intereses = 6 % · 250.000 = 15.000 €<br>BAI = 48.000 − 15.000 = 33.000 €<br>Impuesto = 25 % · 33.000 = 8.250 €<br>Beneficio neto = 33.000 − 8.250 = 24.750 €<br><strong>ROE</strong> = 24.750 ÷ 150.000 × 100 = <strong>16,5 %</strong>.<br><strong>Apalancamiento</strong>: como ROA (12 %) &gt; coste de la deuda (6 %), cada euro prestado rinde más de lo que cuesta y ese margen se queda en manos de los socios. Por eso ROE (16,5 %) &gt; ROA (12 %): la deuda <strong>amplifica favorablemente</strong> la rentabilidad. Si el ROA cayera por debajo del 6 %, el efecto se invertiría."
+    grafico:
+      tipo: xy
+      caption: "Con deuda de 250.000 € al 6 % y patrimonio neto de 150.000 €, un ROA del 12 % da un ROE del 16,5 % (22 % antes de impuestos). La rentabilidad antes de impuestos de los socios supera al ROA cuando este supera el coste de la deuda, el 6 %."
+      props:
+        id: "r-e3a-apalancamiento"
+        titulo: "ROE y ROA con deuda al 6 %"
+        desc: "Con deuda de 250.000 euros al 6 % y patrimonio neto de 150.000, la rentabilidad antes de impuestos de los socios es 2,67 veces el ROA menos 10 puntos, y el ROE, después de un 25 % de impuestos, 2 veces el ROA menos 7,5. Con ROA del 12 %: 22 % antes de impuestos y ROE del 16,5 %. La recta con deuda corta la del ROA en el 6 %, el coste de la deuda."
+        xMax: 18
+        yMax: 36
+        yMin: -12
+        ejeX: "ROA, rentabilidad económica (%)"
+        ejeY: "Rentabilidad de los socios (%)"
+        simboloX: "ROA"
+        xTicks: [9, 15]
+        yTicks: [30]
+        series:
+          - { label: "ROA", color: "ink", tenue: true, puntos: [[0, 0], [15, 15]], dy: 14 }
+          - { label: "BAI/PN", color: "terra", puntos: [[0, -10], [15, 30]] }
+          - { label: "ROE", color: "teal", puntos: [[0, -7.5], [15, 22.5]], dy: 6 }
+        puntos:
+          - { x: 6, y: 6, xLabel: "6", yLabel: "6", label: "i = 6 %", dx: -66, dy: -14 }
+          - { x: 12, y: 12, xLabel: "12", yLabel: "12" }
+          - { x: 12, y: 16.5, yLabel: "16,5" }
+          - { x: 12, y: 22, yLabel: "22" }
   - enunciado: "Una inversión de 15.000 € genera flujos de 5.000 €, 6.000 €, 7.000 € y 5.000 € en cuatro años. Con k = 8 %, calcula el payback simple y el payback descontado y compáralos."
-    desarrollo: "<strong>Payback simple</strong> (flujos sin descontar):<br>Acumulado año 1 = 5.000; año 2 = 11.000; año 3 = 18.000 → se recupera durante el año 3.<br>Faltaban 15.000 − 11.000 = 4.000 €; 4.000 ÷ 7.000 = 0,57 → <strong>payback simple ≈ 2,57 años</strong>.<br><br><strong>Payback descontado</strong> (flujos actualizados al 8 %):<br>Año 1: 5.000 ÷ 1,08 = 4.629,63 €<br>Año 2: 6.000 ÷ 1,1664 = 5.144,03 €<br>Año 3: 7.000 ÷ 1,259712 = 5.557,62 €<br>Año 4: 5.000 ÷ 1,360489 = 3.675,15 €<br>Acumulado descontado: año 1 = 4.629,63; año 2 = 9.773,66; año 3 = 15.331,28 → se recupera durante el año 3.<br>Faltaban 15.000 − 9.773,66 = 5.226,34 €; 5.226,34 ÷ 5.557,62 = 0,94 → <strong>payback descontado ≈ 2,94 años</strong>.<br><strong>Conclusión</strong>: el payback descontado (2,94) es mayor que el simple (2,57) porque tiene en cuenta que el dinero futuro vale menos. Siempre que k &gt; 0, el descontado es más largo y más realista."
+    desarrollo: "<strong>Payback simple</strong> (flujos sin descontar):<br>Acumulado año 1 = 5.000; año 2 = 11.000; año 3 = 18.000 → se recupera durante el año 3.<br>Faltaban 15.000 − 11.000 = 4.000 €; 4.000 ÷ 7.000 = 0,57 → <strong>payback simple ≈ 2,57 años</strong>.<br><br><strong>Payback descontado</strong> (flujos actualizados al 8 %):<br>Año 1: 5.000 ÷ 1,08 = 4.629,63 €<br>Año 2: 6.000 ÷ 1,1664 = 5.144,03 €<br>Año 3: 7.000 ÷ 1,259712 = 5.556,83 €<br>Año 4: 5.000 ÷ 1,360489 = 3.675,15 €<br>Acumulado descontado: año 1 = 4.629,63; año 2 = 9.773,66; año 3 = 15.330,49 → se recupera durante el año 3.<br>Faltaban 15.000 − 9.773,66 = 5.226,34 €; 5.226,34 ÷ 5.556,83 = 0,94 → <strong>payback descontado ≈ 2,94 años</strong>.<br><strong>Conclusión</strong>: el payback descontado (2,94) es mayor que el simple (2,57) porque tiene en cuenta que el dinero futuro vale menos. Siempre que k &gt; 0, el descontado es más largo y más realista."
+    grafico:
+      tipo: xy
+      caption: "Flujo de caja acumulado de la inversión de 15.000 €. Sin descontar se recupera a los 2,57 años; descontando al 8 %, a los 2,94: el dinero futuro vale menos."
+      props:
+        id: "r-e3a-payback"
+        titulo: "Payback simple y descontado"
+        desc: "Flujo acumulado sin descontar: 5.000, 11.000, 18.000 y 23.000 euros al final de cada año; cruza la inversión de 15.000 euros a los 2,57 años. Descontado al 8 %: 4.630, 9.774, 15.330 y 19.006 euros; cruza los 15.000 a los 2,94 años."
+        xMax: 5.5
+        yMax: 26000
+        ejeX: "Años desde la inversión"
+        ejeY: "Euros recuperados"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [1, 2, 4]
+        yTicks: [10000, 20000]
+        series:
+          - { label: "Simple", color: "teal", puntos: [[0, 0], [1, 5000], [2, 11000], [3, 18000], [4, 23000]], dy: -4 }
+          - { label: "Descontado", color: "terra", puntos: [[0, 0], [1, 4629.63], [2, 9773.66], [3, 15330.49], [4, 19005.64]], dy: 4 }
+          - { label: "Inversión", color: "ink", tenue: true, puntos: [[0, 15000], [4, 15000]], dy: -8, labelEn: "inicio", dx: 14 }
+        puntos:
+          - { x: 2.57, y: 15000, label: "PB simple", xLabel: "2,57", yLabel: "15 000", dx: -80, dy: -14 }
+          - { x: 2.94, y: 15000, label: "PB desc.", xLabel: "2,94", dx: 10, dy: 28 }
+          - { x: 1, y: 5000, guias: false }
+          - { x: 2, y: 11000, guias: false }
+          - { x: 3, y: 18000, guias: false }
+          - { x: 4, y: 23000, guias: false }
+          - { x: 2, y: 9773.66, guias: false }
+          - { x: 4, y: 19005.64, guias: false }
 ejercicios:
   - enunciado: "Una inversión de 20.000 € genera flujos de 8.000 € el año 1, 9.000 € el año 2 y 10.000 € el año 3. Con una tasa de descuento del 10 %, calcula el VAN y di si es rentable."
     solucion: "VAN = −20.000 + 8.000/1,1 + 9.000/1,1² + 10.000/1,1³<br>Año 1: 8.000 ÷ 1,1 = 7.272,73 €<br>Año 2: 9.000 ÷ 1,21 = 7.438,02 €<br>Año 3: 10.000 ÷ 1,331 = 7.513,15 €<br>Suma de flujos actualizados = 7.272,73 + 7.438,02 + 7.513,15 = 22.223,90 €<br>VAN = −20.000 + 22.223,90 = <strong>+2.223,90 €</strong>.<br>Como VAN &gt; 0, la inversión <strong>es rentable</strong> y debe aceptarse."

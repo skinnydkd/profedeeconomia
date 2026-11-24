@@ -34,6 +34,7 @@ publicado_en: 2026-05-20
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import NecesidadesBasicas from '@components/diagrams/NecesidadesBasicas.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -160,6 +161,30 @@ Arribem a la idea més potent de la unitat, i una de les més útils de tota l'e
 El cost d'oportunitat d'una decisió és **el valor de la millor alternativa a què renuncies** en triar. No és allò que pagues en diners, sinó allò que deixes de tindre o de fer.
 
 Tornem al dissabte del principi: tenies 20 € i vas triar el cine (15 €). El cost d'oportunitat no són només els 15 € que has gastat, sinó **la samarreta que ja no et pots comprar**. Has guanyat una vesprada de cine, però has perdut la samarreta. Això és el cost d'oportunitat.
+
+<Diagram caption="Amb 20 € no et dona per a les dues coses: el cine amb crispetes costa 15 €, la samarreta 18 € i juntes sumen 33 €, tretze euros més dels que tens. Triar-ne una és renunciar a l'altra.">
+  <GraficoXY id="g-presupuesto-sabado" titulo="Vint euros, el cine i la samarreta" desc="Tres barres davant dels 20 euros que tens: el cine amb crispetes costa 15 euros, la samarreta 18 i les dues coses juntes 33, que són 13 euros més dels que tens."
+    xMax={4.6} yMax={40} ejeX="Pla del dissabte" ejeY="Preu (€)" simboloY="€"
+    xTicks={[1, 2, 3]} xTickLabels={['Cine i crispetes', 'Samarreta', 'Les dues coses']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 15], [0.65, 15]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 18], [1.65, 18]] },
+      { color: 'aubergine', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 33], [2.65, 33]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 15], [1.35, 15], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 18], [2.35, 18], [2.35, 0]] },
+      { color: 'aubergine', puntos: [[2.65, 0], [2.65, 33], [3.35, 33], [3.35, 0]] },
+      { color: 'ink', tenue: true, label: 'Tens: 20 €', dy: -6, puntos: [[0.3, 20], [3.7, 20]] },
+    ]}
+    notas={[
+      { x: 1, y: 13.4, texto: '15 €', ancla: 'middle' },
+      { x: 2, y: 16.4, texto: '18 €', ancla: 'middle' },
+      { x: 3, y: 31.4, texto: '33 €', ancla: 'middle' },
+      { x: 3.45, y: 26, texto: 'Falten 13 €', ancla: 'start' },
+    ]}
+  />
+</Diagram>
 
 I no només passa amb els diners. També amb el **temps**, que és el recurs més escàs de tots perquè, a diferència dels diners, no es pot estalviar ni recuperar:
 

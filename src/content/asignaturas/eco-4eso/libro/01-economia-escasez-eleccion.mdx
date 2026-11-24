@@ -41,6 +41,7 @@ publicado_en: 2026-09-15
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
 import FPP from '@components/diagrams/FPP.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
 import NecesidadesBasicas from '@components/diagrams/NecesidadesBasicas.astro';
 import Curiosity from '@components/Curiosity.astro';
@@ -271,6 +272,28 @@ Se pide: (a) calcular el coste de oportunidad, en zumos, de cada bloque de 50 bo
 5. **Por qué crece el coste**: los recursos no sirven igual de bien para todo. Los primeros compañeros que pasan de exprimir a untar son los que peor exprimían, así que se pierden pocos zumos. Los últimos en cambiar son los mejores con el exprimidor, y cada uno que se va cuesta muchos zumos. Esto se llama **coste de oportunidad creciente**, y es la razón de que la FPP se curve hacia fuera.
 6. **100 bocadillos y 100 zumos**: con 100 bocadillos la frontera permite 140 zumos (combinación C). Producir solo 100 significa que hay recursos parados o mal usados: es una combinación **ineficiente**, dentro de la frontera. Alguien está charlando en vez de exprimir.
 7. **150 bocadillos y 140 zumos**: con 150 bocadillos el máximo de zumos es 80 (combinación D). 140 zumos queda fuera de la frontera: es **inalcanzable** con los recursos de hoy. Para llegar harían falta más recursos (que se sumen los de 3.º) o mejor tecnología (una máquina de cortar pan, un exprimidor eléctrico).
+
+<Diagram caption="La frontera de la feria: los puntos A a E de la tabla unidos por una línea. «100 y 100» queda dentro (ineficiente) y «150 y 140» queda fuera (inalcanzable).">
+  <GraficoXY id="g-fpp-feria" titulo="Frontera de posibilidades de producción de la feria solidaria" desc="La frontera une A (0 bocadillos, 200 zumos), B (50, 180), C (100, 140), D (150, 80) y E (200, 0) y se curva hacia fuera. El punto de 100 bocadillos y 100 zumos queda dentro de la frontera; el de 150 bocadillos y 140 zumos, fuera."
+    xMax={250} yMax={240} ejeX="Bocadillos" ejeY="Zumos" simboloX="B" simboloY="Z"
+    xTicks={[50, 100, 150, 200]} yTicks={[40, 80, 120, 160, 200]}
+    series={[{ color: 'terra', puntos: [[0, 200], [50, 180], [100, 140], [150, 80], [200, 0]] }]}
+    puntos={[
+      { x: 0, y: 200, label: 'A', guias: false }, { x: 50, y: 180, label: 'B', guias: false }, { x: 100, y: 140, label: 'C', guias: false },
+      { x: 150, y: 80, label: 'D', guias: false }, { x: 200, y: 0, label: 'E', guias: false },
+      { x: 100, y: 100, label: 'Ineficiente', dy: 24, guias: false }, { x: 150, y: 140, label: 'Inalcanzable', guias: false },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El coste de oportunidad de cada bocadillo crece a medida que se produce más: 0,4, 0,8, 1,2 y 1,6 zumos. Por eso la frontera se curva.">
+  <GraficoXY id="g-coste-creciente" titulo="Coste de oportunidad creciente de los bocadillos" desc="Cada bocadillo cuesta 0,4 zumos al pasar de A a B, 0,8 de B a C, 1,2 de C a D y 1,6 de D a E: el coste sube en cada tramo."
+    xMax={250} yMax={2} ejeX="Tramo de la frontera" ejeY="Zumos que se pierden por bocadillo"
+    xTicks={[25, 75, 125, 175]} xTickLabels={['A → B', 'B → C', 'C → D', 'D → E']} yTicks={[0.4, 0.8, 1.2, 1.6]}
+    series={[{ color: 'teal', puntos: [[25, 0.4], [75, 0.8], [125, 1.2], [175, 1.6]] }]}
+    puntos={[{ x: 25, y: 0.4, guias: false }, { x: 75, y: 0.8, guias: false }, { x: 125, y: 1.2, guias: false }, { x: 175, y: 1.6, guias: false }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

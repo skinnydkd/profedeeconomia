@@ -51,6 +51,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import RutaReclamacionLaboral from '@components/diagrams/RutaReclamacionLaboral.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -112,6 +113,21 @@ Estos son los diez derechos esenciales que cualquier persona asalariada en Espa�
 9. **Indemnización por despido**. Tres escenarios distintos. **Despido improcedente** (sin causa justificada): 33 días de salario por año trabajado, máximo 24 mensualidades (eran 45 días antes de la Reforma Laboral de 2012). **Despido procedente por causas objetivas** (económicas, técnicas, organizativas): 20 días por año, máximo 12 mensualidades. **Despido nulo** (vulneración de derechos fundamentales, por ejemplo, despedir a una trabajadora embarazada): **readmisión obligatoria** más salarios de tramitación.
 10. **Libertad sindical, negociación colectiva y huelga** (Constitución, arts. 28 y 37). Derecho a afiliarse al sindicato que se quiera (o a ninguno), a participar en la negociación del convenio del sector y a ejercer el derecho de huelga sin represalias.
 
+<Diagram caption="Días de salario de indemnización según los años trabajados: 33 por año en el despido improcedente y 20 por año en el procedente por causas objetivas. Con 10 años serían 330 y 200 días. El gráfico llega a 15 años, antes de que actúen los topes de 24 y 12 mensualidades.">
+  <GraficoXY id="g-indemnizacion-despido" titulo="Indemnización por despido según los años trabajados" desc="Dos rectas desde cero: el despido improcedente suma 33 días de salario por año trabajado, 330 días con 10 años y 495 con 15; el despido procedente por causas objetivas suma 20 días por año, 200 con 10 años y 300 con 15."
+    xMax={17} yMax={550} ejeX="Años trabajados" ejeY="Días de salario"
+    xTicks={[5, 10, 15]} yTicks={[100, 400, 500]}
+    series={[
+      { color: 'terra', label: 'Improcedente', puntos: [[0, 0], [15, 495]] },
+      { color: 'teal', label: 'Objetivo', puntos: [[0, 0], [15, 300]] },
+    ]}
+    puntos={[
+      { x: 10, y: 330, label: '330 días', yLabel: '330', dx: -75, dy: -14 },
+      { x: 10, y: 200, label: '200 días', yLabel: '200', dx: 12, dy: 24 },
+    ]}
+  />
+</Diagram>
+
 <Callout label="Concepto clave" title="Tu salario mínimo no es el SMI, es el de tu convenio" variant="concept">
 
 El SMI es un suelo legal absoluto: **nadie puede cobrar menos**. Pero la mayoría de sectores tienen un **convenio colectivo** propio, negociado entre sindicatos y patronal, que fija salarios más altos que el SMI para cada categoría profesional. Hostelería, comercio, construcción, sanidad privada, banca, oficinas y despachos: todos tienen convenio. Antes de aceptar un sueldo, **busca tu convenio en el BOE o en la web del sindicato del sector** y comprueba qué le corresponde a tu categoría. Cobrar el SMI (1.221 € en 2026) cuando tu convenio fija 1.400 € es una infracción que la empresa debe corregir y abonar con efectos retroactivos.
@@ -163,6 +179,20 @@ Marta firma un contrato temporal como camarera en un chiringuito de Gandia del *
 3. Cálculo del importe: el salario diario bruto es 1.350 / 30 = **45 €/día**. Por tanto, 7,5 × 45 = **337,5 € brutos**.
 4. Ese importe aparece en el finiquito junto al salario del último mes, la parte proporcional de pagas extras y la liquidación de horas extra si las hubiera.
 5. Si Marta quisiera disfrutarlas en vez de cobrarlas, debería pactarlo con la empresa **por escrito** antes del fin del contrato. La empresa no está obligada a aceptarlo si organizativamente no puede prescindir de ella.
+
+<Diagram caption="Las vacaciones crecen en línea recta con los días trabajados: 30 días al año completo (365 días) y 7,56 en el contrato de verano de Marta (92 días).">
+  <GraficoXY id="g-vacaciones-proporcionales" titulo="Vacaciones según los días trabajados" desc="Recta que parte de cero y llega a 30 días de vacaciones con 365 días trabajados; con los 92 días del contrato de verano de Marta corresponden 7,56 días."
+    xMax={400} yMax={35} ejeX="Días trabajados" ejeY="Días de vacaciones"
+    xTicks={[200, 300]} yTicks={[10, 20]}
+    series={[
+      { color: 'terra', puntos: [[0, 0], [365, 30]] },
+    ]}
+    puntos={[
+      { x: 92, y: 7.56, label: '7,56 días', xLabel: '92', yLabel: '7,56', dx: 12, dy: 24 },
+      { x: 365, y: 30, label: 'Año entero: 30 días', xLabel: '365', yLabel: '30', dx: -150 },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

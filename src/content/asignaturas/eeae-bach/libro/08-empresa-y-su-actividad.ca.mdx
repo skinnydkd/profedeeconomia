@@ -39,6 +39,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import EmpresaFunctions from '@components/diagrams/EmpresaFunctions.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -103,6 +104,33 @@ Que el benefici siga condició per a sobreviure té darrere un compte mínim. El
 *Exemple.* Una parada de sucs ven cada got a 3 €, cada got li costa 1 € de fruita i envàs, i paga 400 € al mes pel lloguer de la parada. Cada got deixa 3 − 1 = 2 € de marge, així que el punt mort és 400 ÷ 2 = **200 gots al mes**. Amb 260 gots guanya 260 × 2 − 400 = **120 €**; amb 150 en perd 400 − 150 × 2 = **100 €**. El número no diu si el negoci val la pena, però sí quant cal vendre per a no perdre diners. L'anàlisi completa, amb la gràfica i les decisions de producció, s'estudia en [EDMN 2BACH (Unitat 7)](/edmn-2bach/libro/07-funcion-productiva/); ací n'hi ha prou amb saber fer este compte.
 
 </Callout>
+
+<Diagram caption="La parada de sucs: l'ingrés total (3 € per got) i el cost total (400 € fixos més 1 € per got) es creuen en els 200 gots, amb 600 € d'ingressos. Amb 150 gots perd 100 € (450 € d'ingressos enfront de 550 € de costos); amb 260 en guanya 120 € (780 € enfront de 660 €).">
+  <GraficoXY id="g-punto-muerto-zumos" titulo="Punt mort de la parada de sucs" desc="Ingrés total de 3 euros per got, cost total de 400 euros fixos més 1 euro per got. Les dues rectes es creuen en 200 gots, amb 600 euros. Amb 150 gots, els ingressos són 450 euros i els costos 550, una pèrdua de 100. Amb 260 gots, els ingressos són 780 euros i els costos 660, un benefici de 120."
+    xMax={330} yMax={1000} ejeX="Gots al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    xTicks={[100]} yTicks={[400]}
+    areas={[
+      { puntos: [[0, 0], [0, 400], [200, 600]], color: 'terra' },
+      { puntos: [[200, 600], [290, 870], [290, 690]], color: 'teal' },
+    ]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [290, 870]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 400], [290, 690]], dy: 16 },
+      { label: 'CF', color: 'mustard', puntos: [[0, 400], [290, 400]] },
+    ]}
+    puntos={[
+      { x: 200, y: 600, label: 'Punt mort', xLabel: '200', yLabel: '600', dx: -92, dy: -14 },
+      { x: 150, y: 450, xLabel: '150' },
+      { x: 150, y: 550, guias: false },
+      { x: 260, y: 780, xLabel: '260', yLabel: '780' },
+      { x: 260, y: 660, guias: false },
+    ]}
+    notas={[
+      { x: 25, y: 300, texto: 'Pèrdua', color: 'terra' },
+      { x: 264, y: 720, texto: 'Benefici 120 €', color: 'teal' },
+    ]}
+  />
+</Diagram>
 
 Per dins, tota empresa articula eixes funcions en unes poques grans àrees d'activitat que operen alhora i es condicionen entre si. Esta unitat no les esmicola —el seu detall és matèria d'una altra assignatura—; en tenim prou d'una mirada panoràmica per a situar on encaixen la cultura, el talent i el lideratge que veurem a continuació: travessen totes les àrees, no una sola.
 

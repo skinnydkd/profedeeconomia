@@ -53,6 +53,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TiposContrato from '@components/diagrams/TiposContrato.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -168,12 +169,55 @@ Si perds l'ocupació de forma involuntària (t'acomiaden, no et renoven un tempo
 
 La quantia és el **70 % de la base reguladora** durant els primers 180 dies i el **60 %** a partir del dia 181, amb topalls mínims i màxims. La **duració** depén del que s'ha cotitzat en els últims sis anys, per trams de 180 dies: amb 360 dies cotitzats es cobren 120 dies d'atur, i cada 180 dies més cotitzats sumen 60 dies, fins a un màxim de **720 dies (24 mesos)** a partir de 2.160 dies cotitzats. Qui no arriba als 12 mesos cotitzats, o esgota la contributiva, pot accedir a un **subsidi** assistencial de menor quantia. Des de la reforma de novembre de 2024 (RDL 2/2024) arriba també a menors de 45 anys sense responsabilitats familiars, es cobra en percentatge de l'IPREM (del 95 % al 80 %, baixant amb el temps) i és compatible amb una ocupació.
 
+<Diagram caption="Quantia de la prestació contributiva per atur: el 70 % de la base reguladora durant els primers 180 dies i el 60 % a partir del dia 181, fins a esgotar la duració (màxim 720 dies), amb topalls mínims i màxims.">
+  <GraficoXY id="g-ipe1-paro-cuantia" titulo="Quantia de l'atur segons els dies de prestació" desc="Gràfic d'escalons: el 70 per cent de la base reguladora durant els primers 180 dies de prestació i el 60 per cent des del dia 181 fins al màxim de 720 dies."
+    xMax={800} yMax={100} ejeX="Dies de prestació" ejeY="% de la base reguladora" simboloX="d" simboloY="%"
+    xTicks={[180, 360, 540, 720]} yTicks={[20, 40, 60, 80]}
+    series={[{ color: "terra", puntos: [[0, 70], [180, 70], [180, 60], [720, 60]] }]}
+    notas={[
+      { x: 10, y: 74, texto: "70 % els primers 180 dies", color: "terra" },
+      { x: 190, y: 63, texto: "60 % des del dia 181", color: "terra" },
+      { x: 720, y: 50, texto: "Màxim: 720 dies", ancla: "end" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Quants dies d'atur corresponen segons els dies cotitzats en els últims sis anys: amb 360 dies cotitzats, 120 dies de prestació, i 60 dies més per cada tram de 180 dies cotitzats addicionals, fins al màxim de 720 dies (24 mesos) amb 2.160 dies cotitzats.">
+  <GraficoXY id="g-ipe1-paro-duracion" titulo="Duració de l'atur segons els dies cotitzats" desc="Gràfic d'escalons. Amb menys de 360 dies cotitzats no hi ha prestació contributiva. Amb 360 dies, 120 dies d'atur; cada 180 dies cotitzats més sumen 60 dies, fins a un màxim de 720 dies amb 2.160 dies cotitzats."
+    xMax={2700} yMax={800} ejeX="Dies cotitzats en els últims 6 anys" ejeY="Dies de prestació" simboloX="d" simboloY="d"
+    xTicks={[720, 1080, 1440, 1800]} yTicks={[240, 360, 480, 600]}
+    series={[{ color: "teal", puntos: [[0, 0], ...Array.from({ length: 11 }, (_, k) => [[360 + 180 * k, k ? 60 + 60 * k : 0], [360 + 180 * k, 120 + 60 * k]]).flat(), [2400, 720]] }]}
+    puntos={[
+      { x: 360, y: 120, xLabel: "360", yLabel: "120" },
+      { x: 2160, y: 720, xLabel: "2 160", yLabel: "720" },
+    ]}
+    notas={[{ x: 400, y: 40, texto: "Menys de 360 dies: sense atur" }]}
+  />
+</Diagram>
+
 ### Incapacitat temporal (la "baixa")
 
 La **incapacitat temporal (IT)** és la situació en què estàs de baixa mèdica i no pots treballar, ja siga per **malaltia comuna o accident no laboral**, o per **accident de treball o malaltia professional**. La diferència entre ambdós és important perquè cobres distint:
 
 - **Malaltia comuna / accident no laboral**: no cobres res els 3 primers dies; del **dia 4 al 20** cobres el **60 %** de la base reguladora; del **dia 21 en avant**, el **75 %**.
 - **Accident de treball / malaltia professional**: cobres el **75 % des de l'endemà** a la baixa, sense període de carència. (Recorda de la unitat anterior que l'accident *in itinere* —anant o tornant del treball— compta com a accident laboral.)
+
+<Diagram caption="Allò que es cobra en una baixa segons els dies transcorreguts, com a percentatge de la base reguladora. Per malaltia comuna o accident no laboral: res els tres primers dies, el 60 % del dia 4 al 20 i el 75 % des del dia 21. Per accident de treball: el 75 % des de l'endemà de la baixa. Els convenis poden millorar estos percentatges.">
+  <GraficoXY id="g-ipe1-incapacidad-temporal" titulo="Prestació per incapacitat temporal segons els dies de baixa" desc="Gràfic d'escalons amb els dies de baixa a l'eix horitzontal. Malaltia comuna o accident no laboral: 0 per cent els dies 1 a 3, 60 per cent del dia 4 al 20 i 75 per cent des del dia 21. Accident de treball o malaltia professional: 75 per cent des de l'endemà de la baixa."
+    xMax={45} yMax={100} ejeX="Dies de baixa" ejeY="% de la base reguladora" simboloX="d" simboloY="%"
+    xTicks={[3, 20, 40]} yTicks={[25, 50, 75, 100]}
+    series={[
+      { color: "mustard", puntos: [[1, 75], [40, 75]] },
+      { color: "terra", puntos: [[0, 0], [3, 0], [3, 60], [20, 60], [20, 75], [40, 75]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 79, texto: "Accident de treball: 75 %", color: "mustard" },
+      { x: 4, y: 52, texto: "Malaltia comuna: 60 %", color: "terra" },
+      { x: 3.6, y: 5, texto: "Dies 1 a 3: sense prestació" },
+      { x: 21.5, y: 68, texto: "Des del dia 21: 75 %", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 Molts convenis col·lectius **milloren** estos percentatges i complementen fins al 100 % del salari durant un temps. La gestió i el pagament solen recaure en la **mútua col·laboradora** de l'empresa.
 
@@ -246,6 +290,22 @@ Qualsevol d'estos acomiadaments pot impugnar-se davant de la secció social del 
 - **Procedent**: la causa estava justificada i ben tramitada. No hi ha més que la quitança (en el disciplinari) o la indemnització taxada (en l'objectiu).
 - **Improcedent**: la causa no es justifica o falla la forma. L'empresa tria entre **readmetre** el treballador o pagar-li una indemnització de **33 dies de salari per any treballat, amb un màxim de 24 mensualitats** (eren 45 dies abans de la reforma de 2012; els anys treballats abans de 2012 es calculen al tipus antic).
 - **Nul**: vulnera un dret fonamental o afecta persones especialment protegides (embaràs, permís per naixement). Obliga a la **readmissió** més l'abonament dels **salaris de tramitació** (els deixats de percebre).
+
+<Diagram caption="Indemnització segons els anys d'antiguitat, en dies de salari: 20 dies per any en l'acomiadament objectiu procedent (topall de 12 mensualitats, és a dir, 360 dies) i 33 dies per any en l'improcedent (topall de 24 mensualitats, 720 dies). El disciplinari procedent no genera indemnització. Hugo, amb 5 anys, rep 165 dies.">
+  <GraficoXY id="g-ipe1-indemnizacion-despido" titulo="Indemnització per acomiadament segons l'antiguitat" desc="Dos rectes amb topall. Acomiadament objectiu: 20 dies de salari per any treballat, fins a un màxim de 360 dies (12 mensualitats), que s'aconseguix als 18 anys. Acomiadament improcedent: 33 dies per any, fins a un màxim de 720 dies (24 mensualitats), que s'aconseguix als 21,8 anys. Amb 5 anys d'antiguitat, l'improcedent dóna 165 dies."
+    xMax={28} yMax={800} ejeX="Anys d'antiguitat" ejeY="Dies de salari" simboloX="anys" simboloY="d"
+    xTicks={[10, 15, 20]} yTicks={[400, 600]}
+    series={[
+      { label: "Objectiu", color: "mustard", puntos: [[0, 0], [18, 360], [25, 360]] },
+      { label: "Improcedent", color: "terra", puntos: [[0, 0], [720 / 33, 720], [25, 720]] },
+    ]}
+    puntos={[{ x: 5, y: 165, label: "Hugo", xLabel: "5", yLabel: "165", dx: -50, dy: -14 }]}
+    notas={[
+      { x: 24.5, y: 385, texto: "Topall: 12 mensualitats", ancla: "end", color: "mustard" },
+      { x: 24.5, y: 745, texto: "Topall: 24 mensualitats", ancla: "end", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 <Callout label="No confondre" title="Finiquito ≠ indemnització" variant="warning">
 

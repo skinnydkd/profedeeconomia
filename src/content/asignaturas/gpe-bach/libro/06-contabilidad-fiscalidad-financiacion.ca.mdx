@@ -48,6 +48,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -205,6 +206,39 @@ El **balanç** és una fotografia del **patrimoni** de l'empresa en un moment co
 
 Els dos costats sumen 2.200 €: no és casualitat, és la igualtat del balanç. Si no quadren, hi ha un error. Per al teu projecte, llegir un balanç significa saber respondre a tres preguntes: *què tinc?, què dec?, quant és realment meu?*
 
+<Diagram caption="El balanç del projecte d'aula en dues columnes de la mateixa mida, 2.200 €: a l'esquerra el que té (actiu); a la dreta d'on ix (capital propi i deutes).">
+  <GraficoXY id="g-balance-aula" titulo="Balanç del projecte d'aula" desc="Dues columnes iguals de 2.200 euros. Actiu: equip i maquinària 1.200, existències 400 i diners en caixa i banc 600. Patrimoni net més passiu: aportacions de l'equip 1.000, préstec a tornar 800 i deutes amb proveïdors 400."
+    xMax={10} yMax={2600} ejeX="Balanç del projecte" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[500, 1000, 1500, 2000]} xTickLabels={["Actiu", "Patrimoni net + passiu"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 1200], [1.5, 1200]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 1200], [4.5, 1200], [4.5, 1600], [1.5, 1600]], color: "mustard", fuerte: true },
+      { puntos: [[1.5, 1600], [4.5, 1600], [4.5, 2200], [1.5, 2200]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 1000], [5.5, 1000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 1000], [8.5, 1000], [8.5, 1800], [5.5, 1800]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 1800], [8.5, 1800], [8.5, 2200], [5.5, 2200]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 1200], [1.5, 1200], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 1200], [4.5, 1200], [4.5, 1600], [1.5, 1600], [1.5, 1200]], color: "mustard" },
+      { puntos: [[1.5, 1600], [4.5, 1600], [4.5, 2200], [1.5, 2200], [1.5, 1600]], color: "teal" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 1000], [5.5, 1000], [5.5, 0]], color: "aubergine" },
+      { puntos: [[5.5, 1000], [8.5, 1000], [8.5, 1800], [5.5, 1800], [5.5, 1000]], color: "mustard" },
+      { puntos: [[5.5, 1800], [8.5, 1800], [8.5, 2200], [5.5, 2200], [5.5, 1800]], color: "terra" },
+    ]}
+    notas={[
+      { x: 3, y: 560, texto: "Equip 1 200", ancla: "middle" },
+      { x: 3, y: 1360, texto: "Existències 400", ancla: "middle" },
+      { x: 3, y: 1860, texto: "Caixa i banc 600", ancla: "middle" },
+      { x: 7, y: 460, texto: "Capital 1 000", ancla: "middle" },
+      { x: 7, y: 1360, texto: "Préstec 800", ancla: "middle" },
+      { x: 7, y: 1960, texto: "Proveïdors 400", ancla: "middle" },
+      { x: 3, y: 2350, texto: "Total: 2 200", ancla: "middle" },
+      { x: 7, y: 2350, texto: "Total: 2 200", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
 <Callout label="Concepte clau" title="Equilibri financer">
 
 Un projecte està en **equilibri financer** quan pot fer front als seus deutes sense ofegar-se. Un senyal d'alarma senzill: si quasi tot l'actiu està finançat amb deute (passiu) i molt poc amb recursos propis (patrimoni net), el projecte és fràgil. Una mescla sana combina aportacions pròpies i finançament aliè prudent.
@@ -228,6 +262,34 @@ Si els ingressos superen les despeses, hi ha benefici; si les despeses superen e
 | **= Resultat del període (benefici)** | **1.200 €** |
 
 Llegir este compte et diu molt més que un número final: et mostra **en què se'n van els diners** i on pots ajustar. Si les matèries primeres es mengen la major part dels ingressos, potser convé renegociar amb proveïdors; si el màrqueting no genera vendes, potser sobra despesa ahí.
+
+<Diagram caption="Dels ingressos al resultat en el compte del projecte d'aula. Les barres verdes són el punt de partida i el resultat; les terracota, el que es resta en cada pas: 1.100 € de matèries primeres, 400 € d'altres despeses i 300 € de comunicació i màrqueting.">
+  <GraficoXY id="g-resultados-aula" titulo="Compte de resultats del projecte d'aula" desc="Cascada del compte de resultats. Ingressos per vendes de 3.000 euros. Es resten 1.100 de matèries primeres, 400 d'altres despeses i 300 de comunicació i màrqueting, i queda un resultat de 1.200 euros de benefici."
+    xMax={5.6} yMax={3500} ejeX="Compte de resultats" ejeY="Euros" simboloY="€"
+    xTicks={[0.8, 1.8, 2.8, 3.8, 4.8]} yTicks={[1000, 2000, 3000]} xTickLabels={["Ingressos", "Mat. primeres", "Altres despeses", "Màrqueting", "Resultat"]}
+    areas={[
+      { puntos: [[0.5, 0], [1.1, 0], [1.1, 3000], [0.5, 3000]], color: "teal", fuerte: true },
+      { puntos: [[1.5, 1900], [2.1, 1900], [2.1, 3000], [1.5, 3000]], color: "terra", fuerte: true },
+      { puntos: [[2.5, 1500], [3.1, 1500], [3.1, 1900], [2.5, 1900]], color: "terra", fuerte: true },
+      { puntos: [[3.5, 1200], [4.1, 1200], [4.1, 1500], [3.5, 1500]], color: "terra", fuerte: true },
+      { puntos: [[4.5, 0], [5.1, 0], [5.1, 1200], [4.5, 1200]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.5, 0], [1.1, 0], [1.1, 3000], [0.5, 3000], [0.5, 0]], color: "teal" },
+      { puntos: [[1.5, 1900], [2.1, 1900], [2.1, 3000], [1.5, 3000], [1.5, 1900]], color: "terra" },
+      { puntos: [[2.5, 1500], [3.1, 1500], [3.1, 1900], [2.5, 1900], [2.5, 1500]], color: "terra" },
+      { puntos: [[3.5, 1200], [4.1, 1200], [4.1, 1500], [3.5, 1500], [3.5, 1200]], color: "terra" },
+      { puntos: [[4.5, 0], [5.1, 0], [5.1, 1200], [4.5, 1200], [4.5, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 0.8, y: 3090, texto: "3 000", ancla: "middle" },
+      { x: 1.8, y: 3090, texto: "−1 100", ancla: "middle" },
+      { x: 2.8, y: 1990, texto: "−400", ancla: "middle" },
+      { x: 3.8, y: 1590, texto: "−300", ancla: "middle" },
+      { x: 4.8, y: 1290, texto: "1 200", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ## La viabilitat: pressupost, punt mort i inversió
 
@@ -294,6 +356,31 @@ Un equip de GPE va a vendre melmelada artesana de taronja valenciana. Han reunit
 
 **Conclusió**: el projecte és viable. Amb 400 pots venen el doble del seu punt mort (200) i preveuen un benefici de 600 €. Si les vendes reals baixaren de 200 pots, entrarien en pèrdues: eixe és el número que l'equip ha de vigilar.
 
+<Diagram caption="La melmelada: l'ingrés total (5 € per pot) i el cost total (600 € fixos més 2 € per pot) es creuen en els 200 pots, amb 1.000 € d'ingressos. Amb els 400 previstos, els ingressos són 2.000 € i els costos 1.400 €: 600 € de benefici.">
+  <GraficoXY id="g-punto-muerto-mermelada" titulo="Punt mort de la melmelada artesana" desc="Ingrés total de 5 euros per pot i cost total de 600 euros fixos més 2 euros per pot. Les dues rectes es creuen en 200 pots, amb 1.000 euros. Amb 400 pots, els ingressos són 2.000 euros i els costos 1.400, un benefici de 600."
+    xMax={500} yMax={2500} ejeX="Pots venuts" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[100, 300]} yTicks={[600]}
+    areas={[
+      { puntos: [[0, 0], [0, 600], [200, 1000]], color: 'terra' },
+      { puntos: [[200, 1000], [450, 2250], [450, 1500]], color: 'teal' },
+    ]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [450, 2250]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 600], [450, 1500]] },
+      { label: 'CF', color: 'mustard', puntos: [[0, 600], [450, 600]] },
+    ]}
+    puntos={[
+      { x: 200, y: 1000, label: 'Punt mort', xLabel: '200', yLabel: '1 000', dx: -92, dy: -14 },
+      { x: 400, y: 2000, xLabel: '400', yLabel: '2 000' },
+      { x: 400, y: 1400, guias: false },
+    ]}
+    notas={[
+      { x: 15, y: 420, texto: 'Pèrdua', color: 'terra' },
+      { x: 410, y: 1700, texto: 'Benefici 600 €', color: 'teal' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Prova-ho tu mateix:** introduïx els costos fixos, el preu de venda i el cost variable unitari del teu propi projecte i la calculadora calcula automàticament el punt mort i representa la gràfica d'ingressos i costos totals.
@@ -303,6 +390,23 @@ Un equip de GPE va a vendre melmelada artesana de taronja valenciana. Han reunit
 ### L'avaluació d'inversions (en clau de projecte)
 
 Durant el projecte poden sorgir decisions d'**inversió**: comprar una màquina millor, llogar un local, invertir en una web. Avaluar una inversió, en GPE, significa fer-se preguntes senzilles i honestes: *quant costa?, quins ingressos o estalvis em generarà?, en quant de temps recupere el que he invertit?* Eixa última idea —el **termini de recuperació**— és suficient per al teu projecte: si una màquina costa 1.000 € i t'estalvia 250 € al mes, la recuperes en 4 mesos. Com més prompte recuperes la inversió, menys risc assumeixes. No necessites tècniques més complexes per decidir bé en un projecte d'aula.
+
+<Diagram caption="L'estalvi acumulat de la màquina (250 € al mes) arriba al seu cost de 1.000 € als 4 mesos: eixe és el termini de recuperació.">
+  <GraficoXY id="g-plazo-recuperacion-maquina" titulo="Termini de recuperació d'una màquina de 1.000 euros" desc="La màquina costa 1.000 euros i estalvia 250 euros al mes. L'estalvi acumulat creix 250 euros cada mes i arriba a 1.000 euros als 4 mesos, que és el termini de recuperació."
+    xMax={6} yMax={1400} ejeX="Mesos" ejeY="Euros" simboloX="t" simboloY="€"
+    xTicks={[1, 2, 3, 5]} yTicks={[500]}
+    series={[
+      { label: 'Estalvi acumulat', color: 'teal', puntos: [[0, 0], [5, 1250]] },
+      { label: 'Inversió', color: 'terra', puntos: [[0, 1000], [5, 1000]] },
+    ]}
+    puntos={[
+      { x: 4, y: 1000, label: 'Termini: 4 mesos', xLabel: '4', yLabel: '1 000', dx: 14, dy: 28 },
+    ]}
+    notas={[
+      { x: 2.2, y: 400, texto: '+250 € al mes', color: 'teal' },
+    ]}
+  />
+</Diagram>
 
 ## Les fonts de finançament
 

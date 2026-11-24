@@ -52,6 +52,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import TasasEPA from '@components/diagrams/TasasEPA.astro';
 import Figure from '@components/Figure.astro';
@@ -155,6 +156,31 @@ Calcula la **taxa d'activitat**, la **taxa d'atur** i la **taxa d'ocupació**, i
 
 **Resultat**: activitat **55 %**, atur **12,7 %**, ocupació **48 %**.
 
+<Diagram caption="Vilanova del Camp: de 20 000 persones de 16 anys o més, 9 600 treballen, 1 400 busquen faena i 9 000 són inactives. Activitat 55 %, ocupació 48 % i atur 12,7 %, este últim calculat sobre els 11 000 actius.">
+  <GraficoXY id="g-tasas-vilanova" titulo="Població de Vilanova del Camp segons l'EPA" desc="Una barra apilada de 20 000 persones: 9 600 ocupades, 1 400 aturades i 9 000 inactives. Els actius són 11 000. Taxa d'activitat 55 per cent, taxa d'ocupació 48 i taxa d'atur 12,7 per cent."
+    xMax={10} yMax={22000} ejeX="Població de 16 anys o més" ejeY="Persones"
+    xTicks={[1.8]} xTickLabels={['20 000 persones']} yTicks={[5000, 10000, 15000, 20000]}
+    areas={[
+      { color: 'teal', puntos: [[0.8, 0], [2.8, 0], [2.8, 9600], [0.8, 9600]] },
+      { color: 'terra', puntos: [[0.8, 9600], [2.8, 9600], [2.8, 11000], [0.8, 11000]] },
+      { color: 'mustard', puntos: [[0.8, 11000], [2.8, 11000], [2.8, 20000], [0.8, 20000]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.8, 0], [0.8, 9600], [2.8, 9600], [2.8, 0]] },
+      { color: 'terra', puntos: [[0.8, 9600], [0.8, 11000], [2.8, 11000], [2.8, 9600]] },
+      { color: 'mustard', puntos: [[0.8, 11000], [0.8, 20000], [2.8, 20000], [2.8, 11000]] },
+    ]}
+    notas={[
+      { x: 3.1, y: 4500, texto: 'Ocupats: 9 600', ancla: 'start' },
+      { x: 3.1, y: 10100, texto: 'Aturats: 1 400', ancla: 'start' },
+      { x: 3.1, y: 15300, texto: 'Inactius: 9 000', ancla: 'start' },
+      { x: 5.6, y: 17500, texto: 'Activitat: 11 000 / 20 000 = 55 %', ancla: 'start' },
+      { x: 5.6, y: 14500, texto: 'Ocupació: 9 600 / 20 000 = 48 %', ancla: 'start' },
+      { x: 5.6, y: 11500, texto: 'Atur: 1 400 / 11 000 = 12,7 %', ancla: 'start' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Prova-ho tu mateix:** repetix el càlcul de Vilanova del Camp amb la calculadora i comprova que ixen les mateixes tres taxes. Després busca a l'INE les dades de la teua comunitat autònoma i introduïx-les: veuràs d'un colp d'ull si el teu territori s'assembla o no a la mitjana espanyola, i per què.
@@ -200,6 +226,31 @@ Activitats que **extrauen recursos directament de la naturalesa**: agricultura, 
 
 És una categoria més recent que **separa del terciari les activitats intensives en coneixement**: investigació i desenvolupament (I+D), tecnologies de la informació, biotecnologia, consultoria d'alt valor, educació universitària avançada. En les estadístiques oficials de l'INE continua comptabilitzant-se dins del terciari, però els economistes parlen ja de quaternari per a distingir-lo. A Espanya representaria aproximadament el **8 % del PIB**, enfront d'un **12-15 %** en països com Suècia, Països Baixos o Alemanya. És **el sector que més creix i millor paga**, i en el qual Espanya té marge per a millorar.
 
+<Diagram caption="Pes aproximat de cada sector en el PIB espanyol. Les quatre barres sumen el 100 %: el terciari domina, i el quaternari, encara que les estadístiques oficials el compten dins del terciari, ací va a banda.">
+  <GraficoXY id="g-pib-sectores" titulo="Pes de cada sector en el PIB d'Espanya" desc="Quatre barres amb el pes aproximat en el PIB: sector primari, el 3 per cent; secundari, el 22; terciari, el 67; quaternari, el 8."
+    xMax={5.6} yMax={80} ejeX="Sector" ejeY="Pes en el PIB (%)" simboloY="%"
+    xTicks={[1, 2, 3, 4]} xTickLabels={['Primari', 'Secundari', 'Terciari', 'Quaternari']} yTicks={[20, 40, 60]}
+    areas={[
+      { color: 'mustard', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 3], [0.65, 3]] },
+      { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 22], [1.65, 22]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 67], [2.65, 67]] },
+      { color: 'aubergine', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 8], [3.65, 8]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.65, 0], [0.65, 3], [1.35, 3], [1.35, 0]] },
+      { color: 'terra', puntos: [[1.65, 0], [1.65, 22], [2.35, 22], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 67], [3.35, 67], [3.35, 0]] },
+      { color: 'aubergine', puntos: [[3.65, 0], [3.65, 8], [4.35, 8], [4.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 5.5, texto: '~3 %', ancla: 'middle' },
+      { x: 2, y: 24.5, texto: '~22 %', ancla: 'middle' },
+      { x: 3, y: 69.5, texto: '~67 %', ancla: 'middle' },
+      { x: 4, y: 10.5, texto: '~8 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 <Curiosity title="Espanya és el país europeu més dependent del turisme">
 
 Segons les dades de l'**INE** (Estadística de Moviments Turístics en Frontera) i del **Ministeri d'Indústria i Turisme**, en 2025 Espanya va tancar l'exercici amb un **rècord històric** de **96,8 milions de turistes internacionals** i una despesa acumulada de **134.712 milions d'euros** (+6,8 % respecte a 2024). És una bona notícia per a l'economia agregada (el turisme aporta més del 12 % del PIB i prop de 2,7 milions d'ocupacions directes), però també explica una part important de l'atur juvenil estacional: molts contractes turístics són temporals i es concentren de maig a setembre, la qual cosa infla l'ocupació juvenil a l'estiu i la desploma a l'hivern.
@@ -244,6 +295,34 @@ Encara que hi ha enormes variacions segons sector, empresa, ciutat i experiènci
 
 Estes dades són **brutes anuals** (abans de retencions) i són **mitjanes**, no garanties. Hi ha graduats universitaris cobrant 18.000 € i tècnics de FP Superior cobrant 40.000 €. Però la **tendència general** és clara: a major nivell formatiu, major salari mitjà. I entre FP Superior i grau universitari la diferència és menor del que l'imaginari social suggerix.
 
+<Diagram caption="Salari mitjà brut anual segons el nivell de formació, al voltant d'estes xifres (Enquesta d'Estructura Salarial 2024, INE): a més formació, més salari mitjà, encara que són mitjanes i no garanties.">
+  <GraficoXY id="g-salario-formacion" titulo="Salari mitjà segons el nivell de formació" desc="Cinc barres que creixen amb la formació: ESO sense més formació, al voltant de 17 500 euros bruts a l'any; FP de Grau Mitjà, 23 000; FP de Grau Superior, 26 500; grau universitari, 30 000; màster universitari, 34 500."
+    xMax={5.8} yMax={40000} ejeX="Nivell de formació" ejeY="Euros bruts a l'any" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['ESO', 'FP Mitjà', 'FP Superior', 'Grau', 'Màster']} yTicks={[10000, 20000, 30000]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 17500], [0.65, 17500]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 23000], [1.65, 23000]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 26500], [2.65, 26500]] },
+      { color: 'teal', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 30000], [3.65, 30000]] },
+      { color: 'teal', fuerte: true, puntos: [[4.65, 0], [5.35, 0], [5.35, 34500], [4.65, 34500]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.65, 0], [0.65, 17500], [1.35, 17500], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 23000], [2.35, 23000], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 26500], [3.35, 26500], [3.35, 0]] },
+      { color: 'teal', puntos: [[3.65, 0], [3.65, 30000], [4.35, 30000], [4.35, 0]] },
+      { color: 'teal', puntos: [[4.65, 0], [4.65, 34500], [5.35, 34500], [5.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 18600, texto: '17 500 €', ancla: 'middle' },
+      { x: 2, y: 24100, texto: '23 000 €', ancla: 'middle' },
+      { x: 3, y: 27600, texto: '26 500 €', ancla: 'middle' },
+      { x: 4, y: 31100, texto: '30 000 €', ancla: 'middle' },
+      { x: 5, y: 35600, texto: '34 500 €', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 <RecursoDestacado href="/debates/dinero-tecnologia-futuro/02-ia-y-empleo/" kicker="Debat a classe" title="Destruirà la IA més ocupació de la que crea?" descripcion="Debat parlamentari sobre l'impacte net de la intel·ligència artificial en el mercat de treball." colorVar="--color-fopp" />
 
 ## Tres formes de tindre un treball
@@ -282,12 +361,35 @@ Lucía va acabar 4t d'ESO en un institut d'Albacete sense tindre clara la seua v
 <Figure
   src={oficinaEmpleoMadrid}
   alt="Façana d'una Oficina d'Ocupació conjunta de la Comunitat de Madrid i el SEPE al barri de la Concepción."
-  caption="Oficina d'Ocupació conjunta de la Comunitat de Madrid i el SEPE (Ciudad Lineal, Madrid). Més d'un de cada quatre jóvens espanyols entre 16 i 24 anys en actiu passa per una oficina com esta a buscar la seua primera ocupació. La xifra duplica la mitjana europea i porta així des de 2008: no és conjuntura, és estructura."
+  caption="Oficina d'Ocupació conjunta de la Comunitat de Madrid i el SEPE (Ciudad Lineal, Madrid). Quasi un de cada quatre jóvens espanyols entre 16 i 24 anys en actiu passa per una oficina com esta a buscar la seua primera ocupació. La xifra supera de molt la mitjana europea i porta així des de 2008: no és conjuntura, és estructura."
   credit="Foto: Lojwe, CC0 / domini públic via Wikimedia Commons"
   aspectHint="3/2"
 />
 
-Hi ha una xifra que convé memoritzar i entendre: en el segon trimestre de 2026, la **taxa d'atur juvenil** (16-24 anys) a Espanya era del **23,77 %** (entorn de 460.000 menors de 25 anys sense ocupació), segons l'EPA de l'INE. La mitjana de la Unió Europea ronda el **14-15 %** (Eurostat). Espanya duplica la mitjana europea **i ho fa de forma sostinguda des de 2008**. És una anomalia estructural, no una dada puntual.
+Hi ha una xifra que convé memoritzar i entendre: en el segon trimestre de 2026, la **taxa d'atur juvenil** (16-24 anys) a Espanya era del **23,77 %** (entorn de 460.000 menors de 25 anys sense ocupació), segons l'EPA de l'INE. La mitjana de la Unió Europea ronda el **14-15 %** (Eurostat). Espanya supera de molt la mitjana europea **i ho fa de forma sostinguda des de 2008**. És una anomalia estructural, no una dada puntual.
+
+<Diagram caption="Atur juvenil (16-24 anys): més del 56 % a Espanya el 2013, 23,77 % en el segon trimestre de 2026 i entre el 14 i el 15 % de mitjana a la UE. Espanya ha baixat molt, però continua per damunt d'Europa.">
+  <GraficoXY id="g-paro-juvenil" titulo="Atur juvenil a Espanya i a la Unió Europea" desc="Tres barres: l'atur juvenil a Espanya va superar el 56 per cent el 2013 i va ser del 23,77 per cent en el segon trimestre de 2026; la mitjana de la Unió Europea ronda entre el 14 i el 15 per cent."
+    xMax={4.6} yMax={70} ejeX="Territori i any" ejeY="Taxa d'atur de 16 a 24 anys (%)" simboloY="%"
+    xTicks={[1, 2, 3]} xTickLabels={['Espanya 2013', 'Espanya 2026', 'UE (mitjana)']} yTicks={[10, 20, 30, 40, 50, 60]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 56], [0.65, 56]] },
+      { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 23.77], [1.65, 23.77]] },
+      { color: 'teal', puntos: [[2.65, 0], [3.35, 0], [3.35, 14], [2.65, 14]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 14], [3.35, 14], [3.35, 15], [2.65, 15]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 56], [1.35, 56], [1.35, 0]] },
+      { color: 'terra', puntos: [[1.65, 0], [1.65, 23.77], [2.35, 23.77], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 15], [3.35, 15], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 58.5, texto: 'més del 56 %', ancla: 'middle' },
+      { x: 2, y: 26.3, texto: '23,77 %', ancla: 'middle' },
+      { x: 3, y: 17.5, texto: '14-15 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ### Per què Espanya té tant atur juvenil
 
@@ -344,7 +446,7 @@ Què et diu això a tu? Dos coses. **No has d'adaptar-te a una vacant que no enc
 - Les professions amb **demanda en retrocés** són les basades en tasques repetitives o estandarditzades: caixers, traducció literal, manufactura repetitiva, agents de viatge tradicionals.
 - A major **nivell formatiu**, major salari mitjà. La diferència entre FP Superior i grau universitari és menor del que suggerix l'imaginari social.
 - Existixen **tres formes de treballar**: per compte d'altri (~81 %), autoocupació (~15 %) i intraemprenedoria (~5 %, en creixement).
-- L'**atur juvenil espanyol** (23,77 % en T2 2026) duplica la mitjana de la UE (~14-15 %) de forma sostinguda des de 2008. Les seues causes són estructurals: dualitat contractual, mismatch educatiu, SMI relativament alt enfront de productivitat juvenil, model turístic estacional.
+- L'**atur juvenil espanyol** (23,77 % en T2 2026) supera de molt la mitjana de la UE (~14-15 %) de forma sostinguda des de 2008. Les seues causes són estructurals: dualitat contractual, mismatch educatiu, SMI relativament alt enfront de productivitat juvenil, model turístic estacional.
 </KeyTakeaways>
 
 ## Glossari
@@ -379,7 +481,7 @@ Si vols llegir el mercat laboral amb dades reals i actualitzades, estes fonts of
 
 Estes preguntes no tenen una resposta única. Servixen per a discutir a classe o per a pensar individualment en tancar la unitat:
 
-1. Espanya duplica l'atur juvenil de la mitjana europea de forma sostinguda des de 2008. De les quatre causes estructurals (dualitat, SMI enfront de productivitat, mismatch educatiu, model turístic), quina creus que pesa més? Quina seria més fàcil de corregir?
+1. Espanya supera de molt l'atur juvenil mitjà europeu de forma sostinguda des de 2008. De les quatre causes estructurals (dualitat, SMI enfront de productivitat, mismatch educatiu, model turístic), quina creus que pesa més? Quina seria més fàcil de corregir?
 2. Les "professions de futur" combinen habilitat tècnica difícil d'automatitzar amb tracte humà no estandarditzat. Mirant el teu propi mapa d'interessos (Unitat 1 i Unitat 4), quines professions encaixen ací per a tu? Et condiciona la llista de demanda o decidixes al marge d'ella?
 3. El turisme aporta més del 12 % del PIB espanyol, però també explica bona part de l'atur juvenil estacional. És una fortalesa o una debilitat per a un jove que entra ara al mercat laboral? Com afecta la teua comarca en concret?
 
@@ -618,7 +720,7 @@ Esta unitat ha presentat el **mapa** del mercat laboral. La següent entra en el
 - tipo: data
   numero: "23,77 %"
   label: atur juvenil (16-24 anys)
-  title: El doble que la mitjana europea
+  title: Molt per damunt de la mitjana europea
   detalle: Uns 460.000 menors de 25 anys sense ocupació en el segon trimestre de 2026, segons l'EPA. La mitjana de la Unió Europea ronda el 14-15 %, i Espanya encapçala la llista des de 2008.
 - tipo: figure
   src: fopp-4eso/07/oficina-empleo-madrid.jpg

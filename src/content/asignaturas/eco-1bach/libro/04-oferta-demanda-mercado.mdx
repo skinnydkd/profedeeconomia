@@ -45,6 +45,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
 import Figure from '@components/Figure.astro';
 import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
 import EstructurasMercado from '@components/diagrams/EstructurasMercado.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -137,15 +138,24 @@ La forma más directa de representar la demanda es una **tabla** que enumera, pa
 
 | Precio (€/entrada) | Cantidad demandada (entradas/mes) |
 | ---: | ---: |
-| 12 | 8 000 |
+| 12 | 6 000 |
 | 10 | 12 000 |
 | 8 | 18 000 |
-| 6 | 26 000 |
-| 4 | 36 000 |
+| 6 | 24 000 |
+| 4 | 30 000 |
 
 La tabla cumple la ley de la demanda: a precios más altos, menos entradas; a precios más bajos, más. Si trasladamos la tabla a un eje cartesiano con el precio en vertical y la cantidad en horizontal, los cinco puntos quedan alineados a lo largo de una línea **descendente de izquierda a derecha**: esa es la **curva de demanda**. En este libro la dibujaremos como una recta para simplificar; en la realidad puede ser más curva, pero la **dirección descendente** se mantiene siempre.
 
-Algebraicamente, la curva de demanda del ejemplo se aproxima por la función lineal **Q_d = 60 000 − 4 000·P**: cada euro adicional reduce la demanda en 4 000 entradas mensuales.
+Algebraicamente, la curva de demanda del ejemplo es la función lineal **Q_d = 42 000 − 3 000·P**: cada euro adicional reduce la demanda en 3 000 entradas mensuales.
+
+<Diagram caption="La tabla de demanda llevada a los ejes: cada fila es un punto y los cinco quedan sobre la misma recta descendente, Q_d = 42 000 − 3 000·P.">
+  <MercadoGrafico id="mg-cine" titulo="La curva de demanda de entradas de cine" desc="Recta descendente que une los cinco puntos de la tabla: a 12 euros se demandan 6 000 entradas al mes y a 4 euros, 30 000."
+    pMax={14} qMax={36000} ejeP="Precio (€/entrada)" ejeQ="Entradas al mes"
+    pTicks={[4, 6, 8, 10, 12]} qTicks={[6000, 12000, 18000, 24000, 30000]}
+    curvas={[{ tipo: 'D', q0: 42000, m: -3000, pDe: 2, label: 'D' }]}
+    puntos={[{ p: 12, q: 6000 }, { p: 10, q: 12000 }, { p: 8, q: 18000 }, { p: 6, q: 24000 }, { p: 4, q: 30000 }]}
+  />
+</Diagram>
 
 ### Demanda individual vs demanda de mercado
 
@@ -160,6 +170,15 @@ La **oferta** de un bien es la cantidad que los productores están **dispuestos 
 La **ley de la oferta** establece una relación **directa** entre precio y cantidad: cuando el precio sube, los productores ofrecen más; cuando el precio baja, ofrecen menos. La intuición es clara: a precios altos, vender resulta más rentable; entran al mercado productores marginales que antes no compensaban; los existentes amplían capacidad. A precios bajos, los productores menos eficientes salen del mercado y los demás reducen la producción.
 
 La curva de oferta, por tanto, es **ascendente de izquierda a derecha**: a más precio, más cantidad ofrecida. Una formulación lineal típica sería **Q_o = a + b·P**, con b positivo.
+
+<Diagram caption="La curva de oferta es ascendente: si el precio sube de P₁ a P₂, la cantidad ofrecida pasa de Q₁ a Q₂.">
+  <MercadoGrafico id="mg-oferta" titulo="La curva de oferta" desc="Recta ascendente: al subir el precio de P1 a P2, la cantidad ofrecida pasa de Q1 a Q2."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 3.5, q: 35, pLabel: 'P₁', qLabel: 'Q₁' }, { p: 7, q: 70, pLabel: 'P₂', qLabel: 'Q₂' }]}
+    flechas={[{ de: { p: 3.5, q: 35 }, a: { p: 7, q: 70 }, despl: -22 }]}
+  />
+</Diagram>
 
 ### Oferta individual vs oferta de mercado
 
@@ -220,6 +239,16 @@ b) ¿Qué ocurre si el Gobierno fija un precio máximo de 12 € por auriculares
 4. **Exceso de demanda** = Q_d − Q_o = 76 − 56 = **20 mil unidades/mes**. Aparecen 20 000 consumidores al mes que querrían comprar al precio fijado pero no encuentran producto.
 5. Consecuencias previsibles: colas, listas de espera, posible mercado negro, deterioro de la calidad o reducción del servicio postventa. El control de precios, salvo emergencias muy concretas, suele empeorar el problema que pretende resolver. (Veremos casos reales —topes al alquiler— en la **Unidad 5**.)
 
+<Diagram caption="El ejercicio en un gráfico: el equilibrio está en E (16 €, 68 mil). Con el precio máximo de 12 € se demandan 76 mil unidades y solo se ofrecen 56 mil.">
+  <MercadoGrafico id="mg-auriculares" titulo="Equilibrio y precio máximo en el mercado de auriculares" desc="La demanda y la oferta se cortan en 16 euros y 68 mil unidades. Con un precio máximo de 12 euros se demandan 76 mil y se ofrecen 56 mil: faltan 20 mil."
+    pMax={40} qMax={110} ejeP="Precio (€)" ejeQ="Miles de unidades al mes"
+    curvas={[{ tipo: 'D', q0: 100, m: -2, pDe: 3, label: 'D' }, { tipo: 'O', q0: 20, m: 3, label: 'O' }]}
+    puntos={[{ p: 16, q: 68, label: 'E', pLabel: '16', qLabel: '68' }, { p: 12, q: 56, pLabel: '12', qLabel: '56' }, { p: 12, q: 76, qLabel: '76' }]}
+    precio={{ p: 12, label: "Precio máximo: 12 €" }}
+    tramo={{ p: 12, q1: 56, q2: 76, label: "Exceso de demanda: 20" }}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <RecursoDestacado href="/eco-1bach/recursos/equilibrio-mercado/" kicker="Herramienta" title="Calculadora de equilibrio de mercado" descripcion="Introduce las funciones lineales de oferta y demanda: la herramienta resuelve el sistema y deja ver el efecto de desplazar cualquiera de las dos." colorVar="--color-eco1" />
@@ -235,6 +264,24 @@ Ocurre cuando **cambia el precio del propio bien** y, en consecuencia, cambia la
 ### Desplazamiento de la curva
 
 Ocurre cuando cambia **cualquier otro factor distinto del precio del bien**. La curva entera se desplaza —a la derecha si la demanda u oferta aumenta a todos los precios, a la izquierda si disminuye—. En ese caso aparece un **nuevo equilibrio** distinto del anterior.
+
+<Diagram caption="Movimiento a lo largo de la curva: sube el precio del cine de 8 € a 10 € y pasamos de A a B sin salir de la misma curva.">
+  <MercadoGrafico id="mg-movimiento" titulo="Movimiento a lo largo de la curva de demanda" desc="Sobre la misma curva de demanda, al subir el precio de 8 a 10 euros se pasa del punto A, con 18 000 entradas, al punto B, con 12 000."
+    pMax={14} qMax={36000} ejeP="Precio (€/entrada)" ejeQ="Entradas al mes"
+    curvas={[{ tipo: 'D', q0: 42000, m: -3000, pDe: 2, label: 'D' }]}
+    puntos={[{ p: 8, q: 18000, label: 'A', pLabel: '8', qLabel: '18 000' }, { p: 10, q: 12000, label: 'B', pLabel: '10', qLabel: '12 000' }]}
+    flechas={[{ de: { p: 8, q: 18000 }, a: { p: 10, q: 12000 }, despl: -26 }]}
+  />
+</Diagram>
+
+<Diagram caption="Desplazamiento de la curva: cambia otro factor (por ejemplo, sube la renta) y a los mismos 8 € se demandan 24 000 entradas en vez de 18 000. La curva pasa de D₁ a D₂.">
+  <MercadoGrafico id="mg-desplazamiento" titulo="Desplazamiento de la curva de demanda" desc="La curva de demanda entera se desplaza a la derecha: al mismo precio de 8 euros se demandan 24 000 entradas en lugar de 18 000."
+    pMax={14} qMax={36000} ejeP="Precio (€/entrada)" ejeQ="Entradas al mes"
+    curvas={[{ tipo: 'D', q0: 42000, m: -3000, pDe: 2, label: 'D₁', tenue: true }, { tipo: 'D', q0: 48000, m: -3000, pDe: 4, label: 'D₂' }]}
+    puntos={[{ p: 8, q: 18000, pLabel: '8', qLabel: '18 000' }, { p: 8, q: 24000, qLabel: '24 000' }]}
+    flechas={[{ de: { p: 8, q: 18000 }, a: { p: 8, q: 24000 } }]}
+  />
+</Diagram>
 
 La regla mnemotécnica es directa: **si cambia el precio del bien, nos movemos sobre la curva; si cambia cualquier otra cosa, la curva se desplaza**.
 
@@ -296,6 +343,14 @@ c) ¿Es coherente la subida simultánea de precio y la caída de cantidad con un
 3. Coherencia con el modelo: si la **demanda sube** y la **oferta cae o se mantiene**, el precio de equilibrio sube y la cantidad puede mantenerse o caer ligeramente —exactamente lo observado—. Si solo se hubiese movido la demanda al alza, esperaríamos precio y cantidad subiendo a la vez. La caída ligera de cantidad confirma que la oferta **también** se ha desplazado a la izquierda.
 4. Conclusión pedagógica: el modelo permite **descartar explicaciones**. La narrativa de *«es solo culpa de los fondos buitre»* no encaja con los datos si miramos las cantidades; la realidad es una combinación de presión por el lado de la demanda y restricción por el lado de la oferta. La política pública eficaz debe actuar sobre ambos lados.
 
+<Diagram caption="La lectura del ejercicio: la demanda pasa de D₁ a D₂ y la oferta de O₁ a O₂. El precio sube con fuerza (de P₁ a P₂) y la cantidad apenas cambia, incluso baja un poco.">
+  <MercadoGrafico id="mg-alquiler-madrid" titulo="El alquiler en Madrid: la demanda aumenta y la oferta se reduce" desc="La demanda se desplaza a la derecha y la oferta a la izquierda. El nuevo equilibrio tiene un precio mucho más alto y una cantidad algo menor."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: -45, m: 10, pDe: 6, pA: 9.8, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 8.75, q: 42.5, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ## Cómo cambia el equilibrio cuando se desplaza una curva
@@ -313,6 +368,24 @@ El gran valor analítico del modelo es que permite **predecir la dirección del 
 <li><strong>Cae la oferta</strong> (curva O a la izquierda). Sube P*, baja Q*. Ejemplo: sequía en aceite de oliva, subida del coste de la energía en fábricas.</li>
 
 </Steps>
+
+<Diagram caption="Casos 1 y 2. Con la oferta quieta, si la demanda aumenta (D₀ → D₁) suben el precio y la cantidad; si cae (D₀ → D₂), bajan los dos.">
+  <MercadoGrafico id="mg-desplaza-demanda" titulo="Desplazamientos de la demanda y nuevo equilibrio" desc="Con la oferta fija, si la demanda aumenta el equilibrio sube por la curva de oferta: más precio y más cantidad. Si la demanda cae, baja: menos precio y menos cantidad."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }, { tipo: 'D', q0: 70, m: -10, pDe: 0.8, pA: 6, label: 'D₂' }, { tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₀' }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₁' }]}
+    puntos={[{ p: 3.5, q: 35, label: 'E₂', dx: -8, dy: 30 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: 30 }, { p: 6.5, q: 65, label: 'E₁', dx: -8, dy: 30 }]}
+    flechas={[{ de: { p: 7.6, q: 24 }, a: { p: 7.6, q: 54 } }, { de: { p: 2.2, q: 78 }, a: { p: 2.2, q: 48 } }]}
+  />
+</Diagram>
+
+<Diagram caption="Casos 3 y 4. Con la demanda quieta, si la oferta aumenta (O₀ → O₁) baja el precio y sube la cantidad; si cae (O₀ → O₂), sube el precio y baja la cantidad.">
+  <MercadoGrafico id="mg-desplaza-oferta" titulo="Desplazamientos de la oferta y nuevo equilibrio" desc="Con la demanda fija, si la oferta aumenta el equilibrio baja por la curva de demanda: menos precio y más cantidad. Si la oferta cae, sube: más precio y menos cantidad."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1, pA: 8.5, label: 'D' }, { tipo: 'O', q0: -30, m: 10, pDe: 4, pA: 9.6, label: 'O₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₀' }, { tipo: 'O', q0: 30, m: 10, pDe: 0.8, pA: 6.5, label: 'O₁' }]}
+    puntos={[{ p: 6.5, q: 35, label: 'E₂', dx: -8, dy: -16 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: -16 }, { p: 3.5, q: 65, label: 'E₁', dx: -8, dy: -16 }]}
+    flechas={[{ de: { p: 7.6, q: 76 }, a: { p: 7.6, q: 46 } }, { de: { p: 2.2, q: 22 }, a: { p: 2.2, q: 52 } }]}
+  />
+</Diagram>
 
 Cuando se mueven **las dos curvas a la vez** —caso frecuente en la realidad— una de las dos variables del equilibrio queda **indeterminada** sin información adicional sobre cuál de las dos se mueve más. Por eso el análisis profesional combina el modelo con datos empíricos sobre la magnitud de cada desplazamiento.
 
@@ -338,6 +411,14 @@ c) Formula la regla general de los desplazamientos simultáneos.
    - Si ambos crecen por igual → el precio **se mantiene**.
    Por tanto, **el precio queda indeterminado** sin datos sobre la magnitud relativa de cada desplazamiento. (En el caso real de los coches eléctricos, el abaratamiento de baterías ha pesado más, y el precio ha tendido a bajar mientras la cantidad se disparaba.)
 3. **Regla general**. Cuando **las dos curvas se desplazan a la vez**, queda determinada con seguridad la variable sobre la que **ambos efectos empujan en el mismo sentido**, y queda **indeterminada** la variable sobre la que los efectos se oponen. Conocer la dirección de los desplazamientos no basta: hay que conocer también su **magnitud relativa**. Este es el motivo por el que el análisis económico serio nunca se queda en el gráfico: necesita datos empíricos.
+
+<Diagram caption="Las dos curvas se van a la derecha: la cantidad sube seguro (de Q₁ a Q₂). El precio depende de cuál se desplace más; aquí la oferta crece algo más y el precio baja un poco.">
+  <MercadoGrafico id="mg-simultaneo" titulo="Demanda y oferta aumentan a la vez" desc="Las dos curvas se desplazan a la derecha. La cantidad de equilibrio aumenta con seguridad; el precio baja un poco porque la oferta se desplaza algo más."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 3.5, pA: 9.6, label: 'D₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: 40, m: 10, pDe: 0.8, pA: 5.6, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: -16 }, { p: 4.5, q: 85, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -428,6 +509,16 @@ Los topes operan como **precios máximos por debajo del equilibrio**: oficialmen
 - **Degradación de la calidad**: con margen comprimido, el propietario reduce mantenimiento.
 
 La lección operativa, transversal a la política económica: las intervenciones **solo sobre precios** —sin atacar la oferta mediante construcción, vivienda pública o reforma del suelo— suelen **desplazar el problema**, no resolverlo. Es uno de los consensos más sólidos en economía aplicada, aunque políticamente sea incómodo de aceptar.
+<Diagram caption="El tope en el gráfico: al precio máximo se quieren alquilar más pisos de los que se ofrecen. La distancia entre las dos cantidades es la escasez.">
+  <MercadoGrafico id="mg-tope" titulo="Un precio máximo por debajo del equilibrio" desc="Con el precio limitado por debajo del de equilibrio, la cantidad demandada supera a la ofrecida y aparece escasez."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 5, q: 50, label: 'E', pLabel: 'P*', qLabel: 'Q*' }, { p: 3, q: 30, qLabel: "Q ofr." }, { p: 3, q: 70, qLabel: "Q dem." }]}
+    precio={{ p: 3, label: "Precio máximo (tope)" }}
+    tramo={{ p: 3, q1: 30, q2: 70, label: "Escasez" }}
+  />
+</Diagram>
+
 </VuelveAlCaso>
 
 <KeyTakeaways title="Lo esencial de la unidad">
@@ -566,16 +657,16 @@ Las estructuras de mercado —competencia, monopolio, oligopolio— se viven en 
     - Cantidad demandada (entradas/mes)
   rows:
     - - 12 €
-      - "8.000"
+      - "6.000"
     - - 10 €
       - "12.000"
     - - 8 €
       - "18.000"
     - - 6 €
-      - "26.000"
+      - "24.000"
     - - 4 €
-      - "36.000"
-  caption: Algebraicamente, Qd = 60.000 − 4.000·P. Cada euro adicional reduce la demanda en 4.000 entradas mensuales.
+      - "30.000"
+  caption: Algebraicamente, Qd = 42.000 − 3.000·P. Cada euro adicional reduce la demanda en 3.000 entradas mensuales.
 - tipo: section
   title: El equilibrio de mercado
   subtitle: Una cifra que ninguna de las partes ha fijado individualmente pero que todas terminan respetando.

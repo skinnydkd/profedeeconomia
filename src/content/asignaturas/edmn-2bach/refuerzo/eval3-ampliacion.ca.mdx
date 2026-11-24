@@ -29,12 +29,125 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una empresa disposa de 30.000 € i estudia dos projectes excloents, tots dos a 4 anys, amb una taxa de descompte del 10 %. Projecte A: fluxos de 12.000 € cada any. Projecte B: fluxos de 6.000 €, 10.000 €, 14.000 € i 18.000 €. Quin ha de triar?"
     desarrollo: "<strong>Projecte A</strong><br>12.000 ÷ 1,1 = 10.909,09 €<br>12.000 ÷ 1,21 = 9.917,36 €<br>12.000 ÷ 1,331 = 9.015,78 €<br>12.000 ÷ 1,4641 = 8.196,16 €<br>Suma actualitzada = 38.038,39 €<br>VAN(A) = 38.038,39 − 30.000 = <strong>+8.038,39 €</strong><br><br><strong>Projecte B</strong><br>6.000 ÷ 1,1 = 5.454,55 €<br>10.000 ÷ 1,21 = 8.264,46 €<br>14.000 ÷ 1,331 = 10.518,41 €<br>18.000 ÷ 1,4641 = 12.294,24 €<br>Suma actualitzada = 36.531,66 €<br>VAN(B) = 36.531,66 − 30.000 = <strong>+6.531,66 €</strong><br><br><strong>Decisió</strong>: els dos VAN són positius, però VAN(A) &gt; VAN(B). Es tria el <strong>Projecte A</strong>: encara que B concentra fluxos alts al final, descomptar-los al 10 % els resta valor, i A genera més valor actual. A més, A recupera abans la inversió, amb menys risc."
+    grafico:
+      tipo: xy
+      caption: "VAN dels projectes A i B segons la taxa de descompte. Amb k = 10 % l'A val +8.038,39 € i el B, +6.531,66 €. Tots dos parteixen de 18.000 € amb k = 0 i el B cau més depressa perquè els seus fluxos arriben més tard."
+      props:
+        id: "r-e3a-van-proyectos"
+        titulo: "VAN dels projectes A i B segons la taxa de descompte"
+        desc: "Els dos VAN parteixen de 18.000 euros amb una taxa del 0 % i baixen en pujar la taxa, el B més depressa. Amb k = 10 % l'A val 8.038 euros i el B, 6.532. L'A s'anul·la amb una TIR del 21,86 % i el B, del 18,10 %."
+        xMax: 26
+        yMax: 20000
+        yMin: -3000
+        ejeX: "Taxa de descompte k"
+        ejeY: "VAN (€)"
+        simboloX: "k"
+        xTicks: [5, 15]
+        xTickLabels: ["5 %", "15 %"]
+        yTicks: [10000, 20000]
+        series:
+          - { label: "A", color: "terra", puntos: [[0, 18000], [1.25, 16536.7], [2.5, 15143.69], [3.75, 13816.61], [5, 12551.41], [6.25, 11344.33], [7.5, 10191.92], [8.75, 9090.93], [10, 8038.39], [11.25, 7031.5], [12.5, 6067.67], [13.75, 5144.5], [15, 4259.74], [16.25, 3411.29], [17.5, 2597.18], [18.75, 1815.59], [20, 1064.81], [21.25, 343.24], [22.5, -350.63]], dy: -6 }
+          - { label: "B", color: "teal", puntos: [[0, 18000], [1.25, 16295.83], [2.5, 14679.31], [3.75, 13144.76], [5, 11686.95], [6.25, 10301.05], [7.5, 8982.58], [8.75, 7727.39], [10, 6531.66], [11.25, 5391.8], [12.5, 4304.53], [13.75, 3266.75], [15, 2275.61], [16.25, 1328.45], [17.5, 422.79], [18.75, -443.69], [20, -1273.15], [21.25, -2067.6], [22.5, -2828.94]], dy: 14 }
+        puntos:
+          - { x: 10, y: 8038.39, xLabel: "10 %", yLabel: "8 038" }
+          - { x: 10, y: 6531.66, yLabel: "6 532" }
+          - { x: 21.86, y: 0, xLabel: "21,86 %" }
+          - { x: 18.1, y: 0, xLabel: "18,10 %" }
+        notas:
+          - { x: 11, y: 17000, texto: "TIR A 21,86 % · TIR B 18,10 %" }
   - enunciado: "Una pime presenta este balanç (en milers de €): actiu no corrent 300, existències 80, realitzable 60, disponible 20; patrimoni net 180, passiu no corrent 160, passiu corrent 120. Calcula el fons de maniobra i les ràtios de liquiditat, solvència i endeutament, i interpreta'ls."
     desarrollo: "Actiu corrent = 80 + 60 + 20 = 160; passiu total = 160 + 120 = 280; actiu total = 460.<br><strong>Fons de maniobra</strong> = AC − PC = 160 − 120 = <strong>+40</strong> (positiu, hi ha matalàs).<br><strong>Liquiditat general</strong> = 160 ÷ 120 = <strong>1,33</strong> (una mica per davall del rang 1,5-2).<br><strong>Acid test</strong> = (160 − 80) ÷ 120 = 80 ÷ 120 = <strong>0,67</strong> (per davall d'1: depén de vendre existències).<br><strong>Solvència</strong> = 460 ÷ 280 = <strong>1,64</strong> (per damunt d'1,5: cobrix els seus deutes).<br><strong>Endeutament</strong> = 280 ÷ 460 = <strong>0,61</strong> (61 %, una mica alt enfront del 0,4-0,6 recomanat).<br><strong>Diagnòstic</strong>: solvència correcta, però liquiditat ajustada i endeutament en el límit superior. Recomanació: reforçar la tresoreria i traslladar part del passiu corrent a llarg termini per a alleujar la pressió a curt."
+    grafico:
+      tipo: xy
+      caption: "Balanç de la pime en milers d'euros. L'actiu corrent (160) supera el passiu corrent (120) en 40: eixe és el fons de maniobra (FM). El deute total (160 + 120 = 280) finança el 61 % de l'actiu."
+      props:
+        id: "r-e3a-balance"
+        titulo: "Balanç de la pime en masses patrimonials"
+        desc: "Dues columnes en milers d'euros. Actiu: no corrent 300 i corrent 160, total 460. Patrimoni net 180, passiu no corrent 160 i passiu corrent 120, total 460. El fons de maniobra és de 40."
+        xMax: 8.5
+        yMax: 520
+        ejeX: "Milers d'euros"
+        ejeY: "Milers d'euros"
+        xTicks: [2.4, 6.4]
+        xTickLabels: ["Actiu", "PN + passiu"]
+        yTicks: [200]
+        areas:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 300], [1, 300]], color: "terra", fuerte: true }
+          - { puntos: [[1, 300], [3.8, 300], [3.8, 460], [1, 460]], color: "mustard", fuerte: true }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 180], [5, 180]], color: "teal", fuerte: true }
+          - { puntos: [[5, 180], [7.8, 180], [7.8, 340], [5, 340]], color: "aubergine", fuerte: true }
+          - { puntos: [[5, 340], [7.8, 340], [7.8, 460], [5, 460]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 300], [1, 300], [1, 0]], color: "terra" }
+          - { puntos: [[1, 300], [3.8, 300], [3.8, 460], [1, 460], [1, 300]], color: "mustard" }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 180], [5, 180], [5, 0]], color: "teal" }
+          - { puntos: [[5, 180], [7.8, 180], [7.8, 340], [5, 340], [5, 180]], color: "aubergine" }
+          - { puntos: [[5, 340], [7.8, 340], [7.8, 460], [5, 460], [5, 340]], color: "mustard" }
+        notas:
+          - { x: 2.4, y: 143.76, texto: "ANC 300", ancla: "middle" }
+          - { x: 2.4, y: 373.76, texto: "AC 160", ancla: "middle" }
+          - { x: 6.4, y: 83.76, texto: "PN 180", ancla: "middle" }
+          - { x: 6.4, y: 253.76, texto: "PNC 160", ancla: "middle" }
+          - { x: 6.4, y: 393.76, texto: "PC 120", ancla: "middle" }
+          - { x: 2.4, y: 470, texto: "Actiu: 460", ancla: "middle" }
+          - { x: 6.4, y: 470, texto: "PN + passiu: 460", ancla: "middle" }
+          - { x: 4.4, y: 500, texto: "FM = 160 − 120 = +40", ancla: "middle", color: "teal" }
   - enunciado: "Una empresa té un actiu total de 400.000 €, un patrimoni net de 150.000 € i un passiu de 250.000 € amb un cost mitjà del 6 %. El seu BAII és de 48.000 € i l'impost de societats, del 25 %. Calcula ROA i ROE i raona l'efecte del palanquejament."
     desarrollo: "<strong>ROA</strong> = BAII ÷ Actiu total × 100 = 48.000 ÷ 400.000 × 100 = <strong>12 %</strong>.<br>Per al ROE calculem el benefici net:<br>Interessos = 6 % · 250.000 = 15.000 €<br>BAI = 48.000 − 15.000 = 33.000 €<br>Impost = 25 % · 33.000 = 8.250 €<br>Benefici net = 33.000 − 8.250 = 24.750 €<br><strong>ROE</strong> = 24.750 ÷ 150.000 × 100 = <strong>16,5 %</strong>.<br><strong>Palanquejament</strong>: com que ROA (12 %) &gt; cost del deute (6 %), cada euro prestat rendix més que allò que costa i eixe marge es queda en mans dels socis. Per això ROE (16,5 %) &gt; ROA (12 %): el deute <strong>amplifica favorablement</strong> la rendibilitat. Si el ROA caiguera per davall del 6 %, l'efecte s'invertiria."
+    grafico:
+      tipo: xy
+      caption: "Amb deute de 250.000 € al 6 % i patrimoni net de 150.000 €, un ROA del 12 % dóna un ROE del 16,5 % (22 % abans d'impostos). La rendibilitat abans d'impostos dels socis supera l'ROA quan este supera el cost del deute, el 6 %."
+      props:
+        id: "r-e3a-apalancamiento"
+        titulo: "ROE i ROA amb deute al 6 %"
+        desc: "Amb deute de 250.000 euros al 6 % i patrimoni net de 150.000, la rendibilitat abans d'impostos dels socis és 2,67 vegades l'ROA menys 10 punts, i l'ROE, després d'un 25 % d'impostos, 2 vegades l'ROA menys 7,5. Amb ROA del 12 %: 22 % abans d'impostos i ROE del 16,5 %. La recta amb deute talla la de l'ROA en el 6 %, el cost del deute."
+        xMax: 18
+        yMax: 36
+        yMin: -12
+        ejeX: "ROA, rendibilitat econòmica (%)"
+        ejeY: "Rendibilitat dels socis (%)"
+        simboloX: "ROA"
+        xTicks: [9, 15]
+        yTicks: [30]
+        series:
+          - { label: "ROA", color: "ink", tenue: true, puntos: [[0, 0], [15, 15]], dy: 14 }
+          - { label: "BAI/PN", color: "terra", puntos: [[0, -10], [15, 30]] }
+          - { label: "ROE", color: "teal", puntos: [[0, -7.5], [15, 22.5]], dy: 6 }
+        puntos:
+          - { x: 6, y: 6, xLabel: "6", yLabel: "6", label: "i = 6 %", dx: -66, dy: -14 }
+          - { x: 12, y: 12, xLabel: "12", yLabel: "12" }
+          - { x: 12, y: 16.5, yLabel: "16,5" }
+          - { x: 12, y: 22, yLabel: "22" }
   - enunciado: "Una inversió de 15.000 € genera fluxos de 5.000 €, 6.000 €, 7.000 € i 5.000 € en quatre anys. Amb k = 8 %, calcula el payback simple i el payback descomptat i compara'ls."
-    desarrollo: "<strong>Payback simple</strong> (fluxos sense descomptar):<br>Acumulat any 1 = 5.000; any 2 = 11.000; any 3 = 18.000 → es recupera durant l'any 3.<br>En faltaven 15.000 − 11.000 = 4.000 €; 4.000 ÷ 7.000 = 0,57 → <strong>payback simple ≈ 2,57 anys</strong>.<br><br><strong>Payback descomptat</strong> (fluxos actualitzats al 8 %):<br>Any 1: 5.000 ÷ 1,08 = 4.629,63 €<br>Any 2: 6.000 ÷ 1,1664 = 5.144,03 €<br>Any 3: 7.000 ÷ 1,259712 = 5.557,62 €<br>Any 4: 5.000 ÷ 1,360489 = 3.675,15 €<br>Acumulat descomptat: any 1 = 4.629,63; any 2 = 9.773,66; any 3 = 15.331,28 → es recupera durant l'any 3.<br>En faltaven 15.000 − 9.773,66 = 5.226,34 €; 5.226,34 ÷ 5.557,62 = 0,94 → <strong>payback descomptat ≈ 2,94 anys</strong>.<br><strong>Conclusió</strong>: el payback descomptat (2,94) és major que el simple (2,57) perquè té en compte que els diners futurs valen menys. Sempre que k &gt; 0, el descomptat és més llarg i més realista."
+    desarrollo: "<strong>Payback simple</strong> (fluxos sense descomptar):<br>Acumulat any 1 = 5.000; any 2 = 11.000; any 3 = 18.000 → es recupera durant l'any 3.<br>En faltaven 15.000 − 11.000 = 4.000 €; 4.000 ÷ 7.000 = 0,57 → <strong>payback simple ≈ 2,57 anys</strong>.<br><br><strong>Payback descomptat</strong> (fluxos actualitzats al 8 %):<br>Any 1: 5.000 ÷ 1,08 = 4.629,63 €<br>Any 2: 6.000 ÷ 1,1664 = 5.144,03 €<br>Any 3: 7.000 ÷ 1,259712 = 5.556,83 €<br>Any 4: 5.000 ÷ 1,360489 = 3.675,15 €<br>Acumulat descomptat: any 1 = 4.629,63; any 2 = 9.773,66; any 3 = 15.330,49 → es recupera durant l'any 3.<br>En faltaven 15.000 − 9.773,66 = 5.226,34 €; 5.226,34 ÷ 5.556,83 = 0,94 → <strong>payback descomptat ≈ 2,94 anys</strong>.<br><strong>Conclusió</strong>: el payback descomptat (2,94) és major que el simple (2,57) perquè té en compte que els diners futurs valen menys. Sempre que k &gt; 0, el descomptat és més llarg i més realista."
+    grafico:
+      tipo: xy
+      caption: "Flux de caixa acumulat de la inversió de 15.000 €. Sense descomptar es recupera als 2,57 anys; descomptant al 8 %, als 2,94: els diners futurs valen menys."
+      props:
+        id: "r-e3a-payback"
+        titulo: "Payback simple i descomptat"
+        desc: "Flux acumulat sense descomptar: 5.000, 11.000, 18.000 i 23.000 euros al final de cada any; creua la inversió de 15.000 euros als 2,57 anys. Descomptat al 8 %: 4.630, 9.774, 15.330 i 19.006 euros; creua els 15.000 als 2,94 anys."
+        xMax: 5.5
+        yMax: 26000
+        ejeX: "Anys des de la inversió"
+        ejeY: "Euros recuperats"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [1, 2, 4]
+        yTicks: [10000, 20000]
+        series:
+          - { label: "Simple", color: "teal", puntos: [[0, 0], [1, 5000], [2, 11000], [3, 18000], [4, 23000]], dy: -4 }
+          - { label: "Descomptat", color: "terra", puntos: [[0, 0], [1, 4629.63], [2, 9773.66], [3, 15330.49], [4, 19005.64]], dy: 4 }
+          - { label: "Inversió", color: "ink", tenue: true, puntos: [[0, 15000], [4, 15000]], dy: -8, labelEn: "inicio", dx: 14 }
+        puntos:
+          - { x: 2.57, y: 15000, label: "PB simple", xLabel: "2,57", yLabel: "15 000", dx: -80, dy: -14 }
+          - { x: 2.94, y: 15000, label: "PB desc.", xLabel: "2,94", dx: 10, dy: 28 }
+          - { x: 1, y: 5000, guias: false }
+          - { x: 2, y: 11000, guias: false }
+          - { x: 3, y: 18000, guias: false }
+          - { x: 4, y: 23000, guias: false }
+          - { x: 2, y: 9773.66, guias: false }
+          - { x: 4, y: 19005.64, guias: false }
 ejercicios:
   - enunciado: "Una inversió de 20.000 € genera fluxos de 8.000 € l'any 1, 9.000 € l'any 2 i 10.000 € l'any 3. Amb una taxa de descompte del 10 %, calcula el VAN i digues si és rendible."
     solucion: "VAN = −20.000 + 8.000/1,1 + 9.000/1,1² + 10.000/1,1³<br>Any 1: 8.000 ÷ 1,1 = 7.272,73 €<br>Any 2: 9.000 ÷ 1,21 = 7.438,02 €<br>Any 3: 10.000 ÷ 1,331 = 7.513,15 €<br>Suma de fluxos actualitzats = 7.272,73 + 7.438,02 + 7.513,15 = 22.223,90 €<br>VAN = −20.000 + 22.223,90 = <strong>+2.223,90 €</strong>.<br>Com que VAN &gt; 0, la inversió <strong>és rendible</strong> i s'ha d'acceptar."

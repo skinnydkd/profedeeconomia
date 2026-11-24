@@ -50,6 +50,7 @@ publicado_en: 2026-05-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MultiplicadorFiscal from '@components/diagrams/MultiplicadorFiscal.astro';
 import TransmisionMonetaria from '@components/diagrams/TransmisionMonetaria.astro';
 import Curiosity from '@components/Curiosity.astro';
@@ -170,6 +171,19 @@ k = 1 / (1 − c)
 
 Si la propensió marginal al consum és 0,7, el multiplicador val 1 / (1 − 0,7) = 3,33: un euro de despesa pública addicional acaba augmentant el PIB en 3,33 euros. En la pràctica, el multiplicador en economies obertes i amb impostos és bastant menor (entre 0,5 i 1,5 segons el context i el tipus de despesa), perquè part de la renda es filtra cap a importacions i cap a impostos. Però la lògica del multiplicador continua sent vàlida: la despesa pública mou més PIB que el seu valor nominal.
 
+<Diagram caption="El multiplicador de la despesa k = 1 / (1 − c) segons la propensió marginal al consum: amb c = 0,6 val 2,5, amb c = 0,75 val 4 i creix sense límit quan c s'acosta a 1.">
+  <GraficoXY id="g-multiplicador-fiscal" titulo="El multiplicador de la despesa segons la propensió marginal al consum" desc="Corba creixent: el multiplicador val 2,5 amb c = 0,6, 4 amb c = 0,75 i 10 amb c = 0,9."
+    xMax={1} yMax={11} ejeX="Propensió marginal al consum c" ejeY="Multiplicador k" simboloX="c" simboloY="k"
+    xTicks={[0.25, 0.5, 0.75]} xTickLabels={['0,25', '0,5', '0,75']}
+    series={[{ color: 'terra', puntos: Array.from({ length: 19 }, (_, i) => [i * 0.05, 1 / (1 - i * 0.05)]) }]}
+    puntos={[
+      { x: 0.6, y: 2.5, xLabel: '0,6', yLabel: '2,5' },
+      { x: 0.75, y: 4, xLabel: '0,75', yLabel: '4' },
+    ]}
+  />
+</Diagram>
+
+
 <Diagram caption="Un euro de despesa pública no es queda en un euro: es convertix en renda per a algú que consumix part, i eixa cadena de rondes successives multiplica l'efecte inicial.">
   <MultiplicadorFiscal />
 </Diagram>
@@ -197,6 +211,20 @@ Una economia tancada i sense imposts té una propensió marginal al consum de 0,
 3. Amb c = 0,6, el multiplicador cau a k = 1 / (1 − 0,6) = 2,5 i l'efecte total es reduïx a ΔY = 2,5 · 12 000 = **30 000 M€**.
 
 **Conclusió.** Quan les llars estalvien més (c menor), part de la renda ix del circuit en cada ronda i l'efecte multiplicador es debilita. El mateix pla de 12 000 M€ passa de generar 48 000 M€ a generar 30 000 M€ de PIB. Per a una economia oberta amb impostos com l'espanyola, el multiplicador realista seria sensiblement menor (al voltant d'1-1,5 segons el tipus de despesa), perquè també es filtren euros cap a importacions i cap a la recaptació tributària.
+
+<Diagram caption="Exercici 11.1 ronda a ronda: l'augment acumulat del PIB tendeix a 48.000 M€ amb c = 0,75 i a 30.000 M€ amb c = 0,6, a partir d'una despesa inicial de 12.000 M€. Com més estalvien les llars, abans s'esgota la cadena.">
+  <GraficoXY id="g-ejercicio-11-1" titulo="Exercici 11.1: augment acumulat del PIB ronda a ronda" desc="Amb una despesa inicial de 12 000 milions, el PIB acumulat tendeix a 48 000 milions si c = 0,75 i a 30 000 milions si c = 0,6."
+    xMax={15} yMax={54000} ejeX="Ronda" ejeY="Augment acumulat del PIB (M€)"
+    xTicks={[1, 4, 8, 12]} yTicks={[12000, 30000, 48000]}
+    series={[
+      { color: 'terra', tenue: true, puntos: [[1, 48000], [12, 48000]] },
+      { color: 'teal', tenue: true, puntos: [[1, 30000], [12, 30000]] },
+      { label: 'c = 0,75', color: 'terra', puntos: Array.from({ length: 12 }, (_, i) => [i + 1, 12000 * (1 - 0.75 ** (i + 1)) / (1 - 0.75)]) },
+      { label: 'c = 0,6', color: 'teal', puntos: Array.from({ length: 12 }, (_, i) => [i + 1, 12000 * (1 - 0.6 ** (i + 1)) / (1 - 0.6)]) },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -250,6 +278,17 @@ Els sostres nominals del 3 % de dèficit i el 60 % de deute continuen sent la re
 Una pregunta clàssica: si l'Estat vol recaptar més, basta amb pujar els tipus impositius? L'economista estatunidenc **Arthur Laffer** va popularitzar als anys setanta una idea que es coneix com a **corba de Laffer**: la recaptació és zero quan el tipus impositiu és 0 % (obvi) i també zero quan el tipus és 100 % (perquè ningú treballa si no es queda amb res). Entre ambdós extrems hi ha un màxim de recaptació. A partir d'eixe punt, pujar més el tipus *reduïx* el recaptat perquè la base imposable cau (menys treball, més frau, més economia submergida, fuga de capital).
 
 La corba de Laffer no diu que qualsevol pujada d'impostos siga contraproduent, sinó que existix un tipus òptim a partir del qual ja no compensa pujar més. On està eixe punt exactament és objecte de debat empíric: els estudis situen el màxim de l'IRPF entre el 60 % i el 70 % marginal en països desenvolupats amb bona administració tributària, però baixa substancialment en països amb alta corrupció o feble capacitat administrativa.
+
+<Diagram caption="La corba de Laffer, esquemàtica: la recaptació és nul·la amb un tipus del 0 % i del 100 %, i arriba al màxim en algun punt intermedi. La banda ombrejada és el 60-70 % que els estudis citats situen com a màxim de l'IRPF marginal. Sense xifres a l'eix vertical.">
+  <GraficoXY id="g-laffer" titulo="Corba de Laffer: recaptació segons el tipus impositiu" desc="Corba en forma de campana: la recaptació és zero amb un tipus del 0 % i del 100 % i el màxim cau entre el 60 % i el 70 %."
+    xMax={108} yMax={112} ejeX="Tipus impositiu (%)" ejeY="Recaptació" simboloX="t" simboloY="R"
+    xTicks={[60, 70, 100]}
+    areas={[{ puntos: [[60, 0], [70, 0], [70, 100], [60, 100]], color: 'mustard' }]}
+    series={[{ color: 'terra', puntos: [[0, 0.00], [5, 13.17], [10, 25.58], [15, 37.21], [20, 48.02], [25, 57.98], [30, 67.03], [35, 75.15], [40, 82.26], [45, 88.31], [50, 93.21], [55, 96.88], [60, 99.19], [65, 100.00], [70, 99.11], [75, 96.26], [80, 91.06], [85, 82.86], [90, 70.53], [95, 51.26], [100, 0.00]] }]}
+    notas={[{ x: 65, y: 106, texto: 'Màxim de recaptació', color: 'mustard', ancla: 'middle' }]}
+  />
+</Diagram>
+
 
 <Curiosity title="La corba que es va dibuixar en un tovalló">
 
@@ -322,7 +361,7 @@ La política monetària arriba a l'economia real a través de diversos canals en
 2. L'**interbancari reacciona**: els bancs comercials es presten entre ells a tipus que reflectixen el nou cost de finançar-se al BCE.
 3. L'**Euríbor a 12 mesos**, que mesura eixe cost interbancari, passa del −0,5 % al +4,1 % al mateix període.
 4. Les **hipoteques variables espanyoles** es revisen anualment amb la fórmula *Euríbor + diferencial*. Una hipoteca signada al 0,99 % el 2021 es revisa al 5,1 % el 2023.
-5. La **quota mensual** es recalcula amb la nova taxa d'interés i el capital pendent. Per a una hipoteca mitjana espanyola (150 000 € a 25 anys), la quota passa d'uns 565 € a uns 882 € al mes: un sobrecost de 317 €/mes o 3 800 €/any.
+5. La **quota mensual** es recalcula amb la nova taxa d'interés i el capital pendent. Per a una hipoteca mitjana espanyola (150 000 € a 25 anys), la quota passa d'uns 565 € a uns 886 € al mes: un sobrecost de 321 €/mes o 3 850 €/any.
 6. Eixe sobrecost **reduïx la renda disponible** de les famílies hipotecades i, a través de menor consum, refreda la demanda agregada. Que era l'objectiu del BCE.
 
 </Steps>
@@ -351,6 +390,19 @@ Una família va signar al gener de 2021 una hipoteca variable de 180 000 € a 3
    - **Quota 2024** ≈ 180 000 · 0,00375 / (1 − (1,00375)^−360) ≈ **912,03 €/mes**.
 2. El sobrecost mensual és 912,03 − 530,68 = **381,35 €/mes**, equivalent a **4 576 €/any**.
 3. La pujada de 4,1 punts percentuals de l'Euríbor entre 2021 i 2024 ha multiplicat per 1,7 la quota mensual. En termes de pressupost familiar és com si la família haguera perdut un mes i mig de salari a l'any. Eixa pèrdua de renda disponible és exactament l'efecte que el BCE busca quan puja tipus per a combatre inflació: refredar el consum de les llars hipotecades perquè la demanda agregada es modere.
+
+<Diagram caption="Exercici 11.3: la quota mensual d'una hipoteca de 180.000 € a 30 anys segons el tipus aplicable. Amb el 0,40 % de 2021 la quota és de 530,68 €; amb el 4,50 % de 2024, de 912,03 €.">
+  <GraficoXY id="g-ejercicio-11-3" titulo="Exercici 11.3: quota mensual segons el tipus d'interés" desc="Corba creixent: la quota d'una hipoteca de 180 000 euros a 30 anys passa de 530,68 euros amb un tipus del 0,40 % a 912,03 euros amb el 4,50 %."
+    xMax={6.5} yMax={1100} ejeX="Tipus aplicable (%)" ejeY="Quota mensual (€)"
+    xTicks={[2, 4, 6]}
+    series={[{ color: 'terra', puntos: [[0, 500.00], [0.5, 538.54], [1, 578.95], [1.5, 621.22], [2, 665.32], [2.5, 711.22], [3, 758.89], [3.5, 808.28], [4, 859.35], [4.5, 912.03], [5, 966.28], [5.5, 1022.02], [6, 1079.19]] }]}
+    puntos={[
+      { x: 0.4, y: 530.68, xLabel: '0,4', yLabel: '530,68' },
+      { x: 4.5, y: 912.03, xLabel: '4,5', yLabel: '912,03' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

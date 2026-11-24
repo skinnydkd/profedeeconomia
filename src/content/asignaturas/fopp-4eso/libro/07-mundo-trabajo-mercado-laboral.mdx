@@ -51,6 +51,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import TasasEPA from '@components/diagrams/TasasEPA.astro';
 import Figure from '@components/Figure.astro';
@@ -154,6 +155,31 @@ Calcula la **tasa de actividad**, la **tasa de paro** y la **tasa de empleo**, e
 
 **Resultado**: actividad **55 %**, paro **12,7 %**, empleo **48 %**.
 
+<Diagram caption="Vilanova del Camp: de 20 000 personas de 16 años o más, 9 600 trabajan, 1 400 buscan trabajo y 9 000 son inactivas. Actividad 55 %, empleo 48 % y paro 12,7 %, este último calculado sobre los 11 000 activos.">
+  <GraficoXY id="g-tasas-vilanova" titulo="Población de Vilanova del Camp según la EPA" desc="Una barra apilada de 20 000 personas: 9 600 ocupadas, 1 400 paradas y 9 000 inactivas. Los activos son 11 000. Tasa de actividad 55 por ciento, tasa de empleo 48 y tasa de paro 12,7 por ciento."
+    xMax={10} yMax={22000} ejeX="Población de 16 años o más" ejeY="Personas"
+    xTicks={[1.8]} xTickLabels={['20 000 personas']} yTicks={[5000, 10000, 15000, 20000]}
+    areas={[
+      { color: 'teal', puntos: [[0.8, 0], [2.8, 0], [2.8, 9600], [0.8, 9600]] },
+      { color: 'terra', puntos: [[0.8, 9600], [2.8, 9600], [2.8, 11000], [0.8, 11000]] },
+      { color: 'mustard', puntos: [[0.8, 11000], [2.8, 11000], [2.8, 20000], [0.8, 20000]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.8, 0], [0.8, 9600], [2.8, 9600], [2.8, 0]] },
+      { color: 'terra', puntos: [[0.8, 9600], [0.8, 11000], [2.8, 11000], [2.8, 9600]] },
+      { color: 'mustard', puntos: [[0.8, 11000], [0.8, 20000], [2.8, 20000], [2.8, 11000]] },
+    ]}
+    notas={[
+      { x: 3.1, y: 4500, texto: 'Ocupados: 9 600', ancla: 'start' },
+      { x: 3.1, y: 10100, texto: 'Parados: 1 400', ancla: 'start' },
+      { x: 3.1, y: 15300, texto: 'Inactivos: 9 000', ancla: 'start' },
+      { x: 5.6, y: 17500, texto: 'Actividad: 11 000 / 20 000 = 55 %', ancla: 'start' },
+      { x: 5.6, y: 14500, texto: 'Empleo: 9 600 / 20 000 = 48 %', ancla: 'start' },
+      { x: 5.6, y: 11500, texto: 'Paro: 1 400 / 11 000 = 12,7 %', ancla: 'start' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo tú mismo:** repite el cálculo de Vilanova del Camp con la calculadora y comprueba que salen las mismas tres tasas. Después busca en el INE los datos de tu comunidad autónoma e introdúcelos: verás de un vistazo si tu territorio se parece o no a la media española, y por qué.
@@ -199,6 +225,31 @@ Actividades que **extraen recursos directamente de la naturaleza**: agricultura,
 
 Es una categoría más reciente que **separa del terciario las actividades intensivas en conocimiento**: investigación y desarrollo (I+D), tecnologías de la información, biotecnología, consultoría de alto valor, educación universitaria avanzada. En las estadísticas oficiales del INE sigue contabilizándose dentro del terciario, pero los economistas hablan ya de cuaternario para distinguirlo. En España representaría aproximadamente el **8 % del PIB**, frente a un **12-15 %** en países como Suecia, Países Bajos o Alemania. Es **el sector que más crece y mejor paga**, y en el que España tiene margen para mejorar.
 
+<Diagram caption="Peso aproximado de cada sector en el PIB español. Las cuatro barras suman el 100 %: el terciario domina, y el cuaternario, aunque las estadísticas oficiales lo cuentan dentro del terciario, aquí va aparte.">
+  <GraficoXY id="g-pib-sectores" titulo="Peso de cada sector en el PIB de España" desc="Cuatro barras con el peso aproximado en el PIB: sector primario, el 3 por ciento; secundario, el 22; terciario, el 67; cuaternario, el 8."
+    xMax={5.6} yMax={80} ejeX="Sector" ejeY="Peso en el PIB (%)" simboloY="%"
+    xTicks={[1, 2, 3, 4]} xTickLabels={['Primario', 'Secundario', 'Terciario', 'Cuaternario']} yTicks={[20, 40, 60]}
+    areas={[
+      { color: 'mustard', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 3], [0.65, 3]] },
+      { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 22], [1.65, 22]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 67], [2.65, 67]] },
+      { color: 'aubergine', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 8], [3.65, 8]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.65, 0], [0.65, 3], [1.35, 3], [1.35, 0]] },
+      { color: 'terra', puntos: [[1.65, 0], [1.65, 22], [2.35, 22], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 67], [3.35, 67], [3.35, 0]] },
+      { color: 'aubergine', puntos: [[3.65, 0], [3.65, 8], [4.35, 8], [4.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 5.5, texto: '~3 %', ancla: 'middle' },
+      { x: 2, y: 24.5, texto: '~22 %', ancla: 'middle' },
+      { x: 3, y: 69.5, texto: '~67 %', ancla: 'middle' },
+      { x: 4, y: 10.5, texto: '~8 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 <Curiosity title="España es el país europeo más dependiente del turismo">
 
 Según los datos del **INE** (Estadística de Movimientos Turísticos en Frontera) y del **Ministerio de Industria y Turismo**, en 2025 España cerró el ejercicio con un **récord histórico** de **96,8 millones de turistas internacionales** y un gasto acumulado de **134.712 millones de euros** (+6,8 % respecto a 2024). Es una buena noticia para la economía agregada (el turismo aporta más del 12 % del PIB y cerca de 2,7 millones de empleos directos), pero también explica una parte importante del paro juvenil estacional: muchos contratos turísticos son temporales y se concentran de mayo a septiembre, lo que infla la ocupación juvenil en verano y la desploma en invierno.
@@ -243,6 +294,34 @@ Aunque hay enormes variaciones según sector, empresa, ciudad y experiencia, los
 
 Estos datos son **brutos anuales** (antes de retenciones) y son **medias**, no garantías. Hay graduados universitarios cobrando 18.000 € y técnicos de FP Superior cobrando 40.000 €. Pero la **tendencia general** es clara: a mayor nivel formativo, mayor salario medio. Y entre FP Superior y grado universitario la diferencia es menor de lo que el imaginario social sugiere.
 
+<Diagram caption="Salario medio bruto anual según el nivel de formación, en torno a estas cifras (Encuesta de Estructura Salarial 2024, INE): a más formación, más salario medio, aunque son medias y no garantías.">
+  <GraficoXY id="g-salario-formacion" titulo="Salario medio según el nivel de formación" desc="Cinco barras que crecen con la formación: ESO sin más formación, en torno a 17 500 euros brutos al año; FP de Grado Medio, 23 000; FP de Grado Superior, 26 500; grado universitario, 30 000; máster universitario, 34 500."
+    xMax={5.8} yMax={40000} ejeX="Nivel de formación" ejeY="Euros brutos al año" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['ESO', 'FP Medio', 'FP Superior', 'Grado', 'Máster']} yTicks={[10000, 20000, 30000]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 17500], [0.65, 17500]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 23000], [1.65, 23000]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 26500], [2.65, 26500]] },
+      { color: 'teal', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 30000], [3.65, 30000]] },
+      { color: 'teal', fuerte: true, puntos: [[4.65, 0], [5.35, 0], [5.35, 34500], [4.65, 34500]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.65, 0], [0.65, 17500], [1.35, 17500], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 23000], [2.35, 23000], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 26500], [3.35, 26500], [3.35, 0]] },
+      { color: 'teal', puntos: [[3.65, 0], [3.65, 30000], [4.35, 30000], [4.35, 0]] },
+      { color: 'teal', puntos: [[4.65, 0], [4.65, 34500], [5.35, 34500], [5.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 18600, texto: '17 500 €', ancla: 'middle' },
+      { x: 2, y: 24100, texto: '23 000 €', ancla: 'middle' },
+      { x: 3, y: 27600, texto: '26 500 €', ancla: 'middle' },
+      { x: 4, y: 31100, texto: '30 000 €', ancla: 'middle' },
+      { x: 5, y: 35600, texto: '34 500 €', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 <RecursoDestacado href="/debates/dinero-tecnologia-futuro/02-ia-y-empleo/" kicker="Debate en clase" title="¿Destruirá la IA más empleo del que crea?" descripcion="Debate parlamentario sobre el impacto neto de la inteligencia artificial en el mercado de trabajo." colorVar="--color-fopp" />
 
 ## Tres formas de tener un trabajo
@@ -281,12 +360,35 @@ Lucía acabó 4.º ESO en un instituto de Albacete sin tener clara su vocación.
 <Figure
   src={oficinaEmpleoMadrid}
   alt="Fachada de una Oficina de Empleo conjunta de la Comunidad de Madrid y el SEPE en el barrio de la Concepción."
-  caption="Oficina de Empleo conjunta de la Comunidad de Madrid y el SEPE (Ciudad Lineal, Madrid). Más de uno de cada cuatro jóvenes españoles entre 16 y 24 años en activo pasa por una oficina como esta a buscar su primer empleo. La cifra duplica la media europea y lleva así desde 2008: no es coyuntura, es estructura."
+  caption="Oficina de Empleo conjunta de la Comunidad de Madrid y el SEPE (Ciudad Lineal, Madrid). Casi uno de cada cuatro jóvenes españoles entre 16 y 24 años en activo pasa por una oficina como esta a buscar su primer empleo. La cifra supera con mucho la media europea y lleva así desde 2008: no es coyuntura, es estructura."
   credit="Foto: Lojwe, CC0 / dominio público vía Wikimedia Commons"
   aspectHint="3/2"
 />
 
-Hay una cifra que conviene memorizar y entender: en el segundo trimestre de 2026, la **tasa de paro juvenil** (16-24 años) en España era del **23,77 %** (en torno a 460.000 menores de 25 años sin empleo), según la EPA del INE. La media de la Unión Europea ronda el **14-15 %** (Eurostat). España duplica la media europea **y lo hace de forma sostenida desde 2008**. Es una anomalía estructural, no un dato puntual.
+Hay una cifra que conviene memorizar y entender: en el segundo trimestre de 2026, la **tasa de paro juvenil** (16-24 años) en España era del **23,77 %** (en torno a 460.000 menores de 25 años sin empleo), según la EPA del INE. La media de la Unión Europea ronda el **14-15 %** (Eurostat). España supera con mucho la media europea **y lo hace de forma sostenida desde 2008**. Es una anomalía estructural, no un dato puntual.
+
+<Diagram caption="Paro juvenil (16-24 años): más del 56 % en España en 2013, 23,77 % en el segundo trimestre de 2026 y entre el 14 y el 15 % de media en la UE. España ha bajado mucho, pero sigue por encima de Europa.">
+  <GraficoXY id="g-paro-juvenil" titulo="Paro juvenil en España y en la Unión Europea" desc="Tres barras: el paro juvenil en España superó el 56 por ciento en 2013 y fue del 23,77 por ciento en el segundo trimestre de 2026; la media de la Unión Europea ronda entre el 14 y el 15 por ciento."
+    xMax={4.6} yMax={70} ejeX="Territorio y año" ejeY="Tasa de paro de 16 a 24 años (%)" simboloY="%"
+    xTicks={[1, 2, 3]} xTickLabels={['España 2013', 'España 2026', 'UE (media)']} yTicks={[10, 20, 30, 40, 50, 60]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 56], [0.65, 56]] },
+      { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 23.77], [1.65, 23.77]] },
+      { color: 'teal', puntos: [[2.65, 0], [3.35, 0], [3.35, 14], [2.65, 14]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 14], [3.35, 14], [3.35, 15], [2.65, 15]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 56], [1.35, 56], [1.35, 0]] },
+      { color: 'terra', puntos: [[1.65, 0], [1.65, 23.77], [2.35, 23.77], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 15], [3.35, 15], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 58.5, texto: 'más del 56 %', ancla: 'middle' },
+      { x: 2, y: 26.3, texto: '23,77 %', ancla: 'middle' },
+      { x: 3, y: 17.5, texto: '14-15 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ### Por qué España tiene tanto paro juvenil
 
@@ -343,7 +445,7 @@ La razón es un **desajuste de tres tipos** —ninguno se resuelve fácil—. Pr
 - Las profesiones con **demanda en retroceso** son las basadas en tareas repetitivas o estandarizadas: cajeros, traducción literal, manufactura repetitiva, agentes de viaje tradicionales.
 - A mayor **nivel formativo**, mayor salario medio. La diferencia entre FP Superior y grado universitario es menor de lo que sugiere el imaginario social.
 - Existen **tres formas de trabajar**: por cuenta ajena (~81 %), autoempleo (~15 %) e intraemprendimiento (~5 %, en crecimiento).
-- El **paro juvenil español** (23,77 % en T2 2026) duplica la media de la UE (~14-15 %) de forma sostenida desde 2008. Sus causas son estructurales: dualidad contractual, mismatch educativo, SMI relativamente alto frente a productividad juvenil, modelo turístico estacional.
+- El **paro juvenil español** (23,77 % en T2 2026) supera con mucho la media de la UE (~14-15 %) de forma sostenida desde 2008. Sus causas son estructurales: dualidad contractual, mismatch educativo, SMI relativamente alto frente a productividad juvenil, modelo turístico estacional.
 </KeyTakeaways>
 
 ## Glosario
@@ -378,7 +480,7 @@ Si quieres leer el mercado laboral con datos reales y actualizados, estas fuente
 
 Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o para pensar individualmente al cerrar la unidad:
 
-1. España duplica el paro juvenil de la media europea de forma sostenida desde 2008. De las cuatro causas estructurales (dualidad, SMI frente a productividad, mismatch educativo, modelo turístico), ¿cuál crees que pesa más? ¿Cuál sería más fácil de corregir?
+1. España supera con mucho el paro juvenil medio europeo de forma sostenida desde 2008. De las cuatro causas estructurales (dualidad, SMI frente a productividad, mismatch educativo, modelo turístico), ¿cuál crees que pesa más? ¿Cuál sería más fácil de corregir?
 2. Las "profesiones de futuro" combinan habilidad técnica difícil de automatizar con trato humano no estandarizado. Mirando tu propio mapa de intereses (Unidad 1 y Unidad 4), ¿qué profesiones encajan ahí para ti? ¿Te condiciona la lista de demanda o decides al margen de ella?
 3. El turismo aporta más del 12 % del PIB español, pero también explica buena parte del paro juvenil estacional. ¿Es una fortaleza o una debilidad para un joven que entra ahora al mercado laboral? ¿Cómo afecta a tu comarca en concreto?
 
@@ -617,7 +719,7 @@ Esta unidad ha presentado el **mapa** del mercado laboral. La siguiente entra en
 - tipo: data
   numero: "23,77 %"
   label: paro juvenil (16-24 años)
-  title: El doble que la media europea
+  title: Muy por encima de la media europea
   detalle: Unos 460.000 menores de 25 años sin empleo en el segundo trimestre de 2026, según la EPA. La media de la Unión Europea ronda el 14-15 %, y España encabeza la lista desde 2008.
 - tipo: figure
   src: fopp-4eso/07/oficina-empleo-madrid.jpg

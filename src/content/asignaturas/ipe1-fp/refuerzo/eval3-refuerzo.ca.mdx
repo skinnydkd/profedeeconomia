@@ -28,10 +28,86 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Calcula un finiquit.</strong> A Marta se li acaba el contracte. El seu salari és de 1.800 € al mes. L'empresa li deu 12 dies de salari treballats eixe mes i la part proporcional de les 2 pagues extra (de 1.800 € cadascuna) generada en 8 mesos. Calcula els dos conceptes i el total (no hi ha vacances pendents)."
     desarrollo: "Anem pas a pas.<br><strong>1. Salari diari:</strong> 1.800 ÷ 30 = 60 €/dia.<br><strong>2. Dies treballats:</strong> 12 × 60 = <strong>720 €</strong>.<br><strong>3. Pagues extra:</strong> hi ha 2 pagues de 1.800 € que es generen al llarg de 12 mesos; en 8 mesos s'ha generat 2 × 1.800 × (8 ÷ 12) = 3.600 × 0,6667 = <strong>2.400 €</strong>.<br><strong>4. Finiquit total:</strong> 720 + 2.400 = <strong>3.120 €</strong>.<br>Recorda: el finiquit és el que ja havies guanyat, així que et correspon sempre, te'n vages com te'n vages."
+    grafico:
+      tipo: xy
+      caption: "El finiquit de Marta suma 12 dies × 60 € = 720 € i la part proporcional de les pagues extra, 2 × 1.800 × 8/12 = 2.400 €: 3.120 € en total."
+      props:
+        id: "r-e3r-finiquito"
+        titulo: "Finiquit de Marta: dies treballats i pagues extra"
+        desc: "Tres columnes en euros. Dies treballats: 720. Part proporcional de les pagues extra: 2.400. Finiquit total: 3.120."
+        xMax: 9
+        yMax: 4000
+        ejeX: "Concepte"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [1.5, 4.5, 7.5]
+        yTicks: [1000, 2000, 3000]
+        xTickLabels: ["Dies treballats", "Pagues extra", "Finiquit"]
+        areas:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 720], [0.7, 720]], color: "teal", fuerte: true }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2400], [3.7, 2400]], color: "mustard", fuerte: true }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 720], [6.7, 720]], color: "teal", fuerte: true }
+          - { puntos: [[6.7, 720], [8.3, 720], [8.3, 3120], [6.7, 3120]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 720], [0.7, 720], [0.7, 0]], color: "teal" }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2400], [3.7, 2400], [3.7, 0]], color: "mustard" }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 720], [6.7, 720], [6.7, 0]], color: "teal" }
+          - { puntos: [[6.7, 720], [8.3, 720], [8.3, 3120], [6.7, 3120], [6.7, 720]], color: "mustard" }
+        notas:
+          - { x: 1.5, y: 860, texto: "720", ancla: "middle" }
+          - { x: 4.5, y: 2540, texto: "2 400", ancla: "middle" }
+          - { x: 7.5, y: 305.95, texto: "Dies 720", ancla: "middle" }
+          - { x: 7.5, y: 1865.95, texto: "Pagues 2 400", ancla: "middle" }
+          - { x: 7.5, y: 3260, texto: "3 120", ancla: "middle" }
   - enunciado: "<strong>Indemnització per acomiadament.</strong> Diego té un salari diari de 55 € i 6 anys d'antiguitat. Calcula la indemnització si l'acomiadament és objectiu (20 dies per any) i si és improcedent (33 dies per any)."
     desarrollo: "Primer els dies, després es multipliquen pel salari diari.<br><strong>Acomiadament objectiu:</strong> 20 dies × 6 anys = 120 dies. 120 × 55 € = <strong>6.600 €</strong>.<br><strong>Acomiadament improcedent:</strong> 33 dies × 6 anys = 198 dies. 198 × 55 € = <strong>10.890 €</strong>.<br>L'improcedent paga més perquè l'empresa no ha justificat bé la causa de l'acomiadament."
+    grafico:
+      tipo: xy
+      caption: "Amb 55 € al dia i 6 anys, l'acomiadament objectiu (20 dies per any) dona 120 × 55 = 6.600 € i l'improcedent (33 dies per any) 198 × 55 = 10.890 €."
+      props:
+        id: "r-e3r-despido"
+        titulo: "Indemnització de Diego segons el tipus d'acomiadament"
+        desc: "Dues rectes que ixen de l'origen amb un salari de 55 euros al dia. A 33 dies per any, 6 anys donen 10.890 euros; a 20 dies per any, 6.600 euros."
+        xMax: 8
+        yMax: 15000
+        ejeX: "Anys d'antiguitat"
+        ejeY: "Indemnització"
+        simboloY: "€"
+        xTicks: [1, 2, 3, 4, 5, 7]
+        yTicks: [5000]
+        series:
+          - { label: "Improcedent", color: "terra", puntos: [[0, 0], [7, 12705]], dx: 10, dy: 5 }
+          - { label: "Objectiu", color: "teal", puntos: [[0, 0], [7, 7700]], dx: 10, dy: 5 }
+        puntos:
+          - { x: 6, y: 10890, xLabel: "6", yLabel: "10 890" }
+          - { x: 6, y: 6600, yLabel: "6 600" }
   - enunciado: "<strong>Quant cobres en una baixa.</strong> Andrés es posa de baixa per malaltia comuna. La seua base reguladora diària és de 50 €. Recorda: els 3 primers dies no es cobra res, del dia 4 al 20 es cobra el 60 % i des del dia 21 el 75 %. Calcula quant cobra de l'INSS en els primers 30 dies."
     desarrollo: "Separem la baixa en trams.<br><strong>Dies 1 a 3:</strong> 0 € (no es cobra res).<br><strong>Dies 4 a 20 (17 dies) al 60 %:</strong> 60 % de 50 = 30 €/dia. 17 × 30 = <strong>510 €</strong>.<br><strong>Dies 21 a 30 (10 dies) al 75 %:</strong> 75 % de 50 = 37,50 €/dia. 10 × 37,50 = <strong>375 €</strong>.<br><strong>Total 30 dies:</strong> 0 + 510 + 375 = <strong>885 €</strong>.<br>Amb el seu salari habitual hauria cobrat 30 × 50 = 1.500 €, així que perd 615 € per estar de baixa, tret que el conveni ho millore."
+    grafico:
+      tipo: xy
+      caption: "En els primers 30 dies de baixa Andrés cobra 0 + 510 + 375 = 885 € de l'INSS, enfront dels 1.500 € del seu salari habitual (50 € al dia)."
+      props:
+        id: "r-e3r-baja"
+        titulo: "El que cobra Andrés cada dia de baixa"
+        desc: "Escala d'euros per dia. Dies 1 a 3: 0. Dies 4 a 20: 30 euros al dia, el 60 % de 50. Dies 21 a 30: 37,50 euros al dia, el 75 %. Línia de referència: 50 euros al dia de salari habitual."
+        xMax: 36
+        yMax: 60
+        ejeX: "Dia de la baixa"
+        ejeY: "Euros per dia"
+        simboloY: "€"
+        xTicks: [5, 10, 15, 20, 25, 30]
+        yTicks: [10, 20, 30, 40, 50]
+        areas:
+          - { puntos: [[3, 0], [3, 30], [20, 30], [20, 37.5], [30, 37.5], [30, 0]], color: "teal" }
+        series:
+          - { color: "teal", puntos: [[0, 0], [3, 0], [3, 30], [20, 30], [20, 37.5], [30, 37.5], [30, 0]] }
+          - { label: "Salari 50 €/dia", color: "ink", tenue: true, puntos: [[0, 50], [30, 50]], dx: 10, dy: 5 }
+        notas:
+          - { x: 1.5, y: 4, texto: "0 €", ancla: "middle" }
+          - { x: 11.5, y: 32, texto: "60 %: 30 €/dia", ancla: "middle" }
+          - { x: 11.5, y: 14, texto: "17 × 30 = 510 €", ancla: "middle" }
+          - { x: 25, y: 39.5, texto: "75 %: 37,50 €/dia", ancla: "middle" }
+          - { x: 25, y: 14, texto: "10 × 37,50 = 375 €", ancla: "middle" }
   - enunciado: "<strong>Ordena les mesures preventives.</strong> En un magatzem hi ha risc de caiguda des d'una plataforma elevada. Es proposen tres mesures: a) donar un arnés a cada operari (EPI); b) instal·lar una barana fixa en tota la vora (protecció col·lectiva); c) redissenyar el procés perquè no calga pujar a la plataforma (eliminar el risc). Ordena-les per prioritat i justifica."
     desarrollo: "Apliquem la jerarquia de l'article 15 de la LPRL, de major a menor prioritat:<br><strong>1r Eliminar el risc en origen (c):</strong> si ningú ha de pujar, el risc de caiguda desapareix. És sempre el primer.<br><strong>2n Protecció col·lectiva (b):</strong> la barana protegix totes les persones alhora sense que hagen de fer res.<br><strong>3r Protecció individual o EPI (a):</strong> l'arnés és l'últim recurs, perquè només protegix qui el porta i depén que s'use bé.<br>Ordre correcte: c → b → a. L'EPI mai és la primera opció, sinó l'última."
   - enunciado: "<strong>Analitza un lloc amb el model de Karasek.</strong> Sara treballa en una caixa de supermercat en hora punta: ritme altíssim imposat per la cua, no pot decidir quan parar i el seu encarregat només li parla per a posar-li pressa. Classifica el seu lloc en demanda, control i suport, i digues si és d'alt risc d'estrés."

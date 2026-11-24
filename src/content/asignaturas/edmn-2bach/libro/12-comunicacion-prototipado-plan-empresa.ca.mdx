@@ -44,6 +44,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TamSamSom from '@components/diagrams/TamSamSom.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -268,7 +269,7 @@ Calcula:
 a) **Ingressos previstos** de l'any 1.
 b) **Punt mort** en nombre de tallers (Unitat 7 — càlcul del punt mort).
 c) **Compte de P&G** previsional de l'any 1 (Unitat 10).
-d) **VAN del projecte a 4 anys** si els fluxos anuals es mantingueren constants (Unitat 9).
+d) **VAN del projecte a 4 anys** si la quota millora cada any: 50 tallers en l'any 2, 75 en l'any 3 i 95 en l'any 4 (Unitat 9).
 e) **Ratio d'endeutament** inicial (Unitat 11).
 f) **Diagnòstic final**: és viable el projecte?
 
@@ -317,6 +318,43 @@ f) **Diagnòstic final**: és viable el projecte?
      - **Ampliar SAM**: incloure centres concertats i formació professional, no només instituts públics.
      - **Iterar el BMC**: passar de model B2B (institut paga) a híbrid (AMPA co-financen, ajuntaments contracten packs anuals).
    - **Conclusió pedagògica**: el pla original no es rebutja perquè l'equip l'haja fet malament, sinó perquè **els números diuen que cal iterar**. Detectar la inviabilitat abans de posar els 18.000 € és exactament l'objectiu del curs sencer.
+
+<Diagram caption="El punt mort d'EcoTallers (costos fixos de 26.200 €, amb els interessos del préstec) està en 80,6 tallers. Els 63 previstos per a l'any 1 queden per davall: l'ingrés no cobrix el cost i es perden 5.725 €.">
+  <GraficoXY id="g-punto-muerto-ecotalleres" titulo="Punt mort d'EcoTallers" desc="Ingrés total (400 euros per taller), cost total (26.200 euros fixos amb els interessos més 75 per taller) i cost fix. Es creuen en 80,6 tallers, amb 32.246 euros. Amb els 63 tallers previstos l'ingrés és de 25.200 euros i el cost de 30.925: una pèrdua de 5.725."
+    xMax={110} yMax={46000} ejeX="Tallers a l'any" ejeY="Euros a l'any" simboloX="Q" simboloY="€"
+    xTicks={[20, 40, 100]} yTicks={[10000, 40000]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [100, 40000]] },
+      { label: "CT", color: "terra", puntos: [[0, 26200], [100, 33700]] },
+      { label: "CF", color: "mustard", puntos: [[0, 26200], [100, 26200]], dy: 14 },
+    ]}
+    puntos={[
+      { x: 80.62, y: 32246.15, label: "Q*", xLabel: "80,6", yLabel: "32 246", dx: -34, dy: -12 },
+      { x: 63, y: 25200, label: "Any 1", xLabel: "63", yLabel: "25 200", dx: 8, dy: 24 },
+      { x: 63, y: 30925, guias: false },
+    ]}
+    notas={[
+      { x: 61, y: 28000, texto: "Pèrdua: 5.725 €", ancla: "end", color: "terra" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Tallers previstos en cada un dels quatre anys enfront del punt mort (80,6). Només l'any 4 el supera, i amb ell arriba el primer any amb benefici (4.675 €).">
+  <GraficoXY id="g-talleres-anuales" titulo="Tallers previstos cada any enfront del punt mort" desc="Tallers previstos: 63 en l'any 1, 50 en l'any 2, 75 en l'any 3 i 95 en l'any 4. El punt mort està en 80,6 tallers, així que només l'any 4 el supera."
+    xMax={6.5} yMax={120} ejeX="Any" ejeY="Tallers a l'any"
+    xTicks={[1, 2, 3, 4]} yTicks={[25, 50, 75, 100]} xTickLabels={["Any 1", "Any 2", "Any 3", "Any 4"]}
+    series={[
+      { label: "Tallers", color: "teal", puntos: [[1, 63], [2, 50], [3, 75], [4, 95]] },
+      { label: "Punt mort: 80,6", color: "terra", puntos: [[0, 80.6], [4.4, 80.6]], dy: 18 },
+    ]}
+    puntos={[
+      { x: 1, y: 63, label: "63", guias: false },
+      { x: 2, y: 50, label: "50", guias: false, dx: -8, dy: 26 },
+      { x: 3, y: 75, label: "75", guias: false, dx: 10, dy: 24 },
+      { x: 4, y: 95, label: "95", guias: false, dx: -28, dy: -10 },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

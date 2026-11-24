@@ -36,6 +36,7 @@ import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import EmpathyMap from '@components/diagrams/EmpathyMap.astro';
 import DoubleDiamond from '@components/diagrams/DoubleDiamond.astro';
@@ -266,6 +267,27 @@ Cada idea se situa en una matriu 2×2 on l'eix vertical és l'**impacte** espera
 - **Alt impacte, alt esforç** → planificar a mitjà termini.
 - **Baix impacte, baix esforç** → executar quan sobre temps.
 - **Baix impacte, alt esforç** → descartar.
+
+<Diagram caption="La matriu d'impacte i esforç: cada idea se situa segons el que aporta i el que costa executar-la. La casella de dalt a l'esquerra es fa primer; la de baix a la dreta es descarta.">
+  <GraficoXY id="g-impacto-esfuerzo" titulo="Matriu d'impacte i esforç" desc="Esquema sense xifres amb quatre quadrants. A dalt a l'esquerra, molt d'impacte amb poc esforç: fer primer. A dalt a la dreta, molt d'impacte i molt esforç: planificar. A baix a l'esquerra, poc impacte i poc esforç: fer si sobra temps. A baix a la dreta, poc impacte i molt esforç: descartar."
+    xMax={100} yMax={100} ejeX="Esforç" ejeY="Impacte"
+    xTicks={[25, 75]} yTicks={[25, 75]} xTickLabels={["Baix", "Alt"]} yTickLabels={["Baix", "Alt"]}
+    areas={[
+      { puntos: [[0, 50], [50, 50], [50, 100], [0, 100]], color: "teal" },
+      { puntos: [[50, 0], [100, 0], [100, 50], [50, 50]], color: "terra" },
+    ]}
+    series={[
+      { color: "ink", puntos: [[50, 0], [50, 100]] },
+      { color: "ink", puntos: [[0, 50], [100, 50]] },
+    ]}
+    notas={[
+      { x: 3, y: 92, texto: "Fer primer (quick wins)", color: "teal" },
+      { x: 53, y: 92, texto: "Planificar a mitjà termini" },
+      { x: 3, y: 8, texto: "Fer si sobra temps" },
+      { x: 53, y: 8, texto: "Descartar", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ### Criteris ponderats
 

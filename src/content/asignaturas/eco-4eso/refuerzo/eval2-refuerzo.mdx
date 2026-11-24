@@ -18,6 +18,24 @@ repaso_teorico:
   - titulo: "El mercado de trabajo y la nómina"
     unidad: 5
     contenido: "En el <strong>mercado de trabajo</strong> las personas <em>ofrecen</em> su tiempo y las empresas lo <em>demandan</em>. El precio que sale de ese cruce es el <strong>salario</strong>, y la ley le pone un suelo: el <strong>salario mínimo interprofesional</strong>, que en 2026 es de <strong>1.221 € brutos al mes en 14 pagas</strong> (Real Decreto 126/2026).<br>Cada trimestre el INE mide el empleo con la <strong>EPA</strong>. Divide a la población de 16 años o más en <strong>inactivos</strong> (ni trabajan ni buscan) y <strong>activos</strong>, y a los activos en <strong>ocupados</strong> y <strong>parados</strong>. La <strong>tasa de paro</strong> es parados entre activos, por 100: en 2025 fue del <strong>10,3 %</strong>, y de cerca del 25 % entre los menores de 25 años.<br>Desde la reforma laboral de 2021 el contrato normal es el <strong>indefinido</strong>; el temporal solo se admite si hay una causa.<br>En la <strong>nómina</strong>, del <strong>salario bruto</strong> se restan la <strong>cotización a la Seguridad Social</strong> (alrededor del 6,5 %) y la <strong>retención de IRPF</strong>, que es un anticipo del impuesto. Lo que queda es el <strong>salario neto</strong>."
+    grafico:
+      tipo: mercado
+      caption: "El salario sale del cruce entre la oferta de trabajo (personas) y la demanda (empresas). Si el suelo legal, el salario mínimo, se fijara por encima del equilibrio, habría más gente que quiere trabajar que puestos ofrecidos: paro."
+      props:
+        id: "r-e2r-mercado-trabajo"
+        titulo: "Mercado de trabajo y salario mínimo"
+        desc: "La demanda de trabajo decrece con el salario y la oferta crece; se cruzan en el salario de equilibrio. Un suelo salarial por encima del equilibrio deja un tramo de personas sin empleo."
+        pMax: 25
+        qMax: 140
+        ejeP: "SALARIO"
+        ejeQ: "EMPLEO (TRABAJADORES)"
+        curvas:
+          - { tipo: "D", q0: 120, m: -5, pDe: 2, pA: 21, label: "D" }
+          - { tipo: "O", q0: 20, m: 5, pDe: 2, pA: 21, label: "O" }
+        puntos:
+          - { p: 10, q: 70, label: "E", pLabel: "W*", qLabel: "L*", dx: 22, dy: 5 }
+        precio: { p: 14, label: "Salario mínimo (suelo)" }
+        tramo: { p: 14, q1: 50, q2: 90, label: "Paro" }
   - titulo: "El Estado: impuestos y gasto público"
     unidad: 6
     contenido: "El Estado interviene porque el mercado tiene <strong>fallos</strong>: nadie construiría un faro ni pondría el alumbrado de tu calle, porque son <strong>bienes públicos</strong> que cualquiera usa sin pagar. Además el Estado <strong>redistribuye</strong> la renta y suaviza las crisis.<br>Para pagarlo cobra <strong>impuestos</strong> (sin nada concreto a cambio), <strong>tasas</strong> (por un servicio concreto, como el DNI) y <strong>cotizaciones</strong> (a cambio de derechos futuros). Los impuestos <strong>directos</strong> gravan lo que ganas o tienes (IRPF, Sociedades, IBI); los <strong>indirectos</strong>, lo que consumes (<strong>IVA</strong> al 21, 10 y 4 %).<br>El <strong>IRPF</strong> es progresivo <strong>por tramos</strong>: cada tipo se aplica solo a la franja de renta de su tramo. En 2024 IRPF e IVA aportaron tres de cada cuatro euros de los <strong>295.000 millones</strong> recaudados (AEAT).<br>El <strong>gasto público</strong> ronda el <strong>45 % del PIB</strong> y se va sobre todo a <strong>pensiones, sanidad y educación</strong>. Gastar más de lo que se ingresa en un año es <strong>déficit</strong>; los déficits acumulados son la <strong>deuda pública</strong>."
@@ -30,16 +48,173 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "En Villanueva viven <strong>10.000 personas de 16 años o más</strong>. De ellas, 4.000 ni trabajan ni buscan empleo, 5.400 tienen trabajo y 600 buscan sin encontrarlo. Calcula la población activa y las tasas de actividad, de empleo y de paro."
     desarrollo: "<strong>Paso 1. Población activa.</strong> Son los ocupados más los parados: 5.400 + 600 = <strong>6.000 personas</strong>.<br>Comprobación: 6.000 activos + 4.000 inactivos = 10.000, toda la población de 16 años o más.<br><strong>Paso 2. Tasa de actividad.</strong> Activos entre población de 16 o más, por 100: 6.000 / 10.000 × 100 = <strong>60 %</strong>.<br><strong>Paso 3. Tasa de empleo.</strong> Ocupados entre población de 16 o más, por 100: 5.400 / 10.000 × 100 = <strong>54 %</strong>.<br><strong>Paso 4. Tasa de paro.</strong> Parados entre <em>activos</em>, por 100: 600 / 6.000 × 100 = <strong>10 %</strong>.<br><strong>Cuidado con el denominador:</strong> si dividieras 600 entre 10.000 saldría un 6 %, y sería un error. La tasa de paro se calcula siempre sobre los activos."
+    grafico:
+      tipo: xy
+      caption: "De 10.000 personas de 16 años o más, 6.000 son activas (5.400 ocupadas y 600 paradas) y 4.000 inactivas. Actividad: 6.000 ÷ 10.000 = 60 %. Empleo: 5.400 ÷ 10.000 = 54 %. Paro: 600 ÷ 6.000 = 10 %."
+      props:
+        id: "r-e2r-villanueva-tasas"
+        titulo: "Población de Villanueva: ocupados, parados e inactivos"
+        desc: "Una columna de 10.000 personas dividida en 5.400 ocupadas, 600 paradas y 4.000 inactivas, y otra de 6.000 activas formada por las ocupadas y las paradas."
+        xMax: 160
+        yMax: 11500
+        ejeX: "Grupos de población"
+        ejeY: "Personas"
+        xTicks: [25, 70]
+        xTickLabels: ["16 años o más", "Activos"]
+        yTicks: [2000, 4000, 6000, 8000, 10000]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 5400], [10, 5400]], color: "teal", fuerte: true }
+          - { puntos: [[10, 5400], [40, 5400], [40, 6000], [10, 6000]], color: "terra", fuerte: true }
+          - { puntos: [[10, 6000], [40, 6000], [40, 10000], [10, 10000]], color: "mustard", fuerte: true }
+          - { puntos: [[55, 0], [85, 0], [85, 5400], [55, 5400]], color: "teal", fuerte: true }
+          - { puntos: [[55, 5400], [85, 5400], [85, 6000], [55, 6000]], color: "terra", fuerte: true }
+        notas:
+          - { x: 25, y: 2500, texto: "Ocupados 5 400", ancla: "middle" }
+          - { x: 25, y: 5600, texto: "Parados 600", ancla: "middle" }
+          - { x: 25, y: 7800, texto: "Inactivos 4 000", ancla: "middle" }
+          - { x: 25, y: 10400, texto: "10 000", ancla: "middle" }
+          - { x: 70, y: 6400, texto: "6 000", ancla: "middle" }
+          - { x: 89, y: 9000, texto: "Actividad = 60 %", color: "mustard" }
+          - { x: 89, y: 7500, texto: "Empleo = 54 %", color: "teal" }
+          - { x: 89, y: 6000, texto: "Paro = 10 %", color: "terra" }
   - enunciado: "Aitor cobra un <strong>salario bruto de 1.400 € al mes</strong>. Su empresa le descuenta un 6,5 % de cotización a la Seguridad Social y le retiene un 8 % de IRPF. ¿Cuánto cobra de neto?"
     desarrollo: "<strong>Paso 1. Cotización a la Seguridad Social.</strong> 1.400 × 0,065 = <strong>91 €</strong>.<br><strong>Paso 2. Retención de IRPF.</strong> 1.400 × 0,08 = <strong>112 €</strong>.<br><strong>Paso 3. Total descontado.</strong> 91 + 112 = <strong>203 €</strong>.<br><strong>Paso 4. Salario neto.</strong> 1.400 − 203 = <strong>1.197 €</strong>.<br><strong>Lectura:</strong> Aitor gana 1.400 € y cobra 1.197 €, es decir, un 85,5 % de lo pactado. Pero los 91 € de la Seguridad Social no se pierden: le compran derecho a paro, a baja por enfermedad y a una futura pensión. Y los 112 € de IRPF son un <em>anticipo</em>: en la declaración de la renta se ajustan y puede que le devuelvan una parte."
+    grafico:
+      tipo: xy
+      caption: "De los 1.400 € brutos de Aitor se descuentan 91 € de Seguridad Social y 112 € de IRPF: cobra 1.197 € netos (el 85,5 %)."
+      props:
+        id: "r-e2r-nomina-aitor"
+        titulo: "De salario bruto a salario neto"
+        desc: "Una columna de 1.400 euros brutos formada por 1.197 euros netos, 112 de IRPF y 91 de Seguridad Social."
+        xMax: 130
+        yMax: 1600
+        ejeX: "Un mes de Aitor"
+        ejeY: "Euros"
+        simboloY: "€"
+        yTicks: [400, 800, 1200]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 1197], [10, 1197]], color: "teal", fuerte: true }
+          - { puntos: [[10, 1197], [40, 1197], [40, 1309], [10, 1309]], color: "mustard", fuerte: true }
+          - { puntos: [[10, 1309], [40, 1309], [40, 1400], [10, 1400]], color: "terra", fuerte: true }
+        notas:
+          - { x: 25, y: 1460, texto: "Bruto: 1 400 €", ancla: "middle" }
+          - { x: 44, y: 580, texto: "Neto: 1 197 €", color: "teal" }
+          - { x: 44, y: 1225, texto: "IRPF: 112 €", color: "mustard" }
+          - { x: 44, y: 1335, texto: "Seguridad Social: 91 €", color: "terra" }
   - enunciado: "En la compra del sábado, los productos costaban <strong>antes de IVA</strong>: 10 € de pan, leche y fruta (tipo del 4 %), 20 € de pollo y yogures (tipo del 10 %) y 30 € de champú y pilas (tipo del 21 %). Calcula el IVA de cada grupo, el IVA total y lo que marca el ticket."
     desarrollo: "<strong>Paso 1. IVA al 4 %.</strong> 10 × 0,04 = <strong>0,40 €</strong>.<br><strong>Paso 2. IVA al 10 %.</strong> 20 × 0,10 = <strong>2,00 €</strong>.<br><strong>Paso 3. IVA al 21 %.</strong> 30 × 0,21 = <strong>6,30 €</strong>.<br><strong>Paso 4. IVA total.</strong> 0,40 + 2,00 + 6,30 = <strong>8,70 €</strong>.<br><strong>Paso 5. Total del ticket.</strong> Precio sin IVA: 10 + 20 + 30 = 60 €. Total: 60 + 8,70 = <strong>68,70 €</strong>.<br><strong>Lectura:</strong> los alimentos básicos apenas pagan impuesto (0,40 € de 10 €), mientras que el grupo del 21 % aporta él solo más de dos tercios del IVA de la compra. Por eso el pan, la leche, los huevos, la fruta y la verdura están al tipo superreducido del 4 %."
+    grafico:
+      tipo: xy
+      caption: "El IVA de la compra: 0,40 € sobre los 10 € al 4 %, 2,00 € sobre los 20 € al 10 % y 6,30 € sobre los 30 € al 21 %. Total: 8,70 € de IVA y 68,70 € en el ticket."
+      props:
+        id: "r-e2r-iva-compra"
+        titulo: "Precio sin IVA e IVA de cada grupo de la compra"
+        desc: "Tres columnas: 10 euros al 4 por ciento con 0,40 de IVA, 20 euros al 10 por ciento con 2,00 de IVA y 30 euros al 21 por ciento con 6,30 de IVA."
+        xMax: 10
+        yMax: 40
+        ejeX: "Tipo de IVA"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [1.6, 4.1, 6.6]
+        xTickLabels: ["4 %", "10 %", "21 %"]
+        yTicks: [10, 20, 30]
+        areas:
+          - { puntos: [[1, 0], [2.2, 0], [2.2, 10], [1, 10]], color: "mustard", fuerte: true }
+          - { puntos: [[1, 10], [2.2, 10], [2.2, 10.4], [1, 10.4]], color: "terra", fuerte: true }
+          - { puntos: [[3.5, 0], [4.7, 0], [4.7, 20], [3.5, 20]], color: "mustard", fuerte: true }
+          - { puntos: [[3.5, 20], [4.7, 20], [4.7, 22], [3.5, 22]], color: "terra", fuerte: true }
+          - { puntos: [[6, 0], [7.2, 0], [7.2, 30], [6, 30]], color: "mustard", fuerte: true }
+          - { puntos: [[6, 30], [7.2, 30], [7.2, 36.3], [6, 36.3]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1.6, y: 12, texto: "+0,40 €", ancla: "middle", color: "terra" }
+          - { x: 4.1, y: 23.6, texto: "+2,00 €", ancla: "middle", color: "terra" }
+          - { x: 6.6, y: 37.8, texto: "+6,30 €", ancla: "middle", color: "terra" }
+          - { x: 8, y: 33, texto: "Precio sin IVA", color: "mustard" }
+          - { x: 8, y: 29, texto: "IVA", color: "terra" }
   - enunciado: "La <strong>base liquidable</strong> de Dani, lo que queda de su renta después de restar la Seguridad Social, los gastos deducibles y las reducciones, es de <strong>15.000 €</strong>. Con la escala orientativa del IRPF (19 % hasta 12.450 € y 24 % de 12.450 € a 20.200 €) y un mínimo personal de 5.550 €, calcula su cuota, su tipo marginal y su tipo medio."
     desarrollo: "<strong>Paso 1. Primer tramo.</strong> Los primeros 12.450 € pagan al 19 %: 12.450 × 0,19 = <strong>2.365,50 €</strong>.<br><strong>Paso 2. Segundo tramo.</strong> Del resto, 15.000 − 12.450 = 2.550 € caen en el tramo del 24 %: 2.550 × 0,24 = <strong>612,00 €</strong>.<br><strong>Paso 3. Suma.</strong> 2.365,50 + 612,00 = <strong>2.977,50 €</strong>.<br><strong>Paso 4. Mínimo personal.</strong> Los 5.550 € que la ley considera necesarios para vivir se restan aplicándoles el tipo del primer tramo: 5.550 × 0,19 = <strong>1.054,50 €</strong> menos.<br><strong>Paso 5. Cuota.</strong> 2.977,50 − 1.054,50 = <strong>1.923,00 €</strong>.<br><strong>Paso 6. Tipos.</strong> Tipo <strong>marginal</strong>: 24 %, el del tramo más alto al que llega. Tipo <strong>medio</strong>: 1.923 / 15.000 = <strong>12,8 %</strong>. Su último euro paga el 24 %, pero su base entera paga el 12,8 %.<br><strong>Ojo:</strong> una base liquidable de 15.000 € corresponde a un sueldo de unos 19.750 € brutos. Quien cobra 15.000 € brutos no paga IRPF: después de restar la Seguridad Social, 2.000 € de gastos y la reducción por rendimientos del trabajo, su base queda por debajo del mínimo personal."
+    grafico:
+      tipo: xy
+      caption: "La base de 15.000 € paga el 19 % en los primeros 12.450 € y el 24 % en el resto. El tipo marginal (24 %) es el del último euro; el medio, 12,8 %, es la cuota (1.923 €) entre la base."
+      props:
+        id: "r-e2r-irpf-tramos"
+        titulo: "Escala del IRPF: tipo marginal y tipo medio de Dani"
+        desc: "Escalera de tipos: 19 por ciento hasta 12.450 euros y 24 por ciento de 12.450 a 20.200. La base de Dani, 15.000 euros, llega al segundo tramo (tipo marginal 24 por ciento) y su tipo medio es 12,8 por ciento."
+        xMax: 25000
+        yMax: 30
+        ejeX: "Base liquidable (€)"
+        ejeY: "Tipo (%)"
+        simboloX: "€"
+        simboloY: "%"
+        xTicks: [5000, 10000, 20000]
+        yTicks: [19]
+        areas:
+          - { puntos: [[0, 0], [12450, 0], [12450, 19], [0, 19]], color: "terra" }
+          - { puntos: [[12450, 0], [15000, 0], [15000, 24], [12450, 24]], color: "mustard" }
+        series:
+          - { color: "ink", puntos: [[0, 19], [12450, 19], [12450, 24], [20200, 24]] }
+        puntos:
+          - { x: 15000, y: 24, label: "Marginal: 24 %", xLabel: "15 000", yLabel: "24", dx: 12, dy: 22 }
+          - { x: 15000, y: 12.8, label: "Medio: 12,8 %", yLabel: "12,8", dx: 12, dy: -10 }
+        notas:
+          - { x: 300, y: 21, texto: "19 % hasta 12 450 €" }
+          - { x: 12600, y: 26, texto: "24 % de 12 450 a 20 200 €" }
   - enunciado: "Sara ingresa <strong>1.200 € netos al mes</strong>. Sus gastos fijos suman 700 € y los variables, 350 €. (a) ¿Cuánto ahorra y qué porcentaje de sus ingresos es? (b) Compáralo con la regla 50-30-20."
     desarrollo: "<strong>Paso 1. Gastos totales.</strong> 700 + 350 = <strong>1.050 €</strong>.<br><strong>Paso 2. Ahorro.</strong> Ingresos − gastos = 1.200 − 1.050 = <strong>150 €</strong>.<br><strong>Paso 3. Porcentaje ahorrado.</strong> 150 / 1.200 = 0,125 → <strong>12,5 %</strong>.<br><strong>Paso 4. La regla 50-30-20 sobre 1.200 €.</strong> Necesidades: 1.200 × 0,50 = 600 €. Deseos: 1.200 × 0,30 = 360 €. Ahorro: 1.200 × 0,20 = <strong>240 €</strong>.<br><strong>Paso 5. Comparación.</strong> Sara gasta 700 € en fijos (100 € más que los 600 € de referencia) y ahorra 150 € en lugar de 240 €: le faltan <strong>90 €</strong> para llegar al 20 %.<br><strong>Lectura:</strong> el desajuste está en los gastos fijos, que son los más difíciles de recortar porque se deciden una vez y cobran cada mes. Revisarlos (la tarifa del móvil, las suscripciones) es lo que más margen le daría."
+    grafico:
+      tipo: xy
+      caption: "Sara gasta 700 € en fijos, 350 € en variables y ahorra 150 € (12,5 %). Con la regla 50-30-20 serían 600, 360 y 240 €: le faltan 90 € de ahorro."
+      props:
+        id: "r-e2r-presupuesto-sara"
+        titulo: "Presupuesto de Sara frente a la regla 50-30-20"
+        desc: "Dos columnas de 1.200 euros: la de Sara, con 700 de gastos fijos, 350 de variables y 150 de ahorro, y la de la regla 50-30-20, con 600 de necesidades, 360 de deseos y 240 de ahorro."
+        xMax: 110
+        yMax: 1400
+        ejeX: "Reparto de 1.200 € al mes"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [25, 75]
+        xTickLabels: ["Sara", "Regla 50-30-20"]
+        yTicks: [300, 600, 900, 1200]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 700], [10, 700]], color: "terra", fuerte: true }
+          - { puntos: [[10, 700], [40, 700], [40, 1050], [10, 1050]], color: "mustard", fuerte: true }
+          - { puntos: [[10, 1050], [40, 1050], [40, 1200], [10, 1200]], color: "teal", fuerte: true }
+          - { puntos: [[60, 0], [90, 0], [90, 600], [60, 600]], color: "terra", fuerte: true }
+          - { puntos: [[60, 600], [90, 600], [90, 960], [60, 960]], color: "mustard", fuerte: true }
+          - { puntos: [[60, 960], [90, 960], [90, 1200], [60, 1200]], color: "teal", fuerte: true }
+        notas:
+          - { x: 25, y: 310, texto: "Fijos 700", ancla: "middle" }
+          - { x: 25, y: 860, texto: "Variables 350", ancla: "middle" }
+          - { x: 25, y: 1105, texto: "Ahorro 150", ancla: "middle" }
+          - { x: 75, y: 270, texto: "Necesidades 600", ancla: "middle" }
+          - { x: 75, y: 760, texto: "Deseos 360", ancla: "middle" }
+          - { x: 75, y: 1075, texto: "Ahorro 240", ancla: "middle" }
   - enunciado: "Un portátil cuesta <strong>600 € al contado</strong>. La tienda ofrece pagarlo en <strong>12 cuotas de 55 €</strong>. (a) ¿Cuánto pagas en total si financias? (b) ¿Cuánto es eso de más, en euros y en porcentaje?"
     desarrollo: "<strong>Paso 1. Total financiado.</strong> 55 × 12 = <strong>660 €</strong>.<br><strong>Paso 2. Sobrecoste en euros.</strong> 660 − 600 = <strong>60 €</strong>.<br><strong>Paso 3. Sobrecoste en porcentaje.</strong> 60 / 600 = 0,10 → <strong>un 10 % más</strong> por el mismo portátil.<br><strong>Paso 4. La alternativa.</strong> Si en lugar de financiar apartas esos mismos 55 € al mes, en 600 / 55 = 10,9, es decir, en <strong>11 meses</strong>, lo tienes pagado entero: un mes menos de los que ibas a estar pagando cuotas, y con 60 € en el bolsillo.<br><strong>Lectura:</strong> el producto es el mismo; lo que cambia es el contrato. Y el número que hay que mirar antes de firmar cualquier financiación es la <strong>TAE</strong>, porque incluye también las comisiones que la cuota no enseña."
+    grafico:
+      tipo: xy
+      caption: "Al contado el portátil cuesta 600 €; en 12 cuotas de 55 € se pagan 660 €, 60 € más (un 10 %)."
+      props:
+        id: "r-e2r-portatil-financiado"
+        titulo: "Portátil al contado o financiado"
+        desc: "Dos columnas: 600 euros al contado y 660 euros financiado en 12 cuotas de 55 euros, 60 euros más."
+        xMax: 10
+        yMax: 800
+        ejeX: "Forma de pago"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [2, 5]
+        xTickLabels: ["Al contado", "12 cuotas de 55 €"]
+        yTicks: [200, 400, 600]
+        areas:
+          - { puntos: [[1, 0], [3, 0], [3, 600], [1, 600]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 0], [6, 0], [6, 600], [4, 600]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 600], [6, 600], [6, 660], [4, 660]], color: "terra", fuerte: true }
+        notas:
+          - { x: 2, y: 640, texto: "600 €", ancla: "middle" }
+          - { x: 5, y: 700, texto: "660 €", ancla: "middle" }
+          - { x: 6.3, y: 615, texto: "+60 € (10 %)", color: "terra" }
 ejercicios:
   - enunciado: "Clasifica a cada persona como <strong>ocupada</strong>, <strong>parada</strong> o <strong>inactiva</strong> según la EPA: (a) una estudiante de 2.º de bachillerato que solo estudia; (b) un camarero de 25 años con contrato de 20 horas semanales; (c) una mujer de 50 años que perdió su empleo y busca trabajo cada semana; (d) un jubilado de 70 años."
     solucion: "(a) <strong>Inactiva</strong>: ni trabaja ni busca trabajo.<br>(b) <strong>Ocupado</strong>: tiene empleo, y basta con haber trabajado al menos una hora en la semana de referencia.<br>(c) <strong>Parada</strong>: no tiene empleo, lo busca activamente y está disponible.<br>(d) <strong>Inactivo</strong>: está jubilado y no busca empleo.<br>Recuerda: activos = ocupados + parados. Los inactivos quedan fuera del denominador de la tasa de paro."

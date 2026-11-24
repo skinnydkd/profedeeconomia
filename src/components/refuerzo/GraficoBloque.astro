@@ -1,0 +1,19 @@
+---
+/**
+ * Renders the chart a refuerzo item carries in its frontmatter. The props are
+ * plain data, so the same MercadoGrafico / GraficoXY the book uses draw it.
+ */
+import type { ComponentProps } from 'astro/types';
+import Diagram from '@components/Diagram.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import type { GraficoRefuerzo } from '@/lib/refuerzo';
+
+interface Props { grafico: GraficoRefuerzo }
+const { grafico } = Astro.props;
+---
+<Diagram caption={grafico.caption} variant="tight">
+  {grafico.tipo === 'mercado'
+    ? <MercadoGrafico {...(grafico.props as unknown as ComponentProps<typeof MercadoGrafico>)} />
+    : <GraficoXY {...(grafico.props as unknown as ComponentProps<typeof GraficoXY>)} />}
+</Diagram>

@@ -51,6 +51,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -156,6 +157,35 @@ Què li diuen estes dades i què hauria de ponderar abans de decidir?
 2. **Dinamisme**. La província B creix tres vegades més ràpid (+6,4 % enfront de +2,1 %): el mercat s'està expandint, senyal d'empreses que òbrin o s'amplien. Un mercat xicotet però accelerat pot donar més recorregut a mitjà termini.
 3. **Qualitat de l'ocupació**. En B quasi la mitat dels contractes són indefinits (41 %) enfront del 28 % d'A: l'estabilitat esperada és clarament major en B.
 4. **Lectura conjunta**. A oferix **quantitat i xarxa de seguretat**; B oferix **qualitat i creixement**. Cap dada decidix a soles: Hugo ha de creuar-les amb el cost de vida de cada província, la distància a la seua xarxa personal i la seua preferència entre estabilitat i volum d'opcions.
+
+<Diagram caption="Els contractes a l'any de l'ocupació CNO 4309 en cada província. A és el mercat més gran (18.400 contractes enfront de 9.700); B creix més de pressa (+6,4 % enfront de +2,1 %) i té més pes de contractes indefinits (41 % enfront de 28 %).">
+  <GraficoXY id="g-ipe1-contratos-provincias" titulo="Contractes a l'any en les províncies A i B" desc="Dos columnes apilades de contractes anuals. Província A: 18.400 contractes, d'ells 5.152 indefinits (28 %) i 13.248 de la resta, amb una variació interanual de +2,1 %. Província B: 9.700 contractes, d'ells 3.977 indefinits (41 %) i 5.723 de la resta, amb +6,4 %."
+    xMax={6} yMax={20000} ejeX="Província" ejeY="Contractes a l'any"
+    xTicks={[1.6, 4.4]} yTicks={[5000, 10000, 15000]} xTickLabels={["Província A", "Província B"]}
+    areas={[
+      { puntos: [[0.6, 0], [2.6, 0], [2.6, 5152], [0.6, 5152]], color: "teal", fuerte: true },
+      { puntos: [[0.6, 5152], [2.6, 5152], [2.6, 18400], [0.6, 18400]], color: "mustard", fuerte: true },
+      { puntos: [[3.4, 0], [5.4, 0], [5.4, 3977], [3.4, 3977]], color: "teal", fuerte: true },
+      { puntos: [[3.4, 3977], [5.4, 3977], [5.4, 9700], [3.4, 9700]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.6, 0], [2.6, 0], [2.6, 5152], [0.6, 5152], [0.6, 0]], color: "teal" },
+      { puntos: [[0.6, 5152], [2.6, 5152], [2.6, 18400], [0.6, 18400], [0.6, 5152]], color: "mustard" },
+      { puntos: [[3.4, 0], [5.4, 0], [5.4, 3977], [3.4, 3977], [3.4, 0]], color: "teal" },
+      { puntos: [[3.4, 3977], [5.4, 3977], [5.4, 9700], [3.4, 9700], [3.4, 3977]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 1.6, y: 2400, texto: "Indefinits 5 152", ancla: "middle" },
+      { x: 1.6, y: 1300, texto: "(28 %)", ancla: "middle" },
+      { x: 1.6, y: 11000, texto: "Resta 13 248", ancla: "middle" },
+      { x: 1.6, y: 18900, texto: "Total 18 400 · +2,1 %", ancla: "middle", color: "terra" },
+      { x: 4.4, y: 2400, texto: "Indefinits 3 977", ancla: "middle" },
+      { x: 4.4, y: 1300, texto: "(41 %)", ancla: "middle" },
+      { x: 4.4, y: 6200, texto: "Resta 5 723", ancla: "middle" },
+      { x: 4.4, y: 10200, texto: "Total 9 700 · +6,4 %", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 **Conclusió**: les dades no trien per tu, però convertixen un pressentiment («em sona millor A») en una decisió informada. Sense l'Observatori, Hugo hauria comparat dos províncies a cegues.
 

@@ -51,6 +51,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
@@ -188,6 +189,38 @@ L'**IVA** és una cosa completament distinta i mereix entendre's bé, perquè é
 
 Les empreses de la cadena **recapten** l'IVA, però no el suporten. Qui el suporta de veritat eres tu.
 </Steps>
+
+<Diagram caption="El valor que afig cada baula de la cadena, en euros sense IVA. L'agricultor ven a 100 €, la cooperativa afig 50 (ven a 150) i el supermercat altres 50 (ven a 200). Cada empresa ingressa a Hisenda l'IVA només d'allò que afig; el consumidor final paga l'IVA íntegre del preu de 200 €.">
+  <GraficoXY id="g-cjd-iva-cadena" titulo="El viatge de l'IVA al llarg de la cadena" desc="Quatre columnes en euros sense IVA. L'agricultor ven per 100. La cooperativa afig 50 i ven per 150. El supermercat afig altres 50 i ven per 200. La quarta columna suma els tres trams: 100 més 50 més 50, el preu final de 200 sobre el qual paga l'IVA el consumidor."
+    xMax={6} yMax={250} ejeX="Baula de la cadena" ejeY="Euros sense IVA" simboloY="€"
+    xTicks={[0.8, 1.9, 3, 4.5]} yTicks={[50, 100, 150, 200]} xTickLabels={["Agricultor", "Cooperativa", "Supermercat", "Preu final"]}
+    areas={[
+      { puntos: [[0.4, 0], [1.2, 0], [1.2, 100], [0.4, 100]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 100], [2.3, 100], [2.3, 150], [1.5, 150]], color: "mustard", fuerte: true },
+      { puntos: [[2.6, 150], [3.4, 150], [3.4, 200], [2.6, 200]], color: "teal", fuerte: true },
+      { puntos: [[4, 0], [5, 0], [5, 100], [4, 100]], color: "terra", fuerte: true },
+      { puntos: [[4, 100], [5, 100], [5, 150], [4, 150]], color: "mustard", fuerte: true },
+      { puntos: [[4, 150], [5, 150], [5, 200], [4, 200]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.4, 0], [1.2, 0], [1.2, 100], [0.4, 100], [0.4, 0]], color: "terra" },
+      { puntos: [[1.5, 100], [2.3, 100], [2.3, 150], [1.5, 150], [1.5, 100]], color: "mustard" },
+      { puntos: [[2.6, 150], [3.4, 150], [3.4, 200], [2.6, 200], [2.6, 150]], color: "teal" },
+      { puntos: [[4, 0], [5, 0], [5, 100], [4, 100], [4, 0]], color: "terra" },
+      { puntos: [[4, 100], [5, 100], [5, 150], [4, 150], [4, 100]], color: "mustard" },
+      { puntos: [[4, 150], [5, 150], [5, 200], [4, 200], [4, 150]], color: "teal" },
+    ]}
+    notas={[
+      { x: 0.8, y: 45, texto: "100", ancla: "middle" },
+      { x: 1.9, y: 120, texto: "+50", ancla: "middle" },
+      { x: 3, y: 170, texto: "+50", ancla: "middle" },
+      { x: 4.5, y: 45, texto: "100", ancla: "middle" },
+      { x: 4.5, y: 120, texto: "+50", ancla: "middle" },
+      { x: 4.5, y: 170, texto: "+50", ancla: "middle" },
+      { x: 4.5, y: 215, texto: "Total 200", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 A Espanya hi ha tres tipus: el **general** del 21 %, el **reduït** del 10 % per a aliments en general, transport de viatgers, hostaleria o habitatge, i el **superreduït** del 4 % per a pa, llet, ous, fruites i verdures, llibres, periòdics i medicaments. Eixa escala és un intent deliberat de corregir el problema estructural de l'impost.
 

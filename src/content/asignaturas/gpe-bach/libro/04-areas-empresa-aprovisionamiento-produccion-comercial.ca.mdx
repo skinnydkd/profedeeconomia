@@ -44,6 +44,7 @@ import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
 import MarketingMix4P from '@components/diagrams/MarketingMix4P.astro';
@@ -112,6 +113,24 @@ Abans de tancar una compra, demana pressupost a **dos o tres proveïdors** i com
 L'**estoc** (o existències) és la quantitat de producte o matèria primera que tens emmagatzemada en un moment donat. Controlar-lo significa saber, en tot moment, què tens i quan convé reposar. La idea clau és el **punt de comanda**: el nivell d'existències a partir del qual cal tornar a comprar per a no quedar-se sense material mentres arriba la nova comanda.
 
 Per a un projecte escolar n'hi ha prou amb una regla pràctica: definix un **mínim de seguretat** (la quantitat per davall de la qual no vols baixar) i llança la comanda quan et quede el mínim de seguretat més el que consumiràs mentre arriba: eixe és el teu punt de comanda. Per exemple, si gastes 5 pots al dia, el proveïdor tarda 4 dies a servir i el teu mínim és 10, demana quan te'n queden 30 (5 × 4 + 10). Ni tant d'estoc que acumules cost i risc que s'espatle, ni tan poc que et quedes parat.
+
+<Diagram caption="El punt de comanda de l'exemple: es llança la comanda quan queden 30 pots (5 al dia durant els 4 dies que tarda el proveïdor, més el mínim de seguretat de 10). Si el consum és el previst, la comanda arriba just quan l'estoc toca el mínim.">
+  <GraficoXY id="g-punto-pedido" titulo="Estoc mentre arriba la comanda" desc="Es llança la comanda amb 30 pots al magatzem. Es consumixen 5 al dia, així que als 4 dies, quan arriba la comanda del proveïdor, en queden 10: el mínim de seguretat."
+    xMax={5} yMax={40} ejeX="Dies des que es llança la comanda" ejeY="Pots al magatzem" simboloX="t"
+    xTicks={[1, 2, 3]} yTicks={[20]}
+    series={[
+      { color: 'terra', puntos: [[0, 30], [4, 10]] },
+      { label: 'Mínim de seguretat', color: 'mustard', labelEn: 'inicio', puntos: [[0, 10], [4.5, 10]], dy: -10 },
+    ]}
+    puntos={[
+      { x: 0, y: 30, label: 'Punt de comanda', yLabel: '30', dx: 14, dy: -12 },
+      { x: 4, y: 10, label: 'Arriba la comanda', xLabel: '4', yLabel: '10', dx: -20, dy: -18 },
+    ]}
+    notas={[
+      { x: 2.1, y: 23.5, texto: '−5 pots al dia', color: 'terra' },
+    ]}
+  />
+</Diagram>
 
 <Figure
   src={almacenAmazon}

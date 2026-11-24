@@ -11,6 +11,9 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau-problemas/05-ratios-fondo-maniobra-ejercicios-resueltos.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Les **ràtios** comparen partides del balanç i del compte de resultats per a diagnosticar l'empresa: si pot pagar els seus deutes a curt termini (liquiditat), si el seu patrimoni cobrix tot el que deu (solvència), com es finança (endeutament) i quant rendix (rendibilitats). El **període mitjà de maduració** mesura quants dies tarden els diners a fer la volta completa, des que es compra la matèria primera fins que es cobra al client.
 
 ## Formulari
@@ -57,6 +60,37 @@ c) Ràtio de garantia:
 
 **Interpretació.** El fons de maniobra és positiu (20.000 euros): l'actiu corrent cobrix el passiu corrent i deixa un marge, per la qual cosa l'empresa pot atendre els seus deutes a curt termini sense tensions de liquiditat. La ràtio de liquiditat d'1,5 confirma eixa situació: per cada euro de deute a curt termini disposa d'1,50 euros d'actiu líquid, dins del rang recomanable. La ràtio de garantia de 2 indica que l'actiu total duplica el passiu total: l'empresa és solvent i està lluny de la fallida tècnica (garantia > 1).
 
+<Diagram caption="El balanç en masses (ANC: actiu no corrent; AC: actiu corrent; PN: patrimoni net; PNC i PC: passiu no corrent i corrent). L'actiu corrent (60.000 €) supera el passiu corrent (40.000 €): el fons de maniobra és de 20.000 € i la liquiditat, d'1,5.">
+  <GraficoXY id="g-ebau-balance-fm-positivo" titulo="Balanç amb fons de maniobra positiu" desc="Dues columnes iguals de 180.000 euros. Actiu: no corrent 120.000 i corrent 60.000. Patrimoni net més passiu: patrimoni net 90.000, passiu no corrent 50.000 i passiu corrent 40.000. El fons de maniobra és de 20.000 i la liquiditat, d'1,5."
+    xMax={10} yMax={220000} ejeX="Balanç" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Actiu", "Patrimoni net + passiu"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 120000], [1.5, 120000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 120000], [4.5, 120000], [4.5, 180000], [1.5, 180000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 90000], [5.5, 90000]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 90000], [8.5, 90000], [8.5, 140000], [5.5, 140000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 180000], [5.5, 180000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 120000], [1.5, 120000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 120000], [4.5, 120000], [4.5, 180000], [1.5, 180000], [1.5, 120000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 90000], [5.5, 90000], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 90000], [8.5, 90000], [8.5, 140000], [5.5, 140000], [5.5, 90000]], color: "aubergine" },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 180000], [5.5, 180000], [5.5, 140000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 57250, texto: "ANC 120 000", ancla: "middle" },
+      { x: 3, y: 147250, texto: "AC 60 000", ancla: "middle" },
+      { x: 7, y: 42250, texto: "PN 90 000", ancla: "middle" },
+      { x: 7, y: 112250, texto: "PNC 50 000", ancla: "middle" },
+      { x: 7, y: 157250, texto: "PC 40 000", ancla: "middle" },
+      { x: 3, y: 188800, texto: "Total actiu: 180 000", ancla: "middle" },
+      { x: 7, y: 188800, texto: "Total PN + passiu: 180 000", ancla: "middle" },
+      { x: 5, y: 206400, texto: "FM = 60 000 − 40 000 = 20 000", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — Endeutament i rendibilitats
 
 **Enunciat.** Una altra empresa té un actiu total de 500.000 euros, un patrimoni net de 200.000 euros i un passiu total de 300.000 euros. En l'últim exercici va obtindre un BAII de 60.000 euros i un benefici net de 30.000 euros. Calcula la ràtio d'endeutament, la rendibilitat econòmica i la rendibilitat financera, i interpreta-les.
@@ -77,6 +111,26 @@ c) Rendibilitat financera:
 
 **Interpretació.** La ràtio d'endeutament és 0,6: el 60 % de l'actiu està finançat amb deute i el 40 % amb recursos propis. Està al límit alt del rang equilibrat (0,4–0,6); una mica més de deute començaria a comprometre l'autonomia financera. La rendibilitat econòmica del 12 % mesura el rendiment de tot l'actiu amb independència de com es finance: per cada 100 euros invertits en actiu, l'empresa genera 12 euros de benefici abans d'interessos i impostos. La rendibilitat financera del 15 % mesura el rendiment dels propietaris: per cada 100 euros de fons propis obtenen 15 euros de benefici net. Que la RF (15 %) supere la RE (12 %) indica que l'endeutament està actuant a favor dels accionistes (palanquejament financer positiu), perquè l'empresa rendix més amb l'actiu del que li costa el deute.
 
+<Diagram caption="La rendibilitat financera (15 %) supera l'econòmica (12 %): el deute juga a favor dels socis, és a dir, hi ha palanquejament financer positiu.">
+  <GraficoXY id="g-ebau-rentabilidades" titulo="Rendibilitat econòmica i financera" desc="Dues columnes: la rendibilitat econòmica és del 12 % (60.000 de BAII sobre 500.000 d'actiu) i la financera, del 15 % (30.000 de benefici net sobre 200.000 de patrimoni net). La financera supera l'econòmica en 3 punts."
+    xMax={6} yMax={18} ejeX="" ejeY="Rendibilitat (%)"
+    xTicks={[1.9, 4.1]} yTicks={[5, 10, 15]} xTickLabels={["RE (BAII / actiu)", "RF (benefici net / PN)"]}
+    areas={[
+      { puntos: [[1, 0], [2.8, 0], [2.8, 12], [1, 12]], color: "mustard", fuerte: true },
+      { puntos: [[3.2, 0], [5, 0], [5, 15], [3.2, 15]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1, 0], [2.8, 0], [2.8, 12], [1, 12], [1, 0]], color: "mustard" },
+      { puntos: [[3.2, 0], [5, 0], [5, 15], [3.2, 15], [3.2, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1.9, y: 12.6, texto: "12 %", ancla: "middle" },
+      { x: 4.1, y: 15.6, texto: "15 %", ancla: "middle" },
+      { x: 3, y: 17.2, texto: "+3 punts", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — Fons de maniobra negatiu
 
 **Enunciat.** Una empresa comercial presenta: Actiu no corrent 150.000 euros; Actiu corrent 30.000 euros; Patrimoni net 80.000 euros; Passiu no corrent 40.000 euros; Passiu corrent 60.000 euros. Calcula el fons de maniobra i la ràtio de liquiditat, i interpreta la seua situació.
@@ -87,6 +141,37 @@ c) Rendibilitat financera:
 > Liquiditat = AC / PC = 30.000 / 60.000 = **0,5**
 
 **Interpretació.** El fons de maniobra és negatiu (−30.000 euros): el passiu corrent supera l'actiu corrent, de manera que l'empresa està finançant part del seu immobilitzat (actiu no corrent) amb deutes a curt termini. La ràtio de liquiditat de 0,5 ho confirma: només disposa de 0,50 euros d'actiu líquid per cada euro de deute a curt termini. És una situació de risc d'insolvència (concurs de creditors): si els creditors reclamen, l'empresa no podria fer front a les seues obligacions immediates. Hauria de reestructurar el seu finançament, convertint deute a curt en deute a llarg termini o ampliant capital. (Nota: algunes empreses comercials amb molta rotació, com els grans supermercats, operen amb FM negatiu de manera estable perquè cobren al comptat i paguen tard als proveïdors; però, en general, un FM negatiu és senyal d'alarma.)
+
+<Diagram caption="El balanç en masses (ANC: actiu no corrent; AC: actiu corrent; PN: patrimoni net; PNC i PC: passiu no corrent i corrent). El passiu corrent (60.000 €) supera l'actiu corrent (30.000 €): el fons de maniobra és de −30.000 € i part de l'actiu no corrent es finança amb deute a curt termini.">
+  <GraficoXY id="g-ebau-balance-fm-negativo" titulo="Balanç amb fons de maniobra negatiu" desc="Dues columnes iguals de 180.000 euros. Actiu: no corrent 150.000 i corrent 30.000. Patrimoni net més passiu: patrimoni net 80.000, passiu no corrent 40.000 i passiu corrent 60.000. El fons de maniobra és de menys 30.000 i la liquiditat, de 0,5."
+    xMax={10} yMax={220000} ejeX="Balanç" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Actiu", "Patrimoni net + passiu"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 150000], [1.5, 150000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 150000], [4.5, 150000], [4.5, 180000], [1.5, 180000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 80000], [5.5, 80000]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 80000], [8.5, 80000], [8.5, 120000], [5.5, 120000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 120000], [8.5, 120000], [8.5, 180000], [5.5, 180000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 150000], [1.5, 150000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 150000], [4.5, 150000], [4.5, 180000], [1.5, 180000], [1.5, 150000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 80000], [5.5, 80000], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 80000], [8.5, 80000], [8.5, 120000], [5.5, 120000], [5.5, 80000]], color: "aubergine" },
+      { puntos: [[5.5, 120000], [8.5, 120000], [8.5, 180000], [5.5, 180000], [5.5, 120000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 72250, texto: "ANC 150 000", ancla: "middle" },
+      { x: 3, y: 162250, texto: "AC 30 000", ancla: "middle" },
+      { x: 7, y: 37250, texto: "PN 80 000", ancla: "middle" },
+      { x: 7, y: 97250, texto: "PNC 40 000", ancla: "middle" },
+      { x: 7, y: 147250, texto: "PC 60 000", ancla: "middle" },
+      { x: 3, y: 188800, texto: "Total actiu: 180 000", ancla: "middle" },
+      { x: 7, y: 188800, texto: "Total PN + passiu: 180 000", ancla: "middle" },
+      { x: 5, y: 206400, texto: "FM = 30 000 − 60 000 = −30 000", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Període mitjà de maduració (tipus examen)
 
@@ -129,6 +214,42 @@ b) Períodes de maduració:
 **Resultat:** període mitjà de maduració econòmic de 95 dies i financer de 35 dies.
 
 **Interpretació.** Des que la matèria primera entra al magatzem fins que es cobra el moble venut passen 95 dies. Com que els proveïdors cobren als 60 dies, l'empresa només ha de finançar amb recursos permanents (el fons de maniobra) els últims 35 dies del cicle. Per a escurçar eixe període pot, per exemple, cobrar abans als clients (descomptes per pagament anticipat, passar de 45 a 30 dies) o negociar un termini de pagament més llarg amb els proveïdors; també ajudaria reduir les existències mitjanes de qualsevol de les fases. Si aconseguira cobrar a 30 dies, el PMMf baixaria a 20 dies.
+
+<Diagram caption="Les quatre fases sumen 95 dies (d = dies) des que la matèria primera entra al magatzem fins que es cobra el moble. Els proveïdors financen els primers 60; els 35 restants són el període mitjà de maduració financer.">
+  <GraficoXY id="g-ebau-pmm-mobles" titulo="Període mitjà de maduració de Mobles Albaida" desc="Cronologia en dies: 25 de magatzem de matèries primeres, 10 de fabricació, 15 de magatzem de producte acabat i 45 de cobrament a clients sumen un període mitjà de maduració econòmic de 95 dies. Els proveïdors financen els primers 60 dies, així que l'empresa ha de finançar els 35 restants."
+    xMax={110} yMax={115} ejeX="Dies des que entra la matèria primera" ejeY=""
+    xTicks={[25, 35, 50, 60, 95]}
+    areas={[
+      { puntos: [[0, 66], [25, 66], [25, 86], [0, 86]], color: "terra", fuerte: true },
+      { puntos: [[25, 66], [35, 66], [35, 86], [25, 86]], color: "mustard", fuerte: true },
+      { puntos: [[35, 66], [50, 66], [50, 86], [35, 86]], color: "teal", fuerte: true },
+      { puntos: [[50, 66], [95, 66], [95, 86], [50, 86]], color: "aubergine", fuerte: true },
+      { puntos: [[0, 38], [60, 38], [60, 58], [0, 58]], color: "ink", fuerte: true },
+      { puntos: [[60, 10], [95, 10], [95, 30], [60, 30]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0, 66], [25, 66], [25, 86], [0, 86], [0, 66]], color: "terra" },
+      { puntos: [[25, 66], [35, 66], [35, 86], [25, 86], [25, 66]], color: "mustard" },
+      { puntos: [[35, 66], [50, 66], [50, 86], [35, 86], [35, 66]], color: "teal" },
+      { puntos: [[50, 66], [95, 66], [95, 86], [50, 86], [50, 66]], color: "aubergine" },
+      { puntos: [[0, 38], [60, 38], [60, 58], [0, 58], [0, 38]], color: "ink" },
+      { puntos: [[60, 10], [95, 10], [95, 30], [60, 30], [60, 10]], color: "terra" },
+    ]}
+    notas={[
+      { x: 1, y: 90, texto: "Matèries primeres", ancla: "start" },
+      { x: 30, y: 98, texto: "Fabricació", ancla: "middle" },
+      { x: 42.5, y: 90, texto: "Producte acabat", ancla: "middle" },
+      { x: 72.5, y: 90, texto: "Cobrament a clients", ancla: "middle" },
+      { x: 47.5, y: 108, texto: "PMM econòmic: 95 dies", color: "terra", ancla: "middle" },
+      { x: 12.5, y: 73, texto: "25 d", ancla: "middle" },
+      { x: 30, y: 73, texto: "10 d", ancla: "middle" },
+      { x: 42.5, y: 73, texto: "15 d", ancla: "middle" },
+      { x: 72.5, y: 73, texto: "45 d", ancla: "middle" },
+      { x: 30, y: 45, texto: "Crèdit de proveïdors: 60 dies", ancla: "middle" },
+      { x: 77.5, y: 17, texto: "A finançar: 35 dies", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ## Errors típics que resten punts
 

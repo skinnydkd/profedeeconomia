@@ -15,6 +15,25 @@ repaso_teorico:
   - titulo: "Mercado de trabajo: tipos de paro y curva de Phillips"
     unidad: 9
     contenido: "Más allá de calcular tasas, lo relevante es entender <em>por qué</em> existe el paro y por qué nunca llega a cero. Una parte siempre estará en transición (paro <strong>friccional</strong>) y otra responde a desajustes entre la formación de los trabajadores y lo que demandan las empresas (paro <strong>estructural</strong>). La suma de ambos da la <strong>tasa natural de paro</strong> o <strong>NAIRU</strong>: el nivel de paro compatible con una inflación estable. Por encima de ella aparece el paro <strong>cíclico</strong>, ligado a las recesiones.<br><br>La <strong>curva de Phillips</strong> describe, a corto plazo, una relación inversa entre paro e inflación: cuando el paro baja mucho, los salarios y los precios tienden a subir (más inflación), y viceversa. Esto plantea un dilema de política económica que se retoma en la unidad 11: no se pueden minimizar a la vez paro e inflación con la misma palanca.<br><br>El mercado laboral español tiene rasgos propios, como su carácter <strong>dual</strong> (mucha distancia entre contratos indefinidos y temporales) y una elevada sensibilidad del empleo al ciclo. El debate sobre el <strong>salario mínimo (SMI)</strong> ilustra la tensión entre la teoría neoclásica (subir el suelo salarial podría reducir el empleo) y la evidencia empírica más reciente (estudios tipo Card-Krueger encuentran efectos pequeños o nulos sobre el empleo en muchos casos)."
+    grafico:
+      tipo: xy
+      caption: "Curva de Phillips a corto plazo: menos paro se asocia a más inflación y viceversa. La tasa natural de paro (NAIRU) es el paro compatible con una inflación estable."
+      props:
+        id: "r-e3a-phillips-esquema"
+        titulo: "Curva de Phillips y tasa natural de paro"
+        desc: "Curva decreciente que relaciona la tasa de paro (eje horizontal) con la inflación (eje vertical) y una línea vertical que marca la tasa natural de paro."
+        xMax: 14
+        yMax: 12
+        ejeX: "Tasa de paro"
+        ejeY: "Inflación"
+        simboloX: "u"
+        simboloY: "π"
+        series:
+          - { label: "Phillips", color: "terra", puntos: [[3, 9.5], [3.5, 8.07], [4, 7], [4.5, 6.17], [5, 5.5], [5.5, 4.95], [6, 4.5], [6.5, 4.12], [7, 3.79], [7.5, 3.5], [8, 3.25], [8.5, 3.03], [9, 2.83], [9.5, 2.66], [10, 2.5], [10.5, 2.36], [11, 2.23], [11.5, 2.11], [12, 2]], labelEn: "inicio", dx: 12, dy: -12 }
+          - { label: "NAIRU", color: "ink", tenue: true, puntos: [[7, 0.3], [7, 10.5]] }
+        notas:
+          - { x: 3.2, y: 11.5, texto: "Paro bajo, más inflación" }
+          - { x: 8.5, y: 1.3, texto: "Paro alto, menos inflación" }
   - titulo: "Creación de dinero bancario y agregados monetarios"
     unidad: 10
     contenido: "El nivel de ampliación de esta unidad está en entender que <strong>la mayor parte del dinero no lo imprime el banco central, lo crean los bancos comerciales</strong> al conceder préstamos. Cuando un banco recibe un depósito, guarda una fracción como reserva (el <strong>coeficiente de reservas</strong>) y presta el resto; ese préstamo se convierte en un nuevo depósito en otro banco, que vuelve a prestar parte, y así sucesivamente.<br><br>El alcance de ese proceso lo mide el <strong>multiplicador del dinero = 1 ÷ coeficiente de reservas</strong>. Con un coeficiente del 10 %, el multiplicador es 10: un depósito inicial puede llegar a multiplicar por diez la oferta monetaria. El dinero <em>nuevo creado</em> es la diferencia entre el total final y el depósito inicial.<br><br>El dinero se clasifica en <strong>agregados monetarios</strong> según su liquidez: <strong>M0</strong> (efectivo y reservas), <strong>M1</strong> (efectivo más depósitos a la vista), <strong>M2</strong> (M1 más depósitos a plazo corto) y <strong>M3</strong> (el más amplio). El <strong>BCE</strong>, a través del Eurosistema, controla la base monetaria y los tipos oficiales, pero la cantidad final de dinero depende también del comportamiento de bancos y clientes."
@@ -27,14 +46,87 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "En una economía, la propensión marginal al consumo (PMC) es 0,8. Calcula el multiplicador del gasto y di en cuánto aumentaría la renta total si el Gobierno gasta 1.000 millones más."
     desarrollo: "Multiplicador = 1 ÷ (1 − PMC) = 1 ÷ (1 − 0,8) = 1 ÷ 0,2 = <strong>5</strong>.<br>Aumento de la renta = multiplicador × aumento del gasto = 5 × 1.000 = <strong>5.000 millones</strong>.<br>El gasto inicial se multiplica porque cada euro recibido se vuelve a gastar en parte (el 80 %), generando nuevas rentas en cadena."
+    grafico:
+      tipo: xy
+      caption: "Con PMC = 0,8, el gasto inicial de 1.000 millones genera una renta de 800 en la 2.ª ronda, 640 en la 3.ª, y así sucesivamente: la suma de todas las rondas es 5.000 millones (1.000 × 5)."
+      props:
+        id: "r-e3a-multiplicador-gasto"
+        titulo: "Rondas de gasto del multiplicador con PMC = 0,8"
+        desc: "Siete columnas decrecientes: cada ronda de gasto es el 80 % de la anterior (1.000, 800, 640, 512, 410, 328 y 262 millones); la suma de todas las rondas es de 5.000 millones."
+        xMax: 9
+        yMax: 1200
+        ejeX: "Ronda de gasto"
+        ejeY: "Millones de euros"
+        xTicks: [1, 2, 3, 4, 5, 6, 7]
+        yTicks: [250, 500, 750]
+        areas:
+          - { puntos: [[0.65, 0], [1.35, 0], [1.35, 1000], [0.65, 1000]], color: "terra", fuerte: true }
+          - { puntos: [[1.65, 0], [2.35, 0], [2.35, 800], [1.65, 800]], color: "terra", fuerte: true }
+          - { puntos: [[2.65, 0], [3.35, 0], [3.35, 640], [2.65, 640]], color: "terra", fuerte: true }
+          - { puntos: [[3.65, 0], [4.35, 0], [4.35, 512], [3.65, 512]], color: "terra", fuerte: true }
+          - { puntos: [[4.65, 0], [5.35, 0], [5.35, 409.6], [4.65, 409.6]], color: "terra", fuerte: true }
+          - { puntos: [[5.65, 0], [6.35, 0], [6.35, 327.7], [5.65, 327.7]], color: "terra", fuerte: true }
+          - { puntos: [[6.65, 0], [7.35, 0], [7.35, 262.1], [6.65, 262.1]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1, y: 1045, texto: "1 000", ancla: "middle" }
+          - { x: 2, y: 845, texto: "800", ancla: "middle" }
+          - { x: 3, y: 685, texto: "640", ancla: "middle" }
+          - { x: 4, y: 557, texto: "512", ancla: "middle" }
+          - { x: 5, y: 454.6, texto: "410", ancla: "middle" }
+          - { x: 6, y: 372.7, texto: "328", ancla: "middle" }
+          - { x: 7, y: 307.1, texto: "262", ancla: "middle" }
+          - { x: 4.3, y: 920, texto: "Suma: 5 000 millones", color: "terra" }
   - enunciado: "El coeficiente de reservas (encaje bancario) es del 10 %. A partir de un depósito inicial de 1.000 €, calcula el multiplicador del dinero bancario y el máximo dinero que puede llegar a crear el sistema bancario."
     desarrollo: "Multiplicador del dinero = 1 ÷ coeficiente de reservas = 1 ÷ 0,10 = <strong>10</strong>.<br>Dinero máximo creado = depósito inicial × multiplicador = 1.000 × 10 = <strong>10.000 €</strong>.<br>Los bancos prestan el 90 % de cada depósito; ese dinero vuelve al sistema como nuevos depósitos que se vuelven a prestar, hasta multiplicar por 10 el depósito inicial."
+    grafico:
+      tipo: xy
+      caption: "Con un coeficiente de reservas del 10 %, el dinero creado a partir de un depósito de 1.000 € se acerca ronda a ronda al máximo de 10.000 € (multiplicador 10)."
+      props:
+        id: "r-e3a-dinero-bancario"
+        titulo: "Dinero creado ronda a ronda con un coeficiente de reservas del 10 %"
+        desc: "Dinero total acumulado tras cada ronda de préstamos y depósitos, empezando en 1.000 euros y acercándose al máximo de 10.000 euros."
+        xMax: 26
+        yMax: 11500
+        ejeX: "Ronda de préstamos"
+        ejeY: "Dinero total (€)"
+        simboloY: "€"
+        xTicks: [5, 10, 15, 20]
+        yTicks: [2000, 4000, 6000, 8000]
+        series:
+          - { label: "Dinero creado", color: "terra", puntos: [[1, 1000], [2, 1900], [3, 2710], [4, 3439], [5, 4095], [6, 4686], [7, 5217], [8, 5695], [9, 6126], [10, 6513], [11, 6862], [12, 7176], [13, 7458], [14, 7712], [15, 7941], [16, 8147], [17, 8332], [18, 8499], [19, 8649], [20, 8784]], dy: 16 }
+          - { label: "Máximo: 10 000 €", color: "mustard", tenue: true, puntos: [[0.5, 10000], [19, 10000]], dy: -4 }
   - enunciado: "Explica, usando la idea de la curva de Phillips, por qué puede surgir un conflicto entre reducir el paro y controlar la inflación. ¿Qué dilema plantea al Gobierno?"
     desarrollo: "La curva de Phillips (a corto plazo) muestra una relación inversa entre paro e inflación: cuando el paro baja, suele subir la inflación, y viceversa.<br>Al reducir el paro con políticas expansivas, aumenta la demanda y los precios tienden a subir (más inflación). El dilema del Gobierno es que <strong>no puede atacar ambos problemas a la vez con la misma medida</strong>: debe decidir qué objetivo prioriza según la situación económica."
   - enunciado: "Cita dos ventajas y dos inconvenientes de la globalización para un país, y explica un papel que puede desempeñar la Unión Europea para gestionar sus efectos."
     desarrollo: "Ventajas: acceso a más mercados y productos, y precios más bajos por la competencia internacional; también transferencia de tecnología.<br>Inconvenientes: deslocalización de empresas (pérdida de empleo local) y aumento de la desigualdad entre regiones o países.<br>Papel de la UE: coordinar políticas comunes (comercial, de competencia, fondos de cohesión) para proteger sectores vulnerables, fijar normas comunes y repartir parte de los beneficios hacia las regiones menos desarrolladas."
-  - enunciado: "Aplica la ventaja comparativa. Para producir 1 unidad, el país A necesita 2 horas de vino y 4 horas de tela; el país B necesita 6 horas de vino y 3 horas de tela. Calcula los costes de oportunidad y determina en qué debe especializarse cada país."
-    desarrollo: "Aunque el país A es más eficiente en ambos bienes (menos horas), lo decisivo es el <strong>coste de oportunidad</strong>.<br><strong>País A:</strong> producir 1 vino cuesta 2 ÷ 4 = <strong>0,5 unidades de tela</strong>; producir 1 tela cuesta 4 ÷ 2 = <strong>2 unidades de vino</strong>.<br><strong>País B:</strong> producir 1 vino cuesta 6 ÷ 3 = <strong>2 unidades de tela</strong>; producir 1 tela cuesta 3 ÷ 6 = <strong>0,5 unidades de vino</strong>.<br><strong>Comparación:</strong> el vino es más barato (en coste de oportunidad) en A (0,5 &lt; 2), y la tela es más barata en B (0,5 &lt; 2).<br><strong>Conclusión:</strong> A debe especializarse en <strong>vino</strong> y B en <strong>tela</strong>; al intercambiar, ambos países salen ganando aunque A sea mejor produciendo las dos cosas."
+  - enunciado: "Aplica la ventaja comparativa. Para producir 1 unidad, el país A necesita 2 horas de vino y 2 horas de tela; el país B necesita 6 horas de vino y 3 horas de tela. Calcula los costes de oportunidad y determina en qué debe especializarse cada país."
+    desarrollo: "Aunque el país A es más eficiente en ambos bienes (menos horas), lo decisivo es el <strong>coste de oportunidad</strong>.<br><strong>País A:</strong> producir 1 vino cuesta 2 ÷ 2 = <strong>1 unidad de tela</strong>; producir 1 tela cuesta 2 ÷ 2 = <strong>1 unidad de vino</strong>.<br><strong>País B:</strong> producir 1 vino cuesta 6 ÷ 3 = <strong>2 unidades de tela</strong>; producir 1 tela cuesta 3 ÷ 6 = <strong>0,5 unidades de vino</strong>.<br><strong>Comparación:</strong> el vino es más barato (en coste de oportunidad) en A (1 &lt; 2), y la tela es más barata en B (0,5 &lt; 1).<br><strong>Conclusión:</strong> A debe especializarse en <strong>vino</strong> y B en <strong>tela</strong>; al intercambiar, ambos países salen ganando aunque A sea mejor produciendo las dos cosas."
+    grafico:
+      tipo: xy
+      caption: "Costes de oportunidad: el vino cuesta 1 tela en A y 2 en B; la tela cuesta 1 vino en A y 0,5 en B. A tiene ventaja comparativa en vino y B en tela."
+      props:
+        id: "r-e3a-ventaja-comparativa"
+        titulo: "Costes de oportunidad del vino y la tela en los países A y B"
+        desc: "Dos grupos de columnas: producir 1 vino cuesta 1 unidad de tela en A y 2 en B; producir 1 tela cuesta 1 unidad de vino en A y 0,5 en B."
+        xMax: 9
+        yMax: 2.6
+        ejeX: "Bien que se produce"
+        ejeY: "Coste de oportunidad (unidades)"
+        xTicks: [2.1, 6.1]
+        xTickLabels: ["1 vino (en telas)", "1 tela (en vino)"]
+        yTicks: [0.5, 1, 2]
+        areas:
+          - { puntos: [[1, 0], [2, 0], [2, 1], [1, 1]], color: "terra", fuerte: true }
+          - { puntos: [[2.2, 0], [3.2, 0], [3.2, 2], [2.2, 2]], color: "teal", fuerte: true }
+          - { puntos: [[5, 0], [6, 0], [6, 1], [5, 1]], color: "terra", fuerte: true }
+          - { puntos: [[6.2, 0], [7.2, 0], [7.2, 0.5], [6.2, 0.5]], color: "teal", fuerte: true }
+        notas:
+          - { x: 1.5, y: 1.1, texto: "1", ancla: "middle" }
+          - { x: 2.7, y: 2.1, texto: "2", ancla: "middle" }
+          - { x: 5.5, y: 1.1, texto: "1", ancla: "middle" }
+          - { x: 6.7, y: 0.6, texto: "0,5", ancla: "middle" }
+          - { x: 7.7, y: 2.3, texto: "País A", color: "terra" }
+          - { x: 7.7, y: 2, texto: "País B", color: "teal" }
 ejercicios:
   - enunciado: "En una economía, la propensión marginal al consumo (PMC) es 0,8. Calcula el multiplicador del gasto y di en cuánto aumentaría la renta total si el Gobierno gasta 1.000 millones más."
     solucion: "Multiplicador = 1 ÷ (1 − PMC) = 1 ÷ (1 − 0,8) = 1 ÷ 0,2 = <strong>5</strong>.<br>Aumento de la renta = multiplicador × aumento del gasto = 5 × 1.000 = <strong>5.000 millones</strong>.<br>El gasto inicial se multiplica porque cada euro recibido se vuelve a gastar en parte (el 80 %), generando nuevas rentas en cadena."

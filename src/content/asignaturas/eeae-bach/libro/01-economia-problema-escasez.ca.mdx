@@ -41,6 +41,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import FPP from '@components/diagrams/FPP.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -83,7 +84,7 @@ Esta matèria es diu *Economia, Emprenedoria i Activitat Empresarial*, i al llar
 
 Pensa en un matí qualsevol. Tens quaranta minuts abans d'eixir de casa i podries repassar per a un examen, esmorzar amb calma o dormir una mica més. No pots fer les tres coses: el temps no dona. Tens vint euros i davant una samarreta, dues entrades de cine i un carregador nou; tries, i en triar renuncies. Això que pareix trivial és exactament el problema que estudia l'economia, només que ampliat a milions de persones, empreses i països que prenen decisions alhora. L'economia no naix dels bancs ni de la borsa: naix que **els recursos són limitats i els desitjos no ho són**.
 
-Esta primera unitat posa els fonaments. No dibuixarem gràfics ni farem càlculs complicats —això pertany a altres matèries i a altres cursos—. Entendrem, amb casos reals i amb sentit comú, per què existix l'economia com a forma de pensar, quines preguntes intenta respondre i quina classe de ciència és. Si això queda clar, la resta del curs —l'emprenedoria, les empreses, la innovació— s'entén molt millor, perquè tot són respostes distintes al mateix problema de fons.
+Esta primera unitat posa els fonaments. No farem càlculs complicats —això pertany a altres matèries i a altres cursos—. Entendrem, amb casos reals i amb sentit comú, per què existix l'economia com a forma de pensar, quines preguntes intenta respondre i quina classe de ciència és. Si això queda clar, la resta del curs —l'emprenedoria, les empreses, la innovació— s'entén molt millor, perquè tot són respostes distintes al mateix problema de fons.
 
 ## L'escassetat: el problema que ho explica quasi tot
 
@@ -173,6 +174,19 @@ El **valor d'ús** és la utilitat que un bé proporciona a qui el posseïx. El 
 ### La solució: utilitat de l'última unitat
 
 L'economia va resoldre la paradoxa a la fi del segle XIX amb una idea senzilla: el que determina el preu no és la utilitat **total** d'un bé, sinó la utilitat de l'**última unitat disponible**, i eixa depén de la seua escassetat. L'aigua és tan abundant (en bona part del món) que disposar d'un litre més amb prou faenes afig res al que ja tenim: la seua utilitat addicional és baixa, i per això el seu preu ho és. Els diamants són tan escassos que cada unitat disponible és molt valorada, i per això el seu preu és alt. La paradoxa desapareix tan prompte com s'unix **utilitat** i **escassetat**: el valor de canvi no mesura quant importa un bé en abstracte, sinó quant importa **tindre una unitat més** d'ell donada la seua disponibilitat. Tornem, una vegada més, a l'escassetat com a fil conductor.
+
+<Diagram caption="Esquema sense xifres: com més unitats hi ha d'un bé, menys aporta l'última. L'aigua, abundant, està en el tram baix de la corba; els diamants, escassos, en el tram alt.">
+  <GraficoXY id="g-utilidad-ultima-unidad" titulo="Utilitat de l'última unitat segons l'abundància del bé" desc="Esquema sense xifres. La corba baixa a mesura que augmenten les unitats disponibles: amb poques unitats, com els diamants, l'última aporta molta utilitat; amb moltes, com l'aigua, n'aporta molt poca."
+    xMax={100} yMax={100} ejeX="Unitats disponibles del bé" ejeY="Utilitat de l'última unitat" simboloX="Q"
+    series={[
+      { color: 'terra', puntos: Array.from({ length: 23 }, (_, i) => [2 + i * 4, 95 * 0.965 ** (2 + i * 4)]) },
+    ]}
+    puntos={[
+      { x: 8, y: 71.4, label: 'Diamants', guias: false },
+      { x: 75, y: 6.6, label: 'Aigua', guias: false, dy: -14 },
+    ]}
+  />
+</Diagram>
 
 <Figure
   src={diamantesBruto}

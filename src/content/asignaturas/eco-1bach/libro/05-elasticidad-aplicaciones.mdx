@@ -43,6 +43,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
 import PesoMuerto from '@components/diagrams/PesoMuerto.astro';
 import IncidenciaImpuesto from '@components/diagrams/IncidenciaImpuesto.astro';
@@ -175,6 +176,16 @@ El **ingreso total** que recibe una empresa por un producto es `IT = P · Q`. Cu
 Para aumentar ingresos en bienes **inelásticos**, conviene **subir el precio**. En bienes **elásticos**, conviene **bajarlo**. Las rebajas de un gran almacén funcionan porque la demanda de moda es elástica; los peajes y el tabaco se mantienen caros porque su demanda es inelástica.
 </Callout>
 
+<Diagram caption="El ingreso total (P · Q) a lo largo de una demanda lineal: crece mientras la demanda es elástica, llega a su máximo donde |E| = 1 y cae cuando es inelástica. Vender más cantidad exige bajar el precio. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-ingreso-total" titulo="Ingreso total y elasticidad de una demanda lineal" desc="El ingreso total dibuja una curva en forma de campana: sube mientras la demanda es elástica, alcanza el máximo cuando la elasticidad vale uno y baja cuando es inelástica."
+    xMax={110} yMax={2800} ejeX="Cantidad (Q)" ejeY="Ingreso total (P · Q)"
+    series={[{ label: 'IT', color: 'terra', dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [i * 5, i * 5 * (100 - i * 5)]) }]}
+    puntos={[{ x: 50, y: 2500, label: '|E| = 1', guias: false, dx: 12, dy: -12 }]}
+    notas={[{ x: 3, y: 2200, texto: 'Elástica: |E| > 1', color: 'teal' }, { x: 97, y: 2200, texto: 'Inelástica: |E| < 1', color: 'terra', ancla: 'end' }]}
+  />
+</Diagram>
+
+
 <SolvedExercise number="5.1" title="Elasticidad-precio por el método del punto medio">
 
 **Enunciado**
@@ -193,6 +204,17 @@ c) ¿Qué pasa con el ingreso total? ¿Acertó la panadería al subir el precio?
 4. Como |E| = 0,58 < 1, la demanda es **inelástica**.
 5. Ingreso total antes: 3,00 · 400 = **1.200 €/día**. Ingreso total después: 3,60 · 360 = **1.296 €/día**. La diferencia es +96 €/día → la panadería **acertó al subir el precio**: en un bien inelástico, subir P aumenta IT.
 6. *Limitación importante.* Si la subida continuase, la elasticidad podría crecer (los clientes encuentran sustitutos). La regla «subir precio en inelásticos» funciona en márgenes razonables, no indefinidamente.
+
+<Diagram caption="Ingreso total antes (A) y después (B): al subir el precio de 3,00 a 3,60 € se ganan 216 € por el precio más alto (franja superior) y se pierden 120 € por las 40 barras que dejan de venderse (franja derecha). El ingreso pasa de 1.200 a 1.296 € al día: +96 €.">
+  <GraficoXY id="g-ejercicio-5-1" titulo="Ingreso total de la panadería antes y después de subir el precio" desc="A 3,00 euros se venden 400 barras, ingreso de 1 200 euros; a 3,60 euros se venden 360, ingreso de 1 296. La ganancia por precio, 216 euros, supera la pérdida por cantidad, 120."
+    xMax={520} yMax={5.5} ejeX="Barras al día" ejeY="Precio (€/barra)"
+    series={[{ label: 'D', color: 'terra', puntos: [[300, 4.5], [470, 1.95]] }]}
+    areas={[{ puntos: [[0, 0], [400, 0], [400, 3], [0, 3]], color: 'mustard' }, { puntos: [[0, 0], [360, 0], [360, 3.6], [0, 3.6]], color: 'teal' }]}
+    puntos={[{ x: 400, y: 3, label: 'A', xLabel: '400', yLabel: '3,00' }, { x: 360, y: 3.6, label: 'B', xLabel: '360', yLabel: '3,60' }]}
+    notas={[{ x: 180, y: 3.25, texto: '+216 €', color: 'teal', ancla: 'middle' }, { x: 380, y: 1.5, texto: '−120 €', color: 'mustard', ancla: 'middle' }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -214,6 +236,18 @@ Según su signo y magnitud, clasificamos los bienes:
   - **Bien de primera necesidad (0 < E<sub>y</sub> < 1).** La cantidad sube con la renta pero menos que proporcionalmente. Pan, leche, electricidad básica.
   - **Bien de lujo (E<sub>y</sub> > 1).** La cantidad sube más que proporcionalmente. Restaurantes, viajes internacionales, automóviles de gama alta.
 - **Bien inferior (E<sub>y</sub> < 0).** Al subir la renta, se consume *menos*. Marcas blancas de bajo nivel, transporte público de larga distancia en algunos contextos, lentejas en países que se enriquecen.
+
+<Diagram caption="Tres comportamientos ante la renta: el bien de lujo (E_y > 1) crece más que proporcionalmente, el de primera necesidad (0 < E_y < 1) menos que proporcionalmente y el inferior (E_y < 0) retrocede al subir la renta. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-engel" titulo="Cantidad demandada según la renta: lujo, primera necesidad e inferior" desc="Con la renta en el eje horizontal, la cantidad demandada de un bien de lujo se acelera, la de un bien de primera necesidad crece cada vez más despacio y la de un bien inferior baja."
+    xMax={110} yMax={170} ejeX="Renta" ejeY="Cantidad demandada" simboloX="Y" simboloY="Q"
+    series={[
+      { label: 'Lujo', color: 'terra', puntos: Array.from({ length: 21 }, (_, i) => [i * 5, 0.015 * (i * 5) ** 2]) },
+      { label: 'Necesidad', color: 'teal', puntos: Array.from({ length: 21 }, (_, i) => [i * 5, 7 * Math.sqrt(i * 5)]) },
+      { label: 'Inferior', color: 'aubergine', puntos: Array.from({ length: 21 }, (_, i) => [i * 5, 100 / (1 + (i * 5) / 25)]) },
+    ]}
+  />
+</Diagram>
+
 
 La elasticidad-renta es clave para entender el crecimiento de los sectores: cuando un país se enriquece, la demanda de bienes de lujo crece más rápido que la del PIB, y la de bienes inferiores se estanca o cae.
 
@@ -243,6 +277,22 @@ E_p^s = %ΔQ_s / %ΔP
 
 Como la oferta tiene pendiente positiva, el cociente es positivo. La oferta es **elástica** si las empresas pueden expandir rápidamente la producción (industrias manufactureras con capacidad ociosa, *software*) e **inelástica** si tropieza con cuellos de botella (vivienda en suelo urbano escaso, vino con denominación de origen, oro extraído de minas). El horizonte temporal vuelve a importar: a corto plazo la oferta es casi siempre más inelástica que a largo plazo, porque hace falta tiempo para construir fábricas, abrir minas o plantar viñedos.
 
+<Diagram caption="Con la misma subida de precio (de P₁ a P₂), la cantidad ofrecida aumenta poco si la oferta es inelástica (B) y mucho si es elástica (C). Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-oferta-elasticidad" titulo="Oferta inelástica y oferta elástica ante una subida de precio" desc="Dos curvas de oferta pasan por el mismo punto A. Al subir el precio de P1 a P2, la oferta inelástica, muy inclinada, apenas aumenta la cantidad; la elástica, más plana, la aumenta mucho."
+    xMax={110} yMax={110} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'Inelástica', color: 'terra', puntos: [[44, 2], [56, 98]] },
+      { label: 'Elástica', color: 'teal', puntos: [[0, 10], [100, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'A', yLabel: 'P₁', dx: 12, dy: 24 },
+      { x: 52.5, y: 70, label: 'B', yLabel: 'P₂', dx: -26, dy: -6 },
+      { x: 75, y: 70, label: 'C', dy: -12 },
+    ]}
+  />
+</Diagram>
+
+
 <Figure
   src={refineriaCepsa}
   alt="Vista general de la refinería de CEPSA en Santa Cruz de Tenerife, con torres de destilación, antorchas y depósitos de almacenamiento sobre el litoral."
@@ -271,6 +321,20 @@ El **excedente del consumidor** es la diferencia entre lo que el consumidor esta
 Simétricamente, cada empresa tiene un **coste marginal** mínimo al que estaría dispuesta a vender. La curva de oferta es la suma ordenada de esos costes. En el mercado, todas venden al mismo precio de equilibrio.
 
 El **excedente del productor** es la diferencia entre el precio cobrado y el coste mínimo. Gráficamente, es el **área comprendida entre el precio de equilibrio y la curva de oferta**, hasta la cantidad intercambiada.
+
+<Diagram caption="Excedente del consumidor (EC): área entre la demanda y el precio de equilibrio. Excedente del productor (EP): área entre el precio de equilibrio y la oferta. Los dos llegan hasta la cantidad intercambiada. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-excedentes" titulo="Excedente del consumidor y del productor en el equilibrio" desc="Con la demanda y la oferta cortándose en E, el excedente del consumidor es el triángulo entre la demanda y el precio de equilibrio, y el del productor, el triángulo entre el precio y la oferta."
+    xMax={105} yMax={105} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 90], [90, 10]] },
+      { label: 'O', color: 'mustard', puntos: [[0, 10], [90, 90]] },
+    ]}
+    areas={[{ puntos: [[0, 90], [45, 50], [0, 50]], color: 'teal' }, { puntos: [[0, 50], [45, 50], [0, 10]], color: 'mustard' }]}
+    puntos={[{ x: 45, y: 50, label: 'E', xLabel: 'Q*', yLabel: 'P*', dx: 36, dy: 6 }]}
+    notas={[{ x: 5, y: 59, texto: 'EC', color: 'teal' }, { x: 5, y: 38, texto: 'EP', color: 'mustard' }]}
+  />
+</Diagram>
+
 
 ### El bienestar total y la eficiencia
 
@@ -392,6 +456,36 @@ c) Calcular la recaudación y el peso muerto.
 8. **Peso muerto.** PM = (1/2) · t · (Q* − Q<sub>t</sub>) = (1/2) · 1 · (200 − 190) = **5 mil €/día**.
 9. **Comprobación de bienestar.** EC<sub>nuevo</sub> = 190 · (22 − 8,70)/2 = 1.263,5. EP<sub>nuevo</sub> = 190 · (7,70 − 2)/2 = 541,5. Suma: 1.263,5 + 541,5 + 190 (Estado) + 5 (PM) = 2.000. Antes del impuesto los 2 millones estaban todos en consumidores y productores; tras el impuesto, **5 mil €/día han desaparecido**: nadie los gana. Es poco al lado de la recaudación, porque la demanda es inelástica.
 
+<Diagram caption="El ejercicio en un gráfico: el impuesto de 1 € desplaza la oferta de O₀ a O₁. El equilibrio pasa de E₀ (8 €; 200 mil) a E₁: los consumidores pagan 8,70 €, los productores reciben 7,70 € y se venden 190 mil cajetillas. La recaudación es el rectángulo; el peso muerto, el triángulo pequeño.">
+  <GraficoXY id="g-ejercicio-5-2" titulo="Impuesto de 1 euro al tabaco: excedentes, recaudación y peso muerto" desc="La oferta sube un euro. El nuevo equilibrio está en 190 mil cajetillas y 8,70 euros; los productores reciben 7,70. El excedente del consumidor es 1 263,5, el del productor 541,5, la recaudación 190 y el peso muerto 5."
+    xMax={260} yMax={25} ejeX="Miles de cajetillas al día" ejeY="Precio (€/cajetilla)" yTicks={[2, 22]}
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 22], [230, 5.9]] },
+      { label: 'O₀', color: 'mustard', tenue: true, dy: 10, puntos: [[0, 2], [230, 8.9]] },
+      { label: 'O₁', color: 'mustard', dy: -4, puntos: [[0, 3], [230, 9.9]] },
+    ]}
+    areas={[
+      { puntos: [[0, 22], [190, 8.7], [0, 8.7]], color: 'teal' },
+      { puntos: [[0, 7.7], [190, 7.7], [0, 2]], color: 'mustard' },
+      { puntos: [[0, 8.7], [190, 8.7], [190, 7.7], [0, 7.7]], color: 'ink' },
+      { puntos: [[190, 8.7], [200, 8], [190, 7.7]], color: 'aubergine' },
+    ]}
+    puntos={[
+      { x: 200, y: 8, label: 'E₀', xLabel: '200', dx: 12, dy: 22 },
+      { x: 190, y: 8.7, label: 'E₁', xLabel: '190', yLabel: '8,70', dx: -2, dy: -26 },
+      { x: 190, y: 7.7, yLabel: '7,70', guias: true },
+    ]}
+    flechas={[{ de: [212, 12], a: [194.5, 8.3] }]}
+    notas={[
+      { x: 30, y: 15, texto: 'EC = 1 263,5', color: 'teal' },
+      { x: 30, y: 4.6, texto: 'EP = 541,5', color: 'mustard' },
+      { x: 5, y: 7.95, texto: 'Recaudación = 190', color: 'ink' },
+      { x: 200, y: 13, texto: 'Peso muerto = 5', color: 'aubergine' },
+    ]}
+  />
+</Diagram>
+
+
 </SolvedExercise>
 
 <SolvedExercise number="5.3" title="Precio máximo en el alquiler: escasez y peso muerto">
@@ -418,6 +512,31 @@ c) Calcular el peso muerto que genera la medida.
    - **Escasez** = Q<sub>d</sub> − Q<sub>s</sub> = 1.600 − 800 = **800 mil viviendas** que buscan alquiler y no lo encuentran. Es la raíz de las listas de espera y el mercado negro.
 3. **Peso muerto.** Se reduce la cantidad intercambiada de 1.200 a 800 (caída de 400 mil viviendas). El peso muerto es el triángulo entre la curva de demanda y la de oferta sobre ese tramo no transado. En Q = 800, la demanda valora la vivienda en 1.600 − 0,5·800 = **1.200 €** y la oferta la produciría a 400 + 0,5·800 = **800 €**. La «cuña» máxima de valor perdido es 1.200 − 800 = 400 €. PM = (1/2) · base · altura = (1/2) · (1.200 − 800) mil · (1.200 − 800) € = (1/2) · 400 · 400 = **80.000 mil €/mes = 80 millones €/mes**.
 4. **Lectura.** La medida ayuda a quienes *consiguen* alquiler barato (pagan 800 € por algo que valoran más), pero deja fuera a 800 mil hogares y destruye 80 millones de euros mensuales de bienestar que nadie captura. Es el patrón empírico del control de alquileres que vimos en el texto: precios bajos para unos pocos, escasez para muchos.
+
+<Diagram caption="El ejercicio en un gráfico: con el precio máximo de 800 € la oferta es de 800 mil viviendas (A) y la demanda de 1 600 mil (B): la escasez es de 800 mil. El peso muerto es el triángulo C-A-E, por las 400 mil viviendas que no se alquilan.">
+  <GraficoXY id="g-ejercicio-5-3" titulo="Precio máximo de 800 euros en el alquiler: escasez y peso muerto" desc="El equilibrio está en 1 200 mil viviendas y 1 000 euros. Con el precio máximo de 800 euros se ofrecen 800 mil y se demandan 1 600 mil; faltan 800 mil. El peso muerto es el triángulo que queda entre las curvas."
+    xMax={2700} yMax={1800} ejeX="Miles de viviendas" ejeY="Alquiler (€/mes)"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 1600], [2400, 400]] },
+      { label: 'O', color: 'mustard', puntos: [[0, 400], [2200, 1500]] },
+      { label: 'Precio máximo', color: 'ink', puntos: [[0, 800], [2100, 800]] },
+      { color: 'teal', puntos: [[800, 800], [1600, 800]] },
+    ]}
+    areas={[{ puntos: [[800, 1200], [800, 800], [1200, 1000]], color: 'aubergine' }]}
+    puntos={[
+      { x: 1200, y: 1000, label: 'E', xLabel: '1 200', yLabel: '1 000', dx: 12, dy: -10 },
+      { x: 800, y: 1200, label: 'C', yLabel: '1 200', dx: 10, dy: -10 },
+      { x: 800, y: 800, label: 'A', xLabel: '800', yLabel: '800', dx: 12, dy: 24 },
+      { x: 1600, y: 800, label: 'B', xLabel: '1 600', dx: 10, dy: 26 },
+    ]}
+    flechas={[{ de: [1060, 1420], a: [880, 1040] }]}
+    notas={[
+      { x: 1200, y: 680, texto: 'Escasez: 800', color: 'teal', ancla: 'middle' },
+      { x: 1000, y: 1450, texto: 'Peso muerto', color: 'aubergine' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

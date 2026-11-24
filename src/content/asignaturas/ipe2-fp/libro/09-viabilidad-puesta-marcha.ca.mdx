@@ -38,6 +38,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import FormaJuridicaTree from '@components/diagrams/FormaJuridicaTree.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -260,6 +261,58 @@ Calcula: a) el marge de contribució per servici; b) el punt mort en servicis/me
    - **Viabilitat comercial**: confirmada per la validació de la U7 (la previsió de 120 servicis/mes procedix de demanda real, no d'optimisme).
    - **Viabilitat economicofinancera**: bona el primer any, amb dos matisos. El punt mort és baixíssim (19/mes) i la inversió inclou un coixí per a sis mesos de despeses fixes. Però els 1.320 € són tota la renda de la titular abans d'IRPF, per davall del SMI prorratejat (1.424,50 €/mes), i el marge s'estreny quan s'acaba la tarifa reduïda. Si el primer any rendix menys que el SMI, es pot prorrogar dotze mesos; després, amb una quota d'uns 300 €, els costos fixos pugen a uns 460 €/mes, el punt mort a 36 servicis i el resultat baixa a uns 1.100 €/mes.
    - **Conclusió**: el projecte **és viable**. A diferència de molts casos on el capstone revela que cal iterar, ací els números confirmen la idea, encara que deixen una pregunta oberta: si eixa renda compensa davant d'una ocupació per compte d'altri, que és el seu cost d'oportunitat. La recomanació és **arrancar com a autònoma**, vigilar que la previsió de 120 servicis es complisca en els primers mesos (si baixara molt, recalcular) i reservar part del benefici per a reposar l'equip i reforçar el coixí de caixa.
+
+<Diagram caption="Punt mort de ReUña, per servicis al mes: ingressos (18 € per servici), costos totals (240 € fixos més 5 € per servici) i costos fixos. Les rectes es creuen en 18,46 servicis (≈ 19); amb els 120 previstos, els ingressos superen els costos en 1.320 € al mes.">
+  <GraficoXY id="g-ipe2-reuna-punto-muerto" titulo="Punt mort de ReUña" desc="Tres rectes en euros al mes segons els servicis prestats. Ingressos: 18 euros per servici. Costos totals: 240 euros fixos més 5 per servici. Costos fixos: 240. Ingressos i costos totals es creuen en 18,46 servicis, amb 332 euros. Amb 120 servicis, ingressos de 2.160 i costos de 840: benefici de 1.320 euros al mes."
+    xMax={150} yMax={2600} ejeX="Servicis al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    xTicks={[40, 60, 80, 100, 120]} yTicks={[500, 1000, 1500, 2000]}
+    areas={[
+      { puntos: [[0, 0], [18.46, 332.3], [0, 240]], color: "terra" },
+      { puntos: [[18.46, 332.3], [120, 2160], [120, 840]], color: "teal" },
+    ]}
+    series={[
+      { label: "Ingressos", color: "teal", puntos: [[0, 0], [130, 2340]] },
+      { label: "Costos totals", color: "terra", puntos: [[0, 240], [130, 890]] },
+      { label: "Costos fixos", color: "mustard", puntos: [[0, 240], [130, 240]] },
+      { color: "ink", puntos: [[120, 840], [120, 2160]] },
+    ]}
+    puntos={[{ x: 18.46, y: 332.3, xLabel: "18,5", yLabel: "332" }]}
+    notas={[{ x: 121, y: 1500, texto: "Benefici: 1 320 €" }]}
+  />
+</Diagram>
+
+<Diagram caption="La inversió inicial de ReUña (3.340 €) i com es finança. Els 1.440 € de coixí equivalen a sis mesos de costos fixos (6 × 240 €); amb 1.500 € propis i un microcrèdit de 1.840 €, la inversió queda coberta al 100 %.">
+  <GraficoXY id="g-ipe2-reuna-inversion" titulo="Inversió inicial i finançament de ReUña" desc="Dues columnes apilades de 3.340 euros. Inversió inicial: equip 1.200, web i branding 300, stock inicial 400 i coixí de tresoreria 1.440. Finançament: aportació de l'emprenedora 1.500 i microcrèdit 1.840."
+    xMax={8} yMax={4000} ejeX="Inversió i finançament" ejeY="Euros" simboloY="€"
+    xTicks={[1.9, 5.3]} yTicks={[1000, 2000, 3000]} xTickLabels={["Inversió inicial", "Finançament"]}
+    areas={[
+      { puntos: [[0.8, 0], [3, 0], [3, 1200], [0.8, 1200]], color: "terra", fuerte: true },
+      { puntos: [[0.8, 1200], [3, 1200], [3, 1500], [0.8, 1500]], color: "mustard", fuerte: true },
+      { puntos: [[0.8, 1500], [3, 1500], [3, 1900], [0.8, 1900]], color: "teal", fuerte: true },
+      { puntos: [[0.8, 1900], [3, 1900], [3, 3340], [0.8, 3340]], color: "aubergine", fuerte: true },
+      { puntos: [[4.2, 0], [6.4, 0], [6.4, 1500], [4.2, 1500]], color: "teal", fuerte: true },
+      { puntos: [[4.2, 1500], [6.4, 1500], [6.4, 3340], [4.2, 3340]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.8, 0], [3, 0], [3, 1200], [0.8, 1200], [0.8, 0]], color: "terra" },
+      { puntos: [[0.8, 1200], [3, 1200], [3, 1500], [0.8, 1500], [0.8, 1200]], color: "mustard" },
+      { puntos: [[0.8, 1500], [3, 1500], [3, 1900], [0.8, 1900], [0.8, 1500]], color: "teal" },
+      { puntos: [[0.8, 1900], [3, 1900], [3, 3340], [0.8, 3340], [0.8, 1900]], color: "aubergine" },
+      { puntos: [[4.2, 0], [6.4, 0], [6.4, 1500], [4.2, 1500], [4.2, 0]], color: "teal" },
+      { puntos: [[4.2, 1500], [6.4, 1500], [6.4, 3340], [4.2, 3340], [4.2, 1500]], color: "terra" },
+    ]}
+    notas={[
+      { x: 1.9, y: 560, texto: "Equip 1 200", ancla: "middle" },
+      { x: 1.9, y: 1290, texto: "Web i marca 300", ancla: "middle" },
+      { x: 1.9, y: 1640, texto: "Stock 400", ancla: "middle" },
+      { x: 1.9, y: 2500, texto: "Coixí 1 440", ancla: "middle" },
+      { x: 1.9, y: 3450, texto: "Total 3 340", ancla: "middle", color: "terra" },
+      { x: 5.3, y: 700, texto: "Aportació 1 500", ancla: "middle" },
+      { x: 5.3, y: 2350, texto: "Microcrèdit 1 840", ancla: "middle" },
+      { x: 5.3, y: 3450, texto: "Total 3 340", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

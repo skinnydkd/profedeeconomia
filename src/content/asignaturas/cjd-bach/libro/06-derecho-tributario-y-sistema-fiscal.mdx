@@ -50,6 +50,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
@@ -187,6 +188,38 @@ El **IVA** es otra cosa completamente distinta y merece entenderse bien, porque 
 
 Las empresas de la cadena **recaudan** el IVA, pero no lo soportan. Quien lo soporta de verdad eres tú.
 </Steps>
+
+<Diagram caption="El valor que añade cada eslabón de la cadena, en euros sin IVA. El agricultor vende a 100 €, la cooperativa añade 50 (vende a 150) y el supermercado otros 50 (vende a 200). Cada empresa ingresa en Hacienda el IVA solo de lo que añade; el consumidor final paga el IVA íntegro del precio de 200 €.">
+  <GraficoXY id="g-cjd-iva-cadena" titulo="El viaje del IVA a lo largo de la cadena" desc="Cuatro columnas en euros sin IVA. El agricultor vende por 100. La cooperativa añade 50 y vende por 150. El supermercado añade otros 50 y vende por 200. La cuarta columna suma los tres tramos: 100 más 50 más 50, el precio final de 200 sobre el que paga el IVA el consumidor."
+    xMax={6} yMax={250} ejeX="Eslabón de la cadena" ejeY="Euros sin IVA" simboloY="€"
+    xTicks={[0.8, 1.9, 3, 4.5]} yTicks={[50, 100, 150, 200]} xTickLabels={["Agricultor", "Cooperativa", "Supermercado", "Precio final"]}
+    areas={[
+      { puntos: [[0.4, 0], [1.2, 0], [1.2, 100], [0.4, 100]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 100], [2.3, 100], [2.3, 150], [1.5, 150]], color: "mustard", fuerte: true },
+      { puntos: [[2.6, 150], [3.4, 150], [3.4, 200], [2.6, 200]], color: "teal", fuerte: true },
+      { puntos: [[4, 0], [5, 0], [5, 100], [4, 100]], color: "terra", fuerte: true },
+      { puntos: [[4, 100], [5, 100], [5, 150], [4, 150]], color: "mustard", fuerte: true },
+      { puntos: [[4, 150], [5, 150], [5, 200], [4, 200]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.4, 0], [1.2, 0], [1.2, 100], [0.4, 100], [0.4, 0]], color: "terra" },
+      { puntos: [[1.5, 100], [2.3, 100], [2.3, 150], [1.5, 150], [1.5, 100]], color: "mustard" },
+      { puntos: [[2.6, 150], [3.4, 150], [3.4, 200], [2.6, 200], [2.6, 150]], color: "teal" },
+      { puntos: [[4, 0], [5, 0], [5, 100], [4, 100], [4, 0]], color: "terra" },
+      { puntos: [[4, 100], [5, 100], [5, 150], [4, 150], [4, 100]], color: "mustard" },
+      { puntos: [[4, 150], [5, 150], [5, 200], [4, 200], [4, 150]], color: "teal" },
+    ]}
+    notas={[
+      { x: 0.8, y: 45, texto: "100", ancla: "middle" },
+      { x: 1.9, y: 120, texto: "+50", ancla: "middle" },
+      { x: 3, y: 170, texto: "+50", ancla: "middle" },
+      { x: 4.5, y: 45, texto: "100", ancla: "middle" },
+      { x: 4.5, y: 120, texto: "+50", ancla: "middle" },
+      { x: 4.5, y: 170, texto: "+50", ancla: "middle" },
+      { x: 4.5, y: 215, texto: "Total 200", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 En España hay tres tipos: el **general** del 21 %, el **reducido** del 10 % para alimentos en general, transporte de viajeros, hostelería o vivienda, y el **superreducido** del 4 % para pan, leche, huevos, frutas y verduras, libros, periódicos y medicamentos. Esa escala es un intento deliberado de corregir el problema estructural del impuesto.
 

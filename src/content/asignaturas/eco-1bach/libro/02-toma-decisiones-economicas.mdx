@@ -40,6 +40,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TeoriaProspectiva from '@components/diagrams/TeoriaProspectiva.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -169,6 +170,20 @@ La regla general del análisis marginal es directa: **una acción merece la pena
 - **Coste marginal (CMg)**: incremento de coste que supone consumir o producir una unidad más.
 - **Regla óptima**: seguir actuando mientras BMg ≥ CMg. Detenerse cuando BMg < CMg. El óptimo se alcanza, en condiciones de continuidad, cuando BMg = CMg.
 
+<Diagram caption="La regla en un gráfico: mientras el beneficio marginal está por encima del coste marginal conviene seguir; en el cruce se alcanza el óptimo y más allá cada unidad cuesta más de lo que aporta. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-marginal" titulo="Beneficio marginal, coste marginal y cantidad óptima" desc="El beneficio marginal baja y el coste marginal sube con la cantidad. Se cortan en la cantidad óptima Q*: a su izquierda conviene seguir, a su derecha no."
+    xMax={100} yMax={100} ejeX="Cantidad (unidades)" ejeY="Euros por unidad" simboloX="Q"
+    series={[
+      { label: 'BMg', color: 'teal', puntos: [[5, 90], [85, 15]] },
+      { label: 'CMg', color: 'terra', puntos: [[5, 15], [85, 90]] },
+    ]}
+    areas={[{ puntos: [[5, 90], [45, 52.5], [5, 15]], color: 'teal' }]}
+    puntos={[{ x: 45, y: 52.5, label: 'Óptimo', xLabel: 'Q*', dx: 45, dy: 6 }]}
+    notas={[{ x: 8, y: 45, texto: 'BMg > CMg: seguir', color: 'teal' }]}
+  />
+</Diagram>
+
+
 ### Por qué los totales engañan
 
 Imaginemos una empresa que produce mochilas. Vender 1.000 mochilas le reporta 30.000 € de ingresos y le cuesta 20.000 €: gana 10.000 €. Vender 1.100 mochilas le reporta 32.500 € y le cuesta 23.500 €: gana 9.000 €. Mirando totales, *«ambas opciones dan beneficios»*. Mirando márgenes, las 100 mochilas adicionales aportan **2.500 € de ingreso marginal** y **3.500 € de coste marginal**: producirlas destruye 1.000 € de beneficio. El análisis marginal lo detecta de inmediato; el análisis por totales requiere comparar resultados finales.
@@ -204,6 +219,19 @@ Marta prepara el examen de Economía de selectividad. Estima la siguiente tabla 
 4. Beneficio neto total: (1,8 + 1,2 + 0,8 + 0,5) − (4 × 0,4) = 4,3 − 1,6 = **2,7 puntos netos**.
 5. Si decidiera estudiar 6 horas *«por si acaso»*, el beneficio neto bajaría a (1,8 + 1,2 + 0,8 + 0,5 + 0,3 + 0,1) − (6 × 0,4) = 4,7 − 2,4 = **2,3 puntos netos**. Estudiar de más empeora el resultado.
 6. Conclusión: el rendimiento marginal del estudio es **decreciente** (cada hora extra aporta menos) y existe un punto óptimo más allá del cual conviene dejarlo. La intuición *«cuanto más, mejor»* es económicamente errónea.
+
+<Diagram caption="El ejercicio de Marta: el beneficio marginal de cada hora (1,8; 1,2; 0,8; 0,5; 0,3; 0,1 puntos) frente a un coste constante de 0,4. La cuarta hora es la última con BMg por encima del coste; la quinta ya no compensa.">
+  <GraficoXY id="g-horas-estudio" titulo="Horas de estudio: beneficio marginal frente a coste marginal" desc="El beneficio marginal de las horas 1 a 6 baja de 1,8 a 0,1 puntos; el coste marginal es 0,4 en todas. La cuarta hora, con 0,5, es la última que compensa."
+    xMax={7.5} yMax={2.2} ejeX="Hora de estudio" ejeY="Puntos por hora"
+    xTicks={[1, 2, 3, 4, 5, 6]} yTicks={[0.4, 0.8, 1.2, 1.8]}
+    series={[
+      { label: 'BMg', color: 'teal', puntos: [[1, 1.8], [2, 1.2], [3, 0.8], [4, 0.5], [5, 0.3], [6, 0.1]] },
+      { label: 'CMg', color: 'terra', puntos: [[0.5, 0.4], [6.5, 0.4]], dy: -8 },
+    ]}
+    puntos={[{ x: 4, y: 0.5, label: 'Óptimo: 4 horas', guias: false, dx: 12, dy: -14 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

@@ -42,6 +42,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import DesignThinkingFases from '@components/diagrams/DesignThinkingFases.astro';
 import BusinessModelCanvas from '@components/diagrams/BusinessModelCanvas.astro';
 import EmbudoValidacion from '@components/diagrams/EmbudoValidacion.astro';
@@ -263,6 +264,23 @@ Trazo tiene 240 € de costes fijos para el trimestre. Cada bolsa cuesta 5 € d
 4. **Con 300 € de beneficio.** Ahora hay que cubrir 240 + 300 = 540 €: 540 / 7 = 77,1, es decir, **78 bolsas**. Más del doble que el punto muerto, y con un solo mercadillo es difícil; el equipo necesita vender también por Instagram y en la tienda del AMPA.
 5. **Con precio de 10 €.** El margen baja a 5 € y el punto muerto sube a 240 / 5 = **48 bolsas**. Bajar el precio un 17 % obliga a vender un 37 % más solo para no perder. Por eso el precio se decide con el test, no con la intuición.
 
+<Diagram caption="Las bolsas de Trazo: los costes parten de 240 € y los ingresos de 0. A 12 € las dos rectas se cruzan en 34,3 bolsas (35 bolsas enteras); para ganar 300 € hacen falta 77,1 (78 bolsas). Si el precio baja a 10 €, el cruce se retrasa hasta las 48.">
+  <GraficoXY id="g-trazo-punto-muerto" titulo="Punto muerto de las bolsas de Trazo" desc="Tres rectas en euros según las bolsas vendidas: costes de 240 más 5 por bolsa, ingresos a 12 euros por bolsa e ingresos a 10 euros por bolsa. A 12 euros se cruzan en 34,3 bolsas; a 10 euros, en 48. Con 77,1 bolsas a 12 euros el beneficio es de 300 euros."
+    xMax={120} yMax={1200} ejeX="Bolsas vendidas" ejeY="Euros"
+    xTicks={[20, 60, 100]} yTicks={[240, 600, 900]}
+    series={[
+      { color: 'teal', label: 'Ingresos a 12 €', puntos: [[0, 0], [90, 1080]] },
+      { color: 'teal', tenue: true, label: 'Ingresos a 10 €', puntos: [[0, 0], [90, 900]] },
+      { color: 'terra', label: 'Costes', puntos: [[0, 240], [90, 690]] },
+    ]}
+    puntos={[
+      { x: 34.3, y: 411.4, label: 'Punto muerto', xLabel: '34,3', dx: -95, dy: -14 },
+      { x: 48, y: 480, label: 'A 10 €', xLabel: '48', dx: 10, dy: 30 },
+      { x: 77.1, y: 925.7, label: 'Beneficio de 300 €', xLabel: '77,1', dx: -135, dy: -14 },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <HerramientaIsland componente="PuntoMuerto" />
@@ -323,6 +341,30 @@ Trazo ha vendido las primeras 40 bolsas y quiere fabricar una tirada de 200 para
 4. **Opción B, lo que compra además del dinero.** Sesenta personas han pagado 25 € por una bolsa que no existe: la campaña ha **validado la demanda** antes de fabricar y ha dejado 60 clientes con nombre. Esas 60 recompensas son ventas que cuentan para el punto muerto.
 5. **Opción B, riesgo.** Es todo o nada: si la campaña se queda en 1.200 €, se devuelve el dinero y no hay tirada. Y mover a 60 personas exige semanas de comunicación (vídeo, publicaciones, mensajes uno a uno) que la opción A no pide.
 6. **Lectura.** Para Trazo encaja la campaña: no endeuda a nadie, prueba el mercado y crea comunidad, y el equipo tiene a quién pedírselo (familias, profesorado, antiguo alumnado). El préstamo tiene sentido cuando no se puede prevender (un servicio, una tienda) o cuando hace falta el dinero en una semana.
+
+<Diagram caption="Lo que llega al proyecto y lo que hay que devolver en cada opción. El préstamo da 1.500 € pero se devuelven 1.581 € (1.566 € de cuotas y 15 € de comisión); la campaña deja 1.087 € netos y no se devuelve nada.">
+  <GraficoXY id="g-trazo-financiacion" titulo="Préstamo o crowdfunding para la tirada de Trazo" desc="Cuatro columnas en euros. Préstamo: llegan 1.500 y se devuelven 1.581. Crowdfunding: llegan 1.087 netos y se devuelven 0."
+    xMax={3} yMax={1800} ejeX="Opción de financiación" ejeY="Euros"
+    xTicks={[0.975, 2.175]} xTickLabels={['Préstamo', 'Crowdfunding']} yTicks={[500, 1000, 1500]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.45, 0], [0.95, 0], [0.95, 1500], [0.45, 1500]] },
+      { color: 'terra', fuerte: true, puntos: [[1, 0], [1.5, 0], [1.5, 1581], [1, 1581]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 0], [2.15, 0], [2.15, 1087], [1.65, 1087]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.45, 0], [0.45, 1500], [0.95, 1500], [0.95, 0]] },
+      { color: 'terra', puntos: [[1, 0], [1, 1581], [1.5, 1581], [1.5, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 1087], [2.15, 1087], [2.15, 0]] },
+      { color: 'terra', puntos: [[2.2, 0], [2.7, 0]] },
+    ]}
+    notas={[
+      { x: 0.7, y: 1560, texto: '1 500', ancla: 'middle' }, { x: 1.25, y: 1641, texto: '1 581', ancla: 'middle' },
+      { x: 1.9, y: 1147, texto: '1 087', ancla: 'middle' }, { x: 2.45, y: 60, texto: '0', ancla: 'middle' },
+      { x: 0.7, y: 700, texto: 'Llega', ancla: 'middle' }, { x: 1.25, y: 700, texto: 'Se devuelve', ancla: 'middle' },
+      { x: 1.9, y: 700, texto: 'Llega', ancla: 'middle' }, { x: 2.45, y: 700, texto: 'Se devuelve', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

@@ -30,6 +30,10 @@ estado: publicado
 slug: "olimpiada/fichas/04-politica-economica.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import MultiplicadorFiscal from '@components/diagrams/MultiplicadorFiscal.astro';
+
 ## De què va: l'objectiu d'estabilització
 
 Tota economia oscil·la entre fases d'expansió i de recessió. Quan l'activitat s'enfonsa la desocupació puja; quan es recalfa els preus es disparen. La **política econòmica d'estabilització** busca suavitzar estes oscil·lacions i acostar l'economia a quatre objectius simultanis: creixement sostingut del PIB, plena ocupació (atur friccional mínim), estabilitat de preus (inflació baixa i predictible) i equilibri exterior (balança de pagaments sostenible).
@@ -102,6 +106,10 @@ Una política fiscal **restrictiva** fa el contrari —↓G o ↑T— per a refr
 
 El **multiplicador de la despesa pública** explica per què l'efecte sobre el PIB supera la despesa inicial: cada euro públic es convertix en renda per a algú que consumix una fracció *c* (propensió marginal al consum), eixa fracció en renda per a un altre, i així successivament. En el model simple el multiplicador és k = 1 / (1 − c). Si c = 0,75, un euro de despesa mou 4 euros de PIB. En economies obertes i amb impostos el multiplicador real és menor (aprox. 1 a 1,5 segons el tipus de despesa), perquè part de la renda es filtra a importacions i a recaptació.
 
+<Diagram caption="El multiplicador de la despesa pública amb c = 0,75: cada euro de despesa genera rondes successives de consum cada vegada menors i la renda total acaba multiplicada per k = 1 / (1 − 0,75) = 4.">
+  <MultiplicadorFiscal />
+</Diagram>
+
 ### Dèficit públic i estabilitzadors automàtics
 
 Quan la despesa pública supera els ingressos el resultat és **dèficit públic** (mesurat en percentatge del PIB). El dèficit acumulat any a any constituïx el **deute públic**. Un deute elevat genera interessos que pressionen la despesa futura i limiten el marge de maniobra fiscal.
@@ -120,7 +128,56 @@ En el gràfic AD-AS (nivell de preus en l'eix vertical, producció real en l'eix
 
 **Política expansiva** (monetària o fiscal): la corba de DA es desplaça a la **dreta**, del punt E₀ al punt E₁. En el tram horitzontal de l'OA (atur elevat, capacitat ociosa), l'efecte és principalment sobre la producció (Y↑) amb poc augment de preus. A mesura que l'economia s'acosta al nivell de producció potencial, el tram de l'OA es torna més inclinat i l'efecte recau més sobre els preus (P↑) que sobre la producció.
 
+<Diagram caption="Política expansiva amb capacitat ociosa: la DA es desplaça de DA₁ a DA₂ i l'equilibri passa d'E₀ a E₁ pel tram horitzontal de l'OA. Augmenta la producció (d'Y₀ a Y₁) i el nivell de preus amb prou feines canvia.">
+  <GraficoXY id="g-ol-politica-expansion-ociosa" titulo="Política expansiva amb capacitat ociosa (AD-AS)" desc="Oferta agregada OA horitzontal al principi i cada vegada més inclinada. La demanda agregada es desplaça cap a la dreta, de DA1 a DA2. L'equilibri passa d'E0 a E1 en el tram pla: la producció puja d'Y0 a Y1 i el nivell de preus quasi no varia."
+    xMax={100} yMax={100} ejeX="Producció real (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA', color: 'mustard', puntos: [[10, 30], ...Array.from({ length: 17 }, (_, i) => [40 + i * 2, 30 + 0.055 * (i * 2) ** 2])] },
+      { label: 'DA₁', color: 'terra', tenue: true, labelEn: 'inicio', dx: 8, dy: -8, puntos: [[5, 50], [60, 6]] },
+      { label: 'DA₂', color: 'terra', labelEn: 'inicio', dx: 8, dy: -8, puntos: [[25, 50], [80, 6]] },
+    ]}
+    puntos={[
+      { x: 30, y: 30, label: 'E₀', xLabel: 'Y₀', yLabel: 'P₀', dx: 10, dy: 26 },
+      { x: 46.8, y: 32.5, label: 'E₁', xLabel: 'Y₁', dx: 8, dy: 28 },
+    ]}
+    flechas={[{ de: [12.5, 44], a: [32.5, 44] }]}
+    notas={[{ x: 11, y: 20, texto: 'Capacitat ociosa' }]}
+  />
+</Diagram>
+
+<Diagram caption="Política expansiva prop de la producció potencial: amb la mateixa ampliació de la DA, l'equilibri recorre ara el tram empinat de l'OA. Passa d'E₀ a E₁ amb un augment xicotet de la producció i una pujada major del nivell de preus.">
+  <GraficoXY id="g-ol-politica-expansion-pleno" titulo="Política expansiva prop de la plena ocupació (AD-AS)" desc="Amb la mateixa oferta agregada OA, la demanda agregada es desplaça cap a la dreta, de DA1 a DA2, en el tram empinat. L'equilibri passa d'E0 a E1: la producció puja poc, d'Y0 a Y1, i el nivell de preus puja de P0 a P1."
+    xMax={100} yMax={100} ejeX="Producció real (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA', color: 'mustard', puntos: [[10, 30], ...Array.from({ length: 17 }, (_, i) => [40 + i * 2, 30 + 0.055 * (i * 2) ** 2])] },
+      { label: 'DA₁', color: 'terra', tenue: true, labelEn: 'inicio', dx: 8, dy: -8, puntos: [[35, 78.2], [95, 30.2]] },
+      { label: 'DA₂', color: 'terra', labelEn: 'inicio', dx: 8, dy: -8, puntos: [[40, 90.2], [95, 46.2]] },
+    ]}
+    puntos={[
+      { x: 62, y: 56.62, label: 'E₀', xLabel: 'Y₀', yLabel: 'P₀', dx: 12, dy: 26 },
+      { x: 66.6, y: 68.92, label: 'E₁', xLabel: 'Y₁', yLabel: 'P₁', dx: 12, dy: 26 },
+    ]}
+    flechas={[{ de: [39, 75], a: [59, 75] }]}
+  />
+</Diagram>
+
 **Política restrictiva**: la DA es desplaça a l'**esquerra**, reduint tant la producció com els preus (o frenant la seua pujada).
+
+<Diagram caption="Política restrictiva: la DA es desplaça cap a l'esquerra, de DA₁ a DA₂. L'equilibri passa d'E₀ a E₁ amb menor producció i menor nivell de preus (o amb una pujada de preus més lenta).">
+  <GraficoXY id="g-ol-politica-restrictiva" titulo="Política restrictiva (AD-AS)" desc="La demanda agregada es desplaça cap a l'esquerra, de DA1 a DA2, sobre la mateixa oferta agregada OA. L'equilibri passa d'E0 a E1: la producció baixa d'Y0 a Y1 i el nivell de preus baixa de P0 a P1."
+    xMax={100} yMax={100} ejeX="Producció real (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA', color: 'mustard', puntos: [[10, 30], ...Array.from({ length: 17 }, (_, i) => [40 + i * 2, 30 + 0.055 * (i * 2) ** 2])] },
+      { label: 'DA₁', color: 'terra', tenue: true, labelEn: 'inicio', dx: 8, dy: -8, puntos: [[40, 90.2], [95, 46.2]] },
+      { label: 'DA₂', color: 'terra', labelEn: 'inicio', dx: 8, dy: -8, puntos: [[35, 78.2], [95, 30.2]] },
+    ]}
+    puntos={[
+      { x: 66.6, y: 68.92, label: 'E₀', xLabel: 'Y₀', yLabel: 'P₀', dx: 12, dy: 26 },
+      { x: 62, y: 56.62, label: 'E₁', xLabel: 'Y₁', yLabel: 'P₁', dx: 12, dy: 26 },
+    ]}
+    flechas={[{ de: [59, 75], a: [39, 75] }]}
+  />
+</Diagram>
 
 A **curt termini** l'OA pot ser rígida (salaris pactats, contractes fixos), per la qual cosa els desplaçaments de la DA produïxen efectes reals sobre la producció. A **llarg termini**, l'OA tendix a la producció potencial i els efectes són fonamentalment sobre els preus, no sobre la producció real. Este resultat és central: les polítiques de demanda no poden elevar indefinidament la producció real si l'oferta està en el seu límit.
 

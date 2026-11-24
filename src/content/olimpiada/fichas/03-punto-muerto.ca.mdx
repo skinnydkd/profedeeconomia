@@ -31,6 +31,9 @@ estado: publicado
 slug: "olimpiada/fichas/03-punto-muerto.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 Tota empresa suporta dos tipus de costos:
@@ -104,6 +107,24 @@ La separació vertical entre IT i CT en qualsevol Q > Q\* representa el benefici
 
 La calculadora al final d'esta fitxa genera este gràfic automàticament amb els valors que introduïsques.
 
+<Diagram caption="Gràfic IT/CT de l'empresa de sucs: l'ingrés total (IT = 2,50·Q) parteix de l'origen i el cost total (CT = 42 000 + 0,50·Q) parteix dels costos fixos. Es creuen en el punt mort, 21 000 botelles i 52 500 €; a l'esquerra hi ha pèrdues i a la dreta, beneficis.">
+  <GraficoXY id="g-ol-pm-canonico" titulo="Punt mort de l'empresa de sucs" desc="La recta d'ingrés total parteix de l'origen i la de cost total parteix de 42 000 euros, igual que la recta de costos fixos. IT i CT es creuen en 21 000 botelles i 52 500 euros. A l'esquerra hi ha pèrdues i a la dreta, beneficis."
+    xMax={30000} yMax={80000} ejeX="Botelles a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 15000, 25000]} yTicks={[20000, 42000, 60000]}
+    areas={[
+      { color: 'terra', puntos: [[0, 0], [0, 42000], [21000, 52500]] },
+      { color: 'teal', puntos: [[21000, 52500], [27500, 55750], [27500, 68750]] },
+    ]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [27500, 68750]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 42000], [27500, 55750]] },
+      { label: 'CF', color: 'mustard', puntos: [[0, 42000], [27500, 42000]] },
+    ]}
+    puntos={[{ x: 21000, y: 52500, label: 'Q*', xLabel: '21 000', yLabel: '52 500', dx: -40, dy: -14 }]}
+    notas={[{ x: 5000, y: 30000, texto: 'Pèrdues' }, { x: 23500, y: 56000, texto: 'Beneficis' }]}
+  />
+</Diagram>
+
 ---
 
 ## Les variants que cauen en l'examen
@@ -122,6 +143,23 @@ Aïllant:
 
 Q = (42 000 + 6 000) / (2,50 − 0,50) = 48 000 / 2 = **24 000 unitats**
 
+<Diagram caption="Benefici objectiu de 6 000 €: a 24 000 botelles l'ingrés és 60 000 € i el cost 54 000 €, i la distància vertical entre IT i CT és el benefici buscat. El punt mort, Q*, queda en 21 000.">
+  <GraficoXY id="g-ol-pm-objetivo" titulo="Unitats per a un benefici objectiu de 6 000 euros" desc="Rectes d'ingrés total i de cost total de l'empresa de sucs. En 24 000 botelles l'ingrés és de 60 000 euros i el cost de 54 000, amb un benefici de 6 000. El punt mort està en 21 000 botelles."
+    xMax={30000} yMax={80000} ejeX="Botelles a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 15000]} yTicks={[20000, 40000]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [27500, 68750]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 42000], [27500, 55750]] },
+    ]}
+    puntos={[
+      { x: 21000, y: 52500, label: 'Q*', guias: false, dx: -40, dy: -14 },
+      { x: 24000, y: 60000, xLabel: '24 000', yLabel: '60 000' },
+      { x: 24000, y: 54000, guias: false },
+    ]}
+    notas={[{ x: 24400, y: 57000, texto: 'B = 6 000 €' }]}
+  />
+</Diagram>
+
 ### Variant 2 — Canvia un cost fix (sou, lloguer)
 
 Els socis s'assignen un sou total anual de 10 000 €, o puja el lloguer 3 000 €. El nou CF' = CF + increment, i el punt mort puja:
@@ -134,6 +172,22 @@ Q\*' = 52 000 / 2 = **26 000 unitats**
 
 Interpretació: per a poder pagar-se eixe sou l'empresa necessita vendre 5 000 unitats més a l'any.
 
+<Diagram caption="Si els socis s'assignen un sou total de 10 000 €, els costos fixos passen de 42 000 a 52 000 €, la recta de costos puja en paral·lel i el punt mort es desplaça de 21 000 a 26 000 unitats.">
+  <GraficoXY id="g-ol-pm-sueldo" titulo="Efecte d'un augment dels costos fixos en el punt mort" desc="La recta de cost total puja en paral·lel de CT, tènue, a CT', amb costos fixos de 52 000 euros en lloc de 42 000. Talla la recta d'ingrés total en 26 000 unitats en lloc de 21 000."
+    xMax={36000} yMax={90000} ejeX="Unitats a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 15000]} yTicks={[20000, 40000]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [30000, 75000]] },
+      { label: 'CT', color: 'terra', tenue: true, puntos: [[0, 42000], [30000, 57000]] },
+      { label: "CT'", color: 'terra', puntos: [[0, 52000], [30000, 67000]] },
+    ]}
+    puntos={[
+      { x: 21000, y: 52500, label: 'Q*', xLabel: '21 000', yLabel: '52 500', dx: -40, dy: -14 },
+      { x: 26000, y: 65000, label: "Q*'", xLabel: '26 000', yLabel: '65 000', dx: -44, dy: -14 },
+    ]}
+  />
+</Diagram>
+
 ### Variant 3 — Canvia el CVu o el preu
 
 Si baixen les matèries primeres i el nou CVu' = 0,30 € (marge de contribució = 2,20 €):
@@ -145,6 +199,35 @@ Si el preu puja a P' = 3 € (marge de contribució = 2,50 €):
 Q\*' = 42 000 / 2,50 = **16 800 unitats**
 
 En tots dos casos el marge de contribució augmenta i el punt mort baixa: són notícies favorables per a l'empresa.
+
+<Diagram caption="Si el preu puja de 2,50 a 3 €, la recta d'ingrés total es fa més empinada (IT') i el punt mort baixa de 21 000 a 16 800 unitats.">
+  <GraficoXY id="g-ol-pm-precio" titulo="Efecte d'una pujada del preu en el punt mort" desc="La recta d'ingrés total amb preu de 3 euros, IT', és més empinada que la de 2,50 euros, tènue. Talla la recta de cost total, que no canvia, en 16 800 unitats i 50 400 euros, en lloc de 21 000 unitats."
+    xMax={30000} yMax={90000} ejeX="Unitats a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 25000]} yTicks={[20000, 40000]}
+    series={[
+      { label: "IT'", color: 'teal', puntos: [[0, 0], [25000, 75000]] },
+      { label: 'IT', color: 'teal', tenue: true, puntos: [[0, 0], [25000, 62500]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 42000], [25000, 54500]] },
+    ]}
+    puntos={[
+      { x: 16800, y: 50400, label: "Q*'", xLabel: '16 800', yLabel: '50 400', dx: -44, dy: -14 },
+      { x: 21000, y: 52500, label: 'Q*', guias: false, dx: 12, dy: 22 },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Si el cost variable unitari baixa de 0,50 a 0,30 €, la recta de cost total es fa menys empinada (CT') i el punt mort baixa de 21 000 a 19 091 unitats.">
+  <GraficoXY id="g-ol-pm-cvu" titulo="Efecte d'una baixada del cost variable en el punt mort" desc="La recta de cost total amb cost variable unitari de 0,30 euros, CT', parteix dels mateixos 42 000 euros però és menys empinada que la de 0,50 euros, tènue. Talla la recta d'ingrés total en 19 091 unitats, en lloc de 21 000."
+    xMax={30000} yMax={90000} ejeX="Unitats a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    xTicks={[5000, 10000, 25000]} yTicks={[20000, 40000]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [25000, 62500]] },
+      { label: 'CT', color: 'terra', tenue: true, puntos: [[0, 42000], [25000, 54500]] },
+      { label: "CT'", color: 'terra', dy: 10, puntos: [[0, 42000], [25000, 49500]] },
+    ]}
+    puntos={[{ x: 42000 / 2.2, y: 2.5 * 42000 / 2.2, label: "Q*'", xLabel: '19 091', yLabel: '47 727', dx: 12, dy: 24 }]}
+  />
+</Diagram>
 
 ### Variant 4 — Es manté un objectiu si puja un cost?
 

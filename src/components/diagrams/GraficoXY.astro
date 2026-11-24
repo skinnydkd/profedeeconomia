@@ -1,0 +1,223 @@
+---
+/**
+ * Data-driven chart for any model that is not plain supply and demand: a
+ * production possibility frontier, cost curves, a break-even chart, a Phillips
+ * or Lorenz curve. Each series is a list of [x, y] points joined in order, so a
+ * curve is just a function sampled in the MDX:
+ *
+ *   <GraficoXY id="fpp" titulo="…" desc="…" xMax={100} yMax={100} ejeX="…" ejeY="…"
+ *     series={[{ label: 'FPP', color: 'terra',
+ *       puntos: Array.from({ length: 21 }, (_, i) => [i * 5, Math.sqrt(10000 - (i * 5) ** 2)]) }]}
+ *     puntos={[{ x: 60, y: 80, label: 'A' }]} />
+ */
+import { getLocale } from '@/i18n/locale';
+
+type Color = 'terra' | 'mustard' | 'teal' | 'ink' | 'aubergine';
+type XY = [number, number];
+
+interface Serie {
+  puntos: XY[];
+  label?: string;
+  color?: Color;
+  /** The curve before a change: drawn faint and dashed. */
+  tenue?: boolean;
+  /** Where the label sits: at the last point (default) or the first. */
+  labelEn?: 'fin' | 'inicio';
+  /** Nudge the label (px). */
+  dx?: number;
+  dy?: number;
+}
+interface Punto {
+  x: number;
+  y: number;
+  label?: string;
+  /** Text printed on each axis at the end of the guide lines. */
+  xLabel?: string;
+  yLabel?: string;
+  /** false hides the dashed guides to the axes. */
+  guias?: boolean;
+  dx?: number;
+  dy?: number;
+}
+interface Flecha { de: XY; a: XY; /** Sideways offset in px. */ despl?: number; }
+interface Area { puntos: XY[]; color?: Color; /** Solid enough to read as a bar instead of a tint. */ fuerte?: boolean; }
+interface Nota { x: number; y: number; texto: string; color?: Color; ancla?: 'start' | 'middle' | 'end'; }
+
+interface Props {
+  /** Unique on the page: names the SVG title/desc for screen readers. */
+  id: string;
+  titulo: string;
+  desc: string;
+  xMax: number;
+  yMax: number;
+  /** Below zero when the model has losses (a negative NPV, a deficit). The x axis stays at y = 0. */
+  yMin?: number;
+  /** Axis names; they print in small capitals. */
+  ejeX: string;
+  ejeY: string;
+  /** One-letter symbols at the arrow tips (Q, P, Y, t…). */
+  simboloX?: string;
+  simboloY?: string;
+  series?: Serie[];
+  puntos?: Punto[];
+  flechas?: Flecha[];
+  areas?: Area[];
+  notas?: Nota[];
+  /** Numbered ticks; `xTickLabels`/`yTickLabels` replace the numbers when given. */
+  xTicks?: number[];
+  yTicks?: number[];
+  xTickLabels?: string[];
+  yTickLabels?: string[];
+}
+
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    separadorDecimal: ',',
+  },
+  ca: {
+    separadorDecimal: ',',
+  },
+} as const;
+const t = COPY[locale];
+
+const {
+  id, titulo, desc, xMax, yMax, yMin = 0, ejeX, ejeY, simboloX = '', simboloY = '',
+  series = [], puntos = [], flechas = [], areas = [], notas = [],
+  xTicks = [], yTicks = [], xTickLabels, yTickLabels,
+} = Astro.props as Props;
+
+const X0 = 90, X1 = 720, Y0 = 420, Y1 = 50;
+const px = (x: number) => X0 + (x / xMax) * (X1 - X0);
+const py = (y: number) => Y0 - ((y - yMin) / (yMax - yMin)) * (Y0 - Y1);
+const yCero = py(0);
+const r1 = (n: number) => Math.round(n * 10) / 10;
+const camino = (pts: XY[]) => pts.map(([x, y]) => `${r1(px(x))},${r1(py(y))}`).join(' ');
+const cifra = (n: number) => {
+  const [e, d] = String(Math.round(n * 100) / 100).split('.');
+  const miles = e.replace(/\B(?=(\d{3})+$)/g, ' ');
+  return d ? `${miles}${t.separadorDecimal}${d}` : miles;
+};
+
+const lineas = series.filter((s) => s.puntos.length > 1).map((s) => {
+  const ancla = s.labelEn === 'inicio' ? s.puntos[0] : s.puntos[s.puntos.length - 1];
+  return {
+    ...s,
+    color: s.color ?? 'terra',
+    d: camino(s.puntos),
+    lx: px(ancla[0]) + (s.dx ?? 10),
+    ly: py(ancla[1]) + (s.dy ?? 5),
+  };
+});
+
+const saetas = flechas.map((f) => {
+  const ax = px(f.de[0]), ay = py(f.de[1]), bx = px(f.a[0]), by = py(f.a[1]);
+  const len = Math.hypot(bx - ax, by - ay) || 1;
+  const ux = (bx - ax) / len, uy = (by - ay) / len;
+  const hueco = Math.min(14, len / 4);
+  const ox = -uy * (f.despl ?? 0), oy = ux * (f.despl ?? 0);
+  return { x1: ax + ux * hueco + ox, y1: ay + uy * hueco + oy, x2: bx - ux * hueco + ox, y2: by - uy * hueco + oy };
+});
+---
+<svg class="d-xy" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <title id={`${id}-title`}>{titulo}</title>
+  <desc id={`${id}-desc`}>{desc}</desc>
+  <defs>
+    <style>
+      .d-xy .bg { fill: #FBF6EC; }
+      .d-xy .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-xy .serie { stroke-width: 2.5; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+      .d-xy .serie--tenue { stroke-dasharray: 7 6; opacity: 0.5; }
+      .d-xy .c-terra { stroke: #C44E2C; }
+      .d-xy .c-mustard { stroke: #D4A24C; }
+      .d-xy .c-teal { stroke: #1F6E6E; }
+      .d-xy .c-ink { stroke: #2A1F18; }
+      .d-xy .c-aubergine { stroke: #5B3A4E; }
+      .d-xy .f-terra { fill: #C44E2C; }
+      .d-xy .f-mustard { fill: #835F20; }
+      .d-xy .f-teal { fill: #1F6E6E; }
+      .d-xy .f-ink { fill: #2A1F18; }
+      .d-xy .f-aubergine { fill: #5B3A4E; }
+      .d-xy .area { stroke: none; opacity: 0.16; }
+      .d-xy .area--fuerte { opacity: 0.5; }
+      .d-xy .a-terra { fill: #C44E2C; }
+      .d-xy .a-mustard { fill: #D4A24C; }
+      .d-xy .a-teal { fill: #1F6E6E; }
+      .d-xy .a-ink { fill: #2A1F18; }
+      .d-xy .a-aubergine { fill: #5B3A4E; }
+      .d-xy .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .d-xy .tickmark { stroke: #5C4A3D; stroke-width: 1; }
+      .d-xy .flecha { stroke: #2A1F18; stroke-width: 2; fill: none; }
+      .d-xy .punto { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 2.5; }
+      .d-xy .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-xy .axis-label--mid { text-anchor: middle; }
+      .d-xy .axis-label--end { text-anchor: end; }
+      .d-xy .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
+      .d-xy .point-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .d-xy .tick { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #5C4A3D; }
+      .d-xy .tick--y { text-anchor: end; }
+      .d-xy .tick--x { text-anchor: middle; }
+      .d-xy .nota { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 600; }
+      /* A cream halo keeps labels readable where a guide or a curve runs behind them. */
+      .d-xy .point-label, .d-xy .curve-label, .d-xy .nota { paint-order: stroke; stroke: #FBF6EC; stroke-width: 5px; stroke-linejoin: round; }
+    </style>
+    <marker id="xy-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+    <marker id="xy-saeta" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#2A1F18"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  {areas.map((a) => <polygon class:list={['area', `a-${a.color ?? 'mustard'}`, a.fuerte && 'area--fuerte']} points={camino(a.puntos)}/>)}
+
+  <line class="axis" x1={X0} y1={yCero} x2="740" y2={yCero} marker-end="url(#xy-arrow)"/>
+  <line class="axis" x1={X0} y1="440" x2={X0} y2="40" marker-end="url(#xy-arrow)"/>
+  <text class="tick tick--y" x="80" y={yCero + (yMin < 0 ? 4 : 18)}>0</text>
+  <text class="axis-label" x="755" y={yCero + 5}>{simboloX}</text>
+  <text class="axis-label axis-label--end" x="80" y="35">{simboloY}</text>
+  <text class="axis-label axis-label--mid" x="405" y="482">{ejeX}</text>
+  <text class="axis-label axis-label--mid" x="24" y="235" transform="rotate(-90 24 235)">{ejeY}</text>
+
+  {yTicks.map((v, i) => (
+    <>
+      <line class="tickmark" x1={X0 - 5} y1={py(v)} x2={X0} y2={py(v)}/>
+      <text class="tick tick--y" x={X0 - 9} y={py(v) + 4}>{yTickLabels?.[i] ?? cifra(v)}</text>
+    </>
+  ))}
+  {xTicks.map((v, i) => (
+    <>
+      <line class="tickmark" x1={px(v)} y1={yCero} x2={px(v)} y2={yCero + 5}/>
+      <text class="tick tick--x" x={px(v)} y={yCero + 20}>{xTickLabels?.[i] ?? cifra(v)}</text>
+    </>
+  ))}
+
+  {puntos.filter((p) => p.guias !== false).map((p) => (
+    <>
+      <line class="guide" x1={px(p.x)} y1={py(p.y)} x2={px(p.x)} y2={yCero}/>
+      <line class="guide" x1={X0} y1={py(p.y)} x2={px(p.x)} y2={py(p.y)}/>
+      {p.yLabel && <text class="tick tick--y" x={X0 - 9} y={py(p.y) + 4}>{p.yLabel}</text>}
+      {p.xLabel && <text class="tick tick--x" x={px(p.x)} y={yCero + 20}>{p.xLabel}</text>}
+    </>
+  ))}
+
+  {lineas.map((s) => (
+    <>
+      <polyline class:list={['serie', `c-${s.color}`, s.tenue && 'serie--tenue']} points={s.d}/>
+      {s.label && <text class:list={['curve-label', `f-${s.color}`]} x={s.lx} y={s.ly}>{s.label}</text>}
+    </>
+  ))}
+
+  {saetas.map((s) => <line class="flecha" x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2} marker-end="url(#xy-saeta)"/>)}
+
+  {puntos.map((p) => (
+    <>
+      <circle class="punto" cx={px(p.x)} cy={py(p.y)} r="6"/>
+      {p.label && <text class="point-label" x={px(p.x) + (p.dx ?? 12)} y={py(p.y) + (p.dy ?? -10)}>{p.label}</text>}
+    </>
+  ))}
+
+  {notas.map((n) => <text class:list={['nota', `f-${n.color ?? 'ink'}`]} x={px(n.x)} y={py(n.y)} style={`text-anchor: ${n.ancla ?? 'start'}`}>{n.texto}</text>)}
+</svg>

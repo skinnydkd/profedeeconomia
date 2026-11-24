@@ -23,6 +23,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 El mercado de trabajo es donde se determina el nivel de empleo y el salario de una economía. Para medirlo con precisión, España —y la mayoría de países de la OCDE— utiliza la **Encuesta de Población Activa (EPA)**, elaborada por el INE cada trimestre encuestando unas 65 000 viviendas.
@@ -76,6 +79,26 @@ Inactivos = 35 000 000 − 21 000 000 = 14 000 000
 
 Si 500 000 parados pasan a inactivos: activos = 20 500 000, parados = 2 500 000.  
 Nueva tasa de paro = (2 500 000 / 20 500 000) × 100 = **12,2 %** — sin crear un solo empleo.
+
+<Diagram caption="El ejemplo de la EPA en barras (millones de personas de 16 años o más): 18 de ocupados, 3 de parados y 14 de inactivos. Si 500 000 parados dejan de buscar empleo, los inactivos pasan a 14,5, los parados a 2,5 y la tasa de paro baja del 14,3 % al 12,2 % sin que se cree ningún empleo.">
+  <GraficoXY id="g-ol-trabajo-desanimo" titulo="Población de 16 años o más: efecto del trabajador desanimado" desc="Dos barras apiladas de 35 millones de personas. Inicialmente hay 18 millones de ocupados, 3 de parados y 14 de inactivos, con una tasa de paro del 14,3 %. Tras pasar 500 000 parados a inactivos, hay 18, 2,5 y 14,5 millones, y la tasa de paro es del 12,2 %."
+    xMax={8} yMax={40} ejeX="Población de 16 años o más" ejeY="Millones de personas"
+    xTicks={[2, 6]} xTickLabels={['Situación inicial', 'Tras el desánimo']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[1, 0], [3, 0], [3, 18], [1, 18]] },
+      { color: 'terra', fuerte: true, puntos: [[1, 18], [3, 18], [3, 21], [1, 21]] },
+      { color: 'mustard', fuerte: true, puntos: [[1, 21], [3, 21], [3, 35], [1, 35]] },
+      { color: 'teal', fuerte: true, puntos: [[5, 0], [7, 0], [7, 18], [5, 18]] },
+      { color: 'terra', fuerte: true, puntos: [[5, 18], [7, 18], [7, 20.5], [5, 20.5]] },
+      { color: 'mustard', fuerte: true, puntos: [[5, 20.5], [7, 20.5], [7, 35], [5, 35]] },
+    ]}
+    notas={[
+      { x: 2, y: 8.5, texto: 'Ocupados 18', ancla: 'middle' }, { x: 2, y: 19, texto: 'Parados 3', ancla: 'middle' }, { x: 2, y: 27.5, texto: 'Inactivos 14', ancla: 'middle' },
+      { x: 6, y: 8.5, texto: 'Ocupados 18', ancla: 'middle' }, { x: 6, y: 18.9, texto: 'Parados 2,5', ancla: 'middle' }, { x: 6, y: 27.3, texto: 'Inactivos 14,5', ancla: 'middle' },
+      { x: 2, y: 37, texto: 'Tasa de paro 14,3 %', ancla: 'middle' }, { x: 6, y: 37, texto: 'Tasa de paro 12,2 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ---
 
@@ -174,6 +197,23 @@ Si el empleador tiene **poder de mercado** —un solo comprador de trabajo, o po
 Esta es la intuición detrás del estudio de **Card y Krueger (1994)**: compararon establecimientos de comida rápida en Nueva Jersey (subida del mínimo) con Pennsylvania (sin subida) y no encontraron caída del empleo en el lado con subida. Card recibió el Premio Nobel de Economía en 2021 en parte por este trabajo.
 
 **Conclusión para el examen:** la teoría neoclásica básica predice destrucción de empleo con el salario mínimo. La evidencia empírica muestra que el efecto sobre el empleo agregado es pequeño cuando la subida es moderada, y que puede incluso ser positivo en mercados con poder monopsonístico del empleador. El matiz importa en Parte I del examen cuando preguntan «razona si esta afirmación es verdadera, falsa o depende».
+
+<Diagram caption="Monopsonio: la empresa contrata hasta donde el coste marginal de contratar (CMgL) iguala a la productividad marginal (Ld), con el empleo Lm y el salario Wm que marca la oferta para ese empleo. Un salario mínimo fijado en el nivel competitivo W* (SMI) eleva a la vez el salario y el empleo hasta L*.">
+  <GraficoXY id="g-ol-trabajo-monopsonio" titulo="Salario mínimo con poder de monopsonio" desc="Oferta de trabajo Ls creciente, demanda de trabajo Ld decreciente y coste marginal de contratar CMgL por encima de Ls. El monopsonio contrata Lm, donde CMgL corta a Ld, y paga Wm, sobre Ls. Un salario mínimo igual al competitivo W* lleva el empleo hasta L*, mayor que Lm."
+    xMax={110} yMax={110} ejeX="Empleo (L)" ejeY="Salario (W)" simboloX="L" simboloY="W"
+    series={[
+      { label: 'Ld', color: 'terra', puntos: [[5, 97], [95, 43]] },
+      { label: 'Ls', color: 'teal', puntos: [[0, 20], [95, 77]] },
+      { label: 'CMgL', color: 'mustard', puntos: [[0, 20], [60, 92]] },
+      { label: 'SMI', color: 'ink', puntos: [[0, 60], [95, 60]] },
+    ]}
+    puntos={[
+      { x: 44.4, y: 46.7, label: 'A', xLabel: 'Lm', yLabel: 'Wm', dx: 12, dy: 22 },
+      { x: 66.7, y: 60, label: 'B', xLabel: 'L*', yLabel: 'W*', dx: 12, dy: -12 },
+      { x: 44.4, y: 73.3, guias: false },
+    ]}
+  />
+</Diagram>
 
 ---
 

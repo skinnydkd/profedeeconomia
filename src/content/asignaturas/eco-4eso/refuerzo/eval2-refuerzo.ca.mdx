@@ -18,6 +18,24 @@ repaso_teorico:
   - titulo: "El mercat de treball i la nòmina"
     unidad: 5
     contenido: "En el <strong>mercat de treball</strong> les persones <em>oferixen</em> el seu temps i les empreses el <em>demanen</em>. El preu que ix d'eixe encreuament és el <strong>salari</strong>, i la llei li posa un sòl: el <strong>salari mínim interprofessional</strong>, que en 2026 és de <strong>1.221 € bruts al mes en 14 pagues</strong> (Real Decreto 126/2026).<br>Cada trimestre l'INE mesura l'ocupació amb l'<strong>EPA</strong>. Dividix la població de 16 anys o més en <strong>inactius</strong> (ni treballen ni busquen) i <strong>actius</strong>, i els actius en <strong>ocupats</strong> i <strong>aturats</strong>. La <strong>taxa d'atur</strong> és aturats entre actius, per 100: en 2025 va ser del <strong>10,3 %</strong>, i de prop del 25 % entre els menors de 25 anys.<br>Des de la reforma laboral de 2021 el contracte normal és l'<strong>indefinit</strong>; el temporal només s'admet si hi ha una causa.<br>En la <strong>nòmina</strong>, del <strong>salari brut</strong> es resten la <strong>cotització a la Seguretat Social</strong> (al voltant del 6,5 %) i la <strong>retenció d'IRPF</strong>, que és una bestreta de l'impost. El que queda és el <strong>salari net</strong>."
+    grafico:
+      tipo: mercado
+      caption: "El salari ix del creuament entre l'oferta de treball (persones) i la demanda (empreses). Si el sòl legal, el salari mínim, es fixara per damunt de l'equilibri, hi hauria més gent que vol treballar que llocs oferits: atur."
+      props:
+        id: "r-e2r-mercado-trabajo"
+        titulo: "Mercat de treball i salari mínim"
+        desc: "La demanda de treball decreix amb el salari i l'oferta creix; es creuen en el salari d'equilibri. Un sòl salarial per damunt de l'equilibri deixa un tram de persones sense ocupació."
+        pMax: 25
+        qMax: 140
+        ejeP: "SALARI"
+        ejeQ: "OCUPACIÓ (TREBALLADORS)"
+        curvas:
+          - { tipo: "D", q0: 120, m: -5, pDe: 2, pA: 21, label: "D" }
+          - { tipo: "O", q0: 20, m: 5, pDe: 2, pA: 21, label: "O" }
+        puntos:
+          - { p: 10, q: 70, label: "E", pLabel: "W*", qLabel: "L*", dx: 22, dy: 5 }
+        precio: { p: 14, label: "Salari mínim (sòl)" }
+        tramo: { p: 14, q1: 50, q2: 90, label: "Atur" }
   - titulo: "L'Estat: impostos i despesa pública"
     unidad: 6
     contenido: "L'Estat intervé perquè el mercat té <strong>fallades</strong>: ningú no construiria un far ni posaria l'enllumenat del teu carrer, perquè són <strong>béns públics</strong> que qualsevol usa sense pagar. A més, l'Estat <strong>redistribuïx</strong> la renda i suavitza les crisis.<br>Per a pagar-ho cobra <strong>impostos</strong> (sense res concret a canvi), <strong>taxes</strong> (per un servici concret, com el DNI) i <strong>cotitzacions</strong> (a canvi de drets futurs). Els impostos <strong>directes</strong> graven el que guanyes o el que tens (IRPF, Societats, IBI); els <strong>indirectes</strong>, el que consumixes (<strong>IVA</strong> al 21, 10 i 4 %).<br>L'<strong>IRPF</strong> és progressiu <strong>per trams</strong>: cada tipus s'aplica només a la franja de renda del seu tram. En 2024 l'IRPF i l'IVA van aportar tres de cada quatre euros dels <strong>295.000 milions</strong> recaptats (AEAT).<br>La <strong>despesa pública</strong> ronda el <strong>45 % del PIB</strong> i se'n va sobretot a <strong>pensions, sanitat i educació</strong>. Gastar més del que s'ingressa en un any és <strong>dèficit</strong>; els dèficits acumulats són el <strong>deute públic</strong>."
@@ -30,16 +48,173 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "A Vilanova viuen <strong>10.000 persones de 16 anys o més</strong>. D'elles, 4.000 ni treballen ni busquen faena, 5.400 tenen treball i 600 en busquen sense trobar-ne. Calcula la població activa i les taxes d'activitat, d'ocupació i d'atur."
     desarrollo: "<strong>Pas 1. Població activa.</strong> Són els ocupats més els aturats: 5.400 + 600 = <strong>6.000 persones</strong>.<br>Comprovació: 6.000 actius + 4.000 inactius = 10.000, tota la població de 16 anys o més.<br><strong>Pas 2. Taxa d'activitat.</strong> Actius entre població de 16 o més, per 100: 6.000 / 10.000 × 100 = <strong>60 %</strong>.<br><strong>Pas 3. Taxa d'ocupació.</strong> Ocupats entre població de 16 o més, per 100: 5.400 / 10.000 × 100 = <strong>54 %</strong>.<br><strong>Pas 4. Taxa d'atur.</strong> Aturats entre <em>actius</em>, per 100: 600 / 6.000 × 100 = <strong>10 %</strong>.<br><strong>Compte amb el denominador:</strong> si dividires 600 entre 10.000 eixiria un 6 %, i seria un error. La taxa d'atur es calcula sempre sobre els actius."
+    grafico:
+      tipo: xy
+      caption: "De 10.000 persones de 16 anys o més, 6.000 són actives (5.400 ocupades i 600 aturades) i 4.000 inactives. Activitat: 6.000 ÷ 10.000 = 60 %. Ocupació: 5.400 ÷ 10.000 = 54 %. Atur: 600 ÷ 6.000 = 10 %."
+      props:
+        id: "r-e2r-villanueva-tasas"
+        titulo: "Població de Villanueva: ocupats, parats i inactius"
+        desc: "Una columna de 10.000 persones dividida en 5.400 ocupades, 600 aturades i 4.000 inactives, i una altra de 6.000 actives formada per les ocupades i les aturades."
+        xMax: 160
+        yMax: 11500
+        ejeX: "Grups de població"
+        ejeY: "Persones"
+        xTicks: [25, 70]
+        xTickLabels: ["16 anys o més", "Actius"]
+        yTicks: [2000, 4000, 6000, 8000, 10000]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 5400], [10, 5400]], color: "teal", fuerte: true }
+          - { puntos: [[10, 5400], [40, 5400], [40, 6000], [10, 6000]], color: "terra", fuerte: true }
+          - { puntos: [[10, 6000], [40, 6000], [40, 10000], [10, 10000]], color: "mustard", fuerte: true }
+          - { puntos: [[55, 0], [85, 0], [85, 5400], [55, 5400]], color: "teal", fuerte: true }
+          - { puntos: [[55, 5400], [85, 5400], [85, 6000], [55, 6000]], color: "terra", fuerte: true }
+        notas:
+          - { x: 25, y: 2500, texto: "Ocupats 5 400", ancla: "middle" }
+          - { x: 25, y: 5600, texto: "Parats 600", ancla: "middle" }
+          - { x: 25, y: 7800, texto: "Inactius 4 000", ancla: "middle" }
+          - { x: 25, y: 10400, texto: "10 000", ancla: "middle" }
+          - { x: 70, y: 6400, texto: "6 000", ancla: "middle" }
+          - { x: 89, y: 9000, texto: "Activitat = 60 %", color: "mustard" }
+          - { x: 89, y: 7500, texto: "Ocupació = 54 %", color: "teal" }
+          - { x: 89, y: 6000, texto: "Atur = 10 %", color: "terra" }
   - enunciado: "Aitor cobra un <strong>salari brut de 1.400 € al mes</strong>. L'empresa li descompta un 6,5 % de cotització a la Seguretat Social i li reté un 8 % d'IRPF. Quant cobra de net?"
     desarrollo: "<strong>Pas 1. Cotització a la Seguretat Social.</strong> 1.400 × 0,065 = <strong>91 €</strong>.<br><strong>Pas 2. Retenció d'IRPF.</strong> 1.400 × 0,08 = <strong>112 €</strong>.<br><strong>Pas 3. Total descomptat.</strong> 91 + 112 = <strong>203 €</strong>.<br><strong>Pas 4. Salari net.</strong> 1.400 − 203 = <strong>1.197 €</strong>.<br><strong>Lectura:</strong> Aitor guanya 1.400 € i en cobra 1.197, és a dir, un 85,5 % del que s'ha pactat. Però els 91 € de la Seguretat Social no es perden: li compren dret a l'atur, a la baixa per malaltia i a una futura pensió. I els 112 € d'IRPF són una <em>bestreta</em>: en la declaració de la renda s'ajusten i pot ser que li'n tornen una part."
+    grafico:
+      tipo: xy
+      caption: "Dels 1.400 € bruts d'Aitor es descompten 91 € de Seguretat Social i 112 € d'IRPF: cobra 1.197 € nets (el 85,5 %)."
+      props:
+        id: "r-e2r-nomina-aitor"
+        titulo: "De salari brut a salari net"
+        desc: "Una columna d'1.400 euros bruts formada per 1.197 euros nets, 112 d'IRPF i 91 de Seguretat Social."
+        xMax: 130
+        yMax: 1600
+        ejeX: "Un mes d'Aitor"
+        ejeY: "Euros"
+        simboloY: "€"
+        yTicks: [400, 800, 1200]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 1197], [10, 1197]], color: "teal", fuerte: true }
+          - { puntos: [[10, 1197], [40, 1197], [40, 1309], [10, 1309]], color: "mustard", fuerte: true }
+          - { puntos: [[10, 1309], [40, 1309], [40, 1400], [10, 1400]], color: "terra", fuerte: true }
+        notas:
+          - { x: 25, y: 1460, texto: "Brut: 1 400 €", ancla: "middle" }
+          - { x: 44, y: 580, texto: "Net: 1 197 €", color: "teal" }
+          - { x: 44, y: 1225, texto: "IRPF: 112 €", color: "mustard" }
+          - { x: 44, y: 1335, texto: "Seguretat Social: 91 €", color: "terra" }
   - enunciado: "En la compra del dissabte, els productes costaven <strong>abans d'IVA</strong>: 10 € de pa, llet i fruita (tipus del 4 %), 20 € de pollastre i iogurts (tipus del 10 %) i 30 € de xampú i piles (tipus del 21 %). Calcula l'IVA de cada grup, l'IVA total i el que marca el tiquet."
     desarrollo: "<strong>Pas 1. IVA al 4 %.</strong> 10 × 0,04 = <strong>0,40 €</strong>.<br><strong>Pas 2. IVA al 10 %.</strong> 20 × 0,10 = <strong>2,00 €</strong>.<br><strong>Pas 3. IVA al 21 %.</strong> 30 × 0,21 = <strong>6,30 €</strong>.<br><strong>Pas 4. IVA total.</strong> 0,40 + 2,00 + 6,30 = <strong>8,70 €</strong>.<br><strong>Pas 5. Total del tiquet.</strong> Preu sense IVA: 10 + 20 + 30 = 60 €. Total: 60 + 8,70 = <strong>68,70 €</strong>.<br><strong>Lectura:</strong> els aliments bàsics quasi no paguen impost (0,40 € de 10 €), mentres que el grup del 21 % aporta ell a soles més de dos terços de l'IVA de la compra. Per això el pa, la llet, els ous, la fruita i la verdura estan al tipus superreduït del 4 %."
+    grafico:
+      tipo: xy
+      caption: "L'IVA de la compra: 0,40 € sobre els 10 € al 4 %, 2,00 € sobre els 20 € al 10 % i 6,30 € sobre els 30 € al 21 %. Total: 8,70 € d'IVA i 68,70 € al tiquet."
+      props:
+        id: "r-e2r-iva-compra"
+        titulo: "Preu sense IVA i IVA de cada grup de la compra"
+        desc: "Tres columnes: 10 euros al 4 per cent amb 0,40 d'IVA, 20 euros al 10 per cent amb 2,00 d'IVA i 30 euros al 21 per cent amb 6,30 d'IVA."
+        xMax: 10
+        yMax: 40
+        ejeX: "Tipus d'IVA"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [1.6, 4.1, 6.6]
+        xTickLabels: ["4 %", "10 %", "21 %"]
+        yTicks: [10, 20, 30]
+        areas:
+          - { puntos: [[1, 0], [2.2, 0], [2.2, 10], [1, 10]], color: "mustard", fuerte: true }
+          - { puntos: [[1, 10], [2.2, 10], [2.2, 10.4], [1, 10.4]], color: "terra", fuerte: true }
+          - { puntos: [[3.5, 0], [4.7, 0], [4.7, 20], [3.5, 20]], color: "mustard", fuerte: true }
+          - { puntos: [[3.5, 20], [4.7, 20], [4.7, 22], [3.5, 22]], color: "terra", fuerte: true }
+          - { puntos: [[6, 0], [7.2, 0], [7.2, 30], [6, 30]], color: "mustard", fuerte: true }
+          - { puntos: [[6, 30], [7.2, 30], [7.2, 36.3], [6, 36.3]], color: "terra", fuerte: true }
+        notas:
+          - { x: 1.6, y: 12, texto: "+0,40 €", ancla: "middle", color: "terra" }
+          - { x: 4.1, y: 23.6, texto: "+2,00 €", ancla: "middle", color: "terra" }
+          - { x: 6.6, y: 37.8, texto: "+6,30 €", ancla: "middle", color: "terra" }
+          - { x: 8, y: 33, texto: "Preu sense IVA", color: "mustard" }
+          - { x: 8, y: 29, texto: "IVA", color: "terra" }
   - enunciado: "La <strong>base liquidable</strong> de Dani, el que queda de la seua renda després de restar la Seguretat Social, les despeses deduïbles i les reduccions, és de <strong>15.000 €</strong>. Amb l'escala orientativa de l'IRPF (19 % fins a 12.450 € i 24 % de 12.450 € a 20.200 €) i un mínim personal de 5.550 €, calcula la seua quota, el tipus marginal i el tipus mitjà."
     desarrollo: "<strong>Pas 1. Primer tram.</strong> Els primers 12.450 € paguen al 19 %: 12.450 × 0,19 = <strong>2.365,50 €</strong>.<br><strong>Pas 2. Segon tram.</strong> De la resta, 15.000 − 12.450 = 2.550 € cauen en el tram del 24 %: 2.550 × 0,24 = <strong>612,00 €</strong>.<br><strong>Pas 3. Suma.</strong> 2.365,50 + 612,00 = <strong>2.977,50 €</strong>.<br><strong>Pas 4. Mínim personal.</strong> Els 5.550 € que la llei considera necessaris per a viure es resten aplicant-los el tipus del primer tram: 5.550 × 0,19 = <strong>1.054,50 €</strong> menys.<br><strong>Pas 5. Quota.</strong> 2.977,50 − 1.054,50 = <strong>1.923,00 €</strong>.<br><strong>Pas 6. Tipus.</strong> Tipus <strong>marginal</strong>: 24 %, el del tram més alt al qual arriba. Tipus <strong>mitjà</strong>: 1.923 / 15.000 = <strong>12,8 %</strong>. El seu últim euro paga el 24 %, però la seua base sencera paga el 12,8 %.<br><strong>Compte:</strong> una base liquidable de 15.000 € correspon a un sou d'uns 19.750 € bruts. Qui cobra 15.000 € bruts no paga IRPF: després de restar la Seguretat Social, 2.000 € de despeses i la reducció per rendiments del treball, la seua base queda per davall del mínim personal."
+    grafico:
+      tipo: xy
+      caption: "La base de 15.000 € paga el 19 % en els primers 12.450 € i el 24 % en la resta. El tipus marginal (24 %) és el de l'últim euro; el mitjà, 12,8 %, és la quota (1.923 €) entre la base."
+      props:
+        id: "r-e2r-irpf-tramos"
+        titulo: "Escala de l'IRPF: tipus marginal i tipus mitjà de Dani"
+        desc: "Escala de tipus: 19 per cent fins a 12.450 euros i 24 per cent de 12.450 a 20.200. La base de Dani, 15.000 euros, arriba al segon tram (tipus marginal 24 per cent) i el seu tipus mitjà és 12,8 per cent."
+        xMax: 25000
+        yMax: 30
+        ejeX: "Base liquidable (€)"
+        ejeY: "Tipus (%)"
+        simboloX: "€"
+        simboloY: "%"
+        xTicks: [5000, 10000, 20000]
+        yTicks: [19]
+        areas:
+          - { puntos: [[0, 0], [12450, 0], [12450, 19], [0, 19]], color: "terra" }
+          - { puntos: [[12450, 0], [15000, 0], [15000, 24], [12450, 24]], color: "mustard" }
+        series:
+          - { color: "ink", puntos: [[0, 19], [12450, 19], [12450, 24], [20200, 24]] }
+        puntos:
+          - { x: 15000, y: 24, label: "Marginal: 24 %", xLabel: "15 000", yLabel: "24", dx: 12, dy: 22 }
+          - { x: 15000, y: 12.8, label: "Mitjà: 12,8 %", yLabel: "12,8", dx: 12, dy: -10 }
+        notas:
+          - { x: 300, y: 21, texto: "19 % fins a 12 450 €" }
+          - { x: 12600, y: 26, texto: "24 % de 12 450 a 20 200 €" }
   - enunciado: "Sara ingressa <strong>1.200 € nets al mes</strong>. Les seues despeses fixes sumen 700 € i les variables, 350 €. (a) Quant estalvia i quin percentatge dels seus ingressos és? (b) Compara-ho amb la regla 50-30-20."
     desarrollo: "<strong>Pas 1. Despeses totals.</strong> 700 + 350 = <strong>1.050 €</strong>.<br><strong>Pas 2. Estalvi.</strong> Ingressos − despeses = 1.200 − 1.050 = <strong>150 €</strong>.<br><strong>Pas 3. Percentatge estalviat.</strong> 150 / 1.200 = 0,125 → <strong>12,5 %</strong>.<br><strong>Pas 4. La regla 50-30-20 sobre 1.200 €.</strong> Necessitats: 1.200 × 0,50 = 600 €. Desitjos: 1.200 × 0,30 = 360 €. Estalvi: 1.200 × 0,20 = <strong>240 €</strong>.<br><strong>Pas 5. Comparació.</strong> Sara gasta 700 € en fixes (100 € més que els 600 € de referència) i estalvia 150 € en compte de 240 €: li falten <strong>90 €</strong> per a arribar al 20 %.<br><strong>Lectura:</strong> el desajust està en les despeses fixes, que són les més difícils de retallar perquè es decidixen una vegada i cobren cada mes. Revisar-les (la tarifa del mòbil, les subscripcions) és el que li donaria més marge."
+    grafico:
+      tipo: xy
+      caption: "Sara gasta 700 € en fixos, 350 € en variables i estalvia 150 € (12,5 %). Amb la regla 50-30-20 serien 600, 360 i 240 €: li falten 90 € d'estalvi."
+      props:
+        id: "r-e2r-presupuesto-sara"
+        titulo: "Pressupost de Sara enfront de la regla 50-30-20"
+        desc: "Dues columnes d'1.200 euros: la de Sara, amb 700 de despeses fixes, 350 de variables i 150 d'estalvi, i la de la regla 50-30-20, amb 600 de necessitats, 360 de desitjos i 240 d'estalvi."
+        xMax: 110
+        yMax: 1400
+        ejeX: "Repartiment d'1.200 € al mes"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [25, 75]
+        xTickLabels: ["Sara", "Regla 50-30-20"]
+        yTicks: [300, 600, 900, 1200]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 700], [10, 700]], color: "terra", fuerte: true }
+          - { puntos: [[10, 700], [40, 700], [40, 1050], [10, 1050]], color: "mustard", fuerte: true }
+          - { puntos: [[10, 1050], [40, 1050], [40, 1200], [10, 1200]], color: "teal", fuerte: true }
+          - { puntos: [[60, 0], [90, 0], [90, 600], [60, 600]], color: "terra", fuerte: true }
+          - { puntos: [[60, 600], [90, 600], [90, 960], [60, 960]], color: "mustard", fuerte: true }
+          - { puntos: [[60, 960], [90, 960], [90, 1200], [60, 1200]], color: "teal", fuerte: true }
+        notas:
+          - { x: 25, y: 310, texto: "Fixos 700", ancla: "middle" }
+          - { x: 25, y: 860, texto: "Variables 350", ancla: "middle" }
+          - { x: 25, y: 1105, texto: "Estalvi 150", ancla: "middle" }
+          - { x: 75, y: 270, texto: "Necessitats 600", ancla: "middle" }
+          - { x: 75, y: 760, texto: "Desitjos 360", ancla: "middle" }
+          - { x: 75, y: 1075, texto: "Estalvi 240", ancla: "middle" }
   - enunciado: "Un portàtil costa <strong>600 € al comptat</strong>. La botiga oferix pagar-lo en <strong>12 quotes de 55 €</strong>. (a) Quant pagues en total si el finances? (b) Quant és això de més, en euros i en percentatge?"
     desarrollo: "<strong>Pas 1. Total finançat.</strong> 55 × 12 = <strong>660 €</strong>.<br><strong>Pas 2. Sobrecost en euros.</strong> 660 − 600 = <strong>60 €</strong>.<br><strong>Pas 3. Sobrecost en percentatge.</strong> 60 / 600 = 0,10 → <strong>un 10 % més</strong> pel mateix portàtil.<br><strong>Pas 4. L'alternativa.</strong> Si en compte de finançar apartes eixos mateixos 55 € al mes, en 600 / 55 = 10,9, és a dir, en <strong>11 mesos</strong>, el tens pagat sencer: un mes menys dels que anaves a estar pagant quotes, i amb 60 € a la butxaca.<br><strong>Lectura:</strong> el producte és el mateix; el que canvia és el contracte. I el número que cal mirar abans de signar qualsevol finançament és la <strong>TAE</strong>, perquè inclou també les comissions que la quota no ensenya."
+    grafico:
+      tipo: xy
+      caption: "Al comptat el portàtil costa 600 €; en 12 quotes de 55 € es paguen 660 €, 60 € més (un 10 %)."
+      props:
+        id: "r-e2r-portatil-financiado"
+        titulo: "Portàtil al comptat o finançat"
+        desc: "Dues columnes: 600 euros al comptat i 660 euros finançat en 12 quotes de 55 euros, 60 euros més."
+        xMax: 10
+        yMax: 800
+        ejeX: "Forma de pagament"
+        ejeY: "Euros"
+        simboloY: "€"
+        xTicks: [2, 5]
+        xTickLabels: ["Al comptat", "12 quotes de 55 €"]
+        yTicks: [200, 400, 600]
+        areas:
+          - { puntos: [[1, 0], [3, 0], [3, 600], [1, 600]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 0], [6, 0], [6, 600], [4, 600]], color: "mustard", fuerte: true }
+          - { puntos: [[4, 600], [6, 600], [6, 660], [4, 660]], color: "terra", fuerte: true }
+        notas:
+          - { x: 2, y: 640, texto: "600 €", ancla: "middle" }
+          - { x: 5, y: 700, texto: "660 €", ancla: "middle" }
+          - { x: 6.3, y: 615, texto: "+60 € (10 %)", color: "terra" }
 ejercicios:
   - enunciado: "Classifica cada persona com a <strong>ocupada</strong>, <strong>aturada</strong> o <strong>inactiva</strong> segons l'EPA: (a) una estudiant de 2n de batxillerat que només estudia; (b) un cambrer de 25 anys amb contracte de 20 hores setmanals; (c) una dona de 50 anys que va perdre la faena i busca treball cada setmana; (d) un jubilat de 70 anys."
     solucion: "(a) <strong>Inactiva</strong>: ni treballa ni busca treball.<br>(b) <strong>Ocupat</strong>: té faena, i n'hi ha prou amb haver treballat almenys una hora en la setmana de referència.<br>(c) <strong>Aturada</strong>: no té faena, en busca activament i està disponible.<br>(d) <strong>Inactiu</strong>: està jubilat i no busca faena.<br>Recorda: actius = ocupats + aturats. Els inactius queden fora del denominador de la taxa d'atur."

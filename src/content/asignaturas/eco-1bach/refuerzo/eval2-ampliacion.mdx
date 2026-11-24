@@ -18,21 +18,146 @@ repaso_teorico:
   - titulo: "Corregir fallos de mercado y medir el bienestar"
     unidad: 6
     contenido: "Las externalidades se corrigen <em>internalizando</em> el coste o beneficio externo. Para las <strong>negativas</strong>, un <strong>impuesto pigouviano</strong> hace que el contaminador pague por el daño, acercando su coste privado al coste social; alternativas son los <strong>mercados de derechos de emisión</strong> y, si los costes de negociación son bajos, el <strong>teorema de Coase</strong> (acuerdos privados). Para las <strong>positivas</strong>, se usan <strong>subvenciones</strong>.<br><br>Los bienes se clasifican con la matriz <strong>rivalidad × exclusión</strong>: privados (rival y excluible), públicos (ni rival ni excluible), comunes (rival pero no excluible; sufren la <em>tragedia de los comunes</em>) y de club (no rival pero excluible).<br><br>El bienestar se mide con los <strong>excedentes</strong>: el del consumidor es lo que paga de menos respecto a lo que estaba dispuesto a pagar; el del productor, lo que cobra de más respecto a su coste. Un impuesto o un precio regulado reducen la cantidad de equilibrio y generan <strong>peso muerto</strong>: bienestar que se pierde y nadie captura."
+    grafico:
+      tipo: mercado
+      caption: "Con una externalidad negativa, el mercado produce Q₁ (oferta privada O₁), más de lo socialmente deseable Q₂ (O₂ incluye el coste externo). Un impuesto pigouviano desplaza la oferta de O₁ a O₂."
+      props:
+        id: "r-e2a-externalidad-esquema"
+        titulo: "Externalidad negativa e impuesto pigouviano"
+        desc: "La oferta con el coste social (O₂) queda por encima de la oferta privada (O₁): el equilibrio social tiene menos cantidad y un precio mayor que el de mercado."
+        pMax: 25
+        qMax: 160
+        curvas:
+          - { tipo: "D", q0: 120, m: -5, pDe: 2, pA: 21, label: "D" }
+          - { tipo: "O", q0: 20, m: 5, pDe: 2, pA: 21, label: "O₁" }
+          - { tipo: "O", q0: 0, m: 5, pDe: 2, pA: 21, label: "O₂" }
+        puntos:
+          - { p: 10, q: 70, label: "E₁", pLabel: "P₁", qLabel: "Q₁", dx: 22, dy: 5 }
+          - { p: 12, q: 60, label: "E₂", pLabel: "P₂", qLabel: "Q₂", dx: -4, dy: -16 }
   - titulo: "Indicadores macro: PIB real, deflactor y distribución"
     unidad: 7
     contenido: "Para separar precios de cantidades hay dos índices. El <strong>IPC</strong> mide el precio de una cesta fija de consumo; el <strong>deflactor del PIB</strong> mide el precio de todo lo que produce el país. Relación clave: <strong>deflactor = (PIB nominal ÷ PIB real) × 100</strong>, y de ahí, PIB real = PIB nominal ÷ deflactor × 100.<br><br>El PIB se puede calcular por tres métodos equivalentes (producción, gasto y renta). Para comparar entre países se usa el <strong>PIB per cápita</strong> (PIB ÷ población), mejor aún ajustado por paridad de poder adquisitivo.<br><br>El mercado laboral se mide con la EPA: <strong>tasa de paro</strong> = parados ÷ activos × 100 y <strong>tasa de actividad</strong> = activos ÷ población de 16 o más años × 100. Estos indicadores miden cantidades, no bienestar: un PIB alto puede convivir con mucha desigualdad."
   - titulo: "AD-AS, ciclos, crecimiento y desigualdad"
     unidad: 8
     contenido: "El modelo AD-AS tiene tres curvas: <strong>AD</strong> (gasto total, pendiente negativa), <strong>SRAS</strong> (oferta de corto plazo, pendiente positiva) y <strong>LRAS</strong> (oferta de largo plazo, vertical en la <em>producción potencial</em>). Un <strong>shock de demanda</strong> mueve P y Y en el mismo sentido; un <strong>shock de oferta negativo</strong> los mueve en sentidos opuestos (estanflación: menos producción y más precios).<br><br>A largo plazo, lo que importa es el <strong>crecimiento</strong> de la producción potencial, que según el <strong>modelo de Solow</strong> depende del capital, el trabajo y, sobre todo, de la <strong>productividad total de los factores</strong> (la tecnología). Conviene distinguir <strong>crecimiento</strong> (más PIB per cápita) de <strong>desarrollo</strong> (más bienestar, medido con el IDH).<br><br>La <strong>distribución</strong> de la renta se representa con la <strong>curva de Lorenz</strong> y se resume en el <strong>índice de Gini</strong> (entre 0 = igualdad total y 1 = desigualdad máxima): cuanto más se aleja la curva de la diagonal, mayor es el Gini."
+    grafico:
+      tipo: xy
+      caption: "Un shock de oferta negativo desplaza la SRAS hacia arriba: la producción baja de Y* a Y₂ y los precios suben de P₁ a P₂ (estanflación). La LRAS marca la producción potencial."
+      props:
+        id: "r-e2a-adas-estanflacion"
+        titulo: "AD-AS: shock de oferta negativo y estanflación"
+        desc: "Con la AD fija, la SRAS se desplaza hacia arriba y el equilibrio pasa a una producción menor, a la izquierda de la LRAS, con precios más altos."
+        xMax: 100
+        yMax: 105
+        ejeX: "Producción real (Y)"
+        ejeY: "Nivel de precios (P)"
+        simboloX: "Y"
+        simboloY: "P"
+        series:
+          - { label: "LRAS", color: "ink", puntos: [[60, 8], [60, 95]] }
+          - { label: "SRAS₁", color: "mustard", tenue: true, puntos: [[15, 14], [88, 72.4]] }
+          - { label: "SRAS₂", color: "mustard", puntos: [[15, 32], [88, 90.4]] }
+          - { label: "AD", color: "terra", puntos: [[12, 98], [88, 22]] }
+        puntos:
+          - { x: 60, y: 50, label: "E₁", xLabel: "Y*", yLabel: "P₁", dx: 8, dy: 30 }
+          - { x: 50, y: 60, label: "E₂", xLabel: "Y₂", yLabel: "P₂", dx: -4, dy: -16 }
 ejemplos_resueltos:
   - enunciado: "<strong>Elasticidad por el método del arco.</strong> El precio sube de 10 € a 12 € y la cantidad demandada baja de 100 a 80 unidades. Calcula la elasticidad-precio por el método del punto medio y clasifícala."
     desarrollo: "El método del arco divide entre la media de los dos valores.<br><strong>1. Variación % de la cantidad:</strong> (80 − 100) ÷ ((100 + 80) ÷ 2) = −20 ÷ 90 = −0,2222 = <strong>−22,22 %</strong>.<br><strong>2. Variación % del precio:</strong> (12 − 10) ÷ ((10 + 12) ÷ 2) = 2 ÷ 11 = 0,1818 = <strong>+18,18 %</strong>.<br><strong>3. Elasticidad:</strong> Ep = 22,22 % ÷ 18,18 % = <strong>1,22</strong> (en valor absoluto).<br><strong>4. Conclusión:</strong> como 1,22 es mayor que 1, la demanda es <strong>elástica</strong>. La ventaja del método del arco es que da el mismo valor tanto si el precio sube de 10 a 12 como si baja de 12 a 10."
-  - enunciado: "<strong>Excedente del consumidor y peso muerto.</strong> En un mercado, el precio máximo que los consumidores estarían dispuestos a pagar es 20 €, el precio de equilibrio es 8 € y se venden 60 unidades. Calcula el excedente del consumidor. Después, un impuesto de 3 €/unidad reduce la cantidad a 40: calcula el peso muerto."
-    desarrollo: "<strong>1. Excedente del consumidor (triángulo):</strong> base = cantidad = 60; altura = 20 − 8 = 12 €.<br>EC = (base × altura) ÷ 2 = (60 × 12) ÷ 2 = <strong>360 €</strong>.<br><strong>2. Peso muerto del impuesto (triángulo):</strong> el impuesto unitario es 3 € y la cantidad cae de 60 a 40, es decir, 20 unidades menos.<br>Peso muerto = (impuesto × reducción de cantidad) ÷ 2 = (3 × 20) ÷ 2 = <strong>30 €</strong>.<br>Ese peso muerto es bienestar que se pierde: intercambios que eran beneficiosos y que el impuesto impide que ocurran."
+    grafico:
+      tipo: mercado
+      caption: "El precio sube de 10 € a 12 € y la cantidad baja de 100 a 80. Por el punto medio: −22,22 % ÷ 18,18 % = 1,22 en valor absoluto, demanda elástica."
+      props:
+        id: "r-e2a-elasticidad-arco"
+        titulo: "Demanda entre 10 y 12 euros (método del arco)"
+        desc: "Recta de demanda que pasa por 100 unidades a 10 euros y 80 unidades a 12 euros."
+        pMax: 16
+        qMax: 320
+        curvas:
+          - { tipo: "D", q0: 200, m: -10, pDe: 4, pA: 14, label: "D" }
+        puntos:
+          - { p: 10, q: 100, label: "A", pLabel: "10", qLabel: "100" }
+          - { p: 12, q: 80, label: "B", pLabel: "12", qLabel: "80" }
+  - enunciado: "<strong>Excedente del consumidor y peso muerto.</strong> En un mercado, el precio máximo que los consumidores estarían dispuestos a pagar es 20 €, el precio de equilibrio es 8 € y se venden 60 unidades. Calcula el excedente del consumidor. Después, un impuesto de 6 €/unidad reduce la cantidad a 40: calcula el peso muerto."
+    desarrollo: "<strong>1. Excedente del consumidor (triángulo):</strong> base = cantidad = 60; altura = 20 − 8 = 12 €.<br>EC = (base × altura) ÷ 2 = (60 × 12) ÷ 2 = <strong>360 €</strong>.<br><strong>2. Peso muerto del impuesto (triángulo):</strong> el impuesto unitario es 6 € y la cantidad cae de 60 a 40, es decir, 20 unidades menos.<br>Peso muerto = (impuesto × reducción de cantidad) ÷ 2 = (6 × 20) ÷ 2 = <strong>60 €</strong>.<br>Ese peso muerto es bienestar que se pierde: intercambios que eran beneficiosos y que el impuesto impide que ocurran."
+    grafico:
+      tipo: xy
+      caption: "La demanda parte de 20 € (lo máximo que se pagaría) y el precio de equilibrio es 8 € con 60 unidades: el excedente del consumidor es el triángulo 60 × 12 ÷ 2 = 360 €."
+      props:
+        id: "r-e2a-excedente-consumidor"
+        titulo: "Excedente del consumidor"
+        desc: "Recta de demanda que va de 20 euros con cantidad cero hasta 8 euros con 60 unidades. El triángulo entre la demanda y el precio de 8 euros es el excedente del consumidor, de 360 euros."
+        xMax: 100
+        yMax: 24
+        ejeX: "Cantidad"
+        ejeY: "Precio (€)"
+        simboloX: "Q"
+        simboloY: "P"
+        xTicks: [20, 40, 80]
+        yTicks: [4, 12, 16, 20]
+        areas:
+          - { puntos: [[0, 20], [60, 8], [0, 8]], color: "teal" }
+        series:
+          - { label: "D", color: "terra", puntos: [[0, 20], [80, 4]] }
+        puntos:
+          - { x: 60, y: 8, label: "E", xLabel: "60", yLabel: "8", dx: 12, dy: -10 }
+        notas:
+          - { x: 3, y: 10.5, texto: "EC = 60 × 12 ÷ 2 = 360 €", color: "teal" }
   - enunciado: "<strong>Deflactor y crecimiento real.</strong> El PIB nominal de un país pasa de 1.000 (año 1) a 1.200 (año 2). El deflactor del PIB es 100 en el año 1 y 110 en el año 2. Calcula el PIB real del año 2 y el crecimiento real de la economía."
     desarrollo: "<strong>1. PIB real del año 2:</strong> PIB real = (PIB nominal ÷ deflactor) × 100 = (1.200 ÷ 110) × 100 = <strong>1.090,9</strong>.<br><strong>2. PIB real del año 1:</strong> (1.000 ÷ 100) × 100 = 1.000.<br><strong>3. Crecimiento real:</strong> (1.090,9 − 1.000) ÷ 1.000 × 100 = <strong>9,1 %</strong>.<br><strong>Lectura:</strong> el PIB nominal creció un 20 %, pero buena parte fue inflación (el deflactor subió un 10 %). El crecimiento real, lo que de verdad se produjo más, fue solo del 9,1 %."
+    grafico:
+      tipo: xy
+      caption: "El PIB nominal crece un 20 % (de 1.000 a 1.200), pero el real solo un 9,1 % (de 1.000 a 1.090,9) porque el deflactor sube un 10 %."
+      props:
+        id: "r-e2a-pib-real-deflactor"
+        titulo: "PIB nominal y PIB real en los años 1 y 2"
+        desc: "Cuatro columnas: en el año 1, PIB nominal y real de 1.000; en el año 2, PIB nominal de 1.200 y PIB real de 1.090,9."
+        xMax: 11
+        yMax: 1500
+        ejeX: "Año"
+        ejeY: "PIB"
+        xTicks: [2.25, 6.25]
+        xTickLabels: ["Año 1", "Año 2"]
+        yTicks: [500, 1000]
+        areas:
+          - { puntos: [[1, 0], [2.2, 0], [2.2, 1000], [1, 1000]], color: "terra", fuerte: true }
+          - { puntos: [[2.3, 0], [3.5, 0], [3.5, 1000], [2.3, 1000]], color: "teal", fuerte: true }
+          - { puntos: [[5, 0], [6.2, 0], [6.2, 1200], [5, 1200]], color: "terra", fuerte: true }
+          - { puntos: [[6.3, 0], [7.5, 0], [7.5, 1090.9], [6.3, 1090.9]], color: "teal", fuerte: true }
+        notas:
+          - { x: 1.6, y: 1050, texto: "1 000", ancla: "middle" }
+          - { x: 2.9, y: 1050, texto: "1 000", ancla: "middle" }
+          - { x: 5.6, y: 1250, texto: "1 200", ancla: "middle" }
+          - { x: 6.9, y: 1140, texto: "1 090,9", ancla: "middle" }
+          - { x: 8, y: 1300, texto: "PIB nominal: +20 %", color: "terra" }
+          - { x: 8, y: 1170, texto: "PIB real: +9,1 %", color: "teal" }
   - enunciado: "<strong>Elasticidad cruzada e ingreso.</strong> Cuando el precio del té sube un 10 %, la demanda de café aumenta un 5 %. (a) Calcula la elasticidad cruzada y di qué relación tienen. (b) Por otro lado, el café baja su precio de 50 a 45 € y sus ventas pasan de 200 a 260: comprueba qué pasa con el ingreso."
     desarrollo: "<strong>(a) Elasticidad cruzada:</strong> Exc = var. % cantidad de café ÷ var. % precio del té = +5 % ÷ +10 % = <strong>+0,5</strong>.<br>Como es positiva, el té y el café son <strong>bienes sustitutivos</strong> (al encarecerse el té, la gente compra más café).<br><strong>(b) Elasticidad-precio e ingreso del café:</strong><br>Var. % precio = (45 − 50) ÷ 50 = −10 %; var. % cantidad = (260 − 200) ÷ 200 = +30 %; Ep = 30 ÷ 10 = <strong>3 → elástica</strong>.<br>Ingreso antes = 50 × 200 = 10.000 €; ingreso después = 45 × 260 = 11.700 €. El ingreso <strong>sube</strong> 1.700 €, coherente con que en demanda elástica bajar el precio aumenta el ingreso."
+    grafico:
+      tipo: xy
+      caption: "El café baja de 50 € a 45 € y las ventas suben de 200 a 260 (Ep = 3, elástica): el ingreso pasa de 10.000 € a 11.700 €, 1.700 € más."
+      props:
+        id: "r-e2a-ingreso-cafe"
+        titulo: "Ingreso del café antes y después de bajar el precio"
+        desc: "Dos rectángulos: antes, 200 unidades a 50 euros (10.000 euros); después, 260 unidades a 45 euros (11.700 euros). El segundo es mayor."
+        xMax: 330
+        yMax: 62
+        ejeX: "Unidades vendidas"
+        ejeY: "Precio (€)"
+        simboloX: "Q"
+        simboloY: "P"
+        yTicks: [20, 40]
+        areas:
+          - { puntos: [[0, 0], [200, 0], [200, 50], [0, 50]], color: "terra" }
+          - { puntos: [[0, 0], [260, 0], [260, 45], [0, 45]], color: "mustard" }
+        series:
+          - { label: "D", color: "ink", puntos: [[140, 55], [290, 42.5]] }
+        puntos:
+          - { x: 200, y: 50, label: "A", xLabel: "200", yLabel: "50", dx: 12, dy: -10 }
+          - { x: 260, y: 45, label: "B", xLabel: "260", yLabel: "45", dx: 12, dy: -10 }
+        notas:
+          - { x: 8, y: 54, texto: "Antes: 50 × 200 = 10 000 €" }
+          - { x: 8, y: 20, texto: "Después: 45 × 260 = 11 700 €", color: "mustard" }
 ejercicios:
   - enunciado: "Una empresa vende 1.000 unidades a 20 €. Si sube el precio a 22 €, las ventas bajan a 980 unidades. Calcula la elasticidad, di si es elástica o inelástica y comprueba qué pasa con el ingreso total."
     solucion: "Var. % cantidad = (980 − 1.000) ÷ 1.000 = −2 %.<br>Var. % precio = (22 − 20) ÷ 20 = +10 %.<br>Elasticidad = 2 % ÷ 10 % = <strong>0,2 → inelástica</strong> (menor que 1).<br>Ingreso antes = 1.000 × 20 = 20.000 €. Ingreso después = 980 × 22 = 21.560 €.<br>El ingreso total <strong>aumenta</strong> (de 20.000 a 21.560 €), coherente con que en demanda inelástica subir el precio sube el ingreso."

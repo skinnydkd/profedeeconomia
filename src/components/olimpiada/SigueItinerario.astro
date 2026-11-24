@@ -1,0 +1,69 @@
+---
+/**
+ * Foot of an Olimpiada ficha or text: what goes with it (the text that applies
+ * the block, the ficha behind a text, the question bank) and the previous and
+ * next piece, so the section reads as an itinerary instead of loose pages.
+ */
+interface Enlace { label: string; title: string; href: string; }
+interface Props {
+  locale: 'es' | 'ca';
+  anterior?: Enlace;
+  siguiente?: Enlace;
+  relacionados: Enlace[];
+  volver: { label: string; href: string };
+}
+const { locale, anterior, siguiente, relacionados, volver } = Astro.props;
+const copy = {
+  es: { sigue: 'Sigue con este bloque', anterior: 'Anterior', siguiente: 'Siguiente', nav: 'Itinerario de la Olimpiada' },
+  ca: { sigue: 'Continua amb este bloc', anterior: 'Anterior', siguiente: 'Següent', nav: "Itinerari de l'Olimpíada" },
+}[locale];
+---
+<nav class="itinerario" aria-label={copy.nav}>
+  {relacionados.length > 0 && (
+    <div class="itinerario__rel">
+      <h2>{copy.sigue}</h2>
+      <ul>
+        {relacionados.map((r) => (
+          <li><span class="itinerario__tipo">{r.label}</span> <a href={r.href}>{r.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  )}
+  <div class="itinerario__pasos">
+    {anterior ? (
+      <a class="itinerario__paso" href={anterior.href} rel="prev">
+        <span class="itinerario__tipo">← {copy.anterior}</span>
+        <span class="itinerario__titulo">{anterior.title}</span>
+      </a>
+    ) : <span />}
+    {siguiente && (
+      <a class="itinerario__paso itinerario__paso--sig" href={siguiente.href} rel="next">
+        <span class="itinerario__tipo">{copy.siguiente} →</span>
+        <span class="itinerario__titulo">{siguiente.title}</span>
+      </a>
+    )}
+  </div>
+  <p class="itinerario__volver"><a href={volver.href}>{volver.label}</a></p>
+</nav>
+
+<style>
+  .itinerario { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); font-family: var(--font-sans); }
+  .itinerario__rel h2 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 500; margin: 0 0 0.7rem; }
+  .itinerario__rel ul { list-style: none; padding: 0; margin: 0 0 1.75rem; }
+  .itinerario__rel li { padding: 0.55rem 0; border-bottom: 1px solid var(--color-line-soft); line-height: 1.45; }
+  .itinerario__tipo { font-size: 0.85rem; color: var(--color-ink-mute); }
+  .itinerario a { color: var(--color-terra-ink); text-decoration: none; font-weight: 500; }
+  .itinerario a:hover { text-decoration: underline; }
+  .itinerario__pasos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .itinerario__paso {
+    display: flex; flex-direction: column; gap: 0.25rem; min-height: 44px;
+    padding: 0.9rem 1rem; border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-paper);
+  }
+  .itinerario__paso:hover { border-color: var(--color-terra); text-decoration: none; }
+  .itinerario__paso:hover .itinerario__titulo { text-decoration: underline; }
+  .itinerario__paso--sig { text-align: right; }
+  .itinerario__titulo { font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-ink); line-height: 1.3; }
+  .itinerario__volver { margin: 1.5rem 0 0; }
+  @media (max-width: 560px) { .itinerario__pasos { grid-template-columns: 1fr; } .itinerario__paso--sig { text-align: left; } }
+  @media print { .itinerario { display: none; } }
+</style>

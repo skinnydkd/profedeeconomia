@@ -36,6 +36,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import VANTimeline from '@components/diagrams/VANTimeline.astro';
 import CascadaFinanciacion from '@components/diagrams/CascadaFinanciacion.astro';
@@ -212,6 +213,44 @@ VAN = -18.000
    - VAN = 23.733,91 − 18.000 = **+5.733,91 €**
 4. **Decisión**: VAN > 0 y PayBack < 4 años. El proyecto se acepta: a la rentabilidad exigida del 8 %, la furgoneta genera 5.734 € de valor adicional. La TIR estará claramente por encima del 8 %: un cálculo iterativo da un 20,75 %.
 
+<Diagram caption="Flujos de caja acumulados (el año 4 incluye 3.000 € de valor residual). La línea cruza la inversión de 18.000 € a mitad del tercer año: PayBack ≈ 2,77 años.">
+  <GraficoXY id="g-payback-furgoneta" titulo="Plazo de recuperación de la furgoneta" desc="Flujo de caja acumulado de la furgoneta: 6.500 euros al final del año 1, 13.000 al del año 2, 19.500 al del año 3 y 29.000 al del año 4, con el valor residual. Cruza la inversión de 18.000 euros a los 2,77 años."
+    xMax={5.5} yMax={34000} ejeX="Años desde la compra" ejeY="Euros recuperados" simboloX="t" simboloY="€"
+    xTicks={[1, 2, 4]} yTicks={[10000, 30000]} xTickLabels={["1", "2", "4"]}
+    series={[
+      { label: "Acumulado", color: "teal", puntos: [[0, 0], [1, 6500], [2, 13000], [3, 19500], [4, 29000]], dy: -4 },
+      { label: "Inversión", color: "terra", puntos: [[0, 18000], [4, 18000]], dy: 18 },
+    ]}
+    puntos={[
+      { x: 2.77, y: 18000, label: "PayBack", xLabel: "2,77", yLabel: "18 000", dx: -88, dy: -14 },
+      { x: 1, y: 6500, guias: false },
+      { x: 2, y: 13000, guias: false },
+      { x: 3, y: 19500, guias: false },
+      { x: 4, y: 29000, guias: false },
+    ]}
+    notas={[
+      { x: 1.08, y: 4300, texto: "6 500" },
+      { x: 2.08, y: 11000, texto: "13 000" },
+      { x: 3.1, y: 15800, texto: "19 500", color: "teal" },
+      { x: 4, y: 31000, texto: "29 000", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El VAN de la furgoneta para cada tasa de descuento. Con la tasa exigida (8 %) vale 5.734 €; la curva llega a cero en el 20,75 %, que es la TIR. Mientras k sea menor que la TIR, el VAN es positivo.">
+  <GraficoXY id="g-van-furgoneta" titulo="VAN de la furgoneta según la tasa de descuento" desc="El VAN baja desde 11.000 euros con una tasa del 0 % hasta cero con una tasa del 20,75 %, que es la TIR. Con la tasa exigida del 8 %, el VAN es de 5.734 euros."
+    xMax={26} yMax={13000} ejeX="Tasa de descuento k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[5, 15]} yTicks={[5000, 10000]} xTickLabels={["5 %", "15 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 11000], [1, 10245.72], [2, 9521.77], [3, 8826.6], [4, 8158.73], [5, 7516.79], [6, 6899.47], [7, 6305.56], [8, 5733.91], [9, 5183.45], [10, 4653.17], [11, 4142.09], [12, 3649.32], [13, 3174.02], [14, 2715.37], [15, 2272.62], [16, 1845.05], [17, 1431.98], [18, 1032.77], [19, 646.81], [20, 273.53], [20.75, 0]], dx: 12, dy: 6 },
+    ]}
+    puntos={[
+      { x: 8, y: 5733.91, label: "k = 8 %", xLabel: "8 %", yLabel: "5 734", dx: 12, dy: -12 },
+      { x: 20.75, y: 0, label: "TIR", xLabel: "20,75 %", dx: -14, dy: -16 },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <SolvedExercise number="9.2" title="Coste real de un préstamo: TAE de una financiación al comercio">
@@ -239,6 +278,25 @@ b) ¿Cuál es la real más barata?
    - Sobrecoste sobre el precio del equipo: 2.640 € (un coste total del 22 % en 4 años, con una TAE de alrededor del 11,5 %).
 3. **Comparación**: la oferta del banco resulta **960 € más barata**, pese al titular publicitario *«0 % interés»* de la del proveedor.
 4. **Lección práctica**: el *0 % interés* es a menudo una etiqueta engañosa. Lo que importa es el **coste total** o, mejor, la **TAE** —Tasa Anual Equivalente— que la ley obliga a publicitar en España precisamente para hacer comparables ofertas con estructuras distintas de comisiones, seguros y plazos. Antes de firmar cualquier financiación, exige siempre la TAE; si el comercial duda en darla, hay motivos para sospechar.
+
+<Diagram caption="Pagos acumulados de cada oferta. Las dos tienen cuota mensual de 285 € (la B, 250 € más 35 € de seguro), así que las líneas son paralelas: la distancia que las separa es la comisión de apertura de 960 €.">
+  <GraficoXY id="g-coste-prestamos" titulo="Pagos acumulados de las ofertas A y B" desc="Pagos acumulados a lo largo de 48 meses. La oferta A suma 13.680 euros con cuotas de 285. La oferta B tiene también cuotas de 285 (250 más 35 de seguro) pero empieza con 960 euros de comisión de apertura y suma 14.640. El equipo cuesta 12.000 euros."
+    xMax={58} yMax={17000} ejeX="Meses" ejeY="Euros pagados" simboloX="m" simboloY="€"
+    xTicks={[12, 24, 36]} yTicks={[960, 6000, 12000]}
+    series={[
+      { label: "Oferta A", color: "teal", puntos: [[0, 0], [48, 13680]], dy: 14 },
+      { label: "Oferta B", color: "terra", puntos: [[0, 960], [48, 14640]], dy: -2 },
+      { label: "Precio del equipo", color: "ink", tenue: true, puntos: [[0, 12000], [48, 12000]], dy: 30 },
+    ]}
+    puntos={[
+      { x: 48, y: 13680, xLabel: "48", yLabel: "13 680", guias: true, label: "", dx: 0, dy: 0 },
+      { x: 48, y: 14640, yLabel: "14 640", guias: true },
+    ]}
+    notas={[
+      { x: 2, y: 16000, texto: "Las cuotas son iguales: la diferencia es la comisión de 960 €" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -283,6 +341,27 @@ El cálculo iterativo exacto daría una TIR del **14,96 %**; la interpolación l
 
 4. **Decisión**: la TIR estimada (≈ 15 %) supera con holgura la tasa mínima exigida del 12 %. **Se acepta** la inversión. Equivale a decir que el proyecto genera 3 puntos porcentuales de rentabilidad anual por encima del coste de oportunidad del autónomo.
 5. **Lección práctica**: la TIR es útil precisamente cuando se quiere comparar el proyecto con alternativas expresadas en porcentaje (depósito al 3 %, deuda pública al 3,5 %, fondo indexado al 7 %). La interpolación lineal entre dos VAN de signo opuesto es el método de cálculo manual estándar antes de las hojas de cálculo.
+
+<Diagram caption="La curva VAN(k) del equipo de iluminación (terracota) y la recta de la interpolación (discontinua), que une el VAN al 10 % con el del 20 % (−939 €): como la curva es convexa, la recta corta el eje algo más a la derecha (15,4 %) que la TIR exacta (14,96 %).">
+  <GraficoXY id="g-van-audiovisual" titulo="VAN del equipo de iluminación según la tasa de descuento" desc="El VAN baja desde 4.000 euros con una tasa del 0 % hasta cero con la TIR exacta del 14,96 %. Con una tasa del 10 % vale 1.095 euros. Con una tasa del 20 % es de menos 939 euros. La recta que une el VAN al 10 % con el VAN al 20 % corta el eje en el 15,4 %, algo por encima de la TIR real."
+    xMax={24} yMax={4800} yMin={-1200} ejeX="Tasa de descuento k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[5]} yTicks={[2000, 4000]} xTickLabels={["5 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 4000], [1, 3656.88], [2, 3327.05], [3, 3009.84], [4, 2704.63], [5, 2410.83], [6, 2127.87], [7, 1855.24], [8, 1592.44], [9, 1339.02], [10, 1094.53], [11, 858.56], [12, 630.72], [13, 410.65], [14, 197.99], [14.96, 0], [15, -7.58], [16, -206.37], [17, -398.68], [18, -584.78], [19, -764.95], [20, -939.43]], dx: 12, dy: -10 },
+      { color: "ink", tenue: true, puntos: [[10, 1094.53], [20, -939.42]] },
+    ]}
+    puntos={[
+      { x: 10, y: 1094.53, label: "k = 10 %", xLabel: "10 %", yLabel: "1 095", dx: -72, dy: 22 },
+      { x: 14.96, y: 0, guias: false },
+      { x: 15.38, y: 0, guias: false },
+      { x: 20, y: -939.42, label: "k = 20 %", xLabel: "20 %", yLabel: "−939", dx: 12, dy: 4 },
+    ]}
+    notas={[
+      { x: 15.3, y: 2300, texto: "TIR exacta: 14,96 %", color: "terra" },
+      { x: 15.3, y: 1650, texto: "Interpolación: 15,4 %" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -427,6 +506,22 @@ La pregunta de cuánta deuda y cuánto capital propio conviene tener es uno de l
 - **Máximo posible de deuda.** Aprovecha el efecto fiscal (los intereses son deducibles) y el menor coste de la deuda. Pero aumenta el riesgo de quiebra ante caídas de ingresos.
 
 La práctica intermedia es lo que se conoce como **estructura óptima de capital**: la mezcla de deuda y capital propio que minimiza el coste medio ponderado del capital (*WACC*) mientras mantiene la empresa solvente. Depende del sector (eléctricas pueden soportar más deuda; tecnológicas, menos), del ciclo económico y del riesgo del propio proyecto.
+
+<Diagram caption="Esquema de la estructura óptima de capital: al principio la deuda abarata la financiación; pasado cierto punto, el riesgo de quiebra la encarece. La mezcla que minimiza el coste medio ponderado (WACC) es la óptima. No usa datos reales.">
+  <GraficoXY id="g-estructura-optima" titulo="Coste medio ponderado del capital según el peso de la deuda" desc="Esquema sin cifras: el coste medio ponderado del capital forma una U. Con solo capital propio es alto; baja al añadir deuda barata hasta un mínimo, la estructura óptima, y vuelve a subir cuando el riesgo de quiebra encarece toda la financiación."
+    xMax={112} yMax={90} ejeX="Peso de la deuda en la financiación" ejeY="Coste medio ponderado (WACC)"
+    series={[
+      { label: "WACC", color: "terra", puntos: [[0, 72.81], [5, 66.25], [10, 60.31], [15, 55], [20, 50.31], [25, 46.25], [30, 42.81], [35, 40], [40, 37.81], [45, 36.25], [50, 35.31], [55, 35], [60, 35.31], [65, 36.25], [70, 37.81], [75, 40], [80, 42.81], [85, 46.25], [90, 50.31], [95, 55], [100, 60.31]] },
+    ]}
+    puntos={[
+      { x: 55, y: 35, label: "Estructura óptima", dx: -62, dy: 34 },
+    ]}
+    notas={[
+      { x: 1, y: 84, texto: "Solo capital propio: coste alto" },
+      { x: 110, y: 84, texto: "Demasiada deuda: riesgo de quiebra", ancla: "end" },
+    ]}
+  />
+</Diagram>
 
 Una regla práctica para pymes: **la deuda no debería superar el 60-65 % del balance**. Por encima, el coste financiero se come los beneficios; por debajo, puede quedar margen para endeudarse más, pero solo compensa si la rentabilidad económica supera el coste de la deuda.
 

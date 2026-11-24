@@ -1,0 +1,212 @@
+---
+/**
+ * Data-driven supply & demand chart. Where OfertaDemanda.astro is one fixed
+ * drawing, this one plots whatever the unit is explaining: a demand table, a
+ * move along a curve, a shift with the old curve left faint, a price ceiling
+ * with its shortage. Curves are written as the book writes them, Q = q0 + m·P.
+ *
+ *   <MercadoGrafico id="cine" titulo="…" desc="…" pMax={14} qMax={40000}
+ *     curvas={[{ tipo: 'D', q0: 60000, m: -4000, label: 'D' }]}
+ *     puntos={[{ p: 8, q: 18000, pLabel: '8', qLabel: '18 000' }]} />
+ */
+import { getLocale } from '@/i18n/locale';
+import { cifra, tramoVisible } from '@/lib/diagrams/recta';
+
+interface Curva {
+  tipo: 'D' | 'O';
+  /** Q = q0 + m·P */
+  q0: number;
+  m: number;
+  label: string;
+  /** The curve before a shift: drawn faint and dashed. */
+  tenue?: boolean;
+  /** Draw only between these two prices, so a schematic curve stops short of the axes. */
+  pDe?: number;
+  pA?: number;
+}
+interface Punto {
+  p: number;
+  q: number;
+  label?: string;
+  /** Text printed on each axis at the end of the guide lines. */
+  pLabel?: string;
+  qLabel?: string;
+  /** Nudge the point label (px) when it would sit on a curve. */
+  dx?: number;
+  dy?: number;
+}
+interface Flecha {
+  de: { p: number; q: number };
+  a: { p: number; q: number };
+  /** Push the arrow sideways (px) so it runs beside a curve instead of on it. */
+  despl?: number;
+}
+
+interface Props {
+  /** Unique on the page: names the SVG title/desc for screen readers. */
+  id: string;
+  titulo: string;
+  desc: string;
+  pMax: number;
+  qMax: number;
+  curvas: Curva[];
+  puntos?: Punto[];
+  flechas?: Flecha[];
+  /** Numbered ticks on each axis. */
+  pTicks?: number[];
+  qTicks?: number[];
+  /** A legal price drawn across the plot (ceiling or floor). */
+  precio?: { p: number; label: string };
+  /** A horizontal gap at a price: shortage or surplus between two quantities. */
+  tramo?: { p: number; q1: number; q2: number; label: string };
+  ejeP?: string;
+  ejeQ?: string;
+}
+
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    cantidad: 'CANTIDAD',
+    precio: 'PRECIO',
+  },
+  ca: {
+    cantidad: 'QUANTITAT',
+    precio: 'PREU',
+  },
+} as const;
+const t = COPY[locale];
+
+const {
+  id, titulo, desc, pMax, qMax, curvas,
+  puntos = [], flechas = [], pTicks = [], qTicks = [], precio, tramo,
+  ejeP = t.precio, ejeQ = t.cantidad,
+} = Astro.props;
+
+// Plot box inside the 800×500 canvas shared by the other diagrams.
+const X0 = 90, X1 = 720, Y0 = 420, Y1 = 50;
+const x = (q: number) => X0 + (q / qMax) * (X1 - X0);
+const y = (p: number) => Y0 - (p / pMax) * (Y0 - Y1);
+
+const rectas = curvas.flatMap((c) => {
+  const tr = tramoVisible(c.q0, c.m, pMax, qMax);
+  if (!tr) return [];
+  if (c.pDe !== undefined && c.pDe > tr.p1) { tr.p1 = c.pDe; tr.q1 = c.q0 + c.m * c.pDe; }
+  if (c.pA !== undefined && c.pA < tr.p2) { tr.p2 = c.pA; tr.q2 = c.q0 + c.m * c.pA; }
+  // The label goes at the end with the larger quantity: bottom right for a
+  // demand, top right for a supply.
+  const fin = tr.q2 >= tr.q1 ? { p: tr.p2, q: tr.q2 } : { p: tr.p1, q: tr.q1 };
+  return [{ ...c, x1: x(tr.q1), y1: y(tr.p1), x2: x(tr.q2), y2: y(tr.p2), lx: x(fin.q) + 10, ly: Math.min(y(fin.p) + (c.tipo === 'D' ? 6 : 2), Y0 - 10) }];
+});
+
+/** Arrows stop short of both ends so they never cover a point. */
+const saetas = flechas.map((f) => {
+  const ax = x(f.de.q), ay = y(f.de.p), bx = x(f.a.q), by = y(f.a.p);
+  const len = Math.hypot(bx - ax, by - ay) || 1;
+  const ux = (bx - ax) / len, uy = (by - ay) / len;
+  const hueco = Math.min(14, len / 4);
+  const ox = -uy * (f.despl ?? 0), oy = ux * (f.despl ?? 0);
+  return { x1: ax + ux * hueco + ox, y1: ay + uy * hueco + oy, x2: bx - ux * hueco + ox, y2: by - uy * hueco + oy };
+});
+---
+<svg class="d-mercado" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
+  <title id={`${id}-title`}>{titulo}</title>
+  <desc id={`${id}-desc`}>{desc}</desc>
+  <defs>
+    <style>
+      .d-mercado .bg { fill: #FBF6EC; }
+      .d-mercado .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-mercado .curva { stroke-width: 2.5; fill: none; }
+      .d-mercado .curva--D { stroke: #C44E2C; }
+      .d-mercado .curva--O { stroke: #D4A24C; }
+      .d-mercado .curva--tenue { stroke-dasharray: 7 6; opacity: 0.5; }
+      .d-mercado .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .d-mercado .tickmark { stroke: #5C4A3D; stroke-width: 1; }
+      .d-mercado .flecha { stroke: #2A1F18; stroke-width: 2; fill: none; }
+      .d-mercado .precio { stroke: #2A1F18; stroke-width: 2; fill: none; }
+      .d-mercado .tramo { stroke: #1F6E6E; stroke-width: 6; fill: none; }
+      .d-mercado .punto { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 2.5; }
+      .d-mercado .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-mercado .axis-label--mid { text-anchor: middle; }
+      .d-mercado .axis-label--end { text-anchor: end; }
+      .d-mercado .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
+      .d-mercado .curve-label--D { fill: #C44E2C; }
+      .d-mercado .curve-label--O { fill: #835F20; }
+      .d-mercado .point-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .d-mercado .tick { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #5C4A3D; }
+      .d-mercado .tick--p { text-anchor: end; }
+      .d-mercado .tick--q { text-anchor: middle; }
+      .d-mercado .nota { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 600; fill: #2A1F18; }
+      .d-mercado .nota--tramo { fill: #1F6E6E; text-anchor: middle; }
+      .d-mercado .nota--precio { text-anchor: end; }
+      /* A cream halo keeps labels readable where a guide or a curve runs behind them. */
+      .d-mercado .point-label, .d-mercado .curve-label, .d-mercado .nota { paint-order: stroke; stroke: #FBF6EC; stroke-width: 5px; stroke-linejoin: round; }
+    </style>
+    <marker id="mg-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+    <marker id="mg-saeta" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#2A1F18"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <line class="axis" x1={X0} y1={Y0} x2="740" y2={Y0} marker-end="url(#mg-arrow)"/>
+  <line class="axis" x1={X0} y1="440" x2={X0} y2="40" marker-end="url(#mg-arrow)"/>
+  <text class="tick tick--p" x="80" y="438">0</text>
+  <text class="axis-label" x="755" y="425">Q</text>
+  <text class="axis-label axis-label--end" x="80" y="35">P</text>
+  <text class="axis-label axis-label--mid" x="405" y="482">{ejeQ}</text>
+  <text class="axis-label axis-label--mid" x="24" y="235" transform="rotate(-90 24 235)">{ejeP}</text>
+
+  {pTicks.map((p) => (
+    <>
+      <line class="tickmark" x1={X0 - 5} y1={y(p)} x2={X0} y2={y(p)}/>
+      <text class="tick tick--p" x={X0 - 9} y={y(p) + 4}>{cifra(p)}</text>
+    </>
+  ))}
+  {qTicks.map((q) => (
+    <>
+      <line class="tickmark" x1={x(q)} y1={Y0} x2={x(q)} y2={Y0 + 5}/>
+      <text class="tick tick--q" x={x(q)} y={Y0 + 20}>{cifra(q)}</text>
+    </>
+  ))}
+
+  {puntos.map((pt) => (
+    <>
+      <line class="guide" x1={x(pt.q)} y1={y(pt.p)} x2={x(pt.q)} y2={Y0}/>
+      <line class="guide" x1={X0} y1={y(pt.p)} x2={x(pt.q)} y2={y(pt.p)}/>
+      {pt.pLabel && <text class="tick tick--p" x={X0 - 9} y={y(pt.p) + 4}>{pt.pLabel}</text>}
+      {pt.qLabel && <text class="tick tick--q" x={x(pt.q)} y={Y0 + 20}>{pt.qLabel}</text>}
+    </>
+  ))}
+
+  {rectas.map((r) => (
+    <>
+      <line class:list={['curva', `curva--${r.tipo}`, r.tenue && 'curva--tenue']} x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2}/>
+      <text class:list={['curve-label', `curve-label--${r.tipo}`]} x={r.lx} y={r.ly}>{r.label}</text>
+    </>
+  ))}
+
+  {precio && (
+    <>
+      <line class="precio" x1={X0} y1={y(precio.p)} x2={X1} y2={y(precio.p)}/>
+      <text class="nota nota--precio" x={X1} y={y(precio.p) - 9}>{precio.label}</text>
+    </>
+  )}
+  {tramo && (
+    <>
+      <line class="tramo" x1={x(tramo.q1)} y1={y(tramo.p)} x2={x(tramo.q2)} y2={y(tramo.p)}/>
+      <text class="nota nota--tramo" x={(x(tramo.q1) + x(tramo.q2)) / 2} y={y(tramo.p) + 22}>{tramo.label}</text>
+    </>
+  )}
+
+  {saetas.map((s) => <line class="flecha" x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2} marker-end="url(#mg-saeta)"/>)}
+
+  {puntos.map((pt) => (
+    <>
+      <circle class="punto" cx={x(pt.q)} cy={y(pt.p)} r="6"/>
+      {pt.label && <text class="point-label" x={x(pt.q) + (pt.dx ?? 12)} y={y(pt.p) + (pt.dy ?? -10)}>{pt.label}</text>}
+    </>
+  ))}
+</svg>

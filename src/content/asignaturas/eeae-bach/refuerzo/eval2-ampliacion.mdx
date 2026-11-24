@@ -27,8 +27,57 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>La regla del 72 y el largo plazo.</strong> Quieres saber en cuánto tiempo se duplica un ahorro a distintos tipos de interés. Aplica la regla del 72 al 6 %, al 4 % y al 8 %, y comprueba el resultado del 6 % calculando el interés compuesto sobre 1.000 € durante esos años."
     desarrollo: "La <strong>regla del 72</strong> estima los años en duplicar un capital dividiendo 72 entre el tipo de interés anual.<br>Al <strong>6 %</strong>: 72 / 6 = <strong>12 años</strong>.<br>Al <strong>4 %</strong>: 72 / 4 = <strong>18 años</strong>.<br>Al <strong>8 %</strong>: 72 / 8 = <strong>9 años</strong>.<br><strong>Comprobación al 6 % en 12 años</strong> con interés compuesto: 1.000 × 1,06 elevado a 12 ≈ 1.000 × 2,012 = <strong>2.012 €</strong>. En efecto, los 1.000 € se han duplicado en 12 años, como anticipaba la regla. Esto explica por qué, en el ahorro a largo plazo, una pequeña diferencia de tipo (del 4 % al 8 %) reduce a la mitad el tiempo de duplicación."
+    grafico:
+      tipo: xy
+      caption: "Capital de 1.000 € a los tipos del 4 %, 6 % y 8 %. Según la regla del 72, se duplica (2.000 €) en 18, 12 y 9 años; con el 6 %, a los 12 años hay 2.012 €."
+      props:
+        id: "r-e2a-regla-72"
+        titulo: "Años en duplicar un capital según el tipo de interés"
+        desc: "Crecimiento de 1.000 euros con interés compuesto al 4, 6 y 8 % durante 18 años. La regla del 72 da el momento en que el capital llega a 2.000 euros: 18 años al 4 %, 12 al 6 % y 9 al 8 %."
+        xMax: 22
+        yMax: 4600
+        ejeX: "Años"
+        ejeY: "Capital (€)"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [3, 6, 15]
+        yTicks: [1000, 3000]
+        series:
+          - { label: "4 %", color: "teal", puntos: [[0, 1000], [1, 1040], [2, 1081.6], [3, 1124.86], [4, 1169.86], [5, 1216.65], [6, 1265.32], [7, 1315.93], [8, 1368.57], [9, 1423.31], [10, 1480.24], [11, 1539.45], [12, 1601.03], [13, 1665.07], [14, 1731.68], [15, 1800.94], [16, 1872.98], [17, 1947.9], [18, 2025.82]] }
+          - { label: "6 %", color: "terra", puntos: [[0, 1000], [1, 1060], [2, 1123.6], [3, 1191.02], [4, 1262.48], [5, 1338.23], [6, 1418.52], [7, 1503.63], [8, 1593.85], [9, 1689.48], [10, 1790.85], [11, 1898.3], [12, 2012.2], [13, 2132.93], [14, 2260.9], [15, 2396.56], [16, 2540.35], [17, 2692.77], [18, 2854.34]] }
+          - { label: "8 %", color: "aubergine", puntos: [[0, 1000], [1, 1080], [2, 1166.4], [3, 1259.71], [4, 1360.49], [5, 1469.33], [6, 1586.87], [7, 1713.82], [8, 1850.93], [9, 1999], [10, 2158.92], [11, 2331.64], [12, 2518.17], [13, 2719.62], [14, 2937.19], [15, 3172.17], [16, 3425.94], [17, 3700.02], [18, 3996.02]] }
+          - { color: "ink", tenue: true, puntos: [[0, 2000], [18, 2000]] }
+        puntos:
+          - { x: 9, y: 2000, xLabel: "9", yLabel: "2 000" }
+          - { x: 12, y: 2000, xLabel: "12" }
+          - { x: 18, y: 2000, xLabel: "18", guias: true }
+        notas:
+          - { x: 1, y: 4150, texto: "Regla del 72: 9, 12 y 18 años" }
   - enunciado: "<strong>Interés simple frente a compuesto a 10 años.</strong> Guardas 1.000 € al 5 % anual durante 10 años. Calcula cuánto tendrías con interés simple y con interés compuesto, y cuánto se debe a que «los intereses generan intereses»."
     desarrollo: "<strong>Interés simple</strong> (5 % de 1.000 = 50 € cada año): 1.000 + 10 × 50 = <strong>1.500 €</strong>.<br><strong>Interés compuesto</strong> (cada año sobre el total acumulado): 1.000 × 1,05 elevado a 10. Como 1,05 elevado a 10 ≈ 1,62889, resulta 1.000 × 1,62889 = <strong>1.628,89 €</strong>.<br><strong>Diferencia:</strong> 1.628,89 − 1.500 = <strong>128,89 €</strong>. Esos casi 129 € adicionales son exactamente el efecto de que cada año los intereses ya ganados también producen intereses. En 10 años la brecha es notable; en 30 o 40 años se dispara, y por eso conviene empezar a ahorrar pronto."
+    grafico:
+      tipo: xy
+      caption: "A los 10 años, 1.000 € al 5 % valen 1.500 € con interés simple y 1.628,89 € con interés compuesto: la diferencia, 128,89 €, son los intereses que generan intereses."
+      props:
+        id: "r-e2a-simple-compuesto"
+        titulo: "Interés simple frente a interés compuesto"
+        desc: "Capital de 1.000 euros al 5 % durante 10 años. Con interés simple crece 50 euros cada año hasta 1.500; con interés compuesto crece cada vez más deprisa hasta 1.628,89 euros."
+        xMax: 12
+        yMax: 1900
+        ejeX: "Años"
+        ejeY: "Capital (€)"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [2, 4, 6, 8]
+        yTicks: [500, 1000]
+        series:
+          - { label: "Compuesto", color: "terra", puntos: [[0, 1000], [0.5, 1024.7], [1, 1050], [1.5, 1075.93], [2, 1102.5], [2.5, 1129.73], [3, 1157.63], [3.5, 1186.21], [4, 1215.51], [4.5, 1245.52], [5, 1276.28], [5.5, 1307.8], [6, 1340.1], [6.5, 1373.19], [7, 1407.1], [7.5, 1441.85], [8, 1477.46], [8.5, 1513.94], [9, 1551.33], [9.5, 1589.64], [10, 1628.89]], dy: -4 }
+          - { label: "Simple", color: "teal", puntos: [[0, 1000], [10, 1500]], dy: 16 }
+        puntos:
+          - { x: 10, y: 1500, xLabel: "10", yLabel: "1 500" }
+          - { x: 10, y: 1628.89, yLabel: "1 629" }
+        notas:
+          - { x: 4.5, y: 1545, texto: "Diferencia: 128,89 €", color: "terra" }
   - enunciado: "<strong>Situar un proyecto en el abanico social.</strong> Una empresa vende yogures en supermercados a precio de mercado, factura y paga impuestos, pero nació para dar empleo digno a personas con discapacidad y reinvierte sus beneficios en esa misión. ¿Es una ONG, una empresa convencional o una empresa social? Justifícalo con las dos preguntas clave."
     desarrollo: "El emprendimiento social no es un cajón cerrado, sino un <strong>abanico continuo</strong>. Para situar un proyecto se hacen dos preguntas:<br><strong>1. ¿De qué vive?</strong> Vende sus productos en el mercado, no depende de donaciones. Eso la aleja de una <strong>ONG</strong> y la acerca a una empresa.<br><strong>2. ¿Cuál es su fin último?</strong> No maximizar el beneficio del dueño, sino una <strong>misión social</strong> (el empleo digno), a la que reinvierte sus beneficios. Eso la aleja de la empresa puramente comercial.<br><strong>Conclusión:</strong> es una <strong>empresa social</strong> (el caso recuerda a La Fageda). El beneficio es el medio; la misión social, el fin. Mide su éxito por dos cosas a la vez: su viabilidad económica y su impacto (personas integradas)."
   - enunciado: "<strong>Diseña el porqué con Sinek.</strong> Vas a presentar tu proyecto de huertos urbanos compartidos. Ordénalo con el círculo dorado de Sinek (porqué, cómo, qué) y explica por qué conviene comunicar de dentro hacia fuera."

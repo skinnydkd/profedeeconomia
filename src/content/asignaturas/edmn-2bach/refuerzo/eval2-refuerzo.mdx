@@ -29,10 +29,76 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una empresa de bolsas de tela tiene costes fijos de 9.000 € al mes. Cada bolsa lleva 7 € de coste variable y se vende a 19 €. Calcula el punto muerto en unidades y comprueba el resultado."
     desarrollo: "<p><strong>Paso 1. Identifica los datos.</strong> CF = 9.000 €; CVu = 7 €; P = 19 €.</p><p><strong>Paso 2. Margen de contribución unitario.</strong> MC = P − CVu = 19 − 7 = <strong>12 €/bolsa</strong> (lo que cada bolsa aporta para cubrir los costes fijos).</p><p><strong>Paso 3. Aplica la fórmula del punto muerto.</strong> Q* = CF ÷ (P − CVu) = 9.000 ÷ 12 = <strong>750 bolsas/mes</strong>.</p><p><strong>Paso 4. Comprueba.</strong> Ingresos = 19 × 750 = 14.250 €. Coste total = 9.000 + (7 × 750) = 9.000 + 5.250 = 14.250 €. Beneficio = 14.250 − 14.250 = <strong>0 €</strong>. Correcto.</p><p><strong>Interpretación:</strong> hay que vender 750 bolsas al mes para no perder dinero; a partir de la bolsa 751 empieza el beneficio.</p>"
+    grafico:
+      tipo: xy
+      caption: "El ingreso total y el coste total se cruzan en 750 bolsas al mes, con 14.250 € en cada uno: ahí el beneficio es cero."
+      props:
+        id: "r-e2r-punto-muerto"
+        titulo: "Punto muerto de la empresa de bolsas de tela"
+        desc: "Ingreso total (19 euros por bolsa), coste total (9.000 euros fijos más 7 por bolsa) y coste fijo. El ingreso y el coste total se cruzan en 750 bolsas al mes, con 14.250 euros: por debajo hay pérdidas y por encima, beneficio."
+        xMax: 1000
+        yMax: 20000
+        ejeX: "Bolsas al mes"
+        ejeY: "Euros al mes"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [250, 500]
+        yTicks: [5000, 9000]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [900, 17100]] }
+          - { label: "CT", color: "terra", puntos: [[0, 9000], [900, 15300]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 9000], [900, 9000]], dy: 14 }
+        puntos:
+          - { x: 750, y: 14250, label: "Q*", xLabel: "750", yLabel: "14 250", dx: -34, dy: -12 }
   - enunciado: "Dos talleres fabrican el mismo mueble. El taller A produce 480 muebles al mes con 6 trabajadores; el taller B produce 700 muebles al mes con 10 trabajadores. ¿Cuál es más productivo por trabajador?"
     desarrollo: "<p><strong>Paso 1. Recuerda la fórmula.</strong> Productividad por trabajador = producción ÷ número de trabajadores.</p><p><strong>Paso 2. Taller A.</strong> 480 ÷ 6 = <strong>80 muebles por trabajador</strong>.</p><p><strong>Paso 3. Taller B.</strong> 700 ÷ 10 = <strong>70 muebles por trabajador</strong>.</p><p><strong>Paso 4. Compara.</strong> 80 > 70, así que el <strong>taller A es más productivo</strong> por trabajador, aunque el taller B fabrique más muebles en total. Producir más no es lo mismo que ser más productivo.</p>"
+    grafico:
+      tipo: xy
+      caption: "El taller A produce 80 muebles por trabajador y el B, 70: el A es más productivo aunque el B fabrique más muebles en total (700 frente a 480)."
+      props:
+        id: "r-e2r-productividad"
+        titulo: "Productividad por trabajador de los talleres A y B"
+        desc: "Dos columnas: el taller A produce 480 muebles con 6 trabajadores, es decir, 80 por trabajador; el taller B produce 700 con 10 trabajadores, es decir, 70 por trabajador."
+        xMax: 10
+        yMax: 100
+        ejeX: "Taller"
+        ejeY: "Muebles por trabajador"
+        xTicks: [2.75, 7.25]
+        xTickLabels: ["Taller A", "Taller B"]
+        yTicks: [20, 40, 60]
+        areas:
+          - { puntos: [[1.5, 0], [4, 0], [4, 80], [1.5, 80]], color: "terra", fuerte: true }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 70], [6, 70]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4, 0], [4, 80], [1.5, 80], [1.5, 0]], color: "terra" }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 70], [6, 70], [6, 0]], color: "teal" }
+        notas:
+          - { x: 2.75, y: 84, texto: "80 por trabajador", ancla: "middle" }
+          - { x: 7.25, y: 74, texto: "70 por trabajador", ancla: "middle" }
+          - { x: 2.75, y: 38, texto: "480 ÷ 6 trabajadores", ancla: "middle" }
+          - { x: 7.25, y: 33, texto: "700 ÷ 10 trabajadores", ancla: "middle" }
   - enunciado: "Una empresa tiene costes fijos de 12.000 € y un coste variable unitario de 8 €. Calcula el coste total y el coste medio si fabrica 3.000 unidades, y vuelve a calcularlos para 6.000 unidades. ¿Qué pasa con el coste medio?"
     desarrollo: "<p><strong>Con 3.000 unidades:</strong></p><ul><li>CT = CF + (CVu × Q) = 12.000 + (8 × 3.000) = 12.000 + 24.000 = <strong>36.000 €</strong>.</li><li>CMe = CT ÷ Q = 36.000 ÷ 3.000 = <strong>12 €/unidad</strong>.</li></ul><p><strong>Con 6.000 unidades:</strong></p><ul><li>CT = 12.000 + (8 × 6.000) = 12.000 + 48.000 = <strong>60.000 €</strong>.</li><li>CMe = 60.000 ÷ 6.000 = <strong>10 €/unidad</strong>.</li></ul><p><strong>Conclusión:</strong> al producir más, el coste medio baja de 12 a 10 €, porque los costes fijos (12.000 €) se reparten entre más unidades. Son las <strong>economías de escala</strong>.</p>"
+    grafico:
+      tipo: xy
+      caption: "El coste medio baja de 12 € con 3.000 unidades a 10 € con 6.000, porque los 12.000 € de costes fijos se reparten entre más unidades; nunca baja del coste variable unitario (8 €)."
+      props:
+        id: "r-e2r-coste-medio"
+        titulo: "Coste medio según las unidades fabricadas"
+        desc: "El coste medio, 12.000 euros fijos repartidos entre las unidades más 8 euros de coste variable, baja de 12 euros con 3.000 unidades a 10 euros con 6.000 y se acerca a los 8 euros del coste variable unitario sin llegar a tocarlos."
+        xMax: 8500
+        yMax: 20
+        ejeX: "Unidades fabricadas"
+        ejeY: "Euros por unidad"
+        simboloX: "Q"
+        xTicks: [1500, 4500, 7500]
+        yTicks: [8, 16]
+        series:
+          - { label: "CMe", color: "terra", puntos: [[1500, 16], [1800, 14.67], [2100, 13.71], [2400, 13], [2700, 12.44], [3000, 12], [3300, 11.64], [3600, 11.33], [3900, 11.08], [4200, 10.86], [4500, 10.67], [4800, 10.5], [5100, 10.35], [5400, 10.22], [5700, 10.11], [6000, 10], [6300, 9.9], [6600, 9.82], [6900, 9.74], [7200, 9.67], [7500, 9.6]], dy: -6 }
+          - { label: "CVu", color: "ink", tenue: true, puntos: [[1500, 8], [7500, 8]], dy: 16 }
+        puntos:
+          - { x: 3000, y: 12, xLabel: "3 000", yLabel: "12" }
+          - { x: 6000, y: 10, xLabel: "6 000", yLabel: "10" }
   - enunciado: "Una empresa contrata a una persona con un salario bruto de 1.700 €/mes. La cotización del trabajador a la Seguridad Social es del 6,50 % y la retención de IRPF aplicada es del 10 %. Las cotizaciones patronales suponen un 30 % del bruto. Calcula el líquido que cobra el trabajador y el coste empresa mensual."
     desarrollo: "<p><strong>Paso 1. Deducciones del trabajador (sobre el bruto de 1.700 €).</strong></p><ul><li>Seguridad Social: 6,50 % × 1.700 = 0,065 × 1.700 = <strong>110,50 €</strong>.</li><li>IRPF: 10 % × 1.700 = 0,10 × 1.700 = <strong>170,00 €</strong>.</li></ul><p><strong>Paso 2. Líquido a percibir.</strong> 1.700 − 110,50 − 170 = <strong>1.419,50 €/mes</strong>.</p><p><strong>Paso 3. Coste empresa.</strong> Cotizaciones patronales = 30 % × 1.700 = 510 €. Coste empresa = bruto + cotización patronal = 1.700 + 510 = <strong>2.210 €/mes</strong>.</p><p><strong>Conclusión:</strong> el trabajador cobra 1.419,50 €, pero a la empresa le cuesta 2.210 €. Tres magnitudes distintas: líquido, bruto y coste empresa.</p>"
 ejercicios:

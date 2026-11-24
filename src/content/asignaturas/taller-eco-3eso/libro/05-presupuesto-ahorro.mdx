@@ -41,6 +41,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Steps from '@components/Steps.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import Presupuesto503020 from '@components/diagrams/Presupuesto503020.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
@@ -181,6 +182,22 @@ Ahorrar "porque sí" es difícil de mantener. Ahorrar **para algo concreto** es 
 
 Por ejemplo: si quieres unos cascos de 60 € y faltan 12 semanas, necesitas apartar **5 € por semana**. Visto así, una meta que parecía lejana se convierte en un gesto pequeño y repetido. Eso es, en el fondo, todo el ahorro: convertir algo grande en muchos pasos pequeños.
 
+<Diagram caption="Ahorrando 5 € cada semana, en 12 semanas se juntan los 60 € de los cascos: una meta que parecía lejana queda en pasos pequeños y repetidos.">
+  <GraficoXY id="g-cascos-ahorro" titulo="Ahorrar para unos cascos de 60 euros" desc="Recta que sube 5 euros cada semana y llega a 60 euros en la semana 12."
+    xMax={14} yMax={70} ejeX="Semanas" ejeY="Ahorro acumulado (€)" simboloY="€"
+    xTicks={[2, 4, 6, 8, 10]} yTicks={[10, 20, 30, 40, 50]}
+    series={[
+      { color: 'terra', puntos: [[0, 0], [12, 60]] },
+    ]}
+    puntos={[
+      { x: 12, y: 60, label: '60 €', xLabel: '12', yLabel: '60' },
+    ]}
+    notas={[
+      { x: 5.2, y: 19, texto: '+5 € cada semana', ancla: 'start' },
+    ]}
+  />
+</Diagram>
+
 <RealExample title="Una paga gestionada: el experimento que cambia la relación con el dinero" source="Banco de España y CNMV, 'Finanzas para Todos' (programa de educación financiera)">
 Los programas de educación financiera del Banco de España y la CNMV insisten en una idea sencilla, y la evidencia disponible apunta en esa dirección: las personas que de jóvenes aprenden a gestionar una paga —decidiendo ellas mismas en qué gastarla y cuánto apartar— suelen llegar a la edad adulta tomando mejores decisiones con su dinero que quienes nunca lo hicieron. No se trata de la cantidad: una paga de 5 € a la semana enseña exactamente lo mismo que una de 50 €. Lo que enseña es el **mecanismo**: que el dinero es limitado, que cada elección tiene un coste (si me compro esto, no me compro aquello) y que apartar una parte hoy permite conseguir algo mayor mañana. Por eso muchas familias dan una paga fija y dejan que el hijo o la hija la administre: equivocarse con 5 € a los 14 años sale muchísimo más barato que equivocarse con una nómina a los 25.
 </RealExample>
@@ -198,6 +215,27 @@ La respuesta es el **interés compuesto**: el dinero genera intereses, esos inte
 
 El problema es que **intuitivamente no se ve**. Como al principio crece poquísimo, la mayoría de jóvenes piensa que no merece la pena ahorrar 5 € a la semana. Y lo dejan para "cuando gane más". Esto explica por qué tantas personas llegan a los 40 años pensando que ya es tarde: no lo es, pero habrían tenido tres veces más si lo hubieran sabido a los 15. Si esta unidad te enseña una sola cosa que cambie tu vida, ojalá sea esta.
 </VuelveAlCaso>
+
+<Diagram caption="Lo que acumulan Ana (desde los 15 años) y Bea (desde los 35) ahorrando 5 € a la semana al 5 % anual, sin inflación ni comisiones. Ana pone 13.000 € de su bolsillo y acaba con unos 55.000 €; Bea pone 7.800 € y llega a unos 17.500 €. La curva de Ana sube despacio al principio y muy deprisa al final.">
+  <GraficoXY id="g-ana-bea" titulo="Ahorrar 5 euros a la semana desde los 15 o desde los 35 años" desc="Dos curvas por edad entre los 15 y los 65 años: la de Ana arranca a los 15 y acaba en unos 55 000 euros; la de Bea arranca a los 35 y acaba en unos 17 500. Las dos crecen despacio al principio y deprisa al final."
+    xMax={72} yMax={60000} ejeX="Edad (años)" ejeY="Dinero acumulado (€)" simboloY="€"
+    xTicks={[15, 25, 35, 45, 55, 65]} yTicks={[10000, 20000, 30000, 40000, 50000]}
+    series={[
+      { color: 'terra', label: 'Ana', puntos: Array.from({ length: 51 }, (_, n) => [15 + n, 5 * (1.05 ** n - 1) / (1.05 ** (1 / 52) - 1)]) },
+      { color: 'teal', label: 'Bea', puntos: Array.from({ length: 31 }, (_, n) => [35 + n, 5 * (1.05 ** n - 1) / (1.05 ** (1 / 52) - 1)]) },
+    ]}
+    puntos={[
+      { x: 65, y: 55754, guias: false },
+      { x: 65, y: 17694, guias: false },
+    ]}
+    notas={[
+      { x: 65, y: 58000, texto: 'unos 55 000 €', ancla: 'end' },
+      { x: 65, y: 21000, texto: 'unos 17 500 €', ancla: 'end' },
+      { x: 16, y: 57500, texto: 'Ana pone 13 000 €', ancla: 'start' },
+      { x: 16, y: 53500, texto: 'Bea pone 7 800 €', ancla: 'start' },
+    ]}
+  />
+</Diagram>
 
 **Pruébalo tú mismo:** introduce un capital inicial, un tipo de interés anual y un número de años para ver cómo crece el dinero con el interés compuesto.
 

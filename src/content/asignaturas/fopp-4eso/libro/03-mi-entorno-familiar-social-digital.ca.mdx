@@ -50,6 +50,7 @@ publicado_en: 2026-05-16
 import Callout from '@components/Callout.astro';
 import RecursosAyuda from '@components/RecursosAyuda.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TriangloBullying from '@components/diagrams/TriangloBullying.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -295,6 +296,25 @@ L'últim saber del Bloc B (B.5) tracta sobre diversitat i igualtat. La idea de f
 ### Bretxa de gènere en STEM: un cas per a discutir en classe
 
 A Espanya, només el **13 %** de l'alumnat d'Enginyeria Informàtica és femení, i la proporció ha **baixat** des del 30 % als anys huitanta (Dades INE 2024). El fenomen no és per capacitat: les xiques obtenen igual o millor nota mitjana en Matemàtiques en la PAU. El problema és d'**expectatives socialitzades**: a les xiques se'ls continua dient de mil formes implícites que la informàtica no és «per a elles». Reconéixer este biaix en vosaltres mateixos —xics i xiques— és la primera defensa per a no reproduir-lo.
+
+<Diagram caption="Dones a Enginyeria Informàtica a Espanya: al voltant del 30 % de l'alumnat als anys huitanta i només el 13 % el 2024 (dades INE). La proporció ha baixat, no pujat.">
+  <GraficoXY id="g-mujeres-informatica" titulo="Dones a Enginyeria Informàtica" desc="Dues barres: als anys huitanta, al voltant del 30 per cent de l'alumnat d'Enginyeria Informàtica era femení; el 2024, el 13 per cent."
+    xMax={4} yMax={40} ejeX="Època" ejeY="Alumnat femení (%)" simboloY="%"
+    xTicks={[1.2, 2.8]} xTickLabels={['Anys huitanta', '2024']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'mustard', fuerte: true, puntos: [[0.85, 0], [1.55, 0], [1.55, 30], [0.85, 30]] },
+      { color: 'terra', fuerte: true, puntos: [[2.45, 0], [3.15, 0], [3.15, 13], [2.45, 13]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.85, 0], [0.85, 30], [1.55, 30], [1.55, 0]] },
+      { color: 'terra', puntos: [[2.45, 0], [2.45, 13], [3.15, 13], [3.15, 0]] },
+    ]}
+    notas={[
+      { x: 1.2, y: 31.6, texto: '~30 %', ancla: 'middle' },
+      { x: 2.8, y: 14.6, texto: '13 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ## Connexió amb les unitats següents
 

@@ -27,12 +27,116 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una empresa vende a P = 40 € con CVu = 24 € y CF = 64.000 €. a) Calcula el punto muerto. b) ¿Cuántas unidades debe vender si además quiere obtener un beneficio objetivo de 20.000 €?"
     desarrollo: "<p><strong>Margen de contribución unitario:</strong> MC = 40 − 24 = 16 €.</p><p><strong>a) Punto muerto:</strong> Q* = CF ÷ MC = 64.000 ÷ 16 = <strong>4.000 unidades</strong>.</p><p><strong>b) Con objetivo de beneficio</strong> añadimos el beneficio a los costes fijos a cubrir:<br>Q = (CF + B°) ÷ MC = (64.000 + 20.000) ÷ 16 = 84.000 ÷ 16 = <strong>5.250 unidades</strong>.</p><p><strong>Comprobación:</strong> contribución total = 16 × 5.250 = 84.000 €; restamos CF: 84.000 − 64.000 = 20.000 € de beneficio. Correcto. Es decir, pasar de cubrir costes a ganar 20.000 € exige vender 1.250 unidades más.</p>"
+    grafico:
+      tipo: xy
+      caption: "El punto muerto está en 4.000 unidades (160.000 €). Para ganar 20.000 € hay que llegar a 5.250 unidades: 1.250 más."
+      props:
+        id: "r-e2a-punto-muerto-objetivo"
+        titulo: "Punto muerto y beneficio objetivo"
+        desc: "Ingreso total (40 euros por unidad), coste total (64.000 euros fijos más 24 por unidad) y coste fijo. Se cruzan en 4.000 unidades, con 160.000 euros. Con 5.250 unidades el ingreso es de 210.000 euros, el coste de 190.000 y el beneficio de 20.000."
+        xMax: 7000
+        yMax: 280000
+        ejeX: "Unidades vendidas"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [2000, 6000]
+        yTicks: [64000]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [6000, 240000]] }
+          - { label: "CT", color: "terra", puntos: [[0, 64000], [6000, 208000]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 64000], [6000, 64000]], dy: 14 }
+        puntos:
+          - { x: 4000, y: 160000, label: "Q*", xLabel: "4 000", yLabel: "160 000", dx: -34, dy: -14 }
+          - { x: 5250, y: 210000, label: "Objetivo", xLabel: "5 250", yLabel: "210 000", dx: -84, dy: -12 }
+          - { x: 5250, y: 190000, guias: false }
+        notas:
+          - { x: 3900, y: 30000, ancla: "end", texto: "5.250 uds: beneficio 20.000 €", color: "teal" }
   - enunciado: "Dos estructuras de costes para el mismo producto que se vende a P = 20 €. Estructura A: CF = 20.000 €, CVu = 12 €. Estructura B (más automatizada): CF = 44.000 €, CVu = 6 €. a) Punto muerto de cada una. b) Volumen de indiferencia. c) ¿Cuál conviene para una demanda esperada de 6.000 unidades?"
     desarrollo: "<p><strong>Márgenes:</strong> MC_A = 20 − 12 = 8 €; MC_B = 20 − 6 = 14 €.</p><p><strong>a) Puntos muertos:</strong> Q*_A = 20.000 ÷ 8 = <strong>2.500 uds</strong>; Q*_B = 44.000 ÷ 14 = 3.142,86 → <strong>3.143 uds</strong>. La estructura B necesita vender más para empezar a ganar (más CF).</p><p><strong>b) Punto de indiferencia</strong> (igualamos beneficios): 8Q − 20.000 = 14Q − 44.000 → 44.000 − 20.000 = 14Q − 8Q → 24.000 = 6Q → <strong>Q = 4.000 uds</strong>.<br>Comprobación: A → 8 × 4.000 − 20.000 = 12.000 €; B → 14 × 4.000 − 44.000 = 12.000 €. Iguales.</p><p><strong>c) Para 6.000 unidades:</strong> A → 8 × 6.000 − 20.000 = 28.000 €; B → 14 × 6.000 − 44.000 = 40.000 €. Como 6.000 &gt; 4.000, conviene la <strong>estructura B</strong>: su mayor apalancamiento operativo rinde más cuando el volumen es alto.</p>"
+    grafico:
+      tipo: xy
+      caption: "Beneficio de las dos estructuras según las unidades vendidas. La A empieza a ganar en 2.500 unidades y la B en 3.143; se igualan en 4.000 (12.000 €) y con 6.000 unidades la B gana 40.000 € frente a 28.000 €."
+      props:
+        id: "r-e2a-estructuras-costes"
+        titulo: "Beneficio de las estructuras de costes A y B"
+        desc: "Rectas de beneficio: la A (8 euros de margen por unidad y 20.000 de costes fijos) corta el eje en 2.500 unidades y la B (14 euros de margen y 44.000 de costes fijos) en 3.143. Se cruzan en 4.000 unidades, con 12.000 euros. Con 6.000 unidades, la A gana 28.000 euros y la B, 40.000."
+        xMax: 7500
+        yMax: 60000
+        yMin: -50000
+        ejeX: "Unidades vendidas"
+        ejeY: "Beneficio (€)"
+        simboloX: "Q"
+        xTicks: [6000]
+        yTicks: [20000, 40000]
+        xTickLabels: ["6 000"]
+        series:
+          - { label: "Estr. A", color: "terra", puntos: [[0, -20000], [6500, 32000]] }
+          - { label: "Estr. B", color: "teal", puntos: [[0, -44000], [6500, 47000]] }
+        puntos:
+          - { x: 2500, y: 0, label: "Q*A", xLabel: "2 500", dx: -40, dy: -14 }
+          - { x: 3142.86, y: 0, label: "Q*B", xLabel: "3 143", dx: -42, dy: -16 }
+          - { x: 4000, y: 12000, label: "Indiferencia", yLabel: "12 000", xLabel: "4 000", dx: -92, dy: -12 }
+          - { x: 6000, y: 28000, guias: false }
+          - { x: 6000, y: 40000, guias: false }
+        notas:
+          - { x: 6150, y: 25500, texto: "A: 28.000 €", color: "terra" }
+          - { x: 6150, y: 37500, texto: "B: 40.000 €", color: "teal" }
   - enunciado: "Un taller necesita 8.000 componentes al año. Fabricarlos exige un coste fijo adicional de 18.000 € y un CVu de 4 €/unidad. Comprarlos a un proveedor cuesta 7 €/unidad. a) ¿Conviene fabricar o comprar? b) ¿A partir de qué cantidad anual cambia la decisión?"
     desarrollo: "<p><strong>a) Comparación de costes para 8.000 uds:</strong></p><p>Fabricar = CF + CVu · Q = 18.000 + 4 × 8.000 = 18.000 + 32.000 = <strong>50.000 €</strong>.<br>Comprar = 7 × 8.000 = <strong>56.000 €</strong>.<br>Conviene <strong>fabricar</strong>: ahorra 6.000 €.</p><p><strong>b) Cantidad de indiferencia</strong> (coste de fabricar = coste de comprar): 18.000 + 4Q = 7Q → 18.000 = 3Q → <strong>Q = 6.000 unidades</strong>.<br>Comprobación: a 6.000 uds, fabricar = 18.000 + 24.000 = 42.000 €; comprar = 7 × 6.000 = 42.000 €. Iguales.</p><p><strong>Decisión:</strong> por encima de 6.000 uds/año conviene fabricar (el CF se reparte y el menor coste variable manda); por debajo, comprar, porque no merece la pena asumir el coste fijo.</p>"
+    grafico:
+      tipo: xy
+      caption: "Fabricar cuesta 18.000 € más 4 € por unidad y comprar, 7 € por unidad. Las dos rectas se cruzan en 6.000 unidades (42.000 €): por encima conviene fabricar. Con 8.000 unidades, fabricar cuesta 50.000 € y comprar 56.000 €."
+      props:
+        id: "r-e2a-fabricar-comprar"
+        titulo: "Fabricar o comprar los componentes"
+        desc: "Coste de fabricar (18.000 euros fijos más 4 por unidad) y coste de comprar (7 euros por unidad). Se igualan en 6.000 unidades, con 42.000 euros. Con las 8.000 unidades que necesita el taller, fabricar cuesta 50.000 euros y comprar 56.000."
+        xMax: 10000
+        yMax: 72000
+        ejeX: "Componentes al año"
+        ejeY: "Coste anual (€)"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [2000, 10000]
+        yTicks: [18000]
+        series:
+          - { label: "Comprar", color: "terra", puntos: [[0, 0], [9000, 63000]] }
+          - { label: "Fabricar", color: "teal", puntos: [[0, 18000], [9000, 54000]], dy: 14 }
+        puntos:
+          - { x: 6000, y: 42000, label: "Q*", xLabel: "6 000", yLabel: "42 000", dx: -36, dy: -12 }
+          - { x: 8000, y: 50000, xLabel: "8 000", yLabel: "50 000" }
+          - { x: 8000, y: 56000, yLabel: "56 000" }
+        notas:
+          - { x: 7900, y: 62000, texto: "A 8.000 uds, ahorro de 6.000 €", ancla: "end", color: "teal" }
+          - { x: 3500, y: 5000, texto: "Menos de 6.000: comprar", ancla: "middle" }
+          - { x: 8200, y: 5000, texto: "Más de 6.000: fabricar", ancla: "middle" }
   - enunciado: "Una empresa quiere comparar su productividad del trabajo entre dos años. Año 1: produjo 12.000 unidades con 8 trabajadores. Año 2: produjo 16.500 unidades con 10 trabajadores. a) Calcula la productividad por trabajador en cada año. b) Calcula su variación porcentual. c) Interpreta."
     desarrollo: "<p><strong>a) Productividad por trabajador</strong> = unidades ÷ trabajadores.<br>Año 1: 12.000 ÷ 8 = <strong>1.500 uds/trabajador</strong>.<br>Año 2: 16.500 ÷ 10 = <strong>1.650 uds/trabajador</strong>.</p><p><strong>b) Variación:</strong> (1.650 − 1.500) ÷ 1.500 × 100 = 150 ÷ 1.500 × 100 = <strong>+10 %</strong>.</p><p><strong>c) Interpretación:</strong> aunque la producción total creció un 37,5 % (de 12.000 a 16.500), parte de ese aumento se debe a contratar más gente. Lo relevante para la competitividad es que cada trabajador produce un 10 % más: ha mejorado la <em>eficiencia</em> del factor trabajo, no solo el tamaño. Crecer no es lo mismo que ser más productivo.</p>"
+    grafico:
+      tipo: xy
+      caption: "La productividad por trabajador sube de 1.500 a 1.650 unidades (+10 %), mientras que la producción total crece un 37,5 %."
+      props:
+        id: "r-e2a-productividad-anual"
+        titulo: "Productividad del trabajo en dos años"
+        desc: "Dos columnas: en el año 1 se producen 1.500 unidades por trabajador (12.000 entre 8) y en el año 2, 1.650 (16.500 entre 10), un 10 por ciento más."
+        xMax: 10
+        yMax: 2000
+        ejeX: "Año"
+        ejeY: "Unidades por trabajador"
+        xTicks: [2.75, 7.25]
+        xTickLabels: ["Año 1", "Año 2"]
+        yTicks: [500, 1000]
+        areas:
+          - { puntos: [[1.5, 0], [4, 0], [4, 1500], [1.5, 1500]], color: "ink", fuerte: true }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 1650], [6, 1650]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4, 0], [4, 1500], [1.5, 1500], [1.5, 0]], color: "ink" }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 1650], [6, 1650], [6, 0]], color: "teal" }
+        notas:
+          - { x: 2.75, y: 1560, texto: "1.500", ancla: "middle" }
+          - { x: 7.25, y: 1710, texto: "1.650 (+10 %)", ancla: "middle" }
+          - { x: 2.75, y: 700, texto: "12.000 ÷ 8", ancla: "middle" }
+          - { x: 7.25, y: 700, texto: "16.500 ÷ 10", ancla: "middle" }
 ejercicios:
   - enunciado: "Una empresa vende a 25 €/unidad, con CVu = 15 € y CF = 30.000 €. Calcula el punto muerto en unidades y, además, exprésalo en euros de ingresos (cifra de ventas necesaria para no tener pérdidas)."
     solucion: "Margen unitario = 25 − 15 = 10 €.<br><strong>Punto muerto en unidades:</strong> Q* = 30.000 ÷ 10 = <strong>3.000 unidades</strong>.<br><strong>Punto muerto en euros:</strong> 3.000 × 25 = <strong>75.000 €</strong> de ventas.<br>(También se obtiene con el ratio de margen: 10 ÷ 25 = 0,40 → 30.000 ÷ 0,40 = 75.000 €.)"

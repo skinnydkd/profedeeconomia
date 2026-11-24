@@ -29,6 +29,9 @@ estado: publicado
 slug: "olimpiada/fichas/05-mercado-trabajo.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 El mercat de treball és on es determina el nivell d'ocupació i el salari d'una economia. Per a mesurar-lo amb precisió, Espanya —i la majoria de països de l'OCDE— utilitza l'**Enquesta de Població Activa (EPA)**, elaborada per l'INE cada trimestre enquestant unes 65 000 vivendes.
@@ -82,6 +85,26 @@ Inactius = 35 000 000 − 21 000 000 = 14 000 000
 
 Si 500 000 aturats passen a inactius: actius = 20 500 000, aturats = 2 500 000.  
 Nova taxa d'atur = (2 500 000 / 20 500 000) × 100 = **12,2 %** — sense crear una sola ocupació.
+
+<Diagram caption="L'exemple de l'EPA en barres (milions de persones de 16 anys o més): 18 d'ocupats, 3 d'aturats i 14 d'inactius. Si 500 000 aturats deixen de buscar ocupació, els inactius passen a 14,5, els aturats a 2,5 i la taxa d'atur baixa del 14,3 % al 12,2 % sense que es cree cap ocupació.">
+  <GraficoXY id="g-ol-trabajo-desanimo" titulo="Població de 16 anys o més: efecte del treballador desanimat" desc="Dues barres apilades de 35 milions de persones. Inicialment hi ha 18 milions d'ocupats, 3 d'aturats i 14 d'inactius, amb una taxa d'atur del 14,3 %. Després de passar 500 000 aturats a inactius, hi ha 18, 2,5 i 14,5 milions, i la taxa d'atur és del 12,2 %."
+    xMax={8} yMax={40} ejeX="Població de 16 anys o més" ejeY="Milions de persones"
+    xTicks={[2, 6]} xTickLabels={['Situació inicial', 'Després del desànim']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[1, 0], [3, 0], [3, 18], [1, 18]] },
+      { color: 'terra', fuerte: true, puntos: [[1, 18], [3, 18], [3, 21], [1, 21]] },
+      { color: 'mustard', fuerte: true, puntos: [[1, 21], [3, 21], [3, 35], [1, 35]] },
+      { color: 'teal', fuerte: true, puntos: [[5, 0], [7, 0], [7, 18], [5, 18]] },
+      { color: 'terra', fuerte: true, puntos: [[5, 18], [7, 18], [7, 20.5], [5, 20.5]] },
+      { color: 'mustard', fuerte: true, puntos: [[5, 20.5], [7, 20.5], [7, 35], [5, 35]] },
+    ]}
+    notas={[
+      { x: 2, y: 8.5, texto: 'Ocupats 18', ancla: 'middle' }, { x: 2, y: 19, texto: 'Aturats 3', ancla: 'middle' }, { x: 2, y: 27.5, texto: 'Inactius 14', ancla: 'middle' },
+      { x: 6, y: 8.5, texto: 'Ocupats 18', ancla: 'middle' }, { x: 6, y: 18.9, texto: 'Aturats 2,5', ancla: 'middle' }, { x: 6, y: 27.3, texto: 'Inactius 14,5', ancla: 'middle' },
+      { x: 2, y: 37, texto: "Taxa d'atur 14,3 %", ancla: 'middle' }, { x: 6, y: 37, texto: "Taxa d'atur 12,2 %", ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ---
 
@@ -180,6 +203,23 @@ Si l'ocupador té **poder de mercat** —un sol comprador de treball, o pocs— 
 Esta és la intuïció darrere de l'estudi de **Card i Krueger (1994)**: van comparar establiments de menjar ràpid a Nova Jersey (pujada del mínim) amb Pennsilvània (sense pujada) i no van trobar caiguda de l'ocupació en el costat amb pujada. Card va rebre el Premi Nobel d'Economia en 2021 en part per este treball.
 
 **Conclusió per a l'examen:** la teoria neoclàssica bàsica prediu destrucció d'ocupació amb el salari mínim. L'evidència empírica mostra que l'efecte sobre l'ocupació agregada és xicotet quan la pujada és moderada, i que pot fins i tot ser positiu en mercats amb poder monopsonístic de l'ocupador. El matís importa en la Part I de l'examen quan pregunten «raona si esta afirmació és vertadera, falsa o depén».
+
+<Diagram caption="Monopsoni: l'empresa contracta fins on el cost marginal de contractar (CMgL) iguala la productivitat marginal (Ld), amb l'ocupació Lm i el salari Wm que marca l'oferta per a eixa ocupació. Un salari mínim fixat en el nivell competitiu W* (SMI) eleva alhora el salari i l'ocupació fins a L*.">
+  <GraficoXY id="g-ol-trabajo-monopsonio" titulo="Salari mínim amb poder de monopsoni" desc="Oferta de treball Ls creixent, demanda de treball Ld decreixent i cost marginal de contractar CMgL per damunt de Ls. El monopsoni contracta Lm, on CMgL talla Ld, i paga Wm, sobre Ls. Un salari mínim igual al competitiu W* porta l'ocupació fins a L*, major que Lm."
+    xMax={110} yMax={110} ejeX="Ocupació (L)" ejeY="Salari (W)" simboloX="L" simboloY="W"
+    series={[
+      { label: 'Ld', color: 'terra', puntos: [[5, 97], [95, 43]] },
+      { label: 'Ls', color: 'teal', puntos: [[0, 20], [95, 77]] },
+      { label: 'CMgL', color: 'mustard', puntos: [[0, 20], [60, 92]] },
+      { label: 'SMI', color: 'ink', puntos: [[0, 60], [95, 60]] },
+    ]}
+    puntos={[
+      { x: 44.4, y: 46.7, label: 'A', xLabel: 'Lm', yLabel: 'Wm', dx: 12, dy: 22 },
+      { x: 66.7, y: 60, label: 'B', xLabel: 'L*', yLabel: 'W*', dx: 12, dy: -12 },
+      { x: 44.4, y: 73.3, guias: false },
+    ]}
+  />
+</Diagram>
 
 ---
 

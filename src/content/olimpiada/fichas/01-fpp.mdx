@@ -24,6 +24,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 La **frontera de posibilidades de producción** (FPP) es el lugar geométrico de las combinaciones máximas de dos bienes (o grupos de bienes) que una economía puede producir cuando utiliza **plena y eficientemente** todos sus factores productivos con la tecnología disponible.
@@ -135,11 +138,23 @@ Un desplazamiento sesgado hacia un bien (por ejemplo, una innovación solo en el
 
 El desplazamiento de la FPP es la representación gráfica canónica del **crecimiento económico**. Sin embargo, crecer no elimina la escasez ni el coste de oportunidad: la nueva FPP sigue siendo una frontera, ahora situada más lejos del origen.
 
+<Diagram caption="Crecimiento económico: la FPP se desplaza hacia afuera. Con un avance neutral (FPP₂) aumentan las posibilidades de ambos bienes; con una innovación solo en B (FPP₃) se amplía únicamente el eje horizontal. El punto X, inalcanzable con FPP₁, pasa a ser alcanzable.">
+  <GraficoXY id="g-ol-fpp-crecimiento" titulo="Desplazamiento de la FPP por crecimiento económico" desc="Tres fronteras cóncavas. FPP₁, tenue, es la inicial. FPP₂ se aleja del origen en los dos ejes (avance neutral). FPP₃ solo se extiende por el eje del bien B. El punto X queda fuera de FPP₁ y dentro de FPP₂ y de FPP₃."
+    xMax={100} yMax={80} ejeX="Bien B (bienes de consumo)" ejeY="Bien A (bienes de capital)" simboloX="B" simboloY="A"
+    series={[
+      { label: 'FPP₁', color: 'ink', tenue: true, dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [40 * Math.sin(i * Math.PI / 40), 40 * Math.cos(i * Math.PI / 40)]) },
+      { label: 'FPP₂', color: 'terra', dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [60 * Math.sin(i * Math.PI / 40), 60 * Math.cos(i * Math.PI / 40)]) },
+      { label: 'FPP₃', color: 'teal', dy: -10, puntos: Array.from({ length: 21 }, (_, i) => [75 * Math.sin(i * Math.PI / 40), 40 * Math.cos(i * Math.PI / 40)]) },
+    ]}
+    puntos={[{ x: 45, y: 24, label: 'X', guias: false }]}
+  />
+</Diagram>
+
 ---
 
 ## Mini-ejemplo resuelto
 
-Una economía hipotética puede dedicar sus recursos a producir patatas (bien B, eje horizontal) o calabazas (bien A, eje vertical). La tabla recoge cinco combinaciones eficientes:
+Una economía hipotética puede dedicar sus recursos a producir patatas (bien B, eje horizontal) o calabazas (bien A, eje vertical). La tabla recoge seis combinaciones eficientes:
 
 | Combinación | Patatas (miles t) | Calabazas (miles t) | CO marginal (calabazas/patata) |
 |:-----------:|:-----------------:|:-------------------:|:------------------------------:|
@@ -163,6 +178,30 @@ Una economía hipotética puede dedicar sus recursos a producir patatas (bien B,
 **CO(R→S) = |74 − 88| / 10 = 14 / 10 = 1,4**
 
 La secuencia 0,4 → 0,8 → 1,4 → 2,2 → 5,2 es **estrictamente creciente**: cada mil toneladas adicionales de patatas exige sacrificar cada vez más calabazas. Esto confirma que la FPP es cóncava. La razón: a medida que especializamos más la economía en patatas, los factores que queden destinados a calabazas serán los más aptos para ese cultivo, por lo que abandonarlos resulta cada vez más costoso.
+
+<Diagram caption="La tabla del mini-ejemplo llevada a los ejes: seis combinaciones eficientes unidas por una curva cóncava. Los números junto a cada tramo son su coste de oportunidad marginal (0,4; 0,8; 1,4; 2,2; 5,2). La recta discontinua, con un coste constante de 2 calabazas por patata, sería la FPP con factores homogéneos.">
+  <GraficoXY id="g-ol-fpp-coste" titulo="FPP de patatas y calabazas con su coste de oportunidad" desc="Curva cóncava que une las combinaciones P (0 patatas y 100 calabazas), Q, R, S, T y U (50 patatas y 0 calabazas). El coste de oportunidad marginal crece de 0,4 a 5,2 calabazas por patata. Una recta discontinua entre los extremos muestra el caso de coste constante."
+    xMax={60} yMax={120} ejeX="Patatas (miles de t)" ejeY="Calabazas (miles de t)" simboloX="B" simboloY="A"
+    xTicks={[10, 20, 30, 40, 50]} yTicks={[25, 50, 75, 100]}
+    series={[
+      { label: 'FPP', color: 'terra', dx: 14, dy: -40, puntos: [[0, 100], [10, 96], [20, 88], [30, 74], [40, 52], [50, 0]] },
+      { color: 'ink', tenue: true, puntos: [[0, 100], [50, 0]] },
+    ]}
+    puntos={[
+      { x: 0, y: 100, label: 'P', guias: false, dx: 12, dy: 24 },
+      { x: 10, y: 96, label: 'Q', guias: false, dx: -22, dy: 18 },
+      { x: 20, y: 88, label: 'R', guias: false, dx: -22, dy: 18 },
+      { x: 30, y: 74, label: 'S', guias: false, dx: -22, dy: 18 },
+      { x: 40, y: 52, label: 'T', guias: false, dx: -22, dy: 18 },
+      { x: 50, y: 0, label: 'U', guias: false, dx: 14, dy: -12 },
+    ]}
+    notas={[
+      { x: 6, y: 103, texto: '0,4' }, { x: 16, y: 98, texto: '0,8' }, { x: 26, y: 87, texto: '1,4' },
+      { x: 36, y: 69, texto: '2,2' }, { x: 46, y: 32, texto: '5,2' },
+      { x: 3, y: 15, texto: 'Recta: CO constante' },
+    ]}
+  />
+</Diagram>
 
 ---
 

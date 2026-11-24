@@ -29,6 +29,10 @@ estado: publicado
 slug: "olimpiada/fichas/02-oferta-demanda.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
+
 ## De què va
 
 El model d'oferta i demanda és la ferramenta central de la microeconomia. El seu objectiu és explicar com els compradors i venedors d'un mercat interactuen per a determinar el preu i la quantitat que s'intercanvia.
@@ -71,6 +75,15 @@ Esta distinció és el parany més freqüent en l'Olimpiada i en qualsevol exame
 
 Un **moviment al llarg de la corba** ocorre quan canvia el **preu del propi bé**. La corba no es mou: només ens desplacem d'un punt a un altre sobre ella. Si el preu del pa puja d'1 € a 1,50 €, la quantitat demandada cau. Representem això movent-nos cap amunt-esquerra sobre la mateixa corba de demanda. No hi ha desplaçament de la corba.
 
+<Diagram caption="Moviment al llarg de la corba: canvia el preu del propi bé, de P₁ a P₂, i la quantitat demanada passa de Q₁ a Q₂ sense que la corba es moga.">
+  <MercadoGrafico id="g-ol-oferta-movimiento" titulo="Moviment al llarg de la corba de demanda" desc="Sobre una mateixa corba de demanda descendent, en pujar el preu de P1 a P2 la quantitat demanada cau de Q1 a Q2: es passa del punt A al punt B."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, pA: 22, label: 'D' }]}
+    puntos={[{ p: 6, q: 76, label: 'A', pLabel: 'P₁', qLabel: 'Q₁' }, { p: 9, q: 64, label: 'B', pLabel: 'P₂', qLabel: 'Q₂' }]}
+    flechas={[{ de: { p: 6, q: 76 }, a: { p: 9, q: 64 }, despl: -24 }]}
+  />
+</Diagram>
+
 ### Desplaçament de la corba
 
 Un **desplaçament de la corba** ocorre quan canvia qualsevol altre determinant distint del preu del propi bé. Tota la corba es trasllada: a cada preu, la quantitat demandada (o oferida) és ara distinta.
@@ -86,6 +99,15 @@ Un **desplaçament de la corba** ocorre quan canvia qualsevol altre determinant 
 - Millora la tecnologia → l'oferta es desplaça cap a la dreta.
 - Puja el preu d'una matèria primera → l'oferta es desplaça cap a l'esquerra.
 
+<Diagram caption="Desplaçament de la corba: canvia un altre determinant (per exemple, puja la renda) i a cada preu es demana més. La corba passa de D₁ a D₂ i, al mateix preu P₀, la quantitat passa de Q₁ a Q₂.">
+  <MercadoGrafico id="g-ol-oferta-desplazamiento" titulo="Desplaçament de la corba de demanda" desc="La corba de demanda sencera es desplaça cap a la dreta, de D1 a D2: al mateix preu P0 la quantitat demanada passa de Q1 a Q2."
+    pMax={25} qMax={140}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, pA: 22, label: 'D₁', tenue: true }, { tipo: 'D', q0: 120, m: -4, pDe: 3, pA: 22, label: 'D₂' }]}
+    puntos={[{ p: 8, q: 68, pLabel: 'P₀', qLabel: 'Q₁' }, { p: 8, q: 88, qLabel: 'Q₂' }]}
+    flechas={[{ de: { p: 8, q: 68 }, a: { p: 8, q: 88 } }]}
+  />
+</Diagram>
+
 ### El parany clàssic de l'examen
 
 > «Un augment en el salari dels forners fa que puge el preu del pa. Com afecta eixa pujada del preu del pa la corba de demanda de pa?»
@@ -93,6 +115,15 @@ Un **desplaçament de la corba** ocorre quan canvia qualsevol altre determinant 
 La resposta correcta és que **la corba de demanda de pa no es desplaça**. La pujada del preu del pa provoca un **moviment al llarg** de la corba de demanda (la quantitat demandada cau), però la corba en si roman on estava. L'error típic és dir que «la demanda cau», confonent «quantitat demandada cau» (moviment) amb «la demanda es desplaça cap a l'esquerra» (desplaçament). Són conceptes distints.
 
 La cadena causal correcta és: augment de salaris → els costos de producció augmenten → **la corba d'oferta es desplaça cap a l'esquerra** → el preu d'equilibri puja → la quantitat demandada cau (moviment al llarg de la demanda, que no es mou). El mercat passa d'un equilibri a un altre, amb major preu i menor quantitat.
+
+<Diagram caption="El parany clàssic: pugen els salaris, la corba d'oferta es desplaça cap a l'esquerra (d'O₁ a O₂) i l'equilibri passa d'E₀ a E₁, amb major preu i menor quantitat. La demanda no es mou: la quantitat demanada cau per un moviment al llarg de la corba.">
+  <MercadoGrafico id="g-ol-oferta-trampa" titulo="Pujada de salaris: l'oferta es desplaça i la demanda no" desc="La demanda D queda fixa. L'oferta es desplaça cap a l'esquerra, d'O1 a O2. L'equilibri passa d'E0 a E1: el preu puja de P0 a P1 i la quantitat baixa de Q0 a Q1."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, label: 'D' }, { tipo: 'O', q0: 20, m: 4, pA: 19, label: 'O₁', tenue: true }, { tipo: 'O', q0: 0, m: 4, pA: 19, label: 'O₂' }]}
+    puntos={[{ p: 10, q: 60, label: 'E₀', pLabel: 'P₀', qLabel: 'Q₀', dx: -10, dy: -18 }, { p: 12.5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -10, dy: -18 }]}
+    flechas={[{ de: { p: 15, q: 80 }, a: { p: 15, q: 60 } }]}
+  />
+</Diagram>
 
 ---
 
@@ -114,7 +145,15 @@ Quan el preu màxim P<sub>max</sub> < P\*:
 
 **Exemple canònic**: el control de lloguers en ciutats amb escassetat d'habitatge. El sostre protegix els qui ja tenen un contracte, però genera escassetat per als qui busquen pis i desincentiva la construcció nova.
 
-*Descripció del gràfic*: eix horitzontal Q (quantitat), eix vertical P (preu). Corbes D (pendent negativa) i O (pendent positiva) que es creuen en (Q\*, P\*). Traçar una línia horitzontal a P<sub>max</sub> < P\*. La quantitat oferida Q<sub>s</sub> es llig en la intersecció d'eixa línia amb la corba O (a l'esquerra de Q\*). La quantitat demandada Q<sub>d</sub> es llig en la intersecció amb D (a la dreta de Q\*). La distància Q<sub>d</sub> − Q<sub>s</sub> és l'escassetat.
+<Diagram caption="Preu màxim per davall del d'equilibri (Pmàx menor que P*): a eixe preu els consumidors demanen Qd, els productors oferixen Qs i la diferència Qd − Qs és l'escassetat.">
+  <MercadoGrafico id="g-ol-oferta-techo" titulo="Preu màxim i escassetat" desc="La demanda D i l'oferta O es creuen en l'equilibri E, amb preu P* i quantitat Q*. Un preu màxim per davall de P* fa que la quantitat oferida Qs quede a l'esquerra de Q* i la demanada Qd a la dreta. La distància entre les dues és l'escassetat."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, label: 'D' }, { tipo: 'O', q0: 20, m: 4, pA: 19, label: 'O' }]}
+    puntos={[{ p: 10, q: 60, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: -5, dy: -18 }, { p: 7, q: 48, pLabel: 'Pmàx', qLabel: 'Qs' }, { p: 7, q: 72, qLabel: 'Qd' }]}
+    precio={{ p: 7, label: "Preu màxim" }}
+    tramo={{ p: 7, q1: 48, q2: 72, label: "Escassetat" }}
+  />
+</Diagram>
 
 ### Preu mínim (sòl de preu)
 
@@ -128,7 +167,15 @@ Quan el preu mínim P<sub>min</sub> > P\*:
 
 **Exemple canònic**: el salari mínim en el mercat de treball. El preu és el salari; la quantitat és l'ocupació. Un salari mínim per damunt del salari d'equilibri genera més persones disposades a treballar que empreses disposades a contractar, és a dir, atur involuntari entre els treballadors la productivitat marginal dels quals queda per davall del mínim fixat.
 
-*Descripció del gràfic*: mateix esquema, però ara la línia horitzontal està a P<sub>min</sub> > P\*. La quantitat oferida Q<sub>s</sub> queda a la dreta de Q\* i la demandada Q<sub>d</sub> a l'esquerra. L'excedent és Q<sub>s</sub> − Q<sub>d</sub>.
+<Diagram caption="Preu mínim per damunt del d'equilibri (Pmín major que P*): a eixe preu s'oferix Qs, es demana Qd i la diferència Qs − Qd és l'excedent.">
+  <MercadoGrafico id="g-ol-oferta-suelo" titulo="Preu mínim i excedent" desc="La demanda D i l'oferta O es creuen en l'equilibri E, amb preu P* i quantitat Q*. Un preu mínim per damunt de P* fa que la quantitat oferida Qs quede a la dreta de Q* i la demanada Qd a l'esquerra. La distància entre les dues és l'excedent."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, label: 'D' }, { tipo: 'O', q0: 20, m: 4, pA: 19, label: 'O' }]}
+    puntos={[{ p: 10, q: 60, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: 8, dy: 24 }, { p: 13, q: 48, pLabel: 'Pmín', qLabel: 'Qd' }, { p: 13, q: 72, qLabel: 'Qs' }]}
+    precio={{ p: 13, label: "Preu mínim" }}
+    tramo={{ p: 13, q1: 48, q2: 72, label: "Excedent" }}
+  />
+</Diagram>
 
 ---
 
@@ -155,6 +202,10 @@ Com la relació és inversa, el quocient és negatiu. Per conveni es treballa am
 | < 1 | Demanda inelàstica | La quantitat varia menys (en %) que el preu. Necessitats bàsiques, béns addictius, sense substituts pròxims. |
 | = 0 | Perfectament inelàstica | La quantitat no varia amb el preu. Corba vertical. Aproximació per a medicaments vitals a curt termini. |
 | → ∞ | Perfectament elàstica | Una variació mínima del preu anul·la la demanda. Corba horitzontal. Bé perfectament substituïble. |
+
+<Diagram caption="Els casos extrems de l'elasticitat-preu de la demanda: perfectament inelàstica (corba vertical), inelàstica, elàstica i perfectament elàstica (corba horitzontal).">
+  <ElasticidadCasos />
+</Diagram>
 
 **Factors que determinen l'elasticitat:**
 - Existència i proximitat de béns substitutius (com més i més pròxims, més elàstica la demanda).
@@ -241,6 +292,16 @@ Q_o(8) =  20 + 6 × 8 = 68
 
 Hi ha escassetat: els compradors pressionen el preu a l'alça cap a P\* = 10 €.
 
+<Diagram caption="El mini-exemple en un gràfic: D i O es creuen en E (10 €, 80 unitats). A 8 € es demanen 88 i s'oferixen 68: falten 20 unitats i el preu puja cap a 10 €.">
+  <MercadoGrafico id="g-ol-oferta-equilibrio" titulo="Equilibri del mercat agrícola i excés de demanda" desc="La demanda Qd = 120 − 4P i l'oferta Qo = 20 + 6P es creuen en 10 euros i 80 unitats. A 8 euros la demanda és 88 i l'oferta 68, un excés de demanda de 20 unitats."
+    pMax={30} qMax={130} ejeP="Preu (€)" ejeQ="Unitats"
+    qTicks={[40, 100, 120]}
+    curvas={[{ tipo: 'D', q0: 120, m: -4, pDe: 1, label: 'D' }, { tipo: 'O', q0: 20, m: 6, pA: 17, label: 'O' }]}
+    puntos={[{ p: 10, q: 80, label: 'E', pLabel: '10', qLabel: '80', dx: -5, dy: -18 }, { p: 8, q: 68, pLabel: '8', qLabel: '68' }, { p: 8, q: 88, qLabel: '88' }]}
+    tramo={{ p: 8, q1: 68, q2: 88, label: "Excés: 20" }}
+  />
+</Diagram>
+
 ### Elasticitat-preu puntual
 
 A partir de l'equilibri anterior (P\* = 10, Q\* = 80), calculem l'elasticitat-preu puntual de la demanda usant la derivada implícita en la funció lineal:
@@ -254,6 +315,14 @@ E_p^d = (dQ/dP) × (P/Q) = (−4) × (10/80) = −0,5
 En valor absolut: |E<sub>p</sub><sup>d</sup>| = **0,5 < 1** → demanda **inelàstica** en eixe punt.
 
 **Implicació sobre l'ingrés total**: si el preu puja un 20 % (de 10 € a 12 €), la quantitat cau aproximadament un 10 % (0,5 × 20 % = 10 %). L'ingrés total passa de 10 × 80 = 800 a (aproximadament) 12 × 72 = 864. L'ingrés total **augmenta**, la qual cosa és coherent amb la regla: en demandes inelàstiques, pujar el preu incrementa l'ingrés total.
+
+<Diagram caption="Elasticitat puntual en l'equilibri: en pujar el preu un 20 % (de 10 a 12 €), la quantitat demanada cau un 10 % (de 80 a 72). Com que |Ep| = 0,5, menor que 1, l'ingrés total augmenta de 800 € a 864 €.">
+  <MercadoGrafico id="g-ol-oferta-elasticidad" titulo="Elasticitat-preu puntual de la demanda" desc="Sobre la demanda Qd = 120 − 4P, en pujar el preu de 10 a 12 euros la quantitat demanada baixa de 80 a 72 unitats. L'elasticitat en eixe punt és −0,5: demanda inelàstica."
+    pMax={30} qMax={130} ejeP="Preu (€)" ejeQ="Unitats"
+    curvas={[{ tipo: 'D', q0: 120, m: -4, pDe: 1, label: 'D' }]}
+    puntos={[{ p: 10, q: 80, label: 'A', pLabel: '10', qLabel: '80' }, { p: 12, q: 72, label: 'B', pLabel: '12', qLabel: '72' }]}
+  />
+</Diagram>
 
 ---
 

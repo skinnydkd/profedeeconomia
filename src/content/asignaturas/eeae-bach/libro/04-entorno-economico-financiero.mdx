@@ -40,6 +40,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
@@ -239,6 +240,21 @@ La **regla de oro** de las finanzas dice que cuanto mayor es la rentabilidad que
 
 </Callout>
 
+<Diagram caption="Esquema sin cifras de la regla de oro: las opciones del ahorrador, de la cuenta bancaria a los productos muy arriesgados, se ordenan sobre una misma línea. A más rentabilidad esperada, más riesgo.">
+  <GraficoXY id="g-riesgo-rentabilidad" titulo="Rentabilidad esperada según el riesgo" desc="Esquema sin cifras. Una línea ascendente ordena cuatro opciones de ahorro: la cuenta bancaria, con poco riesgo y poca rentabilidad; los bonos del Estado; las acciones; y los productos muy arriesgados, con la mayor rentabilidad esperada y el mayor riesgo."
+    xMax={100} yMax={100} ejeX="Riesgo" ejeY="Rentabilidad esperada"
+    series={[
+      { color: 'terra', puntos: Array.from({ length: 21 }, (_, i) => [4 + i * 4, 6 + 0.55 * (4 + i * 4) + 0.0045 * (4 + i * 4) ** 2]) },
+    ]}
+    puntos={[
+      { x: 8, y: 10.7, label: 'Cuenta', guias: false, dx: 14, dy: 26 },
+      { x: 26, y: 23.3, label: 'Bonos', guias: false, dx: 14, dy: 26 },
+      { x: 52, y: 46.8, label: 'Acciones', guias: false, dx: 14, dy: 26 },
+      { x: 80, y: 78.8, label: 'Muy arriesgado', guias: false, dx: 14, dy: 26 },
+    ]}
+  />
+</Diagram>
+
 Esta regla no es un detalle técnico: es una herramienta de protección. La mayoría de los grandes fraudes financieros de la historia —y de las pequeñas estafas que circulan hoy por redes sociales prometiendo duplicar tu dinero en una semana— se aprovechan precisamente de que la gente no la conoce. Quien entiende que rentabilidad y riesgo van juntos tiene ya media defensa hecha contra los timos.
 
 <RealExample title="Por qué la CNMV avisa de los 'chiringuitos financieros'" source="Comisión Nacional del Mercado de Valores (CNMV), advertencias al inversor y sección de chiringuitos financieros, cnmv.es; campañas de educación financiera del Banco de España y la CNMV.">
@@ -291,6 +307,21 @@ Dos amigas, Marta y Lucía, reciben cada una **1.000 €** de regalo y deciden g
 3. **Comparación.** En solo 3 años, Lucía gana **2,73 € más** que Marta sin hacer nada distinto: simplemente sus intereses también generan intereses. La diferencia parece pequeña, pero crece muchísimo con el tiempo. Si en lugar de 3 años fueran **30 años** al 3 %, Marta (simple) tendría 1.900 € y Lucía (compuesto) tendría unos **2.427 €**: más de **500 € de diferencia** partiendo del mismo dinero.
 
 4. **Lección práctica.** El interés compuesto recompensa la **paciencia**: cuanto más tiempo dejas el dinero trabajando, mayor es la diferencia a tu favor. Por eso, en finanzas personales, **empezar pronto vale más que empezar con mucho**.
+
+<Diagram caption="Los 1.000 € de Marta (interés simple, recta) y de Lucía (interés compuesto, curva) al 3 % anual. A los 3 años la diferencia es de 2,73 € (1.090 € frente a 1.092,73 €); a los 30 años, de más de 500 € (1.900 € frente a unos 2.427 €).">
+  <GraficoXY id="g-interes-marta-lucia" titulo="Interés simple frente a interés compuesto: Marta y Lucía" desc="Capital de 1.000 euros al 3 % anual. Con interés simple, Marta suma 30 euros cada año y llega a 1.900 euros a los 30 años. Con interés compuesto, Lucía llega a 1.092,73 euros a los 3 años y a unos 2.427 euros a los 30 años. Las dos líneas casi coinciden al principio y se separan cada año más."
+    xMax={34} yMax={2800} ejeX="Años" ejeY="Euros acumulados" simboloX="t" simboloY="€"
+    xTicks={[3, 10, 20]} yTicks={[1000, 1500]}
+    series={[
+      { label: 'Marta', color: 'mustard', puntos: [[0, 1000], [30, 1900]], dy: 14 },
+      { label: 'Lucía', color: 'terra', puntos: Array.from({ length: 31 }, (_, i) => [i, 1000 * 1.03 ** i]), dy: -2 },
+    ]}
+    puntos={[
+      { x: 30, y: 1900, xLabel: '30', yLabel: '1 900', guias: true },
+      { x: 30, y: 2427.26, yLabel: '2 427', guias: true },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

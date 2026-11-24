@@ -38,6 +38,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import EmpresaFunctions from '@components/diagrams/EmpresaFunctions.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -102,6 +103,33 @@ Que el beneficio sea condición para sobrevivir tiene detrás una cuenta mínima
 *Ejemplo.* Un puesto de zumos vende cada vaso a 3 €, cada vaso le cuesta 1 € de fruta y envase, y paga 400 € al mes por el alquiler del puesto. Cada vaso deja 3 − 1 = 2 € de margen, así que el punto muerto es 400 ÷ 2 = **200 vasos al mes**. Con 260 vasos gana 260 × 2 − 400 = **120 €**; con 150 pierde 400 − 150 × 2 = **100 €**. El número no dice si el negocio merece la pena, pero sí cuánto hay que vender para no perder dinero. El análisis completo, con la gráfica y las decisiones de producción, se estudia en [EDMN 2BACH (Unidad 7)](/edmn-2bach/libro/07-funcion-productiva/); aquí basta con saber hacer esta cuenta.
 
 </Callout>
+
+<Diagram caption="El puesto de zumos: el ingreso total (3 € por vaso) y el coste total (400 € fijos más 1 € por vaso) se cruzan en los 200 vasos, con 600 € de ingresos. Con 150 vasos pierde 100 € (450 € de ingresos frente a 550 € de costes); con 260 gana 120 € (780 € frente a 660 €).">
+  <GraficoXY id="g-punto-muerto-zumos" titulo="Punto muerto del puesto de zumos" desc="Ingreso total de 3 euros por vaso, coste total de 400 euros fijos más 1 euro por vaso. Las dos rectas se cruzan en 200 vasos, con 600 euros. Con 150 vasos, los ingresos son 450 euros y los costes 550, una pérdida de 100. Con 260 vasos, los ingresos son 780 euros y los costes 660, un beneficio de 120."
+    xMax={330} yMax={1000} ejeX="Vasos al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    xTicks={[100]} yTicks={[400]}
+    areas={[
+      { puntos: [[0, 0], [0, 400], [200, 600]], color: 'terra' },
+      { puntos: [[200, 600], [290, 870], [290, 690]], color: 'teal' },
+    ]}
+    series={[
+      { label: 'IT', color: 'teal', puntos: [[0, 0], [290, 870]] },
+      { label: 'CT', color: 'terra', puntos: [[0, 400], [290, 690]], dy: 16 },
+      { label: 'CF', color: 'mustard', puntos: [[0, 400], [290, 400]] },
+    ]}
+    puntos={[
+      { x: 200, y: 600, label: 'Punto muerto', xLabel: '200', yLabel: '600', dx: -112, dy: -14 },
+      { x: 150, y: 450, xLabel: '150' },
+      { x: 150, y: 550, guias: false },
+      { x: 260, y: 780, xLabel: '260', yLabel: '780' },
+      { x: 260, y: 660, guias: false },
+    ]}
+    notas={[
+      { x: 25, y: 300, texto: 'Pérdida', color: 'terra' },
+      { x: 264, y: 720, texto: 'Beneficio 120 €', color: 'teal' },
+    ]}
+  />
+</Diagram>
 
 Por dentro, toda empresa articula esas funciones en unas pocas grandes áreas de actividad que operan a la vez y se condicionan entre sí. Esta unidad no las desmenuza —su detalle es materia de otra asignatura—; basta una mirada panorámica para situar dónde encajan la cultura, el talento y el liderazgo que veremos a continuación: atraviesan todas las áreas, no una sola.
 

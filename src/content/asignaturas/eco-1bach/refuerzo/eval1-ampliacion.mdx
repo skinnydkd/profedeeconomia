@@ -27,14 +27,121 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Coste de oportunidad creciente.</strong> Una economía reparte sus recursos entre robots y trigo. Sus combinaciones máximas son: (0 robots, 150 t), (1, 140), (2, 120), (3, 90), (4, 50), (5, 0). Calcula el coste de oportunidad de cada robot adicional y demuestra que la FPP es cóncava."
     desarrollo: "El coste de oportunidad de cada robot es el trigo que hay que sacrificar para producirlo:<br>· Del robot 0 al 1: 150 − 140 = <strong>10 t</strong>.<br>· Del 1 al 2: 140 − 120 = <strong>20 t</strong>.<br>· Del 2 al 3: 120 − 90 = <strong>30 t</strong>.<br>· Del 3 al 4: 90 − 50 = <strong>40 t</strong>.<br>· Del 4 al 5: 50 − 0 = <strong>50 t</strong>.<br>El coste de oportunidad <strong>crece</strong> (10, 20, 30, 40, 50) a medida que producimos más robots. Por eso la FPP no es una recta, sino una curva <strong>cóncava</strong> vista desde el origen: refleja que los recursos no son igual de productivos en todos los usos."
+    grafico:
+      tipo: xy
+      caption: "Las combinaciones máximas de robots y trigo forman una curva cóncava: cada robot cuesta más trigo que el anterior (10, 20, 30, 40 y 50 t)."
+      props:
+        id: "r-e1a-fpp-robots"
+        titulo: "FPP de robots y trigo con coste de oportunidad creciente"
+        desc: "Curva que pasa por (0 robots, 150 t), (1, 140), (2, 120), (3, 90), (4, 50) y (5, 0). Cada tramo sacrifica más trigo: 10, 20, 30, 40 y 50 toneladas."
+        xMax: 6
+        yMax: 170
+        ejeX: "Robots"
+        ejeY: "Trigo (t)"
+        simboloX: "R"
+        simboloY: "T"
+        xTicks: [1, 2, 3, 4, 5]
+        yTicks: [50, 100, 150]
+        series:
+          - { label: "FPP", color: "terra", puntos: [[0, 150], [1, 140], [2, 120], [3, 90], [4, 50], [5, 0]], dy: -12 }
+        puntos:
+          - { x: 0, y: 150, guias: false }
+          - { x: 1, y: 140, guias: false }
+          - { x: 2, y: 120, guias: false }
+          - { x: 3, y: 90, guias: false }
+          - { x: 4, y: 50, guias: false }
+          - { x: 5, y: 0, guias: false }
+        notas:
+          - { x: 0.6, y: 152, texto: "−10 t" }
+          - { x: 1.6, y: 137, texto: "−20 t" }
+          - { x: 2.6, y: 112, texto: "−30 t" }
+          - { x: 3.6, y: 77, texto: "−40 t" }
+          - { x: 4.6, y: 33, texto: "−50 t" }
   - enunciado: "<strong>Análisis marginal.</strong> Una pastelería vende cada tarta por un ingreso marginal constante de 10 €. Producir la 1.ª tarta del día le cuesta 4 €; la 2.ª, 6 €; la 3.ª, 8 €; la 4.ª, 10 €; la 5.ª, 12 €. ¿Cuántas tartas le conviene producir?"
     desarrollo: "La regla marginal: producir mientras el <strong>ingreso marginal (10 €)</strong> sea mayor o igual que el <strong>coste marginal</strong>.<br>· Tarta 1: IM 10 &gt; CM 4 → conviene (gana 6 €).<br>· Tarta 2: IM 10 &gt; CM 6 → conviene (gana 4 €).<br>· Tarta 3: IM 10 &gt; CM 8 → conviene (gana 2 €).<br>· Tarta 4: IM 10 = CM 10 → indiferente (no añade beneficio, suele tomarse como el límite).<br>· Tarta 5: IM 10 &lt; CM 12 → no conviene (perdería 2 €).<br><strong>Conclusión:</strong> le conviene producir <strong>4 tartas</strong>, el punto donde el ingreso marginal iguala al coste marginal. Más allá, cada tarta resta beneficio."
+    grafico:
+      tipo: xy
+      caption: "El coste marginal de cada tarta sube (4, 6, 8, 10, 12 €) y el ingreso marginal es constante (10 €): se cruzan en la 4.ª tarta, que es el límite."
+      props:
+        id: "r-e1a-marginal-tartas"
+        titulo: "Ingreso marginal y coste marginal de las tartas"
+        desc: "El ingreso marginal es una recta horizontal en 10 euros. El coste marginal crece de 4 a 12 euros entre la 1.ª y la 5.ª tarta y corta al ingreso marginal en la 4.ª tarta."
+        xMax: 6.5
+        yMax: 14
+        ejeX: "Tartas producidas"
+        ejeY: "Euros por tarta"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [1, 2, 3, 5]
+        yTicks: [2, 4, 6, 8, 12]
+        series:
+          - { label: "CM", color: "terra", puntos: [[1, 4], [2, 6], [3, 8], [4, 10], [5, 12]] }
+          - { label: "IM", color: "mustard", puntos: [[0.5, 10], [5.5, 10]], dy: 4 }
+        puntos:
+          - { x: 4, y: 10, label: "E", xLabel: "4", yLabel: "10", dx: 12, dy: 22 }
   - enunciado: "<strong>Interés compuesto frente a simple.</strong> Inviertes 3.000 € durante 4 años al 5 % anual. Calcula el capital final con interés compuesto y con interés simple, compara la diferencia y estima con la regla del 72 cuántos años tardaría en duplicarse."
     desarrollo: "<strong>Interés compuesto</strong> (Capital · (1+i)^n): 3.000 × 1,05⁴.<br>1,05⁴ = 1,21550625 → 3.000 × 1,21550625 = <strong>3.646,52 €</strong>.<br><strong>Interés simple</strong> (intereses fijos de 5 % · 3.000 = 150 €/año durante 4 años = 600 €): 3.000 + 600 = <strong>3.600 €</strong>.<br><strong>Diferencia:</strong> 3.646,52 − 3.600 = <strong>46,52 €</strong> a favor del compuesto, porque sus intereses generan nuevos intereses.<br><strong>Regla del 72:</strong> 72 ÷ 5 = <strong>14,4 años</strong> aproximados para duplicar el capital al 5 % anual."
+    grafico:
+      tipo: xy
+      caption: "Intereses acumulados sobre 3.000 € al 5 % durante 4 años: 646,52 € con interés compuesto y 600 € con interés simple, 46,52 € de diferencia."
+      props:
+        id: "r-e1a-compuesto-simple"
+        titulo: "Interés compuesto frente a interés simple"
+        desc: "Dos líneas de intereses acumulados durante 4 años sobre 3.000 euros al 5 %: la del interés compuesto acaba en 646,52 euros y la del simple en 600, y se separan cada año más."
+        xMax: 5
+        yMax: 720
+        ejeX: "Años"
+        ejeY: "Intereses acumulados (€)"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [1, 2, 3]
+        yTicks: [200, 400]
+        series:
+          - { label: "Compuesto", color: "terra", puntos: [[0, 0], [1, 150], [2, 307.5], [3, 472.88], [4, 646.52]], dx: 14, dy: 0 }
+          - { label: "Simple", color: "mustard", puntos: [[0, 0], [1, 150], [2, 300], [3, 450], [4, 600]], dx: 14, dy: 14 }
+        puntos:
+          - { x: 4, y: 646.52, xLabel: "4", yLabel: "646,52" }
+          - { x: 4, y: 600, yLabel: "600" }
+        notas:
+          - { x: 1.2, y: 520, texto: "Diferencia: 46,52 €", color: "terra" }
   - enunciado: "<strong>Equilibrio y efecto de un aumento de la renta.</strong> En un mercado, Qd = 200 − 5P y Qs = 20 + 5P. Calcula el equilibrio inicial. Después, una subida de la renta desplaza la demanda a Qd' = 260 − 5P. Calcula el nuevo equilibrio e interpreta el cambio."
     desarrollo: "<strong>Equilibrio inicial</strong> (Qd = Qs): 200 − 5P = 20 + 5P → 180 = 10P → <strong>P = 18</strong>.<br>Cantidad: Q = 20 + 5 × 18 = <strong>110 unidades</strong> (comprobación: 200 − 5 × 18 = 110).<br><strong>Nuevo equilibrio</strong> (Qd' = Qs): 260 − 5P = 20 + 5P → 240 = 10P → <strong>P = 24</strong>.<br>Cantidad: Q = 20 + 5 × 24 = <strong>140 unidades</strong>.<br><strong>Interpretación:</strong> al ser un bien <em>normal</em>, el aumento de renta desplaza la demanda a la derecha; suben tanto el precio (de 18 a 24) como la cantidad (de 110 a 140). Es un desplazamiento de la curva, no un movimiento a lo largo de ella."
+    grafico:
+      tipo: mercado
+      caption: "La demanda pasa de D₁ a D₂ y el equilibrio sube de E₁ (18 €, 110) a E₂ (24 €, 140): suben el precio y la cantidad."
+      props:
+        id: r-e1a-renta
+        titulo: "Equilibrio antes y después de un aumento de la renta"
+        desc: "Con la demanda inicial el equilibrio está en 18 euros y 110 unidades. Al desplazarse la demanda a la derecha, el nuevo equilibrio está en 24 euros y 140 unidades."
+        pMax: 45
+        qMax: 240
+        curvas:
+          - { tipo: D, q0: 200, m: -5, pDe: 4, pA: 36, label: "D₁", tenue: true }
+          - { tipo: D, q0: 260, m: -5, pDe: 10, pA: 42, label: "D₂" }
+          - { tipo: O, q0: 20, m: 5, pA: 40, label: "O" }
+        puntos:
+          - { p: 18, q: 110, label: "E₁", pLabel: "18", qLabel: "110", dx: -10, dy: 30 }
+          - { p: 24, q: 140, label: "E₂", pLabel: "24", qLabel: "140", dx: -8, dy: -16 }
   - enunciado: "<strong>Precio máximo y escasez.</strong> En el mercado anterior (Qd = 200 − 5P, Qs = 20 + 5P, con equilibrio en P = 18), el Gobierno fija un precio máximo de 10 € por considerarlo «justo». Calcula qué ocurre con la cantidad demandada y la ofrecida."
     desarrollo: "Un precio máximo (techo) solo tiene efecto si se fija <strong>por debajo</strong> del equilibrio (18 €). Aquí 10 € &lt; 18 €, así que sí actúa.<br><strong>Cantidad demandada</strong> a 10 €: Qd = 200 − 5 × 10 = <strong>150 unidades</strong>.<br><strong>Cantidad ofrecida</strong> a 10 €: Qs = 20 + 5 × 10 = <strong>70 unidades</strong>.<br><strong>Resultado:</strong> la demanda (150) supera a la oferta (70), generando una <strong>escasez de 80 unidades</strong>. El precio máximo, pensado para abaratar el bien, provoca colas, listas de espera o mercado negro. Es el efecto típico de muchos controles de precios (por ejemplo, en el alquiler)."
+    grafico:
+      tipo: mercado
+      caption: "Con el precio máximo de 10 € (por debajo del equilibrio, 18 €) se demandan 150 unidades y solo se ofrecen 70: escasez de 80."
+      props:
+        id: "r-e1a-precio-maximo"
+        titulo: "Precio máximo y escasez"
+        desc: "Demanda Qd = 200 − 5P y oferta Qs = 20 + 5P, con equilibrio en 18 euros y 110 unidades. A un precio máximo de 10 euros se demandan 150 unidades y se ofrecen 70: escasez de 80."
+        pMax: 45
+        qMax: 240
+        curvas:
+          - { tipo: "D", q0: 200, m: -5, pDe: 4, pA: 36, label: "D" }
+          - { tipo: "O", q0: 20, m: 5, pDe: 4, pA: 38, label: "O" }
+        puntos:
+          - { p: 18, q: 110, label: "E", pLabel: "18", qLabel: "110", dx: 22, dy: 5 }
+          - { p: 10, q: 70, label: "Qs", qLabel: "70", dx: -30, dy: -8 }
+          - { p: 10, q: 150, label: "Qd", qLabel: "150", pLabel: "10", dx: 12, dy: -10 }
+        precio: { p: 10, label: "Precio máximo: 10 €" }
+        tramo: { p: 10, q1: 70, q2: 150, label: "Escasez: 80 unidades" }
 ejercicios:
   - enunciado: "Explica por qué la FPP suele dibujarse cóncava (curvada) y no como una línea recta. Relaciónalo con el coste de oportunidad."
     solucion: "La FPP es cóncava porque el coste de oportunidad es <strong>creciente</strong>: a medida que producimos más de un bien, hay que sacrificar cantidades cada vez mayores del otro.<br>Esto ocurre porque los recursos no son igual de productivos en todos los usos; al pasar recursos poco adecuados de un bien a otro, la producción ganada por cada unidad sacrificada disminuye. Si el coste de oportunidad fuese constante, la FPP sería una línea recta."

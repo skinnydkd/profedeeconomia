@@ -47,6 +47,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MatrizSesgos from '@components/diagrams/MatrizSesgos.astro';
 import PuertasDecision from '@components/diagrams/PuertasDecision.astro';
 import Figure from '@components/Figure.astro';
@@ -144,6 +145,58 @@ Ejemplo con tres alternativas para el curso que viene:
 | Bach General | 3 | 3 | 4 | 5 | 15 |
 
 La tabla no decide por ti. Decide tú. Pero te obliga a mirar las opciones con la misma vara y a darte cuenta de cosas que, comparándolas solo "de cabeza", se te escapaban.
+
+<Diagram caption="Las notas de la tabla apiladas por criterio: Bach Ciencias y FP GM Informática suman 16 y Bach General 15. Una diferencia tan pequeña no decide por ti.">
+  <GraficoXY id="g-matriz-bach-fp" titulo="Puntuación de tres alternativas por criterio" desc="Tres barras apiladas con las notas de la tabla: Bach Ciencias suma 4 de interés, 5 de salidas, 2 de dificultad y 5 de distancia, 16 en total; FP GM Informática suma 5, 4, 4 y 3, 16 en total; Bach General suma 3, 3, 4 y 5, 15 en total."
+    xMax={7} yMax={20} ejeX="Alternativa" ejeY="Puntos (suma de notas)"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['Bach Ciencias', 'FP GM Informática', 'Bach General']} yTicks={[5, 10, 15]}
+    areas={[
+      { color: 'terra', puntos: [[0.7, 0], [2.3, 0], [2.3, 4], [0.7, 4]] },
+      { color: 'teal', puntos: [[0.7, 4], [2.3, 4], [2.3, 9], [0.7, 9]] },
+      { color: 'mustard', puntos: [[0.7, 9], [2.3, 9], [2.3, 11], [0.7, 11]] },
+      { color: 'aubergine', puntos: [[0.7, 11], [2.3, 11], [2.3, 16], [0.7, 16]] },
+      { color: 'terra', puntos: [[2.7, 0], [4.3, 0], [4.3, 5], [2.7, 5]] },
+      { color: 'teal', puntos: [[2.7, 5], [4.3, 5], [4.3, 9], [2.7, 9]] },
+      { color: 'mustard', puntos: [[2.7, 9], [4.3, 9], [4.3, 13], [2.7, 13]] },
+      { color: 'aubergine', puntos: [[2.7, 13], [4.3, 13], [4.3, 16], [2.7, 16]] },
+      { color: 'terra', puntos: [[4.7, 0], [6.3, 0], [6.3, 3], [4.7, 3]] },
+      { color: 'teal', puntos: [[4.7, 3], [6.3, 3], [6.3, 6], [4.7, 6]] },
+      { color: 'mustard', puntos: [[4.7, 6], [6.3, 6], [6.3, 10], [4.7, 10]] },
+      { color: 'aubergine', puntos: [[4.7, 10], [6.3, 10], [6.3, 15], [4.7, 15]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.7, 0], [0.7, 4], [2.3, 4], [2.3, 0]] },
+      { color: 'teal', puntos: [[0.7, 4], [0.7, 9], [2.3, 9], [2.3, 4]] },
+      { color: 'mustard', puntos: [[0.7, 9], [0.7, 11], [2.3, 11], [2.3, 9]] },
+      { color: 'aubergine', puntos: [[0.7, 11], [0.7, 16], [2.3, 16], [2.3, 11]] },
+      { color: 'terra', puntos: [[2.7, 0], [2.7, 5], [4.3, 5], [4.3, 0]] },
+      { color: 'teal', puntos: [[2.7, 5], [2.7, 9], [4.3, 9], [4.3, 5]] },
+      { color: 'mustard', puntos: [[2.7, 9], [2.7, 13], [4.3, 13], [4.3, 9]] },
+      { color: 'aubergine', puntos: [[2.7, 13], [2.7, 16], [4.3, 16], [4.3, 13]] },
+      { color: 'terra', puntos: [[4.7, 0], [4.7, 3], [6.3, 3], [6.3, 0]] },
+      { color: 'teal', puntos: [[4.7, 3], [4.7, 6], [6.3, 6], [6.3, 3]] },
+      { color: 'mustard', puntos: [[4.7, 6], [4.7, 10], [6.3, 10], [6.3, 6]] },
+      { color: 'aubergine', puntos: [[4.7, 10], [4.7, 15], [6.3, 15], [6.3, 10]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 1.65, texto: 'Interés 4', ancla: 'middle' },
+      { x: 1.5, y: 6.15, texto: 'Salidas 5', ancla: 'middle' },
+      { x: 1.5, y: 9.65, texto: 'Dificultad 2', ancla: 'middle' },
+      { x: 1.5, y: 13.15, texto: 'Distancia 5', ancla: 'middle' },
+      { x: 1.5, y: 16.6, texto: 'Total 16', ancla: 'middle' },
+      { x: 3.5, y: 2.15, texto: 'Interés 5', ancla: 'middle' },
+      { x: 3.5, y: 6.65, texto: 'Salidas 4', ancla: 'middle' },
+      { x: 3.5, y: 10.65, texto: 'Dificultad 4', ancla: 'middle' },
+      { x: 3.5, y: 14.15, texto: 'Distancia 3', ancla: 'middle' },
+      { x: 3.5, y: 16.6, texto: 'Total 16', ancla: 'middle' },
+      { x: 5.5, y: 1.15, texto: 'Interés 3', ancla: 'middle' },
+      { x: 5.5, y: 4.15, texto: 'Salidas 3', ancla: 'middle' },
+      { x: 5.5, y: 7.65, texto: 'Dificultad 4', ancla: 'middle' },
+      { x: 5.5, y: 12.15, texto: 'Distancia 5', ancla: 'middle' },
+      { x: 5.5, y: 15.6, texto: 'Total 15', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **Pruébalo tú mismo:** monta tu propia tabla aquí, con tus opciones, tus criterios y el peso que le das a cada uno. Fíjate menos en quién gana y más en dos cosas: si el resultado aguanta cuando cambias un peso, y cuál es el criterio que de verdad está decidiendo por ti.
 

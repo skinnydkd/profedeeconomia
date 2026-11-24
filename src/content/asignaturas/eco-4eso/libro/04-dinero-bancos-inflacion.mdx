@@ -44,6 +44,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TresFuncionesDinero from '@components/diagrams/TresFuncionesDinero.astro';
 import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
 import TransmisionMonetaria from '@components/diagrams/TransmisionMonetaria.astro';
@@ -246,6 +247,18 @@ b) Ana ingresa 1.000 € en efectivo en el banco. Con un coeficiente de caja del
 5. **Dinero total tras la primera ronda**: Ana sigue viendo 1.000 € en su cuenta y Luis tiene 900 € nuevos. Total: 1.000 + 900 = **1.900 €**. Se han creado 900 € que antes no existían.
 6. **Si la cadena continúa**: el multiplicador es 1 / 0,10 = 10, así que los 1.000 € iniciales pueden convertirse en hasta **10.000 €** de dinero bancario (1.000 + 900 + 810 + 729 + 656 + …). Con el coeficiente real de la zona euro (1 %) el multiplicador teórico sería 100, pero en la práctica queda muy por debajo porque parte del dinero se guarda en efectivo y los bancos mantienen reservas extra.
 
+<Diagram caption="El dinero total que sale de los 1.000 € de Ana, depósito a depósito: 1.000, luego 1.900 con el primer préstamo, y así hasta acercarse a 10.000 sin llegar nunca a pasarlos.">
+  <GraficoXY id="g-creacion-dinero" titulo="Dinero bancario creado a partir de 1.000 euros" desc="Curva que sube cada vez más despacio: tras el primer depósito hay 1 000 euros, tras el segundo 1 900, y con muchos depósitos el total se acerca al límite de 10 000 euros sin superarlo."
+    xMax={26} yMax={12000} ejeX="Depósitos de la cadena" ejeY="Dinero total (€)" simboloX="n" simboloY="€"
+    xTicks={[5, 10, 15, 20]} yTicks={[2500, 5000, 7500, 10000]}
+    series={[
+      { color: 'terra', puntos: Array.from({ length: 21 }, (_, n) => [n, 10000 * (1 - 0.9 ** n)]) },
+      { color: 'ink', tenue: true, label: 'Límite: 10 000 €', puntos: [[0, 10000], [22, 10000]] },
+    ]}
+    puntos={[{ x: 1, y: 1000, label: '1 000', dx: 14, dy: 22, guias: false }, { x: 2, y: 1900, label: '1 900', dx: 14, dy: 22, guias: false }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo tú mismo:** cambia el depósito inicial y el coeficiente de caja y observa, ronda a ronda, cuánto dinero acaba creando el sistema bancario y qué pasa cuando parte del préstamo se queda en efectivo.
@@ -295,11 +308,42 @@ Los últimos años han sido un caso de manual. Entre 2016 y 2022 el BCE mantuvo 
 | 6 de junio de 2024 | Primera bajada | 4,25 % |
 | Junio de 2025 | Octava bajada; facilidad de depósito en el 2 % | 2,15 % |
 
+<Diagram caption="El tipo principal del BCE con los datos de la tabla: años a cero, una subida muy rápida hasta el 4,5 % y una bajada después. Entre fecha y fecha hubo varios cambios más; aquí solo se unen los puntos de la tabla.">
+  <GraficoXY id="g-tipos-bce" titulo="Tipo principal del BCE entre 2016 y 2025" desc="El tipo está en el 0 por ciento desde 2016 hasta julio de 2022, sube a 0,5 por ciento en julio de 2022, llega al 4,5 en septiembre de 2023, baja a 4,25 en junio de 2024 y a 2,15 en junio de 2025."
+    xMax={11} yMax={5.5} ejeX="Año" ejeY="Tipo principal (%)" simboloX="t" simboloY="%"
+    xTicks={[0.5, 2.5, 4.5, 6.5, 8.5, 10.5]} xTickLabels={['2016', '2018', '2020', '2022', '2024', '2026']} yTicks={[1, 2, 3, 4, 5]}
+    series={[{ color: 'terra', puntos: [[0, 0], [7.05, 0], [7.05, 0.5], [8.2, 4.5], [8.93, 4.25], [9.95, 2.15]] }]}
+    puntos={[
+      { x: 7.05, y: 0.5, label: '0,5 %', dx: 14, dy: 22, guias: false }, { x: 8.2, y: 4.5, label: '4,5 %', dx: -52, dy: -10, guias: false },
+      { x: 8.93, y: 4.25, label: '4,25 %', dx: 12, dy: -8, guias: false }, { x: 9.95, y: 2.15, label: '2,15 %', guias: false },
+    ]}
+    notas={[{ x: 0.3, y: 0.4, texto: '0 % hasta julio de 2022', color: 'teal' }]}
+  />
+</Diagram>
+
 ### El euríbor y las hipotecas
 
 La mayoría de familias españolas notan los tipos oficiales a través de una palabra que sale cada mes en las noticias: el **euríbor**. Es el tipo de interés medio al que los grandes bancos europeos se prestan dinero entre sí, y sigue de cerca lo que decide el BCE. Las **hipotecas variables** (el préstamo con el que se compra una vivienda) se calculan como «euríbor más un diferencial», por ejemplo euríbor + 1 %, y se revisan cada seis o doce meses. Así que cuando el euríbor sube, la cuota mensual sube.
 
 Y subió mucho. El euríbor a doce meses estaba en **−0,50 %** a finales de 2021 (sí, negativo), tocó el **4,16 %** en octubre de 2023 y en agosto de 2025 rondaba el **2,1 %** (Banco de España, series del euríbor). Para una hipoteca de 150.000 € a 25 años con euríbor + 1 %, la cuota pasó de unos **530 €** al mes en 2021 a unos **890 €** en 2023, y volvió a unos **720 €** en 2025 (cálculo propio con la fórmula de cuota constante). Trescientos sesenta euros más cada mes por la misma casa: eso es lo que significa, para una familia, que veintiséis personas en Fráncfort suban los tipos. En la Unidad 8 aprenderás a calcular una cuota y a comparar hipotecas.
+
+<Diagram caption="La cuota mensual de la hipoteca de 150.000 € a 25 años según el euríbor: unos 530 € en 2021, unos 890 € en 2023 y unos 720 € en 2025.">
+  <GraficoXY id="g-cuota-hipoteca" titulo="Cuota mensual de una hipoteca según el euríbor" desc="Tres barras para una hipoteca de 150 000 euros a 25 años con euríbor más 1 por ciento: unos 530 euros al mes con el euríbor en menos 0,5 por ciento en 2021, unos 890 con el 4,16 en 2023 y unos 720 con el 2,1 en 2025."
+    xMax={7} yMax={1100} ejeX="Año y euríbor a doce meses" ejeY="Cuota mensual (€)"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['2021: −0,5 %', '2023: 4,16 %', '2025: 2,1 %']} yTicks={[200, 400, 600, 800]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 530], [0.9, 530]] },
+      { color: 'terra', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 890], [2.9, 890]] },
+      { color: 'mustard', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 720], [4.9, 720]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.9, 0], [0.9, 530], [2.1, 530], [2.1, 0]] },
+      { color: 'terra', puntos: [[2.9, 0], [2.9, 890], [4.1, 890], [4.1, 0]] },
+      { color: 'mustard', puntos: [[4.9, 0], [4.9, 720], [6.1, 720], [6.1, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 575, texto: '530 €', ancla: 'middle' }, { x: 3.5, y: 935, texto: '890 €', ancla: 'middle' }, { x: 5.5, y: 765, texto: '720 €', ancla: 'middle' }]}
+  />
+</Diagram>
 
 ### Cómo llega el tipo de interés a toda la economía
 
@@ -347,6 +391,21 @@ La tabla resume lo que pasó en España en los últimos años, con la inflación
 | 2023 | 3,5 % | Subidas de tipos del BCE, energía más barata; el aceite sube un 54,6 % |
 | 2024 | 2,8 % | Los precios se calman; el BCE empieza a bajar tipos |
 | 2025 | 2,7 % | Inflación cerca del objetivo del BCE |
+
+<Diagram caption="La inflación media anual en España con los datos de la tabla: el salto de 2022 y la vuelta hacia el objetivo del 2 % del BCE.">
+  <GraficoXY id="g-inflacion-espana" titulo="Inflación media anual en España, 2021-2025" desc="La inflación es del 3,1 por ciento en 2021, sube al 8,4 en 2022, baja al 3,5 en 2023, al 2,8 en 2024 y al 2,7 en 2025. El objetivo del BCE es el 2 por ciento."
+    xMax={5.4} yMax={10} ejeX="Año" ejeY="Inflación media anual (%)" simboloX="t" simboloY="%"
+    xTicks={[0.5, 1.5, 2.5, 3.5, 4.5]} xTickLabels={['2021', '2022', '2023', '2024', '2025']} yTicks={[2, 4, 6, 8]}
+    series={[
+      { color: 'terra', puntos: [[0.5, 3.1], [1.5, 8.4], [2.5, 3.5], [3.5, 2.8], [4.5, 2.7]] },
+      { color: 'teal', tenue: true, label: 'Objetivo: 2 %', dy: 18, puntos: [[0.5, 2], [4.7, 2]] },
+    ]}
+    puntos={[
+      { x: 0.5, y: 3.1, label: '3,1', dy: -12, guias: false }, { x: 1.5, y: 8.4, label: '8,4', dy: -12, guias: false }, { x: 2.5, y: 3.5, label: '3,5', dy: -12, guias: false },
+      { x: 3.5, y: 2.8, label: '2,8', dy: -12, guias: false }, { x: 4.5, y: 2.7, label: '2,7', dy: -12, guias: false },
+    ]}
+  />
+</Diagram>
 
 Un 8,4 % puede parecer un número abstracto. Traducido: una familia que gastaba 1.000 € al mes en 2021 necesitaba 1.084 € en 2022 para comprar exactamente lo mismo. Si sus ingresos no subieron en la misma proporción (y la mayoría no lo hicieron), vivió peor con el mismo dinero.
 
@@ -402,7 +461,46 @@ b) Una abuela guardó 1.000 € en un sobre en casa el 1 de enero de 2022. Con l
 3. **Inflación de la cesta**: (58,00 − 56,00) / 56,00 × 100 = 2,00 / 56,00 × 100 = **3,57 %**.
 4. **Lectura**: el bocadillo subió un 10 % y la camiseta un 8 %, pero la recarga y el bono no subieron nada, y el bono es lo que más pesa en la cesta. Por eso el índice general (3,57 %) es mucho más bajo que la subida del producto más llamativo. Así funciona el IPC: los productos que más pesan en el gasto «tiran» del índice hacia su subida, y los que no suben lo frenan.
 5. **El sobre de la abuela**: los 1.000 € siguen siendo 1.000 € en billetes, pero lo que costaba 1.000 € en enero cuesta 1.084 € en diciembre. Su poder adquisitivo es 1.000 / 1,084 = **922,51 €**.
-6. **Pérdida**: 1.000 − 922,51 = **77,49 €** en un solo año, sin que nadie abriera el sobre. Para conservar el poder de compra habría necesitado que el sobre «creciera» hasta 1.084 €. Ni siquiera una cuenta remunerada al 2 % (1.020 € a final de año) lo habría evitado del todo, pero habría reducido la pérdida a la mitad. Con inflación, guardar dinero parado es perder dinero despacio.
+6. **Pérdida**: 1.000 − 922,51 = **77,49 €** en un solo año, sin que nadie abriera el sobre. Para conservar el poder de compra habría necesitado que el sobre «creciera» hasta 1.084 €. Ni siquiera una cuenta remunerada al 2 % (1.020 € a final de año, que con la inflación valen 1.020 / 1,084 = 940,96 €) lo habría evitado del todo, pero habría reducido la pérdida de 77,49 € a 59,04 €. Con inflación, guardar dinero parado es perder dinero despacio.
+
+<Diagram caption="Cuánto sube cada producto de la cesta: el bocadillo un 10 %, el cine un 6,25 %, la camiseta un 8 %, y la recarga y el bono nada. El conjunto sube un 3,57 %, mucho menos que el bocadillo.">
+  <GraficoXY id="g-cesta-inflacion" titulo="Subida de precio de cada producto de la cesta" desc="Cinco barras con la subida del precio entre el año 1 y el año 2: bocadillo 10 por ciento, entrada de cine 6,25, recarga del móvil 0, camiseta 8 y bono de transporte 0. La cesta entera sube un 3,57 por ciento."
+    xMax={6.6} yMax={12} ejeX="Producto" ejeY="Subida del precio (%)"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['Bocadillo', 'Cine', 'Recarga', 'Camiseta', 'Bono']} yTicks={[2, 4, 6, 8, 10]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 10], [0.65, 10]] },
+      { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 6.25], [1.65, 6.25]] },
+      { color: 'terra', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 8], [3.65, 8]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 10], [1.35, 10], [1.35, 0]] },
+      { color: 'terra', puntos: [[1.65, 0], [1.65, 6.25], [2.35, 6.25], [2.35, 0]] },
+      { color: 'terra', puntos: [[3.65, 0], [3.65, 8], [4.35, 8], [4.35, 0]] },
+      { color: 'teal', tenue: true, label: 'Cesta: 3,57 %', dy: -4, puntos: [[0.3, 3.57], [5.6, 3.57]] },
+    ]}
+    notas={[
+      { x: 1, y: 10.5, texto: '10 %', ancla: 'middle' }, { x: 2, y: 6.75, texto: '6,25 %', ancla: 'middle' }, { x: 3, y: 0.5, texto: '0 %', ancla: 'middle' },
+      { x: 4, y: 8.5, texto: '8 %', ancla: 'middle' }, { x: 5, y: 0.5, texto: '0 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Lo que valen 1.000 € a final de 2022 con una inflación del 8,4 %: 922,51 € guardados en un sobre y 940,96 € en una cuenta al 2 %. En los dos casos se pierde poder de compra.">
+  <GraficoXY id="g-sobre-abuela" titulo="Poder adquisitivo de 1.000 euros tras un año de inflación" desc="Dos barras que quedan por debajo de los 1 000 euros iniciales: el sobre guardado en casa vale 922,51 euros de poder de compra y la cuenta al 2 por ciento, 940,96."
+    xMax={6} yMax={1200} ejeX="Dónde estaba el dinero" ejeY="Poder adquisitivo (€)"
+    xTicks={[1.5, 3.5]} xTickLabels={['Sobre en casa', 'Cuenta al 2 %']} yTicks={[250, 500, 750]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 922.51], [0.9, 922.51]] },
+      { color: 'teal', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 940.96], [2.9, 940.96]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 922.51], [2.1, 922.51], [2.1, 0]] },
+      { color: 'teal', puntos: [[2.9, 0], [2.9, 940.96], [4.1, 940.96], [4.1, 0]] },
+      { color: 'ink', tenue: true, label: 'Al empezar: 1 000 €', dy: -6, puntos: [[0, 1000], [4.6, 1000]] },
+    ]}
+    notas={[{ x: 1.5, y: 650, texto: '922,51 €', ancla: 'middle' }, { x: 3.5, y: 650, texto: '940,96 €', ancla: 'middle' }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -739,7 +837,7 @@ Estas preguntas no tienen una respuesta única. Sirven para debatir en clase o p
     - "El bocadillo subió un 10 %, pero el bono y la recarga no: los que más pesan frenan el índice."
     - "Poder adquisitivo del sobre: 1.000 / 1,084 = 922,51 €."
     - "Pérdida: 77,49 € en un año sin que nadie abriera el sobre."
-    - "Una cuenta al 2 % habría dejado 1.020 €: no evita la pérdida, pero la reduce a la mitad."
+    - "Una cuenta al 2 % habría dejado 1.020 €: no evita la pérdida, pero la reduce en una cuarta parte."
 - tipo: data
   numero: "4,2 billones"
   label: "de marcos por un dólar"

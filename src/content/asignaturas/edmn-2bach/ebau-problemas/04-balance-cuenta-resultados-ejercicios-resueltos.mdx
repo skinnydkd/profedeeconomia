@@ -10,6 +10,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 El **balance** refleja el patrimonio de la empresa en un momento dado. El activo (lo que tiene y le deben) se ordena de menor a mayor liquidez; el patrimonio neto y el pasivo (de dónde sale el dinero) se ordenan de menor a mayor exigibilidad. La **cuenta de Pérdidas y Ganancias** calcula el resultado del ejercicio por escalones. La **amortización** une los dos estados: es un gasto en la cuenta de Pérdidas y Ganancias y, acumulada, resta valor al inmovilizado en el balance.
 
 ## Formulario
@@ -26,7 +29,7 @@ El **balance** refleja el patrimonio de la empresa en un momento dado. El activo
 
 ### Problema 1 — Elaboración del balance por masas
 
-**Enunciado.** A 31 de diciembre, la empresa *Disseny Modular S.L.* presenta las siguientes partidas (en euros): Maquinaria 80.000; Mobiliario 20.000; Existencias 25.000; Clientes 18.000; Tesorería (Bancos) 12.000; Capital social 70.000; Reservas 30.000; Deudas a largo plazo con entidades de crédito 40.000; Proveedores 25.000; Deudas a corto plazo con entidades de crédito 5.000. Ordena el balance por masas patrimoniales y comprueba que cuadra.
+**Enunciado.** A 31 de diciembre, la empresa *Disseny Modular S.L.* presenta las siguientes partidas (en euros): Maquinaria 80.000; Mobiliario 20.000; Existencias 25.000; Clientes 18.000; Tesorería (Bancos) 12.000; Capital social 70.000; Reservas 30.000; Deudas a largo plazo con entidades de crédito 40.000; Proveedores 10.000; Deudas a corto plazo con entidades de crédito 5.000. Ordena el balance por masas patrimoniales y comprueba que cuadra.
 
 **Solución.**
 
@@ -37,14 +40,45 @@ El **balance** refleja el patrimonio de la empresa en un momento dado. El activo
 | Mobiliario | 20.000 | Reservas | 30.000 |
 | **B) Activo corriente** | **55.000** | **B) Pasivo no corriente** | **40.000** |
 | Existencias | 25.000 | Deudas a l/p con entidades de crédito | 40.000 |
-| Clientes | 18.000 | **C) Pasivo corriente** | **30.000** |
-| Tesorería | 12.000 | Proveedores | 25.000 |
+| Clientes | 18.000 | **C) Pasivo corriente** | **15.000** |
+| Tesorería | 12.000 | Proveedores | 10.000 |
 | | | Deudas a c/p con entidades de crédito | 5.000 |
 | **TOTAL ACTIVO** | **155.000** | **TOTAL PN + PASIVO** | **155.000** |
 
-Comprobación: Activo (100.000 + 55.000 = 155.000) = PN + Pasivo (100.000 + 40.000 + 30.000 = 155.000). Cuadra.
+Comprobación: Activo (100.000 + 55.000 = 155.000) = PN + Pasivo (100.000 + 40.000 + 15.000 = 155.000). Cuadra.
 
 **Interpretación.** El balance cuadra en 155.000 euros. La empresa financia su activo en un 64,5 % con recursos propios (100.000 de 155.000) y el resto con deuda, mayoritariamente a largo plazo. Su activo es sobre todo no corriente (maquinaria y mobiliario, 100.000 euros), propio de una empresa con inmovilizado productivo importante.
+
+<Diagram caption="El balance en masas (ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente). Las dos columnas miden lo mismo, 155.000 €. El fondo de maniobra (AC − PC) es de 40.000 €.">
+  <GraficoXY id="g-ebau-balance-disseny" titulo="Balance de Disseny Modular" desc="Dos columnas iguales de 155.000 euros. Activo: no corriente 100.000 y corriente 55.000. Patrimonio neto más pasivo: patrimonio neto 100.000, pasivo no corriente 40.000 y pasivo corriente 15.000. El fondo de maniobra es de 40.000."
+    xMax={10} yMax={190000} ejeX="Balance a 31 de diciembre" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Activo", "Patrimonio neto + pasivo"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 100000], [1.5, 100000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 100000], [4.5, 100000], [4.5, 155000], [1.5, 155000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 100000], [5.5, 100000]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 100000], [8.5, 100000], [8.5, 140000], [5.5, 140000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 155000], [5.5, 155000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 100000], [1.5, 100000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 100000], [4.5, 100000], [4.5, 155000], [1.5, 155000], [1.5, 100000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 100000], [5.5, 100000], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 100000], [8.5, 100000], [8.5, 140000], [5.5, 140000], [5.5, 100000]], color: "aubergine" },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 155000], [5.5, 155000], [5.5, 140000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 47625, texto: "ANC 100 000", ancla: "middle" },
+      { x: 3, y: 125125, texto: "AC 55 000", ancla: "middle" },
+      { x: 7, y: 47625, texto: "PN 100 000", ancla: "middle" },
+      { x: 7, y: 117625, texto: "PNC 40 000", ancla: "middle" },
+      { x: 7, y: 145125, texto: "PC 15 000", ancla: "middle" },
+      { x: 3, y: 162600, texto: "Total activo: 155 000", ancla: "middle" },
+      { x: 7, y: 162600, texto: "Total PN + pasivo: 155 000", ancla: "middle" },
+      { x: 5, y: 177800, texto: "FM = 55 000 − 15 000 = 40 000", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 2 — Amortización lineal y valor neto contable
 
@@ -85,6 +119,30 @@ En la cuenta de Pérdidas y Ganancias aparece cada año un gasto de explotación
 
 **Interpretación.** La furgoneta pierde 6.000 euros de valor cada año por el uso y el paso del tiempo. Ese desgaste se reparte como gasto entre los cuatro años en que la empresa la utiliza, en lugar de cargar los 30.000 euros el año de la compra. Al final del cuarto año su valor en libros coincide con el valor residual previsto, 6.000 euros.
 
+<Diagram caption="Amortización lineal de la furgoneta: 6.000 € al año. La amortización acumulada sube de 0 a 24.000 € y el valor neto contable (VNC) baja de 30.000 € a 6.000 €, el valor residual. Al cierre del segundo año el VNC es de 18.000 €.">
+  <GraficoXY id="g-ebau-amortizacion-furgoneta" titulo="Amortización lineal de la furgoneta" desc="La cuota de 6.000 euros al año hace crecer la amortización acumulada de 0 a 24.000 euros en cuatro años. El valor neto contable baja de 30.000 a 6.000 euros, el valor residual. Al cierre del segundo año la amortización acumulada es de 12.000 euros y el valor neto contable de 18.000."
+    xMax={5.5} yMax={34000} ejeX="Años de uso" ejeY="Euros" simboloX="t" simboloY="€"
+    xTicks={[1, 2, 3, 4]} yTicks={[6000, 24000, 30000]}
+    series={[
+      { label: "VNC", color: "teal", puntos: [[0, 30000], [4, 6000]], dy: 8 },
+      { label: "Amort. acumulada", color: "terra", puntos: [[0, 0], [4, 24000]], dy: -2 },
+    ]}
+    puntos={[
+      { x: 2, y: 18000, yLabel: "18 000" },
+      { x: 2, y: 12000, yLabel: "12 000" },
+      { x: 1, y: 24000, guias: false },
+      { x: 3, y: 12000, guias: false },
+      { x: 4, y: 6000, guias: false },
+      { x: 1, y: 6000, guias: false },
+      { x: 3, y: 18000, guias: false },
+      { x: 4, y: 24000, guias: false },
+    ]}
+    notas={[
+      { x: 2.5, y: 2500, texto: "Cuota lineal: 6 000 al año" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — Cuenta de Pérdidas y Ganancias
 
 **Enunciado.** Durante el ejercicio, una empresa registra (en euros): Ventas (importe neto de la cifra de negocios) 400.000; Consumo de mercaderías 220.000; Gastos de personal 90.000; Otros gastos de explotación (suministros, alquileres) 30.000; Amortización del inmovilizado 15.000; Gastos financieros (intereses) 8.000. El tipo del impuesto de sociedades es del 25 %. Elabora la cuenta de Pérdidas y Ganancias y calcula el resultado del ejercicio.
@@ -112,6 +170,40 @@ Detalle de los cálculos:
 - Beneficio neto = 37.000 − 9.250 = **27.750 euros**
 
 **Interpretación.** La actividad ordinaria de la empresa genera un resultado de explotación de 45.000 euros. Tras pagar 8.000 euros de intereses por su deuda y 9.250 euros de impuesto de sociedades, el beneficio neto del ejercicio es de 27.750 euros. La empresa es rentable y el peso de los gastos financieros es moderado, ya que reducen el resultado en menos del 18 % respecto al BAII.
+
+<Diagram caption="De las ventas al resultado del ejercicio. Las barras verdes son resultados (BAII, BAI y resultado final) y las terracota, lo que se resta en cada paso: gastos de explotación (355.000 € = 220.000 + 90.000 + 30.000 + 15.000), intereses e impuesto.">
+  <GraficoXY id="g-ebau-pyg-empresa" titulo="Cuenta de pérdidas y ganancias del ejercicio" desc="Cascada de la cuenta de resultados. Ventas de 400.000 euros, menos 355.000 de gastos de explotación (220.000 de consumo, 90.000 de personal, 30.000 de otros gastos y 15.000 de amortización) dejan un resultado de explotación de 45.000. Los intereses de 8.000 dejan 37.000 antes de impuestos. El impuesto de 9.250 deja un resultado del ejercicio de 27.750."
+    xMax={8} yMax={460000} ejeX="Cuenta de pérdidas y ganancias" ejeY="Euros" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5, 6, 7]} yTicks={[100000, 200000, 300000, 400000]} xTickLabels={["Ventas", "Gastos", "BAII", "Intereses", "BAI", "Impuesto", "Resultado"]}
+    areas={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 400000], [0.65, 400000]], color: "teal", fuerte: true },
+      { puntos: [[1.65, 45000], [2.35, 45000], [2.35, 400000], [1.65, 400000]], color: "terra", fuerte: true },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 45000], [2.65, 45000]], color: "teal", fuerte: true },
+      { puntos: [[3.65, 37000], [4.35, 37000], [4.35, 45000], [3.65, 45000]], color: "terra", fuerte: true },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 37000], [4.65, 37000]], color: "teal", fuerte: true },
+      { puntos: [[5.65, 27750], [6.35, 27750], [6.35, 37000], [5.65, 37000]], color: "terra", fuerte: true },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 27750], [6.65, 27750]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 400000], [0.65, 400000], [0.65, 0]], color: "teal" },
+      { puntos: [[1.65, 45000], [2.35, 45000], [2.35, 400000], [1.65, 400000], [1.65, 45000]], color: "terra" },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 45000], [2.65, 45000], [2.65, 0]], color: "teal" },
+      { puntos: [[3.65, 37000], [4.35, 37000], [4.35, 45000], [3.65, 45000], [3.65, 37000]], color: "terra" },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 37000], [4.65, 37000], [4.65, 0]], color: "teal" },
+      { puntos: [[5.65, 27750], [6.35, 27750], [6.35, 37000], [5.65, 37000], [5.65, 27750]], color: "terra" },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 27750], [6.65, 27750], [6.65, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1, y: 412880, texto: "400 000", ancla: "middle" },
+      { x: 2, y: 412880, texto: "−355 000", ancla: "middle" },
+      { x: 3, y: 57880, texto: "45 000", ancla: "middle" },
+      { x: 4, y: 57880, texto: "−8 000", ancla: "middle" },
+      { x: 5, y: 49880, texto: "37 000", ancla: "middle" },
+      { x: 6, y: 49880, texto: "−9 250", ancla: "middle" },
+      { x: 7, y: 40630, texto: "27 750", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Del resultado al balance (tipo examen)
 
@@ -164,6 +256,71 @@ Comprobación: Activo (48.000 + 93.000 = 141.000) = PN + Pasivo (72.250 + 40.000
 **Resultado:** beneficio neto de 32.250 euros y balance cuadrado en 141.000 euros.
 
 **Interpretación.** El primer año es rentable: tras amortizar el horno y descontar intereses e impuestos, quedan 32.250 euros de beneficio, que de momento permanecen en la empresa como parte del patrimonio neto. La amortización conecta los dos estados: los 12.000 euros que restan en la cuenta de Pérdidas y Ganancias son los mismos que reducen el valor del horno en el balance. Los recursos propios financian el 51,2 % del activo (72.250 de 141.000) y el activo corriente (93.000) supera con holgura las deudas a corto plazo (28.750).
+
+<Diagram caption="De las ventas al resultado del ejercicio. Las barras verdes son resultados (BAII, BAI y resultado final) y las terracota, lo que se resta en cada paso: gastos de explotación (204.000 € = 110.000 + 70.000 + 12.000 + 12.000), intereses e impuesto.">
+  <GraficoXY id="g-ebau-pyg-forn" titulo="Cuenta de pérdidas y ganancias de Forn Artesà" desc="Cascada de la cuenta de resultados. Ventas de 250.000 euros, menos 204.000 de gastos de explotación (110.000 de materias primas, 70.000 de personal, 12.000 de suministros y 12.000 de amortización) dejan un resultado de explotación de 46.000. Los intereses de 3.000 dejan 43.000 antes de impuestos. El impuesto de 10.750 deja un resultado del ejercicio de 32.250."
+    xMax={8} yMax={290000} ejeX="Cuenta de pérdidas y ganancias" ejeY="Euros" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5, 6, 7]} yTicks={[100000, 200000]} xTickLabels={["Ventas", "Gastos", "BAII", "Intereses", "BAI", "Impuesto", "Resultado"]}
+    areas={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 250000], [0.65, 250000]], color: "teal", fuerte: true },
+      { puntos: [[1.65, 46000], [2.35, 46000], [2.35, 250000], [1.65, 250000]], color: "terra", fuerte: true },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 46000], [2.65, 46000]], color: "teal", fuerte: true },
+      { puntos: [[3.65, 43000], [4.35, 43000], [4.35, 46000], [3.65, 46000]], color: "terra", fuerte: true },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 43000], [4.65, 43000]], color: "teal", fuerte: true },
+      { puntos: [[5.65, 32250], [6.35, 32250], [6.35, 43000], [5.65, 43000]], color: "terra", fuerte: true },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 32250], [6.65, 32250]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.65, 0], [1.35, 0], [1.35, 250000], [0.65, 250000], [0.65, 0]], color: "teal" },
+      { puntos: [[1.65, 46000], [2.35, 46000], [2.35, 250000], [1.65, 250000], [1.65, 46000]], color: "terra" },
+      { puntos: [[2.65, 0], [3.35, 0], [3.35, 46000], [2.65, 46000], [2.65, 0]], color: "teal" },
+      { puntos: [[3.65, 43000], [4.35, 43000], [4.35, 46000], [3.65, 46000], [3.65, 43000]], color: "terra" },
+      { puntos: [[4.65, 0], [5.35, 0], [5.35, 43000], [4.65, 43000], [4.65, 0]], color: "teal" },
+      { puntos: [[5.65, 32250], [6.35, 32250], [6.35, 43000], [5.65, 43000], [5.65, 32250]], color: "terra" },
+      { puntos: [[6.65, 0], [7.35, 0], [7.35, 32250], [6.65, 32250], [6.65, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1, y: 258120, texto: "250 000", ancla: "middle" },
+      { x: 2, y: 258120, texto: "−204 000", ancla: "middle" },
+      { x: 3, y: 54120, texto: "46 000", ancla: "middle" },
+      { x: 4, y: 54120, texto: "−3 000", ancla: "middle" },
+      { x: 5, y: 51120, texto: "43 000", ancla: "middle" },
+      { x: 6, y: 51120, texto: "−10 750", ancla: "middle" },
+      { x: 7, y: 40370, texto: "32 250", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El balance en masas (ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente). Las dos columnas miden lo mismo, 141.000 €. El fondo de maniobra (AC − PC) es de 64.250 €.">
+  <GraficoXY id="g-ebau-balance-forn" titulo="Balance de Forn Artesà" desc="Dos columnas iguales de 141.000 euros. Activo: no corriente 48.000 y corriente 93.000. Patrimonio neto más pasivo: patrimonio neto 72.250, pasivo no corriente 40.000 y pasivo corriente 28.750. El fondo de maniobra es de 64.250."
+    xMax={10} yMax={180000} ejeX="Balance a 31 de diciembre" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000]} xTickLabels={["Activo", "Patrimonio neto + pasivo"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 48000], [1.5, 48000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 48000], [4.5, 48000], [4.5, 141000], [1.5, 141000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 72250], [5.5, 72250]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 72250], [8.5, 72250], [8.5, 112250], [5.5, 112250]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 112250], [8.5, 112250], [8.5, 141000], [5.5, 141000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 48000], [1.5, 48000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 48000], [4.5, 48000], [4.5, 141000], [1.5, 141000], [1.5, 48000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 72250], [5.5, 72250], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 72250], [8.5, 72250], [8.5, 112250], [5.5, 112250], [5.5, 72250]], color: "aubergine" },
+      { puntos: [[5.5, 112250], [8.5, 112250], [8.5, 141000], [5.5, 141000], [5.5, 112250]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 21750, texto: "ANC 48 000", ancla: "middle" },
+      { x: 3, y: 92250, texto: "AC 93 000", ancla: "middle" },
+      { x: 7, y: 33875, texto: "PN 72 250", ancla: "middle" },
+      { x: 7, y: 90000, texto: "PNC 40 000", ancla: "middle" },
+      { x: 7, y: 124375, texto: "PC 28 750", ancla: "middle" },
+      { x: 3, y: 148200, texto: "Total activo: 141 000", ancla: "middle" },
+      { x: 7, y: 148200, texto: "Total PN + pasivo: 141 000", ancla: "middle" },
+      { x: 5, y: 162600, texto: "FM = 93 000 − 28 750 = 64 250", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 ## Errores típicos que restan puntos
 

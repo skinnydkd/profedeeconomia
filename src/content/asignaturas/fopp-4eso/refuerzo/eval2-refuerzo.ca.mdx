@@ -28,8 +28,72 @@ ejemplos_resueltos:
     desarrollo: "Pensem què exigix cada meta.<br><strong>1. Per a ser infermera</strong> cal un grau universitari (Infermeria). L'itinerari natural és: <strong>Batxillerat de Ciències i Tecnologia → PAU → Grau en Infermeria</strong>.<br><strong>2. Alternativa més ràpida cap a l'àmbit sanitari:</strong> si prefereix començar a treballar abans, pot fer <strong>FP de Grau Mitjà en Cures Auxiliars d'Infermeria</strong> i treballar com a tècnica; més avant pot pujar a un <strong>Grau Superior</strong> de la família de Sanitat i, des d'ahí, accedir a la universitat.<br><strong>Conclusió:</strong> hi ha un camí acadèmic (Batxillerat + universitat) i un de professional (FP), i gràcies a les passarel·les <strong>no són excloents</strong>: des de la FP també es pot arribar a la universitat."
   - enunciado: "<strong>Calcular la nota d'accés a la universitat.</strong> Un alumne té un 7,5 de nota mitjana de Batxillerat i un 6 en la fase obligatòria de la PAU. Calcula la seua nota d'accés (sense comptar ponderacions)."
     desarrollo: "Usem la fórmula oficial.<br>Nota d'accés = 0,6 × nota de Batxillerat + 0,4 × nota de la fase obligatòria.<br>= 0,6 × 7,5 + 0,4 × 6<br>= 4,5 + 2,4 = <strong>6,9</strong> (sobre 10).<br><strong>Interpretació:</strong> amb un 6,9 pot entrar en els graus la nota de tall dels quals siga igual o menor. Si vol pujar, pot presentar-se a la fase voluntària i guanyar fins a 4 punts extra per ponderacions."
+    grafico:
+      tipo: xy
+      caption: "La nota d'accés (6,9 sobre 10) és la suma del que aporta Batxillerat (0,6 × 7,5 = 4,5) i la fase obligatòria de la PAU (0,4 × 6 = 2,4)."
+      props:
+        id: "r-e2r-acceso"
+        titulo: "Nota d'accés: 60 % Batxillerat i 40 % PAU"
+        desc: "Tres columnes. Batxillerat aporta 0,6 per 7,5, és a dir 4,5 punts. La fase obligatòria de la PAU aporta 0,4 per 6, és a dir 2,4 punts. Juntes donen una nota d'accés de 6,9."
+        xMax: 9
+        yMax: 10
+        ejeX: "Aportació"
+        ejeY: "Punts"
+        xTicks: [1.5, 4.5, 7.5]
+        yTicks: [2, 4, 6, 8]
+        xTickLabels: ["Batxillerat", "PAU", "Nota d'accés"]
+        areas:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 4.5], [0.7, 4.5]], color: "teal", fuerte: true }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2.4], [3.7, 2.4]], color: "mustard", fuerte: true }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 4.5], [6.7, 4.5]], color: "teal", fuerte: true }
+          - { puntos: [[6.7, 4.5], [8.3, 4.5], [8.3, 6.9], [6.7, 6.9]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 4.5], [0.7, 4.5], [0.7, 0]], color: "teal" }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 2.4], [3.7, 2.4], [3.7, 0]], color: "mustard" }
+          - { puntos: [[6.7, 0], [8.3, 0], [8.3, 4.5], [6.7, 4.5], [6.7, 0]], color: "teal" }
+          - { puntos: [[6.7, 4.5], [8.3, 4.5], [8.3, 6.9], [6.7, 6.9], [6.7, 4.5]], color: "mustard" }
+        notas:
+          - { x: 1.5, y: 4.85, texto: "0,6 × 7,5 = 4,5", ancla: "middle" }
+          - { x: 4.5, y: 2.75, texto: "0,4 × 6 = 2,4", ancla: "middle" }
+          - { x: 7.5, y: 2.11, texto: "Batxillerat 4,5", ancla: "middle" }
+          - { x: 7.5, y: 5.56, texto: "PAU 2,4", ancla: "middle" }
+          - { x: 7.5, y: 7.25, texto: "6,9", ancla: "middle" }
   - enunciado: "<strong>Calcular les tres taxes de l'EPA.</strong> En un municipi hi ha 10.000 persones de 16 o més anys: 5.500 estan ocupades, 500 estan aturades (busquen ocupació) i la resta són inactives. Calcula la població activa i les taxes d'activitat, atur i ocupació."
     desarrollo: "Primer deduïm els grups.<br><strong>Població activa</strong> = ocupats + aturats = 5.500 + 500 = <strong>6.000 persones</strong>.<br>(Inactius = 10.000 − 6.000 = 4.000.)<br><strong>Taxa d'activitat</strong> = (6.000 / 10.000) × 100 = <strong>60 %</strong>.<br><strong>Taxa d'atur</strong> = (aturats / activa) × 100 = (500 / 6.000) × 100 = <strong>8,33 %</strong>. Compte: dividim entre la població activa, no entre les 10.000.<br><strong>Taxa d'ocupació</strong> = (5.500 / 10.000) × 100 = <strong>55 %</strong>.<br><strong>Error típic:</strong> calcular l'atur com 500 / 10.000 = 5 %, que és fals perquè el denominador correcte és la població activa."
+    grafico:
+      tipo: xy
+      caption: "Els actius (6.000) són els ocupats més els aturats. Taxa d'activitat: 6.000 / 10.000 = 60 %. Taxa d'atur: 500 / 6.000 = 8,33 %. Taxa d'ocupació: 5.500 / 10.000 = 55 %."
+      props:
+        id: "r-e2r-epa"
+        titulo: "Població de 16 anys o més i població activa"
+        desc: "Dues columnes de persones. Població de 16 o més: 5.500 ocupats, 500 aturats i 4.000 inactius, 10.000 en total. Població activa: 5.500 ocupats i 500 aturats, 6.000 en total."
+        xMax: 7
+        yMax: 12000
+        ejeX: "Grup"
+        ejeY: "Persones"
+        xTicks: [1.5, 4.5]
+        yTicks: [2000, 4000, 6000, 8000, 10000]
+        xTickLabels: ["Població 16+", "Activa"]
+        areas:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 5500], [0.7, 5500]], color: "teal", fuerte: true }
+          - { puntos: [[0.7, 5500], [2.3, 5500], [2.3, 6000], [0.7, 6000]], color: "terra", fuerte: true }
+          - { puntos: [[0.7, 6000], [2.3, 6000], [2.3, 10000], [0.7, 10000]], color: "mustard", fuerte: true }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 5500], [3.7, 5500]], color: "teal", fuerte: true }
+          - { puntos: [[3.7, 5500], [5.3, 5500], [5.3, 6000], [3.7, 6000]], color: "terra", fuerte: true }
+        series:
+          - { puntos: [[0.7, 0], [2.3, 0], [2.3, 5500], [0.7, 5500], [0.7, 0]], color: "teal" }
+          - { puntos: [[0.7, 5500], [2.3, 5500], [2.3, 6000], [0.7, 6000], [0.7, 5500]], color: "terra" }
+          - { puntos: [[0.7, 6000], [2.3, 6000], [2.3, 10000], [0.7, 10000], [0.7, 6000]], color: "mustard" }
+          - { puntos: [[3.7, 0], [5.3, 0], [5.3, 5500], [3.7, 5500], [3.7, 0]], color: "teal" }
+          - { puntos: [[3.7, 5500], [5.3, 5500], [5.3, 6000], [3.7, 6000], [3.7, 5500]], color: "terra" }
+        notas:
+          - { x: 1.5, y: 2587.84, texto: "Ocupats 5 500", ancla: "middle" }
+          - { x: 2.42, y: 5587.84, texto: "Aturats 500", ancla: "start" }
+          - { x: 1.5, y: 7837.84, texto: "Inactius 4 000", ancla: "middle" }
+          - { x: 1.5, y: 10420, texto: "10 000", ancla: "middle" }
+          - { x: 4.5, y: 2587.84, texto: "Ocupats 5 500", ancla: "middle" }
+          - { x: 5.42, y: 5587.84, texto: "Aturats 500", ancla: "start" }
+          - { x: 4.5, y: 6420, texto: "6 000", ancla: "middle" }
   - enunciado: "<strong>Classificar per sectors econòmics.</strong> Indica a quin sector pertany cada activitat: a) un hort de tarongers; b) una fàbrica de mobles; c) un supermercat; d) un laboratori d'investigació biotecnològica."
     desarrollo: "Recordem què fa cada sector.<br><strong>a) Hort de tarongers →</strong> <strong>sector primari</strong> (extrau recursos de la natura).<br><strong>b) Fàbrica de mobles →</strong> <strong>sector secundari</strong> (transforma matèries primeres en productes).<br><strong>c) Supermercat →</strong> <strong>sector terciari</strong> (presta un servei: vendre, no fabricar).<br><strong>d) Laboratori biotecnològic →</strong> <strong>sector quaternari</strong> (activitat intensiva en coneixement i R+D), encara que en les estadístiques oficials encara es compta dins del terciari."
   - enunciado: "<strong>Beca o préstec?</strong> A una família li oferixen dues ajudes perquè la seua filla estudie: una beca MEFP de 3.000 € per la seua renda i un préstec jove de 3.000 €. Explica la diferència i quina convé demanar primer."

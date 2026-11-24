@@ -43,6 +43,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import DesignThinkingFases from '@components/diagrams/DesignThinkingFases.astro';
 import BusinessModelCanvas from '@components/diagrams/BusinessModelCanvas.astro';
 import EmbudoValidacion from '@components/diagrams/EmbudoValidacion.astro';
@@ -264,6 +265,23 @@ Trazo té 240 € de costos fixos per al trimestre. Cada bossa costa 5 € de ma
 4. **Amb 300 € de benefici.** Ara cal cobrir 240 + 300 = 540 €: 540 / 7 = 77,1, és a dir, **78 bosses**. Més del doble que el punt mort, i amb un sol mercadet és difícil; l'equip necessita vendre també per Instagram i a la botiga de l'AMPA.
 5. **Amb preu de 10 €.** El marge baixa a 5 € i el punt mort puja a 240 / 5 = **48 bosses**. Baixar el preu un 17 % obliga a vendre un 37 % més només per a no perdre. Per això el preu es decidix amb el test, no amb la intuïció.
 
+<Diagram caption="Les bosses de Trazo: els costos parteixen de 240 € i els ingressos de 0. A 12 € les dues rectes es creuen en 34,3 bosses (35 bosses senceres); per a guanyar 300 € en calen 77,1 (78 bosses). Si el preu baixa a 10 €, el creuament s'endarrereix fins a les 48.">
+  <GraficoXY id="g-trazo-punto-muerto" titulo="Punt mort de les bosses de Trazo" desc="Tres rectes en euros segons les bosses venudes: costos de 240 més 5 per bossa, ingressos a 12 euros per bossa i ingressos a 10 euros per bossa. A 12 euros es creuen en 34,3 bosses; a 10 euros, en 48. Amb 77,1 bosses a 12 euros el benefici és de 300 euros."
+    xMax={120} yMax={1200} ejeX="Bosses venudes" ejeY="Euros"
+    xTicks={[20, 60, 100]} yTicks={[240, 600, 900]}
+    series={[
+      { color: 'teal', label: 'Ingressos a 12 €', puntos: [[0, 0], [90, 1080]] },
+      { color: 'teal', tenue: true, label: 'Ingressos a 10 €', puntos: [[0, 0], [90, 900]] },
+      { color: 'terra', label: 'Costos', puntos: [[0, 240], [90, 690]] },
+    ]}
+    puntos={[
+      { x: 34.3, y: 411.4, label: 'Punt mort', xLabel: '34,3', dx: -75, dy: -14 },
+      { x: 48, y: 480, label: 'A 10 €', xLabel: '48', dx: 10, dy: 30 },
+      { x: 77.1, y: 925.7, label: 'Benefici de 300 €', xLabel: '77,1', dx: -130, dy: -14 },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <HerramientaIsland componente="PuntoMuerto" />
@@ -324,6 +342,30 @@ Trazo ha venut les primeres 40 bosses i vol fabricar una tirada de 200 per al cu
 4. **Opció B, el que compra a més dels diners.** Seixanta persones han pagat 25 € per una bossa que no existix: la campanya ha **validat la demanda** abans de fabricar i ha deixat 60 clients amb nom. Eixes 60 recompenses són vendes que compten per al punt mort.
 5. **Opció B, risc.** És tot o res: si la campanya es queda en 1.200 €, es tornen els diners i no hi ha tirada. I moure 60 persones exigix setmanes de comunicació (vídeo, publicacions, missatges un a un) que l'opció A no demana.
 6. **Lectura.** Per a Trazo encaixa la campanya: no endeuta ningú, prova el mercat i crea comunitat, i l'equip té a qui demanar-ho (famílies, professorat, antic alumnat). El préstec té sentit quan no es pot prevendre (un servici, una botiga) o quan calen els diners en una setmana.
+
+<Diagram caption="El que arriba al projecte i el que cal tornar en cada opció. El préstec dona 1.500 € però es tornen 1.581 € (1.566 € de quotes i 15 € de comissió); la campanya deixa 1.087 € nets i no es torna res.">
+  <GraficoXY id="g-trazo-financiacion" titulo="Préstec o crowdfunding per a la tirada de Trazo" desc="Quatre columnes en euros. Préstec: arriben 1.500 i es tornen 1.581. Crowdfunding: arriben 1.087 nets i es tornen 0."
+    xMax={3} yMax={1800} ejeX="Opció de finançament" ejeY="Euros"
+    xTicks={[0.975, 2.175]} xTickLabels={['Préstec', 'Crowdfunding']} yTicks={[500, 1000, 1500]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.45, 0], [0.95, 0], [0.95, 1500], [0.45, 1500]] },
+      { color: 'terra', fuerte: true, puntos: [[1, 0], [1.5, 0], [1.5, 1581], [1, 1581]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 0], [2.15, 0], [2.15, 1087], [1.65, 1087]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.45, 0], [0.45, 1500], [0.95, 1500], [0.95, 0]] },
+      { color: 'terra', puntos: [[1, 0], [1, 1581], [1.5, 1581], [1.5, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 1087], [2.15, 1087], [2.15, 0]] },
+      { color: 'terra', puntos: [[2.2, 0], [2.7, 0]] },
+    ]}
+    notas={[
+      { x: 0.7, y: 1560, texto: '1 500', ancla: 'middle' }, { x: 1.25, y: 1641, texto: '1 581', ancla: 'middle' },
+      { x: 1.9, y: 1147, texto: '1 087', ancla: 'middle' }, { x: 2.45, y: 60, texto: '0', ancla: 'middle' },
+      { x: 0.7, y: 700, texto: 'Arriba', ancla: 'middle' }, { x: 1.25, y: 700, texto: 'Es torna', ancla: 'middle' },
+      { x: 1.9, y: 700, texto: 'Arriba', ancla: 'middle' }, { x: 2.45, y: 700, texto: 'Es torna', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

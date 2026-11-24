@@ -31,6 +31,9 @@ estado: publicado
 slug: "olimpiada/fichas/10-comercio-internacional.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 Els països no produïxen en autarquia perquè especialitzar-se i intercanviar permet a tots consumir més del que podrien produir a soles. La pregunta central del comerç internacional no és si un país és més productiu que un altre en termes absoluts, sinó si hi ha diferències de **cost d'oportunitat relatiu** entre ells — això és, si cada u renuncia a coses distintes en produir cada bé. On hi haja eixes diferències, hi ha base per al comerç mútuament beneficiós.
@@ -130,6 +133,23 @@ Amb especialització completa segons l'avantatge comparatiu:
 
 La producció mundial passa de 108 l + 60 m a 144 l + 72 m. **Ambdós països poden consumir més** que en autarquia si s'intercanvia a un preu entre els costos d'oportunitat respectius (p. ex., 1 l d'oli = 0,6 m de tela).
 
+<Diagram caption="Cada país disposa de 12 hores. En autarquia (A₁ i B₁) dedica 6 h a cada bé; amb especialització completa Altea produïx 144 l d'oli (A₂) i Berne 72 m de tela (B₂). La frontera d'Altea és més plana perquè el seu cost d'oportunitat de l'oli és 1/3 m de tela per litre, enfront d'1 m a Berne.">
+  <GraficoXY id="g-ol-fronteras-ricardo" titulo="Fronteres de possibilitats d'Altea i Berne" desc="Dues rectes amb 12 hores de treball cada país. Altea arriba a 144 litres d'oli o 48 metres de tela; Berne, a 72 litres o 72 metres. En autarquia, amb 6 hores en cada bé, Altea produïx 72 litres i 24 metres i Berne 36 litres i 36 metres. Amb especialització completa, Altea produïx 144 litres d'oli i Berne 72 metres de tela."
+    xMax={160} yMax={80} ejeX="Oli (litres)" ejeY="Tela (metres)" simboloX="l" simboloY="m"
+    xTicks={[144]} yTicks={[48, 72]}
+    series={[
+      { label: 'Altea', color: 'terra', puntos: [[0, 48], [144, 0]], labelEn: 'inicio', dy: -6 },
+      { label: 'Berne', color: 'teal', puntos: [[0, 72], [72, 0]], labelEn: 'inicio', dx: 44, dy: -4 },
+    ]}
+    puntos={[
+      { x: 72, y: 24, label: 'A₁', xLabel: '72', yLabel: '24' },
+      { x: 36, y: 36, label: 'B₁', xLabel: '36', yLabel: '36' },
+      { x: 144, y: 0, label: 'A₂', guias: false },
+      { x: 0, y: 72, label: 'B₂', guias: false },
+    ]}
+  />
+</Diagram>
+
 > **Conclusió ricardiana**: el comerç beneficia tots els participants sempre que hi haja diferències en costos d'oportunitat relatius, **encara que un país tinga avantatge absolut en tots els béns**.
 
 ---
@@ -220,6 +240,36 @@ Amb l'aranzel, el preu interior del bé importat puja de P<sub>lliure</sub> a P<
 - **Pèrdua neta social** (pes mort): la pèrdua d'excedent del consumidor supera la suma del guany del productor i la recaptació fiscal.
 
 L'aranzel suposa una **transferència de riquesa dels consumidors cap als productors i l'Estat**, però amb una pèrdua neta d'eficiència per a l'economia en el seu conjunt.
+
+<Diagram caption="Mercat interior d'un bé importat. Amb el preu lliure es produïx Q₁, es consumix Q₄ i s'importa la diferència. L'aranzel t puja el preu interior: els productors amplien la producció fins a Q₂, el consum baixa a Q₃ i l'Estat recapta t × (Q₃ − Q₂). Els consumidors perden les quatre zones; les dues de pèrdua neta no les guanya ningú.">
+  <GraficoXY id="g-ol-arancel" titulo="Efecte d'un aranzel en el mercat interior" desc="Demanda i oferta interiors d'un bé importat. Amb el preu lliure, la producció nacional és Q₁ i el consum Q₄. Amb l'aranzel el preu puja a P lliure més t: la producció nacional augmenta fins a Q₂, el consum baixa a Q₃ i les importacions es redueixen a la diferència entre Q₃ i Q₂. S'ombregen el guany dels productors, la recaptació i les dues zones de pèrdua neta."
+    xMax={110} yMax={60} ejeX="Quantitat" ejeY="Preu" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 50], [100, 0]], dx: 8, dy: -10 },
+      { label: 'O', color: 'mustard', puntos: [[0, 10], [80, 50]] },
+      { label: "P lliure", color: 'ink', tenue: true, puntos: [[0, 15], [90, 15]] },
+      { label: "P aranzel", color: 'ink', puntos: [[0, 25], [90, 25]] },
+    ]}
+    areas={[
+      { color: 'mustard', puntos: [[0, 15], [10, 15], [30, 25], [0, 25]] },
+      { color: 'teal', puntos: [[30, 15], [50, 15], [50, 25], [30, 25]] },
+      { color: 'terra', fuerte: true, puntos: [[10, 15], [30, 15], [30, 25]] },
+      { color: 'terra', fuerte: true, puntos: [[50, 15], [70, 15], [50, 25]] },
+    ]}
+    puntos={[
+      { x: 10, y: 15, xLabel: 'Q₁' },
+      { x: 30, y: 25, xLabel: 'Q₂' },
+      { x: 50, y: 25, xLabel: 'Q₃' },
+      { x: 70, y: 15, xLabel: 'Q₄' },
+    ]}
+    notas={[
+      { x: 9, y: 19.5, texto: "Productors", ancla: 'middle' },
+      { x: 40, y: 19.5, texto: "Recaptació", ancla: 'middle' },
+      { x: 20, y: 11.5, texto: "Pèrdua neta", ancla: 'middle' },
+      { x: 60, y: 11.5, texto: "Pèrdua neta", ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ### Arguments a favor del proteccionisme
 

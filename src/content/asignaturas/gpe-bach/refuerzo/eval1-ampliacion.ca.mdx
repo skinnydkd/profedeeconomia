@@ -27,8 +27,64 @@ ejemplos_resueltos:
     desarrollo: "Un DAFO s'aprofita creuant quadrants, no només omplint-los.<br><strong>Estratègia FO (ofensiva, fortalesa + oportunitat):</strong> usar la qualitat de costura per a pujar-se a la moda sostenible oferint arreglaments i peces úniques que allarguen la vida de la roba.<br><strong>Estratègia DA (supervivència, debilitat + amenaça):</strong> com que no saben vendre en línia i competixen amb el tèxtil barat, buscar aliances amb botigues locals sostenibles o fires de barri per a guanyar visibilitat sense gran inversió i diferenciar-se de l'usar i tirar.<br>Cada estratègia connecta un factor intern amb un extern: ahí està la utilitat real del DAFO."
   - enunciado: "<strong>Punt mort i decisió.</strong> Un projecte de samarretes serigrafiades té costos fixos de 240 euros (pantalla i lloguer del lloc). Cada samarreta costa 5 euros de material i es ven a 13 euros. Calcula el punt mort. Si l'equip estima vendre 25 samarretes, li convé llançar-se?"
     desarrollo: "<strong>Marge unitari:</strong> 13 - 5 = <strong>8 euros per samarreta</strong>.<br><strong>Punt mort:</strong> costos fixos / marge = 240 / 8 = <strong>30 samarretes</strong>.<br>Comprovació: 30 x 8 = 240 euros, cobrix exactament els costos fixos.<br><strong>Decisió:</strong> amb una previsió de 25 samarretes <em>no arriben</em> al punt mort (30): tindrien pèrdua. Benefici estimat = 25 x 8 - 240 = 200 - 240 = <strong>-40 euros</strong>.<br>Opcions: pujar el preu, baixar el cost de material, reduir els costos fixos o augmentar les vendes previstes per damunt de 30. Llançar-se tal com està significaria assumir una pèrdua de 40 euros."
+    grafico:
+      tipo: xy
+      caption: "Cada samarreta aporta 8 € i els costos fixos són 240 €: el punt mort està en 30 samarretes. Amb les 25 previstes, ingressen 325 € i gasten 365 €: pèrdua de 40 €."
+      props:
+        id: "r-g1a-punto-muerto"
+        titulo: "Punt mort del projecte de samarretes"
+        desc: "Ingrés total (13 euros per samarreta), cost total (240 euros fixos més 5 per samarreta) i cost fix. Es creuen en 30 samarretes, amb 390 euros. Amb 25 samarretes l'ingrés és de 325 euros i el cost de 365: pèrdua de 40."
+        xMax: 45
+        yMax: 600
+        ejeX: "Samarretes venudes"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [10, 20, 40]
+        yTicks: [240]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [40, 520]] }
+          - { label: "CT", color: "terra", puntos: [[0, 240], [40, 440]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 240], [40, 240]], dy: 14 }
+        puntos:
+          - { x: 30, y: 390, label: "Q*", xLabel: "30", yLabel: "390", dx: -34, dy: -14 }
+          - { x: 25, y: 325, xLabel: "25", yLabel: "325" }
+          - { x: 25, y: 365, yLabel: "365" }
+        notas:
+          - { x: 3, y: 470, texto: "Previsió 25: pèrdua 40 €", color: "terra" }
   - enunciado: "<strong>Cronograma amb dependències.</strong> Un projecte té quatre tasques: A (disseny, 2 setmanes) i B (compra de material, 1 setmana) en paral·lel; C (producció, 3 setmanes) necessita A i B acabades; D (venda, 2 setmanes) necessita C. Calcula la duració mínima i la folgança de B."
     desarrollo: "Com que A (2) i B (1) van en paral·lel, abans de C cal esperar a la que més tarda: max(2, 1) = <strong>2 setmanes</strong>.<br>Després, en sèrie: C (3) i D (2).<br><strong>Duració mínima:</strong> 2 + 3 + 2 = <strong>7 setmanes</strong> (la ruta crítica passa per A, després C i després D).<br><strong>Folgança de B:</strong> B dura 1 setmana però disposa de 2 abans que comence C, així que té <strong>1 setmana de folgança</strong> (2 - 1): podria retardar-se una setmana sense afectar el termini final.<br>Idea de nivell alt: la tasca que marca el termini és la de la ruta crítica (A), no necessàriament la que pareix més urgent."
+    grafico:
+      tipo: xy
+      caption: "La ruta crítica és A, C i D: 2 + 3 + 2 = 7 setmanes. B dura 1 setmana però disposa de 2 abans que comence C, així que té 1 setmana de folgança (tram clar)."
+      props:
+        id: "r-g1a-cronograma-dependencias"
+        titulo: "Cronograma amb dependències i ruta crítica"
+        desc: "Diagrama de barres: A (disseny) de la setmana 0 a la 2 i B (compra) de la 0 a la 1, amb una setmana de folgança; C (producció) de la 2 a la 5 i D (venda) de la 5 a la 7. Duració mínima: 7 setmanes."
+        xMax: 8
+        yMax: 5
+        ejeX: "Setmanes transcorregudes"
+        ejeY: "Tasques"
+        xTicks: [1, 2, 3, 4, 5, 6, 7]
+        yTicks: []
+        areas:
+          - { puntos: [[0, 3.7], [2, 3.7], [2, 4.3], [0, 4.3]], color: "terra", fuerte: true }
+          - { puntos: [[0, 2.7], [1, 2.7], [1, 3.3], [0, 3.3]], color: "teal", fuerte: true }
+          - { puntos: [[2, 1.7], [5, 1.7], [5, 2.3], [2, 2.3]], color: "terra", fuerte: true }
+          - { puntos: [[5, 0.7], [7, 0.7], [7, 1.3], [5, 1.3]], color: "terra", fuerte: true }
+          - { puntos: [[1, 2.7], [2, 2.7], [2, 3.3], [1, 3.3]], color: "teal" }
+        series:
+          - { puntos: [[0, 3.7], [2, 3.7], [2, 4.3], [0, 4.3], [0, 3.7]], color: "terra" }
+          - { puntos: [[0, 2.7], [1, 2.7], [1, 3.3], [0, 3.3], [0, 2.7]], color: "teal" }
+          - { puntos: [[2, 1.7], [5, 1.7], [5, 2.3], [2, 2.3], [2, 1.7]], color: "terra" }
+          - { puntos: [[5, 0.7], [7, 0.7], [7, 1.3], [5, 1.3], [5, 0.7]], color: "terra" }
+          - { puntos: [[1, 2.7], [2, 2.7], [2, 3.3], [1, 3.3], [1, 2.7]], color: "teal" }
+        notas:
+          - { x: 2.1, y: 3.93, texto: "A: disseny, 2 set.", ancla: "start" }
+          - { x: 2.1, y: 2.93, texto: "B: compra, 1 set. (folgança 1)", ancla: "start" }
+          - { x: 5.1, y: 1.93, texto: "C: producció, 3 set.", ancla: "start" }
+          - { x: 4.9, y: 0.93, texto: "D: venda, 2 set.", ancla: "end" }
+          - { x: 7.8, y: 0.35, texto: "Duració mínima: 7 setmanes", ancla: "end", color: "terra" }
 ejercicios:
   - enunciado: "Un equip té la idea d'una app per a tot. Avalua-la amb els tres criteris d'una bona oportunitat —<strong>desitjabilitat, factibilitat i viabilitat</strong>— i proposa com reformular-la perquè sí que siga una oportunitat."
     solucion: "Desitjabilitat: per a tot no respon a una necessitat concreta de ningú, així que és baixa (ningú la demana en particular).<br>Factibilitat: fer una app que servisca per a tot és tècnicament inabastable, per la qual cosa és molt baixa.<br>Viabilitat: sense un client clar no hi ha model d'ingressos, així que és nul·la.<br>Reformulació: triar un problema concret i un públic concret, per exemple una app perquè els veïns del barri compartisquen ferramentes de bricolatge poc usades. Ara hi ha necessitat real (desitjabilitat), abast acotat (factibilitat) i un possible model d'ingressos o estalvi (viabilitat)."

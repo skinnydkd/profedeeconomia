@@ -41,6 +41,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Externalidad from '@components/diagrams/Externalidad.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import Figure from '@components/Figure.astro';
@@ -134,6 +135,23 @@ Existen también externalidades positivas: actividades cuyo beneficio social exc
 - **Investigación básica.** Quien financia investigación sobre un nuevo material no se apropiará de todos sus usos futuros.
 - **Mantenimiento de un edificio histórico** que da carácter a una calle entera.
 
+<Diagram caption="Con una externalidad positiva, el beneficio social (D social) queda por encima del privado (D priv.): el mercado se queda en Q₁ y el óptimo está en Q₂, así que se produce de menos. El triángulo es la pérdida de eficiencia. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-externalidad-positiva" titulo="Externalidad positiva: el mercado produce de menos" desc="La demanda social queda por encima de la demanda privada. El mercado se detiene en la cantidad Q1, donde se cruzan la demanda privada y la oferta; el óptimo social está en Q2, mayor. El triángulo entre las dos cantidades es la pérdida de eficiencia."
+    xMax={110} yMax={110} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D priv.', color: 'terra', puntos: [[0, 100], [90, 10]] },
+      { label: 'D social', color: 'terra', puntos: [[30, 100], [100, 30]] },
+      { label: 'O', color: 'mustard', puntos: [[0, 10], [90, 100]] },
+    ]}
+    areas={[{ puntos: [[45, 85], [60, 70], [45, 55]], color: 'aubergine' }]}
+    puntos={[
+      { x: 45, y: 55, xLabel: 'Q₁', guias: true, label: 'E', dx: 32, dy: 4 },
+      { x: 60, y: 70, xLabel: 'Q₂', guias: true, label: 'E*', dx: 26, dy: 6 },
+    ]}
+  />
+</Diagram>
+
+
 ### Instrumentos correctores: Pigou y Coase
 
 La economía dispone de tres grandes familias de instrumentos para corregir externalidades.
@@ -197,6 +215,32 @@ d) Pérdida de eficiencia del mercado sin corregir.
 5. Comprobación útil: quien compra paga 70 €, el Estado se lleva 20 € y el vendedor se queda **50 €**, que es exactamente su coste marginal privado en 60 toneladas: 20 + 0,5 × 60 = 50 €. Los números cuadran.
 6. **Pérdida de eficiencia.** Es el triángulo entre las dos cantidades, de base 80 − 60 = 20 toneladas y altura 20 €: ½ × 20 × 20 = **200 €**.
 7. *Ojo con la lectura.* Esos 200 € no se los queda nadie: son valor que desaparece porque se producen veinte toneladas cuyo coste para la sociedad supera lo que alguien está dispuesto a pagar por ellas. Y fíjate en que **la cantidad óptima no es cero**: el objetivo no es cerrar la fábrica, es que produzca lo que compensa producir.
+
+<Diagram caption="El ejercicio en un gráfico: el mercado produce 80 toneladas (E, a 60 €); el óptimo social son 60 toneladas (a 70 €). El impuesto de 20 € lleva a quien vende de 50 € a 70 € de coste y recauda 1.200 €; el triángulo es la pérdida de eficiencia, 200 €.">
+  <GraficoXY id="g-ejercicio-6-1" titulo="Externalidad negativa: mercado, óptimo social e impuesto pigouviano" desc="La demanda corta el coste marginal privado en 80 toneladas y 60 euros, y el coste marginal social en 60 toneladas y 70 euros. Con un impuesto de 20 euros por tonelada se llega al óptimo y se recaudan 1 200 euros; la pérdida de eficiencia es de 200 euros."
+    xMax={200} yMax={110} ejeX="Toneladas" ejeY="Euros por tonelada"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [180, 10]] },
+      { label: 'CMg', color: 'mustard', puntos: [[0, 20], [150, 95]] },
+      { label: 'CMgS', color: 'aubergine', puntos: [[0, 40], [120, 100]] },
+    ]}
+    areas={[
+      { puntos: [[0, 50], [60, 50], [60, 70], [0, 70]], color: 'ink' },
+      { puntos: [[60, 70], [80, 60], [60, 50]], color: 'aubergine' },
+    ]}
+    puntos={[
+      { x: 80, y: 60, label: 'E', xLabel: '80', yLabel: '60', dx: 4, dy: 30 },
+      { x: 60, y: 70, xLabel: '60', yLabel: '70' },
+      { x: 60, y: 50, yLabel: '50', guias: true },
+    ]}
+    flechas={[{ de: [108, 18], a: [71, 54] }]}
+    notas={[
+      { x: 3, y: 66, texto: 'Recaudación = 1 200', color: 'ink' },
+      { x: 105, y: 10, texto: 'Pérdida de eficiencia = 200', color: 'aubergine' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -279,6 +323,22 @@ En 1970 Akerlof publicó un artículo titulado *The Market for "Lemons"* (los *l
 
 Imagina un mercado de coches usados con dos tipos de vehículos: la mitad buenos (valor real 10.000 €) y la mitad malos (valor real 4.000 €). Los compradores no pueden distinguirlos a simple vista; los vendedores sí saben qué tienen. Un comprador racional ofrecerá como mucho **el valor esperado**: 7.000 €. A ese precio, los dueños de coches buenos retiran su coche del mercado (vale más quedárselo). Solo entran al mercado los coches malos. Los compradores, al verlo, ajustan su oferta a la baja… y el mercado se hunde. La asimetría de información hace que solo se transen los limones, perjudicando incluso a los vendedores de coches buenos que querían vender de verdad.
 
+<Diagram caption="El mercado de los limones: si la mitad de los coches son buenos (10.000 €) y la mitad malos (4.000 €), el comprador ofrece el valor medio, 7.000 €. A ese precio los dueños de coches buenos se retiran, la proporción de buenos baja y con ella el valor medio, hasta que solo quedan coches malos.">
+  <GraficoXY id="g-limones" titulo="El mercado de los limones: la espiral de la selección adversa" desc="El valor medio de un coche sube de 4 000 euros, si todos son malos, a 10 000, si todos son buenos; con la mitad de cada tipo es 7 000. A ese precio los dueños de coches buenos, que valoran el suyo en 10 000, se retiran, y el valor medio se acerca a 4 000."
+    xMax={1.1} yMax={11500} ejeX="Proporción de coches buenos" ejeY="Euros"
+    xTicks={[0.5, 1]} xTickLabels={['50 %', '100 %']} yTicks={[4000, 10000]}
+    series={[
+      { label: 'Valor medio', color: 'terra', puntos: [[0, 4000], [1, 10000]] },
+      { color: 'ink', tenue: true, puntos: [[0, 10000], [1, 10000]] },
+      { color: 'ink', tenue: true, puntos: [[0, 4000], [1, 4000]] },
+    ]}
+    puntos={[{ x: 0.5, y: 7000, label: 'Precio ofrecido', yLabel: '7 000', dx: 14, dy: 24 }]}
+    flechas={[{ de: [0.5, 7000], a: [0.06, 4360], despl: -14 }]}
+    notas={[{ x: 0.03, y: 10400, texto: 'Un coche bueno vale 10 000', color: 'ink' }, { x: 0.45, y: 3450, texto: 'Un coche malo vale 4 000', color: 'ink' }]}
+  />
+</Diagram>
+
+
 El mismo mecanismo afecta a:
 
 - **Seguros de salud.** Quien sabe que está enfermo busca seguro; quien sabe que está sano no. Si la compañía no puede distinguir, sube primas, los sanos se marchan y solo quedan enfermos pagando primas insostenibles.
@@ -312,6 +372,30 @@ El cuarto fallo aparece cuando una empresa, o un grupo pequeño de empresas, tie
 - **Monopolio**: una sola empresa. Caso extremo de poder de mercado.
 
 Cuando hay poder de mercado, la empresa con ese poder restringe la cantidad ofrecida y sube el precio por encima del coste marginal, capturando un excedente que en competencia habría correspondido al consumidor. El resultado: precios más altos, cantidades inferiores, **pérdida irrecuperable de eficiencia** (*deadweight loss*) y, a veces, freno a la innovación si el monopolista no siente la presión de la competencia.
+
+<Diagram caption="Monopolio frente a competencia perfecta: el monopolista iguala el ingreso marginal al coste marginal, produce Q₁ y cobra P₁, por encima del coste marginal. En competencia se produciría Q₂ al precio P = CMg. El triángulo es la pérdida de eficiencia. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-monopolio" titulo="Poder de mercado: monopolio y pérdida de eficiencia" desc="El monopolista produce donde el ingreso marginal iguala al coste marginal, la cantidad Q1, y cobra el precio P1 de la demanda, por encima del coste marginal. En competencia la cantidad sería Q2, mayor. El triángulo entre ambas cantidades es la pérdida de eficiencia."
+    xMax={105} yMax={110} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [95, 5]] },
+      { label: 'IMg', color: 'teal', dx: 6, dy: -12, puntos: [[0, 100], [50, 0]] },
+      { label: 'CMg', color: 'mustard', puntos: [[0, 20], [95, 20]] },
+    ]}
+    areas={[
+      { puntos: [[0, 60], [40, 60], [40, 20], [0, 20]], color: 'mustard' },
+      { puntos: [[40, 60], [80, 20], [40, 20]], color: 'aubergine' },
+    ]}
+    puntos={[
+      { x: 40, y: 60, label: 'M', xLabel: 'Q₁', yLabel: 'P₁', dx: 12, dy: -10 },
+      { x: 80, y: 20, label: 'C', xLabel: 'Q₂', dx: 10, dy: -12 },
+    ]}
+    notas={[
+      { x: 3, y: 38, texto: 'Beneficio', color: 'mustard' },
+      { x: 43, y: 27, texto: 'Pérdida de eficiencia', color: 'aubergine' },
+    ]}
+  />
+</Diagram>
+
 
 ### Por qué surge el poder de mercado
 

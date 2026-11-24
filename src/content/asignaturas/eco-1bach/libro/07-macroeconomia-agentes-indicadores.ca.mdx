@@ -50,6 +50,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -255,6 +256,27 @@ On la **remuneració d'assalariats** són els sous bruts més cotitzacions empre
 El PIB espanyol es va enfonsar un **10,9 %** el 2020, el pitjor desplom des de la Guerra Civil. Després va créixer un 6,7 % el 2021, un 6,2 % el 2022, un 2,4 % el 2023 i un **3,7 % el 2024**, la major taxa de les grans economies de la zona euro. Amb eixes taxes, el PIB real va recuperar el **2022** el nivell previ a la pandèmia. El 2025 el creixement es va moderar al **2,6 %**, encara per damunt de la mitjana de la zona euro (INE, sèries revisades al setembre de 2026). Els motors continuen sent el turisme —Espanya va batre el 2024 el rècord històric amb prop de 94 milions de turistes internacionals— i el desplegament final dels fons *Next Generation EU*, en fase de tancament operacional el 2026.
 </RealExample>
 
+<Diagram caption="El PIB real d'Espanya amb 2019 = 100, construït amb les taxes de creixement del text: després de caure un 10,9 % el 2020, l'economia recupera el 2022 el nivell previ a la pandèmia i el 2025 queda un 10 % per damunt.">
+  <GraficoXY id="g-pib-real" titulo="PIB real d'Espanya, 2019 = 100" desc="Índex del PIB real: 100 el 2019, 89,1 el 2020, 95,1 el 2021, 101,0 el 2022, 103,4 el 2023, 107,2 el 2024 i 110,0 el 2025. El 2022 supera el nivell previ a la pandèmia."
+    xMax={7.9} yMax={125} ejeX="Any" ejeY="Índex (2019 = 100)"
+    xTicks={[0.4, 1.4, 2.4, 3.4, 4.4, 5.4, 6.4]} xTickLabels={['2019', '2020', '2021', '2022', '2023', '2024', '2025']}
+    series={[
+      { color: 'ink', tenue: true, puntos: [[0.4, 100], [6.4, 100]] },
+      { color: 'terra', puntos: [[0.4, 100], [1.4, 89.1], [2.4, 95.07], [3.4, 100.96], [4.4, 103.39], [5.4, 107.21], [6.4, 110]] },
+    ]}
+    puntos={[
+      { x: 1.4, y: 89.1, label: '89,1', guias: false, dx: 8, dy: 22 },
+      { x: 2.4, y: 95.07, label: '95,1', guias: false, dx: 8, dy: 22 },
+      { x: 3.4, y: 100.96, label: '101,0', guias: false, dx: 8, dy: -12 },
+      { x: 4.4, y: 103.39, label: '103,4', guias: false, dx: 8, dy: -12 },
+      { x: 5.4, y: 107.21, label: '107,2', guias: false, dx: 8, dy: -12 },
+      { x: 6.4, y: 110, label: '110,0', guias: false, dx: 8, dy: -12 },
+    ]}
+    notas={[{ x: 5.0, y: 93, texto: 'Nivell de 2019', color: 'ink' }]}
+  />
+</Diagram>
+
+
 <SolvedExercise number="7.1" title="Calcular el PIB d'un país pel mètode de la despesa">
 
 **Enunciat**
@@ -361,6 +383,23 @@ El país *Beta* presenta les dades següents de l'INE local. L'any base és **20
    - El deflactor passa de 100 a 113,8: els preus agregats han pujat un **13,8 %** acumulat en el període.
    - Convé comparar sempre PIB en termes **reals**: parlar de "el PIB va créixer un 26 %" seria incorrecte des del punt de vista del benestar productiu.
 
+<Diagram caption="El PIB de Beta (any base 2020): el nominal passa d'1.000 a 1.260 milions (+26 %) i el real, d'1.000 a 1.107 (+10,7 %). La distància entre les dues línies és la pujada de preus que arreplega el deflactor.">
+  <GraficoXY id="g-pib-beta" titulo="PIB nominal i PIB real de Beta, 2020-2023" desc="El PIB nominal de Beta creix d'1 000 a 1 260 milions d'euros entre 2020 i 2023; el PIB real, d'1 000 a 1 107. La diferència entre tots dos és la pujada de preus."
+    xMax={3.9} yMax={1400} ejeX="Any" ejeY="Milions d'euros"
+    xTicks={[0.25, 1.25, 2.25, 3.25]} xTickLabels={['2020', '2021', '2022', '2023']}
+    series={[
+      { label: 'PIB nominal', color: 'terra', puntos: [[0.25, 1000], [1.25, 1080], [2.25, 1180], [3.25, 1260]] },
+      { label: 'PIB real', color: 'teal', puntos: [[0.25, 1000], [1.25, 1080 / 1.035], [2.25, 1180 / 1.092], [3.25, 1260 / 1.138]] },
+    ]}
+    puntos={[
+      { x: 0.25, y: 1000, yLabel: '1 000' },
+      { x: 3.25, y: 1260, yLabel: '1 260' },
+      { x: 3.25, y: 1260 / 1.138, yLabel: '1 107' },
+    ]}
+  />
+</Diagram>
+
+
 </SolvedExercise>
 
 ### El PIB per capita
@@ -429,6 +468,22 @@ A Espanya, la inflació interanual mitjana dels últims anys, segons l'INE, ha s
 | 2025 | +2,3 % | +2,2 % |
 
 L'acceleració de 2022 va ser la major en quatre dècades, impulsada per l'encariment de l'energia després de la invasió russa d'Ucraïna i els colls d'ampolla postpandèmia. Entre 2023 i 2025 es va moderar gràcies a les pujades de tipus del BCE primer i al posterior cicle de baixades iniciat al juny de 2024, la caiguda dels preus energètics i, en part, a les mesures fiscals del Govern (rebaixa de l'IVA en aliments bàsics, descomptes al transport públic). En el primer trimestre de 2026 l'IPC interanual es mou al voltant del 2 %, ja alineat amb l'objectiu del BCE.
+
+<Diagram caption="La inflació mitjana anual a Espanya, 2021-2025 (INE): el pic de 2022, l'encreuament de 2023, quan la subjacent supera la general, i la tornada a nivells pròxims al 2 %.">
+  <GraficoXY id="g-ipc-espana" titulo="IPC general i subjacent a Espanya, 2021-2025" desc="L'IPC general puja del 3,1 % el 2021 al 8,4 % el 2022 i baixa al 3,5 %, 2,9 % i 2,3 %. La subjacent passa del 0,8 % al 5,2 %, al 6,0 % el 2023 i baixa al 2,9 % i 2,2 %."
+    xMax={5.3} yMax={10} ejeX="Any" ejeY="Variació anual mitjana (%)"
+    xTicks={[0.5, 1.5, 2.5, 3.5, 4.5]} xTickLabels={['2021', '2022', '2023', '2024', '2025']} yTicks={[2, 4, 6, 8]}
+    series={[
+      { label: 'General', color: 'terra', dy: -10, puntos: [[0.5, 3.1], [1.5, 8.4], [2.5, 3.5], [3.5, 2.9], [4.5, 2.3]] },
+      { label: 'Subjacent', color: 'teal', dy: 18, puntos: [[0.5, 0.8], [1.5, 5.2], [2.5, 6.0], [3.5, 2.9], [4.5, 2.2]] },
+    ]}
+    puntos={[
+      { x: 1.5, y: 8.4, label: '8,4', guias: false },
+      { x: 2.5, y: 6, label: '6,0', guias: false },
+    ]}
+  />
+</Diagram>
+
 
 ### Tres tipus d'inflació
 

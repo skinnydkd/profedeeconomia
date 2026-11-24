@@ -23,12 +23,142 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Punto muerto y cuenta de resultados previsional.</strong> Un equipo va a vender mermelada artesana. Tiene unos costes fijos de 600 € (alquiler del obrador y seguros), cada tarro le cuesta 2 € en materia prima y envase, y lo venderá a 5 €. Calcula el punto muerto y, si esperan vender 400 tarros, haz la cuenta de resultados previsional."
     desarrollo: "Vamos por pasos.<br><strong>1. Margen de contribución por tarro</strong> = precio − coste variable = 5 − 2 = <strong>3 €</strong>. Cada tarro vendido aporta 3 € a cubrir los costes fijos.<br><strong>2. Punto muerto</strong> = costes fijos ÷ margen = 600 ÷ 3 = <strong>200 tarros</strong>. Hace falta vender 200 tarros solo para no perder; a partir del 201 empieza el beneficio.<br><strong>3. Cuenta de resultados con 400 tarros:</strong><br>· Ingresos = 400 × 5 = 2.000 €<br>· Costes variables = 400 × 2 = 800 €<br>· Costes fijos = 600 €<br>· Resultado = 2.000 − 800 − 600 = <strong>600 € de beneficio</strong>.<br><strong>Conclusión:</strong> el proyecto es viable. Con 400 tarros venden el doble de su punto muerto (200) y ganan 600 €. El número que deben vigilar es 200: por debajo, entrarían en pérdidas."
+    grafico:
+      tipo: xy
+      caption: "Cada tarro aporta 3 € y los costes fijos son 600 €: el punto muerto está en 200 tarros (1.000 €). Con 400 tarros, ingresan 2.000 € y gastan 1.400 €: 600 € de beneficio."
+      props:
+        id: "r-g3r-punto-muerto"
+        titulo: "Punto muerto del proyecto de mermelada"
+        desc: "Ingreso total (5 euros por tarro), coste total (600 euros fijos más 2 por tarro) y coste fijo. Se cruzan en 200 tarros, con 1.000 euros. Con 400 tarros el ingreso es de 2.000 euros, el coste de 1.400 y el beneficio de 600."
+        xMax: 560
+        yMax: 3000
+        ejeX: "Tarros vendidos"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [100, 300, 500]
+        yTicks: [600]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [500, 2500]] }
+          - { label: "CT", color: "terra", puntos: [[0, 600], [500, 1600]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 600], [500, 600]], dy: 14 }
+        puntos:
+          - { x: 200, y: 1000, label: "Q*", xLabel: "200", yLabel: "1 000", dx: -34, dy: -14 }
+          - { x: 400, y: 2000, xLabel: "400", yLabel: "2 000" }
+          - { x: 400, y: 1400, guias: false }
+        notas:
+          - { x: 410, y: 1800, texto: "Beneficio: 600 €", color: "teal" }
   - enunciado: "<strong>Cuadrar un balance.</strong> Un proyecto tiene en el activo: equipo 1.200 €, materiales 500 € y dinero en el banco 800 €. En la parte de financiación: aportaciones del equipo 1.500 € y deudas con proveedores 400 €, además de un préstamo cuyo importe falta. Calcula el importe del préstamo sabiendo que el balance debe cuadrar."
     desarrollo: "Recordamos la igualdad del balance: <strong>Activo = Patrimonio neto + Pasivo</strong>.<br><strong>1. Total activo</strong> = 1.200 + 500 + 800 = <strong>2.500 €</strong>.<br><strong>2. Lo que ya conocemos de la derecha</strong> = aportaciones + proveedores = 1.500 + 400 = 1.900 €.<br><strong>3. El préstamo</strong> es lo que falta para cuadrar: 2.500 − 1.900 = <strong>600 €</strong>.<br><strong>Comprobación:</strong> 1.500 + 600 + 400 = 2.500 €, igual que el activo. El balance cuadra."
+    grafico:
+      tipo: xy
+      caption: "El activo suma 2.500 € (1.200 + 500 + 800). Con las aportaciones (1.500 €) y los proveedores (400 €) ya hay 1.900 €: el préstamo que falta para cuadrar es de 600 €."
+      props:
+        id: "r-g3r-balance"
+        titulo: "Balance que cuadra con el préstamo"
+        desc: "Dos columnas en euros. Activo: equipo 1.200, materiales 500 y banco 800, total 2.500. Financiación: aportaciones 1.500, proveedores 400 y préstamo 600, total 2.500."
+        xMax: 8.5
+        yMax: 2900
+        ejeX: "Euros"
+        ejeY: "Euros"
+        xTicks: [2.4, 6.4]
+        xTickLabels: ["Activo", "Patrimonio + pasivo"]
+        yTicks: [1000, 2000]
+        areas:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 1200], [1, 1200]], color: "terra", fuerte: true }
+          - { puntos: [[1, 1200], [3.8, 1200], [3.8, 1700], [1, 1700]], color: "mustard", fuerte: true }
+          - { puntos: [[1, 1700], [3.8, 1700], [3.8, 2500], [1, 2500]], color: "teal", fuerte: true }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 1500], [5, 1500]], color: "aubergine", fuerte: true }
+          - { puntos: [[5, 1500], [7.8, 1500], [7.8, 1900], [5, 1900]], color: "mustard", fuerte: true }
+          - { puntos: [[5, 1900], [7.8, 1900], [7.8, 2500], [5, 2500]], color: "ink", fuerte: true }
+        series:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 1200], [1, 1200], [1, 0]], color: "terra" }
+          - { puntos: [[1, 1200], [3.8, 1200], [3.8, 1700], [1, 1700], [1, 1200]], color: "mustard" }
+          - { puntos: [[1, 1700], [3.8, 1700], [3.8, 2500], [1, 2500], [1, 1700]], color: "teal" }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 1500], [5, 1500], [5, 0]], color: "aubergine" }
+          - { puntos: [[5, 1500], [7.8, 1500], [7.8, 1900], [5, 1900], [5, 1500]], color: "mustard" }
+          - { puntos: [[5, 1900], [7.8, 1900], [7.8, 2500], [5, 2500], [5, 1900]], color: "ink" }
+        notas:
+          - { x: 2.4, y: 565.2, texto: "Equipo 1.200", ancla: "middle" }
+          - { x: 2.4, y: 1415.2, texto: "Materiales 500", ancla: "middle" }
+          - { x: 2.4, y: 2065.2, texto: "Banco 800", ancla: "middle" }
+          - { x: 6.4, y: 715.2, texto: "Aportaciones 1.500", ancla: "middle" }
+          - { x: 6.4, y: 1665.2, texto: "Proveedores 400", ancla: "middle" }
+          - { x: 6.4, y: 2165.2, texto: "Préstamo 600", ancla: "middle" }
+          - { x: 2.4, y: 2600, texto: "Activo: 2.500", ancla: "middle" }
+          - { x: 6.4, y: 2600, texto: "Financiación: 2.500", ancla: "middle" }
   - enunciado: "<strong>Montar el presupuesto.</strong> Para arrancar una pequeña pastelería, un equipo apunta estos gastos: horno 800 €, mostrador 300 €, web 200 €, alquiler mensual 400 €, materias primas al mes 350 € y suministros al mes 100 €. Separa la inversión inicial de los gastos corrientes y suma cada grupo."
     desarrollo: "La <strong>inversión inicial</strong> es lo que se paga una sola vez al principio y dura en el tiempo; los <strong>gastos corrientes</strong> se repiten cada periodo.<br><strong>Inversión inicial:</strong> horno 800 + mostrador 300 + web 200 = <strong>1.300 €</strong> (se pagan una vez).<br><strong>Gastos corrientes mensuales:</strong> alquiler 400 + materias primas 350 + suministros 100 = <strong>850 € al mes</strong> (se pagan cada mes).<br><strong>Conclusión:</strong> el equipo necesita 1.300 € para empezar y, además, debe asegurarse de cubrir 850 € cada mes con las ventas. Confundir ambos tipos de gasto es un error típico: la inversión inicial no se repite, los gastos corrientes sí."
+    grafico:
+      tipo: xy
+      caption: "La inversión inicial (1.300 €) se paga una vez; los gastos corrientes (850 €) se pagan cada mes y hay que cubrirlos con las ventas."
+      props:
+        id: "r-g3r-presupuesto-pasteleria"
+        titulo: "Inversión inicial y gastos corrientes de la pastelería"
+        desc: "Dos columnas apiladas en euros. Inversión inicial, una sola vez: horno 800, mostrador 300 y web 200, total 1.300. Gastos corrientes, cada mes: alquiler 400, materias primas 350 y suministros 100, total 850."
+        xMax: 10
+        yMax: 1500
+        ejeX: "Tipo de gasto"
+        ejeY: "Euros"
+        xTicks: [3, 7]
+        xTickLabels: ["Inversión inicial", "Gastos corrientes"]
+        yTicks: [500, 1000]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 800], [1.5, 800]], color: "terra", fuerte: true }
+          - { puntos: [[1.5, 800], [4.5, 800], [4.5, 1100], [1.5, 1100]], color: "mustard", fuerte: true }
+          - { puntos: [[1.5, 1100], [4.5, 1100], [4.5, 1300], [1.5, 1300]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 400], [5.5, 400]], color: "terra", fuerte: true }
+          - { puntos: [[5.5, 400], [8.5, 400], [8.5, 750], [5.5, 750]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 750], [8.5, 750], [8.5, 850], [5.5, 850]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 800], [1.5, 800], [1.5, 0]], color: "terra" }
+          - { puntos: [[1.5, 800], [4.5, 800], [4.5, 1100], [1.5, 1100], [1.5, 800]], color: "mustard" }
+          - { puntos: [[1.5, 1100], [4.5, 1100], [4.5, 1300], [1.5, 1300], [1.5, 1100]], color: "teal" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 400], [5.5, 400], [5.5, 0]], color: "terra" }
+          - { puntos: [[5.5, 400], [8.5, 400], [8.5, 750], [5.5, 750], [5.5, 400]], color: "mustard" }
+          - { puntos: [[5.5, 750], [8.5, 750], [8.5, 850], [5.5, 850], [5.5, 750]], color: "teal" }
+        notas:
+          - { x: 3, y: 382, texto: "Horno 800", ancla: "middle" }
+          - { x: 3, y: 932, texto: "Mostrador 300", ancla: "middle" }
+          - { x: 3, y: 1182, texto: "Web 200", ancla: "middle" }
+          - { x: 7, y: 182, texto: "Alquiler 400", ancla: "middle" }
+          - { x: 7, y: 557, texto: "Materias primas 350", ancla: "middle" }
+          - { x: 7, y: 782, texto: "Suministros 100", ancla: "middle" }
+          - { x: 3, y: 1360, texto: "Una sola vez: 1.300 €", ancla: "middle" }
+          - { x: 7, y: 910, texto: "Cada mes: 850 €", ancla: "middle" }
   - enunciado: "<strong>Retorno local.</strong> Dos proyectos gastan lo mismo, 1.000 € al mes. El proyecto A compra 700 € a proveedores del pueblo y 300 € fuera; el proyecto B compra 200 € en el pueblo y 800 € fuera. Calcula el porcentaje de retorno local de cada uno y di cuál tiene más impacto en su comunidad."
     desarrollo: "El <strong>retorno local</strong> es la parte del gasto que se queda en la economía de proximidad.<br><strong>Proyecto A:</strong> 700 ÷ 1.000 = 0,70 = <strong>70 % de retorno local</strong>.<br><strong>Proyecto B:</strong> 200 ÷ 1.000 = 0,20 = <strong>20 % de retorno local</strong>.<br><strong>Conclusión:</strong> aunque gastan lo mismo, el proyecto A deja mucho más dinero circulando en su pueblo (70 % frente a 20 %), así que tiene más impacto en el desarrollo local. El dinero que se queda vuelve a circular: el proveedor local, a su vez, compra y emplea en la zona."
+    grafico:
+      tipo: xy
+      caption: "Con el mismo gasto de 1.000 € al mes, el proyecto A deja 700 € en el pueblo (70 %) y el B solo 200 € (20 %): A tiene más retorno local."
+      props:
+        id: "r-g3r-retorno-local"
+        titulo: "Retorno local de los proyectos A y B"
+        desc: "Dos columnas de 1.000 euros. Proyecto A: 700 gastados en el pueblo y 300 fuera. Proyecto B: 200 en el pueblo y 800 fuera. El retorno local es del 70 % en A y del 20 % en B."
+        xMax: 10
+        yMax: 1150
+        ejeX: "Proyecto"
+        ejeY: "Euros al mes"
+        xTicks: [3, 7]
+        xTickLabels: ["Proyecto A", "Proyecto B"]
+        yTicks: [250, 500, 750]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 700], [1.5, 700]], color: "teal", fuerte: true }
+          - { puntos: [[1.5, 700], [4.5, 700], [4.5, 1000], [1.5, 1000]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 200], [5.5, 200]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 200], [8.5, 200], [8.5, 1000], [5.5, 1000]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 700], [1.5, 700], [1.5, 0]], color: "teal" }
+          - { puntos: [[1.5, 700], [4.5, 700], [4.5, 1000], [1.5, 1000], [1.5, 700]], color: "mustard" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 200], [5.5, 200], [5.5, 0]], color: "teal" }
+          - { puntos: [[5.5, 200], [8.5, 200], [8.5, 1000], [5.5, 1000], [5.5, 200]], color: "mustard" }
+        notas:
+          - { x: 3, y: 336.2, texto: "En el pueblo 700", ancla: "middle" }
+          - { x: 3, y: 836.2, texto: "Fuera 300", ancla: "middle" }
+          - { x: 7, y: 86.2, texto: "Pueblo 200", ancla: "middle" }
+          - { x: 7, y: 586.2, texto: "Fuera 800", ancla: "middle" }
+          - { x: 3, y: 1040, texto: "70 % local", ancla: "middle" }
+          - { x: 7, y: 1040, texto: "20 % local", ancla: "middle" }
 ejercicios:
   - enunciado: "La cuenta de resultados de un proyecto muestra: ingresos por ventas 9.000 €, compras de materiales 3.500 €, alquiler 1.800 €, sueldos 2.200 €. Calcula el <strong>resultado</strong> e indica si hay beneficio o pérdida."
     solucion: "Gastos totales = compras + alquiler + sueldos = 3.500 + 1.800 + 2.200 = 7.500 €.<br>Resultado = ingresos − gastos = 9.000 − 7.500 = <strong>1.500 €</strong>.<br>Como el resultado es positivo, hay <strong>beneficio</strong> de 1.500 €."

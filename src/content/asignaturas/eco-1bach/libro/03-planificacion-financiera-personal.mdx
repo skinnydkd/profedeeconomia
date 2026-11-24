@@ -40,6 +40,8 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import Presupuesto503020 from '@components/diagrams/Presupuesto503020.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
 import TrianguloInversion from '@components/diagrams/TrianguloInversion.astro';
 import Figure from '@components/Figure.astro';
@@ -106,6 +108,11 @@ Una heurística sencilla, popularizada por la senadora estadounidense Elizabeth 
 - **30 % a deseos**: ocio, restaurantes, ropa, viajes, suscripciones evitables.
 - **20 % a ahorro e inversión**: fondo de emergencia, plan de pensiones, inversión en mercados, amortización anticipada de deuda.
 
+<Diagram caption="Regla 50-30-20: de cada 100 € netos, 50 a necesidades, 30 a deseos y 20 a ahorro e inversión.">
+  <Presupuesto503020 />
+</Diagram>
+
+
 No es una ley, sino una referencia. En el contexto español de 2025-2026, con salarios medios todavía contenidos y alquileres altos en las grandes ciudades, esa distribución resulta optimista para muchas personas jóvenes. Pero es una buena vara de medir: si las **necesidades** superan el 70 % del ingreso, hay un problema estructural (vivienda demasiado cara o ingresos demasiado bajos para el coste de vida).
 
 <Callout label="Concepto clave" title="Capacidad de ahorro">
@@ -149,7 +156,25 @@ Imaginemos que invertimos **100 € hoy** a un **5 % anual** y los dejamos quiet
 Cf = 100 · (1,05)^30 = 100 · 4,322 = 432,19 €
 ```
 
-Sin haber añadido ni un euro más, los 100 € iniciales se han convertido en **432 €**. La diferencia entre los 100 y los 432 son los intereses acumulados: **332 € de pura magia matemática**, sin esfuerzo adicional. Si en lugar de 30 años fueran 40, el resultado sería **704 €**; a 50 años, **1.146 €**. Y si en lugar del 5 % el rendimiento fuera del 8 % anual (la rentabilidad histórica media de la bolsa global a largo plazo, ajustada por inflación), los 100 € se convertirían en **1.006 €** a los 30 años. Diez veces el capital de partida.
+Sin haber añadido ni un euro más, los 100 € iniciales se han convertido en **432 €**. La diferencia entre los 100 y los 432 son los intereses acumulados: **332 € de pura magia matemática**, sin esfuerzo adicional. Si en lugar de 30 años fueran 40, el resultado sería **704 €**; a 50 años, **1.147 €**. Y si en lugar del 5 % el rendimiento fuera del 8 % anual (la rentabilidad histórica media de la bolsa global a largo plazo, ajustada por inflación), los 100 € se convertirían en **1.006 €** a los 30 años. Diez veces el capital de partida.
+
+<Diagram caption="Los 100 € del ejemplo: al 5 % anual valen 432 € a los 30 años, 704 € a los 40 y 1.147 € a los 50. Al 8 %, ya son 1.006 € a los 30 años.">
+  <GraficoXY id="g-cien-euros" titulo="Cien euros invertidos al 5 % y al 8 % anual" desc="Curva exponencial: 100 euros al 5 % anual se convierten en 432 a los 30 años, 704 a los 40 y 1 147 a los 50. Al 8 % llegan a 1 006 euros a los 30 años."
+    xMax={55} yMax={1300} ejeX="Años" ejeY="Capital (€)"
+    xTicks={[10, 20]} yTicks={[100]}
+    series={[
+      { label: '5 %', color: 'terra', puntos: Array.from({ length: 21 }, (_, i) => [i * 2.5, 100 * 1.05 ** (i * 2.5)]) },
+      { label: '8 %', color: 'teal', puntos: Array.from({ length: 13 }, (_, i) => [i * 2.5, 100 * 1.08 ** (i * 2.5)]) },
+    ]}
+    puntos={[
+      { x: 30, y: 432.19, yLabel: '432', xLabel: '30' },
+      { x: 40, y: 704.0, yLabel: '704', xLabel: '40' },
+      { x: 50, y: 1146.74, yLabel: '1 147', xLabel: '50' },
+      { x: 30, y: 1006.27, yLabel: '1 006' },
+    ]}
+  />
+</Diagram>
+
 
 <Curiosity title="«El interés compuesto es la octava maravilla del mundo»">
 La cita —*«Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it»*— se atribuye habitualmente a **Albert Einstein**, aunque no hay evidencia documental de que la dijera (la frase aparece publicada por primera vez en un anuncio bancario estadounidense de 1925, cuando Einstein aún vivía pero el documento no le es atribuible). La paternidad incierta no le quita razón al contenido: el interés compuesto es la mecánica financiera más poderosa que existe, y simultáneamente la peor entendida por el público general. Quien la comprende y la pone a su favor (ahorrando e invirtiendo desde joven) la cobra durante toda su vida. Quien no la comprende y la tiene en contra (financiando consumo con tarjeta de crédito al 24 % o préstamos al 15 %) la paga durante décadas.
@@ -193,6 +218,19 @@ Dos hermanos, Ana y Bruno, deciden ahorrar para su jubilación. Ambos aportan **
    - **Ana acaba con más dinero pese a haber aportado tres veces y media menos.**
 
 5. **Lección práctica**: el factor decisivo del interés compuesto no es cuánto aportas, sino **cuánto tiempo dejas que el dinero trabaje**. Empezar a invertir a los 20 años con poca cantidad es financieramente más eficiente que empezar a los 30 con mucha. Esta es la justificación matemática de por qué cualquier plan de jubilación —público o privado— recomienda **empezar pronto**, aunque sean cantidades pequeñas.
+
+<Diagram caption="Ana aporta 20.000 € entre los 20 y los 30 años y deja el capital trabajando; Bruno aporta 70.000 € entre los 30 y los 65. A los 65 años, Ana tiene unos 295.000 € y Bruno unos 276.000 €.">
+  <GraficoXY id="g-ana-bruno" titulo="Ana y Bruno: capital acumulado hasta los 65 años" desc="Ana, que aporta solo diez años desde los 20, llega a unos 295 000 euros a los 65 años. Bruno, que aporta 35 años desde los 30, llega a unos 276 000 euros."
+    xMax={52} yMax={350000} ejeX="Edad (años)" ejeY="Capital acumulado (€)"
+    xTicks={[10, 20, 30, 40, 45]} xTickLabels={['30', '40', '50', '60', '65']} yTicks={[100000, 200000]}
+    series={[
+      { label: 'Ana 295 000 €', color: 'terra', dy: -6, puntos: Array.from({ length: 46 }, (_, i) => [i, i <= 10 ? 2000 * ((1.07 ** i - 1) / 0.07) : 2000 * ((1.07 ** 10 - 1) / 0.07) * 1.07 ** (i - 10)]) },
+      { label: 'Bruno 276 000 €', color: 'teal', dy: 14, puntos: Array.from({ length: 36 }, (_, i) => [i + 10, 2000 * ((1.07 ** i - 1) / 0.07)]) },
+    ]}
+    puntos={[{ x: 10, y: 27632.8, label: 'Ana deja de aportar', dx: -5, dy: -45 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -300,6 +338,19 @@ El shock golpeó duramente a más de **4 millones de hogares españoles con hipo
 Entre junio de 2024 y junio de 2025, el BCE bajó el tipo de depósito del 4 % al **2 %** (MRO 2,15 %). El Euribor a 12 meses acompañó el descenso y en mayo de 2026 rondaba el **2,8 %** (media mensual). La cuota de la hipoteca del ejemplo se relajó a unos **990 €/mes** en la revisión anual de esa fecha: 190 € menos que en el pico de 2023, todavía 240 € por encima de la cuota original de 2021. Y el ciclo no ha terminado: el BCE ha vuelto a subir los tipos en junio y en septiembre de 2026 (depósito al 2,50 % desde el 16 de septiembre; los mantuvo en octubre), y la media del Euribor a 12 meses de agosto de 2026 fue del 2,952 % (Banco de España; consulta el dato vigente en bde.es y ecb.europa.eu). La lección, en clave de educación financiera: **una hipoteca a 30 años atraviesa varios ciclos de tipos**, y conviene firmarla sabiendo que el Euribor sube y baja con la política del BCE.
 </RealExample>
 
+<Diagram caption="La misma hipoteca de 200.000 € a 25 años (Euribor + 0,9 %) en tres momentos: unos 750 € al mes en 2021, unos 1.180 € tras el pico de 2023 y unos 990 € en mayo de 2026. Solo hay tres datos: no se unen con una línea.">
+  <GraficoXY id="g-cuota-euribor" titulo="Cuota mensual de la hipoteca del ejemplo en tres momentos" desc="La cuota pasa de 750 euros al mes en 2021 a 1 180 con la subida del Euribor y baja a 990 en mayo de 2026."
+    xMax={4} yMax={1400} ejeX="Momento" ejeY="Cuota mensual (€)"
+    yTicks={[500]}
+    puntos={[
+      { x: 1, y: 750, yLabel: '750', xLabel: '2021' },
+      { x: 2, y: 1180, yLabel: '1 180', xLabel: 'Pico 2023' },
+      { x: 3, y: 990, yLabel: '990', xLabel: 'May. 2026' },
+    ]}
+  />
+</Diagram>
+
+
 <SolvedExercise number="3.2" title="Cuota mensual aproximada de una hipoteca">
 
 **Enunciado**
@@ -337,6 +388,18 @@ c) ¿Cuánto subiría la cuota si el tipo aplicado fuera del 5 % en lugar del 3,
    - Intereses totales: 935 × 300 − 160.000 = **120.500 €** (40.000 € más que en el escenario al 3,5 %).
 
 5. **Conclusión práctica**: cada **punto porcentual de TIN** en una hipoteca de 25 años se traduce en aproximadamente **80-100 € más de cuota mensual** y **25.000-30.000 € más de intereses totales**. Por eso negociar bien el tipo —y leer la **TAE**, no solo el TIN— marca diferencias enormes a lo largo de la vida del préstamo.
+
+<Diagram caption="La hipoteca de 160.000 € a 25 años con un tipo del 3,5 % (cuota de unos 801 €) y del 5 % (unos 935 €). Con el tipo más alto el saldo baja más despacio, porque una parte mayor de cada cuota son intereses.">
+  <GraficoXY id="g-saldo-hipoteca" titulo="Saldo pendiente de una hipoteca de 160.000 euros al 3,5 % y al 5 %" desc="Ambos saldos parten de 160 000 euros y llegan a cero a los 25 años; el del 5 % queda siempre por encima del del 3,5 %."
+    xMax={28} yMax={200000} ejeX="Años desde la firma" ejeY="Saldo pendiente (€)"
+    xTicks={[5, 10, 15, 20, 25]} yTicks={[40000, 80000, 120000, 160000]}
+    series={[
+      { label: '5 %', color: 'terra', dy: -30, puntos: Array.from({ length: 26 }, (_, y) => { const i = 0.05 / 12, k = y * 12, P = 160000 * i / (1 - (1 + i) ** -300); return [y, Math.max(0, 160000 * (1 + i) ** k - P * ((1 + i) ** k - 1) / i)]; }) },
+      { label: '3,5 %', color: 'teal', dy: -8, puntos: Array.from({ length: 26 }, (_, y) => { const i = 0.035 / 12, k = y * 12, P = 160000 * i / (1 - (1 + i) ** -300); return [y, Math.max(0, 160000 * (1 + i) ** k - P * ((1 + i) ** k - 1) / i)]; }) },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -590,7 +653,7 @@ Para practicar la diversificación y el horizonte de inversión, probad [**Stonk
       d: "Tipo de interés anual, en tanto por uno."
     - s: "n"
       d: "Años que el capital permanece invertido."
-  ejemplo: "100 · (1,05)^30 = 432 €: 332 € de intereses sin añadir un euro. A 40 años, 704 €; a 50, 1.146 €. Al 8 % anual, los 100 € llegan a 1.006 € en 30 años."
+  ejemplo: "100 · (1,05)^30 = 432 €: 332 € de intereses sin añadir un euro. A 40 años, 704 €; a 50, 1.147 €. Al 8 % anual, los 100 € llegan a 1.006 € en 30 años."
 - tipo: figure
   src: eco-1bach/03/einstein-retrato.jpg
   alt: Retrato fotográfico en blanco y negro de Albert Einstein, realizado por Orren Jack Turner en Princeton hacia 1947.

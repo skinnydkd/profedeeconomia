@@ -8,6 +8,9 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau/01-teoria-esencial.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Síntesi d'estudi per a l'EBAU d'Empresa i Disseny de Models de Negoci (EDMN) a la Comunitat Valenciana. La teoria s'organitza seguint els **quatre blocs de la concreció curricular valenciana** i enllaça amb les 12 unitats del llibre. No pretén ser exhaustiva: recull el que cau i el que sustenta els problemes. El marcat com a **nucli** és el que apareix amb més freqüència a l'examen.
 
 > Esta guia es basa en el currículum LOMLOE de l'assignatura (Decret 108/2022 del Consell, currículum de Batxillerat de la Comunitat Valenciana) i en el currículum bàsic estatal (Reial Decret 243/2022). El **Decret 103/2026** dona nova redacció a eixe currículum valencià, aplicable a les matèries de 2n **des del curs 2027-2028**. Convé contrastar-la amb la matriu d'especificacions publicada cada curs per la comissió de la matèria.
@@ -183,6 +186,28 @@ Q* = CF / (P − Cvu)
 
 Per davall del punt mort hi ha pèrdues; per damunt, benefici. El denominador `(P − Cvu)` és el **marge de contribució unitari**.
 
+<Diagram caption="Esquema del punt mort, sense xifres: en Q* l'ingrés total iguala el cost total. A l'esquerra hi ha pèrdues i a la dreta, beneficis. No usa dades reals.">
+  <GraficoXY id="g-ebau-teoria-punto-muerto" titulo="Esquema del punt mort" desc="Esquema sense xifres: el cost fix és una recta horitzontal, el cost total parteix d'ell i puja, i l'ingrés total ix de l'origen i puja més de pressa. Es creuen en el punt mort, Q*: a l'esquerra hi ha pèrdues i a la dreta, beneficis."
+    xMax={100} yMax={110} ejeX="Unitats produïdes i venudes" ejeY="Euros" simboloX="Q" simboloY="€"
+    areas={[
+      { puntos: [[0, 0], [37.5, 45], [0, 30]], color: "terra" },
+      { puntos: [[37.5, 45], [80, 96], [80, 62]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [80, 96]] },
+      { label: "CT", color: "terra", puntos: [[0, 30], [80, 62]] },
+      { label: "CF", color: "mustard", puntos: [[0, 30], [80, 30]] },
+    ]}
+    puntos={[
+      { x: 37.5, y: 45, xLabel: "Q*", yLabel: "I*", dx: -34, dy: -12 },
+    ]}
+    notas={[
+      { x: 3, y: 20, texto: "Pèrdues", color: "terra" },
+      { x: 56, y: 60, texto: "Beneficis", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Àrea comercial (màrqueting)
 
 - **Segmentació**: dividir el mercat en grups homogenis. Criteris: demogràfics, geogràfics, psicogràfics i de comportament.
@@ -230,6 +255,23 @@ on `A` = desemborsament inicial, `Qt` = flux de caixa de l'any t, `k` = tipus de
 ```
 
 Substituint `x = (1 + r)` s'obté una equació quadràtica `A·x² − Q1·x − Q2 = 0`; la TIR és `r = x − 1`.
+
+<Diagram caption="Esquema del VAN en funció de k: la TIR és la taxa que l'anul·la. Si el cost del capital k és menor que la TIR, el VAN és positiu i la inversió s'accepta. No usa dades reals.">
+  <GraficoXY id="g-ebau-teoria-van-tir" titulo="El VAN segons la taxa de descompte i la TIR" desc="Esquema sense xifres: el VAN baixa en pujar la taxa de descompte k. La TIR és la taxa en què la corba talla l'eix, és a dir, VAN = 0. Amb k menor que la TIR el VAN és positiu i s'accepta; amb k major és negatiu i es rebutja."
+    xMax={100} yMax={100} yMin={-30} ejeX="Taxa de descompte k" ejeY="VAN" simboloX="k"
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 75], [4, 64.5], [8, 55.11], [12, 46.7], [16, 39.17], [20, 32.43], [24, 26.41], [28, 21.01], [32, 16.18], [36, 11.86], [40, 7.99], [44, 4.52], [48, 1.43], [52, -1.35], [56, -3.83], [60, -6.05], [64, -8.04], [68, -9.82], [72, -11.42], [76, -12.84], [80, -14.12], [84, -15.26], [88, -16.28]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 50, y: 0, xLabel: "TIR", guias: true },
+      { x: 25, y: 25, xLabel: "k" },
+    ]}
+    notas={[
+      { x: 22, y: 70, texto: "k < TIR: VAN > 0, s'accepta", color: "teal" },
+      { x: 56, y: -26, texto: "k > TIR: VAN < 0, es rebutja", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 **Termini de recuperació (PayBack)**: temps que tarda la inversió a recuperar-se amb els fluxos de caixa. Mesura la liquiditat, no la rendibilitat (ignora el valor del diner en el temps i els fluxos posteriors).
 

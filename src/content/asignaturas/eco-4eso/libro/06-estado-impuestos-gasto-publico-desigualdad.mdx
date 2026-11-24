@@ -43,6 +43,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import MapaImpuestos from '@components/diagrams/MapaImpuestos.astro';
 import IRPFTramos from '@components/diagrams/IRPFTramos.astro';
@@ -194,10 +195,31 @@ Con tantos impuestos, ¿de cuáles vive de verdad el Estado? La Agencia Tributar
 | Impuesto | Recaudación 2024 (aprox.) | Peso |
 |---|---|---|
 | IRPF | 129.000 millones € | 44 % |
-| IVA | 93.000 millones € | 31 % |
+| IVA | 93.000 millones € | 32 % |
 | Impuesto sobre Sociedades | 39.000 millones € | 13 % |
-| Impuestos especiales | 22.000 millones € | 8 % |
+| Impuestos especiales | 22.000 millones € | 7 % |
 | Resto (Patrimonio, tasas, otros) | 12.000 millones € | 4 % |
+
+<Diagram caption="De dónde salen los 295.000 millones que recaudó el Estado en 2024: el IRPF y el IVA, juntos, son tres de cada cuatro euros.">
+  <GraficoXY id="g-recaudacion" titulo="Recaudación tributaria del Estado en 2024 por impuesto" desc="Cinco barras en miles de millones de euros: IRPF 129, IVA 93, Impuesto sobre Sociedades 39, impuestos especiales 22 y resto 12."
+    xMax={6} yMax={150} ejeX="Impuesto" ejeY="Miles de millones de €"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['IRPF', 'IVA', 'Sociedades', 'Especiales', 'Resto']} yTicks={[25, 50, 75, 100, 125]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 129], [0.65, 129]] }, { color: 'terra', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 93], [1.65, 93]] },
+      { color: 'terra', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 39], [2.65, 39]] }, { color: 'terra', fuerte: true, puntos: [[3.65, 0], [4.35, 0], [4.35, 22], [3.65, 22]] },
+      { color: 'terra', fuerte: true, puntos: [[4.65, 0], [5.35, 0], [5.35, 12], [4.65, 12]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 129], [1.35, 129], [1.35, 0]] }, { color: 'terra', puntos: [[1.65, 0], [1.65, 93], [2.35, 93], [2.35, 0]] },
+      { color: 'terra', puntos: [[2.65, 0], [2.65, 39], [3.35, 39], [3.35, 0]] }, { color: 'terra', puntos: [[3.65, 0], [3.65, 22], [4.35, 22], [4.35, 0]] },
+      { color: 'terra', puntos: [[4.65, 0], [4.65, 12], [5.35, 12], [5.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 134, texto: '129', ancla: 'middle' }, { x: 2, y: 98, texto: '93', ancla: 'middle' }, { x: 3, y: 44, texto: '39', ancla: 'middle' },
+      { x: 4, y: 27, texto: '22', ancla: 'middle' }, { x: 5, y: 17, texto: '12', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 Dos lecturas. La primera: **tres de cada cuatro euros** vienen del IRPF y del IVA, es decir, de lo que ganan y de lo que gastan las familias. Las empresas, a través de Sociedades, aportan bastante menos de lo que mucha gente cree. La segunda: a esa cifra hay que sumarle las **cotizaciones sociales**, que no cobra la Agencia Tributaria sino la Seguridad Social y que en 2024 superaron los **180.000 millones de euros** (Seguridad Social, ejecución presupuestaria 2024). Si contáis todo, la nómina de la Unidad 5 (IRPF más cotizaciones del trabajador y de la empresa) es, con diferencia, la mayor fuente de dinero público de España.
 
@@ -251,6 +273,22 @@ Lucía tiene 24 años, vive sola y en su primer año con contrato indefinido ha 
 7. **Resultado de la declaración**: le han retenido 3.400 € y debía 3.123 €, así que Hacienda le **devuelve 277 €**. La retención mensual era solo un adelanto; la declaración ajusta las cuentas.
 8. **Lectura**: en una declaración real, con las cotizaciones a la Seguridad Social (1.300 €), los 2.000 € de otros gastos deducibles y la reducción por rendimientos del trabajo que fija la Ley 35/2006, la cuota de una renta de 20.000 € baja a unos 2.044 €, un tipo medio de alrededor del 10 %. El mecanismo es el mismo; lo que cambia es la base sobre la que se aplica.
 
+<Diagram caption="Lucía en el gráfico: con 20.000 € su último euro paga el 24 % (tipo marginal), pero su renta entera paga el 15,6 % (tipo medio). El tipo medio sube con la renta sin llegar nunca al marginal, y hasta 5.550 € no se paga nada por el mínimo personal.">
+  <GraficoXY id="g-irpf-tipo-medio" titulo="Tipo marginal y tipo medio del IRPF según la renta" desc="El tipo marginal sube a escalones: 0 por ciento hasta 5 550 euros, luego 19, 24, 30, 37 y 45. El tipo medio sube de forma suave y siempre queda por debajo: con 20 000 euros de renta, Lucía tiene un marginal del 24 por ciento y un medio del 15,6."
+    xMax={80000} yMax={55} ejeX="Renta anual (€)" ejeY="Porcentaje" simboloX="R" simboloY="%"
+    xTicks={[20000, 40000, 60000]} yTicks={[10, 20, 30, 40]}
+    series={[
+      { color: 'mustard', label: 'Tipo marginal', puntos: [[0, 0], [5550, 0], [5550, 19], [12450, 19], [12450, 24], [20200, 24], [20200, 30], [35200, 30], [35200, 37], [60000, 37], [60000, 45], [70000, 45]] },
+      { color: 'terra', label: 'Tipo medio', puntos: Array.from({ length: 140 }, (_, i) => {
+        const r = (i + 1) * 500;
+        const cuota = [[0, 12450, 0.19], [12450, 20200, 0.24], [20200, 35200, 0.3], [35200, 60000, 0.37], [60000, 300000, 0.45]].reduce((s, [a, b, t]) => s + Math.max(0, Math.min(r, b) - a) * t, 0);
+        return [r, Math.max(0, cuota - 5550 * 0.19) / r * 100];
+      }) },
+    ]}
+    puntos={[{ x: 20000, y: 15.6, label: 'Medio: 15,6 %', xLabel: '20 000', yLabel: '15,6', dx: 12, dy: 24 }, { x: 20000, y: 24, label: 'Marginal: 24 %', yLabel: '24', dx: -122, dy: -12 }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ### La declaración de la renta
@@ -288,6 +326,22 @@ En la compra del sábado, los productos costaban, **antes de IVA**:
 7. **Familia con 6.000 € de ingresos**: gasta 3.000 €, y el IVA son unos **312 €**: el **5,2 % de sus ingresos**.
 8. **Lectura**: la segunda familia paga más euros de IVA, pero un porcentaje de su renta **la mitad de grande**, porque lo que ahorra no paga IVA. El IVA es proporcional al gasto y **regresivo respecto a la renta**. Por eso existen los tipos reducidos: bajar el IVA del pan y la leche es la forma de que el impuesto pese menos sobre quien gasta casi todo lo que gana en comer.
 
+<Diagram caption="El IVA como parte de los ingresos: la familia que ingresa 1.200 € y gasta todo paga el 10,4 %; la que ingresa 6.000 € y gasta la mitad paga el 5,2 %.">
+  <GraficoXY id="g-iva-regresivo" titulo="IVA pagado como porcentaje de los ingresos de dos familias" desc="Dos barras: la familia que ingresa 1 200 euros al mes y gasta todo paga un 10,4 por ciento de sus ingresos en IVA; la que ingresa 6 000 y gasta 3 000 paga un 5,2 por ciento."
+    xMax={6} yMax={12} ejeX="Familia" ejeY="IVA sobre los ingresos (%)"
+    xTicks={[1.5, 4]} xTickLabels={['Ingresa 1 200 €', 'Ingresa 6 000 €']} yTicks={[2, 4, 6, 8, 10]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 10.4], [0.9, 10.4]] },
+      { color: 'teal', fuerte: true, puntos: [[3.4, 0], [4.6, 0], [4.6, 5.2], [3.4, 5.2]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 10.4], [2.1, 10.4], [2.1, 0]] },
+      { color: 'teal', puntos: [[3.4, 0], [3.4, 5.2], [4.6, 5.2], [4.6, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 11, texto: '10,4 %', ancla: 'middle' }, { x: 4, y: 5.8, texto: '5,2 %', ancla: 'middle' }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ### Progresivo, proporcional y regresivo
@@ -314,6 +368,28 @@ Eurostat clasifica el gasto de todas las administraciones por funciones. En Espa
 - **12 € a asuntos económicos**: carreteras, trenes, ayudas a la agricultura, transición energética.
 - **12 € a servicios generales**, que incluyen el funcionamiento de las administraciones y, sobre todo, los **intereses de la deuda**: más de 30.000 millones de euros al año (Presupuestos Generales del Estado 2023).
 - El resto (unos 10 €) se reparte entre orden público y seguridad, defensa, vivienda, medio ambiente y cultura.
+
+<Diagram caption="Cómo se reparten 100 € de gasto público en España: más de la mitad va a protección social y sanidad.">
+  <GraficoXY id="g-gasto-publico" titulo="Reparto de 100 euros de gasto público en España" desc="Una barra de 100 euros dividida por partidas: 41 a protección social, 15 a sanidad, 10 a educación, 12 a asuntos económicos, 12 a servicios generales y 10 al resto."
+    xMax={6} yMax={105} ejeX="Gasto público" ejeY="Euros de cada 100"
+    yTicks={[20, 40, 60, 80, 100]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[1, 0], [2.4, 0], [2.4, 41], [1, 41]] }, { color: 'mustard', fuerte: true, puntos: [[1, 41], [2.4, 41], [2.4, 56], [1, 56]] },
+      { color: 'teal', fuerte: true, puntos: [[1, 56], [2.4, 56], [2.4, 66], [1, 66]] }, { color: 'aubergine', fuerte: true, puntos: [[1, 66], [2.4, 66], [2.4, 78], [1, 78]] },
+      { color: 'ink', fuerte: true, puntos: [[1, 78], [2.4, 78], [2.4, 90], [1, 90]] }, { color: 'terra', fuerte: true, puntos: [[1, 90], [2.4, 90], [2.4, 100], [1, 100]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[1, 0], [1, 41], [2.4, 41], [2.4, 0], [1, 0]] }, { color: 'mustard', puntos: [[1, 41], [1, 56], [2.4, 56], [2.4, 41]] },
+      { color: 'teal', puntos: [[1, 56], [1, 66], [2.4, 66], [2.4, 56]] }, { color: 'aubergine', puntos: [[1, 66], [1, 78], [2.4, 78], [2.4, 66]] },
+      { color: 'ink', puntos: [[1, 78], [1, 90], [2.4, 90], [2.4, 78]] }, { color: 'terra', puntos: [[1, 90], [1, 100], [2.4, 100], [2.4, 90]] },
+    ]}
+    notas={[
+      { x: 2.6, y: 19, texto: '41 € Protección social', color: 'terra' }, { x: 2.6, y: 47, texto: '15 € Sanidad', color: 'mustard' },
+      { x: 2.6, y: 60, texto: '10 € Educación', color: 'teal' }, { x: 2.6, y: 71, texto: '12 € Asuntos económicos', color: 'aubergine' },
+      { x: 2.6, y: 83, texto: '12 € Servicios generales', color: 'ink' }, { x: 2.6, y: 94, texto: '10 € Resto', color: 'terra' },
+    ]}
+  />
+</Diagram>
 
 Todo junto, el gasto público español fue en 2024 de alrededor del **45 % del PIB** (Eurostat, estadísticas de finanzas públicas 2024), frente a una media cercana al 49 % en la Unión Europea. Casi la mitad de todo lo que produce el país en un año pasa por decisiones públicas, y más de la mitad de ese gasto va a tres cosas: pensiones, sanidad y educación.
 
@@ -357,6 +433,25 @@ El **déficit público** es la diferencia entre lo que el Estado gasta y lo que 
 </Callout>
 
 Las dos cifras se expresan como porcentaje del PIB, para poder compararlas entre países y entre años. En 2024 el déficit de las administraciones públicas españolas fue del **3,2 % del PIB**, después de un 3,5 % en 2023 y de un 10,1 % en 2020, el año de la pandemia (IGAE y Eurostat, datos de 2025). La deuda pública cerró 2024 en unos **1,62 billones de euros**, alrededor del **102 % del PIB**, y en 2025 se ha mantenido entre el 100 y el 104 % (Banco de España, deuda de las Administraciones Públicas según el Protocolo de Déficit Excesivo). Para hacerse una idea: cada persona que vive en España, desde un recién nacido hasta tus abuelos, debe unos 33.000 € por la parte que le toca de esa deuda.
+
+<Diagram caption="El déficit público en tres años y el límite europeo del 3 % del PIB: en 2020, con la pandemia, fue más de tres veces el límite; en 2023 y 2024 se quedó algo por encima.">
+  <GraficoXY id="g-deficit" titulo="Déficit público de España frente al límite del 3 % del PIB" desc="Tres barras: el déficit fue del 10,1 por ciento del PIB en 2020, del 3,5 en 2023 y del 3,2 en 2024. El límite europeo es el 3 por ciento."
+    xMax={8} yMax={12} ejeX="Año" ejeY="Déficit (% del PIB)"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['2020', '2023', '2024']} yTicks={[2, 4, 6, 8, 10]}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.9, 0], [2.1, 0], [2.1, 10.1], [0.9, 10.1]] },
+      { color: 'terra', fuerte: true, puntos: [[2.9, 0], [4.1, 0], [4.1, 3.5], [2.9, 3.5]] },
+      { color: 'terra', fuerte: true, puntos: [[4.9, 0], [6.1, 0], [6.1, 3.2], [4.9, 3.2]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 10.1], [2.1, 10.1], [2.1, 0]] },
+      { color: 'terra', puntos: [[2.9, 0], [2.9, 3.5], [4.1, 3.5], [4.1, 0]] },
+      { color: 'terra', puntos: [[4.9, 0], [4.9, 3.2], [6.1, 3.2], [6.1, 0]] },
+      { color: 'teal', tenue: true, label: 'Límite UE: 3 %', dy: 18, puntos: [[0, 3], [6.6, 3]] },
+    ]}
+    notas={[{ x: 1.5, y: 10.7, texto: '10,1 %', ancla: 'middle' }, { x: 3.5, y: 4.1, texto: '3,5 %', ancla: 'middle' }, { x: 5.5, y: 3.8, texto: '3,2 %', ancla: 'middle' }]}
+  />
+</Diagram>
 
 ### Quién presta al Estado
 
@@ -660,9 +755,9 @@ Estas preguntas no tienen una respuesta única. Sirven para debatir en clase o p
     - "Peso"
   rows:
     - ["IRPF (directo)", "129.000 millones €", "44 %"]
-    - ["IVA (indirecto, 21 / 10 / 4 %)", "93.000 millones €", "31 %"]
+    - ["IVA (indirecto, 21 / 10 / 4 %)", "93.000 millones €", "32 %"]
     - ["Sociedades (directo, 25 %)", "39.000 millones €", "13 %"]
-    - ["Especiales (alcohol, tabaco, carburantes)", "22.000 millones €", "8 %"]
+    - ["Especiales (alcohol, tabaco, carburantes)", "22.000 millones €", "7 %"]
     - ["Resto (Patrimonio, tasas, otros)", "12.000 millones €", "4 %"]
   caption: "Tres de cada cuatro euros vienen del IRPF y del IVA. Aparte, las cotizaciones sociales superaron los 180.000 millones."
 - tipo: quiz

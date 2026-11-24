@@ -49,6 +49,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -254,6 +255,27 @@ Donde la **remuneración de asalariados** son los sueldos brutos más cotizacion
 El PIB español se hundió un **10,9 %** en 2020, el peor desplome desde la Guerra Civil. Después creció un 6,7 % en 2021, un 6,2 % en 2022, un 2,4 % en 2023 y un **3,7 % en 2024**, la mayor tasa de las grandes economías de la zona euro. Con esas tasas, el PIB real recuperó en **2022** el nivel previo a la pandemia. En 2025 el crecimiento se moderó al **2,6 %**, todavía por encima de la media de la zona euro (INE, series revisadas en septiembre de 2026). Los motores siguen siendo el turismo —España batió en 2024 el récord histórico con cerca de 94 millones de turistas internacionales— y el despliegue final de los fondos *Next Generation EU*, en fase de cierre operacional en 2026.
 </RealExample>
 
+<Diagram caption="El PIB real de España con 2019 = 100, construido con las tasas de crecimiento del texto: tras caer un 10,9 % en 2020, la economía recupera en 2022 el nivel previo a la pandemia y en 2025 queda un 10 % por encima.">
+  <GraficoXY id="g-pib-real" titulo="PIB real de España, 2019 = 100" desc="Índice del PIB real: 100 en 2019, 89,1 en 2020, 95,1 en 2021, 101,0 en 2022, 103,4 en 2023, 107,2 en 2024 y 110,0 en 2025. En 2022 supera el nivel previo a la pandemia."
+    xMax={7.9} yMax={125} ejeX="Año" ejeY="Índice (2019 = 100)"
+    xTicks={[0.4, 1.4, 2.4, 3.4, 4.4, 5.4, 6.4]} xTickLabels={['2019', '2020', '2021', '2022', '2023', '2024', '2025']}
+    series={[
+      { color: 'ink', tenue: true, puntos: [[0.4, 100], [6.4, 100]] },
+      { color: 'terra', puntos: [[0.4, 100], [1.4, 89.1], [2.4, 95.07], [3.4, 100.96], [4.4, 103.39], [5.4, 107.21], [6.4, 110]] },
+    ]}
+    puntos={[
+      { x: 1.4, y: 89.1, label: '89,1', guias: false, dx: 8, dy: 22 },
+      { x: 2.4, y: 95.07, label: '95,1', guias: false, dx: 8, dy: 22 },
+      { x: 3.4, y: 100.96, label: '101,0', guias: false, dx: 8, dy: -12 },
+      { x: 4.4, y: 103.39, label: '103,4', guias: false, dx: 8, dy: -12 },
+      { x: 5.4, y: 107.21, label: '107,2', guias: false, dx: 8, dy: -12 },
+      { x: 6.4, y: 110, label: '110,0', guias: false, dx: 8, dy: -12 },
+    ]}
+    notas={[{ x: 5.0, y: 93, texto: 'Nivel de 2019', color: 'ink' }]}
+  />
+</Diagram>
+
+
 <SolvedExercise number="7.1" title="Calcular el PIB de un país por el método del gasto">
 
 **Enunciado**
@@ -360,6 +382,23 @@ El país *Beta* presenta los siguientes datos del INE local. El año base es **2
    - El deflactor pasa de 100 a 113,8: los precios agregados han subido un **13,8 %** acumulado en el periodo.
    - Conviene comparar siempre PIB en términos **reales**: hablar de "el PIB creció un 26 %" sería incorrecto desde el punto de vista del bienestar productivo.
 
+<Diagram caption="El PIB de Beta (año base 2020): el nominal pasa de 1.000 a 1.260 millones (+26 %) y el real, de 1.000 a 1.107 (+10,7 %). La distancia entre las dos líneas es la subida de precios que recoge el deflactor.">
+  <GraficoXY id="g-pib-beta" titulo="PIB nominal y PIB real de Beta, 2020-2023" desc="El PIB nominal de Beta crece de 1 000 a 1 260 millones de euros entre 2020 y 2023; el PIB real, de 1 000 a 1 107. La diferencia entre ambos es la subida de precios."
+    xMax={3.9} yMax={1400} ejeX="Año" ejeY="Millones de euros"
+    xTicks={[0.25, 1.25, 2.25, 3.25]} xTickLabels={['2020', '2021', '2022', '2023']}
+    series={[
+      { label: 'PIB nominal', color: 'terra', puntos: [[0.25, 1000], [1.25, 1080], [2.25, 1180], [3.25, 1260]] },
+      { label: 'PIB real', color: 'teal', puntos: [[0.25, 1000], [1.25, 1080 / 1.035], [2.25, 1180 / 1.092], [3.25, 1260 / 1.138]] },
+    ]}
+    puntos={[
+      { x: 0.25, y: 1000, yLabel: '1 000' },
+      { x: 3.25, y: 1260, yLabel: '1 260' },
+      { x: 3.25, y: 1260 / 1.138, yLabel: '1 107' },
+    ]}
+  />
+</Diagram>
+
+
 </SolvedExercise>
 
 ### El PIB per cápita
@@ -428,6 +467,22 @@ En España, la inflación interanual media de los últimos años, según el INE,
 | 2025 | +2,3 % | +2,2 % |
 
 La aceleración de 2022 fue la mayor en cuatro décadas, impulsada por el encarecimiento de la energía tras la invasión rusa de Ucrania y los cuellos de botella post-pandemia. Entre 2023 y 2025 se moderó gracias a las subidas de tipos del BCE primero y al posterior ciclo de bajadas iniciado en junio de 2024, la caída de los precios energéticos y, en parte, a las medidas fiscales del Gobierno (rebaja del IVA en alimentos básicos, descuentos al transporte público). En el primer trimestre de 2026 el IPC interanual se mueve en torno al 2 %, ya alineado con el objetivo del BCE.
+
+<Diagram caption="La inflación media anual en España, 2021-2025 (INE): el pico de 2022, el cruce de 2023, cuando la subyacente supera a la general, y la vuelta a niveles cercanos al 2 %.">
+  <GraficoXY id="g-ipc-espana" titulo="IPC general y subyacente en España, 2021-2025" desc="El IPC general sube del 3,1 % en 2021 al 8,4 % en 2022 y baja al 3,5 %, 2,9 % y 2,3 %. La subyacente pasa del 0,8 % al 5,2 %, al 6,0 % en 2023 y baja al 2,9 % y 2,2 %."
+    xMax={5.3} yMax={10} ejeX="Año" ejeY="Variación anual media (%)"
+    xTicks={[0.5, 1.5, 2.5, 3.5, 4.5]} xTickLabels={['2021', '2022', '2023', '2024', '2025']} yTicks={[2, 4, 6, 8]}
+    series={[
+      { label: 'General', color: 'terra', dy: -10, puntos: [[0.5, 3.1], [1.5, 8.4], [2.5, 3.5], [3.5, 2.9], [4.5, 2.3]] },
+      { label: 'Subyacente', color: 'teal', dy: 18, puntos: [[0.5, 0.8], [1.5, 5.2], [2.5, 6.0], [3.5, 2.9], [4.5, 2.2]] },
+    ]}
+    puntos={[
+      { x: 1.5, y: 8.4, label: '8,4', guias: false },
+      { x: 2.5, y: 6, label: '6,0', guias: false },
+    ]}
+  />
+</Diagram>
+
 
 ### Tres tipos de inflación
 

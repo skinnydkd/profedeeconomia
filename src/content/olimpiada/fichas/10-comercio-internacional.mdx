@@ -25,6 +25,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 Los países no producen en autarquía porque especializarse e intercambiar permite a todos consumir más de lo que podrían producir solos. La pregunta central del comercio internacional no es si un país es más productivo que otro en términos absolutos, sino si existen diferencias de **coste de oportunidad relativo** entre ellos — esto es, si cada uno renuncia a cosas distintas al producir cada bien. Donde existan esas diferencias, existe base para el comercio mutuamente beneficioso.
@@ -124,6 +127,23 @@ Con especialización completa según la ventaja comparativa:
 
 La producción mundial pasa de 108 l + 60 m a 144 l + 72 m. **Ambos países pueden consumir más** que en autarquía si se intercambia a un precio entre los costes de oportunidad respectivos (p. ej., 1 l de aceite = 0,6 m de tela).
 
+<Diagram caption="Cada país dispone de 12 horas. En autarquía (A₁ y B₁) dedica 6 h a cada bien; con especialización completa Altea produce 144 l de aceite (A₂) y Berne 72 m de tela (B₂). La frontera de Altea es más plana porque su coste de oportunidad del aceite es 1/3 m de tela por litro, frente a 1 m en Berne.">
+  <GraficoXY id="g-ol-fronteras-ricardo" titulo="Fronteras de posibilidades de Altea y Berne" desc="Dos rectas con 12 horas de trabajo cada país. Altea llega a 144 litros de aceite o 48 metros de tela; Berne, a 72 litros o 72 metros. En autarquía, con 6 horas en cada bien, Altea produce 72 litros y 24 metros y Berne 36 litros y 36 metros. Con especialización completa, Altea produce 144 litros de aceite y Berne 72 metros de tela."
+    xMax={160} yMax={80} ejeX="Aceite (litros)" ejeY="Tela (metros)" simboloX="l" simboloY="m"
+    xTicks={[144]} yTicks={[48, 72]}
+    series={[
+      { label: 'Altea', color: 'terra', puntos: [[0, 48], [144, 0]], labelEn: 'inicio', dy: -6 },
+      { label: 'Berne', color: 'teal', puntos: [[0, 72], [72, 0]], labelEn: 'inicio', dx: 44, dy: -4 },
+    ]}
+    puntos={[
+      { x: 72, y: 24, label: 'A₁', xLabel: '72', yLabel: '24' },
+      { x: 36, y: 36, label: 'B₁', xLabel: '36', yLabel: '36' },
+      { x: 144, y: 0, label: 'A₂', guias: false },
+      { x: 0, y: 72, label: 'B₂', guias: false },
+    ]}
+  />
+</Diagram>
+
 > **Conclusión ricardiana**: el comercio beneficia a todos los participantes siempre que existan diferencias en costes de oportunidad relativos, **incluso si un país tiene ventaja absoluta en todos los bienes**.
 
 ---
@@ -214,6 +234,36 @@ Con el arancel, el precio interior del bien importado sube de P<sub>libre</sub> 
 - **Pérdida neta social** (peso muerto): la pérdida de excedente del consumidor supera la suma de la ganancia del productor y la recaudación fiscal.
 
 El arancel supone una **transferencia de riqueza de los consumidores hacia los productores y el Estado**, pero con una pérdida neta de eficiencia para la economía en su conjunto.
+
+<Diagram caption="Mercado interior de un bien importado. Con el precio libre se produce Q₁, se consume Q₄ y se importa la diferencia. El arancel t sube el precio interior: los productores amplían la producción hasta Q₂, el consumo baja a Q₃ y el Estado recauda t × (Q₃ − Q₂). Los consumidores pierden las cuatro zonas; las dos de pérdida neta no las gana nadie.">
+  <GraficoXY id="g-ol-arancel" titulo="Efecto de un arancel en el mercado interior" desc="Demanda y oferta interiores de un bien importado. Con el precio libre, la producción nacional es Q₁ y el consumo Q₄. Con el arancel el precio sube a P libre más t: la producción nacional aumenta hasta Q₂, el consumo baja a Q₃ y las importaciones se reducen a la diferencia entre Q₃ y Q₂. Se sombrean la ganancia de los productores, la recaudación y las dos zonas de pérdida neta."
+    xMax={110} yMax={60} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 50], [100, 0]], dx: 8, dy: -10 },
+      { label: 'O', color: 'mustard', puntos: [[0, 10], [80, 50]] },
+      { label: "P libre", color: 'ink', tenue: true, puntos: [[0, 15], [90, 15]] },
+      { label: "P arancel", color: 'ink', puntos: [[0, 25], [90, 25]] },
+    ]}
+    areas={[
+      { color: 'mustard', puntos: [[0, 15], [10, 15], [30, 25], [0, 25]] },
+      { color: 'teal', puntos: [[30, 15], [50, 15], [50, 25], [30, 25]] },
+      { color: 'terra', fuerte: true, puntos: [[10, 15], [30, 15], [30, 25]] },
+      { color: 'terra', fuerte: true, puntos: [[50, 15], [70, 15], [50, 25]] },
+    ]}
+    puntos={[
+      { x: 10, y: 15, xLabel: 'Q₁' },
+      { x: 30, y: 25, xLabel: 'Q₂' },
+      { x: 50, y: 25, xLabel: 'Q₃' },
+      { x: 70, y: 15, xLabel: 'Q₄' },
+    ]}
+    notas={[
+      { x: 9, y: 19.5, texto: "Productores", ancla: 'middle' },
+      { x: 40, y: 19.5, texto: "Recaudación", ancla: 'middle' },
+      { x: 20, y: 11.5, texto: "Pérdida neta", ancla: 'middle' },
+      { x: 60, y: 11.5, texto: "Pérdida neta", ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ### Argumentos a favor del proteccionismo
 

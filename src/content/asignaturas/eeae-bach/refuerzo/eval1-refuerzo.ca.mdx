@@ -28,12 +28,91 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Calcula un cost d'oportunitat complet.</strong> Marta té un dissabte lliure. Pot anar al cine (entrada de 9 €, dura 2 hores) o treballar de cangur eixes 2 hores a 7 €/hora. Decidix anar al cine. Quin és el cost d'oportunitat total de la seua decisió, en euros?"
     desarrollo: "El cost d'oportunitat inclou allò que <em>gasta</em> i allò que <em>deixa de guanyar</em>.<br><strong>1. Allò que gasta:</strong> l'entrada del cine = 9 €.<br><strong>2. Allò que deixa de guanyar:</strong> en anar al cine no fa de cangur. 2 hores × 7 €/hora = 14 €.<br><strong>3. Cost d'oportunitat total:</strong> 9 € + 14 € = <strong>23 €</strong>.<br>Idea clau: el cost real d'una decisió no és només allò que pagues, sinó també el valor de la millor alternativa a la qual renuncies."
+    grafico:
+      tipo: xy
+      caption: "El cost d'oportunitat d'anar al cine suma allò que Marta gasta (9 € d'entrada) i allò que deixa de guanyar (2 hores × 7 €/hora = 14 €): 23 €."
+      props:
+        id: "r-e1r-coste-oportunidad"
+        titulo: "Cost d'oportunitat d'anar al cine"
+        desc: "Una columna apilada de 23 euros: 9 euros de l'entrada del cine i 14 euros que Marta deixa de guanyar com a cangur durant dues hores."
+        xMax: 8
+        yMax: 28
+        ejeX: "Decisió: anar al cine"
+        ejeY: "Euros"
+        xTicks: []
+        yTicks: [10, 20]
+        areas:
+          - { puntos: [[2.5, 0], [5.5, 0], [5.5, 9], [2.5, 9]], color: "terra", fuerte: true }
+          - { puntos: [[2.5, 9], [5.5, 9], [5.5, 23], [2.5, 23]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[2.5, 0], [5.5, 0], [5.5, 9], [2.5, 9], [2.5, 0]], color: "terra" }
+          - { puntos: [[2.5, 9], [5.5, 9], [5.5, 23], [2.5, 23], [2.5, 9]], color: "mustard" }
+        notas:
+          - { x: 4, y: 4.16, texto: "Entrada: 9 €", ancla: "middle" }
+          - { x: 4, y: 15.66, texto: "Renúncia a la cangur: 14 €", ancla: "middle" }
+          - { x: 4, y: 24, texto: "Cost d'oportunitat: 23 €", ancla: "middle" }
   - enunciado: "<strong>Tria amb el criteri del benefici net.</strong> Una emprenedora estudia dos comandes. La comanda A li reporta uns ingressos de 1.000 € amb uns costos de 600 €. La comanda B li reporta 1.500 € d'ingressos amb 1.200 € de costos. Només pot acceptar-ne una. Quina tria una decisió racional?"
     desarrollo: "Una decisió racional compara el <strong>benefici net</strong> = ingressos − costos.<br><strong>Comanda A:</strong> 1.000 − 600 = <strong>400 €</strong>.<br><strong>Comanda B:</strong> 1.500 − 1.200 = <strong>300 €</strong>.<br>Encara que B factura més (1.500 > 1.000), allò que importa és allò que <em>queda</em>: A deixa 400 € i B deixa 300 €.<br>Tria la <strong>comanda A</strong>, perquè el seu benefici net és major. El cost d'oportunitat de triar A és el benefici de B a què renuncia: 300 €."
+    grafico:
+      tipo: xy
+      caption: "La comanda B factura més (1.500 € enfront de 1.000 €), però deixa menys: 300 € de benefici net enfront de 400 € de la comanda A. Allò que es compara és el benefici, no la facturació."
+      props:
+        id: "r-e1r-beneficio-neto"
+        titulo: "Ingressos, costos i benefici de les comandes A i B"
+        desc: "Dues columnes apilades. Comanda A: ingressos de 1.000 euros, que són 600 de costos i 400 de benefici. Comanda B: ingressos de 1.500 euros, que són 1.200 de costos i 300 de benefici."
+        xMax: 10
+        yMax: 1800
+        ejeX: "Comanda"
+        ejeY: "Euros"
+        xTicks: [3, 7]
+        xTickLabels: ["Comanda A", "Comanda B"]
+        yTicks: [500, 1000, 1500]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 600], [1.5, 600]], color: "mustard", fuerte: true }
+          - { puntos: [[1.5, 600], [4.5, 600], [4.5, 1000], [1.5, 1000]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 1200], [5.5, 1200]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 1200], [8.5, 1200], [8.5, 1500], [5.5, 1500]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 600], [1.5, 600], [1.5, 0]], color: "mustard" }
+          - { puntos: [[1.5, 600], [4.5, 600], [4.5, 1000], [1.5, 1000], [1.5, 600]], color: "teal" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 1200], [5.5, 1200], [5.5, 0]], color: "mustard" }
+          - { puntos: [[5.5, 1200], [8.5, 1200], [8.5, 1500], [5.5, 1500], [5.5, 1200]], color: "teal" }
+        notas:
+          - { x: 3, y: 278.4, texto: "Costos 600", ancla: "middle" }
+          - { x: 3, y: 778.4, texto: "Benefici 400", ancla: "middle" }
+          - { x: 7, y: 578.4, texto: "Costos 1.200", ancla: "middle" }
+          - { x: 7, y: 1328.4, texto: "Benefici 300", ancla: "middle" }
+          - { x: 3, y: 1060, texto: "Ingressos 1.000", ancla: "middle" }
+          - { x: 7, y: 1560, texto: "Ingressos 1.500", ancla: "middle" }
   - enunciado: "<strong>Identifica el biaix.</strong> Una botiga en línia marca «Abans 100 €, ara 70 €» en un abric que no necessites, i el compres perquè et pareix una ganga. Explica quin biaix està actuant i com evitar-lo."
     desarrollo: "Ací actua el <strong>biaix d'ancoratge</strong>: el primer número que veus (100 €) es convertix en el teu punt de referència, així que 70 € et pareix barat <em>en comparació</em>, encara que eixe preu mai fora real o l'abric no et faça falta.<br>L'error és decidir comparant amb l'àncora en compte de preguntar-te allò que de veritat importa: necessite l'abric? 70 € és un bon preu per a ell en si mateix?<br>Com evitar-ho: ignora el preu ratllat, compara amb altres botigues i decidix segons la teua necessitat real i el teu pressupost, no segons el «descompte»."
   - enunciado: "<strong>Distingix cost privat i cost social.</strong> Una fàbrica produïx 5.000 peces. A l'empresa cada peça li costa 6 € (materials, treball, energia), però a més genera una contaminació que provoca un dany al barri valorat en 2 € per peça. Calcula el cost privat total, el cost extern total i el cost social total."
     desarrollo: "Separem qui suporta cada cost.<br><strong>Cost privat total</strong> (allò que paga l'empresa): 5.000 × 6 € = <strong>30.000 €</strong>.<br><strong>Cost extern total</strong> (el dany que patixen altres, l'externalitat): 5.000 × 2 € = <strong>10.000 €</strong>.<br><strong>Cost social total</strong> = cost privat + cost extern = 30.000 + 10.000 = <strong>40.000 €</strong>.<br>Idea clau: quan hi ha externalitat negativa, el cost social (40.000 €) és major que el cost privat (30.000 €). El mercat, per si sol, no arreplega eixos 10.000 € de dany: és una fallada de mercat que justifica la intervenció pública."
+    grafico:
+      tipo: xy
+      caption: "Amb 5.000 peces, l'empresa paga 30.000 € (cost privat) i el barri suporta altres 10.000 € de dany (zona ombrejada): el cost social és de 40.000 €."
+      props:
+        id: "r-e1r-coste-social"
+        titulo: "Cost privat i cost social de la fàbrica"
+        desc: "Rectes de cost segons les peces: el cost privat és de 6 euros per peça i el cost social, de 8 (6 més 2 de dany). Amb 5.000 peces, el cost privat és de 30.000 euros i el social, de 40.000; la diferència, 10.000, és l'externalitat."
+        xMax: 6000
+        yMax: 48000
+        ejeX: "Peces produïdes"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [2500]
+        yTicks: [10000, 20000]
+        areas:
+          - { puntos: [[0, 0], [5000, 40000], [5000, 30000]], color: "mustard" }
+        series:
+          - { label: "CS", color: "terra", puntos: [[0, 0], [5000, 40000]] }
+          - { label: "CP", color: "teal", puntos: [[0, 0], [5000, 30000]] }
+        puntos:
+          - { x: 5000, y: 30000, xLabel: "5 000", yLabel: "30 000" }
+          - { x: 5000, y: 40000, yLabel: "40 000" }
+        notas:
+          - { x: 3100, y: 11000, texto: "Àrea: externalitat 10.000 €", color: "mustard" }
 ejercicios:
   - enunciado: "Definix amb les teues paraules el problema de l'<strong>escassetat</strong> i explica per què obliga a triar. Posa un exemple del teu dia a dia."
     solucion: "L'escassetat significa que els recursos (temps, diners, materials) són limitats, mentres que les necessitats i desitjos són il·limitats.<br>Com que no podem tindre-ho tot alhora, estem obligats a triar: dedicar un recurs a una cosa implica no dedicar-lo a una altra.<br>Exemple: només tinc 10 € i no m'arriba per al cine i per a una pizza, així que he de triar-ne un dels dos."

@@ -51,6 +51,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MercadoTrabajo from '@components/diagrams/MercadoTrabajo.astro';
 import Figure from '@components/Figure.astro';
 import CurvaPhillips from '@components/diagrams/CurvaPhillips.astro';
@@ -264,6 +265,16 @@ Espanya va experimentar entre 2017 i 2026 una de les **pujades més ràpides del
 | 2025 | 1 184,00 | +4,4 % |
 | 2026 | 1 221,00 | +3,1 % |
 
+<Diagram caption="L'SMI mensual en 14 pagues, de 707,60 € el 2017 a 1.221 € el 2026 (+73 %). El major salt va ser el de 2019, un +22,3 %.">
+  <GraficoXY id="g-smi" titulo="Salari mínim interprofessional a Espanya, 2017-2026" desc="L'SMI puja de 707,60 euros al mes el 2017 a 735,90 el 2018, 900 el 2019, 950 el 2020, 965 el 2021, 1 000 el 2022, 1 080 el 2023, 1 134 el 2024, 1 184 el 2025 i 1 221 el 2026."
+    xMax={11} yMax={1400} ejeX="Any" ejeY="Euros al mes (14 pagues)"
+    xTicks={[0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5]} xTickLabels={['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026']} yTicks={[400, 800, 1200]}
+    series={[{ color: 'terra', puntos: [[0.5, 707.6], [1.5, 735.9], [2.5, 900], [3.5, 950], [4.5, 965], [5.5, 1000], [6.5, 1080], [7.5, 1134], [8.5, 1184], [9.5, 1221]] }]}
+    puntos={[{ x: 0.5, y: 707.6, label: '707,60', guias: false, dx: -6, dy: -14 }, { x: 2.5, y: 900, label: '900', guias: false, dx: -30, dy: -6 }, { x: 9.5, y: 1221, label: '1 221', guias: false, dx: -18, dy: -14 }]}
+  />
+</Diagram>
+
+
 L'**AIReF** (Autoritat Independent de Responsabilitat Fiscal) i el **Banc d'Espanya** han publicat avaluacions de l'efecte sobre l'ocupació. Les conclusions, simplificades, són tres: l'efecte agregat sobre l'ocupació total ha sigut **xicotet** (menys d'un 1 % de l'ocupació afectada); l'efecte sobre **col·lectius específics** —jóvens sense formació, treballadors rurals, sector agrari— ha sigut més visible; i la pujada ha **reduït la desigualtat salarial** en l'extrem inferior de la distribució, que era l'objectiu declarat de la política.
 
 <RealExample title="La 'Gran Renúncia' als EUA (2021-2022) i el poder negociador dels treballadors" source="Bureau of Labor Statistics — JOLTS series (Job Openings and Labor Turnover Survey); OECD Employment Outlook 2022">
@@ -299,6 +310,26 @@ c) Al mateix mercat, una altra hipòtesi: hi ha **poder de mercat de l'ocupador*
    - **Desocupació generada** = 560 − 400 = **160 mil persones**.
    - Lectura: 100 mil persones que tenien ocupació a 10 € la perden a 12 € (les empreses contracten 400 mil en lloc de 500 mil) i altres 60 mil persones noves entren a buscar treball atretes pel salari més alt però no en troben. Estes són les prediccions del model neoclàssic estricte.
 3. Si hi ha **monopsoni** (un ocupador gran amb poder per a pagar per davall de la productivitat real del treballador), l'empresa paga W = 8 € i només contracta qui accepta treballar per eixe salari: L = 200 + 30·8 = **440 mil**. Un SMI entre 8 € i 10 € puja alhora el salari i l'ocupació, perquè a l'empresa ja no li compensa pagar menys: amb 10 €, 500 mil. Per damunt de 10 €, l'ocupació la marca la demanda de treball: amb 11,20 € torna a 440 mil, i amb **12 €** baixa a **400 mil, 40 mil menys** que amb el monopsoni. És la intuïció de l'estudi de Card i Krueger: si el punt de partida no és competència perfecta, un SMI moderat pot no destruir ocupació, i fins i tot augmentar-la, però un de massa alt sí que la destruïx. Per això cal mirar les dades.
+
+<Diagram caption="L'exercici en un gràfic: sense SMI l'equilibri està en 10 €/hora i 500 mil persones. Amb un SMI de 12 € les empreses contracten 400 mil i 560 mil volen treballar: 160 mil queden en atur. Amb monopsoni el punt de partida és M (8 €, 440 mil).">
+  <GraficoXY id="g-ejercicio-9-2" titulo="Salari mínim de 12 euros: ocupació i desocupació" desc="La demanda de treball talla l'oferta en 10 euros per hora i 500 mil persones. Amb un salari mínim de 12 euros es demanen 400 mil i s'ofereixen 560 mil, així que hi ha 160 mil persones en atur. Amb monopsoni, l'ocupació parteix de 440 mil a 8 euros."
+    xMax={760} yMax={22} ejeX="Milers de persones" ejeY="Salari (€/hora)"
+    series={[
+      { label: 'Demanda', color: 'terra', puntos: [[100, 18], [700, 6]] },
+      { label: 'Oferta', color: 'mustard', puntos: [[250, 50 / 30], [700, 500 / 30]] },
+      { label: 'SMI', color: 'ink', puntos: [[0, 12], [650, 12]], dy: -8 },
+      { color: 'teal', puntos: [[400, 12], [560, 12]] },
+    ]}
+    puntos={[
+      { x: 500, y: 10, label: 'E', xLabel: '500', yLabel: '10', dx: -34, dy: 8 },
+      { x: 400, y: 12, xLabel: '400', yLabel: '12', guias: true },
+      { x: 560, y: 12, xLabel: '560', guias: true },
+      { x: 440, y: 8, label: 'M: monopsoni', xLabel: '440', yLabel: '8', dx: 12, dy: 22 },
+    ]}
+    notas={[{ x: 480, y: 12.7, texto: 'Desocupació: 160', color: 'teal', ancla: 'middle' }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -336,6 +367,25 @@ Eixa promesa es va trencar als anys 70. Després de les **crisis del petroli** d
 ### La NAIRU (taxa natural d'atur)
 
 La **NAIRU** —*Non-Accelerating Inflation Rate of Unemployment*— és la taxa d'atur **compatible amb una inflació estable**. Per davall d'ella, la inflació s'accelera; per damunt, la inflació es modera. És l'equivalent macroeconòmic d'un "termòstat" del mercat de treball.
+
+<Diagram caption="A curt termini hi ha una disjuntiva: baixar l'atur de la NAIRU (d'A a B) costa més inflació. Quan les expectatives s'ajusten, la corba de Phillips puja de PC₁ a PC₂ i l'atur torna a la NAIRU (C) amb una inflació major. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-phillips-nairu" titulo="Corba de Phillips amb expectatives i NAIRU" desc="La corba de Phillips de curt termini baixa d'esquerra a dreta. En ajustar-se les expectatives d'inflació es desplaça cap amunt i l'atur torna a la taxa natural, amb una inflació més alta. A llarg termini la corba és vertical en la NAIRU."
+    xMax={18} yMax={12} ejeX="Taxa d'atur" ejeY="Inflació"
+    xTicks={[6]} xTickLabels={['NAIRU']}
+    series={[
+      { label: 'PC₁', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [3.5 + i * 0.5, 30 / (3.5 + i * 0.5) - 1]) },
+      { label: 'PC₂', color: 'terra', tenue: true, puntos: Array.from({ length: 26 }, (_, i) => [3.5 + i * 0.5, 30 / (3.5 + i * 0.5) + 2]) },
+      { label: 'Llarg termini', color: 'ink', puntos: [[6, 0.3], [6, 10.8]], labelEn: 'fin' },
+    ]}
+    puntos={[
+      { x: 6, y: 4, label: 'A', guias: false, dx: 12, dy: -2 },
+      { x: 4, y: 6.5, label: 'B', guias: false, dx: -20, dy: 0 },
+      { x: 6, y: 7, label: 'C', guias: false, dx: 12, dy: -2 },
+    ]}
+    flechas={[{ de: [6, 4], a: [4, 6.5] }, { de: [4, 6.5], a: [6, 7] }]}
+  />
+</Diagram>
+
 
 Per a Espanya, el **Banc d'Espanya** i l'**AIReF** estimen la NAIRU al voltant del **10-12 %**. Per a Alemanya o els Països Baixos, la xifra equivalent ronda el **4-5 %**. La diferència indica que el mercat de treball espanyol té **rigideses estructurals** que mantenen l'atur d'equilibri més alt: dualitat temporal-indefinit, costos d'acomiadament asimètrics, baixa mobilitat geogràfica, formació professional menys desenvolupada.
 
@@ -396,13 +446,13 @@ La reforma impulsada per la ministra **Yolanda Díaz** (RDL 32/2021, en vigor de
 <Figure
   src={yolandaDiaz}
   alt="Yolanda Díaz Pérez, ministra de Treball i Economia Social d'Espanya, retratada al juliol de 2022 durant un acte oficial a Washington D. C., amb vestit formal i collar."
-  caption="**Yolanda Díaz Pérez**, ministra de Treball i Economia Social d'Espanya des de 2020 i vicepresidenta segona del Govern des de 2021. És la impulsora de la **reforma laboral de 2021-2022** (RDL 32/2021) que ha reduït la taxa de temporalitat espanyola del 25 % al 15 % en dos anys. La reforma es va negociar en una mesa de diàleg social amb la **CEOE** (patronal) i els sindicats **CCOO** i **UGT**, un consens poc habitual en la política laboral espanyola de les últimes dècades."
+  caption="**Yolanda Díaz Pérez**, ministra de Treball i Economia Social d'Espanya des de 2020 i vicepresidenta segona del Govern des de 2021. És la impulsora de la **reforma laboral de 2021-2022** (RDL 32/2021) que ha reduït la taxa de temporalitat espanyola del 25 % al 15 % en tres anys. La reforma es va negociar en una mesa de diàleg social amb la **CEOE** (patronal) i els sindicats **CCOO** i **UGT**, un consens poc habitual en la política laboral espanyola de les últimes dècades."
   credit="Foto: Shawn T. Moore / U.S. Department of Labor, CC BY 2.0 via Wikimedia Commons"
   aspectHint="3/2"
   variant="right"
 />
 
-Els resultats, segons el **Banc d'Espanya** i l'**AIReF** (informes 2023-2024), han sigut visibles: la **taxa de temporalitat va caure al 14-15 %** a finals de 2023, pràcticament igualant la mitjana europea. El nombre de fixos-discontinus ha crescut fortament (la qual cosa alguns crítics consideren una temporalitat disfressada estadísticament), però els indicadors d'**estabilitat en l'ocupació** han millorat de manera consistent.
+Els resultats, segons el **Banc d'Espanya** i l'**AIReF** (informes 2023-2024), han sigut visibles: la **taxa de temporalitat va caure al 17,3 %** a finals de 2023 i al **15 %** a finals de 2024, pràcticament igualant la mitjana europea. El nombre de fixos-discontinus ha crescut fortament (la qual cosa alguns crítics consideren una temporalitat disfressada estadísticament), però els indicadors d'**estabilitat en l'ocupació** han millorat de manera consistent.
 
 ### Els comptes pendents
 
@@ -411,6 +461,24 @@ Queden pendents problemes seriosos que cap reforma ha resolt: l'**atur juvenil**
 <RealExample title="La reforma laboral de 2022: tres anys després, en dades" source="INE — EPA trimestral; Banco de España, Informe trimestral de la economía española 2024; AIReF, Opinión sobre el mercado de trabajo 2024">
 Al quart trimestre de 2021, abans de la reforma, la taxa de temporalitat dels assalariats a Espanya era del **25,4 %**. Al quart trimestre de 2023 havia caigut al **17,3 %**, a finals de 2024 se situava al voltant del **15,2 %** i al primer trimestre de 2026 ronda el **14,8 %**, igualant ja la mitjana UE-27. La caiguda és la **major caiguda interanual sostinguda** que ha registrat la sèrie històrica de l'EPA, que arranca el 1987. Paral·lelament, els contractes **indefinits** han passat de representar el **10 %** del total de contractes signats al mes el 2021 a més del **40 %** el 2023-2024. El nombre de **fixos-discontinus** —contractes indefinits però amb períodes d'inactivitat— ha augmentat des d'uns 200 000 a més de 750 000, la qual cosa ha alimentat un debat sobre si part de la millora estadística és real o només nominal. L'AIReF, en el seu informe de setembre de 2024, conclou que entre el 60 % i el 75 % de la caiguda de la temporalitat **és real**, no comptable, i que la duració mitjana dels contractes ha augmentat de manera mesurable. És un dels pocs casos recents en què una reforma estructural ha produït un canvi estadístic tan ràpid i visible.
 </RealExample>
+
+<Diagram caption="La temporalitat dels assalariats a Espanya abans i després de la reforma laboral: 25,4 % al quart trimestre de 2021, 17,3 % al de 2023, 15,2 % al de 2024 i 14,8 % al primer trimestre de 2026, ja en la mitjana de la UE (INE, EPA).">
+  <GraficoXY id="g-temporalidad" titulo="Taxa de temporalitat a Espanya després de la reforma laboral" desc="La taxa de temporalitat dels assalariats baixa del 25,4 % al quart trimestre de 2021 al 17,3 % al de 2023, al 15,2 % al de 2024 i al 14,8 % al primer trimestre de 2026, en línia amb la mitjana de la UE."
+    xMax={24} yMax={30} ejeX="Trimestre" ejeY="Assalariats temporals (%)"
+    xTicks={[1.5, 5.5, 9.5, 13.5]} xTickLabels={['4T 2021', '4T 2022', '4T 2023', '4T 2024']} yTicks={[10, 20]}
+    series={[
+      { color: 'terra', puntos: [[1.5, 25.4], [9.5, 17.3], [13.5, 15.2], [18.5, 14.8]] },
+      { label: 'Mitjana UE', color: 'ink', tenue: true, puntos: [[1.5, 15], [20.5, 15]] },
+    ]}
+    puntos={[
+      { x: 1.5, y: 25.4, label: '25,4', guias: false, dx: 12, dy: 0 },
+      { x: 9.5, y: 17.3, label: '17,3', guias: false, dx: 10, dy: -12 },
+      { x: 13.5, y: 15.2, label: '15,2', guias: false, dx: 6, dy: -14 },
+      { x: 18.5, y: 14.8, label: '14,8', xLabel: '1T 2026', guias: true, dx: 6, dy: 24 },
+    ]}
+  />
+</Diagram>
+
 
 <RecursoDestacado href="/debates/mercado-estado/01-salario-minimo/" kicker="Debat a classe" title="Ha de l'Estat pujar el salari mínim?" descripcion="Dos equips defenen amb evidència empírica els efectes del SMI sobre els salaris, l'ocupació i la pobresa laboral." colorVar="--color-eco1" />
 
@@ -465,7 +533,7 @@ La solució no és només «formar més»: és **reduir el desajust**. Millorar 
 - El **SMI** va pujar a Espanya un +73 % entre 2017 i 2026 (de 707,60 € a 1 221 €). La teoria neoclàssica prediu destrucció d'ocupació; l'evidència empírica (Card-Krueger; AIReF, BdE) mostra efectes xicotets sobre l'ocupació agregada i reducció real de la desigualtat salarial en l'extrem inferior.
 - La **corba de Phillips** mostra relació inversa atur-inflació **només a curt termini**. A llarg termini, l'atur torna a la **NAIRU** (taxa natural d'atur), que a Espanya s'estima en **10-12 %**. Per a baixar-la calen reformes estructurals, no més demanda.
 - La **bretxa salarial** sense ajustar a Espanya ronda el **9 %** per hora (Eurostat) i el **16,1 %** en guany anual (INE, 2024). Les seues causes estructurals: segregació ocupacional, sostres de vidre, parcialitat involuntària i penalització per maternitat.
-- El mercat laboral espanyol ha sigut històricament **dual** (temporals vs indefinits). La **reforma laboral de 2022** ha reduït la temporalitat del 25 % al 15 % en dos anys, segons AIReF/BdE. Queden pendents l'atur juvenil, l'atur de llarga duració i la productivitat.
+- El mercat laboral espanyol ha sigut històricament **dual** (temporals vs indefinits). La **reforma laboral de 2022** ha reduït la temporalitat del 25 % al 15 % en tres anys, segons AIReF/BdE. Queden pendents l'atur juvenil, l'atur de llarga duració i la productivitat.
 - Models comparats: **nòrdic** (flexiseguretat), **alemany** (FP dual + cogestió), **francés** (alta protecció, atur juvenil alt). Espanya s'assembla més al francés que al nòrdic.
 </KeyTakeaways>
 
