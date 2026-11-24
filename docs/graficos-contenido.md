@@ -64,3 +64,7 @@ Els quaderns de `refuerzo/` no tenen cos MDX: cada element de `repaso_teorico` i
 ```
 
 En YAML no hi ha expressions: les corbes no lineals s'escriuen com a llista de punts ja calculats (`puntos: [[0, 100], [10, 99.5], …]`).
+
+## Guarda de CI
+
+`src/content/figuras-minimas.test.ts` falla si una unitat publicada té menys de 2 figures (1 a les fitxes de l'Olimpíada) o si el bessó `.ca.mdx` en té un nombre diferent.
