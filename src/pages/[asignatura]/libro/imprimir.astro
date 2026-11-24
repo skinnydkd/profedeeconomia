@@ -789,20 +789,21 @@ const accent = ACCENTS[a.color];
         margin: 0.9em auto !important;
         max-width: 100%;
       }
-      /* Narrower images in print keep the book compact without cropping. */
+      /* Narrower images in print keep the book compact without cropping. The
+         variant rules repeat figure.figure so they outrank this default. */
       .chapter__content figure.figure { max-width: 78% !important; }
-      .chapter__content .figure--left,
-      .chapter__content .figure--right {
+      .chapter__content figure.figure.figure--left,
+      .chapter__content figure.figure.figure--right {
         max-width: 48% !important;
       }
-      .chapter__content .figure--inline-small {
+      .chapter__content figure.figure.figure--inline-small {
         max-width: 42mm !important;
       }
-      .chapter__content .figure--wide,
-      .chapter__content .figure--full {
+      .chapter__content figure.figure.figure--wide,
+      .chapter__content figure.figure.figure--full {
         max-width: 92% !important;
       }
-      .chapter__content .figure--tight {
+      .chapter__content figure.figure.figure--tight {
         max-width: 62% !important;
       }
 
@@ -1081,16 +1082,7 @@ const accent = ACCENTS[a.color];
                   <dd>{unit.data.conceptos_clave.slice(0, 6).join(' · ')}</dd>
                 </div>
               )}
-              {unit.data.objetivos.length > 0 && (
-                <div style="grid-column: 1 / -1;">
-                  <dt>{copy.objetivos}</dt>
-                  <dd>
-                    <ul>
-                      {unit.data.objetivos.map((o) => <li>· {o}</li>)}
-                    </ul>
-                  </dd>
-                </div>
-              )}
+              {/* Objectives are not repeated here: every unit opens its body with them. */}
             </dl>
           </div>
         </div>
