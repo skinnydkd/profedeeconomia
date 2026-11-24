@@ -3,6 +3,8 @@
 // Host entry point — teacher opens this on the projector.
 // Students join via /juegos/cajut/ using the room code displayed here.
 import BaseLayout from '@layouts/BaseLayout.astro';
+import JuegoNoDisponible from '@components/JuegoNoDisponible.astro';
+import { PARTYKIT_OK } from '@/lib/servicios';
 import HostApp from '@components/games/cajut/HostApp';
 import { getLocale } from '@/i18n/locale';
 
@@ -15,8 +17,7 @@ const copy = {
 ---
 <BaseLayout title={copy.title} description={copy.desc} contentLang={locale} noindex="follow">
   <div class="cajut-host-page">
-    <noscript><p>{locale === 'ca' ? 'Este joc necessita JavaScript. Activa’l al teu navegador per a jugar.' : 'Este juego necesita JavaScript. Actívalo en tu navegador para jugar.'}</p></noscript>
-    <HostApp client:only="preact" partykitHost={partykitHost} locale={locale} />
+    {PARTYKIT_OK ? (<><noscript><p>{locale === 'ca' ? 'Este joc necessita JavaScript. Activa’l al teu navegador per a jugar.' : 'Este juego necesita JavaScript. Actívalo en tu navegador para jugar.'}</p></noscript><HostApp client:only="preact" partykitHost={partykitHost} locale={locale} /></>) : <JuegoNoDisponible />}
   </div>
 </BaseLayout>
 

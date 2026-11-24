@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import JuegoNoDisponible from '@components/JuegoNoDisponible.astro';
+import { SUPABASE_OK } from '@/lib/servicios';
 import Leaderboard from '../../../components/jocs-economics/screens/Leaderboard';
 ---
 
 <BaseLayout title="Juegos Económicos — Ranking" description="Ranking individual y por institutos del concurso competitivo Juegos Económicos." translated={false} noindex="follow">
-  <noscript><p>Este juego necesita JavaScript. Actívalo en tu navegador para jugar.</p></noscript>
-  <Leaderboard client:only="preact" />
+  {SUPABASE_OK ? (<><noscript><p>Este juego necesita JavaScript. Actívalo en tu navegador para jugar.</p></noscript><Leaderboard client:only="preact" /></>) : <JuegoNoDisponible />}
 </BaseLayout>
 
 <style is:global>
