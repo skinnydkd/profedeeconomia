@@ -6,8 +6,9 @@
  * and since a scrolling box must be reachable with the keyboard, it is a
  * focusable region named after the table's first column headers.
  *
- * Inside the table, a figure and its unit (25.000 €, 15 %) are joined with a
- * no-break space, so a narrow column cannot leave the € alone on a line.
+ * Everywhere in the document, a figure and its unit (25.000 €, 15 %) and the
+ * groups of a spaced number (42 000) are joined with a no-break space, so a
+ * line break cannot leave the € or the last three digits alone.
  *
  * Registered in astro.config.mjs → markdown.rehypePlugins, which Astro applies
  * to .md and .mdx alike. Plain tree walk on purpose: no unist-util-visit dep.
@@ -18,6 +19,7 @@ export default function rehypeTableScroll() {
   return (tree, file) => {
     const path = file?.path ?? file?.history?.[0] ?? '';
     const noun = /\.ca\.mdx?$/.test(path) ? 'Taula' : 'Tabla';
+    keepUnitsTogether(tree);
     wrapTables(tree, noun);
   };
 }
@@ -27,7 +29,6 @@ function wrapTables(node, noun) {
   if (isWrapper(node)) return;
   node.children = node.children.map((child) => {
     if (child.type === 'element' && child.tagName === 'table') {
-      keepUnitsTogether(child);
       return {
         type: 'element',
         tagName: 'div',
@@ -65,8 +66,9 @@ function textOf(node) {
 
 function keepUnitsTogether(node) {
   if (node.type === 'text' && typeof node.value === 'string') {
-    node.value = node.value.replace(/(\d) (€|%)/g, '$1\u00a0$2');
+    node.value = node.value.replace(/(\d) (?=€|%|\d{3}(?!\d))/g, '$1\u00a0');
     return;
   }
+  if (node.tagName === 'pre' || node.tagName === 'code') return;
   (node.children ?? []).forEach(keepUnitsTogether);
 }

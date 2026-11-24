@@ -55,4 +55,10 @@ describe('rehypeTableScroll', () => {
     rehypeTableScroll()(tree, { path: 'a.mdx' });
     expect(tree.children![0].children![0].tagName).toBe('table');
   });
+
+  it('keeps units and spaced thousands together in running text, but not in code', () => {
+    const tree = run([el('p', [text('De 42 000 a 1 250 000 unidades, un 7 % más; en 2024 hubo 30 casos.')]), el('pre', [el('code', [text('10 000 €')])])]);
+    expect(tree.children![0].children![0].value).toBe('De 42\u00a0000 a 1\u00a0250\u00a0000 unidades, un 7\u00a0% más; en 2024 hubo 30 casos.');
+    expect(tree.children![1].children![0].children![0].value).toBe('10 000 €');
+  });
 });

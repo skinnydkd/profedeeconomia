@@ -12,6 +12,7 @@ import {
   textoNoNumerico,
   textoPlano,
   trozosInline,
+  enfasisHtml,
 } from './quiz-utils';
 
 describe('lecturasNumero', () => {
@@ -201,5 +202,11 @@ describe('intento guardado', () => {
     expect(leerIntento(serializarIntento(e), 3)).toBeNull();
     expect(leerIntento(serializarIntento({ ...e, idx: 5 }), 2)).toBeNull();
     expect(leerIntento(JSON.stringify({ v: 1, idx: 0, respuestas: [{}, 1], confirmadas: [true, true], ordenes: [[], []] }), 2)).toBeNull();
+  });
+});
+
+describe('enfasisHtml', () => {
+  it('renders emphasis as HTML and leaves existing markup alone', () => {
+    expect(enfasisHtml('Total = **9.071,89 €** con *i* y H<sub>2</sub>, VF_C₀')).toBe('Total = <strong>9.071,89 €</strong> con <em>i</em> y H<sub>2</sub>, VF_C₀');
   });
 });

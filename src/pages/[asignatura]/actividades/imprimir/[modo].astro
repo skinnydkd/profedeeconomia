@@ -1,4 +1,6 @@
 ---
+import { enfasisHtml } from '../../../../components/quiz-utils';
+import TextoInline from '../../../../components/TextoInline';
 /**
  * Print-ready "Cuaderno de actividades" for a whole subject.
  * Used by pagedjs-cli (scripts/build-workbook-pdf.mjs) to produce the
@@ -652,7 +654,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
             {esProfesor && act.data.solucion.length > 0 && (
               <div class="act__solucion">
                 <span class="act__solucion-h">{copy.solucion}</span>
-                <ol>{act.data.solucion.map((p) => <li set:html={p} />)}</ol>
+                <ol>{act.data.solucion.map((p) => <li set:html={enfasisHtml(p)} />)}</ol>
               </div>
             )}
           </article>
@@ -708,7 +710,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
             return (
               <p class="sol-q">
                 <span class="sol-q__a">{qi + 1}. {ans}</span>{' '}
-                {q.explicacion && <span class="sol-q__e">{q.explicacion}</span>}
+                {q.explicacion && <span class="sol-q__e"><TextoInline texto={q.explicacion} /></span>}
               </p>
             );
           })}
