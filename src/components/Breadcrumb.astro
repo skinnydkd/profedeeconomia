@@ -47,6 +47,10 @@ const { items, locale, class: extra } = Astro.props;
   a { color: var(--color-ink-mute); text-decoration: none; }
   a:hover { color: var(--color-terra); }
   .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  /* Phones: 44px tap targets; inline-flex keeps the trail wrapping like text. */
+  @media screen and (max-width: 600px) {
+    a { display: inline-flex; align-items: center; min-height: 44px; }
+  }
   /* A trail of links is no use on paper. */
   @media print { .breadcrumb { display: none; } }
 </style>

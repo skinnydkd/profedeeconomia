@@ -27,11 +27,18 @@ const locale = getLocale(Astro.currentLocale);
   class:list={['diagram', `diagram--${variant}`]}
   data-slide-diagram={id ?? ''}
 >
-  {/* Scrolls sideways on phones: focusable so the keyboard can scroll it too. */}
+  {/* Focusable so the keyboard can scroll it when it is enlarged on a phone. */}
   <div class="diagram__inner" tabindex="0" role="group" aria-label={caption}>
     <slot />
   </div>
-  <p class="diagram__hint" aria-hidden="true">{t('libro.desplaza', locale)}</p>
+  <button
+    type="button"
+    class="diagram__zoom"
+    data-diagram-zoom
+    aria-expanded="false"
+    data-open={t('libro.ampliar', locale)}
+    data-close={t('libro.cerrarGrafico', locale)}
+  >{t('libro.ampliar', locale)}</button>
   <figcaption class="diagram__caption">
     <span class="diagram__caption-text">{caption}</span>
     {source && <span class="diagram__caption-source">{t('libro.fuente', locale)} {source}</span>}
@@ -83,28 +90,56 @@ const locale = getLocale(Astro.currentLocale);
     font-style: italic;
   }
 
-  .diagram__hint { display: none; }
+  .diagram__zoom { display: none; }
 
-  /* On a phone the 780–880-unit viewBoxes shrink their labels to 3–4 px. The
-     drawing keeps a readable width and scrolls sideways inside its card (the
-     inner box already scrolls); centring would hide its left edge. Screen only:
-     the A5 book PDF is narrower than 600 px and must keep the whole drawing. */
+  /* On a phone the drawing fits the screen whole, so the model reads at a
+     glance; its 780–880-unit viewBox leaves the labels small, so a button opens
+     it full screen at a readable width, scrolling both ways. Screen only: the
+     A5 book PDF is narrower than 600 px and must not get the button. */
   @media screen and (max-width: 600px) {
     .diagram { padding: 0.75rem 0.75rem 0.9rem; }
-    .diagram__inner { justify-content: flex-start; }
-    .diagram__inner :global(svg) { min-width: 560px; max-width: none; }
-    .diagram__hint {
+    .diagram__zoom {
       display: block;
-      margin: 0.5rem 0 0;
+      margin: 0.6rem 0 0 auto;
+      min-height: 44px;
+      padding: 0 0.9rem;
       font-family: var(--font-sans);
-      font-size: 0.78rem;
-      color: var(--color-ink-mute);
-      text-align: right;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-terra-deep);
+      background: var(--color-paper);
+      border: 1px solid var(--color-line);
+      border-radius: 4px;
+      cursor: pointer;
     }
+    .diagram__zoom:active { background: var(--color-bg-soft); }
+
+    .diagram.is-zoomed {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem;
+      padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
+      background: var(--color-paper);
+    }
+    .diagram.is-zoomed .diagram__inner {
+      flex: 1;
+      overflow: auto;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .diagram.is-zoomed .diagram__inner :global(svg) { min-width: 820px; max-width: none; }
+    .diagram.is-zoomed .diagram__zoom { order: -1; margin: 0 0 0.6rem auto; }
+    .diagram.is-zoomed .diagram__caption { margin-top: 0.5rem; font-size: 0.85rem; }
   }
 
   @media print {
-    .diagram__hint { display: none; }
+    .diagram__zoom { display: none; }
     .diagram {
       box-shadow: none;
       break-inside: avoid;
@@ -112,3 +147,26 @@ const locale = getLocale(Astro.currentLocale);
     }
   }
 </style>
+
+<script>
+  // One listener for every diagram on the page: the button toggles the full-screen view.
+  function setZoom(fig: Element, on: boolean) {
+    const btn = fig.querySelector<HTMLButtonElement>('[data-diagram-zoom]');
+    if (!btn) return;
+    fig.classList.toggle('is-zoomed', on);
+    btn.setAttribute('aria-expanded', String(on));
+    btn.textContent = (on ? btn.dataset.close : btn.dataset.open) ?? '';
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    if (!on) fig.scrollIntoView({ block: 'nearest' });
+  }
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element | null)?.closest('[data-diagram-zoom]');
+    const fig = btn?.closest('.diagram');
+    if (fig) setZoom(fig, !fig.classList.contains('is-zoomed'));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const fig = document.querySelector('.diagram.is-zoomed');
+    if (fig) setZoom(fig, false);
+  });
+</script>

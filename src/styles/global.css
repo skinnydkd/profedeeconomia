@@ -415,6 +415,30 @@ body {
     margin: 0 0 1.4em;
   }
   .tabla-scroll > table { margin: 0; }
+  /* Scroll hint: edge shadows (scroll-attached) show only where more content
+     is hidden; the cover gradients (local) hide them at the scroll ends. */
+  .tabla-scroll {
+    background:
+      linear-gradient(to right, var(--color-bg), var(--color-bg)) left center / 1.5rem 100% no-repeat local,
+      linear-gradient(to left, var(--color-bg), var(--color-bg)) right center / 1.5rem 100% no-repeat local,
+      linear-gradient(to right, rgba(42, 31, 24, 0.18), transparent) left center / 0.8rem 100% no-repeat scroll,
+      linear-gradient(to left, rgba(42, 31, 24, 0.18), transparent) right center / 0.8rem 100% no-repeat scroll;
+  }
+}
+
+/* A diagram inside another box drops its own card chrome on phones (no card in
+   a card). Doubled .diagram lifts specificity above Diagram's scoped
+   .diagram[data-astro-cid] (0,2,0), so no !important is needed. */
+@media screen and (max-width: 600px) {
+  .solved-exercise .diagram.diagram:not(.is-zoomed),
+  .callout .diagram.diagram:not(.is-zoomed),
+  .real-example .diagram.diagram:not(.is-zoomed),
+  .curiosity .diagram.diagram:not(.is-zoomed) {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+  }
 }
 @media print {
   .tabla-scroll { overflow: visible; }
@@ -431,7 +455,7 @@ body {
   html, body { background: #fff !important; }
   .site-header, .site-footer, .skip-link, #consent-banner, .breadcrumb,
   .article-toc, .unit-material, .unit-actions, .read-progress,
-  .unit-nav, .un, .recursos, .diagram__hint {
+  .unit-nav, .un, .recursos, .diagram__zoom {
     display: none !important;
   }
   .unit-opener { padding: 0 0 1rem !important; }
