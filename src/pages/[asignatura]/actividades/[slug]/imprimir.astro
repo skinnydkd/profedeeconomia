@@ -1,4 +1,5 @@
 ---
+import { enfasisHtml } from '../../../../components/quiz-utils';
 /**
  * Print-ready sheet for ONE activity. Consumed by pagedjs-cli
  * (scripts/build-actividades-pdf.mjs) to produce
@@ -261,7 +262,7 @@ const tipoLabel = ACTIVIDAD_TIPO_LABEL[locale][d.tipo] ?? d.tipo;
         <div class="solucion__h">{copy.ficha}</div>
         <h2 class="solucion__title">{copy.solucion}</h2>
         <p class="solucion__sub">{copy.solucionSub}</p>
-        <ol>{d.solucion.map((p) => <li set:html={p} />)}</ol>
+        <ol>{d.solucion.map((p) => <li set:html={enfasisHtml(p)} />)}</ol>
       </section>
     )}
 

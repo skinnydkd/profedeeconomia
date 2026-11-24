@@ -1,4 +1,5 @@
 ---
+import TextoInline from './TextoInline';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 const locale = getLocale(Astro.currentLocale);
@@ -40,7 +41,7 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
       <span class="mirar-fora__et">{t('libro.recursoLibro', locale)}</span>
       <h4>{libro.titulo}</h4>
       <p class="mirar-fora__meta">{libro.meta}</p>
-      <p class="mirar-fora__porque">{libro.porque}</p>
+      <p class="mirar-fora__porque"><TextoInline texto={libro.porque} /></p>
       {libro.paginas && <p class="mirar-fora__detalle">{libro.paginas}</p>}
     </article>
 
@@ -48,7 +49,7 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
       <span class="mirar-fora__et">{t('libro.recursoVideo', locale)} {video.duracion && `· ${video.duracion}`}</span>
       <h4>{video.titulo}</h4>
       <p class="mirar-fora__meta">{video.meta}</p>
-      <p class="mirar-fora__porque">{video.porque}</p>
+      <p class="mirar-fora__porque"><TextoInline texto={video.porque} /></p>
       {video.url && <p class="mirar-fora__detalle"><a href={video.url}>{video.url}</a></p>}
     </article>
 
@@ -56,7 +57,7 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
       <span class="mirar-fora__et">{t('libro.recursoCuenta', locale)}</span>
       <h4>{cuenta.titulo}</h4>
       <p class="mirar-fora__meta">{cuenta.meta}</p>
-      <p class="mirar-fora__porque">{cuenta.porque}</p>
+      <p class="mirar-fora__porque"><TextoInline texto={cuenta.porque} /></p>
     </article>
   </div>
 

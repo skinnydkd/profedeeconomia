@@ -10,6 +10,7 @@ import { mirrorSitemapLocale, isIndexableHtml } from './scripts/sitemap-i18n.mjs
 import { localizeHtmlLinks } from './scripts/localize-links.mjs';
 import stripDeckBlocks from './src/lib/remark/strip-deck-blocks.mjs';
 import rehypeTableScroll from './src/lib/rehype/table-scroll.mjs';
+import rehypeDocenteSections from './src/lib/rehype/docente-sections.mjs';
 
 /** Canonical origin. Kept in sync with SITE.url in src/lib/seo.ts. */
 const SITE_URL = 'https://www.profedeeconomia.es';
@@ -155,7 +156,8 @@ export default defineConfig({
     remarkPlugins: [stripDeckBlocks],
     // Every Markdown table scrolls inside its own labelled box on narrow
     // screens instead of pushing the page sideways (see lib/rehype/table-scroll.mjs).
-    rehypePlugins: [rehypeTableScroll],
+    // Teacher-only h2 sections get data-docente so the student workbook can hide them.
+    rehypePlugins: [rehypeTableScroll, rehypeDocenteSections],
   },
 
   // Fully static: no page opts out via `export const prerender = false`.

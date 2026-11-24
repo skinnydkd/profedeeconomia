@@ -164,6 +164,17 @@ export function trozosInline(texto: string): TrozoInline[] {
   return trozos;
 }
 
+/**
+ * The same emphasis as an HTML string, for fields printed with set:html
+ * (activity solutions, notebook tasks). The text is not escaped: those fields
+ * may already carry markup such as <sub>.
+ */
+export function enfasisHtml(texto: string): string {
+  return trozosInline(texto)
+    .map((t) => (t.tipo === 'texto' ? t.texto : `<${t.tipo}>${t.texto}</${t.tipo}>`))
+    .join('');
+}
+
 /** The same text without the emphasis marks, for <option> and aria-label. */
 export function textoPlano(texto: string): string {
   return trozosInline(texto)

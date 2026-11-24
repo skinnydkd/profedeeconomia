@@ -10,12 +10,12 @@ competencias_clave: [STEM, CD, CE]
 competencias_especificas: [CE2]
 solucion:
   - "Paso 1: Convertir el tipo de interés anual a mensual. i_m = 4 % / 12 = 0,3333 % = 0,003333."
-  - "Paso 2: Calcular el valor futuro del capital inicial. VF_C₀ = 2.000 × (1 + 0,003333)^60 = 2.000 × 1,2212 = **2.442,40 €**."
-  - "Paso 3: Calcular el valor futuro de las aportaciones mensuales (renta pospagable). VF_renta = 100 × [(1,003333^60 − 1) / 0,003333] = 100 × [0,2212 / 0,003333] = 100 × 66,36 = **6.636,00 €**."
-  - "Paso 4: Sumar ambos componentes. Capital total = 2.442,40 + 6.636,00 = **9.078,40 €**."
+  - "Paso 2: Calcular el valor futuro del capital inicial. VF_C₀ = 2.000 × (1 + 0,003333)^60 = 2.000 × 1,220997 = **2.441,99 €**."
+  - "Paso 3: Calcular el valor futuro de las aportaciones mensuales (renta pospagable). VF_renta = 100 × [(1,003333^60 − 1) / 0,003333] = 100 × [0,220997 / 0,003333] = 100 × 66,2990 = **6.629,90 €**."
+  - "Paso 4: Sumar ambos componentes. Capital total = 2.441,99 + 6.629,90 = **9.071,89 €**."
   - "Paso 5: Calcular el total aportado. Aportaciones = 2.000 + (100 × 60) = 2.000 + 6.000 = **8.000 €**."
-  - "Paso 6: Obtener los intereses generados. Intereses = 9.078,40 − 8.000 = **1.078,40 €** (el 13,48 % sobre lo aportado)."
-  - "Paso 7 (pregunta 3): Con tipo del 2 % anual, i_m = 0,001667. VF_C₀ = 2.000 × 1,1050 = 2.210,00 €. VF_renta = 100 × (0,1050 / 0,001667) = 100 × 62,97 = 6.297,00 €. Total = **8.507 €**. Los intereses caen a 507 €, frente a 1.078 € al 4 %; duplicar el tipo casi duplica los intereses acumulados."
+  - "Paso 6: Obtener los intereses generados. Intereses = 9.071,89 − 8.000 = **1.071,89 €** (el 13,40 % sobre lo aportado)."
+  - "Paso 7 (pregunta 3): Con tipo del 2 % anual, i_m = 0,001667. VF_C₀ = 2.000 × 1,105079 = 2.210,16 €. VF_renta = 100 × (0,105079 / 0,001667) = 100 × 63,0474 = 6.304,74 €. Total = **8.514,90 €**, es decir, **556,99 € menos** que al 4 %. Los intereses caen a 514,90 €, frente a 1.071,89 € al 4 %; duplicar el tipo hace algo más que duplicar los intereses acumulados."
 estado: publicado
 ---
 
