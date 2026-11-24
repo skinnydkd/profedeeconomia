@@ -666,11 +666,11 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
             <div class="test__head">{copy.testHead} · {u.test.data.preguntas.length} {copy.preguntas}</div>
             {u.test.data.preguntas.map((q, qi) => (
               <div class="q">
-                <p class="q__text"><span class="q__num">{qi + 1}.</span> {q.enunciado}</p>
+                <p class="q__text"><span class="q__num">{qi + 1}.</span> <TextoInline texto={q.enunciado} /></p>
                 {q.tipo === 'opcion-multiple' && (
                   <ul class="q__opts">
                     {q.opciones.map((op, oi) => (
-                      <li class="q__opt"><span class="q__letra">{letra(oi)})</span>{op}</li>
+                      <li class="q__opt"><span class="q__letra">{letra(oi)})</span><TextoInline texto={op} /></li>
                     ))}
                   </ul>
                 )}
