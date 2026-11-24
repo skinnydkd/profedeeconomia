@@ -330,7 +330,6 @@ export const SECCIONES_TRANSVERSALES = [
   { slug: 'proyectos',      grupo: 'recursos', label: 'Proyectos interdisciplinares', description: 'Proyectos que cruzan la economía con otra materia.' },
   { slug: 'debates',        grupo: 'aula',     label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
   { slug: 'juegos',         grupo: 'aula',     label: 'Juegos',         description: 'Material para una clase activa.' },
-  { slug: 'jocs-economics', grupo: 'aula',     label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
   { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
 ] as const;
 

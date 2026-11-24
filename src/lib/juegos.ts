@@ -3,9 +3,6 @@
  * approach of dinámicas: each game carries its curriculum map and competences,
  * so the hub and each game page can show the pedagogical justification.
  *
- * NOTE: «Jocs Econòmics» (the Olympiad quiz) is NOT here — it is its own section
- * under /jocs-economics/.
- *
  * `href` is the canonical entry point from the hub. Multiplayer games (Cajút,
  * Insider) are projector + phone: the teacher opens the /host/ page, so their
  * hub link points there, with `nota_aula` explaining the flow.

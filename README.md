@@ -29,9 +29,9 @@ Idiomas: castellano (raíz) y valenciano (`/ca/`), generado por el i18n de Astro
 ## Stack y servicios
 
 - Astro 5 + Preact (islas) + Tailwind 4 + MDX, TypeScript estricto.
-- Vercel: salida estática más 10 funciones API (`src/pages/api/jocs/` y
-  `src/pages/api/business-game/`).
-- Supabase (`supabase/migrations/`): ranking de jocs-economics y Business Game.
+- Vercel: salida estática, sin funciones. Los juegos con Supabase (ranking de
+  Jocs Econòmics, ligas online de Business Game) se retiraron el 2026-11-24;
+  `supabase/migrations/` queda como histórico.
 - PartyKit (`party/`, `partykit.json`): juegos multijugador Insider y Cajút.
 - Vercel Blob: los PDF no viajan en el deploy; `vercel.json` redirige
   `/downloads`, `/slides`, `/ebau-examenes` y `/olimpiada` (`*.pdf`) al Blob.

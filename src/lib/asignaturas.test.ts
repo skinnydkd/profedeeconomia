@@ -11,7 +11,7 @@ import { ASIGNATURAS_CA } from '../i18n/asignaturas-ca.ts';
 describe('SECCIONES_TRANSVERSALES', () => {
   it('lista las secciones de «Otros» en el orden acordado', () => {
     expect(SECCIONES_TRANSVERSALES.map((s) => s.slug)).toEqual([
-      'dinamicas', 'herramientas', 'emprendimiento', 'proyectos', 'debates', 'juegos', 'jocs-economics', 'generadores',
+      'dinamicas', 'herramientas', 'emprendimiento', 'proyectos', 'debates', 'juegos', 'generadores',
     ]);
   });
   it('da label y descripción a proyectos', () => {
@@ -27,7 +27,7 @@ describe('SECCIONES_TRANSVERSALES', () => {
 });
 
 describe('seccionesDelGrupo', () => {
-  it('reparte las ocho secciones entre las dos columnas de «Otros»', () => {
+  it('reparte las siete secciones entre las dos columnas de «Otros»', () => {
     const cols = SECCION_GRUPOS.flatMap((g) => seccionesDelGrupo(g).map((s) => s.slug));
     expect(cols.sort()).toEqual(SECCIONES_TRANSVERSALES.map((s) => s.slug).sort());
   });
@@ -39,16 +39,8 @@ describe('seccionesDelGrupo', () => {
   });
   it('agrupa lo que se hace con el alumnado en la columna de aula', () => {
     expect(seccionesDelGrupo('aula').map((s) => s.slug)).toEqual([
-      'dinamicas', 'debates', 'juegos', 'jocs-economics',
+      'dinamicas', 'debates', 'juegos',
     ]);
-  });
-});
-
-describe('SECCIONES_TRANSVERSALES — jocs-economics', () => {
-  it('lo presenta como Juegos Económicos', () => {
-    const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'jocs-economics');
-    expect(s?.label).toBe('Juegos Económicos');
-    expect(s?.description.length).toBeGreaterThan(0);
   });
 });
 

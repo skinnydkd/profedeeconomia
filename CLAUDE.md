@@ -43,7 +43,7 @@ Algunes assignatures tenen a més subseccions pròpies (`actividades-dinamicas`,
 
 Slugs: `edmn-2bach`, `eco-1bach`, `eco-4eso`, `fopp-4eso` (les 4 del MVP), `taller-eco-3eso`, `ipe1-fp`, `ipe2-fp`, `eeae-bach`, `gpe-bach`, `cjd-bach`.
 
-A banda de les assignatures, hi ha seccions transversals amb noms propis: `/juegos/`, `/jocs-economics/`, `/herramientas/` (calculadores i simuladors), `/generadores/` (eines per al professorat), `/emprendimiento/`, `/debates/`, `/dinamicas/`, `/proyectos/`, `/olimpiada/`.
+A banda de les assignatures, hi ha seccions transversals amb noms propis: `/juegos/`, `/herramientas/` (calculadores i simuladors), `/generadores/` (eines per al professorat), `/emprendimiento/`, `/debates/`, `/dinamicas/`, `/proyectos/`, `/olimpiada/`.
 
 I una entrada al menú de navegació, sense pàgina d'aterratge pròpia:
 - `/oposiciones` — redirect permanent directe a oposicioneseconomia.es (sense pàgina intermèdia)
@@ -135,14 +135,14 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 ## Stack tècnic
 
 ### En producció
-- **Framework**: Astro 5, `output: 'static'` (mateix que oposicioneseconomia.es per coherència). Només les 10 rutes de `src/pages/api/` són funcions
+- **Framework**: Astro 5, `output: 'static'` (mateix que oposicioneseconomia.es per coherència). Cap ruta és funció (no hi ha `src/pages/api/`)
 - **UI interactiva**: Preact (illes per a recursos interactius)
 - **Estils**: Tailwind 4
 - **Hosting**: Vercel. PDFs a Vercel Blob (redirects a `vercel.json`; `scripts/strip-pdfs-on-vercel.mjs` els trau del deploy)
 - **Generació PDF**: Puppeteer (scripts `build:*` de `package.json`)
 - **Generació diapositives**: motor natiu d'Astro (renderitzat propi a `src/`; substitueix Marp, ja deprecat)
 - **Analytics**: Google Analytics 4 (`G-3ECWVDWNF2`) només amb consentiment explícit (banner AEPD, `src/lib/consent.ts`) + Vercel Web Analytics (sense galetes, declarada a `/legal/privacidad/`). Plausible descartat.
-- **Jocs amb servidor**: Supabase (Postgres; `jocs-economics` i Business Game, via `src/pages/api/`) i PartyKit (Cajút i Insider, carpeta `party/`). Les variables `SUPABASE_URL` i `SUPABASE_SERVICE_ROLE_KEY` han d'estar a l'entorn Production de Vercel
+- **Jocs amb servidor**: només PartyKit (Cajút i Insider, carpeta `party/`). Els jocs amb Supabase (Jocs Econòmics amb rànquing i les lligues en línia del Business Game) es van retirar el 2026-11-24: producció mai va tindre projecte Supabase. `/jocs-economics/*` redirigeix a `/juegos/`; el Business Game queda només en mode local. `supabase/migrations/` es conserva com a històric
 - **Errors**: Sentry no està instal·lat en aquest projecte
 
 ### Fase 2 (no començat)
@@ -277,7 +277,7 @@ Les fases de migració del webpde, la sessió inicial de mockups i els primers p
 
 - **Domini**: www.profedeeconomia.es (Astro a Vercel); les URL antigues del webpde redirigeixen des de `vercel.json`
 - **Repo**: `skinnydkd/profedeeconomia`; els PR van contra `main`
-- **Stack**: Astro 5 estàtic + Preact + Tailwind + Vercel; Supabase i PartyKit només per als jocs en línia
+- **Stack**: Astro 5 estàtic + Preact + Tailwind + Vercel; PartyKit només per als jocs en línia
 - **Assignatures publicades**: 10 (`ASIGNATURAS` a `src/lib/asignaturas.ts`), totes amb llibre i PDF: les 4 del MVP més Taller d'Economia 3r ESO, IPE I i IPE II (FP), EEAE, GPE i CJD (Batxillerat). La regla «mateixa estructura interna» s'aplica a totes 10
 - **i18n**: castellà i valencià publicats (`/ca/`), amb paritat completa de contingut
 - **SEO**: estratègia i historial de canvis a `docs/seo-estrategia-2026.md`
