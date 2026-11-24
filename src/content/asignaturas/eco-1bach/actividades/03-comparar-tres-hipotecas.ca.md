@@ -57,9 +57,9 @@ Dades auxiliars per als càlculs:
 
 Per situar el professor, les quotes mensuals aproximades que haurien d'obtindre:
 
-- **Banc A (fix 3,2 %)**: quota ≈ **777 €/mes**. Cost total ≈ **233.100 €**. Interessos ≈ **73.100 €**.
+- **Banc A (fix 3,2 %)**: quota ≈ **775 €/mes**. Cost total ≈ **232.650 €**. Interessos ≈ **72.650 €**.
 - **Banc B (variable, Euríbor 3,5 %, tipus aplicat 4,25 %)**: quota ≈ **866 €/mes**. En escenari favorable (Euríbor 0 %, tipus 0,75 %), quota ≈ **585 €/mes**. En escenari advers (Euríbor 4 %, tipus 4,75 %), quota ≈ **912 €/mes**.
-- **Banc C (mixta, 2,4 % els 5 primers anys)**: quota inicial ≈ **710 €/mes**. A partir de l'any 6, amb Euríbor 3,5 % (tipus 4,4 %) sobre el capital pendent, quota ≈ **870 €/mes**.
+- **Banc C (mixta, 2,4 % els 5 primers anys)**: quota inicial ≈ **710 €/mes**. A partir de l'any 6, amb Euríbor 3,5 % (tipus 4,4 %) sobre el capital pendent (≈ 135.180 €) i els 20 anys restants, quota ≈ **848 €/mes**.
 
 ## Criteris d'avaluació
 

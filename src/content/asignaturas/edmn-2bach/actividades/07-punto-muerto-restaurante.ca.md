@@ -55,7 +55,7 @@ Operen 26 dies al mes. Vos han demanat que calculeu quin pla convé en distints 
 
 a) **Punt mort mensual i diari:**
 - Pla A: Q* = 8.000 / (15 − 6,50) = **942 menús/mes ≈ 36 menús/dia**
-- Pla B: Q* = 14.000 / (15 − 4,20) = **1.296 menús/mes ≈ 50 menús/dia**
+- Pla B: Q* = 14.000 / (15 − 4,20) = 1.296,3 → **1.297 menús/mes ≈ 50 menús/dia** (s'arredoneix cap amunt: amb 1.296 encara no es cobreixen els costos)
 
 b) **Benefici amb 1.500 menús/mes:**
 - Pla A: (15 − 6,50) × 1.500 − 8.000 = 12.750 − 8.000 = **+4.750 €/mes**

@@ -17,9 +17,9 @@ solucion:
   - "   VA₃ = 25.000 × 0,7513 = 18.783 €"
   - "   VA₄ = 18.000 × 0,6830 = 12.294 €"
   - "   **VAN = −50.000 + 13.636 + 16.529 + 18.783 + 12.294 = +11.242 €**. El proyecto crea valor."
-  - "3a. Prueba r = 20 %: factores 0,8333 / 0,6944 / 0,5787 / 0,4823. VAN(20 %) = −50.000 + 12.500 + 13.889 + 14.468 + 8.681 = **−462 €** (≈ 0)."
-  - "3b. Prueba r = 19 %: factores 0,8403 / 0,7062 / 0,5934 / 0,4987. VAN(19 %) = −50.000 + 12.605 + 14.124 + 14.835 + 8.977 = **+541 €** (≈ 0)."
-  - "   **TIR ≈ 19–20 %** (entre los dos valores que hacen VAN ≈ 0). Como TIR > k (10 %), el proyecto es **aceptable**."
+  - "3a. Prueba r = 20 %: factores 0,8333 / 0,6944 / 0,5787 / 0,4823. VAN(20 %) = −50.000 + 12.500 + 13.889 + 14.468 + 8.681 = **−462 €**."
+  - "3b. Prueba r = 19 %: factores 0,8403 / 0,7062 / 0,5934 / 0,4987. VAN(19 %) = −50.000 + 12.605 + 14.124 + 14.835 + 8.977 = **+541 €**."
+  - "   El VAN cambia de signo entre el 19 % y el 20 %. Interpolando: TIR ≈ 19 + 541 / (541 + 462) = **19,5 %**. Como TIR > k (10 %), el proyecto es **aceptable**."
   - "4. El proyecto es viable: VAN > 0, TIR > k. La recuperación en 2,6 años indica riesgo moderado. Se recomienda **ejecutar la inversión**."
 estado: publicado
 ---

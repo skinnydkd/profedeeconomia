@@ -10,12 +10,12 @@ competencias_clave: [STEM, CD, CE]
 competencias_especificas: [CE2]
 solucion:
   - "Pas 1: Convertir el tipus d'interés anual a mensual. i_m = 4 % / 12 = 0,3333 % = 0,003333."
-  - "Pas 2: Calcular el valor futur del capital inicial. VF_C₀ = 2.000 × (1 + 0,003333)^60 = 2.000 × 1,2212 = **2.442,40 €**."
-  - "Pas 3: Calcular el valor futur de les aportacions mensuals (renda pospagable). VF_renta = 100 × [(1,003333^60 − 1) / 0,003333] = 100 × [0,2212 / 0,003333] = 100 × 66,36 = **6.636,00 €**."
-  - "Pas 4: Sumar ambdós components. Capital total = 2.442,40 + 6.636,00 = **9.078,40 €**."
+  - "Pas 2: Calcular el valor futur del capital inicial. VF_C₀ = 2.000 × (1 + 0,003333)^60 = 2.000 × 1,220997 = **2.441,99 €**."
+  - "Pas 3: Calcular el valor futur de les aportacions mensuals (renda pospagable). VF_renta = 100 × [(1,003333^60 − 1) / 0,003333] = 100 × [0,220997 / 0,003333] = 100 × 66,2990 = **6.629,90 €**."
+  - "Pas 4: Sumar ambdós components. Capital total = 2.441,99 + 6.629,90 = **9.071,89 €**."
   - "Pas 5: Calcular el total aportat. Aportacions = 2.000 + (100 × 60) = 2.000 + 6.000 = **8.000 €**."
-  - "Pas 6: Obtindre els interessos generats. Interessos = 9.078,40 − 8.000 = **1.078,40 €** (el 13,48 % sobre allò aportat)."
-  - "Pas 7 (pregunta 3): Amb tipus del 2 % anual, i_m = 0,001667. VF_C₀ = 2.000 × 1,1050 = 2.210,00 €. VF_renta = 100 × (0,1050 / 0,001667) = 100 × 62,97 = 6.297,00 €. Total = **8.507 €**. Els interessos cauen a 507 €, enfront de 1.078 € al 4 %; duplicar el tipus quasi duplica els interessos acumulats."
+  - "Pas 6: Obtindre els interessos generats. Interessos = 9.071,89 − 8.000 = **1.071,89 €** (el 13,40 % sobre allò aportat)."
+  - "Pas 7 (pregunta 3): Amb tipus del 2 % anual, i_m = 0,001667. VF_C₀ = 2.000 × 1,105079 = 2.210,16 €. VF_renta = 100 × (0,105079 / 0,001667) = 100 × 63,0474 = 6.304,74 €. Total = **8.514,90 €**, és a dir, **556,99 € menys** que al 4 %. Els interessos cauen a 514,90 €, enfront de 1.071,89 € al 4 %; duplicar el tipus fa una mica més que duplicar els interessos acumulats."
 lang: ca
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/ejercicio-u3-interes-compuesto-ahorro.ca"

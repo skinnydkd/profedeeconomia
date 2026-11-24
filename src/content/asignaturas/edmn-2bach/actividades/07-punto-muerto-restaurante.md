@@ -53,7 +53,7 @@ Operan 26 días al mes. Os han pedido que calculéis qué plan conviene en disti
 
 a) **Punto muerto mensual y diario:**
 - Plan A: Q* = 8.000 / (15 − 6,50) = **942 menús/mes ≈ 36 menús/día**
-- Plan B: Q* = 14.000 / (15 − 4,20) = **1.296 menús/mes ≈ 50 menús/día**
+- Plan B: Q* = 14.000 / (15 − 4,20) = 1.296,3 → **1.297 menús/mes ≈ 50 menús/día** (se redondea hacia arriba: con 1.296 todavía no se cubren los costes)
 
 b) **Beneficio con 1.500 menús/mes:**
 - Plan A: (15 − 6,50) × 1.500 − 8.000 = 12.750 − 8.000 = **+4.750 €/mes**

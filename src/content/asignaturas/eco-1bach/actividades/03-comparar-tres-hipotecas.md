@@ -55,9 +55,9 @@ Datos auxiliares para los cálculos:
 
 Para situar al profesor, las cuotas mensuales aproximadas que deberían obtener:
 
-- **Banco A (fijo 3,2 %)**: cuota ≈ **777 €/mes**. Coste total ≈ **233.100 €**. Intereses ≈ **73.100 €**.
+- **Banco A (fijo 3,2 %)**: cuota ≈ **775 €/mes**. Coste total ≈ **232.650 €**. Intereses ≈ **72.650 €**.
 - **Banco B (variable, Euribor 3,5 %, tipo aplicado 4,25 %)**: cuota ≈ **866 €/mes**. En escenario favorable (Euribor 0 %, tipo 0,75 %), cuota ≈ **585 €/mes**. En escenario adverso (Euribor 4 %, tipo 4,75 %), cuota ≈ **912 €/mes**.
-- **Banco C (mixta, 2,4 % los 5 primeros años)**: cuota inicial ≈ **710 €/mes**. A partir del año 6, con Euribor 3,5 % (tipo 4,4 %) sobre el capital pendiente, cuota ≈ **870 €/mes**.
+- **Banco C (mixta, 2,4 % los 5 primeros años)**: cuota inicial ≈ **710 €/mes**. A partir del año 6, con Euribor 3,5 % (tipo 4,4 %) sobre el capital pendiente (≈ 135.180 €) y los 20 años restantes, cuota ≈ **848 €/mes**.
 
 ## Criterios de evaluación
 
