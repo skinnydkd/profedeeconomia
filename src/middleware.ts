@@ -1,25 +1,9 @@
 // src/middleware.ts
 // Astro middleware global.
-// Burst limit per IP on /api/jocs/start (see lib/jocs-economics/server/rate-limit.ts):
-// a class shares the centre's IP, so the limit only stops floods.
-
 import { defineMiddleware } from 'astro:middleware';
 import { localizeHtmlLinks } from '../scripts/localize-links.mjs';
-import { permitirInicio } from './lib/jocs-economics/server/rate-limit';
-
-const ipStartTimestamps = new Map<string, number[]>();
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  if (context.url.pathname === '/api/jocs/start' && context.request.method === 'POST') {
-    const ip = context.clientAddress || 'unknown';
-    if (!permitirInicio(ipStartTimestamps, ip, Date.now())) {
-      return new Response(JSON.stringify({ error: 'rate-limited' }), {
-        status: 429,
-        headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
-      });
-    }
-  }
-
   // Give the /ca/ half its own internal links while developing. In a build the
   // astro.config.mjs hook does this over the emitted files; no such hook fires
   // under `astro dev`, so without this the Valencian pages would link back into

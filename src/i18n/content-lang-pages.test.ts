@@ -35,7 +35,6 @@ const SOLO_CASTELLANO = [
   'src/pages/olimpiada/banco/index.astro',
   'src/pages/olimpiada/lecturas/index.astro',
   'src/pages/olimpiada/simulacros/index.astro',
-  'src/pages/jocs-economics/leaderboard/index.astro',
   'src/pages/[asignatura]/ebau/examenes/index.astro',
   'src/pages/[asignatura]/ebau/examenes/[ccaa].astro',
 ];

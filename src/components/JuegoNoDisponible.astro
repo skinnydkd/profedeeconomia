@@ -5,33 +5,24 @@
  */
 import { getLocale } from '@/i18n/locale';
 
-interface Props {
-  /** Only the online part is down and a local mode still works below. */
-  soloLocal?: boolean;
-}
-const { soloLocal = false } = Astro.props;
 const locale = getLocale(Astro.currentLocale);
 const copy = {
   es: {
     titulo: 'Este juego no está disponible ahora mismo',
     texto: 'Funciona con un servidor que todavía no está en marcha, así que de momento no se puede jugar.',
     otros: 'Ver los juegos que funcionan sin servidor',
-    tituloLocal: 'Las ligas en línea no están disponibles ahora mismo',
-    textoLocal: 'Funcionan con un servidor que todavía no está en marcha. Debajo tienes el modo práctica local, que sí funciona en un solo dispositivo.',
   },
   ca: {
     titulo: 'Este joc no està disponible ara mateix',
     texto: 'Funciona amb un servidor que encara no està en marxa, així que de moment no s’hi pot jugar.',
     otros: 'Veure els jocs que funcionen sense servidor',
-    tituloLocal: 'Les lligues en línia no estan disponibles ara mateix',
-    textoLocal: 'Funcionen amb un servidor que encara no està en marxa. Davall tens el mode pràctica local, que sí que funciona en un sol dispositiu.',
   },
 }[locale];
 ---
 <section class="no-disponible" role="status">
-  <h2>{soloLocal ? copy.tituloLocal : copy.titulo}</h2>
-  <p>{soloLocal ? copy.textoLocal : copy.texto}</p>
-  {!soloLocal && <p><a class="editorial-link" href="/juegos/">{copy.otros}</a></p>}
+  <h2>{copy.titulo}</h2>
+  <p>{copy.texto}</p>
+  <p><a class="editorial-link" href="/juegos/">{copy.otros}</a></p>
 </section>
 
 <style>

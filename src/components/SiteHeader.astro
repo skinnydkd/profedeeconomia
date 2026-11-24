@@ -134,19 +134,8 @@ const current = {
             <div class="dropdown-section">
               <span class="dropdown-label">{t(`nav.otros.${grupo}` as UIKey, locale)}</span>
               {seccionesDelGrupo(grupo).map((s) => (
-                <a href={`/${s.slug}/`} class={s.slug === 'jocs-economics' ? 'is-olimpico' : ''}>
+                <a href={`/${s.slug}/`}>
                   <span class="opt-title">
-                    {s.slug === 'jocs-economics' && (
-                      <span class="opt-rings" aria-hidden="true">
-                        <svg viewBox="0 0 30 16" width="22" height="12" fill="none" stroke-width="1.7">
-                          <circle cx="6" cy="6" r="4.2" stroke="var(--color-eco1)" />
-                          <circle cx="15" cy="6" r="4.2" stroke="var(--color-ink)" />
-                          <circle cx="24" cy="6" r="4.2" stroke="var(--color-terra)" />
-                          <circle cx="10.5" cy="10" r="4.2" stroke="var(--color-mustard)" />
-                          <circle cx="19.5" cy="10" r="4.2" stroke="var(--color-gpe)" />
-                        </svg>
-                      </span>
-                    )}
                     {t(`sec.${s.slug}.label` as UIKey, locale)}
                   </span>
                   <span class="opt-desc">{t(`sec.${s.slug}.desc` as UIKey, locale)}</span>
@@ -507,16 +496,6 @@ const current = {
     font-weight: 500;
     display: block;
   }
-  /* Olympic-rings flourish for «Jocs Econòmics» (visual only), in palette tones. */
-  .opt-rings {
-    display: inline-flex;
-    vertical-align: middle;
-    margin-right: 0.45rem;
-    transform: translateY(-0.05em);
-  }
-  .opt-rings svg { display: block; height: 0.78rem; width: auto; }
-  .nav-dropdown a.is-olimpico:hover .opt-rings svg,
-  .nav-dropdown a.is-olimpico:focus-visible .opt-rings svg { opacity: 0.95; }
   .opt-desc {
     font-family: var(--font-sans);
     font-size: 0.78rem;

@@ -158,10 +158,7 @@ export default defineConfig({
     rehypePlugins: [rehypeTableScroll],
   },
 
-  // Hybrid output: most pages are static-prerendered (default), only routes
-  // that opt out via `export const prerender = false` run as Vercel serverless
-  // functions. The Jocs Econòmics API routes (/api/jocs/*) need this so they
-  // can access Supabase at runtime.
+  // Fully static: no page opts out via `export const prerender = false`.
   output: 'static',
   adapter: vercel({
     // Inject Vercel Web Analytics (/_vercel/insights). Enable it also in the
@@ -186,7 +183,7 @@ export default defineConfig({
         // /actividades-dinamicas/). Individual tests /tests/[slug]/ stay indexable.
         !/\/tests\/$/.test(page) &&
         // Game rooms and the leaderboard: no content, noindex,follow in their <head>.
-        !/\/(juegos\/cajut|juegos\/cajut\/host|juegos\/insider\/host|jocs-economics\/leaderboard)\/$/.test(page),
+        !/\/(juegos\/cajut|juegos\/cajut\/host|juegos\/insider\/host)\/$/.test(page),
       // Add <lastmod> to book-unit URLs from their MDX dates (see above).
       serialize(item) {
         const lastmod = LIBRO_LASTMOD.get(new URL(item.url).pathname);
