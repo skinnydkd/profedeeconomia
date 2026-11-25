@@ -15,6 +15,31 @@ materiales:
   - "Fulls de feedback estructurat per a la sessió 4 (format carta del company)"
 competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE8, CE1, CE4]
+rubrica:
+  - criterio: "Integració del material del curs"
+    niveles:
+      - "El document no cita cap peça del curs i pareix escrit des de zero, amb opinions sense base."
+      - "Aprofita algunes peces del curs, com el DAFO o el CV, però no es veu la connexió amb la resta."
+      - "Aprofita visiblement el DAFO, el mapa d'entorn, l'arbre de decisions, el dossier d'itineraris i el CV del curs."
+      - "A més, indica de quina unitat procedix cada dada i actualitza alguna peça antiga amb informació nova."
+  - criterio: "Qualitat dels objectius SMART"
+    niveles:
+      - "Els objectius són intencions generals, com «estudiar més», sense quantitat ni termini."
+      - "Redacta els cinc a set objectius demanats, però diversos no tenen mesura o termini concret."
+      - "Entre cinc i set objectius a 12 mesos complixen els cinc criteris SMART i es reparteixen entre les tres dimensions."
+      - "A més, cada objectiu indica com es comprovarà que s'ha aconseguit i quin recurs o suport necessita."
+  - criterio: "Coherència entre dimensions i horitzons"
+    niveles:
+      - "Les dimensions i els horitzons no es relacionen entre si o es contradiuen."
+      - "Relaciona algunes dimensions, però els escenaris de mitjà termini no es deriven dels objectius a 12 mesos."
+      - "Els objectius de les tres dimensions se sostenen entre si i els escenaris de mitjà termini encaixen amb el curt termini."
+      - "A més, identifica quin objectiu a 12 mesos servix a més d'un escenari de mitjà termini i ho explica."
+  - criterio: "Xarxa de suport i sistema de revisió"
+    niveles:
+      - "La xarxa és una llista de noms sense funció i les dates de revisió són intencions sense dia concret."
+      - "Complix només una de les dues parts: xarxa amb funció i contacte previst, o dates de revisió concretes."
+      - "Inclou de tres a cinc persones amb funció i pròxim contacte, i les dates de revisió estan anotades en el calendari."
+      - "A més, la xarxa cobrix almenys tres categories distintes de suport i cada revisió indica què es comprovarà."
 estado: publicado
 lang: ca
 slug: "asignaturas/fopp-4eso/actividades/10-mi-proyecto-vida-documento-integrador.ca"

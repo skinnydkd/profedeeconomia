@@ -14,6 +14,31 @@ materiales:
   - "Projector per a mostrar a l'inici els passos de navegació de cada portal"
 competencias_clave: [CPSAA, CD, CE]
 competencias_especificas: [CE6]
+rubrica:
+  - criterio: "Rigor de les dades i de les fonts"
+    niveles:
+      - "Les dades de salari, requisits o projecció no porten font, o la font no és oficial."
+      - "Cita fonts oficials, però falten la URL o la data en diverses dades, o usa una sola font en les tres fitxes."
+      - "Cada dada de salari, requisits i projecció porta URL i data, amb almenys dues fonts distintes en les tres fitxes."
+      - "A més, diferencia el salari d'entrada del salari mitjà del sector en cada fitxa i cita la font de cadascun."
+  - criterio: "Compliment de les regles de selecció"
+    niveles:
+      - "Alguna professió és vaga o inventada, com «alguna cosa amb animals», i no figura en el catàleg d'ocupacions."
+      - "Les tres són professions reals, però cap és d'alta demanda o les tres exigixen el mateix nivell formatiu."
+      - "Tria tres professions reals, almenys una d'alta demanda 2024-2030 i almenys una amb nivell formatiu distint."
+      - "A més, localitza el codi CNO de les tres professions i les classifica correctament per sector econòmic."
+  - criterio: "Descripció i opinió argumentada"
+    niveles:
+      - "La descripció està copiada d'una web i l'opinió es redueix a «perquè mola» o «m'han dit»."
+      - "Descriu amb llenguatge propi, però l'opinió no s'apoia en les dades de la fitxa o ocupa menys de quatre línies."
+      - "Descriu el dia a dia amb llenguatge propi i escriu una opinió d'almenys quatre línies apoiada en les dades."
+      - "A més, l'opinió compara les tres professions entre si amb les dades de les fitxes."
+  - criterio: "Ús del vocabulari de la unitat"
+    niveles:
+      - "No usa el vocabulari de la unitat o el confon, per exemple sector amb nivell formatiu."
+      - "Usa alguns termes de la unitat, però en confon algun, com compte d'altri i intraemprenedoria."
+      - "Usa correctament EPA, sectors, CNO, forma de treball i professió emergent o en retrocés en les fitxes."
+      - "A més, usa els termes per a comparar les professions, per exemple compte d'altri enfront d'autoocupació segons el sector."
 estado: publicado
 lang: ca
 slug: "asignaturas/fopp-4eso/actividades/07-investiga-tres-profesiones.ca"

@@ -18,6 +18,31 @@ materiales:
   - "Checklist de tràmits de constitució i posada en marxa a Espanya"
   - "Plantilla del document del pla d'empresa (estructura inclosa davall)"
   - "Rúbrica de defensa per al comité inversor"
+rubrica:
+  - criterio: "Pla economicofinancer"
+    niveles:
+      - "Falten la inversió, el finançament o les despeses, o el finançament no cobrix la inversió."
+      - "Inclou tots els apartats, però barreja despeses fixes i variables o el finançament no cobrix el 100 % amb marge."
+      - "Xifra la inversió inicial amb tresoreria de coixí, cobrix el 100 % amb marge i separa despeses fixes i variables."
+      - "A més, justifica cada partida d'inversió amb un pressupost o un preu de mercat consultat."
+  - criterio: "Càlcul del punt mort i diagnòstic de viabilitat"
+    niveles:
+      - "No calcula el punt mort o aplica malament la fórmula."
+      - "Calcula el punt mort amb la fórmula correcta, però no el compara amb les vendes que va validar l'equip."
+      - "Calcula costos fixos / (preu - cost variable unitari) i dóna un veredicte de viabilitat raonat amb les vendes validades."
+      - "A més, prova com canvia el punt mort si varia el preu o un cost i ho comenta en el veredicte."
+  - criterio: "Forma jurídica i tràmits"
+    niveles:
+      - "Tria una forma jurídica sense justificar-la o no inclou el checklist de tràmits."
+      - "Justifica la forma jurídica amb un sol criteri o el checklist de tràmits està incomplet o desordenat."
+      - "Justifica la forma jurídica amb criteris econòmics (responsabilitat, capital, fiscalitat, nombre de socis) i ordena el checklist de tràmits."
+      - "A més, compara la seua elecció amb una altra forma jurídica alternativa i explica per què la descarta."
+  - criterio: "Defensa davant del comité inversor"
+    niveles:
+      - "Excedix el temps o no el cobrix, i no respon a les preguntes del comité."
+      - "Presenta en cinc minuts, però sense estructura clara o amb respostes que no usen els números del pla."
+      - "Presenta amb estructura clara en cinc minuts i respon a les preguntes del comité amb dades del pla."
+      - "A més, indica quina xifra del pla canviaria per a convéncer el comité si este no invertira."
 estado: publicado
 ---
 

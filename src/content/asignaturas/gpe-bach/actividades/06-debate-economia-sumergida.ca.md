@@ -16,6 +16,31 @@ competencias_clave: [CC, CPSAA, CCL, CD]
 competencias_especificas: [CE4]
 ebau: false
 lang: ca
+rubrica:
+  - criterio: "Ús correcte dels conceptes"
+    niveles:
+      - "Confon economia submergida amb pagar menys legalment, o presenta qualsevol estalvi fiscal com a frau."
+      - "Defineix economia submergida, però no connecta els seus efectes amb els serveis públics ni amb l'equitat."
+      - "Connecta economia submergida, serveis públics i equitat, i distingix l'optimització legal del frau."
+      - "A més, distingix amb exemples del dosier entre una infracció xicoteta i una trama organitzada, i raona la diferència."
+  - criterio: "Argumentació amb dades i casos"
+    niveles:
+      - "Defén la seua postura amb consignes com «tothom ho fa» sense citar dades ni situacions."
+      - "Cita una situació del dosier o una xifra, però sense vincular-la al seu argument."
+      - "Recolza la seua postura en situacions del dosier i en dades d'economia submergida a Espanya."
+      - "A més, compara dues estimacions de la grandària de l'economia submergida i explica per què difereixen."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "No respon als arguments de l'altre equip o es limita a repetir la seua consigna."
+      - "Respon a algun argument, però sense usar una dada ni un cas per a rebatre'l."
+      - "Respon als arguments de l'altre equip amb dades o casos concrets, sense recórrer a consignes."
+      - "A més, anticipa en la seua exposició l'objecció més probable de l'altre equip i la respon."
+  - criterio: "Tancament individual"
+    niveles:
+      - "El tancament no inclou cap decisió sobre l'actitud fiscal del seu projecte."
+      - "Escriu una conclusió, però la decisió fiscal és genèrica, com «complir la llei»."
+      - "Escriu una conclusió de cinc línies i defineix una decisió fiscal concreta, com emetre factura sempre."
+      - "A més, relaciona eixa decisió amb el seu efecte sobre els serveis públics i sobre qui sí que complix."
 estado: publicado
 slug: "asignaturas/gpe-bach/actividades/06-debate-economia-sumergida.ca"
 ---

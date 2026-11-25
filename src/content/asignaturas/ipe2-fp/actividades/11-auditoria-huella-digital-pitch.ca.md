@@ -16,6 +16,31 @@ materiales:
   - "Plantilla del pitch en tres blocs: soc / aporte / busque"
   - "Mòbil per a gravar el pitch en vídeo o àudio"
   - "Rúbrica breu d'autoavaluació del pitch"
+rubrica:
+  - criterio: "Qualitat de l'auditoria"
+    niveles:
+      - "L'auditoria es limita a dir que no apareix res o a copiar el checklist sense resultats."
+      - "Anota el que apareix en la cerca, però no revisa privadesa, fotos o coherència amb l'objectiu."
+      - "Anota el que apareix en la seua cerca i revisa amb el checklist privadesa, fotos, comentaris i coherència amb el seu objectiu."
+      - "A més, distingix el que veurà un reclutador en la primera pàgina de resultats del que només apareix en xarxes públiques."
+  - criterio: "Pla d'empremta digital"
+    niveles:
+      - "No elabora les tres llistes o les deixa sense accions."
+      - "Elabora les tres llistes, però amb accions vagues, com «millorar les meues xarxes»."
+      - "Les llistes de reforçar, netejar i crear contenen accions concretes i realitzables."
+      - "A més, ordena les accions per prioritat i fixa quan farà la primera."
+  - criterio: "Claredat del pitch"
+    niveles:
+      - "El pitch no respon a les tres preguntes o supera clarament els 30 segons."
+      - "Respon a les tres preguntes, però amb farciment o titubejos, o el «què aporte» queda vague."
+      - "Respon a qui sóc, què aporte i què busque en 30 segons, amb una idea forta per bloc i sense titubejos."
+      - "A més, el «què aporte» inclou una dada o un assoliment concret que es pot comprovar."
+  - criterio: "Comunicació oral"
+    niveles:
+      - "En l'enregistrament llig un text amb veu monòtona i acaba sense tancament."
+      - "Manté un ritme acceptable, però el tancament és feble o la veu baixa en algun bloc."
+      - "En l'enregistrament manté un ritme clar, veu audible i tanca amb una frase que indica què busca."
+      - "A més, després de revisar el primer enregistrament amb la rúbrica, torna a enregistrar i millora un aspecte concret."
 estado: publicado
 ---
 

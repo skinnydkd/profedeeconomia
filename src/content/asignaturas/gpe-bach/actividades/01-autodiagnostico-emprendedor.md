@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE1]
 ebau: false
+rubrica:
+  - criterio: "Iniciativa"
+    niveles:
+      - "Empieza una tarea de grupo solo cuando otra persona se lo pide y espera instrucciones."
+      - "Propone o empieza algo por su cuenta en situaciones conocidas, pero deja de hacerlo cuando hay incertidumbre."
+      - "Propone y pone en marcha tareas del grupo sin que se lo pidan, y puede dar un ejemplo concreto."
+      - "Además de proponer, organiza los pasos y consigue que otras personas se sumen a lo que ha iniciado."
+  - criterio: "Perseverancia y tolerancia al error"
+    niveles:
+      - "Abandona una tarea al primer obstáculo y evita volver sobre un error."
+      - "Sigue con una tarea difícil si alguien le anima, pero se bloquea cuando algo sale mal."
+      - "Mantiene el esfuerzo ante un obstáculo y revisa qué falló para volver a intentarlo."
+      - "Además, comparte con el grupo lo que aprendió de un error y cambia su forma de trabajar a partir de él."
+  - criterio: "Creatividad y flexibilidad"
+    niveles:
+      - "Repite siempre la misma solución y se resiste a cambiar de plan cuando las condiciones cambian."
+      - "Aporta alguna idea nueva, pero acepta un cambio de plan solo cuando otra persona se lo propone."
+      - "Propone más de una forma de resolver un problema y adapta su plan cuando cambian las condiciones."
+      - "Además, combina ideas de otras personas con las propias y ajusta el plan sin esperar a que el cambio se imponga."
+  - criterio: "Trabajo en equipo"
+    niveles:
+      - "Trabaja por su cuenta, no escucha las propuestas del equipo o deja su parte sin hacer."
+      - "Cumple su parte, pero aporta poco a las decisiones o evita pedir y ofrecer ayuda."
+      - "Cumple su parte, escucha las propuestas ajenas y ayuda a otros miembros cuando lo necesitan."
+      - "Además, reparte tareas según las fortalezas de cada persona y se asegura de que todas participen en las decisiones."
 estado: publicado
 ---
 

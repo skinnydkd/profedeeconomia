@@ -14,6 +14,31 @@ materiales:
   - "Plantilla de propuesta de intraemprendimiento (problema, tipo de innovación, beneficio, coste, riesgo)"
   - "Tablero Kanban en papel o pizarra (Por hacer / En curso / Hecho)"
   - "Rúbrica de defensa ante el comité de dirección"
+rubrica:
+  - criterio: "Calidad de la ineficiencia detectada"
+    niveles:
+      - "Describe un problema genérico, como «falta comunicación», sin relación con un proceso real."
+      - "Describe un problema del entorno, pero sin concretar dónde, cuándo o a quién afecta."
+      - "Describe en una frase una ineficiencia real y concreta de su centro de prácticas o taller."
+      - "Además, aporta una evidencia observada, como tiempos, desperdicio o quejas, que muestra el alcance del problema."
+  - criterio: "Diseño de la mejora"
+    niveles:
+      - "La propuesta no indica tipo de innovación, coste ni riesgo, o es irrealizable."
+      - "Indica tipo de innovación, beneficio, coste y riesgo, pero alguno está mal clasificado o no es realista."
+      - "Clasifica bien el tipo de innovación y justifica beneficio, coste y riesgo realistas para su entorno."
+      - "Además, compara la mejora con otra alternativa y explica por qué elige esta."
+  - criterio: "Planificación en Kanban"
+    niveles:
+      - "El tablero no recoge tarjetas o reúne toda la implantación en una sola tarea."
+      - "Descompone la mejora en tarjetas, pero sin orden lógico ni responsables."
+      - "Descompone la implantación en tarjetas ordenadas con criterio en el tablero, con responsables."
+      - "Además, estima la duración de cada tarjeta e identifica cuál bloquea a las demás."
+  - criterio: "Defensa ante el comité"
+    niveles:
+      - "No argumenta el beneficio o no responde a las objeciones de la dirección."
+      - "Presenta el beneficio en tres minutos, pero responde a las objeciones sin argumentos."
+      - "Defiende la propuesta en tres minutos con el beneficio claro y responde a las objeciones de la dirección."
+      - "Además, acepta una objeción y propone un cambio concreto que la resuelve."
 estado: publicado
 ---
 

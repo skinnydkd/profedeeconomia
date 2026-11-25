@@ -15,6 +15,31 @@ materiales:
   - "Plantilla STAR impresa para preparar las respuestas (Situación, Tarea, Acción, Resultado)"
   - "Rúbrica de evaluación del candidato para el tribunal, en papel"
   - "Cronómetro visible"
+rubrica:
+  - criterio: "Ajuste del CV a la oferta"
+    niveles:
+      - "El CV-resumen coincide con menos del 60 % de las palabras clave y queda descartado por el filtro."
+      - "Supera el 60 % de coincidencia, pero el perfil de tres líneas es genérico o incluye datos que no tiene."
+      - "Supera el 60 % de coincidencia con las palabras clave y orienta a la oferta su perfil de tres líneas, sin inventar."
+      - "Además, identifica qué palabras clave le faltan y las incorpora con experiencias reales en una segunda versión."
+  - criterio: "Calidad de las respuestas STAR"
+    niveles:
+      - "Responde con descripciones generales sin separar situación, tarea, acción y resultado."
+      - "Incluye situación y tarea, pero falta la acción propia o el resultado en alguna respuesta."
+      - "Las respuestas contienen las cuatro partes del método STAR y el resultado incluye un dato concreto."
+      - "Además, cada respuesta se vincula con una competencia de la oferta y la acción indica qué hizo la propia persona."
+  - criterio: "Desempeño en la prueba profesional"
+    niveles:
+      - "No entrega el ejercicio del oficio o lo entrega con errores que impiden usarlo."
+      - "Entrega el ejercicio completo, pero con errores que habría que corregir antes de usarlo."
+      - "Resuelve el ejercicio del oficio con corrección dentro del tiempo previsto."
+      - "Además, explica en una nota breve el criterio seguido y qué comprobaría antes de darlo por válido."
+  - criterio: "Rigor como miembro del tribunal"
+    niveles:
+      - "Puntúa sin aplicar la rúbrica o sin dar ninguna devolución al candidato."
+      - "Aplica la rúbrica, pero la devolución es general, como «ha estado bien»."
+      - "Aplica la rúbrica y da al candidato una fortaleza y una mejora concretas."
+      - "Además, apoya cada puntuación en una frase literal del candidato."
 estado: publicado
 ---
 

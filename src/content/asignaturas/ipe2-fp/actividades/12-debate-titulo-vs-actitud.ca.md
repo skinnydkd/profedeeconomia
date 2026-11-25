@@ -16,6 +16,31 @@ materiales:
   - "Regles del debat amb temps per torn (obertura, refutació, tancament)"
   - "Rúbrica de debat per al jurat: argumentació, ús d'evidència i escolta"
   - "Cronòmetre visible"
+rubrica:
+  - criterio: "Qualitat de l'argumentació"
+    niveles:
+      - "Exposa opinions generals sense una tesi clara o amb raons que no s'enllacen."
+      - "Formula una tesi, però les raons apareixen soltes i no sostenen la conclusió."
+      - "Formula una tesi clara i la sosté amb raons encadenades en l'obertura, la refutació i el tancament."
+      - "A més, acota la tesi amb matisos, per exemple segons el sector, sense perdre claredat."
+  - criterio: "Ús d'evidència"
+    niveles:
+      - "No cita cap oferta ni testimoni del dosier per a recolzar els seus arguments."
+      - "Cita una prova del dosier, però sense explicar què demostra."
+      - "Recolza els seus arguments en dos o tres proves del dosier, com ofertes reals o testimonis, i explica què demostren."
+      - "A més, assenyala una limitació d'una prova, per exemple que procedix d'un sol sector, i la té en compte."
+  - criterio: "Rèplica i escolta"
+    niveles:
+      - "Interromp, ataca les persones o ignora el que diu l'equip contrari."
+      - "Respecta els torns, però rebat sense referir-se al que l'altre equip ha dit."
+      - "Rebat els arguments concrets del contrari respectant els torns i sense atacar les persones."
+      - "A més, resumix amb precisió l'argument del contrari abans de rebatre'l."
+  - criterio: "Tancament personal raonat"
+    niveles:
+      - "La línia final no indica quin pes dóna a títol i a actitud en el seu pla."
+      - "Indica un pes per a títol i actitud, però sense relació amb el que s'ha debatut."
+      - "Indica en una línia quin pes dóna a títol i actitud i el relaciona amb arguments del debat."
+      - "A més, concreta a què dedicarà el seu esforç fins a titular-se segons eixe pes."
 estado: publicado
 ---
 

@@ -16,6 +16,31 @@ materiales:
   - "Mini-casos reals de pivots famosos i de projectes que van insistir amb èxit"
   - "Plantilla de decisió raonada (evidència → decisió → pas següent)"
   - "Rúbrica d'argumentació"
+rubrica:
+  - criterio: "Lectura de l'evidència"
+    niveles:
+      - "Presenta les dades de validació sense distingir quina hipòtesi es va confirmar i quina va caure."
+      - "Distingix hipòtesis confirmades i caigudes, però tracta un impediment menor com a rebuig real o al revés."
+      - "Ordena les dades en hipòtesis confirmades, caigudes i ambigües, i distingix un rebuig real d'un impediment menor."
+      - "A més, indica quina dada addicional faria falta per a resoldre cada hipòtesi ambigua."
+  - criterio: "Coherència de la decisió"
+    niveles:
+      - "Tria perseverar, pivotar o abandonar sense citar cap dada de validació."
+      - "Cita dades, però la decisió s'apoia en el que l'equip desitja i no en elles."
+      - "La decisió final es deriva de l'evidència pròpia i inclou un pas següent concret."
+      - "A més, la decisió indica quin resultat la faria canviar."
+  - criterio: "Qualitat del debat"
+    niveles:
+      - "Defén la seua postura repetint el mateix, sense arguments nous davant les objeccions."
+      - "Rebat les objeccions, però sense usar dades pròpies ni el mini-cas."
+      - "Defén la seua lectura i qüestiona la de l'altre equip amb arguments i dades pròpies."
+      - "A més, usa el mini-cas real per a contrastar la seua situació, assenyalant què s'assembla i què no."
+  - criterio: "Reconeixement de biaixos"
+    niveles:
+      - "No menciona cap biaix que haja pogut distorsionar la lectura de les dades."
+      - "Menciona un biaix en general, sense assenyalar-lo en la lectura del seu propi equip."
+      - "Identifica si en el seu cas hi ha enamorament de la idea o rendició prematura i ho justifica amb una dada."
+      - "A més, proposa una mesura concreta per a evitar-lo, com demanar a una persona aliena que revise la lectura."
 estado: publicado
 ---
 

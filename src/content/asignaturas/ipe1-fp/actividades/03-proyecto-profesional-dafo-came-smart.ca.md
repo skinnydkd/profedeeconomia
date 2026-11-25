@@ -14,6 +14,31 @@ materiales:
   - "Accés a internet per a verificar dades del mercat de treball objectiu"
   - "Rúbrica d'avaluació impresa per al professor i per a la coavaluació"
 lang: ca
+rubrica:
+  - criterio: "DAFO creuat amb el mercat"
+    niveles:
+      - "Les caselles són genèriques i no s'apoien en l'inventari ni en el mercat de treball."
+      - "Les fortaleses ixen de l'inventari, però les oportunitats i amenaces són genèriques o hi ha caselles amb menys de tres entrades."
+      - "Fortaleses i debilitats ixen de l'inventari i oportunitats i amenaces del mercat objectiu, amb tres a cinc entrades per casella."
+      - "A més, cada oportunitat o amenaça cita una dada del mercat de treball, com la demanda del sector o els requisits creixents."
+  - criterio: "Coherència de l'anàlisi CAME"
+    niveles:
+      - "El CAME repetix el DAFO sense proposar accions o deixa algun quadrant sense completar."
+      - "Hi ha estratègia en els quatre quadrants, però alguna és una intenció sense acció concreta."
+      - "Cada quadrant del DAFO genera una estratègia (corregir, afrontar, mantindre, explotar) amb una acció concreta."
+      - "A més, ordena les accions per prioritat i justifica per què comença per la primera."
+  - criterio: "Qualitat dels objectius SMART"
+    niveles:
+      - "Els objectius són desitjos generals, com «trobar feina», sense mesura ni termini."
+      - "Hi ha quatre o cinc objectius a curt termini, però diversos no són mesurables o no tenen termini."
+      - "Els quatre o cinc objectius a curt termini passen el filtre SMART complet i deriven d'una estratègia CAME."
+      - "A més, els escenaris de mitjà termini i l'orientació a llarg termini enllacen amb els objectius del primer any."
+  - criterio: "Full de ruta i seguiment"
+    niveles:
+      - "El full de ruta llista intencions sense dates i no defineix cap sistema de seguiment."
+      - "Ordena accions en el temps, però falten carrils o el seguiment no té dates reals."
+      - "Ordena accions en tres carrils amb un primer pas datable esta setmana i defineix tres dates de revisió i indicadors d'avanç."
+      - "A més, cada acció indica el recurs concret que usarà, com un mòdul, un certificat o un portal d'ocupació."
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/03-proyecto-profesional-dafo-came-smart.ca"
 ---

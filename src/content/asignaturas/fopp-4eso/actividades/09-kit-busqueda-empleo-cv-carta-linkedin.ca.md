@@ -17,6 +17,31 @@ materiales:
   - "Carpeta del portafolis digital de l'alumne (Drive, OneDrive o similar) on es fa el lliurament final"
 competencias_clave: [CD, CCL, CE, CPSAA]
 competencias_especificas: [CE7]
+rubrica:
+  - criterio: "Ajust del CV a l'oferta i format Europass"
+    niveles:
+      - "El CV és genèric: no arreplega paraules clau de l'oferta, supera una pàgina o té faltes d'ortografia."
+      - "Inclou algunes paraules clau de l'oferta, però el resum és genèric o el format Europass no és coherent."
+      - "Arreplega literalment les paraules clau de l'oferta, té un resum orientat a ella i cap en una pàgina en PDF."
+      - "A més, quantifica els seus èxits i posa primer les seccions que més responen al que demana l'oferta."
+  - criterio: "Personalització de la carta de presentació"
+    niveles:
+      - "La carta és una plantilla reutilitzable per a qualsevol empresa i no cita l'oferta ni l'empresa."
+      - "Té els quatre paràgrafs, però el segon és genèric o el tercer descriu funcions sense un assoliment concret."
+      - "Té els quatre paràgrafs: el segon mostra investigació real de l'empresa i el tercer argumenta amb un assoliment concret."
+      - "A més, l'assoliment del tercer paràgraf està quantificat i respon a un requisit literal de l'oferta."
+  - criterio: "Qualitat del perfil de LinkedIn"
+    niveles:
+      - "El perfil no té titular descriptiu, o el resum no arriba a 200 paraules i es limita a adjectius buits."
+      - "Té foto i titular, però el resum no s'ajusta a les 200-300 paraules o falten experiència i formació."
+      - "Té foto professional, titular descriptiu, resum de 200 a 300 paraules sense adjectius buits i experiència i formació carregades."
+      - "A més, el titular i el resum usen paraules clau del sector de l'oferta triada."
+  - criterio: "Cura de l'empremta digital"
+    niveles:
+      - "No lliura la nota sobre la seua cerca o es limita a dir que no ha trobat res."
+      - "Lliura la nota i conta què va trobar, però no indica cap mesura presa."
+      - "Lliura mitja pàgina amb el que va trobar en buscar el seu nom en mode incògnit i almenys una mesura presa."
+      - "A més, ordena el que va trobar per risc per a la seua candidatura i explica per què comença per eixa mesura."
 estado: publicado
 lang: ca
 slug: "asignaturas/fopp-4eso/actividades/09-kit-busqueda-empleo-cv-carta-linkedin.ca"

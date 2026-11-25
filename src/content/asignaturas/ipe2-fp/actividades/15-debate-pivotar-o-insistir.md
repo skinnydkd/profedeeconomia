@@ -14,6 +14,31 @@ materiales:
   - "Mini-casos reales de pivotes famosos y de proyectos que insistieron con éxito"
   - "Plantilla de decisión razonada (evidencia → decisión → siguiente paso)"
   - "Rúbrica de argumentación"
+rubrica:
+  - criterio: "Lectura de la evidencia"
+    niveles:
+      - "Presenta los datos de validación sin distinguir qué hipótesis se confirmó y cuál cayó."
+      - "Distingue hipótesis confirmadas y caídas, pero trata una pega menor como rechazo real o al revés."
+      - "Ordena los datos en hipótesis confirmadas, caídas y ambiguas, y distingue un rechazo real de una pega menor."
+      - "Además, indica qué dato adicional haría falta para resolver cada hipótesis ambigua."
+  - criterio: "Coherencia de la decisión"
+    niveles:
+      - "Elige perseverar, pivotar o abandonar sin citar ningún dato de validación."
+      - "Cita datos, pero la decisión se apoya en lo que el equipo desea y no en ellos."
+      - "La decisión final se deriva de la evidencia propia e incluye un siguiente paso concreto."
+      - "Además, la decisión indica qué resultado haría cambiarla."
+  - criterio: "Calidad del debate"
+    niveles:
+      - "Defiende su postura repitiendo lo mismo, sin argumentos nuevos ante las objeciones."
+      - "Rebate las objeciones, pero sin usar datos propios ni el mini-caso."
+      - "Defiende su lectura y cuestiona la del otro equipo con argumentos y datos propios."
+      - "Además, usa el mini-caso real para contrastar su situación, señalando qué se parece y qué no."
+  - criterio: "Reconocimiento de sesgos"
+    niveles:
+      - "No menciona ningún sesgo que haya podido distorsionar la lectura de los datos."
+      - "Menciona un sesgo en general, sin señalarlo en la lectura de su propio equipo."
+      - "Identifica si en su caso hay enamoramiento de la idea o rendición prematura y lo justifica con un dato."
+      - "Además, propone una medida concreta para evitarlo, como pedir a una persona ajena que revise la lectura."
 estado: publicado
 ---
 

@@ -17,6 +17,31 @@ materiales:
   - "Plantilla STAR impresa per a preparar les respostes (Situació, Tasca, Acció, Resultat)"
   - "Rúbrica d'avaluació del candidat per al tribunal, en paper"
   - "Cronòmetre visible"
+rubrica:
+  - criterio: "Ajust del CV a l'oferta"
+    niveles:
+      - "El CV-resum coincidix amb menys del 60 % de les paraules clau i queda descartat pel filtre."
+      - "Supera el 60 % de coincidència, però el perfil de tres línies és genèric o inclou dades que no té."
+      - "Supera el 60 % de coincidència amb les paraules clau i orienta a l'oferta el perfil de tres línies, sense inventar dades."
+      - "A més, identifica quines paraules clau li falten i les incorpora amb experiències reals en una segona versió."
+  - criterio: "Qualitat de les respostes STAR"
+    niveles:
+      - "Respon amb descripcions generals sense separar situació, tasca, acció i resultat."
+      - "Inclou situació i tasca, però falta l'acció pròpia o el resultat en alguna resposta."
+      - "Les respostes contenen les quatre parts del mètode STAR i el resultat inclou una dada concreta."
+      - "A més, cada resposta es vincula amb una competència de l'oferta i l'acció indica què va fer la pròpia persona."
+  - criterio: "Acompliment en la prova professional"
+    niveles:
+      - "No lliura l'exercici de l'ofici o el lliura amb errors que impedixen usar-lo."
+      - "Lliura l'exercici complet, però amb errors que caldria corregir abans d'usar-lo."
+      - "Resol l'exercici de l'ofici amb correcció dins del temps previst."
+      - "A més, explica en una nota breu el criteri seguit i què comprovaria abans de donar-lo per vàlid."
+  - criterio: "Rigor com a membre del tribunal"
+    niveles:
+      - "Puntua sense aplicar la rúbrica o sense donar cap devolució al candidat."
+      - "Aplica la rúbrica, però la devolució és general, com «ha estat bé»."
+      - "Aplica la rúbrica i dóna al candidat una fortalesa i una millora concretes."
+      - "A més, recolza cada puntuació en una frase literal del candidat."
 estado: publicado
 ---
 

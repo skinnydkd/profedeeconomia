@@ -15,6 +15,31 @@ competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE1]
 ebau: false
 lang: ca
+rubrica:
+  - criterio: "Iniciativa"
+    niveles:
+      - "Comença una tasca de grup només quan una altra persona li ho demana i espera instruccions."
+      - "Proposa o comença alguna cosa per iniciativa pròpia en situacions conegudes, però ho deixa de fer quan hi ha incertesa."
+      - "Proposa i posa en marxa tasques del grup sense que li ho demanen, i pot donar un exemple concret."
+      - "A més de proposar, organitza els passos i aconseguix que altres persones se sumen al que ha iniciat."
+  - criterio: "Perseverança i tolerància a l'error"
+    niveles:
+      - "Abandona una tasca al primer obstacle i evita tornar sobre un error."
+      - "Continua amb una tasca difícil si algú l'anima, però es bloqueja quan alguna cosa ix malament."
+      - "Manté l'esforç davant d'un obstacle i revisa què va fallar per a tornar-ho a intentar."
+      - "A més, compartix amb el grup el que va aprendre d'un error i canvia la seua manera de treballar a partir d'ell."
+  - criterio: "Creativitat i flexibilitat"
+    niveles:
+      - "Repetix sempre la mateixa solució i es resistix a canviar de pla quan les condicions canvien."
+      - "Aporta alguna idea nova, però accepta un canvi de pla només quan una altra persona li'l proposa."
+      - "Proposa més d'una manera de resoldre un problema i adapta el seu pla quan canvien les condicions."
+      - "A més, combina idees d'altres persones amb les pròpies i ajusta el pla sense esperar que el canvi s'impose."
+  - criterio: "Treball en equip"
+    niveles:
+      - "Treballa pel seu compte, no escolta les propostes de l'equip o deixa la seua part sense fer."
+      - "Complix la seua part, però aporta poc a les decisions o evita demanar i oferir ajuda."
+      - "Complix la seua part, escolta les propostes alienes i ajuda altres membres quan ho necessiten."
+      - "A més, reparteix tasques segons les fortaleses de cada persona i s'assegura que totes participen en les decisions."
 estado: publicado
 slug: "asignaturas/gpe-bach/actividades/01-autodiagnostico-emprendedor.ca"
 ---

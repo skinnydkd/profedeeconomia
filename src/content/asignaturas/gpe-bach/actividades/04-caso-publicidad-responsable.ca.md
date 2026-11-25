@@ -16,6 +16,31 @@ competencias_clave: [CC, CPSAA, CCL, CD]
 competencias_especificas: [CE3]
 ebau: false
 lang: ca
+rubrica:
+  - criterio: "Ús correcte dels conceptes"
+    niveles:
+      - "Confon cosificació, estereotip i publicitat il·lícita, o diu il·lícita qualsevol campanya que l'incomoda."
+      - "Defineix bé algun concepte, però no distingix una campanya polèmica d'una il·lícita."
+      - "Distingix cosificació, estereotip i publicitat il·lícita i no confon una campanya polèmica amb una il·legal."
+      - "A més, aplica un criteri de la Llei General de Publicitat per a justificar si una campanya concreta és il·lícita."
+  - criterio: "Argumentació amb casos"
+    niveles:
+      - "Defén la seua postura amb opinions o consignes sense citar cap campanya del dosier."
+      - "Cita una campanya del dosier, però no explica quin criteri legal o conceptual il·lustra."
+      - "Recolza els seus arguments en campanyes reals del dosier i en els criteris legals."
+      - "A més, contraposa una campanya responsable amb una altra retirada per sexista per a fonamentar la seua postura."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "No respon als arguments de l'altre equip o repetix la seua consigna."
+      - "Respon a algun argument de l'altre equip, però sense rebatre'n la raó ni citar un cas."
+      - "Respon als arguments de l'altre equip amb un criteri o un cas del dosier, sense recórrer a consignes."
+      - "A més, reconeix un punt vàlid de l'altre equip i explica per què no canvia la seua conclusió."
+  - criterio: "Tancament individual"
+    niveles:
+      - "El tancament no arriba a cinc línies o no inclou cap criteri de comunicació responsable."
+      - "Escriu una conclusió, però el criteri de comunicació és genèric, com «ser respectuosos»."
+      - "Escriu una conclusió de cinc línies i defineix un criteri concret de comunicació responsable per al seu projecte."
+      - "A més, indica en quina decisió de la quarta P del seu projecte aplicaria eixe criteri i com."
 estado: publicado
 slug: "asignaturas/gpe-bach/actividades/04-caso-publicidad-responsable.ca"
 ---

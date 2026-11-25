@@ -17,6 +17,31 @@ materiales:
   - "Plantilla de proposta de valor (inclosa davall)"
   - "Checklist d'auditoria d'empremta digital (busca del propi nom en Google en mode incògnit)"
   - "Rúbrica de perfil de LinkedIn per a l'auditoria creuada, compartida en digital"
+rubrica:
+  - criterio: "Claredat de la proposta de valor"
+    niveles:
+      - "La proposta no diu a qui ajuda ni què aconseguix, com «el meu se'm dóna bé»."
+      - "Completa la plantilla, però el diferencial és genèric i valdria per a qualsevol persona amb el mateix títol."
+      - "Una frase amb la plantilla diu a qui ajuda, què aconseguix i el seu diferencial concret, triada entre tres versions."
+      - "A més, el diferencial s'apoia en un fet comprovable, com un projecte del títol o unes pràctiques."
+  - criterio: "Qualitat del perfil de LinkedIn"
+    niveles:
+      - "El perfil té un titular com «Estudiant» i un resum amb frases buides, o està incomplet."
+      - "Té foto i titular descriptiu, però el resum no es deriva de la proposta o falten apartats."
+      - "Té foto adequada, titular descriptiu, resum de 200 a 300 paraules sense frases buides i almenys cinc aptituds."
+      - "A més, el resum inclou una dada distintiva que el titular no repetix i les aptituds responen al seu objectiu professional."
+  - criterio: "Auditoria de l'empremta digital"
+    niveles:
+      - "No lliura conclusions de la cerca del seu nom o només copia les preguntes del checklist."
+      - "Lliura mitja pàgina de conclusions, però no aplica cap mesura de protecció."
+      - "Lliura conclusions reals de la cerca en mode incògnit i aplica almenys una mesura de protecció."
+      - "A més, distingix el que convé corregir del que convé reforçar i justifica cada decisió."
+  - criterio: "Rigor en l'auditoria creuada"
+    niveles:
+      - "Avalua el perfil del company sense usar la rúbrica o sense proposar cap millora."
+      - "Usa la rúbrica, però les millores són vagues, com «posa-li més coses»."
+      - "Avalua amb la rúbrica, respon a les tres preguntes de reclutador i proposa millores útils."
+      - "A més, ordena les millores de major a menor impacte en la primera impressió de sis segons."
 estado: publicado
 ---
 

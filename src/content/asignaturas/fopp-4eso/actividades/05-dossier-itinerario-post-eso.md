@@ -14,6 +14,31 @@ materiales:
   - "Rúbrica de evaluación impresa para el profesor y para coevaluación entre alumnos"
 competencias_clave: [CPSAA, CD, CE, CCL]
 competencias_especificas: [CE5, CE8]
+rubrica:
+  - criterio: "Diversidad y concreción de las tres opciones"
+    niveles:
+      - "Presenta menos de tres opciones o no incluye una de Bachillerato y una de FP."
+      - "Presenta las tres opciones, pero alguna no indica centro concreto ni requisitos de acceso, o no es realista para el alumno."
+      - "Presenta una opción de Bachillerato, una de FP y una tercera distinta, cada una con centro, requisitos de acceso y salidas."
+      - "Además, compara las tres opciones entre sí con datos concretos de empleo, salario y distancia al domicilio."
+  - criterio: "Rigor de los datos y de las fuentes"
+    niveles:
+      - "Las cifras de empleabilidad y salario no llevan fuente o proceden de opiniones sin verificar."
+      - "Cita fuentes, pero sin URL o fecha de consulta, o usa una sola fuente en alguna opción."
+      - "Cada dato de empleabilidad y salario lleva URL y fecha de consulta, con al menos dos fuentes oficiales por opción."
+      - "Además, contrasta las dos fuentes de cada opción y señala qué diferencias hay entre ellas."
+  - criterio: "Razonamiento de la conclusión personal"
+    niveles:
+      - "La conclusión elige una opción sin explicar el criterio ni mencionar dudas o información pendiente."
+      - "Explica la elección, pero sin aplicar a los datos los criterios de la unidad o con menos de tres dudas concretas."
+      - "Aplica los criterios de la unidad a los datos del dossier, nombra al menos tres dudas y la información que le falta."
+      - "Además, justifica con datos del propio dossier por qué descarta cada una de las otras dos opciones."
+  - criterio: "Presentación oral"
+    niveles:
+      - "Se pasa de los cinco minutos o se queda muy corto, y lee sin una estructura reconocible."
+      - "Respeta los cinco minutos, pero no se sigue la estructura o no responde a las preguntas con datos."
+      - "Presenta las tres opciones y su preferencia en cinco minutos, con estructura clara, y responde a las preguntas del grupo."
+      - "Además, responde a las preguntas citando datos del dossier y su fuente, sin leer."
 estado: publicado
 ---
 

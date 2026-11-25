@@ -17,6 +17,31 @@ materiales:
   - "Materials de prototipatge ràpid (paper, post-its, cartó)"
   - "Fitxes de postura per al debat (a favor de finançar per venda / per subvenció / mixta)"
   - "Rúbrica de debat: argumentació, escolta i ús d'evidència"
+rubrica:
+  - criterio: "Qualitat de l'sprint de design thinking"
+    niveles:
+      - "Se salta fases del design thinking o no formula el problema amb persona, necessitat i troballa."
+      - "Recorre les cinc fases, però la definició del problema és genèrica o el prototip no es prova."
+      - "Recorre les cinc fases, defineix el problema amb persona, necessitat i troballa, i prova el prototip amb un altre equip."
+      - "A més, modifica el prototip o la definició a partir del que torna l'equip que el prova."
+  - criterio: "Vinculació amb un ODS"
+    niveles:
+      - "No vincula la solució amb cap ODS o cita un sense explicar la relació."
+      - "Cita un ODS amb una relació general que valdria per a qualsevol projecte."
+      - "Identifica l'ODS amb el qual connecta la seua solució i explica la relació amb el problema definit."
+      - "A més, assenyala una meta concreta de l'ODS i com es comprovaria que la solució hi contribuïx."
+  - criterio: "Qualitat de l'argumentació en el debat"
+    niveles:
+      - "Defén la seua postura amb eslògans sense evidència, o rebat les persones en lloc de les idees."
+      - "Exposa una tesi clara, però no l'aplica al projecte ni respon a les altres postures."
+      - "Defén amb evidència la seua via de finançament aplicada al projecte i rebat les altres postures respectant els torns."
+      - "A més, reconeix un límit de la seua pròpia postura i explica com el reduiria en el projecte."
+  - criterio: "Distinció de les tres figures"
+    niveles:
+      - "Confon empresa mercantil, emprenedoria social i ONG, o les presenta com a la mateixa cosa."
+      - "Distingix alguna figura, però no explica com es finança o quin paper té el benefici en cadascuna."
+      - "Diferencia les tres figures i situa el seu projecte en una d'elles, justificant el paper del benefici."
+      - "A més, explica què canviaria en el finançament del projecte si el situara en una de les altres figures."
 estado: publicado
 ---
 

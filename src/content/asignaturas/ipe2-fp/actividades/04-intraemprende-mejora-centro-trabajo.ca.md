@@ -16,6 +16,31 @@ materiales:
   - "Plantilla de proposta d'intraemprenedoria (problema, tipus d'innovació, benefici, cost, risc)"
   - "Tauler Kanban en paper o pissarra (Per fer / En curs / Fet)"
   - "Rúbrica de defensa davant el comité de direcció"
+rubrica:
+  - criterio: "Qualitat de la ineficiència detectada"
+    niveles:
+      - "Descriu un problema genèric, com «falta comunicació», sense relació amb un procés real."
+      - "Descriu un problema de l'entorn, però sense concretar on, quan o a qui afecta."
+      - "Descriu en una frase una ineficiència real i concreta del seu centre de pràctiques o taller."
+      - "A més, aporta una evidència observada, com temps, malbaratament o queixes, que mostra l'abast del problema."
+  - criterio: "Disseny de la millora"
+    niveles:
+      - "La proposta no indica tipus d'innovació, cost ni risc, o és irrealitzable."
+      - "Indica tipus d'innovació, benefici, cost i risc, però algun està mal classificat o no és realista."
+      - "Classifica bé el tipus d'innovació i justifica benefici, cost i risc realistes per al seu entorn."
+      - "A més, compara la millora amb una altra alternativa i explica per què tria esta."
+  - criterio: "Planificació en Kanban"
+    niveles:
+      - "El tauler no arreplega targetes o reunix tota la implantació en una sola tasca."
+      - "Descompon la millora en targetes, però sense ordre lògic ni responsables."
+      - "Descompon la implantació en targetes ordenades amb criteri en el tauler, amb responsables."
+      - "A més, estima la durada de cada targeta i identifica quina bloqueja les altres."
+  - criterio: "Defensa davant del comité"
+    niveles:
+      - "No argumenta el benefici o no respon a les objeccions de la direcció."
+      - "Presenta el benefici en tres minuts, però respon a les objeccions sense arguments."
+      - "Defén la proposta en tres minuts amb el benefici clar i respon a les objeccions de la direcció."
+      - "A més, accepta una objecció i proposa un canvi concret que la resol."
 estado: publicado
 ---
 

@@ -14,6 +14,31 @@ materiales:
   - "Reglas del debate con tiempos por turno (apertura, refutación, cierre)"
   - "Rúbrica de debate para el jurado: argumentación, uso de evidencia y escucha"
   - "Cronómetro visible"
+rubrica:
+  - criterio: "Calidad de la argumentación"
+    niveles:
+      - "Expone opiniones generales sin una tesis clara o con razones que no se enlazan."
+      - "Formula una tesis, pero las razones aparecen sueltas y no sostienen la conclusión."
+      - "Formula una tesis clara y la sostiene con razones encadenadas en la apertura, la refutación y el cierre."
+      - "Además, acota la tesis con matices, por ejemplo según el sector, sin perder claridad."
+  - criterio: "Uso de evidencia"
+    niveles:
+      - "No cita ninguna oferta ni testimonio del dosier para apoyar sus argumentos."
+      - "Cita una prueba del dosier, pero sin explicar qué demuestra."
+      - "Apoya sus argumentos en dos o tres pruebas del dosier, como ofertas reales o testimonios, y explica qué demuestran."
+      - "Además, señala una limitación de una prueba, por ejemplo que procede de un solo sector, y la tiene en cuenta."
+  - criterio: "Réplica y escucha"
+    niveles:
+      - "Interrumpe, ataca a las personas o ignora lo que dice el equipo contrario."
+      - "Respeta los turnos, pero rebate sin referirse a lo que el otro equipo ha dicho."
+      - "Rebate los argumentos concretos del contrario respetando los turnos y sin atacar a las personas."
+      - "Además, resume con precisión el argumento del contrario antes de rebatirlo."
+  - criterio: "Cierre personal razonado"
+    niveles:
+      - "La línea final no indica qué peso da a título y a actitud en su plan."
+      - "Indica un peso para título y actitud, pero sin relación con lo que se ha debatido."
+      - "Indica en una línea qué peso da a título y actitud y lo relaciona con argumentos del debate."
+      - "Además, concreta a qué dedicará su esfuerzo hasta titular según ese peso."
 estado: publicado
 ---
 
