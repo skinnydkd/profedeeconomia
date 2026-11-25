@@ -35,7 +35,7 @@ preguntas:
     opciones:
       - "Els productes més rendibles solen ser els més líquids i segurs."
       - "Rendibilitat i risc van de la mà; alta rendibilitat sense risc és senyal d'alarma."
-      - "El risc s'elimina diversificant entre productes del mateix banc."
+      - "El risc s'elimina per complet diversificant entre productes del mateix banc."
       - "La liquiditat és independent del termini del producte."
     correcta: 1
     explicacion: "La regla bàsica del sistema financer és que rendibilitat i risc van units. Si algú oferix rendibilitat molt superior a la sense risc (bo de l'Estat a curt termini) sense assumir risc proporcional, hi ha tres possibilitats: estafa, producte el risc del qual el client no comprén, o informació privilegiada il·legal."
@@ -49,15 +49,15 @@ preguntas:
     explicacion: "El FGD cobrix fins a 100.000 € per titular i per entitat. Per això qui acumula més de 100.000 € en depòsits sol repartir-los entre diversos bancs per a mantindre tot el saldo garantit."
   - enunciado: "Una hipoteca té un TIN del 2,8 % i una TAE del 3,9 %. Què explica la diferència entre els dos indicadors?"
     opciones:
-      - "Un error de càlcul del banc; haurien de coincidir."
-      - "Les comissions i els productes vinculats obligatoris (assegurances, compte nòmina) que la TAE sí que inclou i el TIN no."
-      - "La inflació esperada durant la vida del préstec."
+      - "Un error de càlcul del banc, que hauria de coincidir sempre amb la TAE en qualsevol hipoteca."
+      - "Les comissions i els productes vinculats obligatoris (assegurances, nòmina) que la TAE inclou i el TIN no."
+      - "La inflació esperada durant la vida del préstec, que la TAE descompta del cost real."
       - "El diferencial sobre l'Euríbor."
     correcta: 1
     explicacion: "El TIN és el tipus nominal pur aplicat al capital pendent. La TAE inclou a més comissions, assegurances vinculades i altres despeses, i és l'indicador legalment obligatori per a comparar préstecs. La diferència entre tots dos reflectix el cost real dels productes vinculats."
   - enunciado: "L'Euríbor és la referència habitual de les hipoteques variables a Espanya. Què representa exactament?"
     opciones:
-      - "El tipus d'interés que el Banc d'Espanya cobra als bancs comercials."
+      - "El tipus d'interés que el Banc d'Espanya cobra als bancs comercials pels seus préstecs."
       - "El tipus mitjà al qual es presten diners entre si els grans bancs de la zona euro a curt termini."
       - "El tipus oficial del deute públic espanyol."
       - "L'IPC anual de la zona euro."
@@ -66,9 +66,9 @@ preguntas:
   - enunciado: "La lògica econòmica d'una assegurança consistix en…"
     opciones:
       - "Obtindre una rendibilitat superior a la d'un depòsit."
-      - "Pagar una prima certa i xicoteta a canvi de transferir a l'asseguradora el risc d'un sinistre improbable però costós."
+      - "Pagar una prima xicoteta a canvi que l'asseguradora assumisca el risc d'un sinistre improbable però costós."
       - "Acumular un capital per a la jubilació."
-      - "Diversificar la inversió entre diversos productes financers."
+      - "Diversificar la inversió entre diversos productes financers per a reduir el risc de pèrdues."
     correcta: 1
     explicacion: "L'assegurança no és una inversió: no busca rendibilitat. És una ferramenta de gestió del risc. La regla pràctica és assegurar allò gran (incendi, accident greu, indemnització a tercers) i autoassegurar allò xicotet (trencament del mòbil, garantia estesa d'un electrodomèstic de 200 €)."
   - enunciado: "Quina d'estes funcions NO correspon al Banc d'Espanya?"

@@ -55,6 +55,29 @@ Cada parella lliura:
 - El full de ruta reduït de l'autònom, amb la raó de per què és més curt.
 - Una explicació breu del DUE i el nom del PAE de referència localitzat.
 
+## Solució orientativa per al professor
+
+**Pas 1. Allò que NO necessita un autònom** (els de societat): certificació negativa de denominació, compte bancari amb depòsit del capital social, escriptura davant de notari, NIF de la societat i inscripció en el Registre Mercantil.
+
+**Pas 2. Full de ruta de la SL**, en l'orde de la unitat 3:
+
+| Orde | Tràmit | Organisme |
+| --- | --- | --- |
+| 1 | Certificació negativa de denominació | Registre Mercantil Central |
+| 2 | Obertura de compte bancari i depòsit del capital social | Entitat bancària |
+| 3 | Escriptura de constitució i estatuts | Notaria |
+| 4 | Obtenció del NIF de la societat | Agència Tributària |
+| 5 | Alta en el cens d'empresaris (model 036) | Agència Tributària |
+| 6 | Inscripció en el Registre Mercantil | Registre Mercantil |
+| 7 | Alta en la Seguretat Social | Seguretat Social |
+| 8 | Llicència municipal d'activitat o obertura (si escau) | Ajuntament |
+
+El llibre presenta els passos 4 i 5 com un mateix pas, i els passos 6 i 7 també; l'orde dins de cada parella és el de la unitat. Allò que la unitat deixa clar: el nom va primer, l'escriptura abans de la inscripció i les llicències al final.
+
+**Pas 3. Full de ruta de l'autònom:** només dos passos, l'alta censal en Hisenda amb el model 036 (Agència Tributària) i l'alta en el RETA (Seguretat Social). És molt més curt perquè l'autònom és una persona física que exerceix en el seu propi nom: no hi ha societat que nomenar, dotar de capital (no exigix capital), constituir davant de notari ni inscriure en el Registre Mercantil. La llicència municipal, si l'activitat l'exigix, és un tràmit apart de la forma jurídica.
+
+**Pas 4. DUE i PAE:** el DUE (Document Únic Electrònic) és un únic formulari electrònic que arreplega totes les dades i, en enviar-se, dispara els tràmits davant d'Hisenda, la Seguretat Social i el Registre Mercantil, des d'un PAE i a través de CIRCE. El PAE de referència depén del centre o municipi de cada parella: es comprova en paeelectronico.es.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

@@ -30,9 +30,9 @@ preguntas:
     correctas: [1, 0, 3, 2]
     explicacion: "Els impostos directes graven el que guanyes o el que tens (IRPF, Societats, Patrimoni); els indirectes, el que consumixes (IVA i els especials sobre alcohol, tabac i hidrocarburs), i els paga tothom al mateix tipus, guanye el que guanye."
   - tipo: verdadero-falso
-    enunciado: "Si puges de tram a l'IRPF, tota la teua renda passa a tributar al tipus més alt."
-    correcta: false
-    explicacion: "Fals, i és l'error més estés. Cada tipus s'aplica només a la part de renda que cau dins del seu tram. Per això el tipus mitjà que pagues sempre és menor que el marginal, i guanyar un euro més mai et deixa amb menys diners."
+    enunciado: "Si puges de tram a l'IRPF, només la part de la teua renda que cau dins del tram nou tributa al tipus més alt."
+    correcta: true
+    explicacion: "Cert, i per això guanyar un euro més mai et deixa amb menys diners. Cada tipus s'aplica només a la part de renda que cau dins del seu tram; l'error més estés és creure que tota la renda passa al tipus més alt. El tipus mitjà que pagues sempre és menor que el marginal."
   - tipo: numerico
     enunciado: "Amb l'escala general simplificada (19 % fins a 12.450 € i 24 % de 12.450 a 20.200 €), quants euros de quota corresponen a una renda de 20.000 €, abans d'aplicar el mínim personal?"
     respuesta: 4177.5

@@ -11,7 +11,7 @@ preguntas:
     opciones:
       - "A haver muntat almenys una empresa amb beneficis."
       - "En l'actitud de buscar de forma activa necessitats i oportunitats i actuar per a respondre-les."
-      - "A tindre una idea revolucionària que ningú haja tingut abans."
+      - "A tindre una idea revolucionària que ningú haja tingut abans i patentar-la com més prompte."
       - "A disposar de molt de capital inicial per a invertir."
     correcta: 1
     explicacion: "L'esperit emprenedor és abans de res una manera de mirar: buscar activament necessitats i oportunitats en l'entorn i voler resoldre-les. No exigix tindre una empresa, ni una idea genial, ni diners: és una actitud."
@@ -20,7 +20,7 @@ preguntas:
       - "No hi ha diferència: són sinònims en l'emprenedoria."
       - "Una idea sempre val diners; una oportunitat no."
       - "Una oportunitat és una idea que respon a una necessitat real, algú la valora i és realitzable amb els recursos disponibles."
-      - "Una idea és d'una empresa i una oportunitat és d'una persona."
+      - "Una idea és d'una empresa i una oportunitat és d'una persona, que només la veu qui ja té un negoci en marxa."
     correcta: 2
     explicacion: "Una idea és qualsevol ocurrència; una oportunitat és una idea que respon a una necessitat real, per a la qual hi ha algú disposat a valorar-la i que es pot dur a terme. Moltes idees brillants no són oportunitats perquè ningú les necessita."
   - enunciado: "Segons la unitat, la creativitat…"
@@ -41,7 +41,7 @@ preguntas:
     explicacion: "La fase divergent produïx moltes idees sense jutjar-les; la convergent les avalua i tria. L'error més comú és criticar mentres es generen idees: el primer «això no funcionaria» mata la fluïdesa. Per això durant la fase divergent està prohibit criticar."
   - enunciado: "Una persona proactiva es caracteritza per…"
     opciones:
-      - "Reaccionar amb rapidesa quan un problema ja ha esclatat."
+      - "Reaccionar amb rapidesa quan un problema ja ha esclatat i buscar la millor solució."
       - "Esperar instruccions per a no equivocar-se."
       - "Prendre la iniciativa i actuar de forma anticipada sobre el que està en la seua mà."
       - "Justificar la seua inacció apel·lant a les circumstàncies."
@@ -57,7 +57,7 @@ preguntas:
     explicacion: "Creure que cal tindre una idea revolucionària és una creença limitant i falsa: la majoria de projectes no inventen res nou, sinó que milloren una cosa existent. Les altres tres opcions són afirmacions certes que desmunten mites."
   - enunciado: "Segons les dades de l'Informe GEM Espanya, l'edat de qui emprén a Espanya…"
     opciones:
-      - "Es concentra sobretot en els menors de 25 anys."
+      - "Es concentra sobretot en els menors de 25 anys, que són els qui més munten empreses."
       - "És majoritàriament intermèdia, amb experiència laboral i vital prèvia (al voltant dels 35-54 anys)."
       - "No té cap relació amb l'edat."
       - "Supera sempre els 65 anys."
@@ -67,7 +67,7 @@ preguntas:
     opciones:
       - "Com un fracàs definitiu que convé amagar."
       - "Com una font d'informació i aprenentatge, buscant fallar prompte, barat i traent una lliçó."
-      - "Com una cosa que es pot evitar per complet planificant bé."
+      - "Com una cosa que es pot evitar per complet si es planifica bé cada pas del projecte."
       - "Com un senyal que eixa persona no servix per a emprendre."
     correcta: 1
     explicacion: "L'error no s'entén com a fracàs definitiu, sinó com a informació: cada intent fallit ensenya una cosa. La clau és equivocar-se prompte, barat i aprenent, per a corregir a temps. En fer una cosa nova, equivocar-se és inevitable."
@@ -83,7 +83,7 @@ preguntas:
     opciones:
       - "Perquè un DAFO només conta si el revisa un professor."
       - "Perquè un DAFO on tot són fortaleses és autocomplaença i no aporta informació útil."
-      - "Perquè reconéixer debilitats garantix l'èxit del projecte."
+      - "Perquè reconéixer debilitats garantix l'èxit del projecte en qualsevol cas."
       - "Perquè les amenaces externes són les úniques caselles que importen."
     correcta: 1
     explicacion: "Un DAFO on tot són fortaleses i oportunitats no servix: és autocomplaença. Reconéixer una debilitat no és admetre una derrota, sinó guanyar informació per a decidir millor, millorar-la o rodejar-se de qui la complemente."
@@ -92,9 +92,9 @@ preguntas:
     correcta: false
     explicacion: "Una idea és qualsevol ocurrència; una oportunitat és una idea que respon a una necessitat real, que algú valora i que és realitzable amb els recursos disponibles. Moltes idees brillants no són oportunitats perquè ningú les necessita."
   - tipo: verdadero-falso
-    enunciado: "Durant la fase divergent de generació d'idees convé anar descartant i criticant les propostes a mesura que sorgixen."
-    correcta: false
-    explicacion: "És just el que no s'ha de fer: en la fase divergent es generen moltes idees sense jutjar-les. Criticar mentres es creen frena la fluïdesa i tanca el grup. L'avaluació es reserva per a la fase convergent."
+    enunciado: "Durant la fase divergent de generació d'idees convé ajornar la crítica i deixar que les propostes sorgisquen sense jutjar-les."
+    correcta: true
+    explicacion: "És vertadera: en la fase divergent es generen moltes idees sense jutjar-les. Criticar mentres es creen frena la fluïdesa i tanca el grup; l'avaluació es reserva per a la fase convergent."
   - tipo: relacionar
     enunciado: "Emparella cada casella del DAFO amb la seua classificació correcta:"
     izquierda: ["Fortaleses", "Debilitats", "Oportunitats", "Amenaces"]

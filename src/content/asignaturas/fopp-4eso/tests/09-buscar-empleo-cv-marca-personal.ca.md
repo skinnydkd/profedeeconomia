@@ -42,9 +42,9 @@ preguntas:
   - enunciado: "Per al titular de LinkedIn d'un alumne d'FP Superior buscant pràctiques, quina opció és la més correcta?"
     opciones:
       - "«Estudiant»."
-      - "«Hola, sóc Pablo i busque treball»."
-      - "«Estudiant d'FP Superior en Desenvolupament d'Aplicacions Web | Buscant pràctiques en empreses de desenvolupament backend»."
-      - "«Jove proactiu, dinàmic i compromés amb ganes d'aprendre»."
+      - "«Hola, sóc Pablo i busque treball de qualsevol cosa, escriu-me per privat!»."
+      - "«Estudiant d'FP Superior en Desenvolupament d'Aplicacions Web | Buscant pràctiques en desenvolupament backend»."
+      - "«Jove proactiu, dinàmic i compromés, amb moltes ganes d'aprendre i de créixer en una empresa»."
     correcta: 2
     explicacion: "El titular de LinkedIn és el que apareix en cada busca, comentari i interacció, així que ha de ser **descriptiu**: estudis + què busques + matís concret. «Estudiant» a soles és invisible; els adjectius buits («proactiu», «dinàmic», «compromés») no signifiquen res perquè tot el món els usa. Un titular específic et fa aparéixer en busques de reclutadors que filtren per tecnologia o vertical."
   - enunciado: "Trobes contingut problemàtic sobre tu en una web aliena en fer una busca en Google amb el teu nom. Quin dret pots exercir i sota quina normativa?"

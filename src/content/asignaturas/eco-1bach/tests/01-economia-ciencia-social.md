@@ -9,7 +9,7 @@ preguntas:
     opciones:
       - "La producción y distribución de la riqueza material de las naciones."
       - "El comportamiento humano como una relación entre fines y medios escasos que tienen usos alternativos."
-      - "El funcionamiento de los mercados financieros y la formación de los precios."
+      - "El funcionamiento de los mercados financieros y la formación de los precios de las acciones."
       - "Las leyes que rigen el crecimiento económico a largo plazo."
     correcta: 1
     explicacion: "La definición de Robbins integra los tres elementos clave —fines, medios escasos, usos alternativos— y se considera todavía hoy la definición canónica de la disciplina."
@@ -31,7 +31,7 @@ preguntas:
     explicacion: "Las tres preguntas de Samuelson —qué, cómo y para quién— resumen el problema económico fundamental que cada sistema económico resuelve de un modo distinto."
   - enunciado: "Una economía produce trigo y ordenadores y se sitúa en un punto INTERIOR (por debajo) de su frontera de posibilidades de producción. Esto significa que…"
     opciones:
-      - "La economía es eficiente pero produce poco."
+      - "La economía es eficiente pero produce poco porque la demanda es baja."
       - "La economía tiene recursos infrautilizados: hay paro o capacidad ociosa."
       - "Necesita crecimiento tecnológico para alcanzar ese punto."
       - "Está produciendo más de lo que sus recursos permiten."
@@ -42,13 +42,13 @@ preguntas:
       - "Cero, porque no gasta dinero al estar descansando."
       - "El ingreso que habría obtenido vendiendo durante esas dos horas, neto de los costes evitados."
       - "El alquiler de la tienda durante esas dos horas."
-      - "Los impuestos que dejará de pagar por no facturar esas horas."
+      - "Los impuestos que dejará de pagar a Hacienda por no facturar esas horas de trabajo."
     correcta: 1
     explicacion: "El coste de oportunidad es el valor de la mejor alternativa a la que se renuncia. Aquí, la mejor alternativa a descansar es seguir vendiendo, así que el coste es el beneficio neto que se sacrifica."
   - enunciado: "En un sistema económico mixto, el papel del sector público se caracteriza por…"
     opciones:
       - "Sustituir al mercado en la asignación de la mayoría de los recursos."
-      - "Limitarse a la defensa y la justicia, dejando el resto al mercado puro."
+      - "Limitarse a la defensa y la justicia, dejando el resto al mercado puro y sin regulación."
       - "Combinar regulación, provisión de bienes públicos, redistribución y estabilización macroeconómica."
       - "Fijar precios y salarios mediante planes plurianuales."
     correcta: 2
@@ -71,7 +71,7 @@ preguntas:
     explicacion: "A medida que una economía se especializa en un bien, los recursos que va dedicando a ese bien son cada vez menos adecuados, por lo que cada unidad adicional cuesta más en términos del otro bien: la FPP es cóncava respecto al origen."
   - enunciado: "Una crítica recurrente al uso de modelos en economía es que simplifican excesivamente la realidad. La respuesta metodológica habitual de la disciplina es que…"
     opciones:
-      - "Los modelos son malos y deberían sustituirse por descripciones realistas detalladas."
+      - "Los modelos son malos y deberían sustituirse por descripciones realistas detalladas de cada mercado."
       - "Los modelos pretenden ser realistas y por eso siempre son criticables cuando fallan."
       - "Los modelos son simplificaciones deliberadas que se juzgan por su utilidad explicativa, no por su realismo."
       - "Solo los modelos matemáticamente completos son aceptables como ciencia."

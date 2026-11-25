@@ -63,6 +63,30 @@ PER A CADA OFERTA, COMPROVA:
 4. **Detecció de l'estafa (8 min).** Aprofundixen en l'oferta B: quines senyals delaten que no és un treball real? El professor introduïx el concepte d'oferta fraudulenta i de que un treball legal **mai** no et demana pagar per a començar.
 5. **Posada en comú (5 min).** Cada parella comparteix la seua decisió i la senyal d'alarma més clara que ha trobat. El professor tanca amb la regla d'or: un treball de veritat et paga a tu; si et demanen pagar per a començar, fuig.
 
+## Solució orientativa per al professor
+
+**Pas 2. La checklist aplicada a les tres ofertes** (tot ix del text de cada anunci):
+
+| Punt | A, reposador/a | B, «guanya diners des de casa» | C, monitor/a de campament |
+| --- | --- | --- | --- |
+| 1. Contracte i alta en la Seguretat Social | Sí: contracte temporal a temps parcial i alta | No en consta cap dels dos | Sí: contracte de duració determinada i alta |
+| 2. Salari o conveni | Remet a conveni | No indica salari, només «ingressos il·limitats» | Remet al conveni d'oci educatiu |
+| 3. Pagament per avançat | No | **Sí: 90 € pel pack d'inici** (senyal d'alarma) | No (allotjament i manutenció inclosos) |
+| 4. Promeses | Realistes | Exagerades: «ingressos il·limitats», «fes-te el teu propi cap» | Realistes: avisa de «treball intens amb menors» |
+| 5. Horari i tasques | Horari de matins, 20 h/setmana i lloc concret | Vague: «les hores que vulgues», «sense horaris», sense tasques | Lloc i duració (15 dies) clars; l'anunci no dóna horari |
+| 6. Requisits per a un júnior | Sí: no es requerix experiència | No demana experiència, però sí diners | No per a este perfil: exigix el títol de monitor de temps lliure |
+| 7. Empresa identificable | Amb matisos: botiga física a la localitat, sense nom | No: anònima, contacte només per WhatsApp | L'anunci no la nomena, encara que cita el conveni aplicable |
+
+**Pas 3. Decisió per a un alumne de 16 anys sense experiència i sense títol de monitor:** l'oferta A és la viable i la més adequada (amb contracte, alta, conveni i sense requisits que un júnior no complisca). La C es descarta per a este perfil perquè exigix un títol que no té, encara que l'anunci siga legal. La B es descarta per fraudulenta.
+
+**Pas 4. Senyals que delaten l'oferta B:**
+
+- Demana diners per avançat (90 €), quan un treball legal mai no demana pagar per a començar.
+- Promet «ingressos il·limitats» i «fes-te el teu propi cap», sense concretar tasques ni horari.
+- No parla de contracte, alta en la Seguretat Social ni salari.
+- L'empresa és anònima i només dóna un contacte per WhatsApp.
+- Fica pressa: «places limitades, apunta't ja».
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

@@ -11,8 +11,8 @@ preguntas:
     opciones:
       - "Consum, inversió i despesa pública."
       - "Consum, inversió, despesa pública i exportacions netes (X − M)."
-      - "Consum, estalvi, inversió i exportacions."
-      - "Renda disponible, estalvi i despesa pública."
+      - "Consum, estalvi, inversió i exportacions de béns i servicis."
+      - "Renda disponible, estalvi i despesa pública de les llars."
     correcta: 1
     explicacion: "La AD reproduïx la composició del PIB pel mètode de la despesa: AD = C + I + G + (X − M). L'estalvi no és un component de la despesa agregada, sinó la part de la renda que no es consumix."
   - enunciado: "El pendent negatiu de la corba de demanda agregada s'explica per tres mecanismes. Quin dels següents NO és un d'ells?"
@@ -26,8 +26,8 @@ preguntas:
   - enunciado: "Quina d'estes afirmacions descriu correctament la diferència entre SRAS i LRAS?"
     opciones:
       - "SRAS és vertical en Y* i LRAS té pendent positiu."
-      - "Totes dues tenen pendent positiu, però la SRAS és més empinada que la LRAS."
-      - "SRAS té pendent positiu per rigidesa de costos a curt termini; LRAS és vertical en la producció potencial Y* perquè els costos s'ajusten plenament."
+      - "Totes dues tenen pendent positiu, però la SRAS és més empinada que la LRAS perquè els costos són rígids."
+      - "SRAS té pendent positiu per rigidesa de costos a curt termini; LRAS és vertical en la producció potencial Y*."
       - "SRAS i LRAS són idèntiques; la distinció és només terminològica."
     correcta: 2
     explicacion: "La SRAS s'inclina cap amunt perquè alguns costos (salaris, lloguers, matèries primeres) són rígids a curt termini, així que una pujada de preus eleva els marges i la producció. A llarg termini tots els costos s'ajusten al nivell de preus i la quantitat oferida depén només de K, L i A: la LRAS és vertical en Y*."
@@ -41,8 +41,8 @@ preguntas:
     explicacion: "Amb SRAS de pendent positiu, el desplaçament de AD a la dreta eleva tant el nivell de preus com la producció a curt termini. L'economia se sobreescalfa per damunt de Y*. A llarg termini, però, els costos s'ajusten, la SRAS es desplaça a l'esquerra i l'economia torna a Y* només amb preus més alts (neutralitat del diners)."
   - enunciado: "L'encariment brusc del petroli i el gas natural en 2022 després de la invasió d'Ucraïna és un cas canònic de…"
     opciones:
-      - "Xoc positiu de demanda: puja P i puja Y."
-      - "Xoc negatiu de demanda: baixen P i Y."
+      - "Xoc positiu de demanda: puja P i puja Y (expansió)."
+      - "Xoc negatiu de demanda: baixen P i Y (recessió)."
       - "Xoc negatiu d'oferta (estanflació): puja P i baixa Y."
       - "Xoc positiu d'oferta: baixa P i puja Y."
     correcta: 2
@@ -57,8 +57,8 @@ preguntas:
     explicacion: "L'esquema clàssic dels cicles econòmics identifica quatre fases: expansió (creixement sostingut per damunt de Y*), recessió (caiguda del PIB durant almenys dos trimestres), depressió (el fons del cicle: la producció toca el seu mínim i l'atur, el seu màxim) i recuperació (eixida de la recessió fins a tancar la bretxa de producció). El NBER i el CEPR no usen este esquema: daten pics i valls."
   - enunciado: "En el model de Solow simplificat, quin motor del creixement és l'únic que sosté augments del PIB per capita a llarg termini?"
     opciones:
-      - "L'acumulació de capital físic (K)."
-      - "L'augment de la població activa (L)."
+      - "L'acumulació contínua de capital físic per treballador."
+      - "L'augment sostingut de la població activa (L) del país."
       - "La millora de la productivitat total dels factors (A o PTF)."
       - "L'augment de la despesa pública (G)."
     correcta: 2
@@ -66,8 +66,8 @@ preguntas:
   - enunciado: "L'Índex de Desenvolupament Humà (IDH) del PNUD es construïx combinant tres dimensions. Quines són?"
     opciones:
       - "PIB per capita, desigualtat i desocupació."
-      - "Salut (esperança de vida), educació (anys d'escolarització) i renda (RNB per capita en PPA, transformada logarítmicament)."
-      - "Renda, llibertat política i participació democràtica."
+      - "Salut (esperança de vida), educació (anys d'escolarització) i renda (RNB per capita en PPA)."
+      - "Renda, llibertat política i participació democràtica mesurades per enquestes d'opinió."
       - "Esperança de vida, índex de Gini i taxa de pobresa."
     correcta: 1
     explicacion: "L'IDH, dissenyat per Mahbub ul Haq i Amartya Sen per al PNUD en 1990, combina amb pes igual salut (esperança de vida en nàixer), educació (mitjana geomètrica entre anys mitjans i anys esperats d'escolarització) i renda (RNB per capita en dòlars PPA, logarítmica). És la mitjana geomètrica de les tres dimensions, no l'aritmètica."

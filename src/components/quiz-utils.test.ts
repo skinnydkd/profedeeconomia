@@ -13,6 +13,7 @@ import {
   textoPlano,
   trozosInline,
   enfasisHtml,
+  ordenImpreso,
 } from './quiz-utils';
 
 describe('lecturasNumero', () => {
@@ -208,5 +209,19 @@ describe('intento guardado', () => {
 describe('enfasisHtml', () => {
   it('renders emphasis as HTML and leaves existing markup alone', () => {
     expect(enfasisHtml('Total = **9.071,89 €** con *i* y H<sub>2</sub>, VF_C₀')).toBe('Total = <strong>9.071,89 €</strong> con <em>i</em> y H<sub>2</sub>, VF_C₀');
+  });
+});
+
+describe('ordenImpreso', () => {
+  it('is a stable permutation for a given key', () => {
+    const a = ordenImpreso('eco-1bach:4:0', 4);
+    expect([...a].sort()).toEqual([0, 1, 2, 3]);
+    expect(ordenImpreso('eco-1bach:4:0', 4)).toEqual(a);
+  });
+
+  it('spreads the right answer over the letters when the file always puts it second', () => {
+    const letras = [0, 0, 0, 0];
+    for (let q = 0; q < 200; q++) letras[ordenImpreso(`ipe2-fp:${q % 9}:${q}`, 4).indexOf(1)]++;
+    for (const n of letras) expect(n).toBeGreaterThan(30);
   });
 });

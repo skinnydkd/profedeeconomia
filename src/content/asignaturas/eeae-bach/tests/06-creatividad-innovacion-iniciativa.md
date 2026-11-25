@@ -9,7 +9,7 @@ preguntas:
     opciones:
       - "En haber montado al menos una empresa con beneficios."
       - "En la actitud de buscar de forma activa necesidades y oportunidades y actuar para responderlas."
-      - "En tener una idea revolucionaria que nadie haya tenido antes."
+      - "En tener una idea revolucionaria que nadie haya tenido antes y patentarla cuanto antes."
       - "En disponer de mucho capital inicial para invertir."
     correcta: 1
     explicacion: "El espíritu emprendedor es ante todo una forma de mirar: buscar activamente necesidades y oportunidades en el entorno y querer resolverlas. No exige tener una empresa, ni una idea genial, ni dinero: es una actitud."
@@ -18,7 +18,7 @@ preguntas:
       - "No hay diferencia: son sinónimos en el emprendimiento."
       - "Una idea siempre vale dinero; una oportunidad no."
       - "Una oportunidad es una idea que responde a una necesidad real, alguien la valora y es realizable con los recursos disponibles."
-      - "Una idea es de una empresa y una oportunidad es de una persona."
+      - "Una idea es de una empresa y una oportunidad es de una persona, que solo la ve quien ya tiene un negocio en marcha."
     correcta: 2
     explicacion: "Una idea es cualquier ocurrencia; una oportunidad es una idea que responde a una necesidad real, para la que hay alguien dispuesto a valorarla y que se puede llevar a cabo. Muchas ideas brillantes no son oportunidades porque nadie las necesita."
   - enunciado: "Según la unidad, la creatividad…"
@@ -39,7 +39,7 @@ preguntas:
     explicacion: "La fase divergente produce muchas ideas sin juzgarlas; la convergente las evalúa y elige. El error más común es criticar mientras se generan ideas: el primer 'esto no funcionaría' mata la fluidez. Por eso durante la fase divergente está prohibido criticar."
   - enunciado: "Una persona proactiva se caracteriza por…"
     opciones:
-      - "Reaccionar con rapidez cuando un problema ya ha estallado."
+      - "Reaccionar con rapidez cuando un problema ya ha estallado y buscar la mejor solución."
       - "Esperar instrucciones para no equivocarse."
       - "Tomar la iniciativa y actuar de forma anticipada sobre lo que está en su mano."
       - "Justificar su inacción apelando a las circunstancias."
@@ -55,7 +55,7 @@ preguntas:
     explicacion: "Creer que hay que tener una idea revolucionaria es una creencia limitante y falsa: la mayoría de proyectos no inventan nada nuevo, sino que mejoran algo existente. Las otras tres opciones son afirmaciones ciertas que desmontan mitos."
   - enunciado: "Según los datos del Informe GEM España, la edad de quien emprende en España…"
     opciones:
-      - "Se concentra sobre todo en los menores de 25 años."
+      - "Se concentra sobre todo en los menores de 25 años, que son quienes más montan empresas."
       - "Es mayoritariamente intermedia, con experiencia laboral y vital previa (en torno a los 35-54 años)."
       - "No tiene ninguna relación con la edad."
       - "Supera siempre los 65 años."
@@ -65,7 +65,7 @@ preguntas:
     opciones:
       - "Como un fracaso definitivo que conviene ocultar."
       - "Como una fuente de información y aprendizaje, buscando fallar pronto, barato y sacando una lección."
-      - "Como algo que se puede evitar por completo planificando bien."
+      - "Como algo que se puede evitar por completo si se planifica bien cada paso del proyecto."
       - "Como una señal de que esa persona no sirve para emprender."
     correcta: 1
     explicacion: "El error no se entiende como fracaso definitivo, sino como información: cada intento fallido enseña algo. La clave es equivocarse pronto, barato y aprendiendo, para corregir a tiempo. Al hacer algo nuevo, equivocarse es inevitable."
@@ -81,7 +81,7 @@ preguntas:
     opciones:
       - "Porque un DAFO solo cuenta si lo revisa un profesor."
       - "Porque un DAFO donde todo son fortalezas es autocomplacencia y no aporta información útil."
-      - "Porque reconocer debilidades garantiza el éxito del proyecto."
+      - "Porque reconocer debilidades garantiza el éxito del proyecto en cualquier caso."
       - "Porque las amenazas externas son las únicas casillas que importan."
     correcta: 1
     explicacion: "Un DAFO donde todo son fortalezas y oportunidades no sirve: es autocomplacencia. Reconocer una debilidad no es admitir una derrota, sino ganar información para decidir mejor, mejorarla o rodearse de quien la complemente."
@@ -90,9 +90,9 @@ preguntas:
     correcta: false
     explicacion: "Una idea es cualquier ocurrencia; una oportunidad es una idea que responde a una necesidad real, que alguien valora y que es realizable con los recursos disponibles. Muchas ideas brillantes no son oportunidades porque nadie las necesita."
   - tipo: verdadero-falso
-    enunciado: "Durante la fase divergente de generación de ideas conviene ir descartando y criticando las propuestas a medida que surgen."
-    correcta: false
-    explicacion: "Es justo lo que no debe hacerse: en la fase divergente se generan muchas ideas sin juzgarlas. Criticar mientras se crean frena la fluidez y cierra al grupo. La evaluación se reserva para la fase convergente."
+    enunciado: "Durante la fase divergente de generación de ideas conviene aplazar la crítica y dejar que las propuestas surjan sin juzgarlas."
+    correcta: true
+    explicacion: "Es verdadera: en la fase divergente se generan muchas ideas sin juzgarlas. Criticar mientras se crean frena la fluidez y cierra al grupo; la evaluación se reserva para la fase convergente."
   - tipo: relacionar
     enunciado: "Empareja cada casilla del DAFO con su clasificación correcta:"
     izquierda: ["Fortalezas", "Debilidades", "Oportunidades", "Amenazas"]

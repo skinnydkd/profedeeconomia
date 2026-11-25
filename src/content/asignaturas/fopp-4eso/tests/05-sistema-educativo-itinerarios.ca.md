@@ -41,10 +41,10 @@ preguntas:
     explicacion: "Les àrees relacionades amb comunicació estan dins d'**Imatge i So** i **Arts Gràfiques**, però no existix una família professional anomenada *Periodisme i Comunicació Audiovisual*. El periodisme es cursa a la universitat, no en FP."
   - enunciado: "En què es diferencia principalment la FP Grau Bàsic de la FP Grau Mitjà?"
     opciones:
-      - "La duració: el Bàsic dura 1 any i el Mitjà dura 3 anys."
-      - "El Bàsic està dirigit a alumnat de 15-17 anys que no haja obtingut el títol d'ESO, mentres que el Mitjà exigix el títol d'ESO i titula com a tècnic."
+      - "La duració: el Bàsic dura 1 any i el Mitjà dura 3 anys, i per això el Mitjà és l'únic que dóna accés a l'ocupació."
+      - "El Bàsic és per a alumnat de 15-17 anys sense el títol d'ESO; el Mitjà exigix el títol d'ESO i titula com a tècnic."
       - "Només es cursa Bàsic en concertats i Mitjà en públics."
-      - "El Bàsic forma per al comerç i el Mitjà per a la indústria."
+      - "El Bàsic forma per al comerç i el Mitjà per a la indústria, de manera que cada un cobrix un sector distint."
     correcta: 1
     explicacion: "El **Grau Bàsic** és una passarel·la per a alumnat sense títol d'ESO (15-17 anys): permet obtindre simultàniament el títol d'ESO i un títol professional bàsic. El **Grau Mitjà** requerix el títol d'ESO i titula directament com a **tècnic** en una especialitat."
   - enunciado: "Un titulat en FP de Grau Superior, pot accedir a la universitat?"
@@ -73,9 +73,9 @@ preguntas:
     explicacion: "Les tres primeres existixen i s'usen habitualment. La quarta NO: des de Grau Mitjà cal passar primer per Grau Superior (o per Batxillerat) per a accedir a la universitat. No existix drecera directa Grau Mitjà → Universitat."
   - enunciado: "Què afirma correctament la unitat sobre l'elecció entre Batxillerat i FP?"
     opciones:
-      - "El Batxillerat sempre garantix millor salari que la FP."
-      - "Les famílies tècniques d'FP Superior (Informàtica, Sanitat, Electricitat…) superen el 90 % d'ocupabilitat en algunes comunitats i els salaris igualen o superen molts graus universitaris."
-      - "La FP només és adequada per a alumnat amb baix rendiment acadèmic."
+      - "El Batxillerat sempre garantix millor salari que la FP, perquè qui acaba una carrera universitària cobra més que qualsevol tècnic d'FP."
+      - "Famílies d'FP Superior com Informàtica, Sanitat o Electricitat superen el 90 % d'ocupabilitat en algunes comunitats i els seus salaris igualen o superen molts graus universitaris."
+      - "La FP només és adequada per a alumnat amb baix rendiment acadèmic, ja que els seus continguts són poc exigents i no permeten continuar estudiant."
       - "Espanya és el país europeu amb major percentatge de jóvens en FP."
     correcta: 1
     explicacion: "Les dades d'OCDE i SEPE desmunten el mite *Batxillerat = bo / FP = altres*. En famílies tècniques l'ocupabilitat supera el 90 %, i els salaris són competitius. Espanya és, de fet, el país europeu amb **menys jóvens** triant FP (12 % enfront del 45-60 % d'Alemanya, Suïssa o Països Baixos)."

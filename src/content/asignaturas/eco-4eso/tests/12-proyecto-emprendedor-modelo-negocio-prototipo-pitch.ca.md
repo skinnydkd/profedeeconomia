@@ -38,9 +38,9 @@ preguntas:
     correcta: 2
     explicacion: "Les preguntes sobre el futur conviden a quedar bé i les seues respostes no valen res. Les preguntes sobre el passat arrepleguen conducta real: què va fer, quant li va costar i si va arribar a pagar per una solució."
   - tipo: verdadero-falso
-    enunciado: "Un prototip ha d'estar acabat i funcionar bé abans d'ensenyar-lo a ningú."
-    correcta: false
-    explicacion: "Fals. El prototip existix per a aprendre barat: una maqueta de cartó, una pantalla dibuixada a mà o una landing page basten per a descobrir si la idea interessa abans d'invertir temps i diners."
+    enunciado: "Un prototip no ha d'estar acabat per a ensenyar-lo: una maqueta de cartó basta per a saber si la idea interessa."
+    correcta: true
+    explicacion: "Cert. El prototip existix per a aprendre barat: una maqueta de cartó, una pantalla dibuixada a mà o una landing page basten per a descobrir si la idea interessa abans d'invertir temps i diners. Esperar a tindre'l perfecte és l'error contrari."
   - tipo: numerico
     enunciado: "Un projecte té 240 € de costos fixos, ven cada bossa a 12 € i cadascuna costa 5 € de materials. Quantes bosses cal vendre per a cobrir els costos fixos?"
     respuesta: 35

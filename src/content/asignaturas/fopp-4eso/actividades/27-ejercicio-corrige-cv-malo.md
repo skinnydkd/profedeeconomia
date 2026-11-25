@@ -58,6 +58,30 @@ Trabajar por contraste —ver el error antes de la norma— fija mejor el aprend
 4. **Corrección en parejas (10 min).** Las parejas comparan cuántos errores ha encontrado cada uno y unifican una lista. ¿Quién ha visto alguno que el otro no?
 5. **Corrección proyectada y cierre (5 min).** El profesor proyecta la solución con los 15 errores y recoge cuáles se han escapado más. Cierra con la idea clave: el CV es la primera impresión, y un reclutador descarta en segundos por errores que parecen pequeños.
 
+## Solución orientativa para el profesor
+
+Los 15 errores, en el orden del CV, con la razón de por qué restan (según la unidad 9):
+
+1. **Nombre: «Kevin "el crack" Pérez».** Un apodo en un documento profesional resta seriedad. Va el nombre real.
+2. **Email: «kevincrack2007@...».** No es un correo profesional. Se pide un email profesional, de uso serio.
+3. **Teléfono: «el de mi madre».** No es su móvil. El CV pide un teléfono móvil de contacto propio y el reclutador debe poder localizar al candidato.
+4. **Estado civil: «soltero sin compromiso jeje».** Dato irrelevante que la unidad dice que no se incluya, y además con una broma.
+5. **Signo: «Leo».** Dato irrelevante y sin relación con el puesto.
+6. **Foto: «selfie en la playa con gafas de sol».** Nunca selfies. La foto, si se incluye, es profesional, reciente y con fondo neutro.
+7. **Falta de ortografía: «ESPERIENCIA».** Una sola falta puede descartar el CV. Hay que pasar el corrector y revisar al menos dos veces.
+8. **Experiencia: «He ayudado a mi tío en el bar a veces (no me pagaban)».** Sin cargo, fechas ni logros, y se quita valor a sí mismo («a veces», «no me pagaban»). Es experiencia aprovechable, pero mal presentada: la unidad pide cargo, empresa, fechas y logros con verbos de acción.
+9. **Experiencia: «Soy muy bueno en el Fortnite, nivel máximo».** No es experiencia laboral y resulta frívolo. En un CV solo cuenta lo que se sabe usar y aporta al puesto.
+10. **Formación: «Estoy en 4 de la eso, creo que apruebo».** Expresada con inseguridad («creo que apruebo»). Debe constar la titulación, el centro y el año, sin dudas (y «ESO» va en mayúsculas).
+11. **Idioma: «inglés nivel alto (saco un 4)».** Exagerado y contradictorio: la nota no respalda el «nivel alto». El nivel se indica con el MCER (A1 a C2), y «inventar un nivel es la mentira que más rápido se descubre».
+12. **Objetivo vago: «Busco cualquier trabajo de lo que sea».** No dice qué busca ni qué aporta, y no está adaptado a ninguna oferta: un CV genérico es mediocre para todas.
+13. **Objetivo egoísta: «pagando bien y poco horario».** Habla de lo que quiere recibir, no de lo que aporta a la empresa.
+14. **Disponibilidad: «solo tardes, ni findes ni agosto».** Cerrada y mal planteada: enumera lo que no puede hacer en lugar de la disponibilidad que ofrece, y cierra casi cualquier oferta.
+15. **Referencias: «mis colegas dicen que soy muy majo».** Informal: no son referencias profesionales (no hay nombre, cargo ni forma de contacto de nadie que pueda avalarlo).
+
+El tono general del CV («jeje», «el crack», «majo») atraviesa varios de estos puntos y no cuenta como un error aparte.
+
+Los pasos 3 y 4 (reescritura de tres secciones y corrección en parejas) son de redacción libre: se evalúan con los criterios de la tabla.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

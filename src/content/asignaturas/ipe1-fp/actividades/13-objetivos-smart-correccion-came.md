@@ -82,6 +82,19 @@ FORTALEZAS                        OPORTUNIDADES
 ═══════════════════════════════════════════════
 ```
 
+## Solución orientativa para el profesor
+
+Las reescrituras son una versión de referencia: vale cualquier otra que cumpla los cinco criterios con datos realistas, y cualquier otra estrategia CAME que se justifique con el DAFO. Plazos según la Unidad 3: corto (este curso), medio (1-3 años) y largo (más de 3 años).
+
+1. **«Ser mejor profesional.»** Incumple: específico, medible y temporal (no dice en qué, cuánto ni cuándo). Reescritura: «Terminar la formación en empresa de este curso con una valoración de 8 o más sobre 10 del tutor de empresa.» CAME: **Mantener** (fortaleza: buen expediente y prácticas). Plazo: corto.
+2. **«Encontrar trabajo cuanto antes.»** Incumple: específico, medible y temporal («cuanto antes» no es una fecha). Reescritura: «Enviar 10 candidaturas a la semana a empresas del sector de mi comarca y firmar un primer contrato en el sector en el plazo de un año desde que termine el ciclo.» CAME: **Explotar** (oportunidad: demanda creciente de perfiles con competencia digital y programas de empleo joven). Plazo: medio (el primer empleo del sector es un objetivo de medio plazo en la Unidad 3).
+3. **«Aprender idiomas.»** Incumple: específico, medible y temporal (no dice qué idioma, qué nivel ni cuándo). Reescritura: «Alcanzar un B1 de inglés con certificado oficial antes de junio.» CAME: **Corregir** (debilidad: inglés básico). Plazo: corto si la fecha es la de este curso; medio si la pareja la fija en el curso siguiente.
+4. **«Hacerme rico con mi título en dos meses.»** Incumple: alcanzable (dos meses no son realistas para un primer empleo) y también específico y medible («rico» no se puede comprobar). Reescritura: «Conseguir, en el plazo de un año desde que termine el ciclo, un primer empleo del sector con contrato estable y un salario mínimo mensual que la pareja fije tras consultar ofertas reales.» CAME: **Explotar** (misma oportunidad que el 2; se solapa con él). Plazo: medio.
+5. **«Mejorar mi currículum.»** Incumple: específico, medible y temporal. Reescritura: «Tener antes de que acabe el primer trimestre un currículum de una página, revisado por mi tutor, que destaque las prácticas y las herramientas digitales del sector, y entregarlo en 10 empresas de la comarca antes de junio.» CAME: **Mantener** (fortalezas: expediente, prácticas y manejo de herramientas digitales). Plazo: corto.
+6. **«Conseguir experiencia.»** Incumple: específico, medible y temporal (qué experiencia, cuánta y cuándo). Reescritura: «Completar durante este curso la formación en empresa y solicitar antes de marzo al menos dos programas de prácticas con inserción de mi zona.» CAME: **Corregir** (debilidad: sin experiencia laboral), apoyándose en la oportunidad de las prácticas con inserción. Plazo: corto.
+7. **«Aprender a usar bien el ordenador algún día.»** Incumple: específico (¿qué programas?), medible (¿qué es «bien»?), temporal («algún día») y relevante (el DAFO ya da como fortaleza el manejo de herramientas digitales: lo que suma es la herramienta propia del sector). Reescritura: «Obtener antes de diciembre una certificación oficial en la herramienta digital más usada en mi sector.» CAME: **Mantener** (reforzar la fortaleza digital) para afrontar la amenaza de un sector que se digitaliza rápido; también se admite Explotar. Plazo: corto.
+8. **«Convertirme en astronauta el año que viene.»** Es específico, medible y temporal, pero incumple **alcanzable** (un año) y **relevante** (no encaja con el perfil de un técnico o técnica de FP ni con su DAFO). Se descarta o se reformula en torno a un interés realmente accesible del sector. No lleva estrategia CAME ni plazo.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

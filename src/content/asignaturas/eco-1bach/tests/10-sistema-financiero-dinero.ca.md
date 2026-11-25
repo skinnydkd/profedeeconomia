@@ -11,8 +11,8 @@ preguntas:
     opciones:
       - "Inversió, estalvi i consum."
       - "Mitjà de pagament, unitat de compte i depòsit de valor."
-      - "Liquiditat, rendibilitat i seguretat."
-      - "Emissió, circulació i retirada."
+      - "Liquiditat, rendibilitat i seguretat de la inversió."
+      - "Emissió, circulació i retirada de monedes i bitllets."
     correcta: 1
     explicacion: "Des d'Aristòtil, els diners es definixen per tres funcions: mitjà de pagament (evita el bescanvi), unitat de compte (permet comparar valors en una escala comuna) i depòsit de valor (trasllada poder adquisitiu al futur)."
   - enunciado: "Quin agregat monetari inclou exclusivament els bitllets i monedes en circulació més les reserves que els bancs comercials mantenen en el banc central?"
@@ -33,26 +33,26 @@ preguntas:
     explicacion: "El multiplicador teòric es calcula com k = 1/c. Amb c = 0,05 (5 %), aleshores k = 1/0,05 = 20. Significa que un depòsit inicial pot arribar a generar fins a 20 vegades el seu import en oferta monetària total a través de la cadena bancària."
   - enunciado: "Per què el multiplicador dels diners observat en la realitat és menor que el teòric 1/c?"
     opciones:
-      - "Perquè el banc central limita per llei el nombre de préstecs."
-      - "Perquè els bancs mantenen reserves voluntàries per damunt del mínim legal i part dels diners circula com a efectiu fora del sistema bancari."
+      - "Perquè el banc central limita per llei el nombre de préstecs que cada banc pot concedir cada any."
+      - "Perquè els bancs guarden reserves voluntàries per damunt del mínim i part dels diners circula com a efectiu."
       - "Perquè els depòsits a termini no s'inclouen en el càlcul."
       - "Perquè les comissions bancàries absorbixen la diferència."
     correcta: 1
     explicacion: "El multiplicador efectiu sempre queda per davall del teòric per tres motius: reserves voluntàries prudencials dels bancs, part dels diners prestats es queda en efectiu (no torna com a depòsit) i els bancs centrals poden absorbir liquiditat mitjançant operacions de mercat obert."
   - enunciado: "Quin òrgan del BCE pren les decisions de política monetària de la zona euro?"
     opciones:
-      - "El Comité Executiu, format per sis membres."
-      - "El Consell de Govern, format pel Comité Executiu i els governadors dels bancs centrals nacionals de la zona euro."
+      - "El Comité Executiu, format per sis membres, que decidix els tipus d'interés per majoria simple."
+      - "El Consell de Govern, format pel Comité Executiu i els governadors dels bancs centrals nacionals."
       - "La Comissió Europea, en coordinació amb el BCE."
-      - "El Parlament Europeu, mitjançant votació qualificada."
+      - "El Parlament Europeu, mitjançant votació qualificada dels seus eurodiputats cada trimestre."
     correcta: 1
     explicacion: "El Consell de Govern reunix els 6 membres del Comité Executiu del BCE i els governadors dels bancs centrals nacionals dels països que han adoptat l'euro (20 en 2024). Decidix els tipus oficials cada sis setmanes."
   - enunciado: "Quina és la diferència fonamental entre mercat primari i mercat secundari?"
     opciones:
       - "El primari opera de dia i el secundari de nit."
       - "El primari és per a empreses grans i el secundari per a pimes."
-      - "En el primari s'emeten títols nous i els diners arriben a l'emissor; en el secundari es negocien títols ja existents entre inversors i els diners no arriben a l'emissor."
-      - "En el primari es compren accions i en el secundari només bons."
+      - "En el primari s'emeten títols nous i els diners arriben a l'emissor; en el secundari es compren i venen títols ja emesos."
+      - "En el primari es compren accions i en el secundari només bons, perquè les accions no poden revendre's."
     correcta: 2
     explicacion: "El mercat primari és on els emissors (empreses, Estats) col·loquen títols nous i capten finançament real. El mercat secundari proporciona liquiditat en revendre eixos títols entre inversors, sense que l'emissor reba diners nous. Tots dos són inseparables: sense secundari líquid, quasi ningú compraria en el primari."
   - enunciado: "En el sistema financer espanyol, quin organisme supervisa els mercats de valors i protegix els inversors?"
@@ -67,16 +67,16 @@ preguntas:
     opciones:
       - "Complix plenament les tres funcions dels diners: mitjà de pagament, unitat de compte i depòsit de valor."
       - "Està emés pel Banc Central Europeu des de 2008."
-      - "Té una oferta limitada per disseny a 21 milions d'unitats i la seua validació per proof of work té un consum energètic comparable al de països com Argentina o Polònia."
+      - "Té una oferta limitada per disseny a 21 milions d'unitats i la seua validació per proof of work consumix molta energia."
       - "Té paritat fixa amb el dòlar gràcies al seu suport en reserves reals."
     correcta: 2
     explicacion: "Bitcoin té una oferta limitada per disseny a 21 milions d'unitats (assolibles cap a 2140) i la xarxa consumix uns 130 TWh anuals, similar al consum elèctric d'Argentina o Polònia. Complix imperfectament les funcions dels diners (alta volatilitat, escassos comerços que l'accepten). Les stablecoins, no Bitcoin, són les que busquen paritat amb monedes fiduciàries."
   - enunciado: "Què és l'euro digital que prepara el BCE, amb una primera emissió possible el 2029?"
     opciones:
-      - "Una stablecoin privada avalada per la banca europea."
+      - "Una stablecoin privada avalada per la banca europea i emesa per diversos bancs comercials."
       - "Una criptomoneda descentralitzada a l'estil de Bitcoin."
-      - "Una moneda digital de banc central (CBDC) emesa directament pel BCE, complementària a l'efectiu, amb límits de tinença per persona per a evitar fugues massives des dels bancs comercials."
-      - "Un nou sistema de pagament instantani gestionat per la banca comercial."
+      - "Una moneda digital de banc central (CBDC), emesa pel BCE i complementària a l'efectiu."
+      - "Un nou sistema de pagament instantani gestionat per la banca comercial de cada país."
     correcta: 2
     explicacion: "L'euro digital seria una CBDC (Central Bank Digital Currency) emesa pel BCE, complementària —no substitutiva— de l'efectiu. Els esborranys actuals contemplen un límit de tinença al voltant de 3.000 € per persona per a evitar que els depòsits fugen massivament dels bancs comercials al BCE en moments de tensió financera."
   - tipo: numerico

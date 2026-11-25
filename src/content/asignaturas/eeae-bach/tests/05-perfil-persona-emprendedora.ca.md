@@ -11,13 +11,13 @@ preguntas:
     opciones:
       - "Algú que naix amb un do especial per als negocis."
       - "Algú que detecta una oportunitat o necessitat i decidix actuar, dins o fora d'una empresa."
-      - "Qualsevol que siga amo d'una empresa, encara que no tinga iniciativa."
+      - "Qualsevol que siga amo d'una empresa, encara que no tinga iniciativa ni busque oportunitats."
       - "Una persona que evita sempre el risc per a no equivocar-se."
     correcta: 1
     explicacion: "Emprendre és detectar una oportunitat o necessitat i actuar sobre ella organitzant recursos i assumint risc. No exigix fundar una empresa ni és un do innat: el perfil es construïx amb competències, qualitats i hàbits que s'entrenen."
   - enunciado: "Què diferencia la persona intraemprenedora de l'emprenedora?"
     opciones:
-      - "La intraemprenedora no té iniciativa, només complix ordes."
+      - "La intraemprenedora no té iniciativa, només complix ordes i executa el que altres decidixen."
       - "La intraemprenedora exercix l'actitud emprenedora dins d'una organització aliena, sense fundar res nou."
       - "La intraemprenedora sempre arrisca els seus propis diners."
       - "No hi ha cap diferència, són el mateix."
@@ -25,9 +25,9 @@ preguntas:
     explicacion: "L'intraemprenedoria és l'actitud emprenedora exercida dins d'una organització que no és pròpia: la persona impulsa projectes i millores en la seua empresa o institució sense arriscar el seu patrimoni, però sí el seu esforç i la seua reputació."
   - enunciado: "La intel·ligència emocional, segons Daniel Goleman, consistix sobretot en…"
     opciones:
-      - "Reprimir les emocions perquè no afecten la faena."
+      - "Reprimir les emocions perquè no afecten la faena de l'equip."
       - "Tindre un quocient intel·lectual alt."
-      - "Reconéixer, entendre i gestionar les emocions pròpies i les dels altres."
+      - "Reconéixer, entendre i gestionar les emocions pròpies i alienes."
       - "Memoritzar tècniques de venda."
     correcta: 2
     explicacion: "La intel·ligència emocional és la capacitat de reconéixer, entendre i gestionar les emocions pròpies i alienes. No és reprimir el que se sent, sinó no deixar-se arrossegar per això i saber llegir el que senten els altres."
@@ -42,7 +42,7 @@ preguntas:
   - enunciado: "Quina d'estes conductes és un exemple d'assertivitat?"
     opciones:
       - "Callar-se els dubtes per a no molestar el grup."
-      - "Imposar la pròpia idea passant per damunt dels altres."
+      - "Imposar la pròpia idea passant per damunt dels altres sense escoltar-los."
       - "Expressar el que es pensa amb respecte i escoltar la resposta de l'altre."
       - "Dir sempre que sí per a evitar conflictes."
     correcta: 2
@@ -50,7 +50,7 @@ preguntas:
   - enunciado: "Els experiments de Hawthorne, analitzats per Elton Mayo, es van interpretar sobretot com a prova que…"
     opciones:
       - "Els treballadors rendixen més només si se'ls paga més."
-      - "La il·luminació és el factor que més afecta la productivitat."
+      - "La il·luminació del lloc de treball és el factor que més afecta la productivitat."
       - "El reconeixement i el sentit de pertinença influïxen en el rendiment tant o més que el salari."
       - "Les persones treballen igual de bé estiguen o no observades."
     correcta: 2
@@ -58,7 +58,7 @@ preguntas:
   - enunciado: "Segons el mètode de negociació de Harvard, què convé fer davant un desacord?"
     opciones:
       - "Imposar-se per la força per a no paréixer dèbil."
-      - "Confondre el problema amb la persona per a pressionar més."
+      - "Confondre el problema amb la persona per a pressionar més i guanyar la discussió."
       - "Separar les persones del problema i centrar-se en els interessos, no en les posicions."
       - "Cedir en tot per a mantindre la relació."
     correcta: 2
@@ -68,7 +68,7 @@ preguntas:
       - "Només pot liderar qui té un càrrec formal."
       - "L'estil autoritari és sempre el més eficaç."
       - "Es pot liderar sense càrrec, i l'estil adequat depén de la situació i de l'equip."
-      - "Liderar consistix únicament a donar ordes clares."
+      - "Liderar consistix únicament a donar ordes clares i vigilar que es complisquen."
     correcta: 2
     explicacion: "El lideratge és la capacitat d'influir en un grup cap a un objectiu comú i no coincidix necessàriament amb el comandament formal. Cap estil (autoritari, democràtic, laissez-faire) és sempre el millor: depén de la situació."
   - enunciado: "Per què diu la unitat que el perfil emprenedor es pot entrenar?"
@@ -76,7 +76,7 @@ preguntas:
       - "Perquè emprendre no requerix cap capacitat especial."
       - "Perquè les competències, qualitats i hàbits que el formen s'aprenen i es desenvolupen amb pràctica."
       - "Perquè tot el món acabarà fundant una empresa."
-      - "Perquè el quocient intel·lectual es pot pujar a voluntat."
+      - "Perquè el quocient intel·lectual es pot pujar a voluntat amb exercicis de memòria i atenció."
     correcta: 1
     explicacion: "El perfil emprenedor està fet de competències, qualitats i hàbits que es cultiven amb pràctica i repetició. Per això LOMLOE inclou la competència emprenedora per a tot l'alumnat, emprenga o no després."
   - tipo: verdadero-falso

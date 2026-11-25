@@ -7,7 +7,7 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué es, para una empresa, su mercado?"
     opciones:
-      - "El público en general, sin distinciones."
+      - "El público en general, sin distinciones, porque cualquier persona es siempre un cliente potencial."
       - "El conjunto de personas u organizaciones con una necesidad, capacidad de compra y disposición a comprar lo que ofrece."
       - "El lugar físico donde se vende el producto."
       - "El conjunto de sus competidores directos."
@@ -15,8 +15,8 @@ preguntas:
     explicacion: "Para la empresa, su mercado son las personas u organizaciones que tienen una necesidad, capacidad de compra y disposición a comprar su producto o servicio. Delimitarlo bien es el punto de partida de toda estrategia; no se compite contra 'el público' en abstracto."
   - enunciado: "¿En qué consiste segmentar un mercado?"
     opciones:
-      - "En bajar el precio para llegar a más clientes."
-      - "En dividir el mercado en grupos de clientes con características y necesidades parecidas para dirigirse mejor a cada uno."
+      - "En bajar el precio para llegar a más clientes, sean cuales sean sus características."
+      - "En dividir el mercado en grupos de clientes con necesidades parecidas para dirigirse mejor a cada uno."
       - "En vender solo a los clientes más ricos."
       - "En repartir el mercado entre los competidores."
     correcta: 1
@@ -26,14 +26,14 @@ preguntas:
       - "Que es más barato siempre."
       - "Que solo sirve para empresas tecnológicas."
       - "Que permite segmentar con precisión, medir los resultados e interactuar con el cliente, no solo lanzar un mensaje."
-      - "Que sustituye por completo a cualquier otra forma de comunicación."
+      - "Que sustituye por completo a cualquier otra forma de comunicación, incluso a la publicidad tradicional."
     correcta: 2
     explicacion: "El marketing digital no es solo trasladar anuncios a internet: cambia la lógica. Sus tres rasgos distintivos son la segmentación fina, la medición precisa de resultados y la interacción de doble sentido con el cliente."
   - enunciado: "¿Qué describe un modelo de negocio?"
     opciones:
       - "El organigrama de la empresa."
       - "Cómo una empresa crea valor para sus clientes y cómo lo captura para sí (cómo gana dinero)."
-      - "El producto concreto que fabrica la empresa."
+      - "El producto concreto que fabrica la empresa y las características técnicas que lo definen."
       - "Las obligaciones legales de la empresa."
     correcta: 1
     explicacion: "Un modelo de negocio describe cómo la empresa crea valor para sus clientes y cómo lo captura para sí misma. No es lo mismo que el producto: dos empresas pueden vender lo mismo con modelos de negocio distintos."
@@ -57,7 +57,7 @@ preguntas:
     opciones:
       - "Una innovación incremental bien gestionada."
       - "Una innovación disruptiva mal gestionada: la empresa protegió su negocio actual en lugar de transformarse."
-      - "Que la tecnología no influye en el éxito de una empresa."
+      - "Que la tecnología no influye en el éxito de una empresa, que depende solo de su publicidad."
       - "Un modelo de suscripción fracasado."
     correcta: 1
     explicacion: "Kodak tenía la tecnología antes que nadie, pero por una decisión estratégica protegió su rentable negocio de carretes en lugar de canibalizarlo. Es el ejemplo clásico de innovación disruptiva mal gestionada: el problema no fue técnico, sino estratégico."
@@ -78,9 +78,9 @@ preguntas:
     correcta: 2
     explicacion: "El análisis externo examina el entorno (mercado, competidores, tecnología, regulación) y de él salen las Oportunidades y las Amenazas. Las Debilidades y Fortalezas surgen del análisis interno. La regla: si depende de la empresa, es interno; si viene de fuera, es externo."
   - tipo: verdadero-falso
-    enunciado: "Dos empresas que venden exactamente el mismo producto tienen necesariamente el mismo modelo de negocio."
-    correcta: false
-    explicacion: "El modelo de negocio describe cómo se crea y se captura valor, no qué se vende. Dos empresas pueden vender lo mismo con modelos distintos: una por venta directa, otra por suscripción o por plataforma con comisión."
+    enunciado: "Dos empresas que venden exactamente el mismo producto pueden tener modelos de negocio distintos."
+    correcta: true
+    explicacion: "Es verdadera: el modelo de negocio describe cómo se crea y se captura valor, no qué se vende. Dos empresas pueden vender lo mismo con modelos distintos: una por venta directa, otra por suscripción o por plataforma con comisión."
   - tipo: numerico
     enunciado: "Una empresa vende su producto a 20 € la unidad, con un coste variable de 12 € por unidad y unos costes fijos de 8.000 € al mes. ¿Cuántas unidades debe vender al mes para alcanzar el punto muerto (umbral de rentabilidad)?"
     respuesta: 1000

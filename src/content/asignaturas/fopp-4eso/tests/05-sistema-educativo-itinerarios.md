@@ -39,10 +39,10 @@ preguntas:
     explicacion: "Las áreas relacionadas con comunicación están dentro de **Imagen y Sonido** y **Artes Gráficas**, pero no existe una familia profesional llamada *Periodismo y Comunicación Audiovisual*. El periodismo se cursa en la universidad, no en FP."
   - enunciado: "¿En qué se diferencia principalmente la FP Grado Básico de la FP Grado Medio?"
     opciones:
-      - "La duración: el Básico dura 1 año y el Medio dura 3 años."
-      - "El Básico está dirigido a alumnado de 15-17 años que no haya obtenido el título de ESO, mientras que el Medio exige el título de ESO y titula como técnico."
+      - "La duración: el Básico dura 1 año y el Medio dura 3 años, y por eso el Medio es el único que da acceso al empleo."
+      - "El Básico es para alumnado de 15-17 años sin el título de ESO; el Medio exige el título de ESO y titula como técnico."
       - "Solo se cursa Básico en concertados y Medio en públicos."
-      - "El Básico forma para el comercio y el Medio para la industria."
+      - "El Básico forma para el comercio y el Medio para la industria, de manera que cada uno cubre un sector distinto."
     correcta: 1
     explicacion: "El **Grado Básico** es una pasarela para alumnado sin título de ESO (15-17 años): permite obtener simultáneamente el título de ESO y un título profesional básico. El **Grado Medio** requiere el título de ESO y titula directamente como **técnico** en una especialidad."
   - enunciado: "Un titulado en FP de Grado Superior, ¿puede acceder a la universidad?"
@@ -71,9 +71,9 @@ preguntas:
     explicacion: "Las tres primeras existen y se usan habitualmente. La cuarta NO: desde Grado Medio hay que pasar primero por Grado Superior (o por Bachillerato) para acceder a la universidad. No existe atajo directo Grado Medio → Universidad."
   - enunciado: "¿Qué afirma correctamente la unidad sobre la elección entre Bachillerato y FP?"
     opciones:
-      - "El Bachillerato siempre garantiza mejor salario que la FP."
-      - "Las familias técnicas de FP Superior (Informática, Sanidad, Electricidad…) superan el 90 % de empleabilidad en algunas comunidades y los salarios igualan o superan a muchos grados universitarios."
-      - "La FP solo es adecuada para alumnado con bajo rendimiento académico."
+      - "El Bachillerato siempre garantiza mejor salario que la FP, porque quien termina una carrera universitaria cobra más que cualquier técnico de FP, incluso en las familias con mayor empleabilidad."
+      - "Familias de FP Superior como Informática, Sanidad o Electricidad superan el 90 % de empleabilidad en algunas comunidades y sus salarios igualan o superan a muchos grados universitarios."
+      - "La FP solo es adecuada para alumnado con bajo rendimiento académico, ya que sus contenidos son poco exigentes y no permiten seguir estudiando."
       - "España es el país europeo con mayor porcentaje de jóvenes en FP."
     correcta: 1
     explicacion: "Los datos de OCDE y SEPE desmontan el mito *Bachillerato = bueno / FP = otros*. En familias técnicas la empleabilidad supera el 90 %, y los salarios son competitivos. España es, de hecho, el país europeo con **menos jóvenes** eligiendo FP (12 % frente al 45-60 % de Alemania, Suiza o Países Bajos)."

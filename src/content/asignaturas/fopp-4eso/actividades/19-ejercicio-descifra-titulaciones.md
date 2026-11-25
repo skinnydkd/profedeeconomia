@@ -68,6 +68,28 @@ Este ejercicio no pide opinar: pide **dominar el mapa**. Primero se completa el 
 4. **Corrección en parejas (12 min).** Cada pareja contrasta respuestas, discute las que no coincidan y consulta la fuente para dirimir. Marcan en otro color las que tenían mal.
 5. **Cierre y mito-buster (6 min).** Puesta en común de los errores más frecuentes de la clase. El profesor desmonta el mito principal: la FP **no** cierra la puerta a la universidad, y elegir FP no es elegir «menos».
 
+## Solución orientativa para el profesor
+
+**Paso 2. Flechas del esquema** (según la unidad 5):
+
+- 4.º ESO con título → Bachillerato y → FP de Grado Medio.
+- Sin título de ESO → FP de Grado Básico → título de ESO (se obtiene a la vez que el título profesional básico) → enlaza con el Grado Medio.
+- Bachillerato → PAU → Universidad.
+- Bachillerato → FP de Grado Superior, sin prueba alguna: el título de Bachiller da acceso directo. No figura en la plantilla.
+- FP de Grado Medio → FP de Grado Superior (de la misma familia profesional; el libro añade la prueba de acceso y el acceso directo en algunas comunidades).
+- FP de Grado Medio → Bachillerato, por prueba de acceso o por convalidación parcial de materias según la comunidad. No figura en la plantilla.
+- FP de Grado Superior → Universidad, sin PAU obligatoria en muchos casos (según grado y nota); la fase voluntaria de la PAU sirve para subir nota.
+- FP de Grado Medio y de Grado Superior → mundo laboral.
+
+**Paso 3. Los seis casos**
+
+1. **Hugo: SÍ.** El Grado Superior da acceso a la universidad sin PAU obligatoria (en muchos casos, según grado y nota). Con la fase voluntaria puede subir nota.
+2. **Sara: SÍ.** El Grado Medio da acceso al Grado Superior. El libro lo condiciona a la misma familia profesional (o a la prueba de acceso), y el caso plantea seguir en hostelería.
+3. **Bilal: NO.** El libro presenta Bachillerato y Grado Medio como vías que se abren tras obtener el título de ESO, y el Grado Medio lo pide como requisito de entrada. Su camino es el Grado Básico, que da el título de ESO y enlaza con el Grado Medio.
+4. **Carla: SÍ.** El título de Bachiller da acceso directo al Grado Superior, sin PAU ni prueba.
+5. **Mateo: SÍ.** Superado el Grado Básico (la antigua FP Básica) se obtiene el título de ESO.
+6. **Lucía: NO.** El Grado Superior da acceso a la universidad, y además existe la pasarela del Grado Medio al Bachillerato. La FP no cierra la puerta.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

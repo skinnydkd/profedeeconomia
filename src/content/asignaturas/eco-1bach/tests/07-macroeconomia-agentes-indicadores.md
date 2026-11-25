@@ -24,7 +24,7 @@ preguntas:
   - enunciado: "Una empresa de software factura 500.000 € en un año, paga 120.000 € a proveedores externos por servicios y materiales, paga 250.000 € en salarios y obtiene 130.000 € de beneficio. ¿Cuánto aporta esta empresa al PIB por el método de la producción?"
     opciones:
       - "500.000 € (toda la facturación)."
-      - "380.000 € (la facturación menos los salarios)."
+      - "380.000 € (la facturación menos los salarios pagados)."
       - "380.000 € (la facturación menos los consumos intermedios)."
       - "130.000 € (solo el beneficio)."
     correcta: 2
@@ -48,32 +48,32 @@ preguntas:
   - enunciado: "¿Cuál es la diferencia esencial entre el IPC y el deflactor del PIB?"
     opciones:
       - "El IPC lo elabora el INE y el deflactor el Banco de España."
-      - "El IPC mide los precios de toda la producción nacional y el deflactor solo los de consumo."
-      - "El IPC mide los precios de una cesta fija de bienes de consumo de los hogares; el deflactor mide los precios de toda la producción nacional, incluyendo inversión y exportaciones."
+      - "El IPC mide los precios de toda la producción nacional y el deflactor solo los de consumo de los hogares."
+      - "El IPC mide los precios de una cesta fija de consumo de los hogares; el deflactor, los de toda la producción nacional."
       - "Son dos nombres distintos para el mismo índice."
     correcta: 2
     explicacion: "El IPC se construye sobre una cesta representativa del consumo de los hogares (955 artículos en 12 grupos, ponderaciones de la EPF). El deflactor del PIB cubre toda la producción nacional —consumo, inversión, gasto público y exportaciones—. Por eso un país exportador de bienes cuyos precios suben mucho puede tener deflactor alto e IPC moderado."
   - enunciado: "El BCE utiliza el IPCA (Índice de Precios de Consumo Armonizado) en lugar del IPC nacional porque…"
     opciones:
-      - "El IPCA es más sencillo de calcular que el IPC."
-      - "El IPCA aplica una metodología común a todos los países de la UE, lo que permite comparar la inflación entre Estados miembros y vigilar el objetivo único del 2 %."
+      - "El IPCA es más sencillo de calcular que el IPC, porque incluye menos productos en su cesta."
+      - "El IPCA aplica una metodología común en toda la UE, lo que permite comparar la inflación entre Estados miembros."
       - "El IPCA excluye los productos energéticos."
-      - "El IPCA solo mide los precios de bienes importados."
+      - "El IPCA solo mide los precios de bienes importados, que son los que más influyen en la inflación europea."
     correcta: 1
     explicacion: "El IPCA es la versión armonizada del IPC con metodología común para los 27 Estados miembros de la UE. Permite al BCE comparar la inflación entre países de la zona euro y vigilar su mandato de estabilidad de precios (inflación del 2 % a medio plazo)."
   - enunciado: "Según la metodología de la EPA, ¿qué condiciones tiene que cumplir una persona de 16 o más años para ser contabilizada como *parada*?"
     opciones:
-      - "Estar inscrita como demandante de empleo en el SEPE."
-      - "Haber perdido un empleo en los últimos 12 meses."
-      - "No trabajar, buscar activamente empleo y estar disponible para trabajar; si falta alguno de los tres requisitos no es parada en sentido EPA."
+      - "Estar inscrita como demandante de empleo en el SEPE durante al menos tres meses seguidos."
+      - "Haber perdido un empleo en los últimos 12 meses y no haber encontrado otro desde entonces."
+      - "No trabajar, buscar empleo activamente y estar disponible; si falla alguno de los tres requisitos, no es parada."
       - "Tener cobrando la prestación contributiva por desempleo."
     correcta: 2
     explicacion: "La EPA exige los tres requisitos simultáneamente. Una persona que no trabaja y está disponible pero ha dejado de buscar empleo (*trabajador desanimado*) es inactiva, no parada. La EPA es una encuesta estadística trimestral con metodología OIT/Eurostat, distinta del paro registrado del SEPE."
   - enunciado: "España presenta superávit por cuenta corriente desde 2012 (≈ +3 % del PIB en 2024). ¿Qué dos motores explican principalmente ese saldo positivo?"
     opciones:
-      - "El superávit comercial en bienes industriales y el descenso de las remesas."
+      - "El superávit comercial en bienes industriales y el descenso de las remesas enviadas al exterior."
       - "Las transferencias corrientes recibidas de la UE y la inversión extranjera directa."
-      - "Un fuerte superávit de servicios —turismo y servicios no turísticos— y un déficit comercial moderado en bienes compensado por exportaciones de automoción, agroalimentación y químicos."
+      - "Un fuerte superávit de servicios (turismo y no turísticos) y un déficit comercial moderado en bienes."
       - "El superávit de la cuenta financiera por la entrada de capital extranjero."
     correcta: 2
     explicacion: "El superávit por cuenta corriente español se apoya en dos pilares: un superávit muy elevado de servicios (España es el segundo destino turístico mundial y exporta también servicios profesionales y de transporte) y un déficit moderado en bienes —importamos energía— compensado por exportaciones competitivas de automoción, alimentación y químicos. La cuenta financiera es la contrapartida contable, no el motor."

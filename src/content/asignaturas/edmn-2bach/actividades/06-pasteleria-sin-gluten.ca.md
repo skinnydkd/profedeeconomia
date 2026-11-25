@@ -51,6 +51,27 @@ Tenen 35.000 € estalviats, han llogat un local de 60 m² en un carrer secundar
 - Subministraments + assegurances: **400 €/mes**.
 - Costos fixos totals orientatius: **4.500 €/mes**.
 
+## Solució orientativa per al professor
+
+Només l'estimació numèrica (pas 6) té resposta tancada. Les 4P, la seua coherència i l'elecció del segment s'avaluen amb els criteris de la taula.
+
+**Mètode.** Amb un marge unitari del 60 % del preu, cada producte venut aporta 0,60 × P per a cobrir els costos fixos:
+
+1. Facturació mínima mensual = 4.500 € ÷ 0,60 = **7.500 €**. No depén del preu triat.
+2. Unitats mínimes al mes = 7.500 € ÷ P (equival a 4.500 € ÷ (0,60 × P)), arredonides cap amunt.
+
+**Comprovació amb tres preus mitjans il·lustratius** (no són preus recomanats; cada grup partix dels seus):
+
+| Preu mitjà | Marge unitari (60 %) | Unitats al mes |
+| --- | --- | --- |
+| 2,50 € | 1,50 € | 3.000 |
+| 3,50 € | 2,10 € | 2.143 (2.142,86) |
+| 4,50 € | 2,70 € | 1.667 (1.666,67) |
+
+Si el grup treballa amb un tíquet mitjà per client en lloc d'un preu per producte, el càlcul és el mateix amb eixe tíquet. Allò que cal comprovar és que el grup diga quin preu usa i que la seua facturació mínima resulte 7.500 € al mes.
+
+Els 4.500 € són una dada de partida («costos fixos totals orientatius»). El desglossament de les dades auxiliars (900 € de l'ajudant més quotes patronals, 600 € de lloguer i 400 € de subministraments) suma 1.900 € més les quotes patronals, així que no cal quadrar-lo amb els 4.500 €.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

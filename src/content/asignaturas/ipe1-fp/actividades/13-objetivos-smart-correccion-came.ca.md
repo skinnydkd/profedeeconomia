@@ -84,6 +84,19 @@ FORTALESES                        OPORTUNITATS
 ═══════════════════════════════════════════════
 ```
 
+## Solució orientativa per al professor
+
+Les reescriptures són una versió de referència: val qualsevol altra que complisca els cinc criteris amb dades realistes, i qualsevol altra estratègia CAME que es justifique amb el DAFO. Terminis segons la Unitat 3: curt (este curs), mitjà (1-3 anys) i llarg (més de 3 anys).
+
+1. **"Ser millor professional."** Incomplix: específic, mesurable i temporal (no diu en què, quant ni quan). Reescriptura: "Acabar la formació en empresa d'este curs amb una valoració de 8 o més sobre 10 del tutor d'empresa." CAME: **Mantindre** (fortalesa: bon expedient i pràctiques). Termini: curt.
+2. **"Trobar faena com més prompte millor."** Incomplix: específic, mesurable i temporal ("com més prompte millor" no és una data). Reescriptura: "Enviar 10 candidatures a la setmana a empreses del sector de la meua comarca i signar un primer contracte al sector en el termini d'un any des que acabe el cicle." CAME: **Explotar** (oportunitat: demanda creixent de perfils amb competència digital i programes d'ocupació jove). Termini: mitjà (el primer treball del sector és un objectiu de termini mitjà a la Unitat 3).
+3. **"Aprendre idiomes."** Incomplix: específic, mesurable i temporal (no diu quin idioma, quin nivell ni quan). Reescriptura: "Assolir un B1 d'anglés amb certificat oficial abans de juny." CAME: **Corregir** (debilitat: anglés bàsic). Termini: curt si la data és la d'este curs; mitjà si la parella la fixa en el curs següent.
+4. **"Fer-me ric amb el meu títol en dos mesos."** Incomplix: assolible (dos mesos no són realistes per a un primer treball) i també específic i mesurable ("ric" no es pot comprovar). Reescriptura: "Aconseguir, en el termini d'un any des que acabe el cicle, un primer treball del sector amb contracte estable i un salari mínim mensual que la parella fixe després de consultar ofertes reals." CAME: **Explotar** (la mateixa oportunitat que el 2; se solapa amb ell). Termini: mitjà.
+5. **"Millorar el meu currículum."** Incomplix: específic, mesurable i temporal. Reescriptura: "Tindre abans que s'acabe el primer trimestre un currículum d'una pàgina, revisat pel meu tutor, que destaque les pràctiques i les ferramentes digitals del sector, i lliurar-lo a 10 empreses de la comarca abans de juny." CAME: **Mantindre** (fortaleses: expedient, pràctiques i maneig de ferramentes digitals). Termini: curt.
+6. **"Aconseguir experiència."** Incomplix: específic, mesurable i temporal (quina experiència, quanta i quan). Reescriptura: "Completar durant este curs la formació en empresa i sol·licitar abans de març almenys dos programes de pràctiques amb inserció de la meua zona." CAME: **Corregir** (debilitat: sense experiència laboral), en suport de l'oportunitat de les pràctiques amb inserció. Termini: curt.
+7. **"Aprendre a usar bé l'ordinador algun dia."** Incomplix: específic (quins programes?), mesurable (què és "bé"?), temporal ("algun dia") i rellevant (el DAFO ja dona com a fortalesa el maneig de ferramentes digitals: el que suma és la ferramenta pròpia del sector). Reescriptura: "Obtindre abans de desembre una certificació oficial en la ferramenta digital més usada al meu sector." CAME: **Mantindre** (reforçar la fortalesa digital) per a afrontar l'amenaça d'un sector que es digitalitza ràpid; també s'admet Explotar. Termini: curt.
+8. **"Convertir-me en astronauta l'any que ve."** És específic, mesurable i temporal, però incomplix **assolible** (un any) i **rellevant** (no encaixa amb el perfil d'un tècnic o tècnica de FP ni amb el seu DAFO). Es descarta o es reformula entorn d'un interés realment accessible del sector. No porta estratègia CAME ni termini.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

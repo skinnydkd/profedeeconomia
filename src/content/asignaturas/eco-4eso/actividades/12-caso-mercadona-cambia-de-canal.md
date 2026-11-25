@@ -60,6 +60,16 @@ Cambiar un bloque del Canvas nunca cambia solo ese bloque. Encontrar qué arrast
 5. **Las dos preguntas difíciles (7 min).** Preguntas 6 y 7, en gran grupo. La 6 introduce la idea de que un modelo no es copiable si no tienes los recursos clave.
 6. **Cierre (3 min).** Cada grupo dice en una frase qué bloque cambiaría de su propio proyecto emprendedor después de este caso.
 
+## Solución orientativa para el profesor
+
+1. **Canvas del modelo antiguo.** Se rellena con la columna «Modelo antiguo» de la ficha. La ficha solo recoge seis bloques; los otros tres (relación con clientes, fuentes de ingresos y socios clave) los completa cada grupo con coherencia, y el caso no dice que cambien (por ejemplo, en ingresos: la venta de la compra, con el mismo surtido y los mismos precios).
+2. **Modelo nuevo.** Se marcan los seis bloques de la columna «Modelo nuevo»: segmento, propuesta de valor, canales, recursos clave, actividades clave y estructura de costes.
+3. **Bloque cambiado a propósito.** **Canales**: el pedido se prepara en un almacén propio, sin tienda de por medio. Se admite también recursos clave si se razona, porque el almacén es a la vez el nuevo canal y el nuevo recurso. Se mueven como consecuencia: recursos clave (nave, cintas, flota, software de rutas), actividades clave (preparar en línea, sin público), estructura de costes (inversión alta y coste por pedido bajo), propuesta de valor (más rapidez y fiabilidad) y segmento (pedidos grandes y recurrentes).
+4. **Bloques que no cambian.** Relación con clientes, fuentes de ingresos y socios clave, que la ficha no modifica. Razón que se puede deducir del planteamiento: lo que fallaba era cómo se preparaba el pedido (repartidores compitiendo con los clientes por el pasillo, pedidos grandes lentos y caros), no lo que se vende ni a quién ni a qué precio. Se cambia solo la pieza que fallaba y se conserva lo que funcionaba.
+5. **Volumen.** El modelo antiguo casi no tenía inversión, pero cada pedido costaba mucho; el nuevo exige una inversión inicial muy alta (coste fijo) y baja el coste por pedido. Compensa a partir del volumen en que lo que se ahorra en cada pedido, sumado, iguala la inversión: es el mismo razonamiento del punto muerto de la unidad (costes fijos ÷ ahorro por unidad). Por debajo de ese volumen, el modelo nuevo sale más caro; por encima, más barato. La ficha no da cifras, así que lo que se evalúa es el razonamiento, no un número.
+6. **Competidor de tres tiendas.** Muy difícilmente. Dos bloques: **recursos clave** (necesita nave, cintas, flota propia y software de rutas, que tres tiendas no tienen) y **estructura de costes** (la inversión inicial es muy alta y solo se recupera con un volumen de pedidos que tres tiendas no alcanzan).
+7. **Riesgo.** Asumir una inversión fija muy alta antes de saber si la demanda llegaría. Los costes fijos se pagan aunque no se venda: si los pedidos no crecen, el coste por pedido no baja lo suficiente y el modelo nuevo resulta más caro que el antiguo, que apenas tenía inversión.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

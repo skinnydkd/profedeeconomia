@@ -16,9 +16,9 @@ preguntas:
     correcta: 1
     explicacion: "L'escassetat és el punt de partida: si tot fóra il·limitat no caldria decidir res i no faria falta l'economia. Triar és el que estudia esta ciència."
   - tipo: verdadero-falso
-    enunciado: "Escassetat significa pobresa: una persona rica no viu en escassetat."
-    correcta: false
-    explicacion: "Fals. L'escassetat és una característica del món, no del teu compte bancari. Una persona rica tampoc pot estar en dos llocs alhora ni comprar-ho absolutament tot: també ha de triar."
+    enunciado: "L'escassetat no equival a pobresa: una persona rica també viu en escassetat, perquè no ho pot tindre tot."
+    correcta: true
+    explicacion: "Cert. L'escassetat és una característica del món, no del teu compte bancari. Una persona rica tampoc pot estar en dos llocs alhora ni comprar-ho absolutament tot: també ha de triar. Confondre escassetat amb pobresa és l'error més habitual."
   - enunciado: "«L'atur juvenil a Espanya està al voltant del 25 %» i «el Govern hauria de baixar els impostos als joves». Com es classifiquen estes dues frases?"
     opciones:
       - "Les dues són economia positiva."

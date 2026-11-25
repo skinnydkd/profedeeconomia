@@ -9,8 +9,8 @@ preguntas:
     opciones:
       - "Consumo, inversión y gasto público."
       - "Consumo, inversión, gasto público y exportaciones netas (X − M)."
-      - "Consumo, ahorro, inversión y exportaciones."
-      - "Renta disponible, ahorro y gasto público."
+      - "Consumo, ahorro, inversión y exportaciones de bienes y servicios."
+      - "Renta disponible, ahorro y gasto público de los hogares."
     correcta: 1
     explicacion: "La AD reproduce la composición del PIB por el método del gasto: AD = C + I + G + (X − M). El ahorro no es un componente del gasto agregado, sino la parte de la renta que no se consume."
   - enunciado: "La pendiente negativa de la curva de demanda agregada se explica por tres mecanismos. ¿Cuál de los siguientes NO es uno de ellos?"
@@ -24,8 +24,8 @@ preguntas:
   - enunciado: "¿Cuál de estas afirmaciones describe correctamente la diferencia entre SRAS y LRAS?"
     opciones:
       - "SRAS es vertical en Y* y LRAS tiene pendiente positiva."
-      - "Ambas tienen pendiente positiva, pero la SRAS es más empinada que la LRAS."
-      - "SRAS tiene pendiente positiva por rigidez de costes a corto plazo; LRAS es vertical en la producción potencial Y* porque los costes se ajustan plenamente."
+      - "Ambas tienen pendiente positiva, pero la SRAS es más empinada que la LRAS porque los costes son rígidos."
+      - "SRAS tiene pendiente positiva por la rigidez de costes a corto plazo; LRAS es vertical en la producción potencial Y*."
       - "SRAS y LRAS son idénticas; la distinción es solo terminológica."
     correcta: 2
     explicacion: "La SRAS inclina hacia arriba porque algunos costes (salarios, alquileres, materias primas) son rígidos a corto plazo, así que una subida de precios eleva los márgenes y la producción. A largo plazo todos los costes se ajustan al nivel de precios y la cantidad ofrecida depende solo de K, L y A: la LRAS es vertical en Y*."
@@ -39,8 +39,8 @@ preguntas:
     explicacion: "Con SRAS de pendiente positiva, el desplazamiento de AD a la derecha eleva tanto el nivel de precios como la producción a corto plazo. La economía se sobrecalienta por encima de Y*. A largo plazo, sin embargo, los costes se ajustan, la SRAS se desplaza a la izquierda y la economía vuelve a Y* solo con precios más altos (neutralidad del dinero)."
   - enunciado: "El encarecimiento brusco del petróleo y el gas natural en 2022 tras la invasión de Ucrania es un caso canónico de…"
     opciones:
-      - "Shock positivo de demanda: sube P y sube Y."
-      - "Shock negativo de demanda: bajan P e Y."
+      - "Shock positivo de demanda: sube P y sube Y (expansión)."
+      - "Shock negativo de demanda: bajan P e Y (recesión)."
       - "Shock negativo de oferta (estanflación): sube P y baja Y."
       - "Shock positivo de oferta: baja P y sube Y."
     correcta: 2
@@ -55,8 +55,8 @@ preguntas:
     explicacion: "El esquema clásico de los ciclos económicos identifica cuatro fases: expansión (crecimiento sostenido por encima de Y*), recesión (caída del PIB durante al menos dos trimestres), depresión (el fondo del ciclo: la producción toca su mínimo y el paro, su máximo) y recuperación (salida de la recesión hasta cerrar la brecha de producción). El NBER y el CEPR no usan este esquema: fechan picos y valles."
   - enunciado: "En el modelo de Solow simplificado, ¿qué motor del crecimiento es el único que sostiene aumentos del PIB per cápita a largo plazo?"
     opciones:
-      - "La acumulación de capital físico (K)."
-      - "El aumento de la población activa (L)."
+      - "La acumulación continua de capital físico por trabajador."
+      - "El aumento sostenido de la población activa (L) del país."
       - "La mejora de la productividad total de los factores (A o PTF)."
       - "El aumento del gasto público (G)."
     correcta: 2
@@ -64,8 +64,8 @@ preguntas:
   - enunciado: "El Índice de Desarrollo Humano (IDH) del PNUD se construye combinando tres dimensiones. ¿Cuáles son?"
     opciones:
       - "PIB per cápita, desigualdad y desempleo."
-      - "Salud (esperanza de vida), educación (años de escolarización) y renta (RNB per cápita en PPA, transformada logarítmicamente)."
-      - "Renta, libertad política y participación democrática."
+      - "Salud (esperanza de vida), educación (años de escolarización) y renta (RNB per cápita en PPA)."
+      - "Renta, libertad política y participación democrática medidas por encuestas de opinión."
       - "Esperanza de vida, índice de Gini y tasa de pobreza."
     correcta: 1
     explicacion: "El IDH, diseñado por Mahbub ul Haq y Amartya Sen para el PNUD en 1990, combina con peso igual salud (esperanza de vida al nacer), educación (media geométrica entre años medios y años esperados de escolarización) y renta (RNB per cápita en dólares PPA, logarítmica). Es la media geométrica de las tres dimensiones, no la aritmética."

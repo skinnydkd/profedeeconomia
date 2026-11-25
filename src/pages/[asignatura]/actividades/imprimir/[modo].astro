@@ -1,5 +1,5 @@
 ---
-import { enfasisHtml } from '../../../../components/quiz-utils';
+import { enfasisHtml, ordenImpreso } from '../../../../components/quiz-utils';
 import TextoInline from '../../../../components/TextoInline';
 /**
  * Print-ready "Cuaderno de actividades" for a whole subject.
@@ -122,6 +122,9 @@ const totalTests = tests.length;
 const accent = ACCENTS[a.color];
 
 const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
+// Printed order of the options of question qi of a unit: the same in the student
+// and teacher editions and in both languages, so the answer key matches.
+const ordenOpciones = (unidad: number, qi: number, n: number) => ordenImpreso(`${a.slug}:${unidad}:${qi}`, n);
 ---
 
 <!doctype html>
@@ -669,8 +672,8 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
                 <p class="q__text"><span class="q__num">{qi + 1}.</span> <TextoInline texto={q.enunciado} /></p>
                 {q.tipo === 'opcion-multiple' && (
                   <ul class="q__opts">
-                    {q.opciones.map((op, oi) => (
-                      <li class="q__opt"><span class="q__letra">{letra(oi)})</span><TextoInline texto={op} /></li>
+                    {ordenOpciones(u.unidad, qi, q.opciones.length).map((idx, oi) => (
+                      <li class="q__opt"><span class="q__letra">{letra(oi)})</span><TextoInline texto={q.opciones[idx]} /></li>
                     ))}
                   </ul>
                 )}
@@ -703,7 +706,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
           <h3 class="sol-unit__h">{copy.unidad} {u.unidad} · {u.test!.data.preguntas.length} {copy.preguntas}</h3>
           {u.test!.data.preguntas.map((q, qi) => {
             const ans =
-              q.tipo === 'opcion-multiple' ? `${letra(q.correcta)})`
+              q.tipo === 'opcion-multiple' ? `${letra(ordenOpciones(u.unidad, qi, q.opciones.length).indexOf(q.correcta))})`
               : q.tipo === 'verdadero-falso' ? (q.correcta ? copy.verdadero : copy.falso)
               : q.tipo === 'numerico' ? `${String(q.respuesta).replace('.', ',')}${q.unidad ? ' ' + q.unidad : ''}`
               : q.correctas.map((d, i) => `${i + 1}→${letra(d)}`).join(', ');

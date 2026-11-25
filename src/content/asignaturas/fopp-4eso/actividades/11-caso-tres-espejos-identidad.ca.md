@@ -70,6 +70,24 @@ El cas de Dani servix per a treballar eixa distància sense que ningú haja d'ex
 4. **Filtre de la crítica (10 min).** Treballem un matís fi: no tota la informació de l'espill 3 és igual de fiable. El grup distingix, amb exemples inventats, entre una observació que informa de veritat sobre com projectes i un comentari que diu més de qui el fa que de tu. Quin es guarda i quin es descarta?
 5. **Posada en comú i salt a allò personal (8 min).** Cada grup comparteix una conclusió. El professor tanca convidant a una reflexió individual silenciosa de dos minuts —sense lliurar ni llegir en veu alta—: «En quin espill crec que tinc jo la major distància?». Connecta directament amb el DAFO personal de l'activitat 1.
 
+## Solució orientativa per al professor
+
+**Pas 1. Els tres espills de Dani**, amb frases del text:
+
+1. **Espill 1, com es veu ell (autoimatge).** Es considera «una persona tímida i poc interessant», creu que a penes té coses que aportar i viu el parlar poc com «un defecte enorme».
+2. **Espill 2, com creu que el veuen.** Creu que els altres noten que «no pinta res» quan un treball en grup l'obliga a participar.
+3. **Espill 3, com el veuen de veritat.** Tres companys escriuen de forma anònima que «escolta de veritat quan li contes un problema», que «no es riu de ningú» i que «quan per fi diu alguna cosa, sol ser sensat». Cap menciona la timidesa com a problema.
+
+Confusió habitual, la que avisa el pas 1: posar «no pinta res» a l'espill 1. És allò que Dani creu que pensen els altres, no allò que pensa de si mateix.
+
+**Pas 2. La distància**
+
+- La major distància està entre l'espill 3 i els espills 1 i 2, que apunten en la mateixa direcció (poc a aportar, ningú no ho valora). L'espill 3 els contradiu.
+- Explicació que es desprén del cas: Dani mesura el seu valor per allò que no fa (parlar molt) i no valora allò que sí que fa bé (escoltar, no jutjar), que és justament el que li reconeixen. Allò que per a ell és un defecte enorme, per als altres ni tan sols apareix.
+- Informació útil que li donen els seus companys: les seues fortaleses reals (escolta, respecte, seny quan parla), que ell no es donava a si mateix.
+
+Els passos 3 a 5 (debat de decisió, filtre de la crítica i reflexió individual) no tenen resposta única: s'avaluen amb els criteris de la taula.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

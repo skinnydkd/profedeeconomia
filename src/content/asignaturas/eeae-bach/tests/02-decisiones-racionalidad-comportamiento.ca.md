@@ -11,13 +11,13 @@ preguntas:
     opciones:
       - "Les persones són sempre egoistes i només busquen el seu propi interés."
       - "Els fets econòmics i socials s'han d'explicar a partir de les decisions dels individus que els componen."
-      - "El grup social és l'única unitat vàlida per a explicar la conducta econòmica."
+      - "El grup social és l'única unitat vàlida per a explicar la conducta econòmica i no la dels individus."
       - "L'Estat ha de decidir pels individus per a evitar errors."
     correcta: 1
     explicacion: "L'individualisme metodològic és una regla de mètode, no una afirmació sobre l'egoisme: per a entendre el col·lectiu es parteix de l'individu que decidix, amb els seus fins i restriccions. Qui pren el grup com a unitat d'anàlisi és la perspectiva sociològica."
   - enunciado: "Per a explicar per què un jove decidix emprendre, un sociòleg es fixaria sobretot en…"
     opciones:
-      - "El càlcul individual de costos i beneficis que fa eixa persona."
+      - "El càlcul individual de costos i beneficis que fa eixa persona abans de fer el pas."
       - "L'entorn: família, grup social, models d'èxit visibles, pressió dels iguals i normes culturals."
       - "La funció d'utilitat matemàtica de l'individu."
       - "El preu de mercat dels productes que vol vendre."
@@ -26,14 +26,14 @@ preguntas:
   - enunciado: "El model de l'homo economicus suposa que l'agent que decidix…"
     opciones:
       - "Té informació suficient, capacitat de càlcul i preferències coherents i estables."
-      - "Decidix sempre per intuïció i emoció."
+      - "Decidix sempre per intuïció i emoció, sense parar-se mai a valorar les alternatives."
       - "Copia les decisions del seu grup social."
       - "No pot equivocar-se mai en la vida real."
     correcta: 0
     explicacion: "L'homo economicus és una ficció útil que descansa en tres exigències: informació, capacitat de càlcul i coherència de preferències. Servix per a modelitzar, però la realitat el contradiu de forma sistemàtica (fallides de la racionalitat)."
   - enunciado: "La racionalitat acotada de Herbert Simon afirma que les persones, en decidir…"
     opciones:
-      - "Maximitzen sempre, triant la millor opció possible entre totes."
+      - "Maximitzen sempre, triant la millor opció possible entre totes les alternatives existents."
       - "Satisfan: com que buscar i informar-se costa, trien la primera opció prou bona, no l'òptima."
       - "Decidixen a l'atzar, sense cap lògica."
       - "Només decidixen bé si tenen estudis superiors."
@@ -51,7 +51,7 @@ preguntas:
     opciones:
       - "Fa que la majoria de qui emprén infravalore el risc i crega estar entre la minoria que sobreviurà."
       - "Impedix per complet prendre qualsevol decisió de negoci."
-      - "Només afecta els inversors en borsa, no qui emprén."
+      - "Només afecta els inversors en borsa i no qui emprén, que sol ser molt prudent amb el risc."
       - "Garantix l'èxit de qualsevol projecte empresarial."
     correcta: 0
     explicacion: "L'excés de confiança ens fa sobreestimar les nostres capacitats i probabilitats d'èxit. Una dosi és necessària per a atrevir-se a emprendre; un excés porta a subestimar costos i riscos. Reconéixer-lo permet buscar opinions externes i fixar criteris per avançat."
@@ -65,7 +65,7 @@ preguntas:
     explicacion: "L'utilitarisme és una filosofia moral conseqüencialista: avalua les accions per la felicitat o utilitat que generen, buscant la major felicitat per al major nombre. D'esta arrel filosòfica procedix la idea econòmica de maximitzar la utilitat i el benestar."
   - enunciado: "La paradoxa d'Easterlin suggerix que…"
     opciones:
-      - "Els països pobres són sempre més feliços que els rics."
+      - "Els països pobres són sempre més feliços que els rics, perquè tenen menys preocupacions i menys deutes."
       - "Per damunt de cert nivell de renda, que un país siga més ric no garantix que la seua població es declare més feliç."
       - "Els diners no influïxen en absolut en la felicitat."
       - "La felicitat només depén del consum material."
@@ -74,9 +74,9 @@ preguntas:
   - enunciado: "Una situació econòmica pot ser «eficient en el sentit de Pareto» i, alhora, profundament injusta. Quina conclusió s'extrau?"
     opciones:
       - "L'eficiència i l'equitat són exactament el mateix."
-      - "L'eficiència és un criteri necessari però no suficient per a jutjar una societat: el repartiment (equitat) és un juí de valor diferent."
+      - "L'eficiència és necessària però no suficient per a jutjar una societat: el repartiment (equitat) és un juí de valor diferent."
       - "Si una cosa és eficient, automàticament és justa."
-      - "L'equitat és un criteri tècnic que es deduïx de les dades."
+      - "L'equitat és un criteri tècnic que es deduïx de les dades, com l'eficiència, i no exigix cap juí de valor."
     correcta: 1
     explicacion: "L'eficiència de Pareto s'ocupa de l'aprofitament dels recursos (que no es puga millorar ningú sense empitjorar un altre), però no diu res sobre la justícia del repartiment. Una assignació pot ser eficient i molt desigual; decidir quanta equitat buscar és una decisió normativa, ètica i política."
   - tipo: verdadero-falso

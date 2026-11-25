@@ -17,10 +17,10 @@ preguntas:
     explicacion: "Capital econòmic = diners i béns; capital social = xarxa de contactes; capital cultural = sabers, hàbits i referències adquirits a casa (llibres, converses, idiomes, hàbits d'estudi, museus). És el més invisible i el que més es transmet sense voler."
   - enunciado: "L'anomenat *sostre familiar*…"
     opciones:
-      - "És un destí inevitable: ningú arriba més lluny que els seus pares."
+      - "És un destí inevitable: ningú arriba més lluny que els seus pares, perquè la família fixa el sostre per a sempre."
       - "Només afecta famílies amb baix capital econòmic."
-      - "És una restricció real però superable, sobretot a través d'educació pública, beques, xarxes externes i mobilitat."
-      - "Desapareix automàticament en complir la majoria d'edat."
+      - "És una restricció real però superable, amb educació pública, beques, xarxes externes i mobilitat."
+      - "Desapareix automàticament en complir la majoria d'edat, quan un comença a decidir per si mateix."
     correcta: 2
     explicacion: "El sostre familiar és real, però no és destí. La sociologia contemporània documenta mobilitat social via educació pública, beques, associacions/esports/voluntariat i migracions laborals. La família et dóna el punt d'eixida; tu decidixes quant de camí recorres."
   - enunciado: "Estàs estudiant a casa i no et ve de gust eixir, però penses: *si no vaig, demà tots parlaran del pla i jo em quedaré fora*. Ningú t'ha demanat res. Quin tipus de pressió grupal és esta?"

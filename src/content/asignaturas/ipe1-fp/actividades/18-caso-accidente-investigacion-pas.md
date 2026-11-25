@@ -93,6 +93,27 @@ ACCIDENTE EN UN ALMACÉN
 ═══════════════════════════════════════════════
 ```
 
+## Solución orientativa para el profesor
+
+1. **Factores de riesgo.**
+   - *Condiciones materiales:* escalera inestable sin nadie que la sujete; zona de paso de carretillas sin señalizar; luz de aviso de la carretilla averiada desde hace semanas.
+   - *Organización:* prisa por servir un pedido; tarea en altura encargada a una persona en periodo de prueba.
+   - *Formación:* ninguna formación en prevención ni en el manejo de la carretilla.
+
+   El riesgo que se materializa es una caída a distinto nivel. La carretilla averiada, la falta de formación en su uso y la zona sin señalizar no intervienen en esta caída, pero son fallos del mismo sistema y conviene anotarlos.
+2. **Cadena de fallos.** 1º: falta de formación e información, y encargo de una tarea en altura a una persona nueva. 2º (lo que lo agrava): la prisa por el pedido lleva a improvisar con una escalera inestable y sin sujetar. Desencadenante: Marc pierde el equilibrio y cae.
+3. **Clasificación del daño.** **Accidente de trabajo.** Es una lesión corporal (fractura de brazo), súbita, en un momento concreto y con ocasión del trabajo por cuenta ajena. No es enfermedad profesional, que es lenta y progresiva por una exposición prolongada a un agente nocivo.
+4. **Medidas preventivas** (de mayor a menor prioridad; basta con tres bien ordenadas):
+   1. Evitar el riesgo: reorganizar el almacenaje o disponer medios adecuados de acceso, de modo que nadie tenga que subir a una escalera inestable.
+   2. Protección colectiva: señalizar y delimitar la zona de paso de carretillas y reparar la luz de aviso.
+   3. Instrucciones y organización: formación e información en prevención y en el uso de la carretilla antes de asignar tareas, y no encargar tareas de riesgo a quien no está formado; la prisa no puede sustituir al procedimiento.
+   4. Protección individual, como último recurso: los EPI que determine la evaluación de riesgos del puesto, para el riesgo que quede tras las medidas anteriores.
+5. **Error de actuación.** El compañero levanta a Marc de inmediato tirando del brazo lesionado: lo mueve sin que haya peligro inminente que lo justifique, no asegura antes la zona (sigue siendo zona de paso de carretillas, con riesgo de segunda víctima) y solo después va a buscar ayuda, dejando a Marc solo. Debió asegurar la zona, avisar al 112 o hacer que alguien lo hiciera, y mantener a Marc quieto y acompañado.
+6. **Orden correcto del PAS.**
+   - **Proteger:** primero «Asegurar la zona: parar las carretillas y señalizar» y después «Comprobar que no hay más peligro inminente alrededor».
+   - **Avisar:** «Llamar al 112 e informar con calma de qué ha pasado».
+   - **Socorrer:** «No mover el brazo fracturado; mantener a Marc quieto y acompañado hasta que llegue la ayuda» y «Vigilar su estado (consciencia, respiración) sin dejarlo solo».
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

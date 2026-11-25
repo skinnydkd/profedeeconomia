@@ -9,8 +9,8 @@ slug: "asignaturas/eeae-bach/tests/07-proyecto-mision-vision-emprendimiento-soci
 preguntas:
   - enunciado: "Què distingix principalment una idea d'un projecte emprenedor?"
     opciones:
-      - "Que la idea és sempre tècnicament més original que el projecte."
-      - "Que el projecte és una idea amb propòsit i dedicació, sostinguda per un per a què clar quan arriben les dificultats."
+      - "Que la idea és sempre tècnicament més original que el projecte, que només la desenvolupa i l'executa."
+      - "Que el projecte és una idea amb propòsit i dedicació, sostinguda per un per a què clar davant les dificultats."
       - "Que la idea costa diners i el projecte és gratuït."
       - "Que no hi ha cap diferència: són sinònims."
     correcta: 1
@@ -20,12 +20,12 @@ preguntas:
       - "Què volem arribar a ser en el futur?"
       - "Per a què existix este projecte hui: què fa, per a qui i quin problema resol?"
       - "Quina forma jurídica ens convé?"
-      - "Quant benefici obtindrem el primer any?"
+      - "Quant benefici obtindrem el primer any i amb quina rapidesa creixeran les vendes?"
     correcta: 1
     explicacion: "La missió descriu la raó de ser en el present: què fa el projecte, per a qui i quin problema resol. La pregunta sobre el futur («què volem arribar a ser») correspon a la visió, no a la missió."
   - enunciado: "Quina d'estes missions està millor formulada?"
     opciones:
-      - "«Oferir solucions de qualitat que generen valor per als nostres clients.»"
+      - "«Oferir solucions de qualitat que generen valor per als nostres clients i per a la societat.»"
       - "«Ser líders i referents en el nostre sector.»"
       - "«Que els veïns majors del nostre barri puguen fer la compra a domicili sense carregar pes.»"
       - "«Treballar amb passió, excel·lència i innovació cada dia.»"
@@ -58,7 +58,7 @@ preguntas:
   - enunciado: "Una marca registrada en l'OEPM…"
     opciones:
       - "Dona dret a usar en exclusiva un signe (nom, logo) i a impedir que altres el copien per a productes semblants."
-      - "Protegix automàticament qualsevol invenció tècnica de l'empresa durant tota la vida."
+      - "Protegix automàticament qualsevol invenció tècnica de l'empresa durant tota la seua vida útil."
       - "Només servix per a empreses que fabriquen productes físics, mai per a serveis."
       - "Caduca als sis mesos i no es pot renovar."
     correcta: 0

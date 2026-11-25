@@ -8,9 +8,9 @@ preguntas:
   - enunciado: "Dos países, A y B, producen únicamente trigo y tela. A necesita 2 horas para una tonelada de trigo y 4 horas para un metro de tela; B necesita 5 horas para una tonelada de trigo y 6 horas para un metro de tela. ¿Cuál de estas afirmaciones es correcta?"
     opciones:
       - "B tiene ventaja absoluta en tela porque emplea menos horas que A."
-      - "A tiene ventaja absoluta en los dos bienes, pero B tiene ventaja comparativa en tela porque su coste de oportunidad de la tela (1,2 t de trigo) es menor que el de A (2 t de trigo)."
+      - "A tiene ventaja absoluta en ambos bienes, pero B tiene ventaja comparativa en tela: su coste de oportunidad (1,2 t de trigo) es menor que el de A (2 t)."
       - "Como A es más eficiente en todo, no hay margen para que ambos países ganen comerciando."
-      - "Ambos países deben especializarse en trigo porque es el bien que requiere menos horas en ambos casos."
+      - "Ambos países deben especializarse en trigo porque es el bien que requiere menos horas en ambos casos, así que ganan los dos."
     correcta: 1
     explicacion: "A es absolutamente mejor en los dos bienes (2 < 5 en trigo, 4 < 6 en tela). Pero el coste de oportunidad de 1 m de tela en A es 4/2 = 2 t de trigo, frente a 6/5 = 1,2 t en B. B tiene ventaja comparativa en tela y A en trigo. Esta es la demostración clásica de Ricardo (1817): aunque uno sea peor en todo, comerciando ambos pueden consumir más."
   - enunciado: "¿Cuál de estos instrumentos NO es proteccionista en sentido estricto?"
@@ -24,9 +24,9 @@ preguntas:
   - enunciado: "La Organización Mundial del Comercio (OMC)…"
     opciones:
       - "Fue creada en 1947 con el nombre de GATT y desde entonces no ha cambiado."
-      - "Sucedió al GATT en 1995, tiene 166 países miembros y descansa sobre los principios de nación más favorecida, trato nacional y reducción progresiva de aranceles."
+      - "Sucedió al GATT en 1995, tiene 166 países miembros y se basa en la nación más favorecida, el trato nacional y la reducción de aranceles."
       - "Es un organismo dependiente del Banco Mundial y se ocupa de la cooperación al desarrollo."
-      - "Tiene poder para imponer sanciones unilaterales a los países que no liberalicen su comercio."
+      - "Tiene poder para imponer sanciones unilaterales a los países que no liberalicen su comercio, sin necesidad de un procedimiento previo."
     correcta: 1
     explicacion: "La OMC sustituyó al GATT en 1995 y cuenta con 166 miembros. Sus principios básicos son la nación más favorecida (cualquier ventaja a un socio se extiende a todos), el trato nacional (no discriminar productos importados una vez en el mercado interno) y la reducción progresiva de aranceles mediante rondas. La Ronda de Doha lleva sin cerrarse desde 2001 y el órgano de apelación está bloqueado desde 2019."
   - enunciado: "¿Qué orden cronológico de hitos de la construcción europea es correcto?"
@@ -34,7 +34,7 @@ preguntas:
       - "Maastricht → CECA → euro físico → Brexit → NextGenerationEU."
       - "CECA (1951) → Tratados de Roma (1957) → Maastricht (1992) → euro físico (2002) → Brexit (2020) → NextGenerationEU (2020)."
       - "Tratados de Roma → CECA → euro físico → Maastricht → Brexit."
-      - "CECA → Maastricht → Tratados de Roma → euro físico → NextGenerationEU → Brexit."
+      - "CECA (1951) → Maastricht (1992) → Tratados de Roma (1957) → euro físico (2002) → NextGenerationEU (2020) → Brexit (2020)."
     correcta: 1
     explicacion: "La secuencia es: CECA 1951 (carbón y acero), Tratados de Roma 1957 (CEE), Maastricht 1992 (UE y bases de la UEM), euro físico 2002 (peseta y resto de divisas sustituidas), Brexit 2020 (primera salida) y NextGenerationEU 2020 (primera deuda común para responder a la pandemia)."
   - enunciado: "Las cuatro libertades del mercado único europeo son…"
@@ -48,15 +48,15 @@ preguntas:
   - enunciado: "El plan NextGenerationEU se caracteriza por…"
     opciones:
       - "Ser un préstamo bilateral de Alemania al resto de Estados miembros."
-      - "Una emisión de deuda común por la Comisión Europea de 750.000 millones de euros para responder a la pandemia, financiando transferencias y préstamos a los Estados miembros."
+      - "Una emisión de deuda común por la Comisión Europea de 750.000 millones de euros, que financia transferencias y préstamos a los Estados miembros."
       - "Un fondo permanente del BCE para comprar deuda soberana."
-      - "Una ampliación del presupuesto ordinario de la UE financiado con un nuevo impuesto sobre la renta."
+      - "Una ampliación del presupuesto ordinario de la UE financiado con un nuevo impuesto sobre la renta de los ciudadanos europeos."
     correcta: 1
     explicacion: "NextGenerationEU es un fondo de 750.000 millones financiado por primera vez con deuda común emitida por la Comisión Europea. España es el segundo mayor receptor (unos 163.000 millones, repartidos entre transferencias no reembolsables y préstamos) y los gestiona vía el Plan de Recuperación, Transformación y Resiliencia. Es lo más parecido a una mutualización fiscal que ha vivido la UE."
   - enunciado: "Sobre los beneficios y costes de la globalización contemporánea, ¿cuál de estas afirmaciones está mejor respaldada por la evidencia agregada?"
     opciones:
-      - "La pobreza extrema mundial ha aumentado desde 1990 por culpa de la apertura comercial."
-      - "La pobreza extrema mundial ha caído del 36 % en 1990 al 8 % en 2022, pero la desigualdad dentro de los países avanzados ha crecido, especialmente para la clase media baja (curva del elefante de Milanović)."
+      - "La pobreza extrema mundial ha aumentado desde 1990 por culpa de la apertura comercial de los países ricos y emergentes."
+      - "La pobreza extrema mundial ha caído del 36 % al 8 % entre 1990 y 2022, pero la desigualdad ha crecido dentro de los países avanzados."
       - "La globalización ha reducido la desigualdad tanto entre países como dentro de ellos."
       - "La globalización ha tenido efectos neutros sobre la pobreza y la desigualdad."
     correcta: 1

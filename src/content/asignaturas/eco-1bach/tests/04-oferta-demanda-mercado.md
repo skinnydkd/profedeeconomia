@@ -7,9 +7,9 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué establece la ley de la demanda?"
     opciones:
-      - "Cuanto mayor es la renta, mayor es la cantidad demandada de cualquier bien."
-      - "Existe una relación inversa entre el precio de un bien y la cantidad demandada, manteniendo constantes los demás factores."
-      - "La cantidad demandada depende exclusivamente de los gustos de los consumidores."
+      - "Cuanto mayor es la renta, mayor es la cantidad demandada de cualquier bien, sea normal o inferior."
+      - "Existe una relación inversa entre el precio de un bien y la cantidad demandada, con los demás factores constantes."
+      - "La cantidad demandada depende exclusivamente de los gustos de los consumidores, no del precio."
       - "Cuando sube el precio de un bien, su demanda se desplaza a la derecha."
     correcta: 1
     explicacion: "La ley de la demanda describe una relación inversa entre precio y cantidad demandada. La pendiente negativa se explica por el efecto sustitución y el efecto renta actuando simultáneamente."
@@ -26,14 +26,14 @@ preguntas:
       - "El precio es el mínimo posible para los consumidores."
       - "La cantidad ofrecida y la cantidad demandada coinciden, y no hay tendencia al cambio."
       - "El Gobierno fija el precio que considera justo."
-      - "Hay exceso de oferta porque los productores siempre quieren vender más."
+      - "Hay exceso de oferta porque los productores siempre quieren vender más a cualquier precio."
     correcta: 1
     explicacion: "En el equilibrio, Q_d = Q_o al precio P*. No hay ni exceso de oferta ni de demanda, por lo que ningún agente tiene incentivos para modificar su comportamiento."
   - enunciado: "Si el precio de mercado está por debajo del precio de equilibrio, lo previsible es que…"
     opciones:
       - "Aparezca un exceso de oferta y el precio baje aún más."
       - "Aparezca un exceso de demanda (escasez) y el precio tienda a subir hasta el equilibrio."
-      - "El mercado se mantenga estable porque los consumidores están contentos."
+      - "El mercado se mantenga estable porque los consumidores están contentos con ese precio."
       - "Los productores dejen de vender para siempre."
     correcta: 1
     explicacion: "Por debajo del equilibrio los consumidores quieren comprar más de lo que los productores ofrecen: aparece escasez, los consumidores compiten entre sí y el precio sube hacia P*."
@@ -63,7 +63,7 @@ preguntas:
     explicacion: "Una sequía es un shock negativo sobre la oferta: la curva se desplaza a la izquierda. El nuevo equilibrio tiene un precio mayor y una cantidad menor, exactamente lo observado en el aceite de oliva 2022-2024."
   - enunciado: "La entrada de Ouigo e Iryo en el AVE español desde 2021 ha tenido el siguiente efecto sobre el mercado de billetes de alta velocidad…"
     opciones:
-      - "Desplazamiento de la demanda a la izquierda: menos viajeros."
+      - "Desplazamiento de la demanda a la izquierda: menos viajeros al encarecerse los billetes."
       - "Desplazamiento de la oferta a la derecha (más productores): tendencia a bajar precios y subir cantidad."
       - "Desplazamiento de la oferta a la izquierda: menos plazas."
       - "Ningún cambio: el mercado sigue en monopolio."

@@ -49,9 +49,9 @@ preguntas:
     explicacion: "Reanalitzant grans enquestes dels EUA i el Regne Unit, van trobar que més hores de xarxes s'associen amb més símptomes depressius, sobretot en les xiques. És una correlació: el debat sobre quant es deu a les xarxes i quant a altres factors continua obert."
   - enunciado: "La «dismòrfia digital» es referix a…"
     opciones:
-      - "Una malaltia ocular causada per mirar pantalles."
-      - "La distorsió entre la imatge real d'un mateix i la imatge retocada que un projecta i veu projectada en pantalles."
-      - "L'addicció al mòbil en general."
+      - "Una malaltia ocular causada per mirar pantalles durant moltes hores seguides sense descansar la vista."
+      - "La distorsió entre la imatge real d'un mateix i la imatge retocada que es projecta en les pantalles."
+      - "L'addicció al mòbil en general, que es mesura per les hores d'ús diari de les xarxes socials."
       - "Una nova moda estètica inventada per TikTok."
     correcta: 1
     explicacion: "Retocar les fotos abans de publicar-les és molt habitual entre adolescents. La dismòrfia digital és la distorsió entre el jo real i el jo digital, i ja l'han descrita cirurgians plàstics que atenen pacients que volen assemblar-se a les seues fotos filtrades."

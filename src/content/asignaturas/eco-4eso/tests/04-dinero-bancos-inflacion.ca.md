@@ -24,9 +24,9 @@ preguntas:
     correcta: 2
     explicacion: "La targeta, el Bizum o el mòbil no són uns diners distints: són formes de moure diners bancaris. El teu banc resta l'import del teu apunt i el banc del bar el suma al seu; a la zona euro més de nou de cada deu euros són apunts d'este tipus, no bitllets."
   - tipo: verdadero-falso
-    enunciado: "Si el teu banc fa fallida, perds tots els diners que tenies al compte corrent."
-    correcta: false
-    explicacion: "Fals. El Fons de Garantia de Depòsits torna fins a 100.000 € per persona i entitat. Quan el Banco Popular va ser venut per 1 € el juny del 2017, cap client amb compte o depòsit va perdre res; sí que ho van perdre tot els qui tenien accions o bons, que no són depòsits."
+    enunciado: "Si el teu banc fa fallida, el Fons de Garantia de Depòsits et torna els diners del teu compte corrent fins a 100.000 € per persona i entitat."
+    correcta: true
+    explicacion: "Cert. El fons cobrix comptes i depòsits, no accions ni bons. Quan el Banco Popular va ser venut per 1 € el juny del 2017, cap client amb compte o depòsit va perdre res; sí que ho van perdre tot els qui tenien accions o bons."
   - tipo: relacionar
     enunciado: "Relaciona cada funció dels diners amb el que permeten fer."
     izquierda:

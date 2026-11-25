@@ -47,18 +47,18 @@ preguntas:
     explicacion: "Los **cajeros** están entre las profesiones con **demanda en retroceso** por la autocaja y la banca digital. Las otras cuatro (enfermería/sociosanitarios, programación, renovables y oficios técnicos cualificados como electricistas o soldadores) son las cinco categorías con mayor proyección de crecimiento según los informes citados."
   - enunciado: "Según la Encuesta de Estructura Salarial 2024 del INE, ¿qué afirmación sobre los salarios medios por nivel formativo es **correcta**?"
     opciones:
-      - "FP de Grado Medio cobra de media más que un graduado universitario."
+      - "FP de Grado Medio cobra de media más que un graduado universitario, porque entra antes en el mercado laboral y acumula antigüedad."
       - "ESO sin más formación (~17.500 €) cobra menos que FP Medio (~23.000 €), que cobra menos que FP Superior (~26.500 €) y que el grado universitario (~30.000 €)."
       - "Todos los niveles formativos cobran lo mismo: el salario depende solo del sector."
-      - "El máster universitario cobra el doble que un graduado, en torno a 60.000 €."
+      - "El máster universitario cobra el doble que un graduado, en torno a 60.000 €, porque la formación se paga siempre por años de estudio."
     correcta: 1
     explicacion: "El orden ascendente del salario medio bruto anual es: ESO ~17.500 € → FP Medio ~23.000 € → FP Superior ~26.500 € → grado universitario ~30.000 € → máster ~34.500 €. Son **medias**, no garantías: hay gran dispersión por sector, empresa, ciudad y experiencia. La diferencia FP Superior–grado universitario es menor de lo que sugiere el imaginario social."
   - enunciado: "¿Cuál es la **diferencia clave** entre el trabajo por cuenta ajena, el autoempleo y el intraemprendimiento?"
     opciones:
-      - "El cuenta ajena trabaja para una empresa cobrando un salario; el autoempleo trabaja para sí mismo (autónomo); el intraemprendedor es un cuenta ajena que lidera proyectos con autonomía emprendedora dentro de una empresa."
-      - "Son tres nombres distintos para la misma situación laboral."
-      - "El intraemprendimiento exige darse de alta como autónomo igual que el autoempleo."
-      - "Solo el autoempleo permite tener empleados; las otras dos modalidades no."
+      - "El cuenta ajena trabaja para una empresa con salario; el autoempleo, para sí mismo (autónomo); el intraemprendedor es un cuenta ajena que lidera proyectos con autonomía en su empresa."
+      - "Son tres nombres distintos para la misma situación laboral: en los tres casos se trabaja por cuenta propia y se cotiza igual como autónomo."
+      - "El intraemprendimiento exige darse de alta como autónomo igual que el autoempleo; el cuenta ajena, en cambio, nunca puede liderar proyectos en la empresa."
+      - "Solo el autoempleo permite tener empleados; el cuenta ajena y el intraemprendedor trabajan siempre solos y sin equipo a su cargo."
     correcta: 0
     explicacion: "Las tres son formas legítimas de trabajar. **Cuenta ajena** (~81 % de los ocupados): empresa o administración contrata y paga salario. **Autoempleo** (~15 %): autónomo, trabaja para sí mismo bajo el RETA. **Intraemprendimiento** (~5 %, creciente): es un cuenta ajena que dentro de una empresa lidera proyectos con autonomía emprendedora; mantiene la red de seguridad del contrato sin el riesgo financiero personal del autónomo."
   - enunciado: "¿Cuál de estas **NO** es una causa estructural del paro juvenil español identificada por el Banco de España, la AIReF y la OCDE?"

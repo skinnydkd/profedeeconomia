@@ -62,6 +62,30 @@ PARA CADA OFERTA, COMPRUEBA:
 4. **Detección de la estafa (8 min).** Profundizan en la oferta B: ¿qué señales delatan que no es un empleo real? El profesor introduce el concepto de oferta fraudulenta y de que un trabajo legal **nunca** te pide pagar para empezar.
 5. **Puesta en común (5 min).** Cada pareja comparte su decisión y la señal de alarma más clara que ha encontrado. El profesor cierra con la regla de oro: un empleo de verdad te paga a ti; si te piden pagar para empezar, huye.
 
+## Solución orientativa para el profesor
+
+**Paso 2. La checklist aplicada a las tres ofertas** (todo sale del texto de cada anuncio):
+
+| Punto | A, reponedor/a | B, «gana dinero desde casa» | C, monitor/a de campamento |
+| --- | --- | --- | --- |
+| 1. Contrato y alta en la Seguridad Social | Sí: contrato temporal a tiempo parcial y alta | No consta ninguno de los dos | Sí: contrato de duración determinada y alta |
+| 2. Salario o convenio | Remite a convenio | No indica salario, solo «ingresos ilimitados» | Remite al convenio de ocio educativo |
+| 3. Pago por adelantado | No | **Sí: 90 € por el pack de inicio** (señal de alarma) | No (alojamiento y manutención incluidos) |
+| 4. Promesas | Realistas | Exageradas: «ingresos ilimitados», «hazte tu propio jefe» | Realistas: avisa de «trabajo intenso con menores» |
+| 5. Horario y tareas | Horario de mañanas, 20 h/semana y puesto concreto | Vago: «las horas que quieras», «sin horarios», sin tareas | Puesto y duración (15 días) claros; el anuncio no da horario |
+| 6. Requisitos para un júnior | Sí: no se requiere experiencia | No pide experiencia, pero sí dinero | No para este perfil: exige el título de monitor de tiempo libre |
+| 7. Empresa identificable | Con matices: tienda física en la localidad, sin nombre | No: anónima, contacto solo por WhatsApp | El anuncio no la nombra, aunque cita el convenio aplicable |
+
+**Paso 3. Decisión para un alumno de 16 años sin experiencia y sin título de monitor:** la oferta A es la viable y la más adecuada (con contrato, alta, convenio y sin requisitos que un júnior no cumpla). La C se descarta para este perfil porque exige un título que no tiene, aunque el anuncio sea legal. La B se descarta por fraudulenta.
+
+**Paso 4. Señales que delatan la oferta B:**
+
+- Pide dinero por adelantado (90 €), cuando un trabajo legal nunca pide pagar para empezar.
+- Promete «ingresos ilimitados» y «hazte tu propio jefe», sin concretar tareas ni horario.
+- No habla de contrato, alta en la Seguridad Social ni salario.
+- La empresa es anónima y solo da un contacto por WhatsApp.
+- Mete prisa: «plazas limitadas, apúntate ya».
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

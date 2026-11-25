@@ -28,9 +28,9 @@ preguntas:
     correctas: [1, 0, 3, 2]
     explicacion: "Los impuestos directos gravan lo que ganas o lo que tienes (IRPF, Sociedades, Patrimonio); los indirectos, lo que consumes (IVA y los especiales sobre alcohol, tabaco e hidrocarburos), y los paga todo el mundo al mismo tipo, gane lo que gane."
   - tipo: verdadero-falso
-    enunciado: "Si subes de tramo en el IRPF, toda tu renta pasa a tributar al tipo más alto."
-    correcta: false
-    explicacion: "Falso, y es el error más extendido. Cada tipo se aplica solo a la parte de renta que cae dentro de su tramo. Por eso el tipo medio que pagas siempre es menor que el marginal, y ganar un euro más nunca te deja con menos dinero."
+    enunciado: "Si subes de tramo en el IRPF, solo la parte de tu renta que cae dentro del tramo nuevo tributa al tipo más alto."
+    correcta: true
+    explicacion: "Cierto, y por eso ganar un euro más nunca te deja con menos dinero. Cada tipo se aplica solo a la parte de renta que cae dentro de su tramo; el error más extendido es creer que toda la renta pasa al tipo más alto. El tipo medio que pagas siempre es menor que el marginal."
   - tipo: numerico
     enunciado: "Con la escala general simplificada (19 % hasta 12.450 € y 24 % de 12.450 a 20.200 €), ¿cuántos euros de cuota corresponden a una renta de 20.000 €, antes de aplicar el mínimo personal?"
     respuesta: 4177.5

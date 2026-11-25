@@ -95,6 +95,27 @@ ACCIDENT EN UN MAGATZEM
 ═══════════════════════════════════════════════
 ```
 
+## Solució orientativa per al professor
+
+1. **Factors de risc.**
+   - *Condicions materials:* escala inestable sense ningú que la subjecte; zona de pas de carretons sense senyalitzar; llum d'avís del carretó avariada des de fa setmanes.
+   - *Organització:* pressa per a servir una comanda; tasca en altura encarregada a una persona en període de prova.
+   - *Formació:* cap formació en prevenció ni en el maneig del carretó.
+
+   El risc que es materialitza és una caiguda a diferent nivell. El carretó avariat, la manca de formació en el seu ús i la zona sense senyalitzar no intervenen en esta caiguda, però són fallades del mateix sistema i convé anotar-les.
+2. **Cadena de fallades.** 1r: manca de formació i informació, i encàrrec d'una tasca en altura a una persona nova. 2n (el que ho agreuja): la pressa per la comanda porta a improvisar amb una escala inestable i sense subjectar. Desencadenant: Marc perd l'equilibri i cau.
+3. **Classificació del dany.** **Accident de treball.** És una lesió corporal (fractura de braç), sobtada, en un moment concret i amb ocasió del treball per compte d'altri. No és malaltia professional, que és lenta i progressiva per una exposició prolongada a un agent nociu.
+4. **Mesures preventives** (de major a menor prioritat; basten tres de ben ordenades):
+   1. Evitar el risc: reorganitzar l'emmagatzematge o disposar mitjans adequats d'accés, de manera que ningú haja de pujar a una escala inestable.
+   2. Protecció col·lectiva: senyalitzar i delimitar la zona de pas de carretons i reparar la llum d'avís.
+   3. Instruccions i organització: formació i informació en prevenció i en l'ús del carretó abans d'assignar tasques, i no encarregar tasques de risc a qui no està format; la pressa no pot substituir el procediment.
+   4. Protecció individual, com a últim recurs: els EPI que determine l'avaluació de riscos del lloc, per al risc que reste després de les mesures anteriors.
+5. **Error d'actuació.** El company alça Marc immediatament tirant del braç lesionat: el mou sense que hi haja perill imminent que ho justifique, no assegura abans la zona (continua sent zona de pas de carretons, amb risc de segona víctima) i només després va a buscar ajuda, deixant Marc a soles. Havia d'assegurar la zona, avisar el 112 o fer que algú ho fera, i mantindre Marc quiet i acompanyat.
+6. **Orde correcte del PAS.**
+   - **Protegir:** primer "Assegurar la zona: parar els carretons i senyalitzar" i després "Comprovar que no hi ha més perill imminent al voltant".
+   - **Avisar:** "Cridar el 112 i informar amb calma de què ha passat".
+   - **Socórrer:** "No moure el braç fracturat; mantindre Marc quiet i acompanyat fins que arribe l'ajuda" i "Vigilar el seu estat (consciència, respiració) sense deixar-lo a soles".
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

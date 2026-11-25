@@ -49,6 +49,27 @@ Tienen 35.000 € ahorrados, han alquilado un local de 60 m² en una calle secun
 - Suministros + seguros: **400 €/mes**.
 - Costes fijos totales orientativos: **4.500 €/mes**.
 
+## Solución orientativa para el profesor
+
+Solo la estimación numérica (paso 6) tiene respuesta cerrada. Las 4P, su coherencia y la elección del segmento se evalúan con los criterios de la tabla.
+
+**Método.** Con un margen unitario del 60 % del precio, cada producto vendido aporta 0,60 × P para cubrir los costes fijos:
+
+1. Facturación mínima mensual = 4.500 € ÷ 0,60 = **7.500 €**. No depende del precio elegido.
+2. Unidades mínimas al mes = 7.500 € ÷ P (equivale a 4.500 € ÷ (0,60 × P)), redondeadas hacia arriba.
+
+**Comprobación con tres precios medios ilustrativos** (no son precios recomendados; cada grupo parte de los suyos):
+
+| Precio medio | Margen unitario (60 %) | Unidades al mes |
+| --- | --- | --- |
+| 2,50 € | 1,50 € | 3.000 |
+| 3,50 € | 2,10 € | 2.143 (2.142,86) |
+| 4,50 € | 2,70 € | 1.667 (1.666,67) |
+
+Si el grupo trabaja con un ticket medio por cliente en lugar de un precio por producto, el cálculo es el mismo con ese ticket. Lo que hay que comprobar es que el grupo diga qué precio usa y que su facturación mínima resulte 7.500 € al mes.
+
+Los 4.500 € son un dato de partida («costes fijos totales orientativos»). El desglose de los datos auxiliares (900 € de la ayudante más cuotas patronales, 600 € de alquiler y 400 € de suministros) suma 1.900 € más las cuotas patronales, así que no hace falta cuadrarlo con los 4.500 €.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

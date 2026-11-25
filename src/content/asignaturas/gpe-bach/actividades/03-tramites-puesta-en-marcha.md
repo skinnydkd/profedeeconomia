@@ -53,6 +53,29 @@ Cada pareja entrega:
 - La hoja de ruta reducida del autónomo, con la razón de por qué es más corta.
 - Una explicación breve del DUE y el nombre del PAE de referencia localizado.
 
+## Solución orientativa para el profesor
+
+**Paso 1. Lo que NO necesita un autónomo** (los de sociedad): certificación negativa de denominación, cuenta bancaria con depósito del capital social, escritura ante notario, NIF de la sociedad e inscripción en el Registro Mercantil.
+
+**Paso 2. Hoja de ruta de la SL**, en el orden de la unidad 3:
+
+| Orden | Trámite | Organismo |
+| --- | --- | --- |
+| 1 | Certificación negativa de denominación | Registro Mercantil Central |
+| 2 | Apertura de cuenta bancaria y depósito del capital social | Entidad bancaria |
+| 3 | Escritura de constitución y estatutos | Notaría |
+| 4 | Obtención del NIF de la sociedad | Agencia Tributaria |
+| 5 | Alta en el censo de empresarios (modelo 036) | Agencia Tributaria |
+| 6 | Inscripción en el Registro Mercantil | Registro Mercantil |
+| 7 | Alta en la Seguridad Social | Seguridad Social |
+| 8 | Licencia municipal de actividad o apertura (si procede) | Ayuntamiento |
+
+El libro presenta los pasos 4 y 5 como un mismo paso, y los pasos 6 y 7 también; el orden dentro de cada pareja es el de la unidad. Lo que la unidad deja claro: el nombre va primero, la escritura antes de la inscripción y las licencias al final.
+
+**Paso 3. Hoja de ruta del autónomo:** solo dos pasos, la alta censal en Hacienda con el modelo 036 (Agencia Tributaria) y el alta en el RETA (Seguridad Social). Es mucho más corto porque el autónomo es una persona física que ejerce en su propio nombre: no hay sociedad que nombrar, dotar de capital (no exige capital), constituir ante notario ni inscribir en el Registro Mercantil. La licencia municipal, si la actividad la exige, es un trámite aparte de la forma jurídica.
+
+**Paso 4. DUE y PAE:** el DUE (Documento Único Electrónico) es un único formulario electrónico que recoge todos los datos y, al enviarse, dispara los trámites ante Hacienda, la Seguridad Social y el Registro Mercantil, desde un PAE y a través de CIRCE. El PAE de referencia depende del centro o municipio de cada pareja: se comprueba en paeelectronico.es.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

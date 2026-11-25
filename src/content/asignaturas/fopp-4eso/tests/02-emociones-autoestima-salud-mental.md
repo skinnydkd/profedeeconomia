@@ -47,9 +47,9 @@ preguntas:
     explicacion: "Reanalizando grandes encuestas de EE. UU. y Reino Unido, encontraron que más horas de redes se asocian con más síntomas depresivos, sobre todo en las chicas. Es una correlación: el debate sobre cuánto se debe a las redes y cuánto a otros factores sigue abierto."
   - enunciado: "La «dismorfia digital» se refiere a…"
     opciones:
-      - "Una enfermedad ocular causada por mirar pantallas."
-      - "La distorsión entre la imagen real de uno mismo y la imagen retocada que uno proyecta y ve proyectada en pantallas."
-      - "La adicción al móvil en general."
+      - "Una enfermedad ocular causada por mirar pantallas durante muchas horas seguidas sin descansar la vista."
+      - "La distorsión entre la imagen real de uno mismo y la imagen retocada que se proyecta en las pantallas."
+      - "La adicción al móvil en general, que se mide por las horas de uso diario de las redes sociales."
       - "Una nueva moda estética inventada por TikTok."
     correcta: 1
     explicacion: "Retocar las fotos antes de publicarlas es muy habitual entre adolescentes. La dismorfia digital es la distorsión entre el yo real y el yo digital, y ya la han descrito cirujanos plásticos que atienden a pacientes que quieren parecerse a sus fotos filtradas."

@@ -7,8 +7,8 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué distingue principalmente una idea de un proyecto emprendedor?"
     opciones:
-      - "Que la idea es siempre técnicamente más original que el proyecto."
-      - "Que el proyecto es una idea con propósito y dedicación, sostenida por un para qué claro cuando llegan las dificultades."
+      - "Que la idea es siempre técnicamente más original que el proyecto, que solo la desarrolla y la ejecuta."
+      - "Que el proyecto es una idea con propósito y dedicación, sostenida por un para qué claro ante las dificultades."
       - "Que la idea cuesta dinero y el proyecto es gratuito."
       - "Que no hay ninguna diferencia: son sinónimos."
     correcta: 1
@@ -18,12 +18,12 @@ preguntas:
       - "¿Qué queremos llegar a ser en el futuro?"
       - "¿Para qué existe este proyecto hoy: qué hace, para quién y qué problema resuelve?"
       - "¿Qué forma jurídica nos conviene?"
-      - "¿Cuánto beneficio vamos a obtener el primer año?"
+      - "¿Cuánto beneficio vamos a obtener el primer año y con qué rapidez crecerán las ventas?"
     correcta: 1
     explicacion: "La misión describe la razón de ser en el presente: qué hace el proyecto, para quién y qué problema resuelve. La pregunta sobre el futuro («qué queremos llegar a ser») corresponde a la visión, no a la misión."
   - enunciado: "¿Cuál de estas misiones está mejor formulada?"
     opciones:
-      - "«Ofrecer soluciones de calidad que generen valor para nuestros clientes.»"
+      - "«Ofrecer soluciones de calidad que generen valor para nuestros clientes y para la sociedad.»"
       - "«Ser líderes y referentes en nuestro sector.»"
       - "«Que los vecinos mayores de nuestro barrio puedan hacer la compra a domicilio sin cargar peso.»"
       - "«Trabajar con pasión, excelencia e innovación cada día.»"
@@ -56,7 +56,7 @@ preguntas:
   - enunciado: "Una marca registrada en la OEPM…"
     opciones:
       - "Da derecho a usar en exclusiva un signo (nombre, logo) y a impedir que otros lo copien para productos similares."
-      - "Protege automáticamente cualquier invención técnica de la empresa durante toda la vida."
+      - "Protege automáticamente cualquier invención técnica de la empresa durante toda su vida útil."
       - "Solo sirve para empresas que fabrican productos físicos, nunca para servicios."
       - "Caduca a los seis meses y no se puede renovar."
     correcta: 0

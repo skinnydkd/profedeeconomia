@@ -14,9 +14,9 @@ preguntas:
     correcta: 1
     explicacion: "La escasez es el punto de partida: si todo fuera ilimitado no habría que decidir nada y no haría falta la economía. Elegir es lo que estudia esta ciencia."
   - tipo: verdadero-falso
-    enunciado: "Escasez significa pobreza: una persona rica no vive en escasez."
-    correcta: false
-    explicacion: "Falso. La escasez es una característica del mundo, no de tu cuenta bancaria. Una persona rica tampoco puede estar en dos sitios a la vez ni comprarlo absolutamente todo: también tiene que elegir."
+    enunciado: "La escasez no equivale a pobreza: una persona rica también vive en escasez, porque no puede tenerlo todo."
+    correcta: true
+    explicacion: "Cierto. La escasez es una característica del mundo, no de tu cuenta bancaria. Una persona rica tampoco puede estar en dos sitios a la vez ni comprarlo absolutamente todo: también tiene que elegir. Confundir escasez con pobreza es el error más habitual."
   - enunciado: "«El paro juvenil en España está en torno al 25 %» y «el Gobierno debería bajar los impuestos a los jóvenes». ¿Cómo se clasifican estas dos frases?"
     opciones:
       - "Las dos son economía positiva."

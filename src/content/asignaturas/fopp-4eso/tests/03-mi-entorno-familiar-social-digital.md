@@ -15,10 +15,10 @@ preguntas:
     explicacion: "Capital económico = dinero y bienes; capital social = red de contactos; capital cultural = saberes, hábitos y referencias adquiridos en casa (libros, conversaciones, idiomas, hábitos de estudio, museos). Es el más invisible y el que más se transmite sin querer."
   - enunciado: "El llamado *techo familiar*…"
     opciones:
-      - "Es un destino inevitable: nadie llega más lejos que sus padres."
+      - "Es un destino inevitable: nadie llega más lejos que sus padres, porque la familia fija el techo para siempre."
       - "Solo afecta a familias con bajo capital económico."
-      - "Es una restricción real pero superable, sobre todo a través de educación pública, becas, redes externas y movilidad."
-      - "Desaparece automáticamente al cumplir la mayoría de edad."
+      - "Es una restricción real pero superable, con educación pública, becas, redes externas y movilidad."
+      - "Desaparece automáticamente al cumplir la mayoría de edad, cuando uno empieza a decidir por sí mismo."
     correcta: 2
     explicacion: "El techo familiar es real, pero no es destino. La sociología contemporánea documenta movilidad social vía educación pública, becas, asociaciones/deportes/voluntariado y migraciones laborales. La familia te da el punto de salida; tú decides cuánto camino recorres."
   - enunciado: "Estás estudiando en casa y no te apetece salir, pero piensas: *si no voy, mañana todos hablarán del plan y yo me quedaré fuera*. Nadie te ha pedido nada. ¿Qué tipo de presión grupal es esta?"
