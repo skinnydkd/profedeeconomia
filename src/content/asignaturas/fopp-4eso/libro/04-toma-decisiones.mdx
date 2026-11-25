@@ -41,6 +41,7 @@ publicado_en: 2026-05-16
 ---
 
 import Callout from '@components/Callout.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
@@ -201,6 +202,29 @@ La tabla no decide por ti. Decide tú. Pero te obliga a mirar las opciones con l
 **Pruébalo tú mismo:** monta tu propia tabla aquí, con tus opciones, tus criterios y el peso que le das a cada uno. Fíjate menos en quién gana y más en dos cosas: si el resultado aguanta cuando cambias un peso, y cuál es el criterio que de verdad está decidiendo por ti.
 
 <HerramientaIsland componente="MatrizDecision" />
+
+<SolvedExercise number="4.1" title="Ponderar la tabla de decisión y comprobar si el resultado aguanta">
+
+**Enunciado**
+
+Leo parte de la tabla de la fase 4 (notas del 1 al 5, donde una nota alta es favorable: «Dificultad 2» significa que la opción es dura). Sin pesos, Bach Ciencias y FP GM Informática empatan a 16. Leo decide qué le importa más y se asigna estos **pesos propios**: Interés 3, Salidas 2, Dificultad 1 y Distancia 1. Calcula la puntuación ponderada de cada alternativa y comprueba si el resultado aguanta cuando cambia el peso de la distancia a 3.
+
+**Solución**
+
+1. Multiplica cada nota por su peso y suma. Con los pesos 3, 2, 1 y 1:
+   - Bach Ciencias: 4 × 3 + 5 × 2 + 2 × 1 + 5 × 1 = **29**.
+   - FP GM Informática: 5 × 3 + 4 × 2 + 4 × 1 + 3 × 1 = **30**.
+   - Bach General: 3 × 3 + 3 × 2 + 4 × 1 + 5 × 1 = **24**.
+2. El empate se rompe por un punto a favor de FP GM Informática, porque Leo da más peso al interés y ahí FP saca un 5.
+3. Cambia solo un peso: Distancia pasa de 1 a 3, con los pesos 3, 2, 1 y 3.
+   - Bach Ciencias: 12 + 10 + 2 + 15 = **39**.
+   - FP GM Informática: 15 + 8 + 4 + 9 = **36**.
+   - Bach General: 9 + 6 + 4 + 15 = **34**.
+4. Ahora gana Bach Ciencias. El criterio que de verdad decide es la distancia: con un cambio de peso, el orden de las dos primeras se invierte.
+
+Se lee así: Bach General queda última en los dos casos, pero entre las dos primeras la tabla no decide, y una diferencia de uno o tres puntos no es una sentencia. A Leo le conviene responderse con calma qué pesa más, interés o distancia, antes de comprometerse (fase 5).
+
+</SolvedExercise>
 
 ### Fase 5. Decidir y comprometerte
 

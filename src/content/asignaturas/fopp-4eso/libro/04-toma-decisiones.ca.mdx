@@ -42,6 +42,7 @@ publicado_en: 2026-05-16
 ---
 
 import Callout from '@components/Callout.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
@@ -202,6 +203,29 @@ La taula no decidix per tu. Decidixes tu. Però t'obliga a mirar les opcions amb
 **Prova-ho tu mateix:** munta la teua pròpia taula ací, amb les teues opcions, els teus criteris i el pes que li dones a cadascun. Fixa't menys en qui guanya i més en dues coses: si el resultat aguanta quan canvies un pes, i quin és el criteri que de veritat està decidint per tu.
 
 <HerramientaIsland componente="MatrizDecision" />
+
+<SolvedExercise number="4.1" title="Ponderar la taula de decisió i comprovar si el resultat aguanta">
+
+**Enunciat**
+
+Leo parteix de la taula de la fase 4 (notes de l'1 al 5, on una nota alta és favorable: «Dificultat 2» vol dir que l'opció és dura). Sense pesos, Batx Ciències i FP GM Informàtica empaten a 16. Leo decidix què li importa més i s'assigna estos **pesos propis**: Interés 3, Eixides 2, Dificultat 1 i Distància 1. Calcula la puntuació ponderada de cada alternativa i comprova si el resultat aguanta quan canvia el pes de la distància a 3.
+
+**Solució**
+
+1. Multiplica cada nota pel seu pes i suma. Amb els pesos 3, 2, 1 i 1:
+   - Batx Ciències: 4 × 3 + 5 × 2 + 2 × 1 + 5 × 1 = **29**.
+   - FP GM Informàtica: 5 × 3 + 4 × 2 + 4 × 1 + 3 × 1 = **30**.
+   - Batx General: 3 × 3 + 3 × 2 + 4 × 1 + 5 × 1 = **24**.
+2. L'empat es trenca per un punt a favor de FP GM Informàtica, perquè Leo dona més pes a l'interés i ací FP trau un 5.
+3. Canvia només un pes: Distància passa d'1 a 3, amb els pesos 3, 2, 1 i 3.
+   - Batx Ciències: 12 + 10 + 2 + 15 = **39**.
+   - FP GM Informàtica: 15 + 8 + 4 + 9 = **36**.
+   - Batx General: 9 + 6 + 4 + 15 = **34**.
+4. Ara guanya Batx Ciències. El criteri que de veritat decidix és la distància: amb un canvi de pes, l'ordre de les dues primeres s'inverteix.
+
+Es llig així: Batx General queda última en els dos casos, però entre les dues primeres la taula no decidix, i una diferència d'un o tres punts no és una sentència. A Leo li convé respondre's amb calma què pesa més, interés o distància, abans de comprometre's (fase 5).
+
+</SolvedExercise>
 
 ### Fase 5. Decidir i comprometre't
 
