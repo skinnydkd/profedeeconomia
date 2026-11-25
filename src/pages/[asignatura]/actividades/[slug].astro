@@ -7,6 +7,7 @@ import { resolve } from 'node:path';
 import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
+import RubricaNiveles from '@components/actividades/RubricaNiveles.astro';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
@@ -146,6 +147,7 @@ const breadcrumb = breadcrumbLd([
     <div class="container container--narrow">
       <article class="prose">
         <Content />
+        <RubricaNiveles rubrica={actividad.data.rubrica} locale={locale} />
       </article>
     </div>
   </section>

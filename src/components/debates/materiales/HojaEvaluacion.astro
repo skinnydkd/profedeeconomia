@@ -8,7 +8,7 @@
  */
 import type { Locale } from '@/i18n/locale';
 import { nivelesDe } from '@/lib/debates-niveles';
-interface Criterio { criterio: string; descripcion: string; competencia?: string; }
+interface Criterio { criterio: string; descripcion: string; competencia?: string; niveles?: string[]; }
 interface Props { rubrica: Criterio[]; title: string; locale?: Locale; }
 const { rubrica, title, locale = 'es' } = Astro.props;
 const copy = {
@@ -16,7 +16,7 @@ const copy = {
   ca: { tag: 'Full d\'avaluació', grupo: 'Grup / alumne:', fecha: 'Data:', criterio: 'Criteri', observaciones: 'Observacions:', niveles: ['1 Inici', '2 En procés', '3 Bé', '4 Excel·lent'] },
 }[locale];
 const niveles = copy.niveles;
-const filas = rubrica.map((r) => ({ ...r, desc: nivelesDe(r.criterio, locale) }));
+const filas = rubrica.map((r) => ({ ...r, desc: r.niveles ?? nivelesDe(r.criterio, locale) }));
 const analitica = filas.some((f) => f.desc);
 ---
 <section class="hoja print-block">

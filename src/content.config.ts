@@ -96,6 +96,10 @@ const actividades = defineCollection({
     /** Worked solution steps for `tipo: ejercicio`. Shown in the teacher edition
      *  of the cuaderno only. Each item may contain inline HTML/markup. */
     solucion: z.array(z.string()).default([]),
+    /** Rubric the activity hands out, four levels per criterion (same shape as situaciones). */
+    rubrica: z
+      .array(z.object({ criterio: z.string(), niveles: z.array(z.string()).length(4) }))
+      .default([]),
     /** True if the activity mirrors an EBAU/PAU exam exercise (only meaningful
      *  for 2.º Bach subjects with EBAU, e.g. EDMN). Shows an "EBAU" badge. */
     ebau: z.boolean().default(false),
@@ -544,6 +548,8 @@ const debates = defineCollection({
       criterio: z.string(),
       descripcion: z.string(),
       competencia: z.string().optional(),
+      /** What levels 1 to 4 look like; shared debate criteria take theirs from debates-niveles.ts. */
+      niveles: z.array(z.string()).length(4).optional(),
     })).default([]),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS),
@@ -580,6 +586,8 @@ const proyectos = defineCollection({
       criterio: z.string(),
       descripcion: z.string(),
       competencia: z.string().optional(),
+      /** What levels 1 to 4 look like; shared debate criteria take theirs from debates-niveles.ts. */
+      niveles: z.array(z.string()).length(4).optional(),
     })).default([]),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS),

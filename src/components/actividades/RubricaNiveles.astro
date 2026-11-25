@@ -1,0 +1,31 @@
+---
+/**
+ * Rubric an activity hands out: one row per criterion, one column per level.
+ * No styles of its own: it sits inside `.prose` on the web and `.act__body`
+ * in the printable workbook, which already style tables.
+ */
+import type { Locale } from '@/i18n/locale';
+interface Props { rubrica: { criterio: string; niveles: string[] }[]; locale?: Locale }
+const { rubrica, locale = 'es' } = Astro.props;
+const copy = {
+  es: { titulo: 'Rúbrica', criterio: 'Criterio', niveles: ['Insuficiente', 'Suficiente', 'Notable', 'Excelente'] },
+  ca: { titulo: 'Rúbrica', criterio: 'Criteri', niveles: ['Insuficient', 'Suficient', 'Notable', 'Excel·lent'] },
+}[locale];
+---
+{rubrica.length > 0 && (
+  <>
+    <h2>{copy.titulo}</h2>
+    <div class="tabla-scroll" role="region" tabindex="0" aria-label={copy.titulo}>
+      <table>
+        <thead>
+          <tr><th scope="col">{copy.criterio}</th>{copy.niveles.map((n) => <th scope="col">{n}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rubrica.map((r) => (
+            <tr><th scope="row">{r.criterio}</th>{r.niveles.map((n) => <td>{n}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </>
+)}
