@@ -170,8 +170,8 @@ const jsonLd = [
       <h1>{d.title}</h1>
       {d.lema && <p class="lede">{d.lema}</p>}
       <nav class="unit-material" aria-label={mCopy.label}>
-        <span class="unit-material__label">{mCopy.enEsta}</span>
-        <ul>
+        {d.duracion && <span class="unit-material__dato">{d.duracion}</span>}
+        <ul class:list={[d.duracion && 'tras-dato']}>
           {material && <li><a href={material.diapositivas}>{mCopy.diapositivas}</a></li>}
           <li><a href={slidesPdf} download>{mCopy.pdf}</a></li>
           {material?.test && <li><a href={material.test}>{mCopy.test}</a></li>}
@@ -183,42 +183,20 @@ const jsonLd = [
         </ul>
       </nav>
 
-      <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
-        <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
-        <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
-        <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
-        <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
-        <p class="unit-actions__status" role="status"></p>
-      </div>
-
-      <dl class="unit-meta">
-        {d.duracion && (
-          <div>
-            <dt>{copy.duracion}</dt>
-            <dd>{d.duracion}</dd>
-          </div>
-        )}
-        {d.conceptos_clave.length > 0 && (
-          <div>
-            <dt>{copy.conceptos}</dt>
-            <dd>
-              <div class="tag-row">
-                {d.conceptos_clave.map((c) => <span class="tag">{c}</span>)}
-              </div>
-            </dd>
-          </div>
-        )}
-        {d.objetivos.length > 0 && !objetivosEnTexto && (
-          <div style="grid-column: 1 / -1;">
-            <dt>{copy.objetivos}</dt>
-            <dd>
-              <ul class="objetivos">
-                {d.objetivos.map((o) => <li>{o}</li>)}
-              </ul>
-            </dd>
-          </div>
-        )}
-      </dl>
+      {d.objetivos.length > 0 && !objetivosEnTexto && (
+        <div class="unit-objetivos">
+          <p class="unit-objetivos__t">{copy.objetivos}</p>
+          <ul class="objetivos">
+            {d.objetivos.map((o) => <li>{o}</li>)}
+          </ul>
+        </div>
+      )}
+      {d.conceptos_clave.length > 0 && (
+        <details class="unit-conceptos">
+          <summary>{copy.conceptos} ({d.conceptos_clave.length})</summary>
+          <p class="tag-row">{d.conceptos_clave.map((c) => <span class="tag">{c}</span>)}</p>
+        </details>
+      )}
     </div>
   </section>
 
@@ -261,6 +239,14 @@ const jsonLd = [
             </ul>
           </section>
         )}
+
+        <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
+          <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
+          <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
+          <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
+          <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
+          <p class="unit-actions__status" role="status"></p>
+        </div>
 
         <nav class="unit-nav">
           {prev ? (
@@ -349,7 +335,7 @@ const jsonLd = [
 
 
   .unit-opener {
-    padding: 1rem 0 4rem;
+    padding: 1rem 0 2rem;
     background: var(--color-bg);
   }
   .unit-num {
@@ -367,12 +353,13 @@ const jsonLd = [
     line-height: 1.45;
     color: var(--color-ink-soft);
     max-width: 50ch;
-    margin: 0 0 2.8rem;
+    margin: 0 0 1.6rem;
     font-variation-settings: "SOFT" 80;
   }
 
   .unit-material { margin: 1.2rem 0 0.6rem; font-size: 1rem; color: var(--color-ink-soft); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.5em; }
-  .unit-material__label { font-weight: 600; color: var(--color-ink); }
+  .unit-material__dato { color: var(--color-ink); }
+  .unit-material ul.tras-dato li:first-child::before { content: "·"; margin-right: 0.5em; color: var(--color-mustard); }
   .unit-material ul { display: contents; list-style: none; }
   .unit-material li { display: inline-flex; align-items: center; }
   .unit-material li + li::before { content: "·"; margin-right: 0.5em; color: var(--color-mustard); }
@@ -380,7 +367,7 @@ const jsonLd = [
   .unit-material a { display: inline-flex; align-items: center; min-height: 1.75rem; color: var(--color-terra-ink); text-decoration: none; }
   .unit-material a:hover { text-decoration: underline; }
 
-  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0 0 1.6rem; }
+  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 2.5rem 0 0; }
   .unit-actions__btn {
     display: inline-flex;
     align-items: center;
@@ -404,27 +391,15 @@ const jsonLd = [
     .unit-material a, .unit-actions__btn, .unit-actions__url { min-height: 44px; }
   }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .unit-meta {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-    gap: 1.5rem 2.5rem;
-    padding: 1.8rem;
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
-    border-radius: 6px;
-    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 4px 14px rgba(42, 31, 24, 0.06);
-    margin: 0;
-  }
-  .unit-meta dt {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-ink-mute);
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-  }
-  .unit-meta dd { margin: 0; font-size: 1rem; color: var(--color-ink); }
+  .unit-objetivos__t { margin: 1rem 0 0; font-weight: 600; color: var(--color-ink); }
+  .unit-conceptos { margin-top: 0.4rem; font-size: 1rem; }
+  .unit-conceptos summary { display: inline-flex; align-items: center; min-height: 1.75rem; cursor: pointer; color: var(--color-ink-soft); }
+  .unit-conceptos summary::-webkit-details-marker { display: none; }
+  .unit-conceptos summary::after { content: '+'; margin-left: 0.4em; font-family: var(--font-mono); color: var(--color-terra-ink); }
+  .unit-conceptos[open] summary::after { content: '−'; }
+  .unit-conceptos summary:hover { color: var(--color-ink); text-decoration: underline; }
+  .unit-conceptos .tag-row { margin: 0.3rem 0 0; max-width: 70ch; }
+  @media (pointer: coarse) { .unit-conceptos summary { min-height: 44px; } }
   .tag-row { line-height: 1.8; }
   .tag {
     font-family: var(--font-sans);
@@ -443,9 +418,7 @@ const jsonLd = [
   @media (max-width: 700px) {
     .unit-opener { padding-bottom: 1.5rem; }
     .lede { font-size: 1.2rem; margin-bottom: 1.2rem; }
-    .unit-meta { padding: 1.1rem 1.2rem; gap: 0.9rem; }
-    .unit-meta dd, .tag { font-size: 0.9rem; }
-    .unit-meta dt { margin-bottom: 0.2rem; }
+    .tag { font-size: 0.9rem; }
     .tag-row { line-height: 1.5; }
     .unit-material { margin-top: 0.6rem; }
     .unit-actions { gap: 0.4rem; margin-bottom: 1.2rem; }
@@ -461,6 +434,10 @@ const jsonLd = [
   }
   .article-body > :global(blockquote:first-child p:first-child) { font-size: 0.92rem; }
   .article-body > :global(blockquote:first-child strong) { font-weight: 600; color: var(--color-ink-soft); }
+  /* The objectives are a list to scan: marked, in the ink of the text. */
+  .article-body > :global(blockquote:first-child ul) { list-style: disc; padding-left: 1.2em; margin: 0.4rem 0 0; color: var(--color-ink); }
+  .article-body > :global(blockquote:first-child li) { margin-bottom: 0.3rem; }
+  .article-body > :global(blockquote:first-child li::marker) { color: var(--color-mustard-deep); }
 
   /* ARTICLE LAYOUT */
   .article-layout {
@@ -471,7 +448,7 @@ const jsonLd = [
        TOC and every paragraph out with it (horizontal scroll on phones). */
     grid-template-columns: minmax(0, 1fr);
     gap: 3rem;
-    padding: 4rem 0;
+    padding: 1.5rem 0 4rem;
   }
   @media (min-width: 1100px) {
     .article-layout {
