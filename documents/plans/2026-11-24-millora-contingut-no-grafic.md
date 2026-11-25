@@ -58,6 +58,8 @@ No és error (el revisor s'equivocava): la prestació d'atur al 60 % a partir de
 
 ## Lot G. Imatges
 
+**Estat (2026-11-25):** guarda de CI per als crèdits (`src/content/figuras-creditos.test.ts`) i 22 crèdits corregits; quatre fotos amb menors o marca d'aigua substituïdes (Taller U9, IPE II U8, FOPP U3 i U6). Pendents de decisió de Pau: tres fotos sense substituta (FOPP U3 `cena-familiar`, IPE I U2 `team-meeting`, Eco 4t U11 `anciano-smartphone-salamanca`), esborrar 13 fitxers sense ús, el bloc d'IPE I i els documents de CJD. Les imatges de més de 500 KB no pesen al deploy (Astro les optimitza) i els duplicats són la mateixa foto en assignatures diferents: no cal tocar-los. Drets dels bitllets d'euro i de la foto de Lagarde, sense verificar.
+
 - Substituir el bloc d'IPE I (estoc genèric i fotos d'altres països) per documents reals: model de contracte i de nòmina, senyals del RD 485/1997.
 - CJD: 16 figures, quasi totes façanes; un document (pàgina del BOE, nota simple) ensenya més.
 - Privacitat: menors i persones identificables en 8 fotos; dues amb marca d'aigua.
