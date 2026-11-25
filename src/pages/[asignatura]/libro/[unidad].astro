@@ -77,7 +77,7 @@ const mCopy = {
     imprimir: 'Libro completo para imprimir',
     acciones: 'Compartir esta unidad', copiar: 'Copiar enlace', copiado: 'Enlace copiado.', copiaManual: 'Enlace seleccionado: cópialo con Ctrl+C.', enlace: 'Enlace de la unidad',
     classroom: 'Compartir en Classroom', nuevaPestana: '(se abre en una pestaña nueva)', errata: 'Informar de un error',
-    comprueba: 'Comprueba lo que sabes', testUnidad: 'Test de la unidad',
+    mas: 'Para ir más allá', comprueba: 'Comprueba lo que sabes', testUnidad: 'Test de la unidad',
   },
   ca: {
     label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', pdf: 'PDF de diapositives', test: 'Test', reto: 'Repte',
@@ -86,7 +86,7 @@ const mCopy = {
     imprimir: 'Llibre complet per a imprimir (en castellà)',
     acciones: 'Compartir esta unitat', copiar: 'Copiar l\'enllaç', copiado: 'Enllaç copiat.', copiaManual: 'Enllaç seleccionat: copia\'l amb Ctrl+C.', enlace: 'Enllaç de la unitat',
     classroom: 'Compartir a Classroom', nuevaPestana: '(s\'obri en una pestanya nova)', errata: 'Informar d\'un error',
-    comprueba: 'Comprova el que saps', testUnidad: 'Test de la unitat',
+    mas: 'Per a anar més enllà', comprueba: 'Comprova el que saps', testUnidad: 'Test de la unitat',
   },
 }[locale];
 
@@ -228,25 +228,12 @@ const jsonLd = [
       <article class="article-body">
         <Content />
 
-        {(material?.test || familias.length > 0) && (
+        {material?.test && (
           <section class="unit-check" aria-labelledby="unit-check-title">
             <h2 id="unit-check-title" class="unit-check__title">{mCopy.comprueba}</h2>
-            <ul>
-              {material?.test && <li><a class="unit-check__test" href={material.test}>{mCopy.testUnidad} →</a></li>}
-              {familias.map((f) => (
-                <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
-              ))}
-            </ul>
+            <a class="unit-check__test" href={material.test}>{mCopy.testUnidad} →</a>
           </section>
         )}
-
-        <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
-          <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
-          <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
-          <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
-          <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
-          <p class="unit-actions__status" role="status"></p>
-        </div>
 
         <nav class="unit-nav">
           {prev ? (
@@ -270,9 +257,26 @@ const jsonLd = [
           )}
         </nav>
 
-        <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
-
-        <RecursosRelacionados recursos={recursos} asignaturaLabel={a.shortLabel} unidad={unit.data.unidad} />
+        {/* Everything that is not the next step stays one click away. */}
+        <details class="unit-mas">
+          <summary>{mCopy.mas}</summary>
+          {familias.length > 0 && (
+            <ul class="unit-mas__familias">
+              {familias.map((f) => (
+                <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
+              ))}
+            </ul>
+          )}
+          <RecursosRelacionados recursos={recursos} asignaturaLabel={a.shortLabel} unidad={unit.data.unidad} />
+          <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
+          <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
+            <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
+            <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
+            <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
+            <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
+            <p class="unit-actions__status" role="status"></p>
+          </div>
+          </details>
       </article>
     </div>
   </div>
@@ -367,7 +371,7 @@ const jsonLd = [
   .unit-material a { display: inline-flex; align-items: center; min-height: 1.75rem; color: var(--color-terra-ink); text-decoration: none; }
   .unit-material a:hover { text-decoration: underline; }
 
-  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
+  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
   .unit-actions__btn {
     display: inline-flex;
     align-items: center;
@@ -695,10 +699,28 @@ const jsonLd = [
 
   .unit-check { margin: 3.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
   .article-body .unit-check__title { margin: 0 0 0.8rem; font-size: 1.5rem; }
-  .article-body .unit-check ul { list-style: none; padding: 0; margin: 0; font-size: 1.05rem; }
-  .unit-check li { margin: 0 0 0.4rem; }
-  .unit-check a { color: var(--color-terra-ink); display: inline-flex; min-height: 1.75rem; align-items: center; }
-  .unit-check .unit-check__test { font-weight: 600; font-size: 1.15rem; }
+  .article-body .unit-check__test {
+    display: inline-flex; align-items: center; min-height: 3rem; padding: 0.6rem 1.4rem;
+    font-family: var(--font-sans); font-weight: 600; font-size: 1.1rem;
+    color: #fff; background: var(--color-terra-deep); border: 1px solid var(--color-terra-deep); border-radius: 6px;
+    text-decoration: none;
+  }
+  .article-body .unit-check__test:hover { background: var(--color-ink); border-color: var(--color-ink); }
+  .article-body .unit-check__test:active { transform: translateY(1px); }
+
+  .unit-mas { margin-top: 2.5rem; border-top: 1px solid var(--color-line); }
+  .unit-mas > summary {
+    display: flex; align-items: center; justify-content: space-between; min-height: 3rem;
+    font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-ink); cursor: pointer;
+  }
+  .unit-mas > summary::-webkit-details-marker { display: none; }
+  .unit-mas > summary::after { content: '+'; font-family: var(--font-mono); color: var(--color-terra-ink); }
+  .unit-mas[open] > summary::after { content: '−'; }
+  /* Inside the fold the summary's rule already separates; the first block needs no second one. */
+  .unit-mas > summary + :global(.recursos) { margin-top: 0.5rem; padding-top: 0; border-top: 0; }
+  .unit-mas > summary:hover { color: var(--color-terra-ink); }
+  .article-body .unit-mas__familias { list-style: none; padding: 0; margin: 0.5rem 0 0; font-size: 1.05rem; }
+  .unit-mas__familias a { color: var(--color-terra-ink); display: inline-flex; min-height: 1.75rem; align-items: center; }
 
   /* Reading progress: pure CSS (scroll-driven animation); absent where the
      browser lacks it or the reader asked for less motion. */
@@ -760,6 +782,13 @@ const jsonLd = [
     font-family: var(--font-serif);
     font-size: 1.15rem;
     line-height: 1.3;
+  }
+  /* Two prev/next cards side by side leave ~70px of text per column on a
+     phone. Stack them instead. (Lives here, scoped: a global rule loses to the scoped one above.) */
+  @media (max-width: 600px) {
+    .unit-nav { grid-template-columns: minmax(0, 1fr); }
+    .unit-nav a { padding: 1.3rem; }
+    .unit-nav .next { text-align: left; }
   }
 </style>
 
@@ -899,9 +928,5 @@ const jsonLd = [
   @media (max-width: 600px) {
     .un { padding: 1.4rem 1.3rem; }
     .un__head { flex-direction: column; }
-    /* Two prev/next cards side by side leave ~70px of text per column on a
-       phone. Stack them instead. */
-    .unit-nav { grid-template-columns: minmax(0, 1fr); }
-    .unit-nav a { padding: 1.3rem; }
   }
 </style>
