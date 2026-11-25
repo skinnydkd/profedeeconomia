@@ -34,6 +34,8 @@ No és error (el revisor s'equivocava): la prestació d'atur al 60 % a partir de
 
 ## Lot E. Explicacions i exemples (editorial, llibre a llibre)
 
+**Estat (2026-11-25):** fet el primer punt (43 unitats amb un exercici o cas resolt nou, ES i CA; EEAE U8 sense, no hi ha càlcul que resoldre) i dos dels errors de model (monopsoni d'Eco 1r Batx U9, B-Corp a EDMN U3). Béns públics, la cita de FOPP U4, les bibliografies i els noms de la secció-pont eren falsos positius. Pendents: la resta de punts, l'externalitat de GPE U2 i el canvi «EBAU» a «PAU» (decisió de Pau, afecta marca i SEO).
+
 - **Exercicis resolts on no n'hi ha:** CJD 0 de 8 unitats, EEAE 1 de 10, GPE 1 de 7, Taller 1 de 9, FOPP 3 de 10, IPE II 3 de 9. Els objectius prometen càlcul que el text no fa.
 - **«Vuelve al caso» sense aplicar l'eina de la unitat** (es tanca en prosa, sense xifres).
 - **Errors de model per revisar:** monopsoni d'Eco 1r Batx U9 (no ix de les corbes donades), externalitat a GPE U2, B-Corp com a «marc jurídic» a EDMN U3, béns públics definits sense exclusió.
