@@ -78,6 +78,13 @@ CALIDAD DEL EMPLEO (sobre ocupados, total)
 ═══════════════════════════════════════════════
 ```
 
+## Solución orientativa para el profesor
+
+1. **Total.** Tasa de paro = 2.640.000 / 24.000.000 × 100 = **11 %**. Tasa de actividad = 24.000.000 / 40.000.000 × 100 = **60 %**. Comprobación: activos = ocupados + parados = 21.360.000 + 2.640.000 = 24.000.000.
+2. **Grupo de 16 a 24 años.** Tasa de paro = 416.000 / 1.600.000 × 100 = **26 %**. Comprobación: 1.184.000 + 416.000 = 1.600.000.
+3. **Calidad del empleo.** Tasa de temporalidad = 3.200.000 / 21.360.000 × 100 = **14,98 %** (≈ 15 %). Estar ocupado no equivale a tener un empleo de calidad: de los ocupados, 3.200.000 tienen contrato temporal y 1.500.000 (el 7,02 %) trabajan a tiempo parcial sin desearlo. Tres rasgos de un empleo de calidad, según la Unidad 1 (condiciones dignas y estables): contrato estable, jornada que la persona desea y salario digno. También vale seguridad y derechos laborales.
+4. **Comparación.** Diferencia = 26 % − 11 % = **15 puntos**. La tasa de paro juvenil es 2,36 veces la del total, es decir, más que la dobla. Causas aceptables, ligadas al planteamiento y a la Unidad 1: falta de experiencia y de empleabilidad acreditada, y red de contactos todavía escasa. Medida personal coherente: aprovechar la formación en empresa como experiencia real o empezar a construir la red desde ahora, no solo cuando haga falta empleo.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

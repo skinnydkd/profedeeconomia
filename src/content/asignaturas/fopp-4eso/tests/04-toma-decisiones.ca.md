@@ -49,10 +49,10 @@ preguntas:
     explicacion: "El biaix de confirmació és automàtic: quan ja tens una hipòtesi, filtres inconscientment el que la contradiu. Es combat buscant activament almenys dos persones que opinen el contrari abans de decidir."
   - enunciado: "Prefereixes no estudiar hui i acceptar el cost demà, encara que demà siga molt pitjor. Prefereixes 10 € hui a 15 € d'ací a un mes. De quin biaix es tracta?"
     opciones:
-      - "Biaix d'ancoratge."
-      - "Cost enfonsat."
+      - "Biaix d'ancoratge: es dóna massa pes a la primera xifra que es coneix."
+      - "Cost enfonsat: se segueix amb una cosa per allò ja invertit, encara que ja no compense."
       - "Biaix del present: el cervell descompta el futur de manera desproporcionada."
-      - "Biaix de confirmació."
+      - "Biaix de confirmació: es busquen només dades que reforcen el que ja es pensava."
     correcta: 2
     explicacion: "El biaix del present sobrevalora els costos i beneficis immediats enfront dels futurs. Explica des de per què costa estalviar fins a per què costa fer esport. Es combat fent visibles els beneficis futurs: calendaris, recordatoris, compromisos públics."
   - enunciado: "Segons Jeff Bezos, les decisions es dividixen en *two-way doors* (reversibles) i *one-way doors* (irreversibles). Quina és la regla correcta per a cada tipus?"

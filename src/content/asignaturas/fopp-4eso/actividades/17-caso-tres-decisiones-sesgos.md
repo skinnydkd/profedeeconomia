@@ -56,6 +56,24 @@ INMEDIATEZ · prefiero el premio de ahora aunque me perjudique luego.
 4. **Reescritura de la decisión (10 min).** El grupo reescribe uno de los tres casos: ¿cómo habría decidido el personaje si hubiera aplicado el proceso racional y detectado su sesgo a tiempo? Redacción breve.
 5. **Puesta en común (5 min).** Cada grupo expone un caso. El profesor cierra recordando que el truco práctico es **darse un momento antes de decidir** y preguntarse «¿estoy decidiendo o me está decidiendo un sesgo?».
 
+## Solución orientativa para el profesor
+
+**Paso 2. Sesgo de cada caso**, con la frase del texto que lo justifica:
+
+1. **Caso 1, La fiesta: presión de grupo.** «Todo su grupo va y le dicen "no seas raro"». Leo hace lo que hace el grupo aunque no le apetece y aunque tiene un examen importante el lunes.
+2. **Caso 2, La academia: coste hundido.** «Con todo el dinero y el tiempo que llevo metidos, no puedo dejarlo ahora». Sigue en algo que ya no le interesa y en lo que va fatal por lo que ya ha invertido.
+3. **Caso 3, El monopatín: exceso de optimismo.** «Yo controlo, eso les pasa a los novatos». Cree que el accidente no le va a pasar a él y no usa casco.
+
+El enunciado admite más de un sesgo por caso: se acepta un segundo sesgo solo si el alumnado lo justifica con el texto y con la definición de su tarjeta.
+
+**Paso 3. Fase del proceso que falló** (respuesta orientativa, con las cinco fases de la unidad 4: definir, generar alternativas, establecer criterios, analizar, decidir). Vale otra fase si se argumenta con el texto del caso.
+
+1. **Caso 1: fase 3, criterios.** Leo ya sabe qué le importa (el examen del lunes), pero deja que la opinión del grupo pese más que su propio criterio.
+2. **Caso 2: fase 4, analizar.** Compara con lo ya gastado en lugar de preguntarse qué prefiere hacer a partir de hoy; la unidad propone mirar hacia delante («si empezara hoy desde cero, ¿elegiría esto?»).
+3. **Caso 3: fase 4, analizar.** Descarta el riesgo sin analizarlo. También se acepta la fase 2 si se argumenta que ni se planteó la alternativa «con casco».
+
+El paso 4 (reescritura de la decisión) es de redacción libre: se evalúa que aplique el proceso y que la nueva decisión corrija el sesgo detectado.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

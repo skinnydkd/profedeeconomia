@@ -23,7 +23,7 @@ preguntas:
     explicacion: "En el flujo circular de la renta el dinero no desaparece al gastarlo: pasa a otra persona como ingreso, que volverá a convertirse en gasto. Por eso decimos que todo está conectado."
   - enunciado: "¿Qué describe el flujo circular de la renta?"
     opciones:
-      - "El recorrido exacto de cada billete físico por el país."
+      - "El recorrido exacto de cada billete físico por el país a lo largo del año."
       - "Una fórmula matemática para calcular el PIB."
       - "Una visión panorámica de cómo el dinero circula entre los agentes sin detenerse."
       - "El reparto de la herencia dentro de una familia."
@@ -47,7 +47,7 @@ preguntas:
     explicacion: "Cuando la demanda supera con mucho a la oferta, hay más dinero persiguiendo los mismos bienes y los precios tienden a subir. Es la intuición básica de la relación entre oferta y demanda agregadas."
   - enunciado: "¿Cuál de estas NO es una de las tres funciones del dinero?"
     opciones:
-      - "Medio de pago."
+      - "Medio de pago o de cambio"
       - "Unidad de cuenta."
       - "Depósito de valor."
       - "Generar trabajo por sí mismo."
@@ -57,14 +57,14 @@ preguntas:
     opciones:
       - "Imprimir billetes y monedas."
       - "Conectar el ahorro de quien tiene dinero con la inversión y el consumo de quien lo necesita."
-      - "Fijar los precios de todos los productos del país."
+      - "Fijar los precios de todos los productos del país y controlar su producción."
       - "Cobrar los impuestos de las familias."
     correcta: 1
     explicacion: "El sistema financiero (bancos, mercados, aseguradoras) canaliza el ahorro hacia quien lo necesita. Es como el aparato circulatorio de la economía: lleva el dinero desde donde sobra hasta donde hace falta."
   - enunciado: "Alguien te ofrece una inversión que promete 'duplicar tu dinero en un mes, sin ningún riesgo'. ¿Qué deberías pensar?"
     opciones:
       - "Que es una gran oportunidad y hay que decidir rápido."
-      - "Que es perfectamente normal, porque hay productos seguros muy rentables."
+      - "Que es perfectamente normal, porque hay productos seguros muy rentables en el mercado."
       - "Que es sospechoso: no hay rentabilidad alta sin riesgo, así que probablemente sea una estafa."
       - "Que el riesgo no importa si la ganancia es grande."
     correcta: 2
@@ -73,7 +73,7 @@ preguntas:
     opciones:
       - "Porque los jóvenes pagan menos impuestos."
       - "Porque el interés compuesto hace que el dinero crezca cada vez más deprisa cuanto más tiempo pasa."
-      - "Porque los bancos regalan dinero a los menores de edad."
+      - "Porque los bancos regalan dinero a los menores de edad cuando abren su primera cuenta."
       - "Porque ahorrar joven está de moda."
     correcta: 1
     explicacion: "Con interés compuesto, los intereses se suman al ahorro y generan nuevos intereses. Cuanto más tiempo dejas el dinero trabajando, mayor es la diferencia: por eso el tiempo importa más que la cantidad inicial."

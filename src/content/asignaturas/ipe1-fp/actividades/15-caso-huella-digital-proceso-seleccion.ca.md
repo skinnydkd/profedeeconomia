@@ -90,6 +90,14 @@ Treballeu en parelles com a reclutadors d'una empresa que busca cobrir un lloc. 
 ═══════════════════════════════════════════════
 ```
 
+## Solució orientativa per al professor
+
+1. **Decisió.** Es contracta **Berta**. Titulació i pràctiques són idèntiques, així que la decisió descansa només en l'empremta digital. Tres raons digitals, a triar entre estes: el seu LinkedIn està complet i coherent (foto adequada, titular professional, pràctiques, competències i recomanació del tutor), mentres que el d'Àlex està buit; el que apareix en buscar-la és neutre o professional, mentres que d'Àlex ixen comentaris agressius i fotos amb contingut sensible que podrien danyar l'empresa; mostra coneixement del sector (compartix contingut i participa en grups professionals) i Àlex no deixa cap rastre professional; i el seu email és professional, enfront d'un correu informal que resta imatge.
+2. **Pla per a Àlex.**
+   - **Sanejament:** revisar i despublicar o demanar la retirada dels comentaris agressius; llevar o restringir les fotos amb contingut sensible i configurar la privacitat de les xarxes personals; deixar d'usar l'email actual com a contacte professional.
+   - **Construcció:** completar el LinkedIn (foto sòbria, titular del tipus "Tècnic/a en [títol]", extracte breu, formació i pràctiques); crear un portfoli amb treballs del cicle o la memòria de pràctiques; compartir contingut del sector; obrir un email professional del tipus nom.cognom; i buscar-se periòdicament en mode incògnit per a comprovar què apareix.
+   - **Netiqueta (tres normes, segons la Unitat 5):** llenguatge correcte i sense faltes; no entrar en polèmiques gratuïtes; respondre sempre amb educació.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

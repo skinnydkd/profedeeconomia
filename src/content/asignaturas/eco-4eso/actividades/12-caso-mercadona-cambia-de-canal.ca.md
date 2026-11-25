@@ -62,6 +62,16 @@ Canviar un bloc del Canvas mai canvia només eixe bloc. Trobar què va arrossega
 5. **Les dues preguntes difícils (7 min).** Preguntes 6 i 7, en gran grup. La 6 introduïx la idea que un model no és copiable si no tens els recursos clau.
 6. **Tancament (3 min).** Cada grup diu en una frase quin bloc canviaria del seu propi projecte emprenedor després d'este cas.
 
+## Solució orientativa per al professor
+
+1. **Canvas del model antic.** S'emplena amb la columna "Model antic" de la fitxa. La fitxa només arreplega sis blocs; els altres tres (relació amb clients, fonts d'ingressos i socis clau) els completa cada grup amb coherència, i el cas no diu que canvien (per exemple, en ingressos: la venda de la compra, amb el mateix assortiment i els mateixos preus).
+2. **Model nou.** Es marquen els sis blocs de la columna "Model nou": segment, proposta de valor, canals, recursos clau, activitats clau i estructura de costos.
+3. **Bloc canviat a propòsit.** **Canals**: la comanda es prepara en un magatzem propi, sense botiga pel mig. S'admet també recursos clau si es raona, perquè el magatzem és alhora el nou canal i el nou recurs. Es mouen com a conseqüència: recursos clau (nau, cintes, flota, programari de rutes), activitats clau (preparar en línia, sense públic), estructura de costos (inversió alta i cost per comanda baix), proposta de valor (més rapidesa i fiabilitat) i segment (comandes grans i recurrents).
+4. **Blocs que no canvien.** Relació amb clients, fonts d'ingressos i socis clau, que la fitxa no modifica. Raó que es pot deduir del plantejament: el que fallava era com es preparava la comanda (repartidors competint amb els clients pel passadís, comandes grans lentes i cares), no el que es ven ni a qui ni a quin preu. Es canvia només la peça que fallava i es conserva el que funcionava.
+5. **Volum.** El model antic quasi no tenia inversió, però cada comanda costava molt; el nou exigix una inversió inicial molt alta (cost fix) i baixa el cost per comanda. Compensa a partir del volum en què allò que s'estalvia en cada comanda, sumat, iguala la inversió: és el mateix raonament del punt mort de la unitat (costos fixos ÷ estalvi per unitat). Per davall d'eixe volum, el model nou ix més car; per damunt, més barat. La fitxa no dona xifres, així que el que s'avalua és el raonament, no un número.
+6. **Competidor de tres botigues.** Molt difícilment. Dos blocs: **recursos clau** (necessita nau, cintes, flota pròpia i programari de rutes, que tres botigues no tenen) i **estructura de costos** (la inversió inicial és molt alta i només es recupera amb un volum de comandes que tres botigues no aconseguixen).
+7. **Risc.** Assumir una inversió fixa molt alta abans de saber si la demanda arribaria. Els costos fixos es paguen encara que no es venga: si les comandes no creixen, el cost per comanda no baixa prou i el model nou resulta més car que l'antic, que a penes tenia inversió.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

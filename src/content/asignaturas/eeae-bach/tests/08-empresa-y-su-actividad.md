@@ -9,14 +9,14 @@ preguntas:
     opciones:
       - "Porque todas las empresas son grandes multinacionales."
       - "Porque es el lugar donde la producción de bienes y servicios se organiza de forma estable dentro del mercado."
-      - "Porque solo las empresas pueden tomar decisiones económicas."
+      - "Porque solo las empresas pueden tomar decisiones económicas, no las familias ni el Estado."
       - "Porque sustituye al mercado como mecanismo de coordinación."
     correcta: 1
     explicacion: "El mercado coordina, pero quien produce de forma estable dentro de él son las empresas: combinan recursos para producir bienes o servicios asumiendo riesgo. Por eso son la unidad básica de la actividad económica, sea cual sea su tamaño."
   - enunciado: "Según los datos del tejido empresarial español, ¿cómo es la empresa típica?"
     opciones:
       - "Una gran empresa de más de 250 trabajadores."
-      - "Una empresa industrial de tamaño medio."
+      - "Una empresa industrial de tamaño medio y con más de cincuenta empleados."
       - "Una microempresa o pyme: muchas no tienen ni un solo asalariado."
       - "Una multinacional con sede en el extranjero."
     correcta: 2
@@ -34,12 +34,12 @@ preguntas:
       - "El conjunto de máquinas y edificios de la empresa."
       - "El organigrama oficial con sus departamentos."
       - "El conjunto de valores, normas no escritas, símbolos y formas de hacer que comparten las personas de la organización."
-      - "El balance contable de la empresa."
+      - "El balance contable de la empresa, es decir, el reflejo numérico de sus bienes, deudas y resultados."
     correcta: 2
     explicacion: "La cultura empresarial es la personalidad de la empresa: valores, creencias, normas no escritas, símbolos e historias compartidas. No aparece en el organigrama, pero condiciona el comportamiento y la capacidad de cambio de la organización."
   - enunciado: "La gestión del talento consiste, en esencia, en…"
     opciones:
-      - "Pagar el salario mínimo a todos los trabajadores."
+      - "Pagar el salario mínimo a todos los trabajadores para reducir los costes."
       - "Atraer, desarrollar y retener a las personas valiosas para la empresa."
       - "Despedir a quien no rinde lo suficiente."
       - "Comprar maquinaria más moderna."
@@ -48,7 +48,7 @@ preguntas:
   - enunciado: "¿Cuál de estas afirmaciones sobre el liderazgo es correcta?"
     opciones:
       - "Liderazgo y autoridad formal son exactamente lo mismo."
-      - "Solo puede liderar quien tiene un cargo de jefe."
+      - "Solo puede liderar quien tiene un cargo de jefe o de responsable de equipo."
       - "Se puede liderar sin cargo, y también tener un cargo sin liderar de verdad."
       - "El estilo autoritario es siempre el mejor."
     correcta: 2
@@ -57,14 +57,14 @@ preguntas:
     opciones:
       - "Siempre autoritario."
       - "Situacional: adapta el estilo a la situación, el equipo y la tarea."
-      - "Laissez-faire en todo momento."
+      - "Laissez-faire en todo momento, dejando que el equipo decida sin intervenir."
       - "Sin ningún criterio."
     correcta: 1
     explicacion: "El liderazgo eficaz suele ser situacional: no hay un estilo mejor para siempre. La persona que lidera bien adapta su estilo (más directivo, más participativo o más delegativo) según la situación, el equipo y la tarea."
   - enunciado: "¿Qué es el 'techo de cristal'?"
     opciones:
-      - "Una ley que prohíbe a las mujeres dirigir empresas."
-      - "Una barrera invisible que dificulta el acceso de las mujeres a los puestos de máxima dirección pese a no existir prohibiciones formales."
+      - "Una ley que prohíbe a las mujeres dirigir empresas y las excluye de los consejos de las grandes empresas."
+      - "Una barrera invisible que dificulta el acceso de las mujeres a los puestos de máxima dirección sin que exista prohibición formal."
       - "El límite máximo de empleados de una pyme."
       - "Un tipo de cultura empresarial transparente."
     correcta: 1
@@ -73,7 +73,7 @@ preguntas:
     opciones:
       - "Porque las mujeres trabajan más barato."
       - "Porque desaprovechar el talento de la mitad de la población es una ineficiencia."
-      - "Porque la ley obliga a contratar más mujeres que hombres."
+      - "Porque la ley obliga a contratar más mujeres que hombres en todas las plantillas."
       - "Porque reduce el tamaño de las empresas."
     correcta: 1
     explicacion: "Desaprovechar el talento de la mitad de la población es una forma de escasez autoinfligida, es decir, una ineficiencia. Además, los equipos directivos diversos suelen tomar mejores decisiones al integrar más puntos de vista."
@@ -82,9 +82,9 @@ preguntas:
     correcta: false
     explicacion: "Liderazgo y autoridad formal no coinciden siempre: el liderazgo es la capacidad de influir para que la gente te siga porque quiere, mientras que la autoridad es el poder que da el cargo. Hay líderes sin cargo y jefes a los que nadie sigue de verdad."
   - tipo: verdadero-falso
-    enunciado: "La empresa típica del tejido empresarial español es una gran empresa de más de 250 trabajadores."
-    correcta: false
-    explicacion: "Según el DIRCE del INE, la inmensa mayoría de las más de 3 millones de empresas españolas son microempresas y pymes; alrededor de la mitad no tiene ningún asalariado. La empresa típica es un negocio pequeño, no una multinacional."
+    enunciado: "La empresa típica del tejido empresarial español es una microempresa o una pyme, no una gran empresa de más de 250 trabajadores."
+    correcta: true
+    explicacion: "Es verdadera: según el DIRCE del INE, la inmensa mayoría de las más de 3 millones de empresas españolas son microempresas y pymes; alrededor de la mitad no tiene ningún asalariado. La empresa típica es un negocio pequeño, no una multinacional."
   - tipo: relacionar
     enunciado: "Empareja cada concepto de la unidad con su definición:"
     izquierda: ["Cultura empresarial", "Gestión del talento", "Techo de cristal", "Liderazgo situacional"]

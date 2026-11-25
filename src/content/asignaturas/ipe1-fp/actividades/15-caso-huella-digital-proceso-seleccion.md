@@ -88,6 +88,14 @@ Trabajáis en parejas como reclutadores de una empresa que busca cubrir un puest
 ═══════════════════════════════════════════════
 ```
 
+## Solución orientativa para el profesor
+
+1. **Decisión.** Se contrata a **Berta**. Titulación y prácticas son idénticas, así que la decisión descansa solo en la huella digital. Tres razones digitales, a elegir entre estas: su LinkedIn está completo y coherente (foto adecuada, titular profesional, prácticas, competencias y recomendación del tutor), mientras que el de Álex está vacío; lo que aparece al buscarla es neutro o profesional, mientras que de Álex salen comentarios agresivos y fotos con contenido sensible que podrían dañar a la empresa; muestra conocimiento del sector (comparte contenido y participa en grupos profesionales) y Álex no deja ningún rastro profesional; y su email es profesional, frente a un correo informal que resta imagen.
+2. **Plan para Álex.**
+   - **Saneamiento:** revisar y despublicar o pedir la retirada de los comentarios agresivos; retirar o restringir las fotos con contenido sensible y configurar la privacidad de las redes personales; dejar de usar el email actual como contacto profesional.
+   - **Construcción:** completar el LinkedIn (foto sobria, titular del tipo «Técnico/a en [título]», extracto breve, formación y prácticas); crear un portfolio con trabajos del ciclo o la memoria de prácticas; compartir contenido del sector; abrir un email profesional del tipo nombre.apellido; y buscarse periódicamente en modo incógnito para comprobar qué aparece.
+   - **Netiqueta (tres normas, según la Unidad 5):** lenguaje correcto y sin faltas; no entrar en polémicas gratuitas; responder siempre con educación.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

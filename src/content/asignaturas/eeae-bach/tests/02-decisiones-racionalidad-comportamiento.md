@@ -9,13 +9,13 @@ preguntas:
     opciones:
       - "Las personas son siempre egoístas y solo buscan su propio interés."
       - "Los hechos económicos y sociales deben explicarse a partir de las decisiones de los individuos que los componen."
-      - "El grupo social es la única unidad válida para explicar la conducta económica."
+      - "El grupo social es la única unidad válida para explicar la conducta económica y no la de los individuos."
       - "El Estado debe decidir por los individuos para evitar errores."
     correcta: 1
     explicacion: "El individualismo metodológico es una regla de método, no una afirmación sobre el egoísmo: para entender lo colectivo se parte del individuo que decide, con sus fines y restricciones. Quien toma el grupo como unidad de análisis es la perspectiva sociológica."
   - enunciado: "Para explicar por qué un joven decide emprender, un sociólogo se fijaría sobre todo en…"
     opciones:
-      - "El cálculo individual de costes y beneficios que hace esa persona."
+      - "El cálculo individual de costes y beneficios que hace esa persona antes de dar el paso."
       - "El entorno: familia, grupo social, modelos de éxito visibles, presión de los iguales y normas culturales."
       - "La función de utilidad matemática del individuo."
       - "El precio de mercado de los productos que quiere vender."
@@ -24,14 +24,14 @@ preguntas:
   - enunciado: "El modelo del homo economicus supone que el agente que decide…"
     opciones:
       - "Tiene información suficiente, capacidad de cálculo y preferencias coherentes y estables."
-      - "Decide siempre por intuición y emoción."
+      - "Decide siempre por intuición y emoción, sin pararse a valorar nunca las alternativas."
       - "Copia las decisiones de su grupo social."
       - "No puede equivocarse nunca en la vida real."
     correcta: 0
     explicacion: "El homo economicus es una ficción útil que descansa en tres exigencias: información, capacidad de cálculo y coherencia de preferencias. Sirve para modelizar, pero la realidad lo contradice de forma sistemática (fallos de la racionalidad)."
   - enunciado: "La racionalidad acotada de Herbert Simon afirma que las personas, al decidir…"
     opciones:
-      - "Maximizan siempre, eligiendo la mejor opción posible entre todas."
+      - "Maximizan siempre, eligiendo la mejor opción posible entre todas las alternativas existentes."
       - "Satisfacen: como buscar e informarse cuesta, eligen la primera opción suficientemente buena, no la óptima."
       - "Deciden al azar, sin ninguna lógica."
       - "Solo deciden bien si tienen estudios superiores."
@@ -49,7 +49,7 @@ preguntas:
     opciones:
       - "Hace que la mayoría de quienes emprenden infravaloren el riesgo y crean estar entre la minoría que sobrevivirá."
       - "Impide por completo tomar cualquier decisión de negocio."
-      - "Solo afecta a los inversores en bolsa, no a quienes emprenden."
+      - "Solo afecta a los inversores en bolsa, no a quienes emprenden, que suelen ser muy prudentes con el riesgo."
       - "Garantiza el éxito de cualquier proyecto empresarial."
     correcta: 0
     explicacion: "El exceso de confianza nos hace sobreestimar nuestras capacidades y probabilidades de éxito. Una dosis es necesaria para atreverse a emprender; un exceso lleva a subestimar costes y riesgos. Reconocerlo permite buscar opiniones externas y fijar criterios por adelantado."
@@ -63,7 +63,7 @@ preguntas:
     explicacion: "El utilitarismo es una filosofía moral consecuencialista: evalúa las acciones por la felicidad o utilidad que generan, buscando la mayor felicidad para el mayor número. De esta raíz filosófica procede la idea económica de maximizar la utilidad y el bienestar."
   - enunciado: "La paradoja de Easterlin sugiere que…"
     opciones:
-      - "Los países pobres son siempre más felices que los ricos."
+      - "Los países pobres son siempre más felices que los ricos, porque tienen menos preocupaciones y menos deudas."
       - "Por encima de cierto nivel de renta, que un país sea más rico no garantiza que su población se declare más feliz."
       - "El dinero no influye en absoluto en la felicidad."
       - "La felicidad solo depende del consumo material."
@@ -72,9 +72,9 @@ preguntas:
   - enunciado: "Una situación económica puede ser «eficiente en el sentido de Pareto» y, al mismo tiempo, profundamente injusta. ¿Qué conclusión se extrae?"
     opciones:
       - "La eficiencia y la equidad son exactamente lo mismo."
-      - "La eficiencia es un criterio necesario pero no suficiente para juzgar una sociedad: el reparto (equidad) es un juicio de valor distinto."
+      - "La eficiencia es necesaria pero no suficiente para juzgar una sociedad: el reparto (equidad) es un juicio de valor distinto."
       - "Si algo es eficiente, automáticamente es justo."
-      - "La equidad es un criterio técnico que se deduce de los datos."
+      - "La equidad es un criterio técnico que se deduce de los datos, como la eficiencia, y no exige ningún juicio de valor."
     correcta: 1
     explicacion: "La eficiencia de Pareto se ocupa del aprovechamiento de los recursos (que no se pueda mejorar a nadie sin empeorar a otro), pero no dice nada sobre la justicia del reparto. Una asignación puede ser eficiente y muy desigual; decidir cuánta equidad buscar es una decisión normativa, ética y política."
   - tipo: verdadero-falso

@@ -26,7 +26,7 @@ preguntas:
   - enunciado: "Una empresa de programari factura 500.000 € en un any, paga 120.000 € a proveïdors externs per servicis i materials, paga 250.000 € en salaris i obté 130.000 € de benefici. Quant aporta esta empresa al PIB pel mètode de la producció?"
     opciones:
       - "500.000 € (tota la facturació)."
-      - "380.000 € (la facturació menys els salaris)."
+      - "380.000 € (la facturació menys els salaris pagats)."
       - "380.000 € (la facturació menys els consums intermedis)."
       - "130.000 € (només el benefici)."
     correcta: 2
@@ -50,32 +50,32 @@ preguntas:
   - enunciado: "Quina és la diferència essencial entre l'IPC i el deflactor del PIB?"
     opciones:
       - "L'IPC l'elabora l'INE i el deflactor el Banc d'Espanya."
-      - "L'IPC mesura els preus de tota la producció nacional i el deflactor només els de consum."
-      - "L'IPC mesura els preus d'una cistella fixa de béns de consum de les llars; el deflactor mesura els preus de tota la producció nacional, incloent-hi inversió i exportacions."
+      - "L'IPC mesura els preus de tota la producció nacional i el deflactor només els de consum de les llars."
+      - "L'IPC mesura els preus d'una cistella fixa de consum de les llars; el deflactor, els de tota la producció nacional."
       - "Són dos noms distints per al mateix índex."
     correcta: 2
     explicacion: "L'IPC es construïx sobre una cistella representativa del consum de les llars (955 articles en 12 grups, ponderacions de l'EPF). El deflactor del PIB cobrix tota la producció nacional —consum, inversió, despesa pública i exportacions—. Per això un país exportador de béns els preus dels quals pugen molt pot tindre deflactor alt i IPC moderat."
   - enunciado: "El BCE utilitza l'IPCH (Índex de Preus de Consum Harmonitzat) en lloc de l'IPC nacional perquè…"
     opciones:
-      - "L'IPCH és més senzill de calcular que l'IPC."
-      - "L'IPCH aplica una metodologia comuna a tots els països de la UE, la qual cosa permet comparar la inflació entre Estats membres i vigilar l'objectiu únic del 2 %."
+      - "L'IPCH és més senzill de calcular que l'IPC, perquè inclou menys productes en la seua cistella."
+      - "L'IPCH aplica una metodologia comuna en tota la UE, la qual cosa permet comparar la inflació entre Estats membres."
       - "L'IPCH exclou els productes energètics."
-      - "L'IPCH només mesura els preus de béns importats."
+      - "L'IPCH només mesura els preus de béns importats, que són els que més influïxen en la inflació europea."
     correcta: 1
     explicacion: "L'IPCH és la versió harmonitzada de l'IPC amb metodologia comuna per als 27 Estats membres de la UE. Permet al BCE comparar la inflació entre països de la zona euro i vigilar el seu mandat d'estabilitat de preus (inflació del 2 % a mitjà termini)."
   - enunciado: "Segons la metodologia de l'EPA, quines condicions ha de complir una persona de 16 o més anys per a ser comptabilitzada com a *aturada*?"
     opciones:
-      - "Estar inscrita com a demandant d'ocupació al SEPE."
-      - "Haver perdut una ocupació en els últims 12 mesos."
-      - "No treballar, buscar activament ocupació i estar disponible per a treballar; si falta algun dels tres requisits no és aturada en sentit EPA."
+      - "Estar inscrita com a demandant d'ocupació al SEPE durant almenys tres mesos consecutius."
+      - "Haver perdut una ocupació en els últims 12 mesos i no haver trobat cap altra des d'aleshores."
+      - "No treballar, buscar ocupació activament i estar disponible; si falla algun dels tres requisits, no és aturada."
       - "Estar cobrant la prestació contributiva per desocupació."
     correcta: 2
     explicacion: "L'EPA exigix els tres requisits simultàniament. Una persona que no treballa i està disponible però ha deixat de buscar ocupació (*treballador desanimat*) és inactiva, no aturada. L'EPA és una enquesta estadística trimestral amb metodologia OIT/Eurostat, distinta de l'atur registrat del SEPE."
   - enunciado: "Espanya presenta superàvit per compte corrent des de 2012 (≈ +3 % del PIB en 2024). Quins dos motors expliquen principalment eixe saldo positiu?"
     opciones:
-      - "El superàvit comercial en béns industrials i el descens de les remeses."
+      - "El superàvit comercial en béns industrials i el descens de les remeses enviades a l'exterior."
       - "Les transferències corrents rebudes de la UE i la inversió estrangera directa."
-      - "Un fort superàvit de servicis —turisme i servicis no turístics— i un dèficit comercial moderat en béns compensat per exportacions d'automoció, agroalimentació i químics."
+      - "Un fort superàvit de servicis (turisme i no turístics) i un dèficit comercial moderat en béns."
       - "El superàvit del compte financer per l'entrada de capital estranger."
     correcta: 2
     explicacion: "El superàvit per compte corrent espanyol es recolza en dos pilars: un superàvit molt elevat de servicis (Espanya és el segon destí turístic mundial i exporta també servicis professionals i de transport) i un dèficit moderat en béns —importem energia— compensat per exportacions competitives d'automoció, alimentació i químics. El compte financer és la contrapartida comptable, no el motor."

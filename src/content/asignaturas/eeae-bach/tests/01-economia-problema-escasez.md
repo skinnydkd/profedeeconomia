@@ -8,7 +8,7 @@ preguntas:
   - enunciado: "¿Qué es, en esencia, la escasez en economía?"
     opciones:
       - "La falta puntual de un producto concreto en una tienda."
-      - "La situación de pobreza de las personas con menos recursos."
+      - "La situación de pobreza de las personas que no logran cubrir sus necesidades básicas."
       - "El desajuste estructural entre recursos limitados y deseos prácticamente ilimitados."
       - "El encarecimiento de los productos por la inflación."
     correcta: 2
@@ -17,14 +17,14 @@ preguntas:
     opciones:
       - "Siempre quiere comprar más cosas de las que necesita."
       - "Aunque tenga mucho dinero, sigue disponiendo de solo 24 horas al día y debe elegir cómo emplearlas."
-      - "La inflación reduce el valor de su patrimonio con el tiempo."
+      - "La inflación reduce el valor de su patrimonio con el tiempo y acaba empobreciéndola, por mucho que tenga."
       - "Los bienes de lujo son por definición escasos."
     correcta: 1
     explicacion: "La escasez es estructural: no se resuelve teniendo más. El tiempo es un recurso limitado para todos por igual, lo que demuestra que la escasez no es lo mismo que la pobreza."
   - enunciado: "Un estudiante decide pasar la tarde del sábado preparando un examen en lugar de quedar con sus amigos. El coste de oportunidad de esa decisión es…"
     opciones:
       - "Cero, porque estudiar en casa no cuesta dinero."
-      - "El dinero que se habría gastado saliendo con los amigos."
+      - "El dinero que se habría gastado saliendo con los amigos: entradas, cena y transporte."
       - "La tarde con los amigos a la que renuncia, que es su mejor alternativa."
       - "La nota que sacará en el examen."
     correcta: 2
@@ -32,14 +32,14 @@ preguntas:
   - enunciado: "¿Cuál de estas situaciones es un ejemplo de ineficiencia (y no de simple escasez)?"
     opciones:
       - "Que el tiempo disponible al día sea limitado."
-      - "Que los recursos minerales del planeta sean finitos."
+      - "Que los recursos minerales del planeta sean finitos y se vayan agotando con el uso."
       - "Que haya personas dispuestas a trabajar sin encontrar empleo mientras hay trabajo por hacer."
       - "Que los deseos de las personas tiendan a crecer continuamente."
     correcta: 2
     explicacion: "La escasez es inevitable; la ineficiencia, no. Tener un recurso (trabajo disponible) y no usarlo es escasez autoinfligida: ineficiencia. Las otras opciones describen la escasez estructural."
   - enunciado: "La paradoja del valor (el agua es barata y los diamantes caros) se explica porque…"
     opciones:
-      - "El precio depende de la utilidad total de un bien, y el agua es poco útil."
+      - "El precio depende de la utilidad total de un bien, y el agua, al ser tan abundante, es poco útil."
       - "El precio depende de la utilidad de la última unidad disponible, que en el agua es baja por su abundancia."
       - "Los diamantes son más útiles que el agua para la vida humana."
       - "El agua no tiene ningún valor de uso."
@@ -65,22 +65,22 @@ preguntas:
     opciones:
       - "Castigar a los compradores que tienen menos dinero."
       - "Actuar como señal que transmite información sobre la escasez relativa de cada bien."
-      - "Fijar de forma definitiva cuánto se debe producir de cada cosa."
+      - "Fijar de forma definitiva cuánto se debe producir de cada cosa y a qué precio venderla."
       - "Eliminar la necesidad de que exista oferta y demanda."
     correcta: 1
     explicacion: "El precio coordina a millones de personas que no se conocen: cuando algo escasea y se desea mucho, sube, lo que anima a producir más y desanima a parte de la demanda. Funciona como un mensaje sobre la escasez."
   - enunciado: "Cuando decimos que la economía trabaja con 'modelos', ¿qué afirmación es la correcta?"
     opciones:
-      - "Un modelo es válido solo si reproduce la realidad con todo detalle."
+      - "Un modelo es válido solo si reproduce la realidad con todo detalle, sin simplificar nada."
       - "Un modelo es una representación simplificada que se juzga por su utilidad, no por su realismo."
       - "Los modelos económicos son siempre fórmulas matemáticas exactas e infalibles."
       - "Usar modelos demuestra que la economía no es una ciencia social."
     correcta: 1
     explicacion: "Un modelo es como un mapa: simplifica deliberadamente para iluminar lo esencial. Su valor está en su utilidad explicativa o predictiva, no en copiar cada detalle de la realidad."
   - tipo: verdadero-falso
-    enunciado: "El coste de oportunidad de una decisión solo existe cuando se gasta dinero en ella."
-    correcta: false
-    explicacion: "El coste de oportunidad es el valor de la mejor alternativa a la que se renuncia, y existe siempre que haya que elegir, aunque no medie dinero: el tiempo dedicado a estudiar tiene como coste el ocio sacrificado."
+    enunciado: "El coste de oportunidad de una decisión puede existir aunque no se gaste dinero en ella."
+    correcta: true
+    explicacion: "Es verdadera: el coste de oportunidad es el valor de la mejor alternativa a la que se renuncia, y existe siempre que haya que elegir, aunque no medie dinero. El tiempo dedicado a estudiar tiene como coste el ocio sacrificado, por mucho que estudiar en casa no cueste nada."
   - tipo: numerico
     enunciado: "Con su tiempo y recursos, una persona puede producir como máximo 40 unidades del bien A o 60 del bien B. Si decide fabricar 40 de A y renuncia a todo B, ¿cuántas unidades de B asume como coste de oportunidad?"
     respuesta: 60

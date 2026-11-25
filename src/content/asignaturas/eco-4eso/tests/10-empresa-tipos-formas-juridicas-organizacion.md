@@ -40,9 +40,9 @@ preguntas:
     unidad: "€"
     explicacion: "Ingresos: 300 × 4 = 1.200 €. Costes: 360 fijos + 300 × 1,20 = 360 + 360 = 720 €. Beneficio: 1.200 − 720 = 480 €. También se puede calcular como 300 × 2,80 − 360."
   - tipo: verdadero-falso
-    enunciado: "El 99 % de las empresas españolas son grandes empresas con más de 250 trabajadores."
-    correcta: false
-    explicacion: "Falso, es justo al revés. Según el DIRCE del INE, el 99,8 % son pymes y el 94,2 % microempresas de menos de diez personas; más de la mitad no tiene ni un solo asalariado."
+    enunciado: "Más del 99 % de las empresas españolas son pymes, es decir, tienen menos de 250 trabajadores."
+    correcta: true
+    explicacion: "Cierto. Según el DIRCE del INE, el 99,8 % son pymes y el 94,2 % microempresas de menos de diez personas; más de la mitad no tiene ni un solo asalariado. Las grandes empresas, con más de 250 trabajadores, son una fracción mínima."
   - enunciado: "Marc pide un préstamo de 40.000 € para su tienda y el negocio quiebra. ¿Qué diferencia hay entre haberlo hecho como autónomo o como sociedad limitada?"
     opciones:
       - "Ninguna: la deuda es la misma y se responde igual con todos los bienes personales."

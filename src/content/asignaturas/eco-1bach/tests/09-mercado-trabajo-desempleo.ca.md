@@ -11,8 +11,8 @@ preguntas:
     opciones:
       - "Està inscrita a les oficines del SEPE com a demandant d'ocupació."
       - "No té ocupació, està disponible per a treballar i ha buscat activament treball en les últimes quatre setmanes."
-      - "Ha perdut la seua ocupació fa menys d'un any, encara que ja no busque."
-      - "Treballa menys de 20 hores setmanals i voldria una jornada completa."
+      - "Ha perdut la seua ocupació fa menys d'un any, encara que ja no busque ni estiga disponible."
+      - "Treballa menys de 20 hores setmanals i voldria una jornada completa, encara que no busque més treball."
     correcta: 1
     explicacion: "L'EPA exigix tres condicions simultànies: no tindre ocupació, estar disponible i haver buscat activament en les últimes quatre setmanes. Per això l'atur EPA no coincidix amb l'atur registrat del SEPE: hi ha persones inscrites que no busquen activament i persones que busquen però no s'inscriuen."
   - enunciado: "Si en un país hi ha 30 milions de persones de 16 anys o més, 18 milions d'ocupats i 3 milions d'aturats, les taxes d'activitat i d'atur són…"
@@ -25,8 +25,8 @@ preguntas:
     explicacion: "Actius = 18 + 3 = 21 milions. Taxa d'activitat = 21/30 × 100 = 70 %. Taxa d'atur = 3/21 × 100 ≈ 14,3 %. El denominador de la taxa d'atur són els actius, no la població total: és un dels errors de càlcul més freqüents en selectivitat."
   - enunciado: "Una persona en atur que, després de dos anys buscant, deixa de fer-ho perquè creu que no trobarà res i es queda a casa tenint cura d'un familiar…"
     opciones:
-      - "Continua sent aturada en l'EPA perquè manté la voluntat de treballar."
-      - "Passa a ser inactiva (treballadora desanimada) i, paradoxalment, la taxa d'atur baixa sense haver-se creat ocupació."
+      - "Continua sent aturada en l'EPA perquè manté la voluntat de treballar, encara que ja no busque."
+      - "Passa a ser inactiva (treballadora desanimada) i, paradoxalment, la taxa d'atur baixa sense crear-se ocupació."
       - "Passa a ser ocupada perquè realitza un treball de cures."
       - "Ix completament de les estadístiques oficials de l'INE."
     correcta: 1
@@ -44,39 +44,39 @@ preguntas:
       - "L'ocupació augmentarà perquè els treballadors amb més renda consumiran més."
       - "Apareix excés d'oferta de treball: la quantitat demandada cau i l'oferida puja, generant atur involuntari."
       - "El salari d'equilibri s'ajustarà automàticament a l'alça."
-      - "Les empreses absorbiran sempre la pujada amb menys beneficis sense tocar l'ocupació."
+      - "Les empreses absorbiran sempre la pujada amb menys beneficis sense tocar l'ocupació ni els preus."
     correcta: 1
     explicacion: "El model neoclàssic bàsic prediu que un SMI per damunt de W* reduïx la quantitat demandada i augmenta l'oferida, creant un excés d'oferta de treball (atur involuntari) entre els menys qualificats. Eixa predicció mecànica és la que l'evidència empírica recent (Card-Krueger, AIReF, BdE) ha matisat significativament."
   - enunciado: "L'estudi de Card i Krueger (1994) a Nova Jersey-Pennsilvània és rellevant per al debat sobre el salari mínim perquè…"
     opciones:
       - "Va demostrar que qualsevol pujada del salari mínim augmenta sempre l'ocupació."
-      - "Va trobar que una pujada moderada del salari mínim no va destruir ocupació en el sector de menjar ràpid, la qual cosa suggerix que la teoria neoclàssica bàsica no s'aplica mecànicament quan hi ha poder de mercat de l'ocupador (monopsoni)."
+      - "Va trobar que una pujada moderada del salari mínim no va destruir ocupació en el menjar ràpid, la qual cosa qüestiona la teoria neoclàssica bàsica si hi ha monopsoni."
       - "Va provar que el salari mínim als EUA era massa baix i s'havia de duplicar."
-      - "Va mostrar que el salari mínim només funciona si el fixen els sindicats, no el Govern."
+      - "Va mostrar que el salari mínim només funciona si el fixen els sindicats, no el Govern, perquè ells coneixen millor la productivitat de cada sector."
     correcta: 1
     explicacion: "Card i Krueger van trobar que l'ocupació no va caure —fins i tot va augmentar lleugerament— a Nova Jersey després de pujar el SMI. La conclusió moderna no és que el SMI sempre cree ocupació, sinó que pujades moderades tenen efectes xicotets sobre l'ocupació agregada, sobretot si hi ha poder de mercat de l'ocupador. Card va rebre el Nobel en 2021 en part per este treball."
   - enunciado: "Segons la versió moderna de la corba de Phillips, formulada per Friedman i Phelps, què ocorre amb la relació inversa entre atur i inflació a llarg termini?"
     opciones:
-      - "Es manté estable: sempre es pot reduir l'atur acceptant més inflació."
+      - "Es manté estable: sempre es pot reduir l'atur de manera permanent si s'accepta més inflació."
       - "S'invertix: a més inflació, més atur."
-      - "Desapareix: l'atur torna a la seua taxa natural (NAIRU) independentment de la inflació, i l'intercanvi atur-inflació només existix a curt termini."
+      - "Desapareix: l'atur torna a la seua taxa natural (NAIRU) i l'intercanvi atur-inflació només existix a curt termini."
       - "S'accentua: la inflació reduïx l'atur de manera cada vegada més eficaç."
     correcta: 2
     explicacion: "Friedman (1968) i Phelps (1967) van anticipar que els treballadors ajusten les seues expectatives d'inflació: si esperen preus més alts, exigixen salaris més alts, les empreses pugen preus i l'atur torna a la NAIRU. A llarg termini, la corba de Phillips és vertical en la NAIRU i només hi ha intercanvi atur-inflació a curt termini, mentres les expectatives s'ajusten."
   - enunciado: "La bretxa salarial ajustada es diferencia de la bretxa sense ajustar en què…"
     opciones:
-      - "La bretxa ajustada compara hòmens i dones amb el mateix perfil (edat, educació, sector, jornada) i reflectix la part de la diferència que no s'explica per característiques observables."
+      - "La bretxa ajustada compara hòmens i dones amb el mateix perfil (edat, educació, sector, jornada) i mesura la part no explicada per ells."
       - "La bretxa ajustada inclou només les dones amb fills, mentres que la sense ajustar inclou totes."
-      - "La bretxa ajustada és una estimació oficial de l'INE i la sense ajustar és una estimació dels sindicats."
+      - "La bretxa ajustada és una estimació oficial de l'INE i la sense ajustar és una estimació elaborada pels sindicats."
       - "La bretxa ajustada es calcula sobre salari brut i la sense ajustar sobre salari net."
     correcta: 0
     explicacion: "La bretxa sense ajustar compara salaris mitjans directament (a Espanya, al voltant del 9 % per hora segons Eurostat i el 16,1 % en guany anual segons l'INE el 2024) i inclou efectes com la segregació ocupacional o la parcialitat. La bretxa ajustada controla per característiques observables i reflectix la part residual atribuïble a discriminació o factors menys visibles, com la penalització per maternitat (child penalty) documentada per Kleven et al. (2019)."
   - enunciado: "El tret històric que diferencia el mercat laboral espanyol del model nòrdic de flexiseguretat és…"
     opciones:
       - "Espanya té salari mínim i els països nòrdics no el tenen."
-      - "Espanya combinava alta protecció a l'indefinit amb una elevada taxa de temporalitat (>25 % fins a 2021), mentres que la flexiseguretat nòrdica combina acomiadament relativament fàcil amb prestacions generoses i polítiques actives potents."
+      - "Espanya combinava alta protecció de l'indefinit amb molta temporalitat (>25 % fins a 2021); el model nòrdic, acomiadament fàcil amb prestacions generoses."
       - "Espanya té sindicats forts i els països nòrdics no."
-      - "Espanya no té negociació col·lectiva sectorial i els països nòrdics sí."
+      - "Espanya no té negociació col·lectiva sectorial i els països nòrdics sí, i per això allí els salaris són molt més rígids que ací."
     correcta: 1
     explicacion: "El model nòrdic (Dinamarca, Suècia) combina flexibilitat per a l'empresa (acomiadament fàcil) amb seguretat per al treballador (prestacions generoses + polítiques actives potents). El model espanyol ha sigut històricament dual: alta protecció a l'indefinit i molt baixa al temporal, amb taxa de temporalitat doble que la mitjana UE fins a la reforma laboral de 2021-2022, que la va reduir del 25 % al 15 %."
   - tipo: numerico

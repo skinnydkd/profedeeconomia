@@ -11,7 +11,7 @@ preguntas:
     opciones:
       - "La producció i distribució de la riquesa material de les nacions."
       - "El comportament humà com una relació entre fins i mitjans escassos que tenen usos alternatius."
-      - "El funcionament dels mercats financers i la formació dels preus."
+      - "El funcionament dels mercats financers i la formació dels preus de les accions."
       - "Les lleis que regixen el creixement econòmic a llarg termini."
     correcta: 1
     explicacion: "La definició de Robbins integra els tres elements clau —fins, mitjans escassos, usos alternatius— i es considera encara hui la definició canònica de la disciplina."
@@ -33,7 +33,7 @@ preguntas:
     explicacion: "Les tres preguntes de Samuelson —què, com i per a qui— resumixen el problema econòmic fonamental que cada sistema econòmic resol d'una manera distinta."
   - enunciado: "Una economia produïx blat i ordinadors i se situa en un punt INTERIOR (per davall) de la seua frontera de possibilitats de producció. Açò significa que…"
     opciones:
-      - "L'economia és eficient però produïx poc."
+      - "L'economia és eficient però produïx poc perquè la demanda és baixa."
       - "L'economia té recursos infrautilitzats: hi ha atur o capacitat ociosa."
       - "Necessita creixement tecnològic per a assolir eixe punt."
       - "Està produint més del que els seus recursos permeten."
@@ -44,13 +44,13 @@ preguntas:
       - "Zero, perquè no gasta diners mentre descansa."
       - "L'ingrés que hauria obtingut venent durant eixes dues hores, net dels costos evitats."
       - "El lloguer de la botiga durant eixes dues hores."
-      - "Els impostos que deixarà de pagar per no facturar eixes hores."
+      - "Els impostos que deixarà de pagar a Hisenda per no facturar eixes hores de treball."
     correcta: 1
     explicacion: "El cost d'oportunitat és el valor de la millor alternativa a la qual es renuncia. Ací, la millor alternativa a descansar és continuar venent, així que el cost és el benefici net que se sacrifica."
   - enunciado: "En un sistema econòmic mixt, el paper del sector públic es caracteritza per…"
     opciones:
       - "Substituir el mercat en l'assignació de la majoria dels recursos."
-      - "Limitar-se a la defensa i la justícia, deixant la resta al mercat pur."
+      - "Limitar-se a la defensa i la justícia, deixant la resta al mercat pur i sense regulació."
       - "Combinar regulació, provisió de béns públics, redistribució i estabilització macroeconòmica."
       - "Fixar preus i salaris mitjançant plans plurianuals."
     correcta: 2
@@ -73,7 +73,7 @@ preguntas:
     explicacion: "A mesura que una economia s'especialitza en un bé, els recursos que va dedicant a eixe bé són cada vegada menys adequats, per la qual cosa cada unitat addicional costa més en termes de l'altre bé: la FPP és còncava respecte a l'origen."
   - enunciado: "Una crítica recurrent a l'ús de models en economia és que simplifiquen excessivament la realitat. La resposta metodològica habitual de la disciplina és que…"
     opciones:
-      - "Els models són roïns i haurien de substituir-se per descripcions realistes detallades."
+      - "Els models són roïns i haurien de substituir-se per descripcions realistes detallades de cada mercat."
       - "Els models pretenen ser realistes i per això sempre són criticables quan fallen."
       - "Els models són simplificacions deliberades que es jutgen per la seua utilitat explicativa, no pel seu realisme."
       - "Només els models matemàticament complets són acceptables com a ciència."

@@ -55,17 +55,17 @@ preguntas:
     explicacion: "La unidad describe cinco figuras: **familia inmediata** (sostén material y emocional), **mentores** (te ayudan a pensar mejor), **iguales** (amistades que empujan hacia arriba o anclan), **profesionales especializados** (orientador, psicólogo, coach) y **el yo futuro** (la conversación honesta contigo mismo, la persona que más tiempo va a pasar contigo)."
   - enunciado: "La unidad propone tres ritmos de revisión periódica del proyecto de vida. ¿Cuáles?"
     opciones:
-      - "Semanal, mensual y anual."
-      - "Diaria, semanal y mensual."
-      - "Trimestral (20-30 min sobre corto plazo), anual (2-3 horas sobre medio plazo) y quinquenal (replanteamiento del largo plazo)."
-      - "Bienal, decenal y vital."
+      - "Semanal (repaso de tareas), mensual (revisión de gastos) y anual (balance del curso)."
+      - "Diaria (diario personal), semanal (agenda) y mensual (resumen de logros)."
+      - "Trimestral (20-30 min), anual (2-3 horas) y quinquenal (replanteamiento del largo plazo)."
+      - "Bienal (cada dos años), decenal (cada diez años) y vital (al jubilarse)."
     correcta: 2
     explicacion: "La **trimestral** revisa si los SMART del corto plazo se han cumplido. La **anual** comprueba si el medio plazo sigue siendo el correcto y reescribe el corto del año siguiente. La **quinquenal** —a los 21, 26, 31…— sirve para preguntarse si el largo plazo necesita pivotar. Sin estas revisiones, el proyecto se muere a los seis meses."
   - enunciado: "¿Qué afirma la unidad sobre el ikigai aplicado al final del libro?"
     opciones:
-      - "Es un ejercicio japonés decorativo, útil solo como introducción motivacional."
-      - "Se introdujo en la Unidad 1 como ejercicio inicial; ahora, tras nueve unidades, puede responderse en serio cruzando autoconocimiento (qué amas / qué se te da bien), entorno y datos del mercado laboral (qué necesita el mundo / por qué te pagarían)."
-      - "Sustituye al método SMART porque es más completo y emocionalmente más sano."
+      - "Es un ejercicio japonés decorativo, útil solo como introducción motivacional al principio del libro y sin valor al final."
+      - "Se introdujo en la Unidad 1; ahora, tras nueve unidades, puede responderse en serio cruzando autoconocimiento, entorno y datos del mercado laboral."
+      - "Sustituye al método SMART porque es más completo y emocionalmente más sano, y por eso la unidad lo propone como único plan."
       - "Solo funciona para personas mayores de 30 años con experiencia laboral consolidada."
     correcta: 1
     explicacion: "El ikigai cruza cuatro círculos: **qué amas**, **qué se te da bien**, **qué necesita el mundo** y **por qué te pagarían**. En la Unidad 1 era un ejercicio introductorio sin datos. Tras nueve unidades sobre autoconocimiento, entorno, decisión, sistema educativo, mundo laboral y búsqueda de empleo, los cuatro círculos pueden rellenarse con material real y los cruces que aparecen en al menos tres de los cuatro marcan las **direcciones generales candidatas** del proyecto."

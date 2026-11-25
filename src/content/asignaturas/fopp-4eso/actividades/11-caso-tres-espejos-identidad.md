@@ -69,6 +69,24 @@ El caso de Dani sirve para trabajar esa distancia sin que nadie tenga que expone
 4. **Filtro de la crítica (10 min).** Trabajamos un matiz fino: no toda la información del espejo 3 es igual de fiable. El grupo distingue, con ejemplos inventados, entre una observación que informa de verdad sobre cómo proyectas y un comentario que dice más de quien lo hace que de ti. ¿Cuál se guarda y cuál se descarta?
 5. **Puesta en común y salto a lo personal (8 min).** Cada grupo comparte una conclusión. El profesor cierra invitando a una reflexión individual silenciosa de dos minutos —sin entregar ni leer en voz alta—: «¿En qué espejo creo que tengo yo la mayor distancia?». Conecta directamente con el DAFO personal de la actividad 1.
 
+## Solución orientativa para el profesor
+
+**Paso 1. Los tres espejos de Dani**, con frases del texto:
+
+1. **Espejo 1, cómo se ve él (autoimagen).** Se considera «una persona tímida y poco interesante», cree que apenas tiene cosas que aportar y vive el hablar poco como «un defecto enorme».
+2. **Espejo 2, cómo cree que le ven.** Cree que los demás notan que «no pinta nada» cuando un trabajo en grupo lo obliga a participar.
+3. **Espejo 3, cómo le ven de verdad.** Tres compañeros escriben de forma anónima que «escucha de verdad cuando le cuentas un problema», que «no se ríe de nadie» y que «cuando por fin dice algo, suele ser sensato». Ninguno menciona la timidez como problema.
+
+Confusión habitual, la que avisa el paso 1: poner «no pinta nada» en el espejo 1. Es lo que Dani cree que piensan los demás, no lo que piensa de sí mismo.
+
+**Paso 2. La distancia**
+
+- La mayor distancia está entre el espejo 3 y los espejos 1 y 2, que apuntan en la misma dirección (poco que aportar, nadie lo valora). El espejo 3 los contradice.
+- Explicación que se desprende del caso: Dani mide su valor por lo que no hace (hablar mucho) y no valora lo que sí hace bien (escuchar, no juzgar), que es justo lo que le reconocen. Lo que para él es un defecto enorme, para los demás ni aparece.
+- Información útil que le dan sus compañeros: sus fortalezas reales (escucha, respeto, sensatez cuando habla), que él no se daba a sí mismo.
+
+Los pasos 3 a 5 (debate de decisión, filtro de la crítica y reflexión individual) no tienen respuesta única: se evalúan con los criterios de la tabla.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

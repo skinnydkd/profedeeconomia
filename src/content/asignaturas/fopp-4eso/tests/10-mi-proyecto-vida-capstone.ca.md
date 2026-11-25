@@ -57,17 +57,17 @@ preguntas:
     explicacion: "La unitat descriu cinc figures: **família immediata** (sosteniment material i emocional), **mentors** (t'ajuden a pensar millor), **iguals** (amistats que empenyen cap amunt o ancoren), **professionals especialitzats** (orientador, psicòleg, coach) i **el jo futur** (la conversa honesta amb tu mateix, la persona que més temps passarà amb tu)."
   - enunciado: "La unitat proposa tres ritmes de revisió periòdica del projecte de vida. Quins?"
     opciones:
-      - "Setmanal, mensual i anual."
-      - "Diària, setmanal i mensual."
-      - "Trimestral (20-30 min sobre curt termini), anual (2-3 hores sobre mitjà termini) i quinquennal (replantejament del llarg termini)."
-      - "Biennal, decennal i vital."
+      - "Setmanal (repàs de tasques), mensual (revisió de despeses) i anual (balanç del curs)."
+      - "Diària (diari personal), setmanal (agenda) i mensual (resum d'èxits)."
+      - "Trimestral (20-30 min), anual (2-3 hores) i quinquennal (replantejament del llarg termini)."
+      - "Biennal (cada dos anys), decennal (cada deu anys) i vital (en jubilar-se)."
     correcta: 2
     explicacion: "La **trimestral** revisa si els SMART del curt termini s'han complit. L'**anual** comprova si el mitjà termini continua sent el correcte i reescriu el curt de l'any següent. La **quinquennal** —als 21, 26, 31…— servix per a preguntar-se si el llarg termini necessita pivotar. Sense estes revisions, el projecte es mor als sis mesos."
   - enunciado: "Què afirma la unitat sobre l'ikigai aplicat al final del llibre?"
     opciones:
-      - "És un exercici japonés decoratiu, útil només com a introducció motivacional."
-      - "Es va introduir en la Unitat 1 com a exercici inicial; ara, després de nou unitats, es pot respondre de debò creuant autoconeixement (què ames / què se't dóna bé), entorn i dades del mercat laboral (què necessita el món / per què et pagarien)."
-      - "Substituïx el mètode SMART perquè és més complet i emocionalment més sa."
+      - "És un exercici japonés decoratiu, útil només com a introducció motivacional al principi del llibre i sense valor al final."
+      - "Es va introduir en la Unitat 1; ara, després de nou unitats, es pot respondre de debò creuant autoconeixement, entorn i dades del mercat laboral."
+      - "Substituïx el mètode SMART perquè és més complet i emocionalment més sa, i per això la unitat el proposa com a únic pla."
       - "Només funciona per a persones majors de 30 anys amb experiència laboral consolidada."
     correcta: 1
     explicacion: "L'ikigai creua quatre cercles: **què ames**, **què se't dóna bé**, **què necessita el món** i **per què et pagarien**. En la Unitat 1 era un exercici introductori sense dades. Després de nou unitats sobre autoconeixement, entorn, decisió, sistema educatiu, món laboral i busca de treball, els quatre cercles es poden omplir amb material real i els encreuaments que apareixen en almenys tres dels quatre marquen les **direccions generals candidates** del projecte."

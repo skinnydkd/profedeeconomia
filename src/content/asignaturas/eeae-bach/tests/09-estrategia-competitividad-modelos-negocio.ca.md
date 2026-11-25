@@ -9,7 +9,7 @@ slug: "asignaturas/eeae-bach/tests/09-estrategia-competitividad-modelos-negocio.
 preguntas:
   - enunciado: "Què és, per a una empresa, el seu mercat?"
     opciones:
-      - "El públic en general, sense distincions."
+      - "El públic en general, sense distincions, perquè qualsevol persona és sempre un client potencial."
       - "El conjunt de persones o organitzacions amb una necessitat, capacitat de compra i disposició a comprar el que oferix."
       - "El lloc físic on es ven el producte."
       - "El conjunt dels seus competidors directes."
@@ -17,8 +17,8 @@ preguntas:
     explicacion: "Per a l'empresa, el seu mercat són les persones o organitzacions que tenen una necessitat, capacitat de compra i disposició a comprar el seu producte o servei. Delimitar-lo bé és el punt de partida de tota estratègia; no es competix contra «el públic» en abstracte."
   - enunciado: "En què consistix segmentar un mercat?"
     opciones:
-      - "A baixar el preu per a arribar a més clients."
-      - "A dividir el mercat en grups de clients amb característiques i necessitats semblants per a dirigir-se millor a cada un."
+      - "A baixar el preu per a arribar a més clients, siguen quines siguen les seues característiques."
+      - "A dividir el mercat en grups de clients amb necessitats semblants per a dirigir-se millor a cada un."
       - "A vendre només als clients més rics."
       - "A repartir el mercat entre els competidors."
     correcta: 1
@@ -28,14 +28,14 @@ preguntas:
       - "Que és més barat sempre."
       - "Que només servix per a empreses tecnològiques."
       - "Que permet segmentar amb precisió, mesurar els resultats i interactuar amb el client, no només llançar un missatge."
-      - "Que substituïx per complet qualsevol altra forma de comunicació."
+      - "Que substituïx per complet qualsevol altra forma de comunicació, fins i tot la publicitat tradicional."
     correcta: 2
     explicacion: "El màrqueting digital no és només traslladar anuncis a internet: canvia la lògica. Els seus tres trets distintius són la segmentació fina, el mesurament precís de resultats i la interacció de doble sentit amb el client."
   - enunciado: "Què descriu un model de negoci?"
     opciones:
       - "L'organigrama de l'empresa."
       - "Com una empresa crea valor per als seus clients i com el captura per a si (com guanya diners)."
-      - "El producte concret que fabrica l'empresa."
+      - "El producte concret que fabrica l'empresa i les característiques tècniques que el definixen."
       - "Les obligacions legals de l'empresa."
     correcta: 1
     explicacion: "Un model de negoci descriu com l'empresa crea valor per als seus clients i com el captura per a si mateixa. No és el mateix que el producte: dues empreses poden vendre el mateix amb models de negoci diferents."
@@ -59,7 +59,7 @@ preguntas:
     opciones:
       - "Una innovació incremental ben gestionada."
       - "Una innovació disruptiva mal gestionada: l'empresa va protegir el seu negoci actual en lloc de transformar-se."
-      - "Que la tecnologia no influïx en l'èxit d'una empresa."
+      - "Que la tecnologia no influïx en l'èxit d'una empresa, que depén només de la seua publicitat."
       - "Un model de subscripció fracassat."
     correcta: 1
     explicacion: "Kodak tenia la tecnologia abans que ningú, però per una decisió estratègica va protegir el seu rendible negoci de carrets en lloc de canibalitzar-lo. És l'exemple clàssic d'innovació disruptiva mal gestionada: el problema no va ser tècnic, sinó estratègic."
@@ -80,9 +80,9 @@ preguntas:
     correcta: 2
     explicacion: "L'anàlisi externa examina l'entorn (mercat, competidors, tecnologia, regulació) i d'ella ixen les Oportunitats i les Amenaces. Les Debilitats i Fortaleses sorgixen de l'anàlisi interna. La regla: si depén de l'empresa, és intern; si ve de fora, és extern."
   - tipo: verdadero-falso
-    enunciado: "Dues empreses que venen exactament el mateix producte tenen necessàriament el mateix model de negoci."
-    correcta: false
-    explicacion: "El model de negoci descriu com es crea i es captura valor, no què es ven. Dues empreses poden vendre el mateix amb models diferents: una per venda directa, una altra per subscripció o per plataforma amb comissió."
+    enunciado: "Dues empreses que venen exactament el mateix producte poden tindre models de negoci diferents."
+    correcta: true
+    explicacion: "És vertadera: el model de negoci descriu com es crea i es captura valor, no què es ven. Dues empreses poden vendre el mateix amb models diferents: una per venda directa, una altra per subscripció o per plataforma amb comissió."
   - tipo: numerico
     enunciado: "Una empresa ven el seu producte a 20 € la unitat, amb un cost variable de 12 € per unitat i uns costos fixos de 8.000 € al mes. Quantes unitats ha de vendre al mes per a assolir el punt mort (llindar de rendibilitat)?"
     respuesta: 1000

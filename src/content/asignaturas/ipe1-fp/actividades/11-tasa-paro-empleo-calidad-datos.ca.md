@@ -80,6 +80,13 @@ QUALITAT DE L'OCUPACIÓ (sobre ocupats, total)
 ═══════════════════════════════════════════════
 ```
 
+## Solució orientativa per al professor
+
+1. **Total.** Taxa d'atur = 2.640.000 / 24.000.000 × 100 = **11 %**. Taxa d'activitat = 24.000.000 / 40.000.000 × 100 = **60 %**. Comprovació: actius = ocupats + aturats = 21.360.000 + 2.640.000 = 24.000.000.
+2. **Grup de 16 a 24 anys.** Taxa d'atur = 416.000 / 1.600.000 × 100 = **26 %**. Comprovació: 1.184.000 + 416.000 = 1.600.000.
+3. **Qualitat de l'ocupació.** Taxa de temporalitat = 3.200.000 / 21.360.000 × 100 = **14,98 %** (≈ 15 %). Estar ocupat no equival a tindre una ocupació de qualitat: dels ocupats, 3.200.000 tenen contracte temporal i 1.500.000 (el 7,02 %) treballen a temps parcial sense desitjar-ho. Tres trets d'una ocupació de qualitat, segons la Unitat 1 (condicions dignes i estables): contracte estable, jornada que la persona desitja i salari digne. També val seguretat i drets laborals.
+4. **Comparació.** Diferència = 26 % − 11 % = **15 punts**. La taxa d'atur juvenil és 2,36 vegades la del total, és a dir, més que la dobla. Causes acceptables, lligades al plantejament i a la Unitat 1: manca d'experiència i d'ocupabilitat acreditada, i xarxa de contactes encara escassa. Mesura personal coherent: aprofitar la formació en empresa com a experiència real o començar a construir la xarxa des d'ara, no només quan calga ocupació.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

@@ -40,9 +40,9 @@ preguntas:
   - enunciado: "Para el titular de LinkedIn de un alumno de FP Superior buscando prácticas, ¿qué opción es la más correcta?"
     opciones:
       - "\"Estudiante\"."
-      - "\"Hola, soy Pablo y busco trabajo\"."
-      - "\"Estudiante de FP Superior en Desarrollo de Aplicaciones Web | Buscando prácticas en empresas de desarrollo backend\"."
-      - "\"Joven proactivo, dinámico y comprometido con ganas de aprender\"."
+      - "\"Hola, soy Pablo y busco trabajo de lo que sea, ¡escríbeme por privado!\"."
+      - "\"Estudiante de FP Superior en Desarrollo de Aplicaciones Web | Buscando prácticas en desarrollo backend\"."
+      - "\"Joven proactivo, dinámico y comprometido, con muchas ganas de aprender y de crecer en una empresa\"."
     correcta: 2
     explicacion: "El titular de LinkedIn es lo que aparece en cada búsqueda, comentario e interacción, así que debe ser **descriptivo**: estudios + qué buscas + matiz concreto. \"Estudiante\" a secas es invisible; los adjetivos vacíos (\"proactivo\", \"dinámico\", \"comprometido\") no significan nada porque todo el mundo los usa. Un titular específico te hace aparecer en búsquedas de reclutadores que filtran por tecnología o vertical."
   - enunciado: "Encuentras contenido problemático sobre ti en una web ajena al hacer una búsqueda en Google con tu nombre. ¿Qué derecho puedes ejercer y bajo qué normativa?"

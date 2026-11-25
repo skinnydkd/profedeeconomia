@@ -42,9 +42,9 @@ preguntas:
     unidad: "€"
     explicacion: "Ingressos: 300 × 4 = 1.200 €. Costos: 360 fixos + 300 × 1,20 = 360 + 360 = 720 €. Benefici: 1.200 − 720 = 480 €. També es pot calcular com 300 × 2,80 − 360."
   - tipo: verdadero-falso
-    enunciado: "El 99 % de les empreses espanyoles són grans empreses amb més de 250 treballadors."
-    correcta: false
-    explicacion: "Fals, és just al revés. Segons el DIRCE de l'INE, el 99,8 % són pimes i el 94,2 % microempreses de menys de deu persones; més de la meitat no té ni un sol assalariat."
+    enunciado: "Més del 99 % de les empreses espanyoles són pimes, és a dir, tenen menys de 250 treballadors."
+    correcta: true
+    explicacion: "Cert. Segons el DIRCE de l'INE, el 99,8 % són pimes i el 94,2 % microempreses de menys de deu persones; més de la meitat no té ni un sol assalariat. Les grans empreses, amb més de 250 treballadors, són una fracció mínima."
   - enunciado: "Marc demana un préstec de 40.000 € per a la seua botiga i el negoci fa fallida. Quina diferència hi ha entre haver-ho fet com a autònom o com a societat limitada?"
     opciones:
       - "Cap: el deute és el mateix i es respon igual amb tots els béns personals."

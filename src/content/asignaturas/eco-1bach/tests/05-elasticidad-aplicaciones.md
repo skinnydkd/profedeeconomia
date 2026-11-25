@@ -15,9 +15,9 @@ preguntas:
     explicacion: "E_p^d = %ΔQ / %ΔP. Es un cociente de porcentajes, no de unidades, lo que la hace independiente de las unidades de medida y comparable entre bienes."
   - enunciado: "Una panadería sube el precio del pan de 2,00 € a 2,20 € por barra. Las ventas caen de 500 a 460 barras diarias. Aplicando el método del punto medio, la elasticidad-precio (valor absoluto) es aproximadamente…"
     opciones:
-      - "0,17 — demanda muy inelástica."
+      - "0,17 — demanda muy inelástica, casi insensible al precio."
       - "0,88 — demanda inelástica, cercana a la unidad."
-      - "1,10 — demanda ligeramente elástica."
+      - "1,10 — demanda ligeramente elástica, algo por encima de la unidad."
       - "2,00 — demanda muy elástica."
     correcta: 1
     explicacion: "ΔQ = −40; media de Q = 480 → −8,33 %. ΔP = +0,20 €; media de P = 2,10 € → +9,52 %. E = 8,33 / 9,52 ≈ 0,88. Algo menor que 1: demanda inelástica, aunque cercana a la unidad."
@@ -56,14 +56,14 @@ preguntas:
   - enunciado: "Un impuesto unitario de 2 €/unidad se introduce en un mercado competitivo. ¿Qué afirmación es correcta sobre el peso muerto?"
     opciones:
       - "Coincide con la recaudación del Estado."
-      - "Es mayor cuanto más inelásticas son la oferta y la demanda."
+      - "Es mayor cuanto más inelásticas son la oferta y la demanda, porque nadie puede evitar el impuesto."
       - "Es mayor cuanto más elásticas son la oferta y la demanda, porque más cae la cantidad intercambiada."
       - "Solo aparece si el impuesto se cobra al consumidor, no al productor."
     correcta: 2
     explicacion: "El peso muerto es el triángulo de transacciones que dejan de producirse. Cuanto más elásticas oferta y demanda, mayor es la caída de Q y mayor el peso muerto. Por eso los impuestos sobre bienes inelásticos (tabaco, alcohol) recaudan mucho con poca pérdida de eficiencia."
   - enunciado: "Por el principio de incidencia fiscal, la parte del impuesto que soporta cada lado del mercado depende de…"
     opciones:
-      - "A quién se lo cobre formalmente la administración."
+      - "A quién se lo cobre formalmente la administración, pues quien lo paga es quien lo soporta."
       - "Las elasticidades relativas de oferta y demanda: la parte más inelástica soporta la mayor parte."
       - "La cuantía nominal del impuesto."
       - "El nivel de competencia entre empresas únicamente."
@@ -73,7 +73,7 @@ preguntas:
     opciones:
       - "Cualquier subida del salario mínimo destruye empleo en proporción a la subida, como predice el modelo competitivo más sencillo."
       - "El salario mínimo nunca tiene efectos negativos sobre el empleo, como demostró Card-Krueger."
-      - "Los efectos sobre el empleo dependen de la elasticidad de la demanda de trabajo: subidas moderadas tienen efectos pequeños; subidas grandes muy por encima del equilibrio sí destruyen empleo, concentrado en segmentos menos cualificados."
+      - "Los efectos dependen de la elasticidad de la demanda de trabajo: pequeños con subidas moderadas, negativos con subidas grandes muy por encima del equilibrio."
       - "El salario mínimo es irrelevante porque siempre se fija por debajo del equilibrio."
     correcta: 2
     explicacion: "El consenso empírico actual es matizado: ni el desastre que predice el modelo competitivo puro ni la neutralidad que sugería Card-Krueger en aislado. El efecto depende de cuánto se aleja el mínimo del equilibrio y de la elasticidad de la demanda de trabajo en cada segmento."

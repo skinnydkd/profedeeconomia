@@ -57,6 +57,16 @@ Cada equipo entrega una hoja con:
 - Una nota breve sobre cómo se resolvió el desacuerdo del paso 3.
 - La propuesta de forma jurídica para el proyecto propio, con su justificación.
 
+## Solución orientativa para el profesor
+
+Respuesta esperable (la del paso 4), con los criterios de la tabla de la unidad 3. Se acepta otra forma si el equipo la argumenta con esos criterios.
+
+1. **Caso A, Marta: autónomo.** Es una sola persona, con pocos clientes, inversión mínima, sin local y riesgo económico bajo, y quiere arrancar ya y gastar poco en trámites. El autónomo no exige capital ni notario (alta censal con el 036 y alta en el RETA). Responde con todo su patrimonio, pero con este riesgo es asumible. El propio caso avisa de que la normativa sanitaria (registro o comunicación previa y formación en manipulación de alimentos) es un trámite que no se puede saltar.
+2. **Caso B, los tres amigos de la app: sociedad limitada.** Son tres socios, necesitan invertir en desarrollo y marketing, quizá contratar, y hay riesgo de deudas. Quieren proteger su patrimonio personal: la SL limita la responsabilidad al capital aportado, admite 1 € de capital desde 2022 y es la forma más usada en España para pymes. El desacuerdo previsto del paso 3 es autónomos o SL: tres autónomos por separado responden cada uno con su patrimonio personal, justo lo que quieren evitar (la unidad lo plantea en su test con cuatro personas).
+3. **Caso C, los seis vecinos del huerto: cooperativa.** Son seis personas (la unidad pide un mínimo de 3), todas quieren trabajar en el proyecto, decidir de forma democrática («un socio, un voto») y buscan impacto social y arraigo local, sin que nadie mande sobre los demás. Es la descripción que hace la unidad de la cooperativa: varios socios que son a la vez trabajadores, con vocación democrática y de impacto social. Responsabilidad limitada y régimen fiscal propio, con tipos reducidos.
+
+Los pasos 3 y 5 (resolución del desacuerdo y propuesta para el proyecto propio) no tienen respuesta única: se evalúan con los criterios de la tabla.
+
 ## Criterios de evaluación
 
 | Criterio | Descripción | Peso |

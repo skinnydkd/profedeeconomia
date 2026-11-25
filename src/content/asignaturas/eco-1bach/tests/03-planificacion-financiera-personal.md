@@ -33,7 +33,7 @@ preguntas:
     opciones:
       - "Los productos más rentables suelen ser los más líquidos y seguros."
       - "Rentabilidad y riesgo van de la mano; alta rentabilidad sin riesgo es señal de alarma."
-      - "El riesgo se elimina diversificando entre productos del mismo banco."
+      - "El riesgo se elimina por completo diversificando entre productos del mismo banco."
       - "La liquidez es independiente del plazo del producto."
     correcta: 1
     explicacion: "La regla básica del sistema financiero es que rentabilidad y riesgo van unidos. Si alguien ofrece rentabilidad muy superior a la sin riesgo (bono del Estado a corto plazo) sin asumir riesgo proporcional, hay tres posibilidades: estafa, producto cuyo riesgo el cliente no comprende, o información privilegiada ilegal."
@@ -47,15 +47,15 @@ preguntas:
     explicacion: "El FGD cubre hasta 100.000 € por titular y por entidad. Por eso quien acumula más de 100.000 € en depósitos suele repartirlos entre varios bancos para mantener todo el saldo garantizado."
   - enunciado: "Una hipoteca tiene un TIN del 2,8 % y una TAE del 3,9 %. ¿Qué explica la diferencia entre ambos indicadores?"
     opciones:
-      - "Un error de cálculo del banco; deberían coincidir."
-      - "Las comisiones y los productos vinculados obligatorios (seguros, cuenta nómina) que la TAE sí incluye y el TIN no."
-      - "La inflación esperada durante la vida del préstamo."
+      - "Un error de cálculo del banco, que debería coincidir siempre con la TAE en cualquier hipoteca."
+      - "Las comisiones y los productos vinculados obligatorios (seguros, nómina) que la TAE incluye y el TIN no."
+      - "La inflación esperada durante la vida del préstamo, que la TAE descuenta del coste real."
       - "El diferencial sobre el Euribor."
     correcta: 1
     explicacion: "El TIN es el tipo nominal puro aplicado al capital pendiente. La TAE incluye además comisiones, seguros vinculados y otros gastos, y es el indicador legalmente obligatorio para comparar préstamos. La diferencia entre ambos refleja el coste real de los productos vinculados."
   - enunciado: "El Euribor es la referencia habitual de las hipotecas variables en España. ¿Qué representa exactamente?"
     opciones:
-      - "El tipo de interés que el Banco de España cobra a los bancos comerciales."
+      - "El tipo de interés que el Banco de España cobra a los bancos comerciales por sus préstamos."
       - "El tipo medio al que se prestan dinero entre sí los grandes bancos de la eurozona a corto plazo."
       - "El tipo oficial de la deuda pública española."
       - "El IPC anual de la eurozona."
@@ -64,9 +64,9 @@ preguntas:
   - enunciado: "La lógica económica de un seguro consiste en…"
     opciones:
       - "Obtener una rentabilidad superior a la de un depósito."
-      - "Pagar una prima cierta y pequeña a cambio de transferir a la aseguradora el riesgo de un siniestro improbable pero costoso."
+      - "Pagar una prima pequeña a cambio de que la aseguradora asuma el riesgo de un siniestro improbable pero costoso."
       - "Acumular un capital para la jubilación."
-      - "Diversificar la inversión entre varios productos financieros."
+      - "Diversificar la inversión entre varios productos financieros para reducir el riesgo de pérdidas."
     correcta: 1
     explicacion: "El seguro no es una inversión: no busca rentabilidad. Es una herramienta de gestión del riesgo. La regla práctica es asegurar lo grande (incendio, accidente grave, indemnización a terceros) y autoasegurar lo pequeño (rotura del móvil, garantía extendida de un electrodoméstico de 200 €)."
   - enunciado: "¿Cuál de estas funciones NO corresponde al Banco de España?"

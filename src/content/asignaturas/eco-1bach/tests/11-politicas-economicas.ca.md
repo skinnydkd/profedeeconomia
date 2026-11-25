@@ -10,7 +10,7 @@ preguntas:
   - enunciado: "Quina d'estes afirmacions és un enunciat d'economia normativa?"
     opciones:
       - "El PIB espanyol va créixer un 3,7 % en 2024 segons l'INE."
-      - "Una pujada del salari mínim del 10 % reduiria l'ocupació juvenil entre un 1 % i un 3 %."
+      - "Una pujada del salari mínim del 10 % reduiria l'ocupació juvenil entre un 1 % i un 3 %, segons un model simple."
       - "El salari mínim hauria de pujar fins al 60 % del salari mitjà per a garantir la dignitat dels treballadors."
       - "La taxa d'atur juvenil a Espanya es va situar en el 26 % en l'últim trimestre."
     correcta: 2
@@ -18,7 +18,7 @@ preguntas:
   - enunciado: "Una política fiscal expansiva consistix en…"
     opciones:
       - "Pujar la despesa pública (↑G) o abaixar impostos (↓T) per a augmentar la demanda agregada."
-      - "Pujar el tipus d'interés oficial del BCE per a refredar l'economia."
+      - "Pujar el tipus d'interés oficial del BCE per a refredar l'economia i frenar preus."
       - "Abaixar la despesa pública i pujar impostos per a reduir el dèficit."
       - "Vendre deute públic en el mercat secundari."
     correcta: 0
@@ -34,25 +34,25 @@ preguntas:
   - enunciado: "Espanya va tancar 2024 amb un dèficit del 3,2 % del PIB i un deute públic del 101,7 % del PIB. La nova regla fiscal europea aprovada en 2024…"
     opciones:
       - "Suprimix els topalls del 3 % de dèficit i 60 % de deute."
-      - "Manté eixos topalls com a referència última, però substituïx els terminis uniformes per sendes plurianuals pactades país a país."
-      - "Obliga a assolir el 60 % de deute en quatre anys per a tots els països."
+      - "Manté eixos topalls com a referència última, però substituïx els terminis uniformes per sendes pactades país a país."
+      - "Obliga a assolir el 60 % de deute en quatre anys per a tots els països, amb sancions automàtiques."
       - "És voluntària i només s'aplica a qui vullga fons NextGenerationEU."
     correcta: 1
     explicacion: "El nou marc de governança fiscal (Reglament UE 2024/1263) substituïx el rígid sistema anterior per sendes plurianuals de 4-7 anys ajustades al nivell de deute inicial i al creixement potencial. Els topalls del 3 % i 60 % continuen sent la referència, però el camí es pacta país a país."
   - enunciado: "Segons la corba de Laffer…"
     opciones:
       - "Qualsevol pujada d'impostos reduïx la recaptació."
-      - "La recaptació creix de manera lineal amb el tipus impositiu."
-      - "La recaptació és zero amb tipus 0 % i amb tipus 100 %; existix un màxim intermedi a partir del qual pujar més reduïx allò recaptat."
+      - "La recaptació creix de manera lineal amb el tipus impositiu, de manera que el màxim està en el 100 %."
+      - "La recaptació és zero amb tipus 0 % i amb tipus 100 %; existix un màxim intermedi a partir del qual pujar més la reduïx."
       - "Abaixar impostos sempre augmenta la recaptació."
     correcta: 2
     explicacion: "La corba de Laffer descriu una relació en forma de campana invertida: amb tipus 0 % no es recapta res (obvi) i amb tipus 100 % tampoc (ningú treballa si no es queda res). Entre tots dos hi ha un màxim; passar-se d'eixe punt reduïx la recaptació perquè la base imposable cau (frau, economia submergida, fuga de capital)."
   - enunciado: "Què distingix el model Bismarck del model Beveridge en els sistemes de pensions?"
     opciones:
-      - "Bismarck és de capitalització individual; Beveridge és de repartiment."
-      - "Bismarck finança les pensions amb cotitzacions dels treballadors actius vinculant la pensió a allò cotitzat; Beveridge garantix una pensió bàsica universal finançada amb impostos generals."
+      - "Bismarck és de capitalització individual i es finança amb estalvi propi; Beveridge és de repartiment."
+      - "Bismarck vincula la pensió a allò cotitzat pel treballador; Beveridge garantix una pensió bàsica universal finançada amb impostos."
       - "Bismarck és britànic; Beveridge és alemany."
-      - "Bismarck s'aplica només a funcionaris; Beveridge a tots els treballadors."
+      - "Bismarck s'aplica només a funcionaris públics amb règim especial; Beveridge a tots els treballadors del sector privat."
     correcta: 1
     explicacion: "El model Bismarck (Espanya, Alemanya, França, Itàlia) és de repartiment contributiu: cotitzacions actives financen pensions actuals i la quantia depén d'allò cotitzat. El model Beveridge (Regne Unit, Dinamarca, Països Baixos) garantix una pensió bàsica universal finançada amb impostos generals, més plana i menys vinculada a l'historial laboral."
   - enunciado: "Quin d'estos instruments del BCE és el sòl del corredor de tipus i, des de 2022, oferix rendibilitat als bancs per aparcar reserves?"
@@ -67,16 +67,16 @@ preguntas:
     opciones:
       - "QE compra deute injectant liquiditat; QT deixa véncer el deute comprat o el ven, retirant liquiditat del sistema."
       - "QE s'aplica només a deute privat; QT només a deute públic."
-      - "QE és política fiscal; QT és política monetària."
+      - "QE és política fiscal, decidida pel Govern; QT és política monetària, decidida pel banc central."
       - "QE s'aplica als EUA; QT a Europa."
     correcta: 0
     explicacion: "Tots dos són instruments de quantitat del BCE. La QE (2015-2022, programes PSPP i PEPP) injecta liquiditat comprant actius i empeny a la baixa els tipus a llarg termini. La QT (des de 2022) fa el contrari: el BCE deixa véncer el deute sense reinvertir-lo, retirant liquiditat per a combatre la inflació."
   - enunciado: "L'IPCH de la zona euro va tocar un pic del 10,6 % interanual a l'octubre de 2022. Quina combinació de factors explica millor aquella crisi inflacionària?"
     opciones:
-      - "Únicament inflació de demanda per l'excés d'estalvi Covid."
+      - "Únicament inflació de demanda, provocada per l'excés d'estalvi acumulat durant el Covid."
       - "Únicament inflació de costos per la guerra d'Ucraïna."
-      - "Una mescla: colls d'ampolla post-Covid, xoc energètic per la guerra d'Ucraïna (costos) i demanda continguda alliberada en reobrir (demanda)."
-      - "Una espiral salaris-preus desfermada per la negociació col·lectiva."
+      - "Una mescla de colls d'ampolla post-Covid, xoc energètic (costos) i demanda continguda alliberada en reobrir."
+      - "Una espiral salaris-preus desfermada per la negociació col·lectiva i les pujades del salari mínim."
     correcta: 2
     explicacion: "La crisi 2022-2023 va ser mixta: colls d'ampolla post-Covid (semiconductors, nòlits, energia) i la guerra d'Ucraïna (gas, petroli, cereals, fertilitzants) van aportar inflació de costos; l'estalvi acumulat en confinament, alliberat en reobrir, va aportar inflació de demanda. L'espiral salaris-preus va ser un risc, no el factor desencadenant."
   - tipo: numerico

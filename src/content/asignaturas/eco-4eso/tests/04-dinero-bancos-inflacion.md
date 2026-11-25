@@ -22,9 +22,9 @@ preguntas:
     correcta: 2
     explicacion: "La tarjeta, el Bizum o el móvil no son un dinero distinto: son formas de mover dinero bancario. Tu banco resta el importe de tu apunte y el banco del bar lo suma al suyo; en la zona euro más de nueve de cada diez euros son apuntes de este tipo, no billetes."
   - tipo: verdadero-falso
-    enunciado: "Si tu banco quiebra, pierdes todo el dinero que tenías en tu cuenta corriente."
-    correcta: false
-    explicacion: "Falso. El Fondo de Garantía de Depósitos devuelve hasta 100.000 € por persona y entidad. Cuando el Banco Popular fue vendido por 1 € en junio de 2017, ningún cliente con cuenta o depósito perdió nada; sí lo perdieron todo quienes tenían acciones o bonos, que no son depósitos."
+    enunciado: "Si tu banco quiebra, el Fondo de Garantía de Depósitos te devuelve el dinero de tu cuenta corriente hasta 100.000 € por persona y entidad."
+    correcta: true
+    explicacion: "Cierto. El fondo cubre cuentas y depósitos, no acciones ni bonos. Cuando el Banco Popular fue vendido por 1 € en junio de 2017, ningún cliente con cuenta o depósito perdió nada; sí lo perdieron todo quienes tenían acciones o bonos."
   - tipo: relacionar
     enunciado: "Relaciona cada función del dinero con lo que permite hacer."
     izquierda:

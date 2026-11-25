@@ -9,25 +9,25 @@ estado: publicado
 preguntas:
   - enunciado: "Marta paga 60 € per una entrada no reemborsable per a un concert a l'aire lliure. El dia del concert plou, fa fred i ja no li ve de gust anar-hi. Des del punt de vista econòmic, com ha de prendre la decisió?"
     opciones:
-      - "Ha d'anar-hi, perquè ja ha pagat 60 € i no anar-hi seria tirar els diners."
-      - "Ha de comparar únicament el benestar d'anar-hi banyant-se enfront del de quedar-se còmodament a casa, perquè els 60 € són un cost enfonsat."
-      - "Ha d'anar-hi només si valora el concert en més de 60 €."
+      - "Ha d'anar-hi, perquè ja ha pagat 60 € i no anar-hi seria tirar els diners i malbaratar l'entrada."
+      - "Ha de comparar només el benestar d'anar-hi banyant-se amb el de quedar-se a casa, perquè els 60 € són un cost enfonsat."
+      - "Ha d'anar-hi només si valora el concert en més de 60 €, que és el que li ha costat l'entrada."
       - "Ha d'anar-hi si l'entrada inclou servici de barra lliure."
     correcta: 1
     explicacion: "Els 60 € són un cost enfonsat: ja estan perduts faça el que faça. La decisió racional compara només costos i beneficis futurs. Caure en la idea de «ja ho he pagat» és la fal·làcia del cost enfonsat."
   - enunciado: "Un grau universitari costa 1.500 € a l'any en matrícules. Si treballant en lloc d'estudiar Andrea hauria cobrat 18.000 € anuals, quin és el seu cost d'oportunitat anual d'estudiar?"
     opciones:
-      - "1.500 € (només les matrícules)."
-      - "18.000 € (només el salari al qual renuncia)."
+      - "1.500 € (només les matrícules, que és el que desemborsa)."
+      - "18.000 € (només el salari al qual renuncia per estudiar)."
       - "19.500 € aproximadament (matrícules més salari sacrificat)."
       - "0 € si els pares paguen la matrícula."
     correcta: 2
     explicacion: "El cost d'oportunitat inclou els costos monetaris explícits (matrícules) més el valor de la millor alternativa a la qual es renuncia (el salari que hauria cobrat). Qui paga la matrícula no canvia el cost econòmic real."
   - enunciado: "Una empresa produïx motxilles. Vendre 1.000 motxilles li dóna 30.000 € d'ingressos i 20.000 € de costos. Vendre 1.100 motxilles li donaria 32.500 € d'ingressos i 23.500 € de costos. Què li diu l'anàlisi marginal?"
     opciones:
-      - "Produir les 100 motxilles extra, perquè les dues opcions generen beneficis."
+      - "Produir les 100 motxilles extra, perquè les dues opcions generen beneficis i produir més és millor."
       - "No produir les 100 motxilles extra: el cost marginal (3.500 €) és major que l'ingrés marginal (2.500 €)."
-      - "Produir les 100 motxilles extra, perquè l'ingrés total creix."
+      - "Produir les 100 motxilles extra, perquè l'ingrés total creix de 30.000 € a 32.500 €."
       - "És indiferent, perquè les dues opcions són rendibles."
     correcta: 1
     explicacion: "Mirant totals, les dues opcions donen beneficis. Mirant al marge, les 100 unitats extra aporten 2.500 € d'ingrés marginal i 3.500 € de cost marginal: produir-les destruïx 1.000 € de benefici. Les decisions es prenen al marge, no per totals."
@@ -35,13 +35,13 @@ preguntas:
     opciones:
       - "Perquè la policia els oferix diners per confessar."
       - "Perquè confessar és l'estratègia dominant: a cadascun li convé confessar passe el que passe l'altre."
-      - "Perquè la cooperació mai és possible en teoria de jocs."
-      - "Perquè no es coneixen i no es fien l'un de l'altre."
+      - "Perquè la cooperació mai és possible en teoria de jocs, ni tan sols si es repetix el joc."
+      - "Perquè no es coneixen i no es fien l'un de l'altre, així que preferixen delatar per desconfiança."
     correcta: 1
     explicacion: "Confessar és una estratègia dominant: per a cada jugador, confessar millora el resultat tant si l'altre calla com si confessa. L'equilibri de Nash resultant (tots dos confessen, 5 anys cadascun) és pitjor que la cooperació (1 any cadascun). L'interés individual racional produïx un resultat col·lectivament ineficient."
   - enunciado: "La racionalitat acotada de Herbert Simon sosté que les persones, quan decidixen…"
     opciones:
-      - "Maximitzen sempre la utilitat esperada, com prediu la teoria clàssica."
+      - "Maximitzen sempre la utilitat esperada, com prediu la teoria econòmica clàssica."
       - "Prenen decisions aleatòries, sense lògica subjacent."
       - "Satisfan: exploren alternatives fins a trobar-ne una prou bona, no l'òptima."
       - "Només decidixen bé si tenen formació universitària."
@@ -59,7 +59,7 @@ preguntas:
     opciones:
       - "Sistema 1 = conscient i lent; Sistema 2 = inconscient i ràpid."
       - "Sistema 1 = ràpid, automàtic i intuïtiu; Sistema 2 = lent, deliberat i analític."
-      - "Sistema 1 = logicomatemàtic; Sistema 2 = emocional."
+      - "Sistema 1 = logicomatemàtic i fred; Sistema 2 = emocional i impulsiu."
       - "Són dos hemisferis cerebrals independents."
     correcta: 1
     explicacion: "Sistema 1 detecta cares, suma 2+2 o condueix per una carretera buida sense esforç: ràpid i automàtic. Sistema 2 resol 17×24 o revisa un argument complex: lent, deliberat, consumix energia mental. La majoria de decisions les pren el Sistema 1, que comet errors sistemàtics (biaixos)."
@@ -74,7 +74,7 @@ preguntas:
   - enunciado: "Segons la Teoria Prospectiva de Kahneman i Tversky (1979), l'aversió a la pèrdua implica que…"
     opciones:
       - "Els inversors mai venen accions que perden valor."
-      - "Perdre 100 € fa mal aproximadament el doble del que gaudim en guanyar 100 €, la qual cosa explica per què els plans de pensions amb subscripció automàtica (opt-out) tenen taxes molt més altes."
+      - "Perdre 100 € fa mal aproximadament el doble del que gaudim en guanyar 100 €."
       - "Les pèrdues i els guanys es valoren simètricament al voltant de zero."
       - "Les persones sempre preferixen el risc a la seguretat."
     correcta: 1

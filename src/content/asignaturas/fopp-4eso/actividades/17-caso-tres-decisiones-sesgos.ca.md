@@ -57,6 +57,24 @@ IMMEDIATESA · preferisc el premi d'ara encara que em perjudique després.
 4. **Reescriptura de la decisió (10 min).** El grup reescriu un dels tres casos: com hauria decidit el personatge si haguera aplicat el procés racional i detectat el seu biaix a temps? Redacció breu.
 5. **Posada en comú (5 min).** Cada grup exposa un cas. El professor tanca recordant que el truc pràctic és **donar-se un moment abans de decidir** i preguntar-se «estic decidint o em està decidint un biaix?».
 
+## Solució orientativa per al professor
+
+**Pas 2. Biaix de cada cas**, amb la frase del text que el justifica:
+
+1. **Cas 1, La festa: pressió de grup.** «Tot el seu grup va i li diuen "no sigues raro"». Leo fa el que fa el grup encara que no li ve de gust i encara que té un examen important el dilluns.
+2. **Cas 2, L'acadèmia: cost soterrat.** «Amb tots els diners i el temps que hi porte ficats, no puc deixar-ho ara». Seguix en alguna cosa que ja no li interessa i en la qual va fatal per allò que ja ha invertit.
+3. **Cas 3, El monopatí: excés d'optimisme.** «Jo controle, això els passa als novençans». Creu que l'accident no li passarà a ell i no usa casc.
+
+L'enunciat admet més d'un biaix per cas: s'accepta un segon biaix només si l'alumnat el justifica amb el text i amb la definició de la seua targeta.
+
+**Pas 3. Fase del procés que va fallar** (resposta orientativa, amb les cinc fases de la unitat 4: definir, generar alternatives, establir criteris, analitzar, decidir). Val una altra fase si s'argumenta amb el text del cas.
+
+1. **Cas 1: fase 3, criteris.** Leo ja sap què li importa (l'examen del dilluns), però deixa que l'opinió del grup pese més que el seu propi criteri.
+2. **Cas 2: fase 4, analitzar.** Compara amb allò que ja ha gastat en lloc de preguntar-se què prefereix fer a partir d'hui; la unitat proposa mirar cap avant («si començara hui des de zero, ho triaria?»).
+3. **Cas 3: fase 4, analitzar.** Descarta el risc sense analitzar-lo. També s'accepta la fase 2 si s'argumenta que ni es va plantejar l'alternativa «amb casc».
+
+El pas 4 (reescriptura de la decisió) és de redacció lliure: s'avalua que aplique el procés i que la nova decisió corregisca el biaix detectat.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

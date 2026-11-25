@@ -59,6 +59,16 @@ Cada equip lliura un full amb:
 - Una nota breu sobre com es va resoldre el desacord del pas 3.
 - La proposta de forma jurídica per al projecte propi, amb la seua justificació.
 
+## Solució orientativa per al professor
+
+Resposta esperable (la del pas 4), amb els criteris de la taula de la unitat 3. S'accepta una altra forma si l'equip l'argumenta amb eixos criteris.
+
+1. **Cas A, Marta: autònom.** És una sola persona, amb pocs clients, inversió mínima, sense local i risc econòmic baix, i vol arrancar ja i gastar poc en tràmits. L'autònom no exigix capital ni notari (alta censal amb el 036 i alta en el RETA). Respon amb tot el seu patrimoni, però amb este risc és assumible. El propi cas avisa que la normativa sanitària (registre o comunicació prèvia i formació en manipulació d'aliments) és un tràmit que no es pot saltar.
+2. **Cas B, els tres amics de l'app: societat limitada.** Són tres socis, necessiten invertir en desenvolupament i màrqueting, potser contractar, i hi ha risc de deutes. Volen protegir el seu patrimoni personal: la SL limita la responsabilitat al capital aportat, admet 1 € de capital des de 2022 i és la forma més usada a Espanya per a pimes. El desacord previst del pas 3 és autònoms o SL: tres autònoms per separat responen cadascun amb el seu patrimoni personal, just allò que volen evitar (la unitat ho planteja en el seu test amb quatre persones).
+3. **Cas C, els sis veïns de l'hort: cooperativa.** Són sis persones (la unitat demana un mínim de 3), totes volen treballar-hi, decidir de manera democràtica («un soci, un vot») i busquen impacte social i arrelament local, sense que ningú mane sobre els altres. És la descripció que fa la unitat de la cooperativa: diversos socis que són alhora treballadors, amb vocació democràtica i d'impacte social. Responsabilitat limitada i règim fiscal propi, amb tipus reduïts.
+
+Els passos 3 i 5 (resolució del desacord i proposta per al projecte propi) no tenen resposta única: s'avaluen amb els criteris de la taula.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

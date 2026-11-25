@@ -69,6 +69,28 @@ Este exercici no demana opinar: demana **dominar el mapa**. Primer es completa l
 4. **Correcció en parelles (12 min).** Cada parella contrasta respostes, discutix les que no coincidisquen i consulta la font per a dirimir. Marquen d'un altre color les que tenien malament.
 5. **Tancament i mite-buster (6 min).** Posada en comú dels errors més freqüents de la classe. El professor desmunta el mite principal: l'FP **no** tanca la porta a la universitat, i triar FP no és triar «menys».
 
+## Solució orientativa per al professor
+
+**Pas 2. Fletxes de l'esquema** (segons la unitat 5):
+
+- 4t ESO amb títol → Batxillerat i → FP de Grau Mitjà.
+- Sense títol d'ESO → FP de Grau Bàsic → títol d'ESO (s'obté alhora que el títol professional bàsic) → enllaça amb el Grau Mitjà.
+- Batxillerat → PAU → Universitat.
+- Batxillerat → FP de Grau Superior, sense cap prova: el títol de Batxiller dóna accés directe. No figura en la plantilla.
+- FP de Grau Mitjà → FP de Grau Superior (de la mateixa família professional; el llibre afig la prova d'accés i l'accés directe en algunes comunitats).
+- FP de Grau Mitjà → Batxillerat, per prova d'accés o per convalidació parcial de matèries segons la comunitat. No figura en la plantilla.
+- FP de Grau Superior → Universitat, sense PAU obligatòria en molts casos (segons grau i nota); la fase voluntària de la PAU servix per a pujar nota.
+- FP de Grau Mitjà i de Grau Superior → món laboral.
+
+**Pas 3. Els sis casos**
+
+1. **Hugo: SÍ.** El Grau Superior dóna accés a la universitat sense PAU obligatòria (en molts casos, segons grau i nota). Amb la fase voluntària pot pujar nota.
+2. **Sara: SÍ.** El Grau Mitjà dóna accés al Grau Superior. El llibre ho condiciona a la mateixa família professional (o a la prova d'accés), i el cas planteja continuar en hostaleria.
+3. **Bilal: NO.** El llibre presenta Batxillerat i Grau Mitjà com a vies que s'obrin després d'obtindre el títol d'ESO, i el Grau Mitjà el demana com a requisit d'entrada. El seu camí és el Grau Bàsic, que dóna el títol d'ESO i enllaça amb el Grau Mitjà.
+4. **Carla: SÍ.** El títol de Batxiller dóna accés directe al Grau Superior, sense PAU ni prova.
+5. **Mateo: SÍ.** Superat el Grau Bàsic (l'antiga FP Bàsica) s'obté el títol d'ESO.
+6. **Lucía: NO.** El Grau Superior dóna accés a la universitat, i a més hi ha la passarel·la del Grau Mitjà al Batxillerat. L'FP no tanca la porta.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

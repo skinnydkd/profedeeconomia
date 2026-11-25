@@ -71,10 +71,10 @@ preguntas:
     explicacion: "El convenio colectivo **mejora** los mínimos del ET (en este caso, el SMI) y es de obligado cumplimiento. Si tu categoría profesional tiene fijado 1.350 € en convenio, ese es tu suelo real. La empresa debe corregirlo y **abonar las diferencias con efectos retroactivos**. Los convenios se consultan gratis en el REGCON del Ministerio de Trabajo."
   - enunciado: "Si te vulneran un derecho laboral y la empresa no responde a tu reclamación interna, ¿cuál es la ruta correcta para reclamar?"
     opciones:
-      - "Acudir directamente a la sección de lo Social del Tribunal de Instancia presentando demanda."
-      - "Comité o sindicato → Inspección de Trabajo (denuncia gratuita y confidencial) → SMAC (conciliación previa obligatoria) → Tribunal de Instancia (sección de lo Social) si no hay acuerdo."
+      - "Acudir directamente a la sección de lo Social del Tribunal de Instancia presentando demanda, sin conciliación previa."
+      - "Comité o sindicato → Inspección de Trabajo (denuncia gratuita) → SMAC (conciliación previa obligatoria) → Tribunal de Instancia si no hay acuerdo."
       - "Llamar a la policía y presentar una denuncia penal."
-      - "Esperar a que se acumulen varias vulneraciones y reclamar todas juntas al cabo del año."
+      - "Esperar a que se acumulen varias vulneraciones y reclamar todas juntas al cabo del año, para que el caso tenga más peso."
     correcta: 1
     explicacion: "La ruta correcta es escalonada: primero **comité o sindicato** (asesoría gratuita), después **Inspección de Trabajo** (denuncia online, gratuita y confidencial: no revela quién denuncia), y si no se resuelve, **conciliación previa ante el SMAC** (gratuita y obligatoria) antes de presentar demanda en la **sección de lo Social del Tribunal de Instancia**. Ojo a los plazos: 20 días hábiles para impugnar un despido y un año para reclamar salarios impagados."
   - tipo: verdadero-falso

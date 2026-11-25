@@ -9,9 +9,9 @@ estado: publicado
 preguntas:
   - enunciado: "Què establix la llei de la demanda?"
     opciones:
-      - "Com major és la renda, major és la quantitat demandada de qualsevol bé."
-      - "Existix una relació inversa entre el preu d'un bé i la quantitat demandada, mantenint constants els altres factors."
-      - "La quantitat demandada depén exclusivament dels gustos dels consumidors."
+      - "Com major és la renda, major és la quantitat demandada de qualsevol bé, siga normal o inferior."
+      - "Existix una relació inversa entre el preu d'un bé i la quantitat demandada, amb els altres factors constants."
+      - "La quantitat demandada depén exclusivament dels gustos dels consumidors, no del preu."
       - "Quan puja el preu d'un bé, la seua demanda es desplaça a la dreta."
     correcta: 1
     explicacion: "La llei de la demanda descriu una relació inversa entre preu i quantitat demandada. El pendent negatiu s'explica per l'efecte substitució i l'efecte renda actuant simultàniament."
@@ -28,14 +28,14 @@ preguntas:
       - "El preu és el mínim possible per als consumidors."
       - "La quantitat oferida i la quantitat demandada coincidixen, i no hi ha tendència al canvi."
       - "El Govern fixa el preu que considera just."
-      - "Hi ha excés d'oferta perquè els productors sempre volen vendre més."
+      - "Hi ha excés d'oferta perquè els productors sempre volen vendre més a qualsevol preu."
     correcta: 1
     explicacion: "En l'equilibri, Q_d = Q_o al preu P*. No hi ha ni excés d'oferta ni de demanda, per la qual cosa cap agent té incentius per a modificar el seu comportament."
   - enunciado: "Si el preu de mercat està per davall del preu d'equilibri, el previsible és que…"
     opciones:
       - "Aparega un excés d'oferta i el preu baixe encara més."
       - "Aparega un excés de demanda (escassetat) i el preu tendisca a pujar fins a l'equilibri."
-      - "El mercat es mantinga estable perquè els consumidors estan contents."
+      - "El mercat es mantinga estable perquè els consumidors estan contents amb eixe preu."
       - "Els productors deixen de vendre per sempre."
     correcta: 1
     explicacion: "Per davall de l'equilibri els consumidors volen comprar més del que els productors oferixen: apareix escassetat, els consumidors competixen entre si i el preu puja cap a P*."
@@ -65,7 +65,7 @@ preguntas:
     explicacion: "Una sequera és un xoc negatiu sobre l'oferta: la corba es desplaça a l'esquerra. El nou equilibri té un preu major i una quantitat menor, exactament l'observat en l'oli d'oliva 2022-2024."
   - enunciado: "L'entrada d'Ouigo i Iryo en l'AVE espanyol des de 2021 ha tingut el següent efecte sobre el mercat de bitllets d'alta velocitat…"
     opciones:
-      - "Desplaçament de la demanda a l'esquerra: menys viatgers."
+      - "Desplaçament de la demanda a l'esquerra: menys viatgers en encarir-se els bitllets."
       - "Desplaçament de l'oferta a la dreta (més productors): tendència a baixar preus i pujar quantitat."
       - "Desplaçament de l'oferta a l'esquerra: menys places."
       - "Cap canvi: el mercat continua en monopoli."

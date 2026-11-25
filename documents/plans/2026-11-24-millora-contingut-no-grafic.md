@@ -45,6 +45,8 @@ No és error (el revisor s'equivocava): la prestació d'atur al 60 % a partir de
 
 ## Lot F. Pràctica
 
+**Fet (2026-11-25):** ordre barrejat de les opcions al quadern imprés, biaix de longitud (Eco 1r Batx, EEAE, FOPP) i de vertader/fals (Eco 4t, EEAE) amb guarda de CI, i clau de correcció en 13 activitats de resposta tancada. **Pendent:** la resta de punts d'aquesta llista, i tres dubtes de contingut per a Pau (descompte del 5-10 % contra el 5 % legal a EDMN activitat 3; costos fixos que no sumen a EDMN activitat 6; pistes dins dels «Pasos» que el quadern de l'alumne encara ensenya a FOPP 17, 19, 21, 24, 27 i GPE forma jurídica).
+
 - Uns 30 exercicis sense solució i fitxes citades que no existeixen.
 - Rúbriques sense nivells d'assoliment en quasi totes les activitats (el model ja existix a les situacions i als projectes).
 - Tests: a Eco 1r Batx l'opció correcta és la més llarga en el 76 % de les preguntes; a la versió impresa la correcta és quasi sempre la B a IPE I; vertader/fals quasi sempre fals a Eco 4t.

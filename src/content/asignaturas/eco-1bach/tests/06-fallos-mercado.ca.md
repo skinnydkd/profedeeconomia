@@ -9,9 +9,9 @@ estado: publicado
 preguntas:
   - enunciado: "Quina d'estes definicions descriu millor una fallada de mercat?"
     opciones:
-      - "Qualsevol situació en què una empresa fa fallida o tanca."
-      - "Una situació en què l'assignació lliure d'oferta i demanda no és eficient en sentit de Pareto i existixen millores mútuament beneficioses no implementades."
-      - "Un judici ideològic contra el funcionament del mercat capitalista."
+      - "Qualsevol situació en què una empresa fa fallida o tanca, deixant els seus treballadors sense ocupació."
+      - "Una situació en què el mercat lliure no és eficient en sentit de Pareto: queden millores mútues sense aprofitar."
+      - "Un judici ideològic contra el funcionament del mercat capitalista i a favor de la planificació estatal."
       - "Una crisi financera o un episodi d'inflació elevada."
     correcta: 1
     explicacion: "Fallada de mercat és un diagnòstic tècnic —no ideològic— sobre situacions en què el mercat no assolix una assignació Pareto-eficient. La fallida d'una empresa concreta o una crisi macroeconòmica no són fallades de mercat en sentit estricte."
@@ -19,7 +19,7 @@ preguntas:
     opciones:
       - "Impost al tabac / IVA general."
       - "Congestió del trànsit en hora punta / vacunació contra una malaltia infecciosa."
-      - "Preu de la gasolina / preu del transport públic."
+      - "Preu de la gasolina a l'estació / preu del bitllet de transport públic."
       - "Fallida d'una empresa / fundació d'una de nova."
     correcta: 1
     explicacion: "La congestió és un cost imposat sobre tercers conductors que no es factura en el preu; la vacunació genera un benefici per a tercers (menor circulació del patogen) no recollit en la decisió privada. Per això, sense intervenció, el mercat produirà massa congestió i poca vacunació respecte a l'òptim social."
@@ -28,7 +28,7 @@ preguntas:
       - "Igual al cost de producció de l'energia."
       - "Igual al dany marginal causat a tercers per una unitat addicional d'emissió."
       - "El més alt possible, per a recaptar al màxim."
-      - "Igual al benefici que obté l'empresa contaminadora."
+      - "Igual al benefici que obté l'empresa contaminadora per cada unitat produïda."
     correcta: 1
     explicacion: "Pigou (1920) va proposar gravar l'externalitat pel dany marginal que causa a tercers. Així el cost privat passa a igualar el cost social i la quantitat produïda s'ajusta a l'òptim. Una calibració per davall deixa externalitat residual; per damunt penalitza en excés."
   - enunciado: "En la matriu rivalitat × exclusió popularitzada per Elinor Ostrom, un caladero de pesca compartit entre diversos països és…"
@@ -41,42 +41,42 @@ preguntas:
     explicacion: "Un caladero és rival —el peix que tu captures jo ja no puc capturar-lo— però no excloïble —és molt difícil impedir l'accés a la mar oberta. Eixa combinació és la definició de bé comú i genera el risc de sobreexplotació que Ostrom va estudiar."
   - enunciado: "El problema del polissó (*free-rider*) explica per què…"
     opciones:
-      - "Els monopolis cobren preus més alts que en competència perfecta."
-      - "El mercat privat infraproduïx greument béns públics purs, ja que cada agent té incentiu a esperar que paguen els altres i consumir gratis."
+      - "Els monopolis cobren preus més alts que en competència perfecta i produïxen menys quantitat."
+      - "El mercat privat infraproduïx béns públics purs: cada agent espera que paguen els altres per a consumir gratis."
       - "Les empreses xicotetes no poden competir amb les grans."
       - "Els consumidors preferixen les marques conegudes a les marques blanques."
     correcta: 1
     explicacion: "En no ser excloïble, el bé públic es prestarà igual si jo no pague; la meua millor estratègia individual és declarar disposició a pagar zero. Si tots raonen així, no es finança. Per això quasi tots els Estats els financen amb impostos coercitius."
   - enunciado: "La selecció adversa, formalitzada per Akerlof en el seu article *The Market for Lemons* (1970), apareix…"
     opciones:
-      - "Després de tancar el contracte, quan el comportament de l'assegurat canvia."
-      - "Abans de tancar el contracte, i afecta qui accepta entrar en la transacció quan una part coneix la qualitat i l'altra no."
+      - "Després de tancar el contracte, quan el comportament de l'assegurat canvia per sentir-se protegit."
+      - "Abans de tancar el contracte; afecta qui entra en la transacció quan una part coneix la qualitat i l'altra no."
       - "Únicament en el mercat de cotxes usats, no en altres mercats."
       - "Només quan hi ha monopoli pur d'un únic oferent."
     correcta: 1
     explicacion: "Selecció adversa és ex ante: l'asimetria existix abans del contracte i determina *qui* accepta signar-lo (els llimons es queden, els bons es retiren). El risc moral, en canvi, és ex post: afecta el comportament una vegada signat el contracte."
   - enunciado: "El rescat implícit als grans bancs (*too big to fail*) en 2008 és un cas clàssic de…"
     opciones:
-      - "Externalitat positiva sobre els depositants."
-      - "Risc moral: els bancs van assumir palanquejaments excessius sabent que l'Estat els rescataria en cas de fallida."
+      - "Externalitat positiva sobre els depositants, que es beneficien d'un sistema bancari major."
+      - "Risc moral: els bancs van assumir palanquejaments excessius sabent que l'Estat els rescataria."
       - "Bé públic pur mal finançat."
       - "Competència perfecta entre entitats financeres."
     correcta: 1
     explicacion: "El risc moral apareix després del contracte (o de la garantia implícita) i altera el comportament del cobert: si la pèrdua l'assumirà un altre, assumisc més risc del que assumiria amb diners propis. Basilea III i la Unió Bancària es van dissenyar precisament per a neutralitzar este incentiu."
   - enunciado: "El poder de mercat d'una empresa genera pèrdua irrecuperable d'eficiència (*deadweight loss*) perquè…"
     opciones:
-      - "Reduïx els beneficis de l'empresa monopolista."
-      - "Restringix la quantitat oferida i fixa el preu per damunt del cost marginal, deixant fora consumidors que sí que haurien comprat al preu competitiu."
-      - "Eleva els salaris dels treballadors del sector."
+      - "Reduïx els beneficis de l'empresa monopolista perquè ven menys unitats que en competència."
+      - "Restringix la quantitat i fixa un preu superior al cost marginal, deixant fora qui sí que compraria en competència."
+      - "Eleva els salaris dels treballadors del sector i encarix els costos de totes les empreses rivals."
       - "Obliga l'Estat a subvencionar el monopolista."
     correcta: 1
     explicacion: "El monopolista maximitza benefici restringint quantitat i pujant preu. Hi ha consumidors el valor del bé dels quals està per damunt del cost marginal però per davall del preu monopolístic: no compren i es perd l'excedent que haurien generat. Eixa pèrdua no la captura ningú —ni empresa ni consumidor— i és el cost social del poder de mercat."
   - enunciado: "Segons l'enfocament comparatiu institucional, identificar una fallada de mercat…"
     opciones:
       - "Justifica automàticament la intervenció pública."
-      - "És condició necessària però no suficient: cal comprovar també que existix un instrument factible i que el risc de fallada de govern (captura, rent-seeking, informació limitada) és menor que la fallada que es vol corregir."
+      - "És necessari però no suficient: cal comprovar que existix un instrument factible i que la fallada de govern resultant és menor que la de mercat."
       - "Només importa si es tracta d'una externalitat negativa."
-      - "Implica que el mercat ha de ser substituït per planificació central."
+      - "Implica que el mercat ha de ser substituït per planificació central, perquè els governs corregixen les fallades sense cost ni errors."
     correcta: 1
     explicacion: "La conclusió metodològica moderna —des de Buchanan i la *public choice*— és modesta: l'Estat real també falla. Només convé intervindre quan la fallada de mercat està quantificada, hi ha instrument factible i el risc de fallada de govern és raonablement menor. Comparem institucions reals, no idealitzades."
   - tipo: verdadero-falso

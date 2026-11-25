@@ -47,10 +47,10 @@ preguntas:
     explicacion: "El sesgo de confirmación es automático: cuando ya tienes una hipótesis, filtras inconscientemente lo que la contradice. Se combate buscando activamente al menos dos personas que opinen lo contrario antes de decidir."
   - enunciado: "Prefieres no estudiar hoy y aceptar el coste mañana, aunque mañana sea mucho peor. Prefieres 10 € hoy a 15 € dentro de un mes. ¿De qué sesgo se trata?"
     opciones:
-      - "Sesgo de anclaje."
-      - "Coste hundido."
+      - "Sesgo de anclaje: se da demasiado peso a la primera cifra que se conoce."
+      - "Coste hundido: se sigue con algo por lo ya invertido, aunque ya no compense."
       - "Sesgo del presente: el cerebro descuenta el futuro de forma desproporcionada."
-      - "Sesgo de confirmación."
+      - "Sesgo de confirmación: se buscan solo datos que refuerzan lo que ya se pensaba."
     correcta: 2
     explicacion: "El sesgo del presente sobrevalora los costes y beneficios inmediatos frente a los futuros. Explica desde por qué cuesta ahorrar hasta por qué cuesta hacer deporte. Se combate haciendo visibles los beneficios futuros: calendarios, recordatorios, compromisos públicos."
   - enunciado: "Según Jeff Bezos, las decisiones se dividen en *two-way doors* (reversibles) y *one-way doors* (irreversibles). ¿Cuál es la regla correcta para cada tipo?"

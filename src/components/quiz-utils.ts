@@ -129,6 +129,16 @@ export function ordenesOpciones(
   return preguntas.map((p) => (p.tipo === 'opcion-multiple' && p.opciones ? permutacion(p.opciones.length, rng) : []));
 }
 
+/**
+ * Fixed order of the options of one printed question. The files put the right
+ * answer second in most questions, so on paper the key read b, b, b; the seed
+ * (subject, unit and question number) gives every edition and both languages
+ * the same shuffled order, and the answer key follows it.
+ */
+export function ordenImpreso(clave: string, n: number): number[] {
+  return permutacion(n, rngDesde(clave));
+}
+
 /** The order to paint: the stored permutation, or the file order if it does not fit. */
 export function ordenValido(orden: number[] | undefined, n: number): number[] {
   if (orden && orden.length === n && orden.every((i) => i >= 0 && i < n)) return orden;

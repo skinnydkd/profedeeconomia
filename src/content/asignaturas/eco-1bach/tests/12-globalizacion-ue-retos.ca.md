@@ -10,9 +10,9 @@ preguntas:
   - enunciado: "Dos països, A i B, produïxen únicament blat i tela. A necessita 2 hores per a una tona de blat i 4 hores per a un metre de tela; B necessita 5 hores per a una tona de blat i 6 hores per a un metre de tela. Quina d'estes afirmacions és correcta?"
     opciones:
       - "B té avantatge absolut en tela perquè empra menys hores que A."
-      - "A té avantatge absolut en els dos béns, però B té avantatge comparatiu en tela perquè el seu cost d'oportunitat de la tela (1,2 t de blat) és menor que el d'A (2 t de blat)."
+      - "A té avantatge absolut en els dos béns, però B té avantatge comparatiu en tela: el seu cost d'oportunitat (1,2 t de blat) és menor que el d'A (2 t)."
       - "Com que A és més eficient en tot, no hi ha marge perquè els dos països guanyen comerciant."
-      - "Els dos països han d'especialitzar-se en blat perquè és el bé que requerix menys hores en els dos casos."
+      - "Els dos països han d'especialitzar-se en blat perquè és el bé que requerix menys hores en els dos casos, així que guanyen tots dos."
     correcta: 1
     explicacion: "A és absolutament millor en els dos béns (2 < 5 en blat, 4 < 6 en tela). Però el cost d'oportunitat d'1 m de tela en A és 4/2 = 2 t de blat, enfront de 6/5 = 1,2 t en B. B té avantatge comparatiu en tela i A en blat. Esta és la demostració clàssica de Ricardo (1817): encara que un siga pitjor en tot, comerciant tots dos poden consumir més."
   - enunciado: "Quin d'estos instruments NO és proteccionista en sentit estricte?"
@@ -26,9 +26,9 @@ preguntas:
   - enunciado: "L'Organització Mundial del Comerç (OMC)…"
     opciones:
       - "Va ser creada en 1947 amb el nom de GATT i des d'aleshores no ha canviat."
-      - "Va succeir el GATT en 1995, té 166 països membres i descansa sobre els principis de nació més afavorida, tracte nacional i reducció progressiva d'aranzels."
+      - "Va succeir el GATT en 1995, té 166 països membres i es basa en la nació més afavorida, el tracte nacional i la reducció d'aranzels."
       - "És un organisme dependent del Banc Mundial i s'ocupa de la cooperació al desenvolupament."
-      - "Té poder per a imposar sancions unilaterals als països que no liberalitzen el seu comerç."
+      - "Té poder per a imposar sancions unilaterals als països que no liberalitzen el seu comerç, sense necessitat d'un procediment previ."
     correcta: 1
     explicacion: "L'OMC va substituir el GATT en 1995 i compta amb 166 membres. Els seus principis bàsics són la nació més afavorida (qualsevol avantatge a un soci s'estén a tots), el tracte nacional (no discriminar productes importats una vegada en el mercat intern) i la reducció progressiva d'aranzels mitjançant rondes. La Ronda de Doha porta sense tancar-se des de 2001 i l'òrgan d'apel·lació està bloquejat des de 2019."
   - enunciado: "Quin ordre cronològic de fites de la construcció europea és correcte?"
@@ -36,7 +36,7 @@ preguntas:
       - "Maastricht → CECA → euro físic → Brexit → NextGenerationEU."
       - "CECA (1951) → Tractats de Roma (1957) → Maastricht (1992) → euro físic (2002) → Brexit (2020) → NextGenerationEU (2020)."
       - "Tractats de Roma → CECA → euro físic → Maastricht → Brexit."
-      - "CECA → Maastricht → Tractats de Roma → euro físic → NextGenerationEU → Brexit."
+      - "CECA (1951) → Maastricht (1992) → Tractats de Roma (1957) → euro físic (2002) → NextGenerationEU (2020) → Brexit (2020)."
     correcta: 1
     explicacion: "La seqüència és: CECA 1951 (carbó i acer), Tractats de Roma 1957 (CEE), Maastricht 1992 (UE i bases de la UEM), euro físic 2002 (pesseta i resta de divises substituïdes), Brexit 2020 (primera eixida) i NextGenerationEU 2020 (primer deute comú per a respondre a la pandèmia)."
   - enunciado: "Les quatre llibertats del mercat únic europeu són…"
@@ -50,15 +50,15 @@ preguntas:
   - enunciado: "El pla NextGenerationEU es caracteritza per…"
     opciones:
       - "Ser un préstec bilateral d'Alemanya a la resta d'Estats membres."
-      - "Una emissió de deute comú per la Comissió Europea de 750.000 milions d'euros per a respondre a la pandèmia, finançant transferències i préstecs als Estats membres."
+      - "Una emissió de deute comú per la Comissió Europea de 750.000 milions d'euros, que finança transferències i préstecs als Estats membres."
       - "Un fons permanent del BCE per a comprar deute sobirà."
-      - "Una ampliació del pressupost ordinari de la UE finançat amb un nou impost sobre la renda."
+      - "Una ampliació del pressupost ordinari de la UE finançat amb un nou impost sobre la renda dels ciutadans europeus."
     correcta: 1
     explicacion: "NextGenerationEU és un fons de 750.000 milions finançat per primera vegada amb deute comú emés per la Comissió Europea. Espanya és el segon major receptor (uns 163.000 milions, repartits entre transferències no reemborsables i préstecs) i els gestiona via el Pla de Recuperació, Transformació i Resiliència. És el més paregut a una mutualització fiscal que ha viscut la UE."
   - enunciado: "Sobre els beneficis i costos de la globalització contemporània, quina d'estes afirmacions està millor recolzada per l'evidència agregada?"
     opciones:
-      - "La pobresa extrema mundial ha augmentat des de 1990 per culpa de l'obertura comercial."
-      - "La pobresa extrema mundial ha caigut del 36 % en 1990 al 8 % en 2022, però la desigualtat dins dels països avançats ha crescut, especialment per a la classe mitjana baixa (corba de l'elefant de Milanović)."
+      - "La pobresa extrema mundial ha augmentat des de 1990 per culpa de l'obertura comercial dels països rics i emergents."
+      - "La pobresa extrema mundial ha caigut del 36 % al 8 % entre 1990 i 2022, però la desigualtat ha crescut dins dels països avançats."
       - "La globalització ha reduït la desigualtat tant entre països com dins d'ells."
       - "La globalització ha tingut efectes neutres sobre la pobresa i la desigualtat."
     correcta: 1

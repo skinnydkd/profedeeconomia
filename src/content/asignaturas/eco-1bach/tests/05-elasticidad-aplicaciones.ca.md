@@ -17,9 +17,9 @@ preguntas:
     explicacion: "E_p^d = %ΔQ / %ΔP. És un quocient de percentatges, no d'unitats, la qual cosa la fa independent de les unitats de mesura i comparable entre béns."
   - enunciado: "Un forn puja el preu del pa de 2,00 € a 2,20 € per barra. Les vendes cauen de 500 a 460 barres diàries. Aplicant el mètode del punt mitjà, l'elasticitat-preu (valor absolut) és aproximadament…"
     opciones:
-      - "0,17 — demanda molt inelàstica."
+      - "0,17 — demanda molt inelàstica, quasi insensible al preu."
       - "0,88 — demanda inelàstica, pròxima a la unitat."
-      - "1,10 — demanda lleugerament elàstica."
+      - "1,10 — demanda lleugerament elàstica, una mica per damunt de la unitat."
       - "2,00 — demanda molt elàstica."
     correcta: 1
     explicacion: "ΔQ = −40; mitjana de Q = 480 → −8,33 %. ΔP = +0,20 €; mitjana de P = 2,10 € → +9,52 %. E = 8,33 / 9,52 ≈ 0,88. Una mica menor que 1: demanda inelàstica, encara que pròxima a la unitat."
@@ -58,14 +58,14 @@ preguntas:
   - enunciado: "Un impost unitari de 2 €/unitat s'introduïx en un mercat competitiu. Quina afirmació és correcta sobre el pes mort?"
     opciones:
       - "Coincidix amb la recaptació de l'Estat."
-      - "És major com més inelàstiques són l'oferta i la demanda."
+      - "És major com més inelàstiques són l'oferta i la demanda, perquè ningú no pot evitar l'impost."
       - "És major com més elàstiques són l'oferta i la demanda, perquè més cau la quantitat intercanviada."
       - "Només apareix si l'impost es cobra al consumidor, no al productor."
     correcta: 2
     explicacion: "El pes mort és el triangle de transaccions que deixen de produir-se. Com més elàstiques oferta i demanda, major és la caiguda de Q i major el pes mort. Per això els impostos sobre béns inelàstics (tabac, alcohol) recapten molt amb poca pèrdua d'eficiència."
   - enunciado: "Pel principi d'incidència fiscal, la part de l'impost que suporta cada costat del mercat depén de…"
     opciones:
-      - "A qui l'hi cobre formalment l'administració."
+      - "A qui l'hi cobre formalment l'administració, perquè qui el paga és qui el suporta."
       - "Les elasticitats relatives d'oferta i demanda: la part més inelàstica suporta la major part."
       - "La quantia nominal de l'impost."
       - "El nivell de competència entre empreses únicament."
@@ -73,9 +73,9 @@ preguntas:
     explicacion: "La incidència econòmica no depén de la incidència legal. El costat més inelàstic (menys capaç de fugir via quantitat) acaba pagant la major part. Per això els consumidors suporten quasi tot l'impost al tabac encara que legalment es cobre al fabricant."
   - enunciado: "Sobre el salari mínim i l'evidència empírica recent (Card-Krueger, Banc d'Espanya 2022, AIReF 2023), quina afirmació és la més ajustada?"
     opciones:
-      - "Qualsevol pujada del salari mínim destruïx ocupació en proporció a la pujada, com prediu el model competitiu més senzill."
+      - "Qualsevol pujada del salari mínim destruïx ocupació en proporció a la pujada, com prediu el model competitiu més senzill de mercat."
       - "El salari mínim mai té efectes negatius sobre l'ocupació, com va demostrar Card-Krueger."
-      - "Els efectes sobre l'ocupació depenen de l'elasticitat de la demanda de treball: pujades moderades tenen efectes xicotets; pujades grans molt per damunt de l'equilibri sí que destruïxen ocupació, concentrada en segments menys qualificats."
+      - "Els efectes depenen de l'elasticitat de la demanda de treball: xicotets amb pujades moderades, negatius amb pujades grans molt per damunt de l'equilibri."
       - "El salari mínim és irrellevant perquè sempre es fixa per davall de l'equilibri."
     correcta: 2
     explicacion: "El consens empíric actual és matisat: ni el desastre que prediu el model competitiu pur ni la neutralitat que suggeria Card-Krueger de manera aïllada. L'efecte depén de quant s'allunya el mínim de l'equilibri i de l'elasticitat de la demanda de treball en cada segment."

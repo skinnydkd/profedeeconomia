@@ -49,18 +49,18 @@ preguntas:
     explicacion: "Els **caixers** estan entre les professions amb **demanda en retrocés** per l'autocobrament i la banca digital. Les altres quatre (infermeria/sociosanitaris, programació, renovables i oficis tècnics qualificats com a electricistes o soldadors) són les cinc categories amb major projecció de creixement segons els informes citats."
   - enunciado: "Segons l'Enquesta d'Estructura Salarial 2024 de l'INE, quina afirmació sobre els salaris mitjans per nivell formatiu és **correcta**?"
     opciones:
-      - "FP de Grau Mitjà cobra de mitjana més que un graduat universitari."
+      - "FP de Grau Mitjà cobra de mitjana més que un graduat universitari, perquè entra abans al mercat laboral i acumula antiguitat."
       - "ESO sense més formació (~17.500 €) cobra menys que FP Mitjà (~23.000 €), que cobra menys que FP Superior (~26.500 €) i que el grau universitari (~30.000 €)."
       - "Tots els nivells formatius cobren el mateix: el salari depén només del sector."
-      - "El màster universitari cobra el doble que un graduat, entorn de 60.000 €."
+      - "El màster universitari cobra el doble que un graduat, entorn de 60.000 €, perquè la formació es paga sempre per anys d'estudi."
     correcta: 1
     explicacion: "L'orde ascendent del salari mitjà brut anual és: ESO ~17.500 € → FP Mitjà ~23.000 € → FP Superior ~26.500 € → grau universitari ~30.000 € → màster ~34.500 €. Són **mitjanes**, no garanties: hi ha gran dispersió per sector, empresa, ciutat i experiència. La diferència FP Superior–grau universitari és menor del que suggerix l'imaginari social."
   - enunciado: "Quina és la **diferència clau** entre el treball per compte d'altri, l'autoocupació i la intraemprenedoria?"
     opciones:
-      - "El compte d'altri treballa per a una empresa cobrant un salari; l'autoocupació treballa per a si mateix (autònom); l'intraemprenedor és un compte d'altri que lidera projectes amb autonomia emprenedora dins d'una empresa."
-      - "Són tres noms distints per a la mateixa situació laboral."
-      - "La intraemprenedoria exigix donar-se d'alta com a autònom igual que l'autoocupació."
-      - "Només l'autoocupació permet tindre empleats; les altres dos modalitats no."
+      - "El compte d'altri treballa per a una empresa amb salari; l'autoocupació, per a si mateix (autònom); l'intraemprenedor és un compte d'altri que lidera projectes amb autonomia en la seua empresa."
+      - "Són tres noms distints per a la mateixa situació laboral: en els tres casos es treballa per compte propi i es cotitza igual com a autònom."
+      - "La intraemprenedoria exigix donar-se d'alta com a autònom igual que l'autoocupació; el compte d'altri, en canvi, mai no pot liderar projectes dins de l'empresa."
+      - "Només l'autoocupació permet tindre empleats; el compte d'altri i l'intraemprenedor treballen sempre sols i sense equip al seu càrrec."
     correcta: 0
     explicacion: "Les tres són formes legítimes de treballar. **Compte d'altri** (~81 % dels ocupats): empresa o administració contracta i paga salari. **Autoocupació** (~15 %): autònom, treballa per a si mateix sota el RETA. **Intraemprenedoria** (~5 %, creixent): és un compte d'altri que dins d'una empresa lidera projectes amb autonomia emprenedora; manté la xarxa de seguretat del contracte sense el risc financer personal de l'autònom."
   - enunciado: "Quina d'estes **NO** és una causa estructural de l'atur juvenil espanyol identificada pel Banc d'Espanya, l'AIReF i l'OCDE?"

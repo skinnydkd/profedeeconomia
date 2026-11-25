@@ -36,9 +36,9 @@ preguntas:
     correcta: 2
     explicacion: "Las preguntas sobre el futuro invitan a quedar bien y sus respuestas no valen nada. Las preguntas sobre el pasado recogen conducta real: qué hizo, cuánto le costó y si llegó a pagar por una solución."
   - tipo: verdadero-falso
-    enunciado: "Un prototipo tiene que estar terminado y funcionar bien antes de enseñarlo a nadie."
-    correcta: false
-    explicacion: "Falso. El prototipo existe para aprender barato: una maqueta de cartón, una pantalla dibujada a mano o una landing page bastan para descubrir si la idea interesa antes de invertir tiempo y dinero."
+    enunciado: "Un prototipo no tiene que estar terminado para enseñarlo: una maqueta de cartón basta para saber si la idea interesa."
+    correcta: true
+    explicacion: "Cierto. El prototipo existe para aprender barato: una maqueta de cartón, una pantalla dibujada a mano o una landing page bastan para descubrir si la idea interesa antes de invertir tiempo y dinero. Esperar a tenerlo perfecto es el error contrario."
   - tipo: numerico
     enunciado: "Un proyecto tiene 240 € de costes fijos, vende cada bolsa a 12 € y cada una cuesta 5 € de materiales. ¿Cuántas bolsas hay que vender para cubrir los costes fijos?"
     respuesta: 35

@@ -59,6 +59,30 @@ Treballar per contrast —vore l'error abans de la norma— fixa millor l'aprene
 4. **Correcció en parelles (10 min).** Les parelles comparen quants errors ha trobat cadascun i unifiquen una llista. Qui n'ha vist algun que l'altre no?
 5. **Correcció projectada i tancament (5 min).** El professor projecta la solució amb els 15 errors i recull quins s'han escapat més. Tanca amb la idea clau: el CV és la primera impressió, i un reclutador descarta en segons per errors que semblen menuts.
 
+## Solució orientativa per al professor
+
+Els 15 errors, en l'orde del CV, amb la raó de per què resten (segons la unitat 9):
+
+1. **Nom: «Kevin "el crack" Pérez».** Un malnom en un document professional resta seriositat. Va el nom real.
+2. **Email: «kevincrack2007@...».** No és un correu professional. Es demana un email professional, d'ús seriós.
+3. **Telèfon: «el de ma mare».** No és el seu mòbil. El CV demana un telèfon mòbil de contacte propi i el reclutador ha de poder localitzar el candidat.
+4. **Estat civil: «solter sense compromís jeje».** Dada irrellevant que la unitat diu que no s'incloga, i a més amb una broma.
+5. **Signe: «Lleó».** Dada irrellevant i sense relació amb el lloc.
+6. **Foto: «selfie a la platja amb ulleres de sol».** Mai selfies. La foto, si s'inclou, és professional, recent i amb fons neutre.
+7. **Falta d'ortografia: «ESPERIÈNCIA».** Una sola falta pot descartar el CV. Cal passar el corrector i revisar almenys dos voltes.
+8. **Experiència: «He ajudat el meu tio al bar a vegades (no em pagaven)».** Sense càrrec, dates ni èxits, i es lleva valor a si mateix («a vegades», «no em pagaven»). És experiència aprofitable, però mal presentada: la unitat demana càrrec, empresa, dates i èxits amb verbs d'acció.
+9. **Experiència: «Soc molt bo al Fortnite, nivell màxim».** No és experiència laboral i resulta frívol. En un CV només compta allò que se sap usar i aporta al lloc.
+10. **Formació: «Estic a 4 de la eso, crec que aprove».** Expressada amb inseguretat («crec que aprove»). Ha de constar la titulació, el centre i l'any, sense dubtes (i «ESO» va en majúscules).
+11. **Idioma: «anglés nivell alt (trac un 4)».** Exagerat i contradictori: la nota no avala el «nivell alt». El nivell s'indica amb el MCER (A1 a C2), i «inventar un nivell és la mentira que més ràpid es descobrix».
+12. **Objectiu vague: «Busque qualsevol treball del que siga».** No diu què busca ni què aporta, i no està adaptat a cap oferta: un CV genèric és mediocre per a totes.
+13. **Objectiu egoista: «pagant bé i poc horari».** Parla d'allò que vol rebre, no d'allò que aporta a l'empresa.
+14. **Disponibilitat: «només vesprades, ni caps de setmana ni agost».** Tancada i mal plantejada: enumera allò que no pot fer en compte de la disponibilitat que oferix, i tanca quasi qualsevol oferta.
+15. **Referències: «els meus colegues diuen que soc molt majo».** Informal: no són referències professionals (no hi ha nom, càrrec ni forma de contacte de ningú que puga avalar-lo).
+
+El to general del CV («jeje», «el crack», «majo») travessa diversos d'estos punts i no compta com un error apart.
+
+Els passos 3 i 4 (reescriptura de tres seccions i correcció en parelles) són de redacció lliure: s'avaluen amb els criteris de la taula.
+
 ## Criteris d'avaluació
 
 | Criteri | Descripció | Pes |

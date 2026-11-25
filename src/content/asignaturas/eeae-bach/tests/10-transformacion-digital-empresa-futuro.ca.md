@@ -11,7 +11,7 @@ preguntas:
     opciones:
       - "Que es limita a oferir aparells més ràpids i barats sense canviar res més."
       - "Que reorganitza la forma de produir, de treballar i d'organitzar la societat, no només les ferramentes disponibles."
-      - "Que afecta únicament el sector industrial i deixa igual la resta de l'economia."
+      - "Que afecta únicament el sector industrial i deixa igual la resta de l'economia i de la societat."
       - "Que ocorre de forma molt gradual, al llarg de diversos segles."
     correcta: 1
     explicacion: "El distintiu d'una revolució tecnològica no és cap aparell concret, sinó que transforma d'arrel com es treballa, com s'organitzen les empreses i com funciona la societat. La màquina de vapor no només movia telers: va crear la fàbrica i la ciutat industrial; la revolució digital reorganitza què fan les persones, on i quines empreses guanyen o perden."
@@ -25,7 +25,7 @@ preguntas:
     explicacion: "Passar les fitxes de paper a un programa per a fer el de sempre és digitalització. La transformació digital és replantejar què s'oferix, com s'organitza la faena i com es guanya diners. La primera canvia les ferramentes; la segona canvia l'empresa."
   - enunciado: "Segons la unitat, per què fracassen moltes transformacions digitals?"
     opciones:
-      - "Perquè la tecnologia mai funciona com promet."
+      - "Perquè la tecnologia mai funciona com promet i els programes informàtics acaben fallant sempre."
       - "Per la resistència al canvi i la cultura de l'empresa: és abans un problema de persones que un problema tècnic."
       - "Perquè sempre costen més diners del previst."
       - "Perquè la llei ho prohibix en la majoria dels sectors."
@@ -36,22 +36,22 @@ preguntas:
       - "Només destruïx ocupació: tard o d'hora deixarà sense treball quasi tot el món."
       - "No afecta l'ocupació en absolut."
       - "Té tres efectes alhora: destruïx alguns llocs repetitius, transforma molts més i crea uns altres de nous."
-      - "Només crea ocupació: com més IA, més llocs de treball sempre."
+      - "Només crea ocupació: com més IA, més llocs de treball hi haurà, en tots els sectors i per a tots."
     correcta: 2
     explicacion: "L'anàlisi seriosa distingix tres efectes simultanis: l'automatització destruïx llocs molt repetitius, transforma la majoria (que canvien de contingut cap al que exigix criteri o tracte) i crea ocupacions noves que abans no existien. La por que les màquines deixen sense treball tots ve del segle XIX i no s'ha complit."
   - enunciado: "Quin tipus d'habilitats estan, segons la unitat, més a resguard de l'automatització?"
     opciones:
-      - "Les tasques més repetitives i predicibles, perquè són les més segures."
-      - "Les que la màquina fa pitjor: pensament crític, creativitat, tracte amb persones i capacitat d'aprendre coses noves."
+      - "Les tasques més repetitives i predicibles, perquè són les més segures davant les màquines."
+      - "Les que la màquina fa pitjor: pensament crític, creativitat, tracte amb persones i aprendre coses noves."
       - "Només els coneixements tècnics d'informàtica."
       - "Cap habilitat humana està a resguard de l'automatització."
     correcta: 1
     explicacion: "El que la màquina fa bé (el repetitiu i predicible) és justament el més automatitzable. El més a resguard són les qualitats humanes —criteri, creativitat, tracte, aprenentatge continu—, que són les competències transversals treballades durant tot el curs."
   - enunciado: "Què ha passat amb el teletreball a Espanya després de la pandèmia, segons les dades de l'INE?"
     opciones:
-      - "Ha desaparegut per complet: tot el món ha tornat a l'oficina cinc dies per setmana."
+      - "Ha desaparegut per complet: tot el món ha tornat a l'oficina cinc dies per setmana, com abans."
       - "S'ha mantingut en el màxim dels confinaments, per damunt del 16 % d'ocupats."
-      - "Va pujar molt amb la pandèmia i s'ha estabilitzat al voltant del 7-8 % d'ocupats que teletreballen habitualment, sobretot en la seua versió híbrida."
+      - "Va pujar molt amb la pandèmia i s'ha estabilitzat al voltant del 7-8 % d'ocupats que teletreballen habitualment."
       - "És ja la forma de treball majoritària a Espanya, per damunt de la mitjana europea."
     correcta: 2
     explicacion: "Abans de la pandèmia teletreballava habitualment al voltant del 4-5 % dels ocupats; en 2020 es va disparar per damunt del 16 %; després s'ha estabilitzat al voltant del 7-8 %, per davall de la mitjana de la UE, i sobretot en la seua versió híbrida (combinar casa i oficina)."
@@ -60,7 +60,7 @@ preguntas:
       - "El dret a no tindre internet en el lloc de treball."
       - "El dret del treballador a no atendre comunicacions laborals fora de la seua jornada."
       - "L'obligació de teletreballar almenys un dia per setmana."
-      - "El dret de l'empresa a desconnectar un treballador quan vullga."
+      - "El dret de l'empresa a desconnectar un treballador quan vullga i sense avisar."
     correcta: 1
     explicacion: "El teletreball porta el risc que el treball invadisca la vida personal. El dret a la desconnexió digital protegix el treballador davant això: no està obligat a atendre comunicacions laborals fora de la seua jornada. Està reconegut en la legislació espanyola."
   - enunciado: "Per què la sostenibilitat ha passat de ser un adorn a ser una estratègia de futur per a les empreses?"

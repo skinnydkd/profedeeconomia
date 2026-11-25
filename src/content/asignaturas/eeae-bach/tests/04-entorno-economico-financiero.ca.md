@@ -25,7 +25,7 @@ preguntas:
     explicacion: "En el flux circular de la renda els diners no desapareixen en gastar-los: passen a una altra persona com a ingrés, que tornarà a convertir-se en despesa. Per això diem que tot està connectat."
   - enunciado: "Què descriu el flux circular de la renda?"
     opciones:
-      - "El recorregut exacte de cada bitllet físic pel país."
+      - "El recorregut exacte de cada bitllet físic pel país al llarg de l'any."
       - "Una fórmula matemàtica per a calcular el PIB."
       - "Una visió panoràmica de com els diners circulen entre els agents sense detindre's."
       - "El repartiment de l'herència dins d'una família."
@@ -49,7 +49,7 @@ preguntas:
     explicacion: "Quan la demanda supera amb molt l'oferta, hi ha més diners perseguint els mateixos béns i els preus tendixen a pujar. És la intuïció bàsica de la relació entre oferta i demanda agregades."
   - enunciado: "Quina d'estes NO és una de les tres funcions dels diners?"
     opciones:
-      - "Mitjà de pagament."
+      - "Mitjà de pagament o de canvi"
       - "Unitat de compte."
       - "Depòsit de valor."
       - "Generar treball per si mateixos."
@@ -59,14 +59,14 @@ preguntas:
     opciones:
       - "Imprimir bitllets i monedes."
       - "Connectar l'estalvi de qui té diners amb la inversió i el consum de qui els necessita."
-      - "Fixar els preus de tots els productes del país."
+      - "Fixar els preus de tots els productes del país i controlar-ne la producció."
       - "Cobrar els impostos de les famílies."
     correcta: 1
     explicacion: "El sistema financer (bancs, mercats, asseguradores) canalitza l'estalvi cap a qui el necessita. És com l'aparell circulatori de l'economia: porta els diners des d'on sobren fins a on fan falta."
   - enunciado: "Algú t'oferix una inversió que promet «duplicar els teus diners en un mes, sense cap risc». Què hauries de pensar?"
     opciones:
       - "Que és una gran oportunitat i cal decidir ràpid."
-      - "Que és perfectament normal, perquè hi ha productes segurs molt rendibles."
+      - "Que és perfectament normal, perquè hi ha productes segurs molt rendibles al mercat."
       - "Que és sospitós: no hi ha rendibilitat alta sense risc, així que probablement siga una estafa."
       - "Que el risc no importa si el guany és gran."
     correcta: 2
@@ -75,7 +75,7 @@ preguntas:
     opciones:
       - "Perquè els jóvens paguen menys impostos."
       - "Perquè l'interés compost fa que els diners cresquen cada vegada més de pressa com més temps passa."
-      - "Perquè els bancs regalen diners als menors d'edat."
+      - "Perquè els bancs regalen diners als menors d'edat quan obrin el seu primer compte."
       - "Perquè estalviar jove està de moda."
     correcta: 1
     explicacion: "Amb interés compost, els interessos se sumen a l'estalvi i generen nous interessos. Com més temps deixes els diners treballant, major és la diferència: per això el temps importa més que la quantitat inicial."
