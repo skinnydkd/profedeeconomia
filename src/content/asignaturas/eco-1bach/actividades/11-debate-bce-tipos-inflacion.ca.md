@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE5]
 lang: ca
+rubrica:
+  - criterio: "Mecanisme de transmissió"
+    niveles:
+      - "No explica com els tipus afecten els preus o inverteix la cadena causal."
+      - "Diu que pujar tipus frena els preus, però omet algun element, com el crèdit o la demanda."
+      - "Explica la cadena completa: tipus, crèdit, consum i inversió, demanda agregada i preus, amb retard."
+      - "A més, usa el retard de diversos trimestres per a valorar si el BCE va pujar els tipus prompte o tard."
+  - criterio: "Dilema creixement-preus"
+    niveles:
+      - "Només presenta l'avantatge de la seua postura, sense cap cost."
+      - "Menciona un cost de l'altra opció, però sense explicar a qui afecta ni per què."
+      - "Planteja el cost de cada opció: preus alts si es puja poc, recessió i atur si es puja molt."
+      - "A més, concreta qui suporta cada cost, per exemple famílies amb hipoteca o empreses que inverteixen."
+  - criterio: "Origen de la inflació"
+    niveles:
+      - "No distingix entre inflació d'oferta i de demanda i tracta tota la inflació igual."
+      - "Nomena la diferència entre oferta i demanda, però no l'aplica a la inflació de 2022."
+      - "Distingix la inflació d'oferta de la de demanda i les aplica al cas de 2022."
+      - "A més, explica per què pujar tipus davant d'una inflació d'oferta pot agreujar la caiguda de la producció."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Defén un ritme de pujada sense raons o sense reconéixer cap risc de la seua postura."
+      - "Defén un ritme amb raons, però el risc que reconeix és genèric."
+      - "Pren postura sobre el ritme de pujada i reconeix un risc concret de la seua pròpia postura."
+      - "A més, indica quina dada de la fitxa li faria canviar de postura."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/11-debate-bce-tipos-inflacion.ca"
 ---

@@ -13,6 +13,31 @@ materiales:
   - "Notes adhesives de tres colors"
   - "Rúbrica impresa, repartida abans de començar"
 lang: ca
+rubrica:
+  - criterio: "Correcció tècnica"
+    niveles:
+      - "Els organigrames no distingeixen jerarquia i staff o no reflecteixen les plantilles de 5, 30 i 200 persones."
+      - "Dibuixa els tres organigrames, però amb errors en la jerarquia o sense diferenciar l'staff de suport."
+      - "Construïx els tres organigrames amb jerarquia i staff diferenciats i un criteri de departamentalització definit en l'acte 2."
+      - "A més, indica l'àmbit de control de l'acte 3 i decidix què es centralitza i què no."
+  - criterio: "Justificació"
+    niveles:
+      - "No explica quin problema resol cada canvi d'estructura."
+      - "Explica quin problema resol cada canvi, però no el problema nou que crea."
+      - "Les tres explicacions diuen quin problema de l'etapa anterior resol cada estructura i quin problema nou crea."
+      - "A més, anota els criteris de departamentalització que va descartar en l'acte 2 i per què."
+  - criterio: "Coherència"
+    niveles:
+      - "Els tres actes semblen empreses diferents o l'activitat de l'empresa no està definida."
+      - "Es reconeix la mateixa empresa en dos actes, però el tercer canvia la seua activitat o les seues funcions."
+      - "Els tres actes són reconeixiblement la mateixa empresa, amb la seua activitat definida en una línia."
+      - "A més, cada funció de l'acte 1 es pot seguir fins a l'acte 3, situada en el seu departament."
+  - criterio: "Comunicació"
+    niveles:
+      - "La làmina és il·legible o l'exposició descriu les caixes sense explicar els canvis."
+      - "La làmina es llig, però l'exposició recorre les caixes en lloc d'explicar els salts."
+      - "La làmina és llegible i l'exposició de tres minuts explica els dos salts entre actes, no les caixes."
+      - "A més, respon amb un exemple concret de què es queixa un empleat de la ciutat més xicoteta en l'acte 3."
 estado: publicado
 slug: "asignaturas/edmn-2bach/actividades/02-creativo-el-organigrama-que-crece.ca"
 ---

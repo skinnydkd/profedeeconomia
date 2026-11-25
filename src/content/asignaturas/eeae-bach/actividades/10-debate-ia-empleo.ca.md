@@ -16,6 +16,31 @@ materiales:
 competencias_clave: [CPSAA, CC, CCL, CD]
 competencias_especificas: [CE6]
 ebau: false
+rubrica:
+  - criterio: "Ús correcte dels conceptes"
+    niveles:
+      - "Confon la destrucció de tasques amb la de llocs o no distingix els tres efectes."
+      - "Nomena destruir, transformar i crear ocupació, però els aplica només a exemples de destrucció o de creació."
+      - "Distingix destruir, transformar i crear ocupació, i no confon tasques amb llocs."
+      - "A més, il·lustra cadascun dels tres efectes amb un ofici o un sector concret."
+  - criterio: "Argumentació amb dades"
+    niveles:
+      - "Recolza la seua postura en eslògans, sense cap dada de la fitxa."
+      - "Cita una dada d'Eurostat o del Future of Jobs, però sense explicar què mostra."
+      - "Recolza la seua postura en dades reals de la fitxa, com Eurostat o Future of Jobs, i explica què mostren."
+      - "A més, precisa els límits d'una dada, per exemple què no diu sobre l'ocupació a llarg termini."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "Respon amb catastrofisme o ingenuïtat tecnològica, sense tocar l'argument contrari."
+      - "Evita els extrems, però no respon a cap argument concret de l'altre equip."
+      - "Respon a arguments concrets de l'altre equip sense caure en el catastrofisme ni en la ingenuïtat."
+      - "A més, distingix en la seua resposta l'efecte a curt termini de l'efecte a llarg termini."
+  - criterio: "Tancament individual"
+    niveles:
+      - "El tancament no diu si veu la IA com a amenaça o oportunitat ni quin efecte li pareix més important."
+      - "Pren postura, però no relaciona les habilitats a recer de l'automatització amb la seua formació."
+      - "Escriu cinc línies amb la seua conclusió, l'efecte que més pesa i l'habilitat que cultivarà."
+      - "A més, explica per què eixa habilitat és difícil d'automatitzar i com l'entrenarà."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/10-debate-ia-empleo.ca"
 ---

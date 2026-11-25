@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE3]
 lang: ca
+rubrica:
+  - criterio: "Comprensió de l'externalitat"
+    niveles:
+      - "No explica per què el mercat lliure emet de més o confon cost privat amb cost social."
+      - "Diu que contaminar fa mal als altres, però sense distingir entre cost privat i cost social."
+      - "Explica que el cost social supera el privat, per la qual cosa el mercat lliure emet més CO₂ de l'òptim."
+      - "A més, descriu què fa l'impost pigouvià per a igualar el cost privat i el cost social."
+  - criterio: "Comparació preu vs quantitat"
+    niveles:
+      - "Confon quin instrument fixa el preu i quin fixa la quantitat."
+      - "Distingix preu i quantitat, però no diu quina certesa ofereix cada instrument."
+      - "Explica que l'impost dóna certesa sobre el preu i el mercat de drets sobre la quantitat emesa."
+      - "A més, aplica eixe eix a una situació concreta i raona quina certesa interessa més al regulador."
+  - criterio: "Maneig del cas EU ETS"
+    niveles:
+      - "No menciona l'EU ETS o el descriu de manera incorrecta."
+      - "Menciona l'EU ETS, però sense explicar com es fixen el topall i el preu."
+      - "Descriu com funciona l'EU ETS: topall total, drets negociables i preu fixat pel mercat."
+      - "A més, usa l'evolució del preu del dret recollida en la fitxa per a valorar l'instrument."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Tria un instrument sense raons o sense reconéixer cap avantatge de l'altre."
+      - "Tria amb raons, però l'avantatge que reconeix de l'instrument rebutjat és genèric."
+      - "Tria un instrument amb raons i reconeix un avantatge concret del rebutjat."
+      - "A més, indica en quines condicions canviaria la seua elecció."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/06-debate-tasa-carbono.ca"
 ---

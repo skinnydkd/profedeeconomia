@@ -13,6 +13,31 @@ materiales:
   - "Targetes de rol per als dos equips"
   - "Rúbrica de debat per a la coavaluació"
 competencias_especificas: [CE5]
+rubrica:
+  - criterio: "Ús correcte dels conceptes"
+    niveles:
+      - "Usa lideratge i autoritat formal com a sinònims en parlar de Marta i Diego."
+      - "Distingix lideratge i autoritat formal, però confon els estils de lideratge o la gestió del talent."
+      - "Distingix lideratge, autoritat formal, estils i gestió del talent aplicant-los a Marta i Diego."
+      - "A més, usa el lideratge situacional per a dir quin estil necessitaria l'equip de dotze persones."
+  - criterio: "Qualitat de l'argumentació"
+    niveles:
+      - "Defén la seua postura amb consignes com «el cap és qui lidera», sense raons."
+      - "Dóna una raó per a la seua postura, però sense vincular-la al cas de la fitxa."
+      - "Defén la seua postura amb tres raons lligades al cas de Marta i Diego."
+      - "A més, anticipa l'objecció més forta de l'equip contrari i la respon en la seua exposició."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "Respon amb consignes o confon liderar amb manar en replicar."
+      - "Respon a l'altre equip, però perd el rigor conceptual en barrejar lideratge i càrrec."
+      - "Respon als arguments de l'altre equip mantenint la distinció entre lideratge i autoritat formal."
+      - "A més, respon a una pregunta del torn obert, com què perd l'empresa si Diego se'n va."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Pren una decisió sense explicar com distingix liderar de manar."
+      - "Explica la seua decisió, però sense indicar quin pes dóna a la gestió del talent."
+      - "Escriu cinc línies amb la seua decisió, distingint liderar de manar i indicant el pes que dóna a la gestió del talent."
+      - "A més, reconeix el risc de la seua decisió per a Marta, Diego o l'equip."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/08-debate-liderazgo-talento.ca"
 ---

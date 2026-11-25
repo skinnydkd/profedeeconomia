@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de coevaluación impresa"
 competencias_clave: [CCL, CC, CD]
 competencias_especificas: [CE5]
+rubrica:
+  - criterio: "Uso del marco legal"
+    niveles:
+      - "Argumenta solo desde la intuición moral y no cita la ficha."
+      - "Cita la ficha, pero sin explicar qué implica para el caso que se discute."
+      - "Cita el marco legal de la ficha al menos una vez y lo usa para sostener su argumento."
+      - "Además, señala qué deja fuera la ley actual en un caso y qué norma añadiría."
+  - criterio: "Necesidad vs debilidad"
+    niveles:
+      - "No distingue entre la necesidad que cubre el negocio y la debilidad que explota."
+      - "Nombra la necesidad y la debilidad en un caso, pero no en los tres."
+      - "Aplica la distinción entre necesidad y debilidad a cada uno de los tres casos con precisión."
+      - "Además, reconoce un caso en que la frontera no está clara y explica qué rasgo la desdibuja."
+  - criterio: "Réplica"
+    niveles:
+      - "Ignora la objeción del caso que se debate o la responde con otro caso."
+      - "Responde a la objeción en parte, pero con una respuesta genérica."
+      - "Responde a la objeción más fuerte del caso que se debate sin cambiar de caso."
+      - "Además, anticipa la objeción incómoda, como el mercado negro, y plantea cómo reducirla."
+  - criterio: "Cierre individual"
+    niveles:
+      - "No fija una frontera ni razona que no exista, o no justifica su respuesta."
+      - "Fija una frontera, pero su criterio solo sirve para uno de los tres casos."
+      - "Escribe cinco líneas con un criterio propio sobre la frontera, o razona que no existe, y lo justifica."
+      - "Además, aplica su criterio a los tres casos y muestra dónde le obliga a matizar."
 estado: publicado
 ---
 

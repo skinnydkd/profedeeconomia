@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA, CCEC]
 competencias_especificas: [CE4]
 lang: ca
+rubrica:
+  - criterio: "Lectura correcta dels indicadors"
+    niveles:
+      - "Confon el PIB total amb el PIB per càpita o interpreta al revés l'IDH i el Gini."
+      - "Distingix PIB total i per càpita, però interpreta malament la PPA, l'IDH o el Gini."
+      - "Interpreta bé PIB total, PIB per càpita en PPA, IDH i Gini en llegir la taula de dades."
+      - "A més, explica per què un mateix PIB total pot ocultar situacions diferents en dos països de la taula."
+  - criterio: "Argumentació amb dades"
+    niveles:
+      - "Argumenta amb consignes sense recolzar-se en la taula o contradiu les dades de la fitxa."
+      - "Usa la taula, però selecciona una sola xifra i la presenta fora de context."
+      - "Recolza els seus arguments en les dades de la taula sense tergiversar-les."
+      - "A més, contrasta dos indicadors d'un mateix país per a mostrar una coincidència o una contradicció."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "Respon amb consignes i sense referir-se a les dades de l'altre equip."
+      - "Respon a allò que diu l'altre equip, però repetix la seua postura sense dades noves."
+      - "Respon als arguments concrets de l'altre equip amb dades de la taula, sense reduir el debat a consignes."
+      - "A més, reconeix quina part vàlida té l'argument rival i precisa fins on arriba."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Nomena indicadors sense explicar què mesura cadascun d'ells."
+      - "Proposa dos indicadors, però només en justifica un."
+      - "Proposa dos indicadors en cinc línies i justifica què aporta cadascun per a jutjar si un país va bé."
+      - "A més, tria dos indicadors que es complementen, de manera que el segon cobrix allò que el primer deixa fora."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/07-debate-pib-bienestar.ca"
 ---

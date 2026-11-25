@@ -13,6 +13,31 @@ materiales:
   - "Calculadora"
   - "Rúbrica impresa, repartida antes de empezar"
   - "Permiso del equipo directivo si las piezas se van a colgar de verdad"
+rubrica:
+  - criterio: "Identificación"
+    niveles:
+      - "Quien genera el coste y quien lo soporta son las mismas personas, así que no hay externalidad."
+      - "Nombra quién genera el coste y quién lo paga, pero con descripciones vagas como «todo el mundo»."
+      - "Nombra con precisión quién genera la externalidad y quién la soporta, y son personas distintas."
+      - "Además, explica por qué quien la genera no la corrige por su cuenta, identificando su incentivo."
+  - criterio: "Rigor de la cifra"
+    niveles:
+      - "La cifra no es propia o es una afirmación general sin número, como «contaminamos muchísimo»."
+      - "Aporta una cifra propia, pero sin explicar el método o sin escribir los supuestos."
+      - "Estima una cifra propia contando, midiendo o preguntando, y deja escritos el método y los supuestos."
+      - "Además, señala cuál es el supuesto más frágil y cuánto cambiaría la cifra si fallara."
+  - criterio: "Propuesta"
+    niveles:
+      - "No propone una medida, o es una frase general sin forma de aplicarla en el centro."
+      - "Propone una medida concreta, pero no la clasifica o no prevé ningún efecto."
+      - "Propone una medida aplicable en el centro, la clasifica (impuesto, norma, información o diseño) y prevé su efecto."
+      - "Además, razona qué podría salir mal o si la medida solo traslada el problema a otro sitio."
+  - criterio: "Comunicación"
+    niveles:
+      - "Las piezas son ilegibles o culpabilizan a personas concretas en lugar de explicar el coste."
+      - "Entrega las tres piezas, pero alguna no se entiende en cinco segundos o no tiene jerarquía visual."
+      - "Las tres piezas son legibles, tienen jerarquía visual y explican el coste sin culpabilizar."
+      - "Además, cada pieza cumple su función: el dato se entiende en cinco segundos y la propuesta indica quién debe actuar."
 estado: publicado
 ---
 

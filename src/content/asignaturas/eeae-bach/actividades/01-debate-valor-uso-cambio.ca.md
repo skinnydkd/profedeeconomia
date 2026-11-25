@@ -14,6 +14,31 @@ materiales:
   - "Rúbrica d'avaluació impresa per a la coavaluació"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE2, CE1]
+rubrica:
+  - criterio: "Ús del vocabulari de la unitat"
+    niveles:
+      - "No distingix valor d'ús, valor de canvi i escassetat, o els usa com a sinònims."
+      - "Usa els tres termes, però en confon algun en un cas de la fitxa."
+      - "Empra amb precisió valor d'ús, valor de canvi i escassetat en analitzar els casos."
+      - "A més, explica la paradoxa del valor amb una parella de la fitxa usant els tres termes."
+  - criterio: "Solidesa argumental"
+    niveles:
+      - "Defén la seua tesi sense citar cap parella de la fitxa."
+      - "Cita una parella de la fitxa, però sense explicar quina tensió planteja."
+      - "Recolza la seua tesi en almenys dues parelles de la fitxa amb arguments coherents."
+      - "A més, matisa una parella de la fitxa mostrant en quin punt no sosté del tot la seua tesi."
+  - criterio: "Distinció positiu/normatiu"
+    niveles:
+      - "Presenta com un fet que un preu és just o injust."
+      - "Descriu el preu i valora si és just, però sense separar els dos plans."
+      - "Separa descriure per què un bé té eixe preu de jutjar si eixe preu és just."
+      - "A més, assenyala una frase pròpia o de l'equip contrari que barreja els dos plans i la reformula."
+  - criterio: "Tancament individual"
+    niveles:
+      - "El tancament repetix la postura del rol i no cita cap argument de l'equip contrari."
+      - "Cita un argument de l'equip contrari, però no usa els tres termes de la unitat."
+      - "Escriu 5-6 línies amb la seua opinió real, cita un argument contrari sòlid i empra valor d'ús, valor de canvi i escassetat."
+      - "A més, indica com canvia la seua resposta inicial després d'escoltar eixe argument."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/01-debate-valor-uso-cambio.ca"
 ---

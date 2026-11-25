@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE1]
 lang: ca
+rubrica:
+  - criterio: "Solidesa argumental"
+    niveles:
+      - "Defén el seu sistema amb afirmacions generals i no usa cap dada de la fitxa."
+      - "Cita una dada de la fitxa, però no la connecta amb la postura que defén."
+      - "Defén el seu sistema amb arguments coherents i recolza almenys un d'ells en una dada de la fitxa."
+      - "A més, discutix la fiabilitat d'una dada de la fitxa o mostra quina altra lectura admet."
+  - criterio: "Ús del vocabulari de la unitat"
+    niveles:
+      - "No empra els termes de la unitat o els usa amb un significat equivocat."
+      - "Empra algun dels termes de la unitat, però n'omet altres o els confon."
+      - "Empra sistema econòmic, assignació de recursos i les tres preguntes amb el significat correcte."
+      - "A més, usa les tres preguntes (què, com i per a qui) per a comparar com respon cada sistema."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "Desqualifica l'equip contrari o ignora els seus arguments en replicar."
+      - "Respon als contraris, però amb consignes o canviant de tema."
+      - "Respon als arguments concrets dels altres dos equips sense desqualificar-los."
+      - "A més, reconeix quina part de l'argument contrari és certa abans de rebatre la resta."
+  - criterio: "Tancament individual"
+    niveles:
+      - "El tancament repetix la postura assignada, sense opinió pròpia ni argument de l'equip contrari."
+      - "Dóna una opinió pròpia, però no cita cap argument aliè ni reconeix la complexitat del tema."
+      - "Respon en 5-6 línies amb opinió pròpia i cita un argument de l'equip contrari que li pareix sòlid."
+      - "A més, explica per què aquest argument aliè l'obliga a matisar la seua resposta a la pregunta inicial."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/01-debate-tres-sistemas-vigencia.ca"
 ---

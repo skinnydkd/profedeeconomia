@@ -13,6 +13,31 @@ materiales:
   - "Cronómetro proyectado para los turnos"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE3]
+rubrica:
+  - criterio: "Comprensión de la externalidad"
+    niveles:
+      - "No explica por qué el mercado libre emite de más o confunde coste privado con coste social."
+      - "Dice que contaminar daña a otros, pero sin distinguir entre coste privado y coste social."
+      - "Explica que el coste social supera al privado, por lo que el mercado libre emite más CO₂ del óptimo."
+      - "Además, describe qué hace el impuesto pigouviano para igualar el coste privado y el coste social."
+  - criterio: "Comparación precio vs cantidad"
+    niveles:
+      - "Confunde qué instrumento fija el precio y cuál fija la cantidad."
+      - "Distingue precio y cantidad, pero no dice qué certeza ofrece cada instrumento."
+      - "Explica que el impuesto da certeza sobre el precio y el mercado de derechos sobre la cantidad emitida."
+      - "Además, aplica ese eje a una situación concreta y razona qué certeza interesa más al regulador."
+  - criterio: "Manejo del caso EU ETS"
+    niveles:
+      - "No menciona el EU ETS o lo describe de forma incorrecta."
+      - "Menciona el EU ETS, pero sin explicar cómo se fijan el tope y el precio."
+      - "Describe cómo funciona el EU ETS: tope total, derechos negociables y precio fijado por el mercado."
+      - "Además, usa la evolución del precio del derecho recogida en la ficha para valorar el instrumento."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Elige un instrumento sin razones o sin reconocer ninguna ventaja del otro."
+      - "Elige con razones, pero la ventaja que reconoce del instrumento rechazado es genérica."
+      - "Elige un instrumento con razones y reconoce una ventaja concreta del rechazado."
+      - "Además, indica en qué condiciones cambiaría su elección."
 estado: publicado
 ---
 

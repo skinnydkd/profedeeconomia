@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE4]
 ebau: false
+rubrica:
+  - criterio: "Iniciativa i intel·ligència executiva"
+    niveles:
+      - "Espere que em diguen què he de fer i deixe les tasques a mitges quan sorgix una dificultat."
+      - "A vegades comence tasques pel meu compte, però em costa acabar-les o corregir el rumb si alguna cosa falla."
+      - "Propose i comence tasques sense que m'ho demanen, i les acabe corregint allò que no funciona."
+      - "A més, planifique els passos d'una tasca llarga i la reprenc després d'un error sense que ningú m'ho recorde."
+  - criterio: "Tolerància a la incertesa i resiliència"
+    niveles:
+      - "Em bloquege o abandone quan no sé com eixirà alguna cosa o quan m'equivoque."
+      - "Aguante la incertesa una estona, però després d'un error necessite que algú m'anime per a continuar."
+      - "Continue endavant encara que no sàpiga com eixirà i tracte un error com una cosa de la qual aprendre."
+      - "A més, després d'un error identifique què ha fallat i prove una altra via abans de demanar ajuda."
+  - criterio: "Comunicació i assertivitat"
+    niveles:
+      - "Em calle allò que pense o ho dic de manera que molesta, i quasi mai demane la paraula."
+      - "Done la meua opinió amb persones de confiança, però em costa fer-ho en el grup o davant d'un desacord."
+      - "Expresse la meua opinió amb claredat i respecte en el grup, i demane la paraula quan tinc alguna cosa a aportar."
+      - "A més, defenc el meu punt de vista davant d'un desacord i escolte l'altre abans de contestar."
+  - criterio: "Cooperació"
+    niveles:
+      - "Faig la meua part per separat i no avise el grup de com vaig."
+      - "Complisc la meua part en l'equip, però poques vegades ajude els altres o demane ajuda."
+      - "Complisc la meua part, avise l'equip de com vaig i ajude quan algú ho necessita."
+      - "A més, ajuste la meua manera de treballar a l'equip i reparteisc tasques segons allò que fa millor cada persona."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/05-autoperfil-competencias-emprendedoras.ca"
 ---

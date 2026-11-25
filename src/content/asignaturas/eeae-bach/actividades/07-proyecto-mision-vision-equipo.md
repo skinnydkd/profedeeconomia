@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CPSAA, CE, CCL, CD]
 competencias_especificas: [CE4, CE3]
 ebau: false
+rubrica:
+  - criterio: "Problema y propuesta"
+    niveles:
+      - "El problema es vago, como «ayudar a la gente», y la propuesta no cabe en una frase."
+      - "Identifica un problema, pero la persona a la que sirve es difusa o la propuesta ocupa varias frases."
+      - "Concreta un problema, una persona exacta y una propuesta en una sola frase."
+      - "Además, descarta con una razón las otras ideas que propuso el grupo antes de elegir esta."
+  - criterio: "Misión, visión y valores"
+    niveles:
+      - "La misión, la visión y los valores son frases huecas que valdrían para cualquier empresa."
+      - "Redacta misión, visión y tres valores, pero la misión no dice qué hace, para quién o qué problema resuelve."
+      - "La misión dice qué hace, para quién y qué problema resuelve; la visión mira al futuro y los tres valores son propios."
+      - "Además, ilustra cada valor con una decisión concreta que el proyecto tomaría."
+  - criterio: "Marca y dimensión social"
+    niveles:
+      - "No comprueba el nombre en la OEPM ni valora el impacto social del proyecto."
+      - "Busca el nombre en la OEPM, pero no explica por qué importa proteger la marca ni qué haría si estuviera registrado."
+      - "Anota la búsqueda en la OEPM, razona por qué importa proteger la marca y justifica el impacto social, con ODS si procede."
+      - "Además, propone qué haría si el nombre estuviera registrado o un cambio realista que añada dimensión social."
+  - criterio: "Trabajo en equipo y exposición"
+    niveles:
+      - "No hay un reparto claro de roles y la presentación se alarga o se improvisa."
+      - "Reparten roles, pero la presentación de 5 minutos queda en manos de pocas personas o se pasa de tiempo."
+      - "Roles repartidos, decisiones compartidas y presentación de 5 minutos clara y ajustada al tiempo."
+      - "Además, responde a la pregunta crítica del comité de propósito con un argumento del proyecto."
 estado: publicado
 ---
 

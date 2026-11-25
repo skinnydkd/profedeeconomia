@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de evaluación impresa para la coevaluación"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE2, CE1]
+rubrica:
+  - criterio: "Uso del vocabulario de la unidad"
+    niveles:
+      - "No distingue valor de uso, valor de cambio y escasez, o los usa como sinónimos."
+      - "Usa los tres términos, pero confunde alguno en un caso de la ficha."
+      - "Emplea con precisión valor de uso, valor de cambio y escasez al analizar los casos."
+      - "Además, explica la paradoja del valor con una pareja de la ficha usando los tres términos."
+  - criterio: "Solidez argumental"
+    niveles:
+      - "Defiende su tesis sin citar ninguna pareja de la ficha."
+      - "Cita una pareja de la ficha, pero sin explicar qué tensión plantea."
+      - "Apoya su tesis en al menos dos parejas de la ficha con argumentos coherentes."
+      - "Además, matiza una pareja de la ficha mostrando en qué punto no sostiene del todo su tesis."
+  - criterio: "Distinción positivo/normativo"
+    niveles:
+      - "Presenta como un hecho que un precio es justo o injusto."
+      - "Describe el precio y valora si es justo, pero sin separar ambos planos."
+      - "Separa describir por qué un bien tiene ese precio de juzgar si ese precio es justo."
+      - "Además, señala una frase propia o del equipo contrario que mezcla ambos planos y la reformula."
+  - criterio: "Cierre individual"
+    niveles:
+      - "El cierre repite la postura del rol y no cita ningún argumento del equipo contrario."
+      - "Cita un argumento del equipo contrario, pero no usa los tres términos de la unidad."
+      - "Escribe 5-6 líneas con su opinión real, cita un argumento contrario sólido y emplea valor de uso, valor de cambio y escasez."
+      - "Además, indica cómo cambia su respuesta inicial tras escuchar ese argumento."
 estado: publicado
 ---
 

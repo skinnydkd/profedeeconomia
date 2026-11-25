@@ -12,6 +12,31 @@ materiales:
   - "Tarjetas de rol para los dos equipos"
   - "Rúbrica de debate para coevaluación"
 competencias_especificas: [CE5]
+rubrica:
+  - criterio: "Uso correcto de los conceptos"
+    niveles:
+      - "Usa liderazgo y autoridad formal como sinónimos al hablar de Marta y Diego."
+      - "Distingue liderazgo y autoridad formal, pero confunde los estilos de liderazgo o la gestión del talento."
+      - "Distingue liderazgo, autoridad formal, estilos y gestión del talento aplicándolos a Marta y Diego."
+      - "Además, usa el liderazgo situacional para decir qué estilo necesitaría el equipo de doce personas."
+  - criterio: "Calidad de la argumentación"
+    niveles:
+      - "Defiende su postura con consignas como «el jefe es el que lidera», sin razones."
+      - "Da una razón para su postura, pero sin vincularla al caso de la ficha."
+      - "Defiende su postura con tres razones ligadas al caso de Marta y Diego."
+      - "Además, anticipa la objeción más fuerte del equipo contrario y la responde en su exposición."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "Responde con consignas o confunde liderar con mandar al replicar."
+      - "Responde al otro equipo, pero pierde el rigor conceptual al mezclar liderazgo y cargo."
+      - "Responde a los argumentos del otro equipo manteniendo la distinción entre liderazgo y autoridad formal."
+      - "Además, responde a una pregunta del turno abierto, como qué pierde la empresa si Diego se marcha."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Toma una decisión sin explicar cómo distingue liderar de mandar."
+      - "Explica su decisión, pero sin indicar qué peso da a la gestión del talento."
+      - "Escribe cinco líneas con su decisión, distinguiendo liderar de mandar e indicando el peso que da a la gestión del talento."
+      - "Además, reconoce el riesgo de su decisión para Marta, Diego o el equipo."
 estado: publicado
 ---
 

@@ -16,6 +16,31 @@ materiales:
 competencias_clave: [CE, CPSAA, CCL, CD]
 competencias_especificas: [CE4, CE5]
 ebau: false
+rubrica:
+  - criterio: "La idea i el perfil de l'equip"
+    niveles:
+      - "La idea no parteix d'un problema real o el repartiment de papers no respon a les fortaleses de l'equip."
+      - "Formula la idea en una frase, però el problema és difús o els papers es reparteixen sense criteri."
+      - "Formula la idea en una frase amb qui, problema i solució, i reparteix papers segons fortaleses reconeixent una carència."
+      - "A més, fixa la regla per a decidir davant d'un desacord i diu com cobrirà la carència reconeguda."
+  - criterio: "Missió i visió"
+    niveles:
+      - "La missió i la visió són frases buides que valdrien per a qualsevol empresa."
+      - "Redacta missió i visió, però la missió no es pot comprovar o la visió no aspira a res concret."
+      - "Redacta una missió comprovable i una visió pròpia, sense frases buides, i valora si el projecte té dimensió social o ambiental."
+      - "A més, comprova que la seua missió no valdria per a una altra empresa i argumenta la dimensió social amb un exemple."
+  - criterio: "Proposta de valor i ingressos"
+    niveles:
+      - "No indica qui és el client ni per què pagaria, o les tres caselles es contradiuen."
+      - "Ompli clients, proposta de valor i ingressos, però alguna casella no encaixa amb les altres."
+      - "Clients, proposta de valor i ingressos són coherents entre si i amb la missió, i una frase explica per què es pagaria."
+      - "A més, identifica una alternativa que el client usa hui i explica per què pagaria per la proposta en lloc d'ella."
+  - criterio: "Pitch i evolució del projecte"
+    niveles:
+      - "El pitch no cap en 3 minuts o no respon a les preguntes amb arguments."
+      - "El pitch cap en 3 minuts, però respon a les preguntes amb opinions i sense usar els fulls del quadern."
+      - "Conta el projecte en 3 minuts amb els fulls del quadern i respon a les preguntes amb arguments."
+      - "A més, el quadern mostra quina fase va corregir l'equip després d'aprendre de l'anterior."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/05-proyecto-emprendedor-del-curso.ca"
 ---

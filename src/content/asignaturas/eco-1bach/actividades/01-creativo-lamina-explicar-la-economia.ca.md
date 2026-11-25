@@ -14,6 +14,31 @@ materiales:
   - "Rúbrica impresa, repartida abans de començar a dissenyar"
   - "Cinta adhesiva o pinces per a penjar les làmines a la paret"
 lang: ca
+rubrica:
+  - criterio: "Correcció conceptual"
+    niveles:
+      - "Falten dos o més dels quatre conceptes, o n'apareix algun amb una definició equivocada."
+      - "Apareixen els quatre conceptes, però algun es defineix de manera imprecisa o sense relació amb els altres."
+      - "Inclou escassetat, elecció, cost d'oportunitat i les tres preguntes, tots ben usats i amb paraules pròpies."
+      - "A més, enllaça els quatre conceptes amb un mateix exemple, de manera que es veu com es deriven uns d'altres."
+  - criterio: "Adequació al destinatari"
+    niveles:
+      - "Usa vocabulari tècnic sense explicar-lo o un exemple que una persona de 15 anys no reconeixeria."
+      - "Inclou un exemple pròxim, però el registre o el vocabulari continuen sent els d'un manual."
+      - "L'exemple és de la vida d'una persona de 15 anys i el registre i el vocabulari s'entenen a 4t d'ESO."
+      - "A més, justifica per escrit per què aquest exemple i aquest to serveixen al destinatari i no a una persona adulta."
+  - criterio: "Síntesi i descarts"
+    niveles:
+      - "Supera les 120 paraules o no explica res del que ha deixat fora."
+      - "Respecta les 120 paraules, però no justifica els descarts o en justifica només un."
+      - "Respecta les 120 paraules i lliura el motiu dels tres descarts que més li va costar eliminar."
+      - "A més, explica cada descart amb un criteri propi, per exemple què aporta menys a algú de 4t d'ESO."
+  - criterio: "Disseny i defensa"
+    niveles:
+      - "No es distingix què és el principal a la làmina i la defensa no diu a qui va dirigida."
+      - "La jerarquia visual és irregular o la defensa de 30 segons omet a qui va dirigida o què es va deixar fora."
+      - "La jerarquia visual es llig ràpidament i la defensa de 30 segons diu a qui va dirigida i què es va descartar."
+      - "A més, la làmina s'entén sense la defensa oral i esta acaba dins del mig minut."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/01-creativo-lamina-explicar-la-economia.ca"
 ---

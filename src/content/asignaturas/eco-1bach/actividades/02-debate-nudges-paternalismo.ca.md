@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE2]
 lang: ca
+rubrica:
+  - criterio: "Ús dels biaixos"
+    niveles:
+      - "No nomena cap biaix de la unitat o el nomena sense aplicar-lo al cas."
+      - "Nomena un biaix, però l'aplica de manera imprecisa o sense el seu nom tècnic."
+      - "Nomena biaixos concrets de la unitat, com la inèrcia o el biaix del present, i els aplica bé al cas."
+      - "A més, explica per què l'opció per defecte aprofita eixe biaix sense llevar cap opció a ningú."
+  - criterio: "Solidesa argumental"
+    niveles:
+      - "Argumenta amb impressions i no cita cap cas de la fitxa."
+      - "Cita un cas de la fitxa, però sense usar-ne la dada per a sostindre la postura."
+      - "Recolza els seus arguments en la dada d'almenys un cas de la fitxa: òrgans, pensions o etiquetatge."
+      - "A més, compara dos casos de la fitxa i explica en quin és més fort el seu argument."
+  - criterio: "Rèplica"
+    niveles:
+      - "Canvia de tema o ataca l'altre equip en lloc de respondre a la seua objecció."
+      - "Respon a l'objecció només en part o es limita a repetir la seua pròpia postura."
+      - "Respon a l'objecció concreta de l'altre equip sense canviar de tema."
+      - "A més, anticipa en la seua exposició l'objecció més forta del contrari i ja n'inclou la resposta."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Repetix el rol assignat sense posició pròpia i sense citar el costat contrari."
+      - "Pren una posició pròpia, però no cita cap argument del costat contrari."
+      - "Escriu cinc línies amb la seua posició real i cita un argument del costat contrari que l'ha fet dubtar."
+      - "A més, indica quina dada o quin disseny del defecte canviaria la seua posició."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/02-debate-nudges-paternalismo.ca"
 ---

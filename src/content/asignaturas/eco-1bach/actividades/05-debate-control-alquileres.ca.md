@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE3]
 lang: ca
+rubrica:
+  - criterio: "Ús correcte de l'elasticitat"
+    niveles:
+      - "No relaciona el preu màxim amb l'escassetat o confon l'elasticitat d'oferta amb la de demanda."
+      - "Explica que el preu màxim genera escassetat, però no diu de què depén la seua grandària."
+      - "Prediu l'escassetat de lloguer a partir de l'elasticitat d'oferta i de demanda d'habitatge."
+      - "A més, compara l'escassetat que resulta amb dues elasticitats diferents i raona per què canvia la seua grandària."
+  - criterio: "Maneig de l'evidència"
+    niveles:
+      - "No cita dades del dosier o les presenta de manera que diuen el contrari del que mostren."
+      - "Cita dades del dosier, però omet la part que no recolza la seua postura."
+      - "Cita dades del dosier sobre Berlín, Catalunya o la teoria del preu màxim sense tergiversar-les."
+      - "A més, assenyala quina part de l'evidència és mixta i quina conclusió sí que permet traure."
+  - criterio: "Distinció curt/llarg termini"
+    niveles:
+      - "Tracta els efectes del topall com si foren els mateixos a curt i a llarg termini."
+      - "Menciona que hi ha diferència entre terminis, però no diu com canvia l'oferta."
+      - "Diferencia els efectes immediats, amb oferta inelàstica, dels de llarg termini, amb oferta més elàstica."
+      - "A més, assenyala una reacció concreta dels propietaris a llarg termini, com passar pisos a venda o a ús turístic."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Barreja allò que provoca el topall amb allò que li pareix just, sense distingir-ho."
+      - "Distingix efectes i judici en part, però formula com a dada alguna afirmació que és una valoració."
+      - "Separa l'anàlisi positiva, quins efectes té el topall, del judici normatiu, si és desitjable."
+      - "A més, indica quina dada o quin efecte li faria canviar el seu judici normatiu."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/05-debate-control-alquileres.ca"
 ---

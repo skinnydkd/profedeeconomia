@@ -1,6 +1,8 @@
 # Rúbriques amb nivells (resta del lot F)
 
-*Proposta del 2026-11-25. Pendent d'aprovació de Pau. Ve de `2026-11-24-millora-contingut-no-grafic.md`, lot F.*
+*Aprovat per Pau el 2026-11-25. Ve de `2026-11-24-millora-contingut-no-grafic.md`, lot F.*
+
+**Correcció en executar-lo (2026-11-25):** els projectes ja porten els quatre nivells de cada criteri al cos del text (secció «Niveles de logro»), així que no s'hi duplica res: només una guarda que comprova que cada criteri hi apareix. La mesura inicial mirava només el frontmatter.
 
 ## El problema, mesurat
 

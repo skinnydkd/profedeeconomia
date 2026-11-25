@@ -16,6 +16,31 @@ materiales:
 competencias_clave: [CPSAA, CC, CCL, CD, CE]
 competencias_especificas: [CE6, CE5]
 ebau: false
+rubrica:
+  - criterio: "Diagnòstic"
+    niveles:
+      - "Descriu l'empresa sense identificar desafiaments digitals ni de sostenibilitat."
+      - "Identifica desafiaments, però confon digitalització amb transformació digital."
+      - "Descriu què fa l'empresa i els seus desafiaments, distingint allò ja digitalitzat d'allò que hauria de transformar."
+      - "A més, sosté el diagnòstic amb una dada de font real, com Eurostat, l'INE o el web de l'empresa."
+  - criterio: "Proposta de transformació"
+    niveles:
+      - "Només desenvolupa una de les tres palanques o proposa mesures genèriques, vàlides per a qualsevol empresa."
+      - "Desenvolupa les tres palanques, però alguna es queda en una idea general."
+      - "Desenvolupa transformació digital, noves formes de treball i sostenibilitat amb propostes concretes i realistes."
+      - "A més, indica quines tasques automatitzaria, quin valor humà potenciaria i quin problema de cultura cuidaria."
+  - criterio: "Integració del curs i mirada crítica"
+    niveles:
+      - "No connecta la proposta amb conceptes del curs ni comprova si hi ha greenwashing."
+      - "Connecta amb un concepte del curs o menciona el greenwashing, però sense justificar-ho."
+      - "Connecta amb almenys dos conceptes del curs i proposa com demostrar amb dades que el canvi no és greenwashing."
+      - "A més, assenyala quina part de la seua proposta podria ser només màrqueting i com la corregiria."
+  - criterio: "Treball en equip i exposició"
+    niveles:
+      - "Els rols no estan repartits i la presentació no s'ajusta als 6 minuts."
+      - "Reparteixen rols, però la proposta és incoherent entre palanques o la presentació s'allarga."
+      - "Rols repartits, proposta coherent i presentació de 6 minuts clara i ajustada al temps."
+      - "A més, respon a la pregunta crítica del consell de futur amb una dada o un argument."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/10-proyecto-empresa-futuro.ca"
 ---

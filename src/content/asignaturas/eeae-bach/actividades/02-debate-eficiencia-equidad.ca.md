@@ -13,6 +13,31 @@ materiales:
   - "Targetes de rol per als dos equips"
   - "Rúbrica de debat per a la coavaluació"
 competencias_especificas: [CE1, CE2]
+rubrica:
+  - criterio: "Ús correcte dels conceptes"
+    niveles:
+      - "Confon eficiència amb equitat o usa benestar social i qualitat de vida com a sinònims."
+      - "Distingix eficiència i equitat, però confon l'eficiència de Pareto amb la justícia del repartiment."
+      - "Distingix eficiència, equitat, benestar social i qualitat de vida, i no confon eficiència de Pareto amb justícia."
+      - "A més, mostra amb la taula del cas que l'opció més eficient no és necessàriament la més justa."
+  - criterio: "Argumentació ètica"
+    niveles:
+      - "Defén la seua opció amb consignes, sense esmentar cap marc moral."
+      - "Esmenta un marc moral, però no l'usa per a sostindre l'opció que defén."
+      - "Defén la seua opció des d'un marc explícit, utilitarista o de justícia distributiva, i l'aplica al cas."
+      - "A més, contrasta el seu marc amb el de l'equip contrari i assenyala què valora cadascun."
+  - criterio: "Capacitat de rèplica"
+    niveles:
+      - "Respon amb consignes o ignora l'argument de l'altre equip."
+      - "Respon a l'altre equip, però repetix la seua postura sense tocar el seu argument."
+      - "Respon als arguments de l'altre equip sense reduir el debat a consignes."
+      - "A més, planteja si el dilema és un conflicte real, per exemple quan la desigualtat també resulta ineficient a llarg termini."
+  - criterio: "Tancament individual"
+    niveles:
+      - "No indica quina opció tria o no explica per què."
+      - "Tria una opció amb raons, però no diu quant pes dóna a l'eficiència i a l'equitat."
+      - "Escriu cinc línies amb la seua elecció i diu quant pes dóna a l'eficiència i quant a l'equitat."
+      - "A més, reconeix què perd amb la seua elecció i proposa com compensar-ho."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/02-debate-eficiencia-equidad.ca"
 ---

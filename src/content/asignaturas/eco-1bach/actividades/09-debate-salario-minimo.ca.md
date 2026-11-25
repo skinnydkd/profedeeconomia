@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CPSAA, STEM]
 competencias_especificas: [CE5]
 lang: ca
+rubrica:
+  - criterio: "Ús del model de mercat de treball"
+    niveles:
+      - "No identifica el salari mínim com un preu sòl ni quan genera excés d'oferta de treball."
+      - "Diu que el salari mínim crea atur, però sense precisar que passa si està per damunt de l'equilibri."
+      - "Aplica el model competitiu: un salari mínim per damunt del d'equilibri genera excés d'oferta de treball."
+      - "A més, compara en el gràfic un salari mínim per davall i per damunt de l'equilibri i explica la diferència."
+  - criterio: "Maneig de l'evidència espanyola"
+    niveles:
+      - "Ignora les dades de la fitxa o les interpreta de manera que contradiuen allò que mostren."
+      - "Cita l'evolució de l'SMI o la de l'ocupació, però no les relaciona entre si."
+      - "Relaciona la pujada de l'SMI amb l'evolució de l'ocupació de la fitxa sense tergiversar les dades."
+      - "A més, adverteix que les dades no proven causalitat i proposa quin altre factor caldria descartar."
+  - criterio: "Incorporació de matisos"
+    niveles:
+      - "No introduïx cap matís i presenta el model simple com a definitiu."
+      - "Nomena un matís, com el monopsoni, però no explica com canvia la predicció."
+      - "Introduïx un matís, com monopsoni, demanda agregada o segments d'ocupació, i explica com canvia la predicció."
+      - "A més, explica per què la teoria i les dades poden divergir recolzant-se en dos matisos diferents."
+  - criterio: "Tancament individual"
+    niveles:
+      - "Barreja allò que prediu la teoria amb allò que mostren les dades sense distingir-ho."
+      - "Distingix teoria i dades, però no indica per què poden no coincidir."
+      - "Separa la predicció del model d'allò que mostren les dades del cas espanyol."
+      - "A més, diu quina evidència addicional li faria canviar de posició."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/09-debate-salario-minimo.ca"
 ---

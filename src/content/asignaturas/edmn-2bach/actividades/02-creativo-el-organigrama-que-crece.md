@@ -12,6 +12,31 @@ materiales:
   - "Cartulina A3 o herramienta de diagramas (Figma, Draw.io, Canva, Google Slides)"
   - "Notas adhesivas de tres colores"
   - "Rúbrica impresa, repartida antes de empezar"
+rubrica:
+  - criterio: "Corrección técnica"
+    niveles:
+      - "Los organigramas no distinguen jerarquía y staff o no reflejan las plantillas de 5, 30 y 200 personas."
+      - "Dibuja los tres organigramas, pero con errores en la jerarquía o sin diferenciar el staff de apoyo."
+      - "Construye los tres organigramas con jerarquía y staff diferenciados y un criterio de departamentalización definido en el acto 2."
+      - "Además, indica el ámbito de control del acto 3 y decide qué se centraliza y qué no."
+  - criterio: "Justificación"
+    niveles:
+      - "No explica qué problema resuelve cada cambio de estructura."
+      - "Explica qué problema resuelve cada cambio, pero no el problema nuevo que crea."
+      - "Las tres explicaciones dicen qué problema de la etapa anterior resuelve cada estructura y qué problema nuevo crea."
+      - "Además, anota los criterios de departamentalización que descartó en el acto 2 y por qué."
+  - criterio: "Coherencia"
+    niveles:
+      - "Los tres actos parecen empresas distintas o la actividad de la empresa no está definida."
+      - "Se reconoce la misma empresa en dos actos, pero el tercero cambia su actividad o sus funciones."
+      - "Los tres actos son reconociblemente la misma empresa, con su actividad definida en una línea."
+      - "Además, cada función del acto 1 se puede seguir hasta el acto 3, situada en su departamento."
+  - criterio: "Comunicación"
+    niveles:
+      - "La lámina es ilegible o la exposición describe las cajas sin explicar los cambios."
+      - "La lámina se lee, pero la exposición recorre las cajas en lugar de explicar los saltos."
+      - "La lámina es legible y la exposición de tres minutos explica los dos saltos entre actos, no las cajas."
+      - "Además, responde con un ejemplo concreto de qué se queja un empleado de la ciudad más pequeña en el acto 3."
 estado: publicado
 ---
 
