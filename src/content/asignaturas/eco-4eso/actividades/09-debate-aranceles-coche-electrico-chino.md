@@ -18,6 +18,31 @@ solucion:
   - "<strong>Lectura del cálculo.</strong> Frente a un modelo europeo equivalente de 33.000 €, la diferencia de precio pasa de 5.500 € a 500 €: el arancel borra casi toda la ventaja. Ese es exactamente su objetivo, y también exactamente lo que pierde quien iba a comprar el coche."
   - "<strong>Quién paga.</strong> Con lo que sabemos de los aranceles de Estados Unidos a China de 2018-2019 (Amiti, Redding y Weinstein, 2019), la mayor parte del arancel acaba en el precio que paga el comprador del país que lo impone, no en el margen del exportador. En este caso, la familia europea que quería un eléctrico barato."
   - "<strong>El argumento climático.</strong> Encarecer el vehículo eléctrico retrasa la sustitución del coche de combustión, que es el objetivo de la propia UE para 2035. Es una contradicción real entre dos políticas europeas, y los dos equipos deberían reconocerla antes de resolverla a su favor."
+rubrica:
+  - criterio: "Uso de datos"
+    niveles:
+      - "Sus argumentos no citan cifras del dosier o falta el cálculo obligatorio del precio con arancel."
+      - "Hace el cálculo obligatorio, pero algunos argumentos siguen sin una cifra con fuente."
+      - "Incluye el cálculo del dosier en la apertura y apoya cada argumento en una cifra con fuente."
+      - "Además, aporta un dato propio con su fuente y lo relaciona con una cifra del dosier."
+  - criterio: "Calidad argumental"
+    niveles:
+      - "Usa generalidades como «es bueno para Europa» sin decir quién gana ni quién pierde."
+      - "Identifica ganadores o perdedores, pero solo de un grupo, como la industria o los consumidores."
+      - "Distingue ganadores y perdedores dentro de cada país: industria, consumidores y sectores que sufren la represalia."
+      - "Además, reconoce la contradicción entre el arancel y el objetivo climático de la UE antes de resolverla a su favor."
+  - criterio: "Refutación"
+    niveles:
+      - "Responde a argumentos que el otro equipo no ha dicho."
+      - "Refuta lo que se ha dicho, pero de forma general y sin datos."
+      - "Refuta solo lo que la otra parte ha dicho, con un dato del dosier o una fuente."
+      - "Además, reformula con exactitud el argumento rival antes de responderle."
+  - criterio: "Forma"
+    niveles:
+      - "Se salta los turnos, supera el tiempo o su tono es agresivo."
+      - "Respeta los turnos, pero se pasa de tiempo o el mensaje no queda claro."
+      - "Respeta tiempos y turnos, mantiene un tono respetuoso y se expresa con claridad."
+      - "Además, su cierre no añade datos nuevos y resume la posición del equipo en el tiempo asignado."
 estado: publicado
 ---
 

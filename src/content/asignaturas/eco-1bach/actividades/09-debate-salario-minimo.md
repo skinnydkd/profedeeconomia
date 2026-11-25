@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de debate impresa para el jurado"
 competencias_clave: [CCL, CC, CPSAA, STEM]
 competencias_especificas: [CE5]
+rubrica:
+  - criterio: "Uso del modelo de mercado de trabajo"
+    niveles:
+      - "No identifica el salario mínimo como un precio suelo ni cuándo genera exceso de oferta de trabajo."
+      - "Dice que el salario mínimo crea paro, pero sin precisar que ocurre si está por encima del equilibrio."
+      - "Aplica el modelo competitivo: un salario mínimo por encima del de equilibrio genera exceso de oferta de trabajo."
+      - "Además, compara en el gráfico un salario mínimo por debajo y por encima del equilibrio y explica la diferencia."
+  - criterio: "Manejo de la evidencia española"
+    niveles:
+      - "Ignora los datos de la ficha o los interpreta de modo que contradicen lo que muestran."
+      - "Cita la evolución del SMI o la del empleo, pero no las relaciona entre sí."
+      - "Relaciona la subida del SMI con la evolución del empleo de la ficha sin tergiversar los datos."
+      - "Además, advierte que los datos no prueban causalidad y propone qué otro factor habría que descartar."
+  - criterio: "Incorporación de matices"
+    niveles:
+      - "No introduce ningún matiz y presenta el modelo simple como definitivo."
+      - "Nombra un matiz, como el monopsonio, pero no explica cómo cambia la predicción."
+      - "Introduce un matiz, como monopsonio, demanda agregada o segmentos de empleo, y explica cómo cambia la predicción."
+      - "Además, explica por qué la teoría y los datos pueden divergir apoyándose en dos matices distintos."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Mezcla lo que predice la teoría con lo que muestran los datos sin distinguirlos."
+      - "Distingue teoría y datos, pero no indica por qué pueden no coincidir."
+      - "Separa la predicción del modelo de lo que muestran los datos del caso español."
+      - "Además, dice qué evidencia adicional le haría cambiar de posición."
 estado: publicado
 ---
 

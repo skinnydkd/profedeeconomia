@@ -19,6 +19,7 @@ import { sabersDeActividad } from '@/lib/cuaderno/sabers';
 import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
 import { SITE } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
+import RubricaNiveles from '@components/actividades/RubricaNiveles.astro';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
@@ -653,6 +654,7 @@ const ordenOpciones = (unidad: number, qi: number, n: number) => ordenImpreso(`$
             )}
             <div class:list={['act__body', !esProfesor && 'act__body--alumno']}>
               <Content />
+              <RubricaNiveles rubrica={act.data.rubrica} locale={locale} />
             </div>
             {esProfesor && act.data.solucion.length > 0 && (
               <div class="act__solucion">

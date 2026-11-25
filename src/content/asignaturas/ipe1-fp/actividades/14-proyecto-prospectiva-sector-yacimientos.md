@@ -13,6 +13,31 @@ materiales:
   - "Guion del informe de prospectiva (incluido abajo, fotocopiable)"
   - "Plantilla de presentación (5 diapositivas máximo) o cartel A3"
   - "Rúbrica de evaluación impresa para profesor y coevaluación"
+rubrica:
+  - criterio: "Datos reales y citados"
+    niveles:
+      - "El informe no cita fuentes o los datos no proceden del SEPE, del INE ni de informes sectoriales."
+      - "Usa datos del SEPE o del INE, pero no los cita todos o faltan apartados de la radiografía."
+      - "La radiografía incluye ocupaciones del título, datos de contratación y perfil más demandado, con su fuente oficial citada."
+      - "Además, contrasta una cifra del SEPE con otra fuente, como el INE, y comenta si coinciden."
+  - criterio: "Lectura del sector"
+    niveles:
+      - "Copia los datos tal como aparecen, sin explicar qué significan para el sector."
+      - "Comenta algún dato, pero no lo relaciona con las tendencias de digitalización o transición ecológica."
+      - "Interpreta los datos con sus palabras y los relaciona con al menos una tendencia que transforma el sector."
+      - "Además, distingue qué datos apuntan al crecimiento y cuáles al retroceso de ocupaciones del sector."
+  - criterio: "Yacimientos de empleo emergentes"
+    niveles:
+      - "Presenta menos de tres yacimientos o los enuncia sin justificarlos."
+      - "Presenta tres yacimientos, pero alguno es poco verosímil o su justificación no cita ninguna tendencia."
+      - "Presenta tres yacimientos emergentes ligados a la digitalización o la transición ecológica, cada uno justificado con una tendencia."
+      - "Además, respalda al menos dos yacimientos con un dato verificable y su fuente."
+  - criterio: "Recomendación y presentación"
+    niveles:
+      - "La recomendación no se deriva del análisis y la presentación no sigue el guion del informe."
+      - "Recomienda competencias a reforzar, pero sin vincularlas a los yacimientos, o presenta sin responder a la pregunta del cliente."
+      - "Recomienda competencias e itinerario coherentes con los yacimientos y responde a la pregunta crítica del cliente."
+      - "Además, explica qué competencia del ciclo actual ya sirve para cada yacimiento y cuál falta."
 estado: publicado
 ---
 

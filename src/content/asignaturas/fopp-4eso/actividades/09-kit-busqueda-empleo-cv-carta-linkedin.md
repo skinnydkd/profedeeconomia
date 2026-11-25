@@ -17,6 +17,31 @@ materiales:
   - "Carpeta del portfolio digital del alumno (Drive, OneDrive o similar) donde se entrega la entrega final"
 competencias_clave: [CD, CCL, CE, CPSAA]
 competencias_especificas: [CE7]
+rubrica:
+  - criterio: "Ajuste del CV a la oferta y formato Europass"
+    niveles:
+      - "El CV es genérico: no recoge palabras clave de la oferta, supera una página o tiene faltas de ortografía."
+      - "Incluye algunas palabras clave de la oferta, pero el resumen es genérico o el formato Europass no es coherente."
+      - "Recoge literalmente las palabras clave de la oferta, tiene un resumen orientado a ella y cabe en una página en PDF."
+      - "Además, cuantifica sus logros y pone primero las secciones que más responden a lo que pide la oferta."
+  - criterio: "Personalización de la carta de presentación"
+    niveles:
+      - "La carta es una plantilla reutilizable para cualquier empresa y no cita la oferta ni la empresa."
+      - "Tiene los cuatro párrafos, pero el segundo es genérico o el tercero describe funciones sin un logro concreto."
+      - "Tiene los cuatro párrafos: el segundo muestra investigación real de la empresa y el tercero argumenta con un logro concreto."
+      - "Además, el logro del tercer párrafo está cuantificado y responde a un requisito literal de la oferta."
+  - criterio: "Calidad del perfil de LinkedIn"
+    niveles:
+      - "El perfil no tiene titular descriptivo, o el resumen no llega a 200 palabras y se limita a adjetivos vacíos."
+      - "Tiene foto y titular, pero el resumen no se ajusta a las 200-300 palabras o faltan experiencia y formación."
+      - "Tiene foto profesional, titular descriptivo, resumen de 200 a 300 palabras sin adjetivos vacíos y experiencia y formación cargadas."
+      - "Además, el titular y el resumen usan palabras clave del sector de la oferta elegida."
+  - criterio: "Cuidado de la huella digital"
+    niveles:
+      - "No entrega la nota sobre su búsqueda o se limita a decir que no ha encontrado nada."
+      - "Entrega la nota y cuenta qué encontró, pero no indica ninguna medida tomada."
+      - "Entrega media página con lo que encontró al buscar su nombre en modo incógnito y al menos una medida tomada."
+      - "Además, ordena lo encontrado por riesgo para su candidatura y explica por qué empieza por esa medida."
 estado: publicado
 ---
 

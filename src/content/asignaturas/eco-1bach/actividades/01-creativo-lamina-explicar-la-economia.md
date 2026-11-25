@@ -13,6 +13,31 @@ materiales:
   - "Rotuladores, tijeras y material de recorte si se hace en papel"
   - "Rúbrica impresa, repartida antes de empezar a diseñar"
   - "Cinta adhesiva o pinzas para colgar las láminas en la pared"
+rubrica:
+  - criterio: "Corrección conceptual"
+    niveles:
+      - "Faltan dos o más de los cuatro conceptos, o aparece alguno con una definición equivocada."
+      - "Aparecen los cuatro conceptos, pero alguno se define de forma imprecisa o sin relación con los demás."
+      - "Incluye escasez, elección, coste de oportunidad y las tres preguntas, todos bien usados y con sus propias palabras."
+      - "Además, enlaza los cuatro conceptos con un mismo ejemplo, de modo que se ve cómo se derivan unos de otros."
+  - criterio: "Adecuación al destinatario"
+    niveles:
+      - "Usa vocabulario técnico sin explicar o un ejemplo que alguien de 15 años no reconocería."
+      - "Incluye un ejemplo cercano, pero el registro o el vocabulario siguen siendo los de un manual."
+      - "El ejemplo es de la vida de alguien de 15 años y el registro y el vocabulario se entienden en 4.º ESO."
+      - "Además, justifica por escrito por qué ese ejemplo y ese tono sirven al destinatario y no a una persona adulta."
+  - criterio: "Síntesis y descartes"
+    niveles:
+      - "Supera las 120 palabras o no explica nada de lo que ha dejado fuera."
+      - "Respeta las 120 palabras, pero no justifica los descartes o solo justifica uno de ellos."
+      - "Respeta las 120 palabras y entrega el motivo de los tres descartes que más le costó eliminar."
+      - "Además, explica cada descarte con un criterio propio, por ejemplo qué aporta menos a alguien de 4.º ESO."
+  - criterio: "Diseño y defensa"
+    niveles:
+      - "No se distingue qué es lo principal en la lámina y la defensa no dice a quién va dirigida."
+      - "La jerarquía visual es irregular o la defensa de 30 segundos omite a quién va dirigida o qué se dejó fuera."
+      - "La jerarquía visual se lee rápido y la defensa de 30 segundos dice a quién va dirigida y qué se descartó."
+      - "Además, la lámina se entiende sin la defensa oral y esta termina dentro del medio minuto."
 estado: publicado
 ---
 

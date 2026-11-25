@@ -14,6 +14,31 @@ materiales:
   - "Plantilla del pitch en tres bloques: soy / aporto / busco"
   - "Móvil para grabar el pitch en vídeo o audio"
   - "Rúbrica breve de autoevaluación del pitch"
+rubrica:
+  - criterio: "Calidad de la auditoría"
+    niveles:
+      - "La auditoría se limita a decir que no aparece nada o a copiar el checklist sin resultados."
+      - "Anota lo que aparece en la búsqueda, pero no revisa privacidad, fotos o coherencia con el objetivo."
+      - "Anota lo que aparece en su búsqueda y revisa con el checklist privacidad, fotos, comentarios y coherencia con su objetivo."
+      - "Además, distingue lo que verá un reclutador en la primera página de resultados de lo que solo aparece en redes públicas."
+  - criterio: "Plan de huella digital"
+    niveles:
+      - "No elabora las tres listas o las deja sin acciones."
+      - "Elabora las tres listas, pero con acciones vagas, como «mejorar mis redes»."
+      - "Las listas de reforzar, limpiar y crear contienen acciones concretas y realizables."
+      - "Además, ordena las acciones por prioridad y fija cuándo hará la primera."
+  - criterio: "Claridad del pitch"
+    niveles:
+      - "El pitch no responde a las tres preguntas o supera claramente los 30 segundos."
+      - "Responde a las tres preguntas, pero con relleno o muletillas, o el «qué aporto» queda vago."
+      - "Responde a quién soy, qué aporto y qué busco en 30 segundos, con una idea fuerte por bloque y sin muletillas."
+      - "Además, el «qué aporto» incluye un dato o logro concreto que se puede comprobar."
+  - criterio: "Comunicación oral"
+    niveles:
+      - "En la grabación lee un texto con voz monótona y termina sin cierre."
+      - "Mantiene un ritmo aceptable, pero el cierre es débil o la voz baja en algún bloque."
+      - "En la grabación mantiene un ritmo claro, voz audible y cierra con una frase que indica qué busca."
+      - "Además, tras revisar la primera grabación con la rúbrica, regraba y mejora un aspecto concreto."
 estado: publicado
 ---
 

@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CPSAA, CC, CCL, CD]
 competencias_especificas: [CE6]
 ebau: false
+rubrica:
+  - criterio: "Uso correcto de los conceptos"
+    niveles:
+      - "Confunde la destrucción de tareas con la de puestos o no distingue los tres efectos."
+      - "Nombra destruir, transformar y crear empleo, pero los aplica solo a ejemplos de destrucción o de creación."
+      - "Distingue destruir, transformar y crear empleo, y no confunde tareas con puestos."
+      - "Además, ilustra cada uno de los tres efectos con un oficio o un sector concreto."
+  - criterio: "Argumentación con datos"
+    niveles:
+      - "Apoya su postura en eslóganes, sin ningún dato de la ficha."
+      - "Cita un dato de Eurostat o del Future of Jobs, pero sin explicar qué muestra."
+      - "Apoya su postura en datos reales de la ficha, como Eurostat o Future of Jobs, y explica qué muestran."
+      - "Además, precisa los límites de un dato, por ejemplo qué no dice sobre el empleo a largo plazo."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "Responde con catastrofismo o ingenuidad tecnológica, sin tocar el argumento contrario."
+      - "Evita los extremos, pero no responde a ningún argumento concreto del otro equipo."
+      - "Responde a argumentos concretos del otro equipo sin caer en el catastrofismo ni en la ingenuidad."
+      - "Además, distingue en su respuesta el efecto a corto plazo del efecto a largo plazo."
+  - criterio: "Cierre individual"
+    niveles:
+      - "El cierre no dice si ve la IA como amenaza u oportunidad ni qué efecto le parece más importante."
+      - "Toma postura, pero no relaciona las habilidades a salvo de la automatización con su formación."
+      - "Escribe cinco líneas con su conclusión, el efecto que más pesa y la habilidad que va a cultivar."
+      - "Además, explica por qué esa habilidad es difícil de automatizar y cómo la entrenará."
 estado: publicado
 ---
 

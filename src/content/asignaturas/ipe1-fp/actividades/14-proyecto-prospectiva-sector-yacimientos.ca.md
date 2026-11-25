@@ -14,6 +14,31 @@ materiales:
   - "Plantilla de presentació (5 diapositives màxim) o cartell A3"
   - "Rúbrica d'avaluació impresa per a professor i coavaluació"
 lang: ca
+rubrica:
+  - criterio: "Dades reals i citades"
+    niveles:
+      - "L'informe no cita fonts o les dades no procedixen del SEPE, de l'INE ni d'informes sectorials."
+      - "Usa dades del SEPE o de l'INE, però no les cita totes o falten apartats de la radiografia."
+      - "La radiografia inclou ocupacions del títol, dades de contractació i perfil més demandat, amb la seua font oficial citada."
+      - "A més, contrasta una xifra del SEPE amb una altra font, com l'INE, i comenta si coincidixen."
+  - criterio: "Lectura del sector"
+    niveles:
+      - "Copia les dades tal com apareixen, sense explicar què signifiquen per al sector."
+      - "Comenta alguna dada, però no la relaciona amb les tendències de digitalització o transició ecològica."
+      - "Interpreta les dades amb les seues paraules i les relaciona amb almenys una tendència que transforma el sector."
+      - "A més, distingix quines dades apunten al creixement i quines al retrocés d'ocupacions del sector."
+  - criterio: "Jaciments d'ocupació emergents"
+    niveles:
+      - "Presenta menys de tres jaciments o els enuncia sense justificar-los."
+      - "Presenta tres jaciments, però algun és poc versemblant o la seua justificació no cita cap tendència."
+      - "Presenta tres jaciments emergents lligats a la digitalització o la transició ecològica, cadascun justificat amb una tendència."
+      - "A més, recolza almenys dos jaciments amb una dada verificable i la seua font."
+  - criterio: "Recomanació i presentació"
+    niveles:
+      - "La recomanació no es deriva de l'anàlisi i la presentació no seguix el guió de l'informe."
+      - "Recomana competències a reforçar, però sense vincular-les als jaciments, o presenta sense respondre a la pregunta del client."
+      - "Recomana competències i itinerari coherents amb els jaciments i respon a la pregunta crítica del client."
+      - "A més, explica quina competència del cicle actual ja servix per a cada jaciment i quina falta."
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/14-proyecto-prospectiva-sector-yacimientos.ca"
 ---

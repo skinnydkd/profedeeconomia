@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CC, CPSAA, CCL, CD]
 competencias_especificas: [CE4]
 ebau: false
+rubrica:
+  - criterio: "Uso correcto de los conceptos"
+    niveles:
+      - "Confunde economía sumergida con pagar menos legalmente, o presenta cualquier ahorro fiscal como fraude."
+      - "Define economía sumergida, pero no conecta sus efectos con los servicios públicos ni con la equidad."
+      - "Conecta economía sumergida, servicios públicos y equidad, y distingue la optimización legal del fraude."
+      - "Además, distingue con ejemplos del dosier entre una infracción pequeña y una trama organizada, y razona la diferencia."
+  - criterio: "Argumentación con datos y casos"
+    niveles:
+      - "Defiende su postura con consignas como «todo el mundo lo hace» sin citar datos ni situaciones."
+      - "Cita una situación del dosier o una cifra, pero sin vincularla a su argumento."
+      - "Apoya su postura en situaciones del dosier y en datos de economía sumergida en España."
+      - "Además, compara dos estimaciones del tamaño de la economía sumergida y explica por qué difieren."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "No responde a los argumentos del otro equipo o se limita a repetir su consigna."
+      - "Responde a algún argumento, pero sin usar un dato ni un caso para rebatirlo."
+      - "Responde a los argumentos del otro equipo con datos o casos concretos, sin recurrir a consignas."
+      - "Además, anticipa en su exposición la objeción más probable del otro equipo y la responde."
+  - criterio: "Cierre individual"
+    niveles:
+      - "El cierre no incluye ninguna decisión sobre la actitud fiscal de su proyecto."
+      - "Escribe una conclusión, pero la decisión fiscal es genérica, como «cumplir la ley»."
+      - "Escribe una conclusión de cinco líneas y define una decisión fiscal concreta, como emitir factura siempre."
+      - "Además, relaciona esa decisión con su efecto sobre los servicios públicos y sobre quien sí cumple."
 estado: borrador
 ---
 

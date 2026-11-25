@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CCL, CC, CD]
 competencias_especificas: [CE5]
 lang: ca
+rubrica:
+  - criterio: "Ús del marc legal"
+    niveles:
+      - "Argumenta només des de la intuïció moral i no cita la fitxa."
+      - "Cita la fitxa, però sense explicar què implica per al cas que es discutix."
+      - "Cita el marc legal de la fitxa almenys una vegada i l'usa per a sostindre el seu argument."
+      - "A més, assenyala què deixa fora la llei actual en un cas i quina norma afegiria."
+  - criterio: "Necessitat vs debilitat"
+    niveles:
+      - "No distingix entre la necessitat que cobrix el negoci i la debilitat que explota."
+      - "Nomena la necessitat i la debilitat en un cas, però no en els tres."
+      - "Aplica la distinció entre necessitat i debilitat a cadascun dels tres casos amb precisió."
+      - "A més, reconeix un cas en què la frontera no està clara i explica quin tret la desdibuixa."
+  - criterio: "Rèplica"
+    niveles:
+      - "Ignora l'objecció del cas que es debat o la respon amb un altre cas."
+      - "Respon a l'objecció en part, però amb una resposta genèrica."
+      - "Respon a l'objecció més forta del cas que es debat sense canviar de cas."
+      - "A més, anticipa l'objecció incòmoda, com el mercat negre, i planteja com reduir-la."
+  - criterio: "Tancament individual"
+    niveles:
+      - "No fixa una frontera ni raona que no n'hi haja, o no justifica la seua resposta."
+      - "Fixa una frontera, però el seu criteri només servix per a un dels tres casos."
+      - "Escriu cinc línies amb un criteri propi sobre la frontera, o raona que no n'hi ha, i el justifica."
+      - "A més, aplica el seu criteri als tres casos i mostra on l'obliga a matisar."
 estado: publicado
 slug: "asignaturas/eco-4eso/actividades/11-debate-negocios-que-no-deberian-existir.ca"
 ---

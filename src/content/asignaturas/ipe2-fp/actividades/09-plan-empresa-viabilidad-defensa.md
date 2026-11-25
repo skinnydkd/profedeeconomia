@@ -16,6 +16,31 @@ materiales:
   - "Checklist de trámites de constitución y puesta en marcha en España"
   - "Plantilla del documento del plan de empresa (estructura incluida abajo)"
   - "Rúbrica de defensa para el comité inversor"
+rubrica:
+  - criterio: "Plan económico-financiero"
+    niveles:
+      - "Faltan la inversión, la financiación o los gastos, o la financiación no cubre la inversión."
+      - "Incluye todos los apartados, pero mezcla gastos fijos y variables o la financiación no cubre el 100 % con margen."
+      - "Cifra la inversión inicial con tesorería de colchón, cubre el 100 % con margen y separa gastos fijos y variables."
+      - "Además, justifica cada partida de inversión con un presupuesto o un precio de mercado consultado."
+  - criterio: "Cálculo del punto muerto y diagnóstico de viabilidad"
+    niveles:
+      - "No calcula el punto muerto o aplica mal la fórmula."
+      - "Calcula el punto muerto con la fórmula correcta, pero no lo compara con las ventas que validó el equipo."
+      - "Calcula costes fijos / (precio - coste variable unitario) y da un veredicto de viabilidad razonado con las ventas validadas."
+      - "Además, prueba cómo cambia el punto muerto si varía el precio o un coste y lo comenta en el veredicto."
+  - criterio: "Forma jurídica y trámites"
+    niveles:
+      - "Elige una forma jurídica sin justificarla o no incluye el checklist de trámites."
+      - "Justifica la forma jurídica con un solo criterio o el checklist de trámites está incompleto o desordenado."
+      - "Justifica la forma jurídica con criterios económicos (responsabilidad, capital, fiscalidad, número de socios) y ordena el checklist de trámites."
+      - "Además, compara su elección con otra forma jurídica alternativa y explica por qué la descarta."
+  - criterio: "Defensa ante el comité inversor"
+    niveles:
+      - "Excede el tiempo o no lo cubre, y no responde a las preguntas del comité."
+      - "Presenta en cinco minutos, pero sin estructura clara o con respuestas que no usan los números del plan."
+      - "Presenta con estructura clara en cinco minutos y responde a las preguntas del comité con datos del plan."
+      - "Además, indica qué cifra del plan cambiaría para convencer al comité si este no invirtiera."
 estado: publicado
 ---
 

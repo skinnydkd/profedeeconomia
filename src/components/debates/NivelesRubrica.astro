@@ -7,16 +7,17 @@
 import type { Locale } from '@/i18n/locale';
 import { nivelesDe } from '@/lib/debates-niveles';
 
-interface Criterio { criterio: string }
+interface Criterio { criterio: string; niveles?: string[] }
 interface Props { rubrica: Criterio[]; locale?: Locale }
 const { rubrica, locale = 'es' } = Astro.props;
 const copy = {
   es: { resumen: 'Qué significa cada nivel', niveles: ['1 · Inicio', '2 · En proceso', '3 · Bien', '4 · Excelente'] },
   ca: { resumen: 'Què vol dir cada nivell', niveles: ['1 · Inici', '2 · En procés', '3 · Bé', '4 · Excel·lent'] },
 }[locale];
-const conNiveles = rubrica
-  .map((r) => ({ criterio: r.criterio, desc: nivelesDe(r.criterio, locale) }))
-  .filter((r): r is { criterio: string; desc: NonNullable<ReturnType<typeof nivelesDe>> } => Boolean(r.desc));
+const conNiveles = rubrica.flatMap((r) => {
+  const desc: readonly string[] | undefined = r.niveles ?? nivelesDe(r.criterio, locale);
+  return desc ? [{ criterio: r.criterio, desc }] : [];
+});
 ---
 {conNiveles.length > 0 && (
   <details class="niveles">

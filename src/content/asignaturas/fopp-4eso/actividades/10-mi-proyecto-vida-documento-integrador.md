@@ -15,6 +15,31 @@ materiales:
   - "Hojas de feedback estructurado para la sesión 4 (formato carta del compañero)"
 competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE8, CE1, CE4]
+rubrica:
+  - criterio: "Integración del material del curso"
+    niveles:
+      - "El documento no cita ninguna pieza del curso y parece escrito desde cero, con opiniones sin base."
+      - "Aprovecha algunas piezas del curso, como el DAFO o el CV, pero no se ve la conexión con el resto."
+      - "Aprovecha visiblemente el DAFO, el mapa de entorno, el árbol de decisiones, el dossier de itinerarios y el CV del curso."
+      - "Además, indica de qué unidad procede cada dato y actualiza alguna pieza antigua con información nueva."
+  - criterio: "Calidad de los objetivos SMART"
+    niveles:
+      - "Los objetivos son intenciones generales, como «estudiar más», sin cantidad ni plazo."
+      - "Redacta los cinco a siete objetivos pedidos, pero varios carecen de medida o de plazo concreto."
+      - "Entre cinco y siete objetivos a 12 meses cumplen los cinco criterios SMART y se reparten entre las tres dimensiones."
+      - "Además, cada objetivo indica cómo se comprobará que se ha logrado y qué recurso o apoyo necesita."
+  - criterio: "Coherencia entre dimensiones y horizontes"
+    niveles:
+      - "Las dimensiones y los horizontes no se relacionan entre sí o se contradicen."
+      - "Relaciona algunas dimensiones, pero los escenarios de medio plazo no se derivan de los objetivos a 12 meses."
+      - "Los objetivos de las tres dimensiones se sostienen entre sí y los escenarios de medio plazo encajan con el corto plazo."
+      - "Además, identifica qué objetivo a 12 meses sirve a más de un escenario de medio plazo y lo explica."
+  - criterio: "Red de apoyo y sistema de revisión"
+    niveles:
+      - "La red es una lista de nombres sin función y las fechas de revisión son intenciones sin día concreto."
+      - "Cumple solo una de las dos partes: red con función y contacto previsto, o fechas de revisión concretas."
+      - "Incluye de tres a cinco personas con función y próximo contacto, y las fechas de revisión están anotadas en el calendario."
+      - "Además, la red cubre al menos tres categorías distintas de apoyo y cada revisión indica qué se comprobará."
 estado: publicado
 ---
 

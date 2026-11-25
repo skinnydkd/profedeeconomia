@@ -12,6 +12,31 @@ materiales:
   - "Tarjetas de rol para los dos equipos"
   - "Rúbrica de debate para coevaluación"
 competencias_especificas: [CE1, CE2]
+rubrica:
+  - criterio: "Uso correcto de los conceptos"
+    niveles:
+      - "Confunde eficiencia con equidad o usa bienestar social y calidad de vida como sinónimos."
+      - "Distingue eficiencia y equidad, pero confunde la eficiencia de Pareto con la justicia del reparto."
+      - "Distingue eficiencia, equidad, bienestar social y calidad de vida, y no confunde eficiencia de Pareto con justicia."
+      - "Además, muestra con la tabla del caso que la opción más eficiente no es necesariamente la más justa."
+  - criterio: "Argumentación ética"
+    niveles:
+      - "Defiende su opción con consignas, sin mencionar ningún marco moral."
+      - "Menciona un marco moral, pero no lo usa para sostener la opción que defiende."
+      - "Defiende su opción desde un marco explícito, utilitarista o de justicia distributiva, y lo aplica al caso."
+      - "Además, contrasta su marco con el del equipo contrario y señala qué valora cada uno."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "Responde con consignas o ignora el argumento del otro equipo."
+      - "Responde al otro equipo, pero repite su postura sin tocar su argumento."
+      - "Responde a los argumentos del otro equipo sin reducir el debate a consignas."
+      - "Además, plantea si el dilema es un conflicto real, por ejemplo cuando la desigualdad también resulta ineficiente a largo plazo."
+  - criterio: "Cierre individual"
+    niveles:
+      - "No indica qué opción elige o no explica por qué."
+      - "Elige una opción con razones, pero no dice cuánto peso da a la eficiencia y a la equidad."
+      - "Escribe cinco líneas con su elección y dice cuánto peso da a la eficiencia y cuánto a la equidad."
+      - "Además, reconoce qué pierde con su elección y propone cómo compensarlo."
 estado: publicado
 ---
 

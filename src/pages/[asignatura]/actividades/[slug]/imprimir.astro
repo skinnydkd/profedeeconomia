@@ -16,6 +16,7 @@ import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
+import RubricaNiveles from '@components/actividades/RubricaNiveles.astro';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
@@ -255,6 +256,7 @@ const tipoLabel = ACTIVIDAD_TIPO_LABEL[locale][d.tipo] ?? d.tipo;
 
     <main class="body">
       <Content />
+      <RubricaNiveles rubrica={actividad.data.rubrica} locale={locale} />
     </main>
 
     {d.solucion.length > 0 && (

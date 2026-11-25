@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CE, CPSAA, CCL, CD]
 competencias_especificas: [CE4, CE5]
 ebau: false
+rubrica:
+  - criterio: "La idea y el perfil del equipo"
+    niveles:
+      - "La idea no parte de un problema real o el reparto de papeles no responde a las fortalezas del equipo."
+      - "Formula la idea en una frase, pero el problema es difuso o los papeles se reparten sin criterio."
+      - "Formula la idea en una frase con quién, problema y solución, y reparte papeles según fortalezas reconociendo una carencia."
+      - "Además, fija la regla para decidir ante un desacuerdo y dice cómo cubrirá la carencia reconocida."
+  - criterio: "Misión y visión"
+    niveles:
+      - "La misión y la visión son frases huecas que valdrían para cualquier empresa."
+      - "Redacta misión y visión, pero la misión no se puede comprobar o la visión no aspira a nada concreto."
+      - "Redacta una misión comprobable y una visión propia, sin frases huecas, y valora si el proyecto tiene dimensión social o ambiental."
+      - "Además, comprueba que su misión no valdría para otra empresa y argumenta la dimensión social con un ejemplo."
+  - criterio: "Propuesta de valor e ingresos"
+    niveles:
+      - "No indica quién es el cliente ni por qué pagaría, o las tres casillas se contradicen."
+      - "Rellena clientes, propuesta de valor e ingresos, pero alguna casilla no encaja con las otras."
+      - "Clientes, propuesta de valor e ingresos son coherentes entre sí y con la misión, y una frase explica por qué se pagaría."
+      - "Además, identifica una alternativa que el cliente usa hoy y explica por qué pagaría por la propuesta en lugar de ella."
+  - criterio: "Pitch y evolución del proyecto"
+    niveles:
+      - "El pitch no cabe en 3 minutos o no responde a las preguntas con argumentos."
+      - "El pitch cabe en 3 minutos, pero responde a las preguntas con opiniones y sin usar las hojas del cuaderno."
+      - "Cuenta el proyecto en 3 minutos con las hojas del cuaderno y responde a las preguntas con argumentos."
+      - "Además, el cuaderno muestra qué fase corrigió el equipo tras aprender de la anterior."
 estado: publicado
 ---
 

@@ -18,6 +18,31 @@ solucion:
   - "<strong>Lectura del càlcul.</strong> Enfront d'un model europeu equivalent de 33.000 €, la diferència de preu passa de 5.500 € a 500 €: l'aranzel esborra quasi tot l'avantatge. Eixe és exactament el seu objectiu, i també exactament el que perd qui anava a comprar el cotxe."
   - "<strong>Qui el paga.</strong> Amb el que sabem dels aranzels dels Estats Units a la Xina de 2018-2019 (Amiti, Redding i Weinstein, 2019), la major part de l'aranzel acaba en el preu que paga el comprador del país que l'imposa, no en el marge de l'exportador. En este cas, la família europea que volia un elèctric barat."
   - "<strong>L'argument climàtic.</strong> Encarir el vehicle elèctric retarda la substitució del cotxe de combustió, que és l'objectiu de la mateixa UE per a 2035. És una contradicció real entre dues polítiques europees, i els dos equips haurien de reconéixer-la abans de resoldre-la al seu favor."
+rubrica:
+  - criterio: "Ús de dades"
+    niveles:
+      - "Els seus arguments no citen xifres del dosier o falta el càlcul obligatori del preu amb aranzel."
+      - "Fa el càlcul obligatori, però alguns arguments continuen sense una xifra amb font."
+      - "Inclou el càlcul del dosier en l'obertura i recolza cada argument en una xifra amb font."
+      - "A més, aporta una dada pròpia amb la seua font i la relaciona amb una xifra del dosier."
+  - criterio: "Qualitat argumental"
+    niveles:
+      - "Usa generalitats com «és bo per a Europa» sense dir qui guanya ni qui perd."
+      - "Identifica guanyadors o perdedors, però només d'un grup, com la indústria o els consumidors."
+      - "Distingix guanyadors i perdedors dins de cada país: indústria, consumidors i sectors que patixen la represàlia."
+      - "A més, reconeix la contradicció entre l'aranzel i l'objectiu climàtic de la UE abans de resoldre-la a favor seu."
+  - criterio: "Refutació"
+    niveles:
+      - "Respon a arguments que l'altre equip no ha dit."
+      - "Refuta allò que s'ha dit, però de manera general i sense dades."
+      - "Refuta només allò que l'altra part ha dit, amb una dada del dosier o una font."
+      - "A més, reformula amb exactitud l'argument rival abans de respondre-li."
+  - criterio: "Forma"
+    niveles:
+      - "Se salta els torns, supera el temps o el seu to és agressiu."
+      - "Respecta els torns, però se'n passa de temps o el missatge no queda clar."
+      - "Respecta temps i torns, manté un to respectuós i s'expressa amb claredat."
+      - "A més, el seu tancament no afig dades noves i resumix la posició de l'equip en el temps assignat."
 estado: publicado
 lang: ca
 slug: "asignaturas/eco-4eso/actividades/09-debate-aranceles-coche-electrico-chino.ca"

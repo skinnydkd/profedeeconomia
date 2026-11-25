@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CPSAA, CC, CCL, CD, CE]
 competencias_especificas: [CE6, CE5]
 ebau: false
+rubrica:
+  - criterio: "Diagnóstico"
+    niveles:
+      - "Describe la empresa sin identificar desafíos digitales ni de sostenibilidad."
+      - "Identifica desafíos, pero confunde digitalización con transformación digital."
+      - "Describe qué hace la empresa y sus desafíos, distinguiendo lo ya digitalizado de lo que debería transformar."
+      - "Además, sostiene el diagnóstico con un dato de fuente real, como Eurostat, el INE o la web de la empresa."
+  - criterio: "Propuesta de transformación"
+    niveles:
+      - "Solo desarrolla una de las tres palancas o propone medidas genéricas, válidas para cualquier empresa."
+      - "Desarrolla las tres palancas, pero alguna se queda en una idea general."
+      - "Desarrolla transformación digital, nuevas formas de trabajo y sostenibilidad con propuestas concretas y realistas."
+      - "Además, indica qué tareas automatizaría, qué valor humano potenciaría y qué problema de cultura cuidaría."
+  - criterio: "Integración del curso y mirada crítica"
+    niveles:
+      - "No conecta la propuesta con conceptos del curso ni comprueba si hay greenwashing."
+      - "Conecta con un concepto del curso o menciona el greenwashing, pero sin justificarlo."
+      - "Conecta con al menos dos conceptos del curso y propone cómo demostrar con datos que el cambio no es greenwashing."
+      - "Además, señala qué parte de su propuesta podría ser solo marketing y cómo la corregiría."
+  - criterio: "Trabajo en equipo y exposición"
+    niveles:
+      - "Los roles no están repartidos y la presentación no se ajusta a los 6 minutos."
+      - "Reparten roles, pero la propuesta es incoherente entre palancas o la presentación se alarga."
+      - "Roles repartidos, propuesta coherente y presentación de 6 minutos clara y ajustada al tiempo."
+      - "Además, responde a la pregunta crítica del consejo de futuro con un dato o un argumento."
 estado: publicado
 ---
 

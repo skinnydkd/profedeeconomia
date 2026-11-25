@@ -15,6 +15,31 @@ materiales:
 competencias_clave: [CC, CPSAA, CCL, CD]
 competencias_especificas: [CE3]
 ebau: false
+rubrica:
+  - criterio: "Uso correcto de los conceptos"
+    niveles:
+      - "Confunde cosificación, estereotipo y publicidad ilícita, o llama ilícita a cualquier campaña que le incomoda."
+      - "Define bien algún concepto, pero no distingue una campaña polémica de una ilícita."
+      - "Distingue cosificación, estereotipo y publicidad ilícita y no confunde una campaña polémica con una ilegal."
+      - "Además, aplica un criterio de la Ley General de Publicidad para justificar si una campaña concreta es ilícita."
+  - criterio: "Argumentación con casos"
+    niveles:
+      - "Defiende su postura con opiniones o consignas sin citar ninguna campaña del dosier."
+      - "Cita una campaña del dosier, pero no explica qué criterio legal o conceptual ilustra."
+      - "Apoya sus argumentos en campañas reales del dosier y en los criterios legales."
+      - "Además, contrapone una campaña responsable con otra retirada por sexista para fundamentar su postura."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "No responde a los argumentos del otro equipo o repite su consigna."
+      - "Responde a algún argumento del otro equipo, pero sin rebatir su razón ni citar un caso."
+      - "Responde a los argumentos del otro equipo con un criterio o un caso del dosier, sin recurrir a consignas."
+      - "Además, reconoce un punto válido del otro equipo y explica por qué no cambia su conclusión."
+  - criterio: "Cierre individual"
+    niveles:
+      - "El cierre no llega a cinco líneas o no incluye ningún criterio de comunicación responsable."
+      - "Escribe una conclusión, pero el criterio de comunicación es genérico, como «ser respetuosos»."
+      - "Escribe una conclusión de cinco líneas y define un criterio concreto de comunicación responsable para su proyecto."
+      - "Además, indica en qué decisión de la cuarta P de su proyecto aplicaría ese criterio y cómo."
 estado: borrador
 ---
 

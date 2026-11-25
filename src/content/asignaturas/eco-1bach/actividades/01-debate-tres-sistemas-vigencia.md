@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de evaluación del debate impresa para la coevaluación"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE1]
+rubrica:
+  - criterio: "Solidez argumental"
+    niveles:
+      - "Defiende su sistema con afirmaciones generales y no usa ningún dato de la ficha."
+      - "Cita un dato de la ficha, pero no lo conecta con la postura que defiende."
+      - "Defiende su sistema con argumentos coherentes y apoya al menos uno de ellos en un dato de la ficha."
+      - "Además, discute la fiabilidad de un dato de la ficha o muestra qué otra lectura admite."
+  - criterio: "Uso del vocabulario de la unidad"
+    niveles:
+      - "No emplea los términos de la unidad o los usa con un significado equivocado."
+      - "Emplea alguno de los términos de la unidad, pero omite otros o los confunde."
+      - "Emplea sistema económico, asignación de recursos y las tres preguntas con el significado correcto."
+      - "Además, usa las tres preguntas (qué, cómo y para quién) para comparar cómo responde cada sistema."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "Descalifica al equipo contrario o ignora sus argumentos al replicar."
+      - "Responde a los contrarios, pero con consignas o cambiando de tema."
+      - "Responde a los argumentos concretos de los otros dos equipos sin descalificarlos."
+      - "Además, reconoce qué parte del argumento contrario es cierta antes de rebatir el resto."
+  - criterio: "Cierre individual"
+    niveles:
+      - "El cierre repite la postura asignada, sin opinión propia ni argumento del equipo contrario."
+      - "Da una opinión propia, pero no cita ningún argumento ajeno ni reconoce la complejidad del tema."
+      - "Responde en 5-6 líneas con opinión propia y cita un argumento del equipo contrario que le parece sólido."
+      - "Además, explica por qué ese argumento ajeno le obliga a matizar su respuesta a la pregunta inicial."
 estado: publicado
 ---
 

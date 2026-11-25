@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de debate impresa para el jurado"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE3]
+rubrica:
+  - criterio: "Uso correcto de la elasticidad"
+    niveles:
+      - "No relaciona el precio máximo con la escasez o confunde la elasticidad de oferta con la de demanda."
+      - "Explica que el precio máximo genera escasez, pero no dice de qué depende su tamaño."
+      - "Predice la escasez de alquiler a partir de la elasticidad de oferta y de demanda de vivienda."
+      - "Además, compara la escasez que resulta con dos elasticidades distintas y razona por qué cambia su tamaño."
+  - criterio: "Manejo de la evidencia"
+    niveles:
+      - "No cita datos del dosier o los presenta de modo que dicen lo contrario de lo que muestran."
+      - "Cita datos del dosier, pero omite la parte que no apoya su postura."
+      - "Cita datos del dosier sobre Berlín, Cataluña o la teoría del precio máximo sin tergiversarlos."
+      - "Además, señala qué parte de la evidencia es mixta y qué conclusión sí permite sacar."
+  - criterio: "Distinción corto/largo plazo"
+    niveles:
+      - "Trata los efectos del tope como si fueran los mismos a corto y a largo plazo."
+      - "Menciona que hay diferencia entre plazos, pero no dice cómo cambia la oferta."
+      - "Diferencia los efectos inmediatos, con oferta inelástica, de los de largo plazo, con oferta más elástica."
+      - "Además, señala una reacción concreta de los propietarios a largo plazo, como pasar pisos a venta o a uso turístico."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Mezcla lo que provoca el tope con lo que le parece justo, sin distinguirlos."
+      - "Distingue efectos y juicio en parte, pero formula como dato alguna afirmación que es una valoración."
+      - "Separa el análisis positivo, qué efectos tiene el tope, del juicio normativo, si es deseable."
+      - "Además, indica qué dato o qué efecto le haría cambiar su juicio normativo."
 estado: publicado
 ---
 

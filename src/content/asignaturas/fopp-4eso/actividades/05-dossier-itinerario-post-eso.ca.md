@@ -14,6 +14,31 @@ materiales:
   - "Rúbrica d'avaluació impresa per al professor i per a coavaluació entre alumnes"
 competencias_clave: [CPSAA, CD, CE, CCL]
 competencias_especificas: [CE5, CE8]
+rubrica:
+  - criterio: "Diversitat i concreció de les tres opcions"
+    niveles:
+      - "Presenta menys de tres opcions o no inclou una de Batxillerat i una de FP."
+      - "Presenta les tres opcions, però alguna no indica centre concret ni requisits d'accés, o no és realista per a l'alumne."
+      - "Presenta una opció de Batxillerat, una de FP i una tercera distinta, cadascuna amb centre, requisits d'accés i eixides."
+      - "A més, compara les tres opcions entre si amb dades concretes d'ocupació, salari i distància al domicili."
+  - criterio: "Rigor de les dades i de les fonts"
+    niveles:
+      - "Les xifres d'ocupabilitat i salari no porten font o provenen d'opinions sense verificar."
+      - "Cita fonts, però sense URL o data de consulta, o usa una sola font en alguna opció."
+      - "Cada dada d'ocupabilitat i salari porta URL i data de consulta, amb almenys dues fonts oficials per opció."
+      - "A més, contrasta les dues fonts de cada opció i assenyala quines diferències hi ha entre elles."
+  - criterio: "Raonament de la conclusió personal"
+    niveles:
+      - "La conclusió tria una opció sense explicar el criteri ni mencionar dubtes o informació pendent."
+      - "Explica l'elecció, però sense aplicar a les dades els criteris de la unitat o amb menys de tres dubtes concrets."
+      - "Aplica els criteris de la unitat a les dades del dossier, nomena almenys tres dubtes i la informació que li falta."
+      - "A més, justifica amb dades del propi dossier per què descarta cadascuna de les altres dues opcions."
+  - criterio: "Presentació oral"
+    niveles:
+      - "Se passa dels cinc minuts o es queda molt curt, i llig sense una estructura reconeixible."
+      - "Respecta els cinc minuts, però no se segueix l'estructura o no respon a les preguntes amb dades."
+      - "Presenta les tres opcions i la seua preferència en cinc minuts, amb estructura clara, i respon a les preguntes del grup."
+      - "A més, respon a les preguntes citant dades del dossier i la seua font, sense llegir."
 estado: publicado
 lang: ca
 slug: "asignaturas/fopp-4eso/actividades/05-dossier-itinerario-post-eso.ca"

@@ -14,6 +14,31 @@ materiales:
   - "Proyector para mostrar al inicio los pasos de navegación de cada portal"
 competencias_clave: [CPSAA, CD, CE]
 competencias_especificas: [CE6]
+rubrica:
+  - criterio: "Rigor de los datos y de las fuentes"
+    niveles:
+      - "Los datos de salario, requisitos o proyección no llevan fuente, o la fuente no es oficial."
+      - "Cita fuentes oficiales, pero faltan la URL o la fecha en varios datos, o usa una sola fuente en las tres fichas."
+      - "Cada dato de salario, requisitos y proyección lleva URL y fecha, con al menos dos fuentes distintas en las tres fichas."
+      - "Además, diferencia el salario de entrada del salario medio del sector en cada ficha y cita la fuente de cada uno."
+  - criterio: "Cumplimiento de las reglas de selección"
+    niveles:
+      - "Alguna profesión es vaga o inventada, como «algo con animales», y no figura en el catálogo de ocupaciones."
+      - "Las tres son profesiones reales, pero ninguna es de alta demanda o las tres exigen el mismo nivel formativo."
+      - "Elige tres profesiones reales, al menos una de alta demanda 2024-2030 y al menos una con nivel formativo distinto."
+      - "Además, localiza el código CNO de las tres profesiones y las clasifica correctamente por sector económico."
+  - criterio: "Descripción y opinión argumentada"
+    niveles:
+      - "La descripción está copiada de una web y la opinión se reduce a «porque mola» o «me han dicho»."
+      - "Describe con lenguaje propio, pero la opinión no se apoya en los datos de la ficha o ocupa menos de cuatro líneas."
+      - "Describe el día a día con lenguaje propio y escribe una opinión de al menos cuatro líneas apoyada en los datos."
+      - "Además, la opinión compara las tres profesiones entre sí con los datos de las fichas."
+  - criterio: "Uso del vocabulario de la unidad"
+    niveles:
+      - "No usa el vocabulario de la unidad o lo confunde, por ejemplo sector con nivel formativo."
+      - "Usa algunos términos de la unidad, pero confunde alguno, como cuenta ajena e intraemprendimiento."
+      - "Usa correctamente EPA, sectores, CNO, forma de trabajo y profesión emergente o en retroceso en las fichas."
+      - "Además, usa los términos para comparar las profesiones, por ejemplo cuenta ajena frente a autoempleo según el sector."
 estado: publicado
 ---
 

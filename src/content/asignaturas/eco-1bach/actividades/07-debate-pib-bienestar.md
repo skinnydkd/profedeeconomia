@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de debate para coevaluación"
 competencias_clave: [CCL, CC, CPSAA, CCEC]
 competencias_especificas: [CE4]
+rubrica:
+  - criterio: "Lectura correcta de los indicadores"
+    niveles:
+      - "Confunde el PIB total con el PIB per cápita o interpreta al revés el IDH y el Gini."
+      - "Distingue PIB total y per cápita, pero interpreta mal la PPA, el IDH o el Gini."
+      - "Interpreta bien PIB total, PIB per cápita en PPA, IDH y Gini al leer la tabla de datos."
+      - "Además, explica por qué un mismo PIB total puede ocultar situaciones distintas en dos países de la tabla."
+  - criterio: "Argumentación con datos"
+    niveles:
+      - "Argumenta con consignas sin apoyarse en la tabla o contradice los datos de la ficha."
+      - "Usa la tabla, pero selecciona una sola cifra y la presenta fuera de contexto."
+      - "Apoya sus argumentos en los datos de la tabla sin tergiversarlos."
+      - "Además, contrasta dos indicadores de un mismo país para mostrar una coincidencia o una contradicción."
+  - criterio: "Capacidad de réplica"
+    niveles:
+      - "Responde con consignas y sin referirse a los datos del otro equipo."
+      - "Responde a lo que dice el otro equipo, pero repite su postura sin datos nuevos."
+      - "Responde a los argumentos concretos del otro equipo con datos de la tabla, sin reducir el debate a consignas."
+      - "Además, reconoce qué parte válida tiene el argumento rival y precisa hasta dónde llega."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Nombra indicadores sin explicar qué mide cada uno."
+      - "Propone dos indicadores, pero solo justifica uno de ellos."
+      - "Propone dos indicadores en cinco líneas y justifica qué aporta cada uno para juzgar si un país va bien."
+      - "Además, elige dos indicadores que se complementan, de modo que el segundo cubre lo que el primero deja fuera."
 estado: publicado
 ---
 

@@ -15,6 +15,31 @@ materiales:
   - "Plantilla de propuesta de valor (incluida abajo)"
   - "Checklist de auditoría de huella digital (búsqueda del propio nombre en Google en modo incógnito)"
   - "Rúbrica de perfil de LinkedIn para la auditoría cruzada, compartida en digital"
+rubrica:
+  - criterio: "Claridad de la propuesta de valor"
+    niveles:
+      - "La propuesta no dice a quién ayuda ni qué consigue, como «se me da bien lo mío»."
+      - "Completa la plantilla, pero el diferencial es genérico y valdría para cualquier persona con el mismo título."
+      - "Una frase con la plantilla dice a quién ayuda, qué consigue y su diferencial concreto, elegida entre tres versiones."
+      - "Además, el diferencial se apoya en un hecho comprobable, como un proyecto del título o unas prácticas."
+  - criterio: "Calidad del perfil de LinkedIn"
+    niveles:
+      - "El perfil tiene un titular como «Estudiante» y un resumen con frases vacías, o está incompleto."
+      - "Tiene foto y titular descriptivo, pero el resumen no se deriva de la propuesta o faltan apartados."
+      - "Tiene foto adecuada, titular descriptivo, resumen de 200 a 300 palabras sin frases vacías y al menos cinco aptitudes."
+      - "Además, el resumen incluye un dato distintivo que el titular no repite y las aptitudes responden a su objetivo profesional."
+  - criterio: "Auditoría de la huella digital"
+    niveles:
+      - "No entrega conclusiones de la búsqueda de su nombre o solo copia las preguntas del checklist."
+      - "Entrega media página de conclusiones, pero no aplica ninguna medida de protección."
+      - "Entrega conclusiones reales de la búsqueda en modo incógnito y aplica al menos una medida de protección."
+      - "Además, distingue lo que conviene corregir de lo que conviene reforzar y justifica cada decisión."
+  - criterio: "Rigor en la auditoría cruzada"
+    niveles:
+      - "Evalúa el perfil del compañero sin usar la rúbrica o sin proponer ninguna mejora."
+      - "Usa la rúbrica, pero las mejoras son vagas, como «ponle más cosas»."
+      - "Evalúa con la rúbrica, responde a las tres preguntas de reclutador y propone mejoras útiles."
+      - "Además, ordena las mejoras de mayor a menor impacto en la primera impresión de seis segundos."
 estado: publicado
 ---
 

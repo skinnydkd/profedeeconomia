@@ -16,6 +16,31 @@ materiales:
 competencias_clave: [CPSAA, CE, CCL, CD]
 competencias_especificas: [CE4, CE3]
 ebau: false
+rubrica:
+  - criterio: "Problema i proposta"
+    niveles:
+      - "El problema és vague, com «ajudar la gent», i la proposta no cap en una frase."
+      - "Identifica un problema, però la persona a qui servix és difusa o la proposta ocupa diverses frases."
+      - "Concreta un problema, una persona exacta i una proposta en una sola frase."
+      - "A més, descarta amb una raó les altres idees que va proposar el grup abans de triar esta."
+  - criterio: "Missió, visió i valors"
+    niveles:
+      - "La missió, la visió i els valors són frases buides que valdrien per a qualsevol empresa."
+      - "Redacta missió, visió i tres valors, però la missió no diu què fa, per a qui o quin problema resol."
+      - "La missió diu què fa, per a qui i què resol; la visió mira al futur i els tres valors són propis."
+      - "A més, il·lustra cada valor amb una decisió concreta que el projecte prendria."
+  - criterio: "Marca i dimensió social"
+    niveles:
+      - "No comprova el nom en l'OEPM ni valora l'impacte social del projecte."
+      - "Busca el nom en l'OEPM, però no explica per què importa protegir la marca ni què faria si estiguera registrat."
+      - "Anota la cerca en l'OEPM, raona per què importa protegir la marca i justifica l'impacte social, amb ODS si escau."
+      - "A més, proposa què faria si el nom estiguera registrat o un canvi realista que afija dimensió social."
+  - criterio: "Treball en equip i exposició"
+    niveles:
+      - "No hi ha un repartiment clar de rols i la presentació s'allarga o s'improvisa."
+      - "Reparteixen rols, però la presentació de 5 minuts queda en mans de poques persones o se'n passa de temps."
+      - "Rols repartits, decisions compartides i presentació de 5 minuts clara i ajustada al temps."
+      - "A més, respon a la pregunta crítica del comitè de propòsit amb un argument del projecte."
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/07-proyecto-mision-vision-equipo.ca"
 ---

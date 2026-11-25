@@ -13,6 +13,31 @@ materiales:
   - "Cronómetro proyectado para los turnos"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE5]
+rubrica:
+  - criterio: "Mecanismo de transmisión"
+    niveles:
+      - "No explica cómo los tipos afectan a los precios o invierte la cadena causal."
+      - "Dice que subir tipos frena los precios, pero omite algún eslabón, como el crédito o la demanda."
+      - "Explica la cadena completa: tipos, crédito, consumo e inversión, demanda agregada y precios, con retardo."
+      - "Además, usa el retardo de varios trimestres para valorar si el BCE subió los tipos pronto o tarde."
+  - criterio: "Dilema crecimiento-precios"
+    niveles:
+      - "Solo presenta la ventaja de su postura, sin ningún coste."
+      - "Menciona un coste de la otra opción, pero sin explicar a quién afecta ni por qué."
+      - "Plantea el coste de cada opción: precios altos si se sube poco, recesión y paro si se sube mucho."
+      - "Además, concreta quién soporta cada coste, por ejemplo familias con hipoteca o empresas que invierten."
+  - criterio: "Origen de la inflación"
+    niveles:
+      - "No distingue entre inflación de oferta y de demanda y trata toda la inflación igual."
+      - "Nombra la diferencia entre oferta y demanda, pero no la aplica a la inflación de 2022."
+      - "Distingue la inflación de oferta de la de demanda y las aplica al caso de 2022."
+      - "Además, explica por qué subir tipos ante una inflación de oferta puede agravar la caída de la producción."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Defiende un ritmo de subida sin razones o sin reconocer ningún riesgo de su postura."
+      - "Defiende un ritmo con razones, pero el riesgo que reconoce es genérico."
+      - "Toma postura sobre el ritmo de subida y reconoce un riesgo concreto de su propia postura."
+      - "Además, indica qué dato de la ficha le haría cambiar de postura."
 estado: publicado
 ---
 

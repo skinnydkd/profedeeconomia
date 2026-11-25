@@ -15,6 +15,31 @@ materiales:
   - "Materiales de prototipado rápido (papel, post-its, cartón)"
   - "Fichas de postura para el debate (a favor de financiar por venta / por subvención / mixta)"
   - "Rúbrica de debate: argumentación, escucha y uso de evidencia"
+rubrica:
+  - criterio: "Calidad del sprint de design thinking"
+    niveles:
+      - "Se salta fases del design thinking o no formula el problema con persona, necesidad y hallazgo."
+      - "Recorre las cinco fases, pero la definición del problema es genérica o el prototipo no se prueba."
+      - "Recorre las cinco fases, define el problema en una frase con persona, necesidad y hallazgo, y prueba el prototipo con otro equipo."
+      - "Además, modifica el prototipo o la definición a partir de lo que devuelve el equipo que lo prueba."
+  - criterio: "Vinculación con un ODS"
+    niveles:
+      - "No vincula la solución con ningún ODS o cita uno sin explicar la relación."
+      - "Cita un ODS con una relación general que valdría para cualquier proyecto."
+      - "Identifica el ODS con el que conecta su solución y explica la relación con el problema definido."
+      - "Además, señala una meta concreta del ODS y cómo se comprobaría que la solución contribuye a ella."
+  - criterio: "Calidad de la argumentación en el debate"
+    niveles:
+      - "Defiende su postura con eslóganes sin evidencia, o rebate a las personas en lugar de a las ideas."
+      - "Expone una tesis clara, pero no la aplica al proyecto ni responde a las otras posturas."
+      - "Defiende con evidencia su vía de financiación aplicada al proyecto y rebate las otras posturas respetando los turnos."
+      - "Además, reconoce un límite de su propia postura y explica cómo lo reduciría en el proyecto."
+  - criterio: "Distinción de las tres figuras"
+    niveles:
+      - "Confunde empresa mercantil, emprendimiento social y ONG, o las presenta como lo mismo."
+      - "Distingue alguna figura, pero no explica cómo se financia o qué papel tiene el beneficio en cada una."
+      - "Diferencia las tres figuras y sitúa su proyecto en una de ellas, justificando el papel del beneficio."
+      - "Además, explica qué cambiaría en la financiación del proyecto si lo situara en una de las otras figuras."
 estado: publicado
 ---
 

@@ -14,6 +14,31 @@ materiales:
   - "Rúbrica impresa, repartida abans de començar"
   - "Permís de l'equip directiu si les peces s'han de penjar de veres"
 lang: ca
+rubrica:
+  - criterio: "Identificació"
+    niveles:
+      - "Qui genera el cost i qui el suporta són les mateixes persones, així que no hi ha externalitat."
+      - "Nomena qui genera el cost i qui el paga, però amb descripcions vagues com «tothom»."
+      - "Nomena amb precisió qui genera l'externalitat i qui la suporta, i són persones diferents."
+      - "A més, explica per què qui la genera no la corregix pel seu compte, identificant-ne l'incentiu."
+  - criterio: "Rigor de la xifra"
+    niveles:
+      - "La xifra no és pròpia o és una afirmació general sense número, com «contaminem moltíssim»."
+      - "Aporta una xifra pròpia, però sense explicar el mètode o sense escriure els supòsits."
+      - "Estima una xifra pròpia comptant, mesurant o preguntant, i deixa escrits el mètode i els supòsits."
+      - "A més, assenyala quin és el supòsit més fràgil i quant canviaria la xifra si fallara."
+  - criterio: "Proposta"
+    niveles:
+      - "No proposa cap mesura, o és una frase general sense forma d'aplicar-la al centre."
+      - "Proposa una mesura concreta, però no la classifica o no preveu cap efecte."
+      - "Proposa una mesura aplicable al centre, la classifica (impost, norma, informació o disseny) i preveu el seu efecte."
+      - "A més, raona què podria eixir malament o si la mesura només trasllada el problema a un altre lloc."
+  - criterio: "Comunicació"
+    niveles:
+      - "Les peces són il·legibles o culpabilitzen persones concretes en lloc d'explicar el cost."
+      - "Lliura les tres peces, però alguna no s'entén en cinc segons o no té jerarquia visual."
+      - "Les tres peces són llegibles, tenen jerarquia visual i expliquen el cost sense culpabilitzar."
+      - "A més, cada peça complix la seua funció: la dada s'entén en cinc segons i la proposta indica qui ha d'actuar."
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/06-creativo-campana-externalidad-del-centro.ca"
 ---

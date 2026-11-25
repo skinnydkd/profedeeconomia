@@ -13,6 +13,31 @@ materiales:
   - "Rúbrica de coevaluación impresa"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE2]
+rubrica:
+  - criterio: "Uso de los sesgos"
+    niveles:
+      - "No nombra ningún sesgo de la unidad o lo nombra sin aplicarlo al caso."
+      - "Nombra un sesgo, pero lo aplica de forma imprecisa o sin su nombre técnico."
+      - "Nombra sesgos concretos de la unidad, como la inercia o el sesgo del presente, y los aplica bien al caso."
+      - "Además, explica por qué la opción por defecto aprovecha ese sesgo sin quitar ninguna opción a nadie."
+  - criterio: "Solidez argumental"
+    niveles:
+      - "Argumenta con impresiones y no cita ningún caso de la ficha."
+      - "Cita un caso de la ficha, pero sin usar su dato para sostener la postura."
+      - "Apoya sus argumentos en el dato de al menos un caso de la ficha: órganos, pensiones o etiquetado."
+      - "Además, compara dos casos de la ficha y explica en cuál es más fuerte su argumento."
+  - criterio: "Réplica"
+    niveles:
+      - "Cambia de tema o ataca al otro equipo en lugar de responder a su objeción."
+      - "Responde a la objeción solo en parte o se limita a repetir su propia postura."
+      - "Responde a la objeción concreta del otro equipo sin cambiar de tema."
+      - "Además, anticipa en su exposición la objeción más fuerte del contrario y ya incluye la respuesta."
+  - criterio: "Cierre individual"
+    niveles:
+      - "Repite el rol asignado sin posición propia y sin citar al lado contrario."
+      - "Toma una posición propia, pero no cita ningún argumento del lado contrario."
+      - "Escribe cinco líneas con su posición real y cita un argumento del lado contrario que le ha hecho dudar."
+      - "Además, indica qué dato o qué diseño del defecto cambiaría su posición."
 estado: publicado
 ---
 

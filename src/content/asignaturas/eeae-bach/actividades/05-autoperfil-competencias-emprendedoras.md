@@ -14,6 +14,31 @@ materiales:
 competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE4]
 ebau: false
+rubrica:
+  - criterio: "Iniciativa e inteligencia ejecutiva"
+    niveles:
+      - "Espero a que me digan qué hacer y dejo las tareas a medias cuando surge una dificultad."
+      - "A veces empiezo tareas por mi cuenta, pero me cuesta terminarlas o corregir el rumbo si algo falla."
+      - "Propongo y empiezo tareas sin que me lo pidan, y las termino corrigiendo lo que no funciona."
+      - "Además, planifico los pasos de una tarea larga y la retomo tras un fallo sin que nadie me lo recuerde."
+  - criterio: "Tolerancia a la incertidumbre y resiliencia"
+    niveles:
+      - "Me bloqueo o abandono cuando no sé cómo saldrá algo o cuando fallo."
+      - "Aguanto la incertidumbre un rato, pero tras un fallo necesito que alguien me anime para seguir."
+      - "Sigo adelante aunque no sepa cómo saldrá y trato un error como algo de lo que aprender."
+      - "Además, tras un error identifico qué falló y pruebo otra vía antes de pedir ayuda."
+  - criterio: "Comunicación y asertividad"
+    niveles:
+      - "Me callo lo que pienso o lo digo de forma que molesta, y casi nunca pido la palabra."
+      - "Doy mi opinión con personas de confianza, pero me cuesta hacerlo en el grupo o ante un desacuerdo."
+      - "Expreso mi opinión con claridad y respeto en el grupo, y pido la palabra cuando tengo algo que aportar."
+      - "Además, defiendo mi punto de vista ante un desacuerdo y escucho al otro antes de contestar."
+  - criterio: "Cooperación"
+    niveles:
+      - "Hago mi parte por separado y no aviso al grupo de cómo voy."
+      - "Cumplo mi parte en el equipo, pero rara vez ayudo a otros o pido ayuda."
+      - "Cumplo mi parte, aviso al equipo de cómo voy y ayudo cuando alguien lo necesita."
+      - "Además, ajusto mi forma de trabajar al equipo y reparto tareas según lo que hace mejor cada persona."
 estado: publicado
 ---
 

@@ -13,6 +13,31 @@ materiales:
   - "Plantilla del proyecto profesional en A4 (incluida abajo), PDF imprimible y documento editable"
   - "Acceso a internet para verificar datos del mercado de trabajo objetivo"
   - "Rúbrica de evaluación impresa para el profesor y para la coevaluación"
+rubrica:
+  - criterio: "DAFO cruzado con el mercado"
+    niveles:
+      - "Las casillas son genéricas y no se apoyan en el inventario ni en el mercado de trabajo."
+      - "Las fortalezas salen del inventario, pero las oportunidades y amenazas son genéricas o hay casillas con menos de tres entradas."
+      - "Fortalezas y debilidades salen del inventario y oportunidades y amenazas del mercado objetivo, con tres a cinco entradas por casilla."
+      - "Además, cada oportunidad o amenaza cita un dato del mercado de trabajo, como la demanda del sector o los requisitos crecientes."
+  - criterio: "Coherencia del análisis CAME"
+    niveles:
+      - "El CAME repite el DAFO sin proponer acciones o deja algún cuadrante sin completar."
+      - "Hay estrategia en los cuatro cuadrantes, pero alguna es una intención sin acción concreta."
+      - "Cada cuadrante del DAFO genera una estrategia (corregir, afrontar, mantener, explotar) con una acción concreta."
+      - "Además, ordena las acciones por prioridad y justifica por qué empieza por la primera."
+  - criterio: "Calidad de los objetivos SMART"
+    niveles:
+      - "Los objetivos son deseos generales, como «encontrar trabajo», sin medida ni plazo."
+      - "Hay cuatro o cinco objetivos a corto plazo, pero varios no son medibles o no tienen plazo."
+      - "Los cuatro o cinco objetivos a corto plazo pasan el filtro SMART completo y derivan de una estrategia CAME."
+      - "Además, los escenarios de medio plazo y la orientación a largo plazo enlazan con los objetivos del primer año."
+  - criterio: "Hoja de ruta y seguimiento"
+    niveles:
+      - "La hoja de ruta lista intenciones sin fechas y no define ningún sistema de seguimiento."
+      - "Ordena acciones en el tiempo, pero faltan carriles o el seguimiento no tiene fechas reales."
+      - "Ordena acciones en tres carriles con un primer paso datable esta semana y define tres fechas de revisión e indicadores de avance."
+      - "Además, cada acción indica el recurso concreto que usará, como un módulo, un certificado o un portal de empleo."
 estado: publicado
 ---
 
