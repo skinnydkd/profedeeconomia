@@ -1,8 +1,9 @@
 ---
 /**
  * Rubric an activity hands out: one row per criterion, one column per level.
- * No styles of its own: it sits inside `.prose` on the web and `.act__body`
- * in the printable workbook, which already style tables.
+ * It sits inside `.prose` on the web and `.act__body` in the printable
+ * workbook, which already style tables; the screen rule below only keeps five
+ * columns readable in the narrow reading column.
  */
 import type { Locale } from '@/i18n/locale';
 interface Props { rubrica: { criterio: string; niveles: string[] }[]; locale?: Locale }
@@ -16,7 +17,7 @@ const copy = {
   <>
     <h2>{copy.titulo}</h2>
     <div class="tabla-scroll" role="region" tabindex="0" aria-label={copy.titulo}>
-      <table>
+      <table class="rubrica-niveles">
         <thead>
           <tr><th scope="col">{copy.criterio}</th>{copy.niveles.map((n) => <th scope="col">{n}</th>)}</tr>
         </thead>
@@ -29,3 +30,10 @@ const copy = {
     </div>
   </>
 )}
+<style>
+  @media screen {
+    .rubrica-niveles { font-size: 0.82em; line-height: 1.45; min-width: 38rem; }
+    .rubrica-niveles :is(th, td) { padding: 0.55em 0.65em; }
+    .rubrica-niveles tbody th { text-transform: none; letter-spacing: 0; font-size: inherit; }
+  }
+</style>

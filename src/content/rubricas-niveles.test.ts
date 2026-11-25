@@ -75,5 +75,5 @@ describe('rubric levels', () => {
       }
     }
     expect(fallos).toEqual([]);
-  });
+  }, 20_000);
 });

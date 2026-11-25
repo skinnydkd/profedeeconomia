@@ -14,9 +14,10 @@ const copy = {
   es: { resumen: 'Qué significa cada nivel', niveles: ['1 · Inicio', '2 · En proceso', '3 · Bien', '4 · Excelente'] },
   ca: { resumen: 'Què vol dir cada nivell', niveles: ['1 · Inici', '2 · En procés', '3 · Bé', '4 · Excel·lent'] },
 }[locale];
-const conNiveles = rubrica
-  .map((r) => ({ criterio: r.criterio, desc: r.niveles ?? nivelesDe(r.criterio, locale) }))
-  .filter((r): r is { criterio: string; desc: readonly string[] } => Boolean(r.desc));
+const conNiveles = rubrica.flatMap((r) => {
+  const desc: readonly string[] | undefined = r.niveles ?? nivelesDe(r.criterio, locale);
+  return desc ? [{ criterio: r.criterio, desc }] : [];
+});
 ---
 {conNiveles.length > 0 && (
   <details class="niveles">
