@@ -439,7 +439,12 @@ Queden sense regla `/stax` i `/rapid`, que no sé a quina pàgina nova correspon
 
 **Fet.** `Disallow: /_vercel/insights/` a `robots.txt`, per a no gastar el 17 % del rastreig en el beacon. No afecta l'analítica de visitants reals. Fonts, JS i CSS no es bloquegen: Google els necessita per a renderitzar, i ja tenen memòria cau d'un any.
 
-**Pendent.** Demanar la indexació de les 64 unitats a mà (unes 10 al dia). `/stax` i `/rapid` continuen sense destí.
+**Sol·licituds d'indexació.** De les 64 unitats, 8 són adreces antigues d'Eco 4t que ja redirigeixen (no cal demanar-les). En queden 56. La quota diària s'acaba a les 11 sol·licituds.
+
+- 26/11: les 11 d'EDMN (01-03 i 05-12). ✅
+- Pendents (45): Eco 1r 02-08, 10 i 11 · FOPP 05-10 · EEAE 02-10 · IPE I 01, 05-07 i 09 · IPE II 03-09 · Taller 01, 04 i 06-09 · GPE 01, 06 i 07.
+
+**Pendent.** `/stax` i `/rapid` continuen sense destí.
 
 **Punt de control:** cap al 10/12, mirar a «Estadístiques de rastreig» si la part de JSON ha caigut i la d'HTML ha pujat, i quantes unitats del llibre queden a la llista.
 
