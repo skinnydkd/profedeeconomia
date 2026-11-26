@@ -1,0 +1,105 @@
+---
+/**
+ * The home's shelf: one spine per published subject, in its colour, grouped by
+ * stage. It is the page's own image (the product is ten books) and a second
+ * way into each subject, above the cards.
+ *
+ * Wide screens print the full title on the spine; narrow ones the short label,
+ * with the title kept for screen readers.
+ */
+import type { Asignatura } from '@/lib/asignaturas';
+
+type Grupo = { etapa: string; titulo: string; asignaturas: { asignatura: Asignatura }[] };
+type Props = { grupos: Grupo[]; label: string };
+const { grupos, label } = Astro.props;
+
+/** Spine heights as a share of the tallest, so the row reads as a shelf, not a bar chart. */
+const ALTURAS = [0.8, 0.93, 0.86, 1, 0.9, 0.96, 0.83, 0.91, 0.81, 0.95];
+let i = 0;
+---
+
+<nav class="estante" aria-label={label}>
+  {grupos.map((g) => (
+    <div class="estante__grupo" style={`flex-grow:${g.asignaturas.length}`}>
+      <ul class="estante__lomos">
+        {g.asignaturas.map(({ asignatura: a }) => (
+          <li style={`--alto:${ALTURAS[i++ % ALTURAS.length]}`}>
+            <a class="lomo" href={`/${a.slug}/`} style={`--lomo:var(--color-${a.color}-ink)`}>
+              <span class="lomo__titulo">{a.title}</span>
+              <span class="lomo__corto" aria-hidden="true">{a.shortLabel}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <span class="estante__etapa" aria-hidden="true">{g.titulo}</span>
+    </div>
+  ))}
+</nav>
+
+<style>
+  .estante {
+    --alto-max: clamp(13rem, 24vw, 19rem);
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-end;
+  }
+  .estante__grupo { flex: 1 1 0; min-width: 0; }
+  .estante__lomos {
+    list-style: none;
+    margin: 0;
+    padding: 0 2px;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    border-bottom: 3px solid var(--color-ink);
+  }
+  .estante__lomos li { flex: 1 1 0; min-width: 0; height: calc(var(--alto-max) * var(--alto)); }
+  .lomo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 0.9rem 0.2rem 0.6rem;
+    background: var(--lomo);
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.16s ease;
+  }
+  .lomo span {
+    writing-mode: vertical-rl;
+    font-family: var(--font-serif);
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+    font-size: 0.86rem;
+    line-height: 1.25;
+    max-height: 100%;
+    text-wrap: balance;
+  }
+  .lomo__corto { display: none; white-space: nowrap; }
+  .lomo:hover { transform: translateY(-7px); }
+  .lomo:active { transform: translateY(-2px); }
+  .lomo:focus-visible { transform: translateY(-7px); outline: 3px solid var(--color-ink); outline-offset: 2px; }
+  .estante__etapa {
+    display: block;
+    margin-top: 0.45rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-ink-mute);
+  }
+
+  /* Narrow spines hold one line: the short label, with the title for screen readers. */
+  @media (max-width: 1099px) {
+    .estante { gap: 0.5rem; --alto-max: clamp(10rem, 44vw, 15rem); }
+    .lomo { padding-top: 0.7rem; }
+    .lomo__titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .lomo__corto { display: block; font-size: 0.8rem; }
+  }
+  @media (min-width: 600px) and (max-width: 1099px) {
+    .lomo__corto { font-size: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lomo { transition: none; }
+    .lomo:hover, .lomo:active, .lomo:focus-visible { transform: none; }
+  }
+</style>

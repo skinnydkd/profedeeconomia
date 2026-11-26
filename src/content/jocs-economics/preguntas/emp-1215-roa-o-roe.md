@@ -8,7 +8,7 @@ opciones:
   - "10 %"
   - "26,7 %"
 correcta: 2
-explicacion: "ROA = BAII / Actiu total = 40.000 / 400.000 = 10 %; el 14 % que resulta de dividir benefici net entre patrimoni net és el ROE, i confondre'ls és l'error més castigat en l'EBAU."
+explicacion: "ROA = BAII / Actiu total = 40.000 / 400.000 = 10 %; el 14 % que resulta de dividir benefici net entre patrimoni net és el ROE, i confondre'ls és l'error més castigat en la PAU."
 estado: publicado
 font: "edmn-2bach U11 — Anàlisi dels estats financers"
 ---
