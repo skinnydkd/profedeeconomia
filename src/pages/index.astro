@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SubjectCard from '@components/SubjectCard.astro';
+import HomeShelf from '@components/HomeShelf.astro';
 import { ASIGNATURAS_PUBLICADAS, ASIGNATURAS_POR_ETAPA } from '@/lib/asignaturas';
 import { organizationLd, websiteLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
@@ -65,6 +66,7 @@ const copy = {
     pageTitle: 'Material para impartir economía, empresa y finanzas en el instituto',
     descIntro: 'Material editorial para profesores de instituto.',
     descBody: 'asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE.',
+    estante: 'Las asignaturas, por etapa',
     heroLead: 'Material para impartir',
     heroAccent: 'economía, empresa y finanzas',
     heroTail: 'en el instituto.',
@@ -99,6 +101,7 @@ const copy = {
     pageTitle: "Material per a impartir economia, empresa i finances a l'institut",
     descIntro: "Material editorial per a professorat d'institut.",
     descBody: 'assignatures amb llibre, diapositives, activitats, tests i recursos. Currículum estatal LOMLOE.',
+    estante: 'Les assignatures, per etapa',
     heroLead: 'Material per a impartir',
     heroAccent: 'economia, empresa i finances',
     heroTail: "a l'institut.",
@@ -140,7 +143,8 @@ const copy = {
 >
 
   <section class="hero">
-    <div class="container">
+    <div class="container hero__grid">
+      <div class="hero__texto">
       <h1>
         {copy.heroLead}
         <span class="serif-italic-wonk hero-accent">{copy.heroAccent}</span>
@@ -155,6 +159,8 @@ const copy = {
         <span>{copy.metaProbado}</span>
         <span>{copy.metaProfes}</span>
       </div>
+      </div>
+      <HomeShelf grupos={gruposEtapa} label={copy.estante} />
     </div>
   </section>
 
@@ -239,6 +245,10 @@ const copy = {
     background: var(--color-bg);
     position: relative;
     overflow: hidden;
+  }
+  .hero__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); align-items: end; }
+  @media (min-width: 1100px) {
+    .hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 31rem); }
   }
   .hero h1 {
     max-width: 17ch;

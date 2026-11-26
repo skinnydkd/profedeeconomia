@@ -77,7 +77,7 @@ const mCopy = {
     imprimir: 'Libro completo para imprimir',
     acciones: 'Compartir esta unidad', copiar: 'Copiar enlace', copiado: 'Enlace copiado.', copiaManual: 'Enlace seleccionado: cópialo con Ctrl+C.', enlace: 'Enlace de la unidad',
     classroom: 'Compartir en Classroom', nuevaPestana: '(se abre en una pestaña nueva)', errata: 'Informar de un error',
-    comprueba: 'Comprueba lo que sabes', testUnidad: 'Test de la unidad',
+    mas: 'Para ir más allá', comprueba: 'Comprueba lo que sabes', testUnidad: 'Test de la unidad',
   },
   ca: {
     label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', pdf: 'PDF de diapositives', test: 'Test', reto: 'Repte',
@@ -86,7 +86,7 @@ const mCopy = {
     imprimir: 'Llibre complet per a imprimir (en castellà)',
     acciones: 'Compartir esta unitat', copiar: 'Copiar l\'enllaç', copiado: 'Enllaç copiat.', copiaManual: 'Enllaç seleccionat: copia\'l amb Ctrl+C.', enlace: 'Enllaç de la unitat',
     classroom: 'Compartir a Classroom', nuevaPestana: '(s\'obri en una pestanya nova)', errata: 'Informar d\'un error',
-    comprueba: 'Comprova el que saps', testUnidad: 'Test de la unitat',
+    mas: 'Per a anar més enllà', comprueba: 'Comprova el que saps', testUnidad: 'Test de la unitat',
   },
 }[locale];
 
@@ -170,8 +170,8 @@ const jsonLd = [
       <h1>{d.title}</h1>
       {d.lema && <p class="lede">{d.lema}</p>}
       <nav class="unit-material" aria-label={mCopy.label}>
-        <span class="unit-material__label">{mCopy.enEsta}</span>
-        <ul>
+        {d.duracion && <span class="unit-material__dato">{d.duracion}</span>}
+        <ul class:list={[d.duracion && 'tras-dato']}>
           {material && <li><a href={material.diapositivas}>{mCopy.diapositivas}</a></li>}
           <li><a href={slidesPdf} download>{mCopy.pdf}</a></li>
           {material?.test && <li><a href={material.test}>{mCopy.test}</a></li>}
@@ -183,42 +183,20 @@ const jsonLd = [
         </ul>
       </nav>
 
-      <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
-        <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
-        <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
-        <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
-        <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
-        <p class="unit-actions__status" role="status"></p>
-      </div>
-
-      <dl class="unit-meta">
-        {d.duracion && (
-          <div>
-            <dt>{copy.duracion}</dt>
-            <dd>{d.duracion}</dd>
-          </div>
-        )}
-        {d.conceptos_clave.length > 0 && (
-          <div>
-            <dt>{copy.conceptos}</dt>
-            <dd>
-              <div class="tag-row">
-                {d.conceptos_clave.map((c) => <span class="tag">{c}</span>)}
-              </div>
-            </dd>
-          </div>
-        )}
-        {d.objetivos.length > 0 && !objetivosEnTexto && (
-          <div style="grid-column: 1 / -1;">
-            <dt>{copy.objetivos}</dt>
-            <dd>
-              <ul class="objetivos">
-                {d.objetivos.map((o) => <li>{o}</li>)}
-              </ul>
-            </dd>
-          </div>
-        )}
-      </dl>
+      {d.objetivos.length > 0 && !objetivosEnTexto && (
+        <div class="unit-objetivos">
+          <p class="unit-objetivos__t">{copy.objetivos}</p>
+          <ul class="objetivos">
+            {d.objetivos.map((o) => <li>{o}</li>)}
+          </ul>
+        </div>
+      )}
+      {d.conceptos_clave.length > 0 && (
+        <details class="unit-conceptos">
+          <summary>{copy.conceptos} ({d.conceptos_clave.length})</summary>
+          <p class="tag-row">{d.conceptos_clave.map((c) => <span class="tag">{c}</span>)}</p>
+        </details>
+      )}
     </div>
   </section>
 
@@ -250,15 +228,10 @@ const jsonLd = [
       <article class="article-body">
         <Content />
 
-        {(material?.test || familias.length > 0) && (
+        {material?.test && (
           <section class="unit-check" aria-labelledby="unit-check-title">
             <h2 id="unit-check-title" class="unit-check__title">{mCopy.comprueba}</h2>
-            <ul>
-              {material?.test && <li><a class="unit-check__test" href={material.test}>{mCopy.testUnidad} →</a></li>}
-              {familias.map((f) => (
-                <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
-              ))}
-            </ul>
+            <a class="unit-check__test" href={material.test}>{mCopy.testUnidad} →</a>
           </section>
         )}
 
@@ -284,9 +257,26 @@ const jsonLd = [
           )}
         </nav>
 
-        <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
-
-        <RecursosRelacionados recursos={recursos} asignaturaLabel={a.shortLabel} unidad={unit.data.unidad} />
+        {/* Everything that is not the next step stays one click away. */}
+        <details class="unit-mas">
+          <summary>{mCopy.mas}</summary>
+          {familias.length > 0 && (
+            <ul class="unit-mas__familias">
+              {familias.map((f) => (
+                <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
+              ))}
+            </ul>
+          )}
+          <RecursosRelacionados recursos={recursos} asignaturaLabel={a.shortLabel} unidad={unit.data.unidad} />
+          <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
+          <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
+            <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
+            <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
+            <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
+            <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
+            <p class="unit-actions__status" role="status"></p>
+          </div>
+          </details>
       </article>
     </div>
   </div>
@@ -349,7 +339,7 @@ const jsonLd = [
 
 
   .unit-opener {
-    padding: 1rem 0 4rem;
+    padding: 1rem 0 2rem;
     background: var(--color-bg);
   }
   .unit-num {
@@ -367,20 +357,21 @@ const jsonLd = [
     line-height: 1.45;
     color: var(--color-ink-soft);
     max-width: 50ch;
-    margin: 0 0 2.8rem;
+    margin: 0 0 1.6rem;
     font-variation-settings: "SOFT" 80;
   }
 
   .unit-material { margin: 1.2rem 0 0.6rem; font-size: 1rem; color: var(--color-ink-soft); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.5em; }
-  .unit-material__label { font-weight: 600; color: var(--color-ink); }
+  .unit-material__dato { color: var(--color-ink); }
+  .unit-material__dato::after { content: "·"; margin-left: 0.5em; color: var(--color-mustard); }
   .unit-material ul { display: contents; list-style: none; }
   .unit-material li { display: inline-flex; align-items: center; }
-  .unit-material li + li::before { content: "·"; margin-right: 0.5em; color: var(--color-mustard); }
+  .unit-material li:not(:last-child)::after { content: "·"; margin-left: 0.5em; color: var(--color-mustard); }
   /* ≥24px targets everywhere, 44px on touch screens. */
   .unit-material a { display: inline-flex; align-items: center; min-height: 1.75rem; color: var(--color-terra-ink); text-decoration: none; }
   .unit-material a:hover { text-decoration: underline; }
 
-  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0 0 1.6rem; }
+  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
   .unit-actions__btn {
     display: inline-flex;
     align-items: center;
@@ -404,27 +395,15 @@ const jsonLd = [
     .unit-material a, .unit-actions__btn, .unit-actions__url { min-height: 44px; }
   }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .unit-meta {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-    gap: 1.5rem 2.5rem;
-    padding: 1.8rem;
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
-    border-radius: 6px;
-    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 4px 14px rgba(42, 31, 24, 0.06);
-    margin: 0;
-  }
-  .unit-meta dt {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-ink-mute);
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-  }
-  .unit-meta dd { margin: 0; font-size: 1rem; color: var(--color-ink); }
+  .unit-objetivos__t { margin: 1rem 0 0; font-weight: 600; color: var(--color-ink); }
+  .unit-conceptos { margin-top: 0.4rem; font-size: 1rem; }
+  .unit-conceptos summary { display: inline-flex; align-items: center; min-height: 1.75rem; cursor: pointer; color: var(--color-ink-soft); text-decoration: underline; text-decoration-color: var(--color-line); text-underline-offset: 0.2em; }
+  .unit-conceptos summary::-webkit-details-marker { display: none; }
+  .unit-conceptos summary::after { content: '+'; margin-left: 0.4em; font-family: var(--font-mono); color: var(--color-terra-ink); }
+  .unit-conceptos[open] summary::after { content: '−'; }
+  .unit-conceptos summary:hover { color: var(--color-ink); text-decoration: underline; }
+  .unit-conceptos .tag-row { margin: 0.3rem 0 0; max-width: 70ch; }
+  @media (pointer: coarse) { .unit-conceptos summary { min-height: 44px; } }
   .tag-row { line-height: 1.8; }
   .tag {
     font-family: var(--font-sans);
@@ -443,9 +422,7 @@ const jsonLd = [
   @media (max-width: 700px) {
     .unit-opener { padding-bottom: 1.5rem; }
     .lede { font-size: 1.2rem; margin-bottom: 1.2rem; }
-    .unit-meta { padding: 1.1rem 1.2rem; gap: 0.9rem; }
-    .unit-meta dd, .tag { font-size: 0.9rem; }
-    .unit-meta dt { margin-bottom: 0.2rem; }
+    .tag { font-size: 0.9rem; }
     .tag-row { line-height: 1.5; }
     .unit-material { margin-top: 0.6rem; }
     .unit-actions { gap: 0.4rem; margin-bottom: 1.2rem; }
@@ -461,6 +438,10 @@ const jsonLd = [
   }
   .article-body > :global(blockquote:first-child p:first-child) { font-size: 0.92rem; }
   .article-body > :global(blockquote:first-child strong) { font-weight: 600; color: var(--color-ink-soft); }
+  /* The objectives are a list to scan: marked, in the ink of the text. */
+  .article-body > :global(blockquote:first-child ul) { list-style: disc; padding-left: 1.2em; margin: 0.4rem 0 0; color: var(--color-ink); }
+  .article-body > :global(blockquote:first-child li) { margin-bottom: 0.3rem; }
+  .article-body > :global(blockquote:first-child li::marker) { color: var(--color-mustard-deep); }
 
   /* ARTICLE LAYOUT */
   .article-layout {
@@ -471,7 +452,7 @@ const jsonLd = [
        TOC and every paragraph out with it (horizontal scroll on phones). */
     grid-template-columns: minmax(0, 1fr);
     gap: 3rem;
-    padding: 4rem 0;
+    padding: 1.5rem 0 4rem;
   }
   @media (min-width: 1100px) {
     .article-layout {
@@ -718,10 +699,28 @@ const jsonLd = [
 
   .unit-check { margin: 3.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
   .article-body .unit-check__title { margin: 0 0 0.8rem; font-size: 1.5rem; }
-  .article-body .unit-check ul { list-style: none; padding: 0; margin: 0; font-size: 1.05rem; }
-  .unit-check li { margin: 0 0 0.4rem; }
-  .unit-check a { color: var(--color-terra-ink); display: inline-flex; min-height: 1.75rem; align-items: center; }
-  .unit-check .unit-check__test { font-weight: 600; font-size: 1.15rem; }
+  .article-body .unit-check__test {
+    display: inline-flex; align-items: center; min-height: 3rem; padding: 0.6rem 1.4rem;
+    font-family: var(--font-sans); font-weight: 600; font-size: 1.1rem;
+    color: #fff; background: var(--color-terra-deep); border: 1px solid var(--color-terra-deep); border-radius: 6px;
+    text-decoration: none;
+  }
+  .article-body .unit-check__test:hover { background: var(--color-ink); border-color: var(--color-ink); }
+  .article-body .unit-check__test:active { transform: translateY(1px); }
+
+  .unit-mas { margin-top: 2.5rem; border-top: 1px solid var(--color-line); }
+  .unit-mas > summary {
+    display: flex; align-items: center; justify-content: space-between; min-height: 3rem;
+    font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-ink); cursor: pointer;
+  }
+  .unit-mas > summary::-webkit-details-marker { display: none; }
+  .unit-mas > summary::after { content: '+'; font-family: var(--font-mono); color: var(--color-terra-ink); }
+  .unit-mas[open] > summary::after { content: '−'; }
+  /* Inside the fold the summary's rule already separates; the first block needs no second one. */
+  .unit-mas > summary + :global(.recursos) { margin-top: 0.5rem; padding-top: 0; border-top: 0; }
+  .unit-mas > summary:hover { color: var(--color-terra-ink); }
+  .article-body .unit-mas__familias { list-style: none; padding: 0; margin: 0.5rem 0 0; font-size: 1.05rem; }
+  .unit-mas__familias a { color: var(--color-terra-ink); display: inline-flex; min-height: 1.75rem; align-items: center; }
 
   /* Reading progress: pure CSS (scroll-driven animation); absent where the
      browser lacks it or the reader asked for less motion. */
@@ -783,6 +782,13 @@ const jsonLd = [
     font-family: var(--font-serif);
     font-size: 1.15rem;
     line-height: 1.3;
+  }
+  /* Two prev/next cards side by side leave ~70px of text per column on a
+     phone. Stack them instead. (Lives here, scoped: a global rule loses to the scoped one above.) */
+  @media (max-width: 600px) {
+    .unit-nav { grid-template-columns: minmax(0, 1fr); }
+    .unit-nav a { padding: 1.3rem; }
+    .unit-nav .next { text-align: left; }
   }
 </style>
 
@@ -922,9 +928,5 @@ const jsonLd = [
   @media (max-width: 600px) {
     .un { padding: 1.4rem 1.3rem; }
     .un__head { flex-direction: column; }
-    /* Two prev/next cards side by side leave ~70px of text per column on a
-       phone. Stack them instead. */
-    .unit-nav { grid-template-columns: minmax(0, 1fr); }
-    .unit-nav a { padding: 1.3rem; }
   }
 </style>
