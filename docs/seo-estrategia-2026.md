@@ -423,6 +423,26 @@ Queden sense regla `/stax` i `/rapid`, que no sé a quina pàgina nova correspon
 
 **Punt de control:** inspeccionar eixes URL cap al 24/11. Si continuen sense indexar després d'un rastreig nou, la causa és de valoració de Google i no de rastreig, i toca investigar per què prefereix la versió valenciana.
 
+### 5.14 Informe d'indexació del 26/11/2026 — rastreig escàs, beacon bloquejat ✅, unitats del llibre ES ⚠️ **obert**
+
+**Les xifres.** 1.550 pàgines indexades (1.750 el 10/11) i 1.280 sense indexar: 562 «Descubierta: actualmente sin indexar», 438 «Rastreada: actualmente sin indexar» (222 el 10/11), 150 `noindex`, 38 bloquejades per `robots.txt`, 41 amb redirecció, 37 alternatives amb canònica, 13 amb 404 (validació iniciada) i 5 amb error de redirecció. El sitemap es llig bé (22/11, 2.151 URL).
+
+**El que és esperat.** Els `noindex` són els visors de diapositives i els índexs de tests o de seccions buides. Les bloquejades són `/imprimir/`. Els 404 ja redirigeixen, tret de `/stax`. Els cinc errors de redirecció són pàgines EBAU d'EDMN al domini sense `www`, que ara fan un sol salt i donen 200. De les descobertes, la gran majoria són `/ca/` que Google encara no ha rastrejat.
+
+**Les 438 rastrejades sense indexar.** 434 són en castellà: 131 activitats, 64 unitats del llibre, 54 activitats dinàmiques, 32 tests, 25 recursos i 12 PDF. Les 64 unitats toquen totes les assignatures menys CJD (EDMN 11; Eco 1r, EEAE i Eco 4t, 9 cadascuna). 366 de les 438 tenen l'últim rastreig al juny o al juliol.
+
+**La causa que sí que es veu.** No hi ha bloqueig tècnic. La inspecció de `/fopp-4eso/libro/05-sistema-educativo-itinerarios/` diu: últim rastreig el 18/07, rastreig i indexació permesos, obtenció correcta i canònica triada per Google igual a la declarada. Google va vore eixes pàgines quan el lloc acabava d'eixir, no les va indexar i no hi ha tornat. I no hi torna perquè rastreja poc: 16.400 peticions en 90 dies (unes 180 al dia), de les quals només el 34 % són HTML, unes 20 o 25 pàgines al dia. La resta són recursos: 19 % fonts, 17 % el beacon de Vercel Analytics (`/_vercel/insights/view`), 12 % JS i 11 % CSS.
+
+**La hipòtesi del §5.13 no es confirma.** En la pàgina inspeccionada Google no prefereix la bessona valenciana: accepta la canònica castellana. I demanar la indexació a mà funciona: de les 7 URL demanades el 10/11, 6 han eixit de la llista (FOPP 01-04, IPE II 01 i 02); només hi continua IPE II 03.
+
+**El que no se sap.** Per què les indexades han baixat 200 en dues setmanes. És coherent amb que Google descarte pàgines semblants d'un lloc jove que no ha tornat a visitar, però les dades de Search Console no ho demostren.
+
+**Fet.** `Disallow: /_vercel/insights/` a `robots.txt`, per a no gastar el 17 % del rastreig en el beacon. No afecta l'analítica de visitants reals. Fonts, JS i CSS no es bloquegen: Google els necessita per a renderitzar, i ja tenen memòria cau d'un any.
+
+**Pendent.** Demanar la indexació de les 64 unitats a mà (unes 10 al dia). `/stax` i `/rapid` continuen sense destí.
+
+**Punt de control:** cap al 10/12, mirar a «Estadístiques de rastreig» si la part de JSON ha caigut i la d'HTML ha pujat, i quantes unitats del llibre queden a la llista.
+
 ---
 
 ## 6. Què mesurar i quan
