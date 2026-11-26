@@ -66,6 +66,26 @@ const COPY = {
 } as const;
 const t = COPY[locale];
 
+/** The page as published: Spanish in both locales. */
+const PAGINA = {
+  mast: 'BOLETÍN OFICIAL DEL ESTADO',
+  meta: 'Núm. 294 · Jueves 6 de diciembre de 2018 · Sec. I',
+  sec: 'I. DISPOSICIONES GENERALES',
+  org: 'JEFATURA DEL ESTADO',
+  num: '16673',
+  tit1: 'Ley Orgánica 3/2018, de 5 de diciembre,',
+  tit2: 'de Protección de Datos Personales y',
+  tit3: 'garantía de los derechos digitales.',
+  pre: 'PREÁMBULO',
+  titulo: 'TÍTULO I. Disposiciones generales',
+  art: 'Artículo 1. Objeto de la ley.',
+  dis1: 'Disposiciones adicionales, transitorias,',
+  dis2: 'derogatoria y finales',
+  vig1: 'Disposición final. Entrada en vigor.',
+  vig2: '«…el día siguiente al de su publicación».',
+  ref: 'BOE-A-2018-16673 · www.boe.es'
+} as const;
+
 /** Grey bars standing for body text: [y, width]. */
 const texto: [number, number][] = [
   [226, 286], [236, 270], [246, 180],
@@ -103,30 +123,30 @@ const texto: [number, number][] = [
   <!-- The page -->
   <rect class="doc" x="250" y="26" width="310" height="470" rx="4"/>
   <rect class="band" x="251" y="27" width="308" height="52"/>
-  <text class="mast" x="405" y="50">BOLETÍN OFICIAL DEL ESTADO</text>
-  <text class="meta" x="405" y="68">Núm. 294 · Jueves 6 de diciembre de 2018 · Sec. I</text>
+  <text class="mast" x="405" y="50">{PAGINA.mast}</text>
+  <text class="meta" x="405" y="68">{PAGINA.meta}</text>
   <line class="rule" x1="251" y1="79" x2="559" y2="79"/>
 
-  <text class="sec" x="405" y="102">I. DISPOSICIONES GENERALES</text>
-  <text class="org" x="405" y="124">JEFATURA DEL ESTADO</text>
+  <text class="sec" x="405" y="102">{PAGINA.sec}</text>
+  <text class="org" x="405" y="124">{PAGINA.org}</text>
 
-  <text class="ref" x="262" y="152">16673</text>
-  <text class="tit" x="306" y="152">Ley Orgánica 3/2018, de 5 de diciembre,</text>
-  <text class="tit" x="306" y="168">de Protección de Datos Personales y</text>
-  <text class="tit" x="306" y="184">garantía de los derechos digitales.</text>
+  <text class="ref" x="262" y="152">{PAGINA.num}</text>
+  <text class="tit" x="306" y="152">{PAGINA.tit1}</text>
+  <text class="tit" x="306" y="168">{PAGINA.tit2}</text>
+  <text class="tit" x="306" y="184">{PAGINA.tit3}</text>
 
-  <text class="h" x="262" y="214">PREÁMBULO</text>
-  <text class="h" x="262" y="280">TÍTULO I. Disposiciones generales</text>
-  <text class="p" x="262" y="296">Artículo 1. Objeto de la ley.</text>
+  <text class="h" x="262" y="214">{PAGINA.pre}</text>
+  <text class="h" x="262" y="280">{PAGINA.titulo}</text>
+  <text class="p" x="262" y="296">{PAGINA.art}</text>
   {texto.map(([y, w]) => <rect class="bar" x="262" y={y} width={w} height="4" rx="2"/>)}
 
-  <text class="h" x="262" y="376">Disposiciones adicionales, transitorias,</text>
-  <text class="h" x="262" y="391">derogatoria y finales</text>
-  <text class="p" x="262" y="420">Disposición final. Entrada en vigor.</text>
-  <text class="p" x="262" y="435">«…el día siguiente al de su publicación».</text>
+  <text class="h" x="262" y="376">{PAGINA.dis1}</text>
+  <text class="h" x="262" y="391">{PAGINA.dis2}</text>
+  <text class="p" x="262" y="420">{PAGINA.vig1}</text>
+  <text class="p" x="262" y="435">{PAGINA.vig2}</text>
 
   <line class="rule" x1="262" y1="462" x2="548" y2="462"/>
-  <text class="foot" x="262" y="481">BOE-A-2018-16673 · www.boe.es</text>
+  <text class="foot" x="262" y="481">{PAGINA.ref}</text>
 
   <!-- Call-outs on the left -->
   <path class="lead" d="M 250 64 H 226"/><circle class="lead-dot" cx="250" cy="64" r="3"/>
