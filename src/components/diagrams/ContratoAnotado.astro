@@ -1,0 +1,204 @@
+---
+/**
+ * A work contract with its clauses called out, so the reader can find on a
+ * real one what the unit's five-step check asks for: type, professional
+ * group, working time, trial period, pay, holidays and the applicable
+ * collective agreement. The worker and company are those of solved exercise
+ * 6.1 (Aitana, 1.800 € gross a month).
+ *
+ * Used in IPE I · Unit 6 (contract and rights).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Un contrato de trabajo, cláusula a cláusula',
+    desc: 'Contrato de trabajo indefinido a tiempo completo entre Taller Levante, S.L. y Aitana R. Cláusulas: presta servicios como técnica en el grupo profesional de técnicos; jornada de 40 horas semanales de lunes a viernes; duración indefinida desde el 1 de abril de 2026 con periodo de prueba de dos meses; retribución de 1.800 euros brutos al mes con las pagas extra prorrateadas; vacaciones de 30 días naturales al año; convenio colectivo del metal de la provincia. Firman la empresa y la trabajadora.',
+    mast: 'CONTRATO DE TRABAJO INDEFINIDO',
+    sub: 'A tiempo completo',
+    empresa: 'Empresa: Taller Levante, S.L.',
+    trabajadora: 'Trabajadora: Aitana R.',
+    clausulas: 'CLÁUSULAS',
+    c1a: 'Primera. Prestará servicios como técnica,',
+    c1b: 'en el grupo profesional de técnicos.',
+    c2a: 'Segunda. Jornada de 40 horas semanales,',
+    c2b: 'de lunes a viernes.',
+    c3a: 'Tercera. Duración indefinida, desde el',
+    c3b: '1 de abril de 2026.',
+    c3c: 'Periodo de prueba: dos meses.',
+    c4a: 'Cuarta. Retribución: 1.800,00 € brutos al',
+    c4b: 'mes, con las pagas extra prorrateadas.',
+    c5a: 'Quinta. Vacaciones: 30 días naturales al año.',
+    c6a: 'Sexta. Convenio colectivo aplicable: el del',
+    c6b: 'sector del metal de la provincia.',
+    lugar: 'Valencia, 1 de abril de 2026',
+    fEmp: 'La empresa',
+    fTra: 'La trabajadora',
+    cMod: 'Modalidad',
+    cModN: 'indefinido: la norma desde 2021',
+    cGru: 'Grupo profesional',
+    cGruN: 'de él depende tu salario de tabla',
+    cPru: 'Periodo de prueba',
+    cPruN: 'con todos los derechos',
+    cVac: 'Vacaciones',
+    cVacN: 'mínimo legal: 30 días naturales',
+    cFir: 'Firma de las dos partes',
+    cFirN: 'pide tu copia y guárdala',
+    cPar: 'Quién contrata a quién',
+    cParN: 'empresa y persona trabajadora',
+    cJor: 'Jornada',
+    cJorN: 'máximo legal: 40 h de media',
+    cIni: 'Fecha de inicio',
+    cIniN: 'desde ese día cuenta la antigüedad',
+    cSal: 'Salario bruto',
+    cSalN: 'nunca por debajo del convenio',
+    cCon: 'Convenio aplicable',
+    cConN: 'búscalo en el REGCON',
+  },
+  ca: {
+    title: 'Un contracte de treball, clàusula a clàusula',
+    desc: "Contracte de treball indefinit a temps complet entre Taller Levante, S.L. i Aitana R. Clàusules: presta servicis com a tècnica en el grup professional de tècnics; jornada de 40 hores setmanals de dilluns a divendres; duració indefinida des de l'1 d'abril de 2026 amb període de prova de dos mesos; retribució de 1.800 euros bruts al mes amb les pagues extra prorratejades; vacances de 30 dies naturals a l'any; conveni col·lectiu del metall de la província. Firmen l'empresa i la treballadora.",
+    mast: 'CONTRACTE DE TREBALL INDEFINIT',
+    sub: 'A temps complet',
+    empresa: 'Empresa: Taller Levante, S.L.',
+    trabajadora: 'Treballadora: Aitana R.',
+    clausulas: 'CLÀUSULES',
+    c1a: 'Primera. Prestarà servicis com a tècnica,',
+    c1b: 'en el grup professional de tècnics.',
+    c2a: 'Segona. Jornada de 40 hores setmanals,',
+    c2b: 'de dilluns a divendres.',
+    c3a: "Tercera. Duració indefinida, des de",
+    c3b: "l'1 d'abril de 2026.",
+    c3c: 'Període de prova: dos mesos.',
+    c4a: 'Quarta. Retribució: 1.800,00 € bruts al',
+    c4b: 'mes, amb les pagues extra prorratejades.',
+    c5a: "Quinta. Vacances: 30 dies naturals a l'any.",
+    c6a: 'Sexta. Conveni col·lectiu aplicable: el del',
+    c6b: 'sector del metall de la província.',
+    lugar: "València, 1 d'abril de 2026",
+    fEmp: "L'empresa",
+    fTra: 'La treballadora',
+    cMod: 'Modalitat',
+    cModN: 'indefinit: la norma des de 2021',
+    cGru: 'Grup professional',
+    cGruN: "d'ell depén el teu salari de taula",
+    cPru: 'Període de prova',
+    cPruN: 'amb tots els drets',
+    cVac: 'Vacances',
+    cVacN: 'mínim legal: 30 dies naturals',
+    cFir: 'Firma de les dues parts',
+    cFirN: 'demana la teua còpia i guarda-la',
+    cPar: 'Qui contracta a qui',
+    cParN: 'empresa i persona treballadora',
+    cJor: 'Jornada',
+    cJorN: 'màxim legal: 40 h de mitjana',
+    cIni: "Data d'inici",
+    cIniN: "des d'eixe dia compta l'antiguitat",
+    cSal: 'Salari brut',
+    cSalN: 'mai per davall del conveni',
+    cCon: 'Conveni aplicable',
+    cConN: "busca'l al REGCON",
+  },
+} as const;
+const t = COPY[locale];
+
+/** Lines of the contract body: text, y. */
+const lineas: [string, number][] = [
+  [t.c1a, 158], [t.c1b, 173],
+  [t.c2a, 200], [t.c2b, 215],
+  [t.c3a, 242], [t.c3b, 257], [t.c3c, 272],
+  [t.c4a, 299], [t.c4b, 314],
+  [t.c5a, 341],
+  [t.c6a, 368], [t.c6b, 383],
+];
+---
+<svg class="d-contrato-anotado" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ca-title ca-desc">
+  <title id="ca-title">{t.title}</title>
+  <desc id="ca-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-contrato-anotado .bg { fill: #FBF6EC; }
+      .d-contrato-anotado .doc { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 1.5; }
+      .d-contrato-anotado .band { fill: #F5EDD9; }
+      .d-contrato-anotado .rule { stroke: #E5D4BD; stroke-width: 1; }
+      .d-contrato-anotado .sign { stroke: #2A1F18; stroke-width: 1; }
+      .d-contrato-anotado .mast { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700; letter-spacing: 0.03em; fill: #2A1F18; text-anchor: middle; }
+      .d-contrato-anotado .sub { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #2A1F18; text-anchor: middle; }
+      .d-contrato-anotado .head { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #2A1F18; }
+      .d-contrato-anotado .head-b { font-weight: 700; }
+      .d-contrato-anotado .sec { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; fill: #5C4A3D; }
+      .d-contrato-anotado .p { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #2A1F18; }
+      .d-contrato-anotado .foot { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .d-contrato-anotado .foot-c { text-anchor: middle; }
+      .d-contrato-anotado .lead { stroke: #9C3A1C; stroke-width: 1.2; fill: none; }
+      .d-contrato-anotado .lead-dot { fill: #9C3A1C; }
+      .d-contrato-anotado .call { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .d-contrato-anotado .call-note { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #5C4A3D; }
+      .d-contrato-anotado .r { text-anchor: end; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- The contract -->
+  <rect class="doc" x="250" y="26" width="310" height="470" rx="4"/>
+  <rect class="band" x="251" y="27" width="308" height="46"/>
+  <text class="mast" x="405" y="47">{t.mast}</text>
+  <text class="sub" x="405" y="64">{t.sub}</text>
+
+  <text class="head head-b" x="262" y="94">{t.empresa}</text>
+  <text class="head" x="262" y="111">{t.trabajadora}</text>
+  <line class="rule" x1="251" y1="122" x2="559" y2="122"/>
+  <text class="sec" x="262" y="139">{t.clausulas}</text>
+
+  {lineas.map(([txt, y]) => <text class="p" x="262" y={y}>{txt}</text>)}
+
+  <line class="rule" x1="251" y1="398" x2="559" y2="398"/>
+  <text class="foot" x="262" y="417">{t.lugar}</text>
+  <line class="sign" x1="272" y1="462" x2="382" y2="462"/>
+  <line class="sign" x1="428" y1="462" x2="538" y2="462"/>
+  <text class="foot foot-c" x="327" y="478">{t.fEmp}</text>
+  <text class="foot foot-c" x="483" y="478">{t.fTra}</text>
+
+  <!-- Call-outs on the left -->
+  <path class="lead" d="M 250 50 H 226"/><circle class="lead-dot" cx="250" cy="50" r="3"/>
+  <text class="call r" x="220" y="47">{t.cMod}</text>
+  <text class="call-note r" x="220" y="63">{t.cModN}</text>
+
+  <path class="lead" d="M 250 166 H 226"/><circle class="lead-dot" cx="250" cy="166" r="3"/>
+  <text class="call r" x="220" y="163">{t.cGru}</text>
+  <text class="call-note r" x="220" y="179">{t.cGruN}</text>
+
+  <path class="lead" d="M 250 268 H 226"/><circle class="lead-dot" cx="250" cy="268" r="3"/>
+  <text class="call r" x="220" y="265">{t.cPru}</text>
+  <text class="call-note r" x="220" y="281">{t.cPruN}</text>
+
+  <path class="lead" d="M 250 337 H 226"/><circle class="lead-dot" cx="250" cy="337" r="3"/>
+  <text class="call r" x="220" y="334">{t.cVac}</text>
+  <text class="call-note r" x="220" y="350">{t.cVacN}</text>
+
+  <path class="lead" d="M 250 462 H 226"/><circle class="lead-dot" cx="250" cy="462" r="3"/>
+  <text class="call r" x="220" y="459">{t.cFir}</text>
+  <text class="call-note r" x="220" y="475">{t.cFirN}</text>
+
+  <!-- Call-outs on the right -->
+  <path class="lead" d="M 560 100 H 584"/><circle class="lead-dot" cx="560" cy="100" r="3"/>
+  <text class="call" x="590" y="97">{t.cPar}</text>
+  <text class="call-note" x="590" y="113">{t.cParN}</text>
+
+  <path class="lead" d="M 560 204 H 584"/><circle class="lead-dot" cx="560" cy="204" r="3"/>
+  <text class="call" x="590" y="201">{t.cJor}</text>
+  <text class="call-note" x="590" y="217">{t.cJorN}</text>
+
+  <path class="lead" d="M 560 250 H 584"/><circle class="lead-dot" cx="560" cy="250" r="3"/>
+  <text class="call" x="590" y="247">{t.cIni}</text>
+  <text class="call-note" x="590" y="263">{t.cIniN}</text>
+
+  <path class="lead" d="M 560 303 H 584"/><circle class="lead-dot" cx="560" cy="303" r="3"/>
+  <text class="call" x="590" y="300">{t.cSal}</text>
+  <text class="call-note" x="590" y="316">{t.cSalN}</text>
+
+  <path class="lead" d="M 560 372 H 584"/><circle class="lead-dot" cx="560" cy="372" r="3"/>
+  <text class="call" x="590" y="369">{t.cCon}</text>
+  <text class="call-note" x="590" y="385">{t.cConN}</text>
+</svg>
