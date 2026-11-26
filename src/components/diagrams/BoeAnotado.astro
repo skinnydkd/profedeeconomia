@@ -1,0 +1,192 @@
+---
+/**
+ * The first page of a law as the BOE prints it, with call-outs for the things
+ * the unit asks the reader to find: bulletin number and date, section, who
+ * enacts it, rank/number/year, the reference code and where entry into force
+ * is stated. The sample is Ley Orgánica 3/2018 (BOE-A-2018-16673), the law
+ * the unit's own text uses as its example.
+ *
+ * The page itself stays in Spanish in both locales: it is the document as
+ * published. Only the call-outs are translated.
+ *
+ * Used in CJD · Unit 1 (society and law).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Una norma en el BOE, parte a parte',
+    desc: 'Primera página de la Ley Orgánica 3/2018 en el Boletín Oficial del Estado número 294, de 6 de diciembre de 2018, sección I, Jefatura del Estado, referencia BOE-A-2018-16673. Se señalan el número y la fecha del boletín, la sección, quién la dicta, el rango con su número y año, el preámbulo, los títulos y artículos, las disposiciones de la parte final con la entrada en vigor y la referencia.',
+    cBol: 'Número y fecha del boletín',
+    cBolN: 'el día en que se publica',
+    cOrg: 'Quién la dicta',
+    cOrgN: 'las leyes las sanciona el Rey',
+    cRan: 'Rango, número y año',
+    cRanN: 'la tercera ley orgánica de 2018',
+    cArt: 'Títulos y artículos',
+    cArtN: 'la parte que se cita',
+    cVig: 'Entrada en vigor',
+    cVigN: 'se busca al final, no al principio',
+    cSec: 'Sección I',
+    cSecN: 'normas de alcance general',
+    cFec: 'Fecha de la norma',
+    cFecN: 'la de la sanción, no la del boletín',
+    cPre: 'Preámbulo',
+    cPreN: 'explica el porqué; no obliga',
+    cDis: 'Parte final',
+    cDisN: 'qué cambia y qué se deroga',
+    cRef: 'Referencia',
+    cRefN: 'el código para buscarla y citarla',
+  },
+  ca: {
+    title: 'Una norma al BOE, part a part',
+    desc: "Primera pàgina de la Llei Orgànica 3/2018 al Butlletí Oficial de l'Estat número 294, de 6 de desembre de 2018, secció I, Prefectura de l'Estat, referència BOE-A-2018-16673. S'hi assenyalen el número i la data del butlletí, la secció, qui la dicta, el rang amb el seu número i any, el preàmbul, els títols i articles, les disposicions de la part final amb l'entrada en vigor i la referència.",
+    cBol: 'Número i data del butlletí',
+    cBolN: 'el dia que es publica',
+    cOrg: 'Qui la dicta',
+    cOrgN: 'les lleis les sanciona el Rei',
+    cRan: 'Rang, número i any',
+    cRanN: 'la tercera llei orgànica de 2018',
+    cArt: 'Títols i articles',
+    cArtN: 'la part que se cita',
+    cVig: 'Entrada en vigor',
+    cVigN: 'es busca al final, no al principi',
+    cSec: 'Secció I',
+    cSecN: "normes d'abast general",
+    cFec: 'Data de la norma',
+    cFecN: 'la de la sanció, no la del butlletí',
+    cPre: 'Preàmbul',
+    cPreN: 'explica el perquè; no obliga',
+    cDis: 'Part final',
+    cDisN: 'què canvia i què es deroga',
+    cRef: 'Referència',
+    cRefN: 'el codi per a buscar-la i citar-la',
+  },
+} as const;
+const t = COPY[locale];
+
+/** The page as published: Spanish in both locales. */
+const PAGINA = {
+  mast: 'BOLETÍN OFICIAL DEL ESTADO',
+  meta: 'Núm. 294 · Jueves 6 de diciembre de 2018 · Sec. I',
+  sec: 'I. DISPOSICIONES GENERALES',
+  org: 'JEFATURA DEL ESTADO',
+  num: '16673',
+  tit1: 'Ley Orgánica 3/2018, de 5 de diciembre,',
+  tit2: 'de Protección de Datos Personales y',
+  tit3: 'garantía de los derechos digitales.',
+  pre: 'PREÁMBULO',
+  titulo: 'TÍTULO I. Disposiciones generales',
+  art: 'Artículo 1. Objeto de la ley.',
+  dis1: 'Disposiciones adicionales, transitorias,',
+  dis2: 'derogatoria y finales',
+  vig1: 'Disposición final. Entrada en vigor.',
+  vig2: '«…el día siguiente al de su publicación».',
+  ref: 'BOE-A-2018-16673 · www.boe.es'
+} as const;
+
+/** Grey bars standing for body text: [y, width]. */
+const texto: [number, number][] = [
+  [226, 286], [236, 270], [246, 180],
+  [308, 286], [318, 250], [328, 286], [338, 120],
+];
+---
+<svg class="d-boe-anotado" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ba-title ba-desc">
+  <title id="ba-title">{t.title}</title>
+  <desc id="ba-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-boe-anotado .bg { fill: #FBF6EC; }
+      .d-boe-anotado .doc { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 1.5; }
+      .d-boe-anotado .band { fill: #F5EDD9; }
+      .d-boe-anotado .rule { stroke: #2A1F18; stroke-width: 1; }
+      .d-boe-anotado .bar { fill: #E5D4BD; }
+      .d-boe-anotado .mast { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; fill: #2A1F18; text-anchor: middle; }
+      .d-boe-anotado .meta { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #2A1F18; text-anchor: middle; }
+      .d-boe-anotado .sec { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; fill: #2A1F18; text-anchor: middle; }
+      .d-boe-anotado .org { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 600; fill: #5C4A3D; text-anchor: middle; }
+      .d-boe-anotado .ref { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; fill: #2A1F18; }
+      .d-boe-anotado .tit { font-family: 'Fraunces', serif; font-size: 12px; font-style: italic; fill: #2A1F18; }
+      .d-boe-anotado .h { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+      .d-boe-anotado .p { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #2A1F18; }
+      .d-boe-anotado .foot { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; fill: #5C4A3D; }
+      .d-boe-anotado .lead { stroke: #9C3A1C; stroke-width: 1.2; fill: none; }
+      .d-boe-anotado .lead-dot { fill: #9C3A1C; }
+      .d-boe-anotado .call { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .d-boe-anotado .call-note { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #5C4A3D; }
+      .d-boe-anotado .r { text-anchor: end; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- The page -->
+  <rect class="doc" x="250" y="26" width="310" height="470" rx="4"/>
+  <rect class="band" x="251" y="27" width="308" height="52"/>
+  <text class="mast" x="405" y="50">{PAGINA.mast}</text>
+  <text class="meta" x="405" y="68">{PAGINA.meta}</text>
+  <line class="rule" x1="251" y1="79" x2="559" y2="79"/>
+
+  <text class="sec" x="405" y="102">{PAGINA.sec}</text>
+  <text class="org" x="405" y="124">{PAGINA.org}</text>
+
+  <text class="ref" x="262" y="152">{PAGINA.num}</text>
+  <text class="tit" x="306" y="152">{PAGINA.tit1}</text>
+  <text class="tit" x="306" y="168">{PAGINA.tit2}</text>
+  <text class="tit" x="306" y="184">{PAGINA.tit3}</text>
+
+  <text class="h" x="262" y="214">{PAGINA.pre}</text>
+  <text class="h" x="262" y="280">{PAGINA.titulo}</text>
+  <text class="p" x="262" y="296">{PAGINA.art}</text>
+  {texto.map(([y, w]) => <rect class="bar" x="262" y={y} width={w} height="4" rx="2"/>)}
+
+  <text class="h" x="262" y="376">{PAGINA.dis1}</text>
+  <text class="h" x="262" y="391">{PAGINA.dis2}</text>
+  <text class="p" x="262" y="420">{PAGINA.vig1}</text>
+  <text class="p" x="262" y="435">{PAGINA.vig2}</text>
+
+  <line class="rule" x1="262" y1="462" x2="548" y2="462"/>
+  <text class="foot" x="262" y="481">{PAGINA.ref}</text>
+
+  <!-- Call-outs on the left -->
+  <path class="lead" d="M 250 64 H 226"/><circle class="lead-dot" cx="250" cy="64" r="3"/>
+  <text class="call r" x="220" y="61">{t.cBol}</text>
+  <text class="call-note r" x="220" y="77">{t.cBolN}</text>
+
+  <path class="lead" d="M 250 120 H 226"/><circle class="lead-dot" cx="250" cy="120" r="3"/>
+  <text class="call r" x="220" y="117">{t.cOrg}</text>
+  <text class="call-note r" x="220" y="133">{t.cOrgN}</text>
+
+  <path class="lead" d="M 250 166 H 226"/><circle class="lead-dot" cx="250" cy="166" r="3"/>
+  <text class="call r" x="220" y="165">{t.cRan}</text>
+  <text class="call-note r" x="220" y="181">{t.cRanN}</text>
+
+  <path class="lead" d="M 250 288 H 226"/><circle class="lead-dot" cx="250" cy="288" r="3"/>
+  <text class="call r" x="220" y="285">{t.cArt}</text>
+  <text class="call-note r" x="220" y="301">{t.cArtN}</text>
+
+  <path class="lead" d="M 250 424 H 226"/><circle class="lead-dot" cx="250" cy="424" r="3"/>
+  <text class="call r" x="220" y="421">{t.cVig}</text>
+  <text class="call-note r" x="220" y="437">{t.cVigN}</text>
+
+  <!-- Call-outs on the right -->
+  <path class="lead" d="M 560 98 H 584"/><circle class="lead-dot" cx="560" cy="98" r="3"/>
+  <text class="call" x="590" y="95">{t.cSec}</text>
+  <text class="call-note" x="590" y="111">{t.cSecN}</text>
+
+  <path class="lead" d="M 560 150 H 584"/><circle class="lead-dot" cx="560" cy="150" r="3"/>
+  <text class="call" x="590" y="147">{t.cFec}</text>
+  <text class="call-note" x="590" y="163">{t.cFecN}</text>
+
+  <path class="lead" d="M 560 212 H 584"/><circle class="lead-dot" cx="560" cy="212" r="3"/>
+  <text class="call" x="590" y="209">{t.cPre}</text>
+  <text class="call-note" x="590" y="225">{t.cPreN}</text>
+
+  <path class="lead" d="M 560 382 H 584"/><circle class="lead-dot" cx="560" cy="382" r="3"/>
+  <text class="call" x="590" y="379">{t.cDis}</text>
+  <text class="call-note" x="590" y="395">{t.cDisN}</text>
+
+  <path class="lead" d="M 560 478 H 584"/><circle class="lead-dot" cx="560" cy="478" r="3"/>
+  <text class="call" x="590" y="475">{t.cRef}</text>
+  <text class="call-note" x="590" y="491">{t.cRefN}</text>
+</svg>
