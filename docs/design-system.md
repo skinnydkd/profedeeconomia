@@ -69,3 +69,16 @@ Arran d'una crítica pública (juliol 2026), s'elimina tot el que llegia com a �
 - Espai blanc generós; una sola columna per al contingut llarg; cos ≥ 1.125rem, interlineat 1.7.
 - Cap emoji pictogràfic al contingut; sí símbols tipogràfics (`→ × — ·`).
 - Microinteraccions polides (hover: elevació suau + `box-shadow`), no efectes cridaners.
+
+## Caixes dels llibres: quatre famílies (VINCULANT)
+
+Dins d'una unitat, el fons de la caixa diu quina classe de cosa és. Quatre famílies, un significat cadascuna; l'etiqueta de la caixa («Caso real», «¿Sabías que…?») diu el tipus concret.
+
+| Família | Què vol dir | Superfície (`global.css`) | Components |
+|---|---|---|---|
+| Definició | Açò cal saber-ho | `--caja-definicion` (terracota suau) | `Callout` (concept), `TldrUnidad`, `KeyTakeaways` |
+| Digressió | Es pot botar sense perdre el fil | `--caja-digresion` (crema) | `Curiosity`, `RealExample`, `CasoReal`, `CasoDilema`, `VuelveAlCaso`, `VocesDesacuerdo`, `EnEstaFase`, `Callout` (info) |
+| Pràctica | Ací es fa alguna cosa | `--caja-practica` (paper) amb vora 1px | `SolvedExercise`, `Steps`, `PistaEbau`, `Callout` (example), `KeyTakeaways` (checklist) |
+| Avís | Compte amb açò | `--caja-aviso` (mostassa suau) | `ErroresQueCuestan`, `Callout` (warning), `KeyTakeaways` (warning) |
+
+Una caixa nova entra en una d'aquestes quatre famílies; no porta color propi. Ho comprova `src/components/cajas-familias.test.ts`.

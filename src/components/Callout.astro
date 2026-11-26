@@ -4,8 +4,8 @@ type Props = {
   label: string;
   /** The bold italic line shown under the label. Optional. */
   title?: string;
-  /** Visual variant. Default = terracota (concepto). example = mustard. */
-  variant?: 'concept' | 'example';
+  /** Box family: concept = definition (default), example = practice, warning = warning, info = digression. */
+  variant?: 'concept' | 'example' | 'warning' | 'info';
 };
 
 const { label, title, variant = 'concept' } = Astro.props;
@@ -24,11 +24,11 @@ const { label, title, variant = 'concept' } = Astro.props;
     margin: 2.8rem 0;
     padding: 1.8rem 2rem;
     border-radius: 8px;
-    background: var(--color-terra-soft);
+    background: var(--caja-definicion);
   }
-  .callout--example {
-    background: var(--color-mustard-soft);
-  }
+  .callout--example { background: var(--caja-practica); border: 1px solid var(--caja-practica-borde); }
+  .callout--warning { background: var(--caja-aviso); }
+  .callout--info { background: var(--caja-digresion); }
 
   .label {
     font-family: var(--font-sans);
@@ -40,7 +40,7 @@ const { label, title, variant = 'concept' } = Astro.props;
     margin-bottom: 0.6rem;
     font-weight: 700;
   }
-  .callout--example .label { color: var(--color-mustard-deep); }
+  .callout--info .label { color: var(--color-mustard-deep); }
 
   .label-title {
     font-family: var(--font-serif);
