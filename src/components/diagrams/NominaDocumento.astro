@@ -1,0 +1,214 @@
+---
+/**
+ * A payslip with its parts called out, so the reader can find on a real one
+ * what the unit names: accruals (gross), the worker's Social Security
+ * contribution, the income-tax withholding, the net pay and what the company
+ * pays on top. It follows the layout of the official model (Orden
+ * ESS/2098/2014) and uses the figures of solved exercise 6.1 (Aitana).
+ *
+ * Used in IPE I · Unit 6 (contract and rights).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Una nómina, parte a parte',
+    desc: 'Nómina de abril de 2026 de una técnica con 1.800 euros brutos. Devengos: salario base 1.400, plus de convenio 142,86 y prorrata de pagas extra 257,14. Deducciones: Seguridad Social 117 euros (contingencias comunes 4,70 %, MEI 0,15 %, desempleo 1,55 % y formación 0,10 %) e IRPF 9 %, 162 euros. Líquido a percibir: 1.521 euros. Aparte, la empresa aporta 551,70 euros.',
+    empresa: 'Empresa: Taller Levante, S.L.',
+    trabajadora: 'Trabajadora: Aitana R. · Técnica superior',
+    periodo: 'Periodo: 1 a 30 de abril de 2026',
+    devengos: 'I. DEVENGOS',
+    base: 'Salario base',
+    plus: 'Plus de convenio',
+    prorrata: 'Prorrata pagas extra',
+    totalDev: 'A. Total devengado',
+    deducciones: 'II. DEDUCCIONES',
+    cc: 'Contingencias comunes',
+    mei: 'MEI',
+    desempleo: 'Desempleo',
+    fp: 'Formación profesional',
+    totalSS: 'Total aportaciones',
+    irpf: 'IRPF',
+    totalDed: 'B. Total a deducir',
+    liquido: 'LÍQUIDO A PERCIBIR (A − B)',
+    pie: 'BASES Y APORTACIÓN DE LA EMPRESA',
+    baseCot: 'Base de cotización',
+    baseIrpf: 'Base sujeta a IRPF',
+    aportacion: 'Aportación de la empresa',
+    cDev: 'Devengos: lo que ganas',
+    cDevN: 'todo, antes de descuentos',
+    cSS: 'Seguridad Social: 6,50 %',
+    cSSN: 'tu parte: pensiones, paro y bajas',
+    cIrpf: 'Retención de IRPF',
+    cIrpfN: 'anticipo del impuesto de la renta',
+    cEmp: 'Lo paga la empresa',
+    cEmpN: 'a ti no se te descuenta',
+    cPer: 'Periodo de liquidación',
+    cPerN: 'el mes que te están pagando',
+    cPro: 'Pagas extra prorrateadas',
+    cProN: 'repartidas en los doce meses',
+    cBru: 'Salario bruto',
+    cBruN: 'la cifra de las ofertas de empleo',
+    cNet: 'Salario neto',
+    cNetN: 'lo que llega a tu cuenta',
+    cBas: 'Bases',
+    cBasN: 'sobre ellas se aplican los porcentajes',
+  },
+  ca: {
+    title: 'Una nòmina, part a part',
+    desc: "Nòmina d'abril de 2026 d'una tècnica amb 1.800 euros bruts. Meritacions: salari base 1.400, plus de conveni 142,86 i prorrata de pagues extra 257,14. Deduccions: Seguretat Social 117 euros (contingències comunes 4,70 %, MEI 0,15 %, desocupació 1,55 % i formació 0,10 %) i IRPF 9 %, 162 euros. Líquid a percebre: 1.521 euros. A banda, l'empresa aporta 551,70 euros.",
+    empresa: 'Empresa: Taller Levante, S.L.',
+    trabajadora: 'Treballadora: Aitana R. · Tècnica superior',
+    periodo: "Període: 1 a 30 d'abril de 2026",
+    devengos: 'I. MERITACIONS',
+    base: 'Salari base',
+    plus: 'Plus de conveni',
+    prorrata: 'Prorrata pagues extra',
+    totalDev: 'A. Total meritat',
+    deducciones: 'II. DEDUCCIONS',
+    cc: 'Contingències comunes',
+    mei: 'MEI',
+    desempleo: 'Desocupació',
+    fp: 'Formació professional',
+    totalSS: 'Total aportacions',
+    irpf: 'IRPF',
+    totalDed: 'B. Total a deduir',
+    liquido: 'LÍQUID A PERCEBRE (A − B)',
+    pie: "BASES I APORTACIÓ DE L'EMPRESA",
+    baseCot: 'Base de cotització',
+    baseIrpf: 'Base subjecta a IRPF',
+    aportacion: "Aportació de l'empresa",
+    cDev: 'Meritacions: el que guanyes',
+    cDevN: 'tot, abans de descomptes',
+    cSS: 'Seguretat Social: 6,50 %',
+    cSSN: 'la teua part: pensions, atur i baixes',
+    cIrpf: "Retenció d'IRPF",
+    cIrpfN: "bestreta de l'impost de la renda",
+    cEmp: "Ho paga l'empresa",
+    cEmpN: 'a tu no se et descompta',
+    cPer: 'Període de liquidació',
+    cPerN: "el mes que t'estan pagant",
+    cPro: 'Pagues extra prorratejades',
+    cProN: 'repartides en els dotze mesos',
+    cBru: 'Salari brut',
+    cBruN: "la xifra de les ofertes d'ocupació",
+    cNet: 'Salari net',
+    cNetN: "el que t'arriba al compte",
+    cBas: 'Bases',
+    cBasN: "sobre elles s'apliquen els percentatges",
+  },
+} as const;
+const t = COPY[locale];
+
+/** Rows of the slip: label, optional rate, amount, y. */
+const filas: { l: string; p?: string; v: string; y: number; b?: boolean }[] = [
+  { l: t.base, v: '1.400,00', y: 130 },
+  { l: t.plus, v: '142,86', y: 148 },
+  { l: t.prorrata, v: '257,14', y: 166 },
+  { l: t.totalDev, v: '1.800,00', y: 192, b: true },
+  { l: t.cc, p: '4,70 %', v: '84,60', y: 240 },
+  { l: t.mei, p: '0,15 %', v: '2,70', y: 258 },
+  { l: t.desempleo, p: '1,55 %', v: '27,90', y: 276 },
+  { l: t.fp, p: '0,10 %', v: '1,80', y: 294 },
+  { l: t.totalSS, v: '117,00', y: 312 },
+  { l: t.irpf, p: '9,00 %', v: '162,00', y: 330 },
+  { l: t.totalDed, v: '279,00', y: 356, b: true },
+  { l: t.baseCot, v: '1.800,00', y: 440 },
+  { l: t.baseIrpf, v: '1.800,00', y: 458 },
+  { l: t.aportacion, p: '30,65 %', v: '551,70', y: 476 },
+];
+---
+<svg class="d-nomina-doc" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nd-title nd-desc">
+  <title id="nd-title">{t.title}</title>
+  <desc id="nd-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-nomina-doc .bg { fill: #FBF6EC; }
+      .d-nomina-doc .doc { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 1.5; }
+      .d-nomina-doc .band { fill: #F5EDD9; }
+      .d-nomina-doc .net { fill: #FBE3D6; }
+      .d-nomina-doc .rule { stroke: #E5D4BD; stroke-width: 1; }
+      .d-nomina-doc .head { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #2A1F18; }
+      .d-nomina-doc .head-b { font-weight: 700; }
+      .d-nomina-doc .sec { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; fill: #5C4A3D; }
+      .d-nomina-doc .row { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #2A1F18; }
+      .d-nomina-doc .row-b { font-weight: 700; }
+      .d-nomina-doc .num { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; fill: #2A1F18; text-anchor: end; }
+      .d-nomina-doc .pct { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; fill: #5C4A3D; text-anchor: end; }
+      .d-nomina-doc .net-l { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #9C3A1C; }
+      .d-nomina-doc .net-v { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; fill: #9C3A1C; text-anchor: end; }
+      .d-nomina-doc .lead { stroke: #9C3A1C; stroke-width: 1.2; fill: none; }
+      .d-nomina-doc .lead-dot { fill: #9C3A1C; }
+      .d-nomina-doc .call { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .d-nomina-doc .call-note { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #5C4A3D; }
+      .d-nomina-doc .r { text-anchor: end; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- The slip, centred; call-outs point into it from both sides. -->
+  <rect class="doc" x="250" y="26" width="310" height="470" rx="4"/>
+  <rect class="band" x="251" y="27" width="308" height="66"/>
+  <text class="head head-b" x="262" y="48">{t.empresa}</text>
+  <text class="head" x="262" y="65">{t.trabajadora}</text>
+  <text class="head" x="262" y="82">{t.periodo}</text>
+
+  <text class="sec" x="262" y="112">{t.devengos}</text>
+  <line class="rule" x1="262" y1="176" x2="548" y2="176"/>
+  <line class="rule" x1="251" y1="204" x2="559" y2="204"/>
+  <text class="sec" x="262" y="222">{t.deducciones}</text>
+  <line class="rule" x1="262" y1="340" x2="548" y2="340"/>
+
+  <rect class="net" x="251" y="372" width="308" height="32"/>
+  <text class="net-l" x="262" y="392">{t.liquido}</text>
+  <text class="net-v" x="548" y="393">1.521,00</text>
+
+  <text class="sec" x="262" y="422">{t.pie}</text>
+
+  {filas.map((f) => (
+    <>
+      <text class:list={['row', f.b && 'row-b']} x="262" y={f.y}>{f.l}</text>
+      {f.p && <text class="pct" x="478" y={f.y}>{f.p}</text>}
+      <text class:list={['num', f.b && 'row-b']} x="548" y={f.y}>{f.v}</text>
+    </>
+  ))}
+
+  <!-- Call-outs on the left (right-aligned against the slip) -->
+  <path class="lead" d="M 250 144 H 226"/><circle class="lead-dot" cx="250" cy="144" r="3"/>
+  <text class="call r" x="220" y="141">{t.cDev}</text>
+  <text class="call-note r" x="220" y="157">{t.cDevN}</text>
+
+  <path class="lead" d="M 256 232 V 298 M 256 265 H 226"/>
+  <text class="call r" x="220" y="262">{t.cSS}</text>
+  <text class="call-note r" x="220" y="278">{t.cSSN}</text>
+
+  <path class="lead" d="M 250 326 H 226"/><circle class="lead-dot" cx="250" cy="326" r="3"/>
+  <text class="call r" x="220" y="330">{t.cIrpf}</text>
+  <text class="call-note r" x="220" y="346">{t.cIrpfN}</text>
+
+  <path class="lead" d="M 250 472 H 226"/><circle class="lead-dot" cx="250" cy="472" r="3"/>
+  <text class="call r" x="220" y="469">{t.cEmp}</text>
+  <text class="call-note r" x="220" y="485">{t.cEmpN}</text>
+
+  <!-- Call-outs on the right -->
+  <path class="lead" d="M 560 78 H 584"/><circle class="lead-dot" cx="560" cy="78" r="3"/>
+  <text class="call" x="590" y="75">{t.cPer}</text>
+  <text class="call-note" x="590" y="91">{t.cPerN}</text>
+
+  <path class="lead" d="M 560 162 H 584"/><circle class="lead-dot" cx="560" cy="162" r="3"/>
+  <text class="call" x="590" y="152">{t.cPro}</text>
+  <text class="call-note" x="590" y="168">{t.cProN}</text>
+
+  <path class="lead" d="M 560 188 V 204 H 584"/><circle class="lead-dot" cx="560" cy="188" r="3"/>
+  <text class="call" x="590" y="202">{t.cBru}</text>
+  <text class="call-note" x="590" y="218">{t.cBruN}</text>
+
+  <path class="lead" d="M 560 388 H 584"/><circle class="lead-dot" cx="560" cy="388" r="3"/>
+  <text class="call" x="590" y="385">{t.cNet}</text>
+  <text class="call-note" x="590" y="401">{t.cNetN}</text>
+
+  <path class="lead" d="M 560 446 H 584"/><circle class="lead-dot" cx="560" cy="446" r="3"/>
+  <text class="call" x="590" y="443">{t.cBas}</text>
+  <text class="call-note" x="590" y="459">{t.cBasN}</text>
+</svg>
