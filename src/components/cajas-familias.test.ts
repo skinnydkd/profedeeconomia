@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
@@ -32,4 +33,15 @@ describe('book box families', () => {
     expect(css).toMatch(/\.callout--warning \{ background: var\(--caja-aviso\)/);
     expect(css).toMatch(/\.callout--info \{ background: var\(--caja-digresion\)/);
   });
+});
+
+describe('print pages with their own palette', () => {
+  // Print pages do not load global.css: they redefine the palette, so they must define the box tokens too.
+  const pages = execSync('git grep -l -- "--color-bg-cream:" -- src/pages src/styles', { encoding: 'utf8' }).trim().split('\n');
+  for (const file of pages) {
+    it(`${file} defines the four box tokens`, () => {
+      const css = readFileSync(file, 'utf8');
+      for (const token of ['definicion', 'digresion', 'practica', 'practica-borde', 'aviso']) expect(css).toContain(`--caja-${token}:`);
+    });
+  }
 });
