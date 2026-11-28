@@ -442,7 +442,8 @@ Queden sense regla `/stax` i `/rapid`, que no sé a quina pàgina nova correspon
 **Sol·licituds d'indexació.** De les 64 unitats, 8 són adreces antigues d'Eco 4t que ja redirigeixen (no cal demanar-les). En queden 56. La quota diària s'acaba a les 11 sol·licituds.
 
 - 26/11: les 11 d'EDMN (01-03 i 05-12). ✅
-- Pendents (45): Eco 1r 02-08, 10 i 11 · FOPP 05-10 · EEAE 02-10 · IPE I 01, 05-07 i 09 · IPE II 03-09 · Taller 01, 04 i 06-09 · GPE 01, 06 i 07.
+- 28/11: les 9 d'Eco 1r (02-08, 10 i 11) i FOPP 05. ✅ La quota ha saltat a la que feia 11 (Eco 1r 03 es va enviar dues vegades).
+- Pendents (35): FOPP 06-10 · EEAE 02-10 · IPE I 01, 05-07 i 09 · IPE II 03-09 · Taller 01, 04 i 06-09 · GPE 01, 06 i 07.
 
 **Pendent.** `/stax` i `/rapid` continuen sense destí.
 
